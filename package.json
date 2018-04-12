@@ -1,0 +1,26 @@
+{
+	"name": "figmagic",
+	"version": "0.1.0",
+	"author": "Mikael Vesavuori",
+	"main": "index.js",
+	"license": "MIT",
+	"bin": {
+		"figmagic": "./bin/index.js"
+	},
+	"dependencies": {
+		"request": "^2.85.0"
+	},
+	"scripts": {
+		"clean": "rm -rf specs/ && rm -rf tokens/ && rm -rf figma",
+		"start":
+			"yarn clean && yarn run api:save && yarn build && yarn images:get && yarn images:download",
+		"api:curl":
+			"curl 'https://api.figma.com/v1/files/KLLDK9CBSg7eAayiTY3kVqC8' -sH 'X-Figma-Token: 363-7526bfc3-cb4d-487e-80fe-461679ae1470' | python -m json.tool",
+		"api:save":
+			"mkdir -p figma && wget 'https://api.figma.com/v1/files/KLLDK9CBSg7eAayiTY3kVqC8' --header='X-Figma-Token: 363-7526bfc3-cb4d-487e-80fe-461679ae1470' -O figma/figma.json",
+		"build": "node bin/index.js",
+		"images:get": "node bin/getImages.js",
+		"images:download": "node bin/downloadImages.js",
+		"debug": "yarn build && yarn images:get"
+	}
+}
