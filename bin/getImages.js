@@ -5,9 +5,9 @@ const resolvedImages = JSON.parse(require(`${process.cwd()}/figma/resolvedImages
 const resolvedImageIds = resolvedImages.fixedIds;
 
 const options = {
-	url: `https://api.figma.com/v1/images/KLLDK9CBSg7eAayiTY3kVqC8?ids=${resolvedImageIds}&format=png&scale=2`,
+	url: `https://api.figma.com/v1/images/{FILE}?ids=${resolvedImageIds}&format=png&scale=2`,
 	headers: {
-		'X-Figma-Token': '363-7526bfc3-cb4d-487e-80fe-461679ae1470'
+		'X-Figma-Token': '{TOKEN}'
 	}
 };
 
@@ -67,7 +67,7 @@ function callback(error, response, body) {
 			`${process.cwd()}/figma/images.json`,
 			JSON.stringify(namedComponentsWithImages),
 			'utf-8',
-			function(error) {
+			function (error) {
 				if (error) {
 					return console.log(error);
 				}
