@@ -22,42 +22,10 @@ function callback(error, response, body) {
 				if (imgId === id) {
 					const imageUrl = Object.values(_body.images)[index];
 					const componentName = Object.keys(resolvedImages)[indexInner];
-					//console.log('Matched ' + imgId + ' @ ' + index);
-					//console.log(Object.keys(resolvedImages)[index]);
 					namedComponentsWithImages[componentName] = imageUrl;
 				}
 			});
 		});
-
-		/* BUG
-		** _body.images and resolvedImages do not align in indexes, thus ending in images with wrong names
-		*/
-
-		/*
-		Object.keys(_body.images).forEach((key, index) => {
-			const componentName = Object.keys(resolvedImages)[index];
-			console.log(
-				Object.values(_body.images)[index],
-				Object.keys(resolvedImages)[index],
-				Object.values(resolvedImages)[index]
-			);
-			namedComponentsWithImages[componentName] = Object.values(_body.images)[index]; // Object.values(resolvedImages)[index];
-		});
-		*/
-
-		/*
-		Object.keys(_body.images).forEach((key, index) => {
-			const componentName = Object.keys(resolvedImages)[index];
-			console.log(
-				Object.values(_body.images)[index],
-				Object.keys(resolvedImages)[index],
-				Object.values(resolvedImages)[index]
-			);
-			namedComponentsWithImages[componentName] = Object.values(_body.images)[index]; // Object.values(resolvedImages)[index];
-		});
-		*/
-
-		//console.log(namedComponentsWithImages);
 
 		/* TODO:
 		** Use ./writeFile.js instead?
@@ -67,7 +35,7 @@ function callback(error, response, body) {
 			`${process.cwd()}/figma/images.json`,
 			JSON.stringify(namedComponentsWithImages),
 			'utf-8',
-			function (error) {
+			function(error) {
 				if (error) {
 					return console.log(error);
 				}
