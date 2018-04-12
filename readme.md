@@ -79,7 +79,7 @@ The Figmagic commands (NPM scripts block) is below, listing what commands are av
 
 ## Figma setup
 
-See a demo/template at [https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figma-Design-System-Demo](https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figma-Design-System-Demo).
+See a demo/template at [https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example](https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example).
 
 ## Token formatting/conversion
 

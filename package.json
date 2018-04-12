@@ -15,7 +15,7 @@
 			"yarn figmagic:clean && yarn run figmagic:savefromapi && yarn figmagic:build && yarn figmagic:getimages && yarn figmagic:downloadimages",
 		"figmagic:clean": "rm -rf specs/ && rm -rf tokens/ && rm -rf figma",
 		"figmagic:savefromapi":
-			"mkdir -p figma && wget 'https://api.figma.com/v1/files/{FILE}' --header='X-Figma-Token: {TOKEN}' -O figma/figma.json",
+			"mkdir -p figma && wget 'https://api.figma.com/v1/files/KLLDK9CBSg7eAayiTY3kVqC8' --header='X-Figma-Token: 363-7526bfc3-cb4d-487e-80fe-461679ae1470' -O figma/figma.json",
 		"figmagic:tokens": "yarn figmagic:clean && yarn figmagic:savefromapi && yarn figmagic:build",
 		"figmagic:build": "node $npm_package_config_figmagicPath/bin/index.js",
 		"figmagic:getimages": "node $npm_package_config_figmagicPath/bin/getImages.js",
