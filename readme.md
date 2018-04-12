@@ -15,6 +15,10 @@ The basic idea of Figmagic is to support an informed handoff between designers a
 * Transform values into a common set of tokens rather than output exact values, ie. use something like ${colors.midGray} rather than #3C3C3C.
 * Ease the process of making, generating and using design specification by giving solid contextual understanding rather than being imperative and unnecessarily detailed
 
+## Example project
+
+An example project—using React, Webpack and Styled Components—is available at [https://github.com/mikaelvesavuori/figmagic-example](https://github.com/mikaelvesavuori/figmagic-example).
+
 ## Installation
 
 You can use Figmagic either as an NPM package in its own folder, or as part of your projects. It is assumed you will use it as a dependency.
