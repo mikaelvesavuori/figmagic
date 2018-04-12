@@ -1,6 +1,6 @@
 # Figmagic
 
-Automate the generation of design tokens and specs from your Figma documents. Inspired by Salesforce Theo.
+Automate the generation of design tokens and specs from your Figma documents. Inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo).
 
 * Extract design tokens for colors, typography (line heights, font sizes, font families), spacing, and grids.
 * Get design specifications for all of your Master Components.
