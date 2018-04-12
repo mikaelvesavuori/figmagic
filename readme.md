@@ -77,7 +77,7 @@ The Figmagic commands (NPM scripts block) is below, listing what commands are av
 
 ## Figma setup
 
-* In Figma, you should use one single page which contains only frames, and specifically one frame per type of token (color, grid, typography...).
+See a demo/template at [https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figma-Design-System-Demo](https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figma-Design-System-Demo).
 
 ## Token formatting/conversion
 
