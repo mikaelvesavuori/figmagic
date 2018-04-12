@@ -6,7 +6,7 @@ const getGridUnitCount = require('./getGridUnitCount.js');
 */
 
 function mapDimensionToGridUnits(pxValue, dimension) {
-	const grid = require('../tokens/grid.js');
+	const grid = require(`${process.cwd()}/tokens/grid.js`);
 
 	if (dimension === 'width') {
 		const maxWidth = grid.totalWidth; // Canvas max width? (Desktop mode)

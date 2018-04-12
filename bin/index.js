@@ -5,7 +5,7 @@ const writeTokens = require('./writeTokens.js');
 const writeComponents = require('./writeComponents.js');
 const setupComponents = require('./setupComponents.js');
 
-const figmaDocument = require('../figma/figma.json');
+const figmaDocument = require(`${process.cwd()}/figma/figma.json`);
 const figmaPages = figmaDocument.document.children;
 const figmaComponents = figmaDocument.components;
 

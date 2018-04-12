@@ -20,15 +20,13 @@ function createIdString(ids) {
 	** Use ./writeFile.js instead?
 	*/
 
-	console.log(process.cwd());
-
-	fs.writeFileSync(
-		'figma/resolvedImages.js',
+	fs.writeFile(
+		`${process.cwd()}/figma/resolvedImages.js`,
 		`module.exports = '${fixedObject}'`,
 		'utf-8',
 		function(error) {
 			if (error) {
-				return console.log(error);
+				return console.log('ERROR: ' + error);
 			}
 		}
 	);

@@ -1,11 +1,11 @@
 const fs = require('fs');
 const request = require('request');
 
-const resolvedImages = JSON.parse(require('../figma/resolvedImages.js'));
+const resolvedImages = JSON.parse(require(`${process.cwd()}/figma/resolvedImages.js`));
 const resolvedImageIds = resolvedImages.fixedIds;
 
 const options = {
-	url: `https://api.figma.com/v1/images/KLLDK9CBSg7eAayiTY3kVqC8?ids=${resolvedImageIds}`,
+	url: `https://api.figma.com/v1/images/KLLDK9CBSg7eAayiTY3kVqC8?ids=${resolvedImageIds}&format=png&scale=2`,
 	headers: {
 		'X-Figma-Token': '363-7526bfc3-cb4d-487e-80fe-461679ae1470'
 	}
@@ -63,13 +63,16 @@ function callback(error, response, body) {
 		** Use ./writeFile.js instead?
 		*/
 
-		fs.writeFile('figma/images.json', JSON.stringify(namedComponentsWithImages), 'utf-8', function(
-			error
-		) {
-			if (error) {
-				return console.log(error);
+		fs.writeFile(
+			`${process.cwd()}/figma/images.json`,
+			JSON.stringify(namedComponentsWithImages),
+			'utf-8',
+			function(error) {
+				if (error) {
+					return console.log(error);
+				}
 			}
-		});
+		);
 	} else {
 		console.warn(error);
 	}

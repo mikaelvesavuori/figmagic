@@ -19,7 +19,7 @@ function processTokens(sheet, name) {
 	if (_name === 'spacing' || _name === 'spacings') {
 		processedTokens = setupSpacingTokens(sheet);
 	}
-	if (_name === 'fonts') {
+	if (_name === 'fontfamilies') {
 		processedTokens = setupFontTokens(sheet);
 	}
 	if (_name === 'fontsizes') {

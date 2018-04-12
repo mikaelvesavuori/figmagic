@@ -17,11 +17,13 @@ The basic idea of Figmagic is to support an informed handoff between designers a
 
 ## Installation
 
-You can use Figmagic either as an NPM package in its own folder, or as part of your projects.
+You can use Figmagic either as an NPM package in its own folder, or as part of your projects. It is assumed you will use it as a dependency.
 
 ### Standalone
 
-Running it standalone might be fine if you wish to isolate the tokens/spec generation, or if you don't have a project in which to place Figmagic, or if it simply makes more sense to have it on its own.
+Running it standalone might be fine if you wish to isolate the tokens/spec generation, or if you don't have a project in which to place Figmagic, or if it simply makes more sense to have it on its own (for example doing a project in a non-Node environment).
+
+Use `.` as a value in the path in the NPM config block to resolve from the Figmagic root.
 
 * Clone/download the repository
 * Place it where you want it!
