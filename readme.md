@@ -36,44 +36,22 @@ You will probably want to use it as a straight dependency.
 * Add the below commands to your NPM scripts block
 * Replace with your own file ID and token key (for more on this, [go to Figma's developer docs](https://www.figma.com/developers/docs))
 
-#### Troubleshooting
-
-In case you have any trouble starting Figmagic as part of a project, it might be because internal paths point to the project folder itself, instead of your project.
-
-The culprit in that case is probably `bin/createIdString.js` where you should update the last block (around line 24) to:
-
-```js
-fs.writeFileSync(
-	`${process.cwd()}/node_modules/figmagic/figma/resolvedImages.js`,
-	`module.exports = '${fixedObject}'`,
-	'utf-8',
-	error => {
-		if (error) {
-			return console.log(error);
-		}
-	}
-);
-```
-
-The fix is in the prefix containing `process.cwd()`. This is on my list of coming fixes.
-
 ## Commands
 
 The Figmagic commands (NPM scripts block) is below, listing what commands are available to you.
 
 ```json
+"config": {
+	"figmagicPath": "node_modules/figmagic"
+},
 "scripts": {
-	"clean": "rm -rf specs/ && rm -rf tokens/ && rm -rf figma",
-	"start":
-		"yarn clean && yarn run api:save && yarn build && yarn images:get && yarn images:download",
-	"api:curl":
-		"curl 'https://api.figma.com/v1/files/{FILE}' -sH 'X-Figma-Token: {TOKEN}' | python -m json.tool",
-	"api:save":
-		"mkdir -p figma && wget 'https://api.figma.com/v1/files/{FILE}' --header='X-Figma-Token: {TOKEN}' -O figma/figma.json",
-	"build": "node bin/index.js",
-	"images:get": "node bin/getImages.js",
-	"images:download": "node bin/downloadImages.js",
-	"debug": "yarn build && yarn images:get"
+	"figmagic": "yarn figmagic:clean && yarn run figmagic:saveFromApi && yarn figmagic:build && yarn figmagic:getImages && yarn figmagic:downloadImages",
+	"figmagic:clean": "rm -rf specs/ && rm -rf tokens/ && rm -rf figma",
+	"figmagic:saveFromApi": "mkdir -p figma && wget 'https://api.figma.com/v1/files/{FILE}' --header='X-Figma-Token: {TOKEN}' -O figma/figma.json",
+	"figmagic:tokens": "yarn figmagic:clean && yarn figmagic:saveFromApi && yarn figmagic:build",
+	"figmagic:build": "node $npm_package_config_figmagicPath/bin/index.js",
+	"figmagic:getImages": "node $npm_package_config_figmagicPath/bin/getImages.js",
+	"figmagic:downloadImages": "node $npm_package_config_figmagicPath/bin/downloadImages.js"
 }
 ```
 
@@ -87,9 +65,13 @@ See a demo/template at [https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figm
 
 Uses any combination of rows, columns, and grid (but only one of each type).
 
-### Fonts (weights)
+### Font families
 
 Postscript name (eg. FiraSans-Regular).
+
+### Font weights
+
+Work in progress.
 
 ### Font sizes
 
@@ -121,7 +103,6 @@ Text to come.
 
 ## Upcoming possible features
 
-* Fix issue with paths (the `process.cwd()` thing) so it works regardless if project is standalone or dependency
 * Greater customizability of units, paths, etc.
 * Still getting too many specs (for subcomponents)...?
 * Extract design specs for subcomponents as well
