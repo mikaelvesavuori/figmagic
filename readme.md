@@ -40,6 +40,11 @@ You will probably want to use it as a straight dependency.
 * Add the below commands to your NPM scripts block
 * Replace with your own file ID and token key (for more on this, [go to Figma's developer docs](https://www.figma.com/developers/docs))
 
+## Key/token locations
+
+1.  `package.json`: In the scripts block you will need to change the blanks to your actual file and token
+2.  `bin/getImages.js`: In the options object you will also need to change to your actual values
+
 ## Commands
 
 The Figmagic commands (NPM scripts block) is below, listing what commands are available to you.
