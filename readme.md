@@ -5,6 +5,8 @@ Automate the generation of design tokens and specs from your Figma documents. In
 * Extract design tokens for colors, typography (line heights, font sizes, font families), spacing, and grids.
 * Get design specifications for all of your Master Components.
 
+Note: Requires that your document structure is identical to what I show in the template site at [https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example](https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example).
+
 ## Approach and use cases
 
 There's a lot to say here about the use cases and approaches taken by other tools. I will be writing an article on the motivations behind the project later on.
@@ -67,6 +69,10 @@ The Figmagic commands (NPM scripts block) is below, listing what commands are av
 ## Figma setup
 
 See a demo/template at [https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example](https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example).
+
+Note: You must follow the document structure as seen in the image below and in the template linked above.
+
+![Figma Document Structure](https://user-images.githubusercontent.com/23580994/39321512-8c682a30-4987-11e8-9489-9452fc52f3a8.png)
 
 ## Token formatting/conversion
 
