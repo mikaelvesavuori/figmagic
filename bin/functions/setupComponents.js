@@ -7,12 +7,17 @@ function setupComponents(figmaComponents, componentsPage) {
 
 	Object.values(figmaComponents).forEach((component, index) => {
 		const unitWidth = getDimension(component.name, 'width', componentsPage);
-		const gridWidth = mapDimensionToGridUnits(unitWidth, 'width');
+		const mappedDimensions = mapDimensionToGridUnits(unitWidth, 'width');
+
+		const gridWidth = mappedDimensions.gridWidth;
+		const perfectlyFitsGrid = mappedDimensions.perfectlyFitsGrid;
+
 		const unitHeight = getDimension(component.name, 'height', componentsPage);
 
 		let componentObject = {
 			name: component.name,
 			gridWidth: gridWidth,
+			perfectlyFitsGrid: perfectlyFitsGrid,
 			pxWidth: unitWidth,
 			pxHeight: unitHeight,
 			description: component.description,
@@ -20,7 +25,11 @@ function setupComponents(figmaComponents, componentsPage) {
 			id: Object.keys(figmaComponents)[index]
 		};
 
-		//ids[componentObject.name] = componentObject.id;
+		// Remove zero-length subComponents property
+		if (componentObject.subComponents.length === 0) {
+			delete componentObject.subComponents;
+		}
+
 		components.push(componentObject);
 	});
 

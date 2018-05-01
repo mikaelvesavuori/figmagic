@@ -1,9 +1,12 @@
 const camelize = require('./camelize.js');
+const formatName = require('./formatName.js');
 const writeFile = require('./writeFile.js');
 
 function writeComponents(components) {
 	components.forEach(component => {
-		const componentName = camelize(component.name);
+		let componentName = camelize(component.name);
+		componentName = formatName(componentName);
+
 		writeFile(component, componentName, 'specs');
 	});
 }

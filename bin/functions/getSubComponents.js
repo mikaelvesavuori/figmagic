@@ -4,7 +4,13 @@ function getSubComponents(componentName, componentsPage) {
 	componentsPage.forEach((component, index) => {
 		if (component.name === componentName) {
 			component.children.forEach(subComponent => {
-				subComponentNames.push(subComponent.name);
+				if (subComponent.componentId) {
+					subComponentNames.push(
+						`${subComponent.name} (Component ID: ${subComponent.componentId})`
+					);
+				} else {
+					subComponentNames.push(subComponent.name);
+				}
 			});
 		}
 	});

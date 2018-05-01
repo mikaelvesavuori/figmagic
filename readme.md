@@ -45,7 +45,7 @@ You will probably want to use it as a straight dependency.
 ## Key/token locations
 
 1.  `package.json`: In the scripts block you will need to change the blanks to your actual file and token
-2.  `bin/getImages.js`: In the options object you will also need to change to your actual values
+2.  `meta/keys.js`: In the options object you will also need to change to your actual values; these are then used by Figmagic's functions
 
 ## Commands
 
@@ -68,6 +68,12 @@ The Figmagic commands (NPM scripts block) is below, listing what commands are av
 
 ## Figma setup
 
+Your structure needs to correspond to the following:
+
+* Pages need to exist and be called "Components", "Design tokens", and "Grid"
+* Further, inside "Design tokens", frames need to be called "Colors", "Font sizes", "Font families", "Font weights", "Line heights", and "Spacing" – exact casing is not important, however the **spelling is important!**
+* All items on a page need to be contained within one or more frames
+
 See a demo/template at [https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example](https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example).
 
 Note: You must follow the document structure as seen in the image below and in the template linked above.
@@ -78,7 +84,7 @@ Note: You must follow the document structure as seen in the image below and in t
 
 ### Grid
 
-Uses any combination of rows, columns, and grid (but only one of each type).
+Uses any combination of rows, columns, and grid (but only one of each type). Grid sizes will use the native Javascript `Math.floor()` function to round down any decimal values. This may or may not cause issues, but is at least more hygienic than leaving potentially weird numbers for grid sizes.
 
 ### Font families
 
@@ -86,7 +92,7 @@ Postscript name (eg. FiraSans-Regular).
 
 ### Font weights
 
-Work in progress.
+**Work in progress**.
 
 ### Font sizes
 
@@ -106,11 +112,35 @@ Em units.
 
 ## Spec output
 
-Text to come.
+Specifications for components are generated into the `specs` folder. A component will be anything that Figma catches as a component, regardless if they exist in your "Components" page or not.
+
+### Example of a Button component
+
+```js
+module.exports = {
+	name: 'Button',
+	gridWidth: 2,
+	perfectlyFitsGrid: true,
+	pxWidth: 200,
+	pxHeight: 40,
+	description: 'Regular button\nBold text\nLine height medium',
+	subComponents: ['Box', 'Button Text'],
+	id: '5:9'
+};
+```
+
+* **name**: The name of the component inside Figma
+* **gridWidth**: How wide the component is counted in your grid units. _Note:_ It will always use a higher value if not an exact fit (see below)
+* **perfectlyFitsGrid**: A boolean (true/false) to debug whether the component fits exactly in the grid or if it's bigger (see above)
+* **pxWidth**: How many pixels wide is the component in Figma
+* **pxHeight**: How many pixels high is the component in Figma
+* **description**: The description given in Figma. _Hint:_ Use this!
+* **subComponents**: What first-level subcomponents does the component include?
+* **id**: The Figma internal ID for the component
 
 ## Structure
 
-* `bin` contains the project's JS files
+* `bin` contains the project's JS files; `bin/functions` contains most of the functions
 * `figma` will contain the extracted Figma JSON and various build-time JSON files
 * `tokens` will contain the token files (in .js format)
 * `specs` will contain specifications for all Master Components
@@ -120,7 +150,6 @@ Text to come.
 
 * Greater customizability of units, paths, etc.
 * Still getting too many specs (for subcomponents)...?
-* Extract design specs for subcomponents as well
 * Map component values to tokens
 * Create error report if something gets botched during build-time
 * If Figma gets webhooks, create some way of automatically pulling updates

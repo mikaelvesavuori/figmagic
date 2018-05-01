@@ -1,5 +1,7 @@
 let creationState = {
+	hasCreatedGridPage: false,
 	hasCreatedDesignTokensPage: false,
+	hasCreatedSubcomponentsPage: false,
 	hasCreatedComponentsPage: false
 };
 
@@ -14,8 +16,11 @@ function createPage(figmaPages) {
 	figmaPages.forEach(page => {
 		if (!isMatchFound) {
 			if (
+				(findShortenedNameMatch(page.name, 'grid') && creationState.hasCreatedGridPage === false) ||
 				(findShortenedNameMatch(page.name, 'designtokens') &&
 					creationState.hasCreatedDesignTokensPage === false) ||
+				(findShortenedNameMatch(page.name, 'subcomponents') &&
+					creationState.hasCreatedSubcomponentsPage === false) ||
 				(findShortenedNameMatch(page.name, 'components') &&
 					creationState.hasCreatedComponentsPage === false)
 			) {
@@ -25,10 +30,17 @@ function createPage(figmaPages) {
 		}
 
 		function foundMatch(page) {
-			if (page.name.toLowerCase().replace(' ', '') === 'designtokens') {
+			const fixedPageName = page.name.toLowerCase().replace(' ', '');
+			if (fixedPageName === 'grid') {
+				creationState.hasCreatedGridPage = true;
+				correctPage = page.children[0].children;
+			} else if (fixedPageName === 'designtokens') {
 				creationState.hasCreatedDesignTokensPage = true;
 				correctPage = page;
-			} else if (page.name.toLowerCase().replace(' ', '') === 'components') {
+			} else if (fixedPageName === 'subcomponents') {
+				creationState.hasCreatedSubcomponentsPage = true;
+				correctPage = page.children[0].children;
+			} else if (fixedPageName === 'components') {
 				creationState.hasCreatedComponentsPage = true;
 				correctPage = page.children[0].children;
 			}

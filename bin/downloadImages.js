@@ -1,6 +1,6 @@
 const fs = require('fs');
 const request = require('request');
-const createFolder = require('./createFolder.js');
+const createFolder = require('./functions/createFolder.js');
 
 function downloadImages() {
 	fs.readFile(`${process.cwd()}/figma/images.json`, 'utf-8', function read(error, data) {
@@ -20,7 +20,7 @@ function downloadImages() {
 
 			downloadableImages.forEach((image, index) => {
 				const imageName = Object.keys(_data)[index];
-				download(image, `specs/images/${imageName}.jpg`, function () {
+				download(image, `specs/images/${imageName}.jpg`, function() {
 					console.log(`Downloaded image: ${imageName}`);
 				});
 			});
@@ -28,8 +28,8 @@ function downloadImages() {
 	});
 }
 
-const download = function (uri, filename, callback) {
-	request.head(uri, function (err, res, body) {
+const download = function(uri, filename, callback) {
+	request.head(uri, function(err, res, body) {
 		request(uri)
 			.pipe(fs.createWriteStream(filename))
 			.on('close', callback);

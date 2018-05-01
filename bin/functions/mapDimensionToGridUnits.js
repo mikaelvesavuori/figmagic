@@ -1,4 +1,3 @@
-const fs = require('fs');
 const getGridUnitCount = require('./getGridUnitCount.js');
 
 /* TODO
@@ -11,7 +10,6 @@ function mapDimensionToGridUnits(pxValue, dimension) {
 	if (dimension === 'width') {
 		const maxWidth = grid.totalWidth; // Canvas max width? (Desktop mode)
 		// Assume columns
-		// TODO: Use columnsSize instead, since we have pre-calculated numbers available now?
 		const gridCount = grid.columnsCount;
 		const offset = grid.columnsOffset;
 		const gutterSize = grid.columnsGutterSize;
@@ -19,12 +17,17 @@ function mapDimensionToGridUnits(pxValue, dimension) {
 		const totalGutterSize = (gridCount - 1) * gutterSize;
 		const divisibleArea = maxWidth - totalGutterSize - offset * 2;
 		const gridSize = Math.round(divisibleArea / gridCount);
+		const gridWidth = getGridUnitCount(pxValue, gridSize, gridCount, gutterSize);
+		const perfectlyFitsGrid = pxValue === gridWidth * gridSize + gutterSize * (gridWidth - 1);
 
-		const componentGridSize = getGridUnitCount(pxValue, gridSize, gridCount, gutterSize);
+		const mappedComponent = {
+			gridWidth: gridWidth,
+			perfectlyFitsGrid: perfectlyFitsGrid
+		};
 
-		return componentGridSize;
+		return mappedComponent;
 	} else {
-		console.warn('Currently we only support mapping the width dimension!');
+		console.warn('Currently Figmagic only supports mapping the width dimension!');
 		return;
 	}
 }

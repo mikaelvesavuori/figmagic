@@ -1,0 +1,13 @@
+module.exports = {
+ "name": "Button Sketch",
+ "gridWidth": 3,
+ "perfectlyFitsGrid": false,
+ "pxWidth": 231,
+ "pxHeight": 40,
+ "description": "Bold text\nXS line height",
+ "subComponents": [
+  "Button",
+  "Button Text"
+ ],
+ "id": "48:4"
+}

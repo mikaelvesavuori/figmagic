@@ -1,11 +1,13 @@
-const units = require('./units.js');
+const units = require('../meta/units.js');
 const camelize = require('./camelize.js');
+const formatName = require('./formatName.js');
 
 function setupFontTokens(frame) {
 	let fontObject = {};
 
 	frame.children.forEach(type => {
-		const name = camelize(type.name);
+		let name = camelize(type.name);
+		name = formatName(name);
 		const font = type.style.fontPostScriptName;
 
 		fontObject[name] = font;

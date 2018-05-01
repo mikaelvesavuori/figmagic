@@ -2,10 +2,9 @@
 ** TODO: Make sure this is single-dimensional, as the current one is multi-dimensional
 */
 
-const units = require('./units.js');
+const units = require('../meta/units.js');
 
 function setupTypographyTokens(typographyFrame) {
-	//let types = {};
 	let typeTestObject = {};
 	let typeObjects = [];
 

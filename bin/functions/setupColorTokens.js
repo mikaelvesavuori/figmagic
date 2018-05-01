@@ -1,4 +1,5 @@
 const camelize = require('./camelize.js');
+const formatName = require('./formatName.js');
 
 function setupColorTokens(colorFrame) {
 	let colors = {};
@@ -7,7 +8,8 @@ function setupColorTokens(colorFrame) {
 		const colorString = `rgba(${color.fills[0].color.r * 255}, ${color.fills[0].color.g *
 			255}, ${color.fills[0].color.b * 255}, ${color.fills[0].color.a * 100})`;
 
-		const normalizedName = camelize(color.name);
+		let normalizedName = camelize(color.name);
+		normalizedName = formatName(normalizedName);
 		colors[normalizedName] = colorString;
 	});
 

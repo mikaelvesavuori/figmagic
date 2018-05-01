@@ -4,10 +4,14 @@ const request = require('request');
 const resolvedImages = JSON.parse(require(`${process.cwd()}/figma/resolvedImages.js`));
 const resolvedImageIds = resolvedImages.fixedIds;
 
+const keys = require('./meta/keys.js');
+const figmaUrl = keys.url;
+const figmaToken = keys.token;
+
 const options = {
-	url: `https://api.figma.com/v1/images/{FILE}?ids=${resolvedImageIds}&format=png&scale=2`,
+	url: `https://api.figma.com/v1/images/${figmaUrl}?ids=${resolvedImageIds}&format=png&scale=2`,
 	headers: {
-		'X-Figma-Token': '{TOKEN}'
+		'X-Figma-Token': figmaToken
 	}
 };
 

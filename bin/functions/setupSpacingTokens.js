@@ -1,4 +1,5 @@
 const camelize = require('./camelize.js');
+const formatName = require('./formatName.js');
 const normalizeUnits = require('./normalizeUnits.js');
 
 function setupSpacingTokens(spacingFrame) {
@@ -6,7 +7,8 @@ function setupSpacingTokens(spacingFrame) {
 	const spacingObject = {};
 
 	spacings.forEach(spacing => {
-		const normalizedName = camelize(spacing.name);
+		let normalizedName = camelize(spacing.name);
+		normalizedName = formatName(normalizedName);
 		const normalizedUnit = normalizeUnits(spacing.absoluteBoundingBox.width, 'px', 'em');
 		spacingObject[normalizedName] = normalizedUnit;
 	});
