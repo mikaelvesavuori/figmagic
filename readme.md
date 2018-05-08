@@ -1,5 +1,7 @@
 # Figmagic
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mikaelvesavuori/figmagic.svg)](https://greenkeeper.io/)
+
 Automate the generation of design tokens and specs from your Figma documents. Inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo).
 
 * Extract design tokens for colors, typography (line heights, font sizes, font families), spacing, and grids.
