@@ -1,20 +1,40 @@
 import fs from 'fs';
 import request from 'request';
 import imagesJson from '../figma/resolvedImages.js';
+import keys from './meta/keys.mjs';
 
+const figmaUrl = keys.url;
+const figmaToken = keys.token;
 const resolvedImages = JSON.parse(imagesJson);
 const resolvedImageIds = resolvedImages.fixedIds;
 
-import keys from './meta/keys.mjs';
-const figmaUrl = keys.url;
-const figmaToken = keys.token;
-
-const options = {
-	url: `https://api.figma.com/v1/images/${figmaUrl}?ids=${resolvedImageIds}&format=png&scale=2`,
-	headers: {
-		'X-Figma-Token': figmaToken
+const invalidKeys = (() => {
+	if (
+		figmaUrl === undefined ||
+		figmaUrl === null ||
+		figmaUrl === '' ||
+		figmaToken === undefined ||
+		figmaToken === null ||
+		figmaToken === ''
+	) {
+		return true;
+	} else {
+		return false;
 	}
-};
+})();
+
+if (invalidKeys) {
+	console.warn('Invalid or non-existing values in bin/meta/keys.mjs!');
+} else {
+	const options = {
+		url: `https://api.figma.com/v1/images/${figmaUrl}?ids=${resolvedImageIds}&format=png&scale=2`,
+		headers: {
+			'X-Figma-Token': figmaToken
+		}
+	};
+
+	request(options, callback);
+}
 
 function callback(error, response, body) {
 	if (!error && response.statusCode === 200) {
@@ -33,7 +53,7 @@ function callback(error, response, body) {
 		});
 
 		/* TODO:
-		** Use ./writeFile.js instead?
+		** Use ./writeFile.mjs instead?
 		*/
 
 		fs.writeFile(
@@ -50,5 +70,3 @@ function callback(error, response, body) {
 		console.warn(error);
 	}
 }
-
-request(options, callback);

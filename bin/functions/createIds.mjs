@@ -18,7 +18,5 @@ export function createIds(figmaComponents) {
 		}
 	});
 
-	console.log(ids);
-
 	createIdString(ids); // Create IDs from Figma ID numbers
 }

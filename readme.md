@@ -53,7 +53,7 @@ You will probably want to use it as a straight dependency.
 ## Key/token locations
 
 1.  `package.json`: In the scripts block you will need to change the blanks to your actual file and token
-2.  `meta/keys.js`: In the options object you will also need to change to your actual values; these are then used by Figmagic's functions
+2.  `bin/meta/keys.mjs`: In the options object you will also need to change to your actual values; these are then used by Figmagic's functions
 
 ## Commands
 
@@ -125,16 +125,18 @@ Specifications for components are generated into the `specs` folder. A component
 ### Example of a Button component
 
 ```js
-module.exports = {
-	name: 'Button',
-	gridWidth: 2,
-	perfectlyFitsGrid: true,
+const buttonFigma = {
+	name: 'Button Figma',
+	gridWidth: 1,
+	perfectlyFitsGrid: false,
 	pxWidth: 200,
 	pxHeight: 40,
 	description: 'Regular button\nBold text\nLine height medium',
 	subComponents: ['Box', 'Button Text'],
 	id: '5:9'
 };
+
+export default buttonFigma;
 ```
 
 * **name**: The name of the component inside Figma
@@ -148,16 +150,16 @@ module.exports = {
 
 ## Structure
 
-* `bin` contains the project's JS files; `bin/functions` contains most of the functions
+* `bin` contains the project's MJS files; `bin/functions` contains most of the functions
 * `figma` will contain the extracted Figma JSON and various build-time JSON files
-* `tokens` will contain the token files (in .js format)
+* `tokens` will contain the token files (in .mjs format)
 * `specs` will contain specifications for all Master Components
 * `specs/images` will contain generated images for your components
 
 ## Known issues
 
 * The `package.json` commands uses Bash syntax which means it's all Mac (or Windows Bash) for now
-* Figmagic will break if there is no `grid.mjs` file in the `tokens` folder, so the clean command puts an empty grid file there on wipe (if you ever wonder about why there is a `grid.mjs` file in the root!)
+* Figmagic will break if there is no `grid.mjs` file in the `tokens` folder, so the clean command puts an empty grid file there on wipe (if you ever wonder about why there is a `.gridTemplate.mjs` file in the root!)
 
 ## Possible upcoming features
 
