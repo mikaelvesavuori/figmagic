@@ -1,4 +1,4 @@
-function formatName(str) {
+export function formatName(str) {
 	const forbiddenCharacters = ['-', '–', '—', '|', '.'];
 
 	let fixedString = str;
@@ -9,5 +9,3 @@ function formatName(str) {
 
 	return fixedString;
 }
-
-module.exports = formatName;

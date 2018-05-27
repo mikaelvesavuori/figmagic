@@ -7,7 +7,11 @@ Automate the generation of design tokens and specs from your Figma documents. In
 * Extract design tokens for colors, typography (line heights, font sizes, font families), spacing, and grids.
 * Get design specifications for all of your Master Components.
 
-Note: Requires that your document structure is identical to what I show in the template site at [https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example](https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example).
+A typical use case for the generated documents is to use the extracted values as a token base in CSS systems that support external values (such as Styled Components or Sass).
+
+**Please note:** Figmagic requires that your document structure is identical to what I show in the template site at [https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example](https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example).
+
+_Built initially as an internal handoff tool for [Humblebee](https://www.humblebee.se)._
 
 ## Approach and use cases
 
@@ -78,7 +82,7 @@ Your structure needs to correspond to the following:
 
 See a demo/template at [https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example](https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figmagic-Design-System-Example).
 
-Note: You must follow the document structure as seen in the image below and in the template linked above.
+**Note:** You must follow the document structure as seen in the image below and in the template linked above.
 
 ![Figma Document Structure](https://user-images.githubusercontent.com/23580994/39321512-8c682a30-4987-11e8-9489-9452fc52f3a8.png)
 
@@ -148,10 +152,16 @@ module.exports = {
 * `specs` will contain specifications for all Master Components
 * `specs/images` will contain generated images for your components
 
-## Upcoming possible features
+## Possible upcoming features
 
+* The `perfectlyFitsGrid` property is currently a uni-dimensional boolean, and is therefore true only for one grid size, so it doesn't really work for a set of sizes (mobile, tablet, desktop)
 * Greater customizability of units, paths, etc.
 * Still getting too many specs (for subcomponents)...?
 * Map component values to tokens
 * Create error report if something gets botched during build-time
+* Create and update changelog
 * If Figma gets webhooks, create some way of automatically pulling updates
+
+## Want to add or rethink something in Figmagic?
+
+You are very welcome to contribute to the project! Pull requests welcome, as well as issues or plain messages.

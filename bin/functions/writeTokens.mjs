@@ -1,9 +1,9 @@
-const camelize = require('./camelize.js');
-const formatName = require('./formatName.js');
-const processTokens = require('./processTokens.js');
-const writeFile = require('./writeFile.js');
+import { camelize } from './camelize.mjs';
+import { formatName } from './formatName.mjs';
+import { processTokens } from './processTokens.mjs';
+import { writeFile } from './writeFile.mjs';
 
-function writeTokens(tokens, isGrid = false) {
+export function writeTokens(tokens, isGrid = false) {
 	if (isGrid) {
 		const processedValues = processTokens(tokens, 'grid');
 		writeFile(processedValues, 'grid');
@@ -17,5 +17,3 @@ function writeTokens(tokens, isGrid = false) {
 		});
 	}
 }
-
-module.exports = writeTokens;

@@ -1,6 +1,6 @@
-const fs = require('fs');
+import fs from 'fs';
 
-function createIdString(ids) {
+export function createIdString(ids) {
 	let idString = '';
 
 	Object.values(ids).forEach(id => {
@@ -31,5 +31,3 @@ function createIdString(ids) {
 		}
 	);
 }
-
-module.exports = createIdString;

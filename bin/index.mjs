@@ -1,14 +1,15 @@
 #! /usr/bin/env node
 
 // Function requires
-const createIds = require('./functions/createIds.js');
-const createPage = require('./functions/createPage.js');
-const writeTokens = require('./functions/writeTokens.js');
-const writeComponents = require('./functions/writeComponents.js');
-const setupComponents = require('./functions/setupComponents.js');
+import { createIds } from './functions/createIds.mjs';
+import { createPage } from './functions/createPage.mjs';
+import { writeTokens } from './functions/writeTokens.mjs';
+import { writeComponents } from './functions/writeComponents.mjs';
+import { setupComponents } from './functions/setupComponents.mjs';
 
 // Refs
-const figmaDocument = require(`${process.cwd()}/figma/figma.json`);
+//const figmaDocument = require(`${process.cwd()}/figma/figma.json`);
+import figmaDocument from '../figma/figma.mjs';
 const figmaPages = figmaDocument.document.children;
 const figmaComponents = figmaDocument.components;
 

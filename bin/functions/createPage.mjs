@@ -5,7 +5,7 @@ let creationState = {
 	hasCreatedComponentsPage: false
 };
 
-function createPage(figmaPages) {
+export function createPage(figmaPages) {
 	let correctPage = undefined;
 	let isMatchFound = false;
 
@@ -49,5 +49,3 @@ function createPage(figmaPages) {
 
 	return correctPage;
 }
-
-module.exports = createPage;

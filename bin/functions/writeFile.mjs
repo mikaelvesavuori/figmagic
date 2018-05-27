@@ -1,7 +1,7 @@
-const fs = require('fs');
-const createFolder = require('./createFolder.js');
+import fs from 'fs';
+import { createFolder } from './createFolder.mjs';
 
-function writeFile(file, name, path = 'tokens') {
+export function writeFile(file, name, path = 'tokens') {
 	createFolder(path);
 	write();
 
@@ -20,5 +20,3 @@ function writeFile(file, name, path = 'tokens') {
 		);
 	}
 }
-
-module.exports = writeFile;

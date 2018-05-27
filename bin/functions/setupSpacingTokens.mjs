@@ -1,8 +1,8 @@
-const camelize = require('./camelize.js');
-const formatName = require('./formatName.js');
-const normalizeUnits = require('./normalizeUnits.js');
+import { camelize } from './camelize.mjs';
+import { formatName } from './formatName.mjs';
+import { normalizeUnits } from './normalizeUnits.mjs';
 
-function setupSpacingTokens(spacingFrame) {
+export function setupSpacingTokens(spacingFrame) {
 	const spacings = spacingFrame.children;
 	const spacingObject = {};
 
@@ -15,5 +15,3 @@ function setupSpacingTokens(spacingFrame) {
 
 	return spacingObject;
 }
-
-module.exports = setupSpacingTokens;

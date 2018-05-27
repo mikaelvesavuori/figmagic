@@ -1,10 +1,10 @@
-const fs = require('fs');
-const request = require('request');
+import 'fs' from 'fs';
+import 'request' from 'request';
 
-const resolvedImages = JSON.parse(require(`${process.cwd()}/figma/resolvedImages.js`));
+const resolvedImages = JSON.parse(require`${process.cwd()}/figma/resolvedImages.js`));
 const resolvedImageIds = resolvedImages.fixedIds;
 
-const keys = require('./meta/keys.js');
+import keys from './meta/keys.mjs';
 const figmaUrl = keys.url;
 const figmaToken = keys.token;
 

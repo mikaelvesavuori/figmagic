@@ -1,6 +1,6 @@
-const fs = require('fs');
-const request = require('request');
-const createFolder = require('./functions/createFolder.js');
+import 'fs' from 'fs';
+import 'request' from 'request';
+import { createFolder } from './functions/createFolder.mjs';
 
 function downloadImages() {
 	fs.readFile(`${process.cwd()}/figma/images.json`, 'utf-8', function read(error, data) {

@@ -1,4 +1,4 @@
-function getSubComponents(componentName, componentsPage) {
+export function getSubComponents(componentName, componentsPage) {
 	let subComponentNames = [];
 
 	componentsPage.forEach((component, index) => {
@@ -17,5 +17,3 @@ function getSubComponents(componentName, componentsPage) {
 
 	return subComponentNames;
 }
-
-module.exports = getSubComponents;

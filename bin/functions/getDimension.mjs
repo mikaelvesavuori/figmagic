@@ -1,4 +1,4 @@
-function getDimension(componentName, dimension, componentsPage) {
+export function getDimension(componentName, dimension, componentsPage) {
 	let foundMatch = false;
 	let dimensionValue = 0;
 
@@ -17,5 +17,3 @@ function getDimension(componentName, dimension, componentsPage) {
 
 	return dimensionValue;
 }
-
-module.exports = getDimension;

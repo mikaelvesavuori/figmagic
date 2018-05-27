@@ -1,7 +1,7 @@
 const globalPxSize = 1;
 const globalRemSize = 16;
 
-module.exports = {
+export const units = {
 	globalPxSize,
 	globalRemSize
 };

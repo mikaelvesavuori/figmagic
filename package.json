@@ -17,8 +17,10 @@
 		"figmagic:saveFromApi":
 			"mkdir -p figma && wget 'https://api.figma.com/v1/files/{FILE}' --header='X-Figma-Token: {TOKEN}' -O figma/figma.json",
 		"figmagic:tokens": "yarn figmagic:clean && yarn figmagic:saveFromApi && yarn figmagic:build",
-		"figmagic:build": "node $npm_package_config_figmagicPath/bin/index.js",
-		"figmagic:getImages": "node $npm_package_config_figmagicPath/bin/getImages.js",
-		"figmagic:downloadImages": "node $npm_package_config_figmagicPath/bin/downloadImages.js"
+		"figmagic:build": "node --experimental-modules $npm_package_config_figmagicPath/bin/index.js",
+		"figmagic:getImages":
+			"node --experimental-modules $npm_package_config_figmagicPath/bin/getImages.js",
+		"figmagic:downloadImages":
+			"node --experimental-modules $npm_package_config_figmagicPath/bin/downloadImages.js"
 	}
 }

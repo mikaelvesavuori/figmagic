@@ -1,7 +1,7 @@
-const camelize = require('./camelize.js');
-const formatName = require('./formatName.js');
+import { camelize } from './camelize.mjs';
+import { formatName } from './formatName.mjs';
 
-function setupColorTokens(colorFrame) {
+export function setupColorTokens(colorFrame) {
 	let colors = {};
 
 	colorFrame.children.forEach(color => {
@@ -15,5 +15,3 @@ function setupColorTokens(colorFrame) {
 
 	return colors;
 }
-
-module.exports = setupColorTokens;

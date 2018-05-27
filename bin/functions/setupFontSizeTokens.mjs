@@ -1,8 +1,8 @@
-const units = require('../meta/units.js');
-const camelize = require('./camelize.js');
-const formatName = require('./formatName.js');
+import { units } from '../meta/units.mjs';
+import { camelize } from './camelize.mjs';
+import { formatName } from './formatName.mjs';
 
-function setupFontSizeTokens(frame) {
+export function setupFontSizeTokens(frame) {
 	let fontSizeObject = {};
 
 	frame.children.forEach(type => {
@@ -15,5 +15,3 @@ function setupFontSizeTokens(frame) {
 
 	return fontSizeObject;
 }
-
-module.exports = setupFontSizeTokens;

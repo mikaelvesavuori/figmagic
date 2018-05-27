@@ -1,12 +1,12 @@
-const setupGridTokens = require('./setupGridTokens.js');
-const setupColorTokens = require('./setupColorTokens.js');
-const setupSpacingTokens = require('./setupSpacingTokens.js');
-const setupFontTokens = require('./setupFontTokens.js');
-const setupFontSizeTokens = require('./setupFontSizeTokens.js');
-const setupLineHeightTokens = require('./setupLineHeightTokens.js');
-//const setupTypographyTokens = require('./setupTypographyTokens.js');
+import { setupGridTokens } from './setupGridTokens.mjs';
+import { setupColorTokens } from './setupColorTokens.mjs';
+import { setupSpacingTokens } from './setupSpacingTokens.mjs';
+import { setupFontTokens } from './setupFontTokens.mjs';
+import { setupFontSizeTokens } from './setupFontSizeTokens.mjs';
+import { setupLineHeightTokens } from './setupLineHeightTokens.mjs';
+//const setupTypographyTokens = import xxx from './setupTypographyTokens.mjs';
 
-function processTokens(sheet, name) {
+export function processTokens(sheet, name) {
 	const _name = name.toLowerCase();
 	let processedTokens = undefined;
 
@@ -39,5 +39,3 @@ function processTokens(sheet, name) {
 
 	return processedTokens;
 }
-
-module.exports = processTokens;

@@ -1,9 +1,9 @@
-const units = require('../meta/units.js');
-const camelize = require('./camelize.js');
-const formatName = require('./formatName.js');
-const normalizeUnits = require('./normalizeUnits.js');
+import { units } from '../meta/units.mjs';
+import { camelize } from './camelize.mjs';
+import { formatName } from './formatName.mjs';
+import { normalizeUnits } from './normalizeUnits.mjs';
 
-function setupLineHeightTokens(frame) {
+export function setupLineHeightTokens(frame) {
 	let lineHeightObject = {};
 
 	frame.children.forEach(type => {
@@ -16,5 +16,3 @@ function setupLineHeightTokens(frame) {
 
 	return lineHeightObject;
 }
-
-module.exports = setupLineHeightTokens;

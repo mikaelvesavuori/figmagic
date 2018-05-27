@@ -1,4 +1,4 @@
-function setupGridTokens(gridFrame) {
+export function setupGridTokens(gridFrame) {
 	let gridObject = {};
 	gridObject.totalWidth = gridFrame.absoluteBoundingBox.width;
 
@@ -25,5 +25,3 @@ function setupGridTokens(gridFrame) {
 
 	return gridObject;
 }
-
-module.exports = setupGridTokens;

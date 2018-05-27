@@ -1,6 +1,6 @@
-const createIdString = require('./createIdString.js');
+import { createIdString } from './createIdString.mjs';
 
-function createIds(figmaComponents) {
+export function createIds(figmaComponents) {
 	let ids = {}; // Used to contain ID strings for all of the used Figma ID numbers
 
 	Object.values(figmaComponents).forEach((component, index) => {
@@ -22,5 +22,3 @@ function createIds(figmaComponents) {
 
 	createIdString(ids); // Create IDs from Figma ID numbers
 }
-
-module.exports = createIds;

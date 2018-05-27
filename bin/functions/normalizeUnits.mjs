@@ -1,10 +1,10 @@
-const units = require('../meta/units.js');
+import { units } from '../meta/units.mjs';
 
 /* TODO
 ** Add support for unitless units (line-height)
 */
 
-function normalizeUnits(value, currentUnit, newUnit) {
+export function normalizeUnits(value, currentUnit, newUnit) {
 	let rootSize = undefined;
 	let unitSize = undefined;
 
@@ -41,5 +41,3 @@ function normalizeUnits(value, currentUnit, newUnit) {
 		return;
 	}
 }
-
-module.exports = normalizeUnits;

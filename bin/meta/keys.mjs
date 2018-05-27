@@ -3,4 +3,4 @@ const keys = {
 	token: ''
 };
 
-module.exports = keys;
+export default keys;

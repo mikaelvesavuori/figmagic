@@ -1,8 +1,8 @@
-const getSubComponents = require('./getSubComponents.js');
-const mapDimensionToGridUnits = require('./mapDimensionToGridUnits.js');
-const getDimension = require('./getDimension.js');
+import { getSubComponents } from './getSubComponents.mjs';
+import { mapDimensionToGridUnits } from './mapDimensionToGridUnits.mjs';
+import { getDimension } from './getDimension.mjs';
 
-function setupComponents(figmaComponents, componentsPage) {
+export function setupComponents(figmaComponents, componentsPage) {
 	let components = [];
 
 	Object.values(figmaComponents).forEach((component, index) => {
@@ -35,5 +35,3 @@ function setupComponents(figmaComponents, componentsPage) {
 
 	return components;
 }
-
-module.exports = setupComponents;

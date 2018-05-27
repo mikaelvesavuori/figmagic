@@ -2,7 +2,7 @@
 ** Map heights as well?
 */
 
-function getGridUnitCount(pxWidth, gridSize, gridCount, gutterSize) {
+export function getGridUnitCount(pxWidth, gridSize, gridCount, gutterSize) {
 	let gridUnits = 1;
 
 	for (let index = 1; index < gridCount; index++) {
@@ -13,5 +13,3 @@ function getGridUnitCount(pxWidth, gridSize, gridCount, gutterSize) {
 
 	return gridUnits;
 }
-
-module.exports = getGridUnitCount;
