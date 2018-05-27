@@ -31,6 +31,8 @@ An example project—using React, Webpack and Styled Components—is available a
 
 You can use Figmagic either as an NPM package in its own folder, or as part of your projects. It is assumed you will use it as a dependency.
 
+Figmagic uses ESM imports, so make sure you have a recent Node version, preferably version 10+.
+
 ### Standalone
 
 Running it standalone might be fine if you wish to isolate the tokens/spec generation, or if you don't have a project in which to place Figmagic, or if it simply makes more sense to have it on its own (for example doing a project in a non-Node environment).
@@ -84,7 +86,7 @@ See a demo/template at [https://www.figma.com/file/KLLDK9CBSg7eAayiTY3kVqC8/Figm
 
 **Note:** You must follow the document structure as seen in the image below and in the template linked above.
 
-![Figma Document Structure](https://user-images.githubusercontent.com/23580994/39321512-8c682a30-4987-11e8-9489-9452fc52f3a8.png)
+![Figma Document Structure](project-structure.png)
 
 ## Token formatting/conversion
 
@@ -152,9 +154,16 @@ module.exports = {
 * `specs` will contain specifications for all Master Components
 * `specs/images` will contain generated images for your components
 
+## Known issues
+
+* The `package.json` commands uses Bash syntax which means it's all Mac (or Windows Bash) for now
+* Figmagic will break if there is no `grid.mjs` file in the `tokens` folder, so the clean command puts an empty grid file there on wipe (if you ever wonder about why there is a `grid.mjs` file in the root!)
+
 ## Possible upcoming features
 
 * The `perfectlyFitsGrid` property is currently a uni-dimensional boolean, and is therefore true only for one grid size, so it doesn't really work for a set of sizes (mobile, tablet, desktop)
+* Possibility to configure Figmagic through a config object
+* Possibility to specify whether you want MJS or JS file as final output files
 * Greater customizability of units, paths, etc.
 * Still getting too many specs (for subcomponents)...?
 * Map component values to tokens

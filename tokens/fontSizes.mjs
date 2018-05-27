@@ -1,4 +1,4 @@
-module.exports = {
+const fontSizes = {
  "fontSizeS": "0.5625rem",
  "fontSizeM": "0.75rem",
  "fontSizeL": "1rem",
@@ -7,3 +7,5 @@ module.exports = {
  "headingXl": "2.5rem",
  "headingXxl": "3rem"
 }
+
+ export default fontSizes;

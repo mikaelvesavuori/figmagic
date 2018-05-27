@@ -1,7 +1,7 @@
-module.exports = {
+const sketchImageHolder = {
  "name": "Sketch Image Holder",
- "gridWidth": 4,
- "perfectlyFitsGrid": true,
+ "gridWidth": 1,
+ "perfectlyFitsGrid": false,
  "pxWidth": 416,
  "pxHeight": 228,
  "description": "",
@@ -11,3 +11,5 @@ module.exports = {
  ],
  "id": "84:3"
 }
+
+ export default sketchImageHolder;

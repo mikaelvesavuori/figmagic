@@ -1,7 +1,7 @@
-module.exports = {
+const headerImage = {
  "name": "Header Image",
- "gridWidth": 3,
- "perfectlyFitsGrid": true,
+ "gridWidth": 1,
+ "perfectlyFitsGrid": false,
  "pxWidth": 308,
  "pxHeight": 128,
  "description": "Header image with a colored semi-transparent cover on top",
@@ -13,3 +13,5 @@ module.exports = {
  ],
  "id": "172:0"
 }
+
+ export default headerImage;

@@ -1,7 +1,8 @@
-import 'fs' from 'fs';
-import 'request' from 'request';
+import fs from 'fs';
+import request from 'request';
+import imagesJson from '../figma/resolvedImages.js';
 
-const resolvedImages = JSON.parse(require`${process.cwd()}/figma/resolvedImages.js`));
+const resolvedImages = JSON.parse(imagesJson);
 const resolvedImageIds = resolvedImages.fixedIds;
 
 import keys from './meta/keys.mjs';

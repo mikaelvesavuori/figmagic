@@ -1,7 +1,7 @@
-module.exports = {
+const buttonFigma = {
  "name": "Button Figma",
- "gridWidth": 2,
- "perfectlyFitsGrid": true,
+ "gridWidth": 1,
+ "perfectlyFitsGrid": false,
  "pxWidth": 200,
  "pxHeight": 40,
  "description": "Regular button\nBold text\nLine height medium",
@@ -11,3 +11,5 @@ module.exports = {
  ],
  "id": "5:9"
 }
+
+ export default buttonFigma;

@@ -1,4 +1,4 @@
-module.exports = {
+const grid = {
  "totalWidth": 1280,
  "rowsSize": 40,
  "rowsGutterSize": 4,
@@ -13,3 +13,5 @@ module.exports = {
  "gridOffset": 0,
  "gridCount": -1
 }
+
+ export default grid;

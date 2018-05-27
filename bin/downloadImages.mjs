@@ -1,9 +1,9 @@
-import 'fs' from 'fs';
-import 'request' from 'request';
-import { createFolder } from './functions/createFolder.mjs';
+import fs from 'fs';
+import request from 'request';
+import { createFolder } from './functions/createFolder.mjs';
 
 export function downloadImages() {
-	fs.readFile(`${process.cwd()}/figma/images.json`, 'utf-8', function read(error, data) {
+	fs.readFile('../figma/images.json', 'utf-8', function read(error, data) {
 		if (error) {
 			console.warn(error);
 		} else {

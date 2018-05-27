@@ -13,19 +13,20 @@
 		"request": "^2.85.0"
 	},
 	"config": {
-		"figmagicPath": "./node_modules/figmatic/"
+		"figmagicPath": "."
 	},
 	"scripts": {
 		"figmagic":
 			"yarn figmagic:clean && yarn run figmagic:saveFromApi && yarn figmagic:build && yarn figmagic:getImages && yarn figmagic:downloadImages",
-		"figmagic:clean": "rm -rf specs/ && rm -rf tokens/ && rm -rf figma",
+		"figmagic:clean":
+			"rm -rf specs/ && rm -rf tokens/ && rm -rf figma && mkdir tokens && cp .gridTemplate.mjs tokens/ && mv tokens/.gridTemplate.mjs tokens/grid.mjs",
 		"figmagic:saveFromApi":
-			"mkdir -p figma && wget 'https://api.figma.com/v1/files/{FILE}' --header='X-Figma-Token: {TOKEN}' -O figma/figma.json",
+			"mkdir -p figma && wget 'https://api.figma.com/v1/files/KLLDK9CBSg7eAayiTY3kVqC8' --header='X-Figma-Token: 667-b8e19e6b-ca5f-4322-94aa-562a3684dba3' -O figma/figma.json",
 		"figmagic:tokens": "yarn figmagic:clean && yarn figmagic:saveFromApi && yarn figmagic:build",
-		"figmagic:build": "node --experimental-modules $npm_package_config_figmagicPath/bin/index.js",
+		"figmagic:build": "node --experimental-modules $npm_package_config_figmagicPath/bin/index.mjs",
 		"figmagic:getImages":
-			"node --experimental-modules $npm_package_config_figmagicPath/bin/getImages.js",
+			"node --experimental-modules $npm_package_config_figmagicPath/bin/getImages.mjs",
 		"figmagic:downloadImages":
-			"node --experimental-modules $npm_package_config_figmagicPath/bin/downloadImages.js"
+			"node --experimental-modules $npm_package_config_figmagicPath/bin/downloadImages.mjs"
 	}
 }

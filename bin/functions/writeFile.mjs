@@ -6,17 +6,18 @@ export function writeFile(file, name, path = 'tokens') {
 	write();
 
 	function write() {
-		const fileName = `${path}/${name}.js`;
+		const fileName = `${path}/${name}.mjs`;
+		const mjsStyle = `const ${name} = ${JSON.stringify(
+			file,
+			null,
+			' '
+		)}\n\n export default ${name};`;
+		// const legacyJsStyle = 'module.exports = ' + JSON.stringify(file, null, ' ');
 
-		fs.writeFileSync(
-			fileName,
-			'module.exports = ' + JSON.stringify(file, null, ' '),
-			'utf-8',
-			function(error) {
-				if (error) {
-					return console.log(error);
-				}
+		fs.writeFileSync(fileName, mjsStyle, 'utf-8', function(error) {
+			if (error) {
+				return console.log(error);
 			}
-		);
+		});
 	}
 }

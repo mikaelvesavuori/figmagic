@@ -1,6 +1,6 @@
-module.exports = {
+const buttonSketch = {
  "name": "Button Sketch",
- "gridWidth": 3,
+ "gridWidth": 1,
  "perfectlyFitsGrid": false,
  "pxWidth": 231,
  "pxHeight": 40,
@@ -11,3 +11,5 @@ module.exports = {
  ],
  "id": "48:4"
 }
+
+ export default buttonSketch;

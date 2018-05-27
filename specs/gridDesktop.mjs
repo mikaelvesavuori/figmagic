@@ -1,9 +1,11 @@
-module.exports = {
+const gridDesktop = {
  "name": "Grid – Desktop",
- "gridWidth": 12,
- "perfectlyFitsGrid": true,
+ "gridWidth": 1,
+ "perfectlyFitsGrid": false,
  "pxWidth": 1280,
  "pxHeight": 800,
  "description": "",
  "id": "174:0"
 }
+
+ export default gridDesktop;

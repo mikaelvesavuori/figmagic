@@ -1,4 +1,4 @@
-module.exports = {
+const colors = {
  "black": "rgba(0, 15, 30, 100)",
  "darkGray": "rgba(12, 45, 90, 100)",
  "grayBlue": "rgba(106, 134, 171, 100)",
@@ -7,3 +7,5 @@ module.exports = {
  "lightGreen": "rgba(160, 226, 199, 100)",
  "darkGreen": "rgba(12, 128, 61, 100)"
 }
+
+ export default colors;
