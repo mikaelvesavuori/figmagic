@@ -1,32 +1,30 @@
 {
-	"name": "figmagic",
-	"version": "0.3.0",
-	"author": "Mikael Vesavuori",
-	"main": "index.js",
-	"license": "MIT",
-	"dependencies": {
-		"babel-eslint": "^8.2.3",
-		"eslint": "^4.19.1",
-		"eslint-config-prettier": "^2.9.0",
-		"eslint-plugin-prettier": "^2.6.0",
-		"prettier": "^1.12.1",
-		"request": "^2.85.0"
-	},
-	"config": {
-		"figmagicPath": "."
-	},
-	"scripts": {
-		"figmagic":
-			"yarn figmagic:clean && yarn run figmagic:saveFromApi && yarn figmagic:build && yarn figmagic:getImages && yarn figmagic:downloadImages",
-		"figmagic:clean":
-			"rm -rf specs/ && rm -rf tokens/ && rm -rf figma && mkdir tokens && cp .gridTemplate.mjs tokens/ && mv tokens/.gridTemplate.mjs tokens/grid.mjs",
-		"figmagic:saveFromApi":
-			"mkdir -p figma && wget 'https://api.figma.com/v1/files/{URL}' --header='X-Figma-Token: {TOKEN}' -O figma/figma.json",
-		"figmagic:tokens": "yarn figmagic:clean && yarn figmagic:saveFromApi && yarn figmagic:build",
-		"figmagic:build": "node --experimental-modules $npm_package_config_figmagicPath/bin/index.mjs",
-		"figmagic:getImages":
-			"node --experimental-modules $npm_package_config_figmagicPath/bin/getImages.mjs",
-		"figmagic:downloadImages":
-			"node --experimental-modules $npm_package_config_figmagicPath/bin/downloadImages.mjs"
-	}
+  "name": "figmagic",
+  "version": "0.4.1",
+  "author": "Mikael Vesavuori",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.14.3",
+    "prettier": "^1.12.1",
+    "pretty-quick": "^1.6.0",
+    "request": "^2.85.0"
+  },
+  "config": {
+    "figmagicPath": "."
+  },
+  "scripts": {
+    "figmagic": "yarn figmagic:clean && yarn run figmagic:saveFromApi && yarn figmagic:build && yarn figmagic:getImages && yarn figmagic:downloadImages",
+    "figmagic:clean": "rm -rf specs/ && rm -rf tokens/ && rm -rf figma && mkdir tokens && cp .gridTemplate.mjs tokens/ && mv tokens/.gridTemplate.mjs tokens/grid.mjs",
+    "figmagic:saveFromApi": "mkdir -p figma && wget 'https://api.figma.com/v1/files/{URL}' --header='X-Figma-Token: {TOKEN}' -O figma/figma.json",
+    "figmagic:tokens": "yarn figmagic:clean && yarn figmagic:saveFromApi && yarn figmagic:build",
+    "figmagic:build": "node --experimental-modules $npm_package_config_figmagicPath/bin/index.mjs",
+    "figmagic:getImages": "node --experimental-modules $npm_package_config_figmagicPath/bin/getImages.mjs",
+    "figmagic:downloadImages": "node --experimental-modules $npm_package_config_figmagicPath/bin/downloadImages.mjs",
+    "precommit": "echo Running pre-commit linting... && pretty-quick --staged && npm --no-git-tag-version version patch && git add package.json"
+  }
 }
