@@ -65,12 +65,12 @@ The Figmagic commands (NPM scripts block) is below, listing what commands are av
 },
 "scripts": {
 	"figmagic": "yarn figmagic:clean && yarn run figmagic:saveFromApi && yarn figmagic:build && yarn figmagic:getImages && yarn figmagic:downloadImages",
-	"figmagic:clean": "rm -rf specs/ && rm -rf tokens/ && rm -rf figma && mkdir tokens && cp .gridTemplate.mjs tokens/ && mv tokens/.gridTemplate.mjs tokens/grid.mjs",
-	"figmagic:saveFromApi": "mkdir -p figma && wget 'https://api.figma.com/v1/files/{URL}' --header='X-Figma-Token: {TOKEN}' -O figma/figma.json",
-	"figmagic:tokens": "yarn figmagic:clean && yarn figmagic:saveFromApi && yarn figmagic:build",
-	"figmagic:build": "node --experimental-modules $npm_package_config_figmagicPath/bin/index.mjs",
-	"figmagic:getImages": "node --experimental-modules $npm_package_config_figmagicPath/bin/getImages.mjs",
-	"figmagic:downloadImages": "node --experimental-modules $npm_package_config_figmagicPath/bin/downloadImages.mjs",
+		"figmagic:clean": "rm -rf specs/ && rm -rf tokens/ && rm -rf figma && mkdir tokens && cp $npm_package_config_figmagicPath/.gridTemplate.mjs tokens/ && mv tokens/.gridTemplate.mjs tokens/grid.mjs",
+		"figmagic:saveFromApi": "mkdir -p figma && wget 'https://api.figma.com/v1/files/{URL}' --header='X-Figma-Token: {TOKEN}' -O figma/figma.json",
+		"figmagic:tokens": "yarn figmagic:clean && yarn figmagic:saveFromApi && yarn figmagic:build",
+		"figmagic:build": "node --experimental-modules $npm_package_config_figmagicPath/bin/index.mjs",
+		"figmagic:getImages": "node --experimental-modules $npm_package_config_figmagicPath/bin/getImages.mjs",
+		"figmagic:downloadImages": "node --experimental-modules $npm_package_config_figmagicPath/bin/downloadImages.mjs"
 }
 ```
 

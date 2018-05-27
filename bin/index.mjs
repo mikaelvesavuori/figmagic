@@ -1,23 +1,23 @@
 #! /usr/bin/env node
 
 // Function imports
-import { createIds } from './functions/createIds.mjs';
-import { createPage } from './functions/createPage.mjs';
-import { writeTokens } from './functions/writeTokens.mjs';
-import { writeComponents } from './functions/writeComponents.mjs';
-import { setupComponents } from './functions/setupComponents.mjs';
+import { createIds } from "./functions/createIds.mjs";
+import { createPage } from "./functions/createPage.mjs";
+import { writeTokens } from "./functions/writeTokens.mjs";
+import { writeComponents } from "./functions/writeComponents.mjs";
+import { setupComponents } from "./functions/setupComponents.mjs";
 
 // Refs
-import figmaDocument from '../figma/figma.json';
+import figmaDocument from "../../../figma/figma.json"; // For dev: '../figma/figma.json'
 const figmaPages = figmaDocument.document.children;
 const figmaComponents = figmaDocument.components;
 
 // Page setup
-let pageNames = ['grid', 'designtokens', 'components'];
+let pageNames = ["grid", "designtokens", "components"];
 let pages = {};
 
 pageNames.forEach(page => {
-	pages[page] = createPage(figmaPages, page);
+  pages[page] = createPage(figmaPages, page);
 });
 
 // Create IDs for components
