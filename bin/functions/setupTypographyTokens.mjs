@@ -32,5 +32,3 @@ export function setupTypographyTokens(typographyFrame) {
 
 	return typeTestObject;
 }
-
-module.exports = setupTypographyTokens;

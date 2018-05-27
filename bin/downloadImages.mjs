@@ -2,7 +2,7 @@ import 'fs' from 'fs';
 import 'request' from 'request';
 import { createFolder } from './functions/createFolder.mjs';
 
-function downloadImages() {
+export function downloadImages() {
 	fs.readFile(`${process.cwd()}/figma/images.json`, 'utf-8', function read(error, data) {
 		if (error) {
 			console.warn(error);
@@ -35,5 +35,3 @@ const download = function(uri, filename, callback) {
 			.on('close', callback);
 	});
 };
-
-module.exports = downloadImages();
