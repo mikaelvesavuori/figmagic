@@ -1,6 +1,6 @@
 {
   "name": "figmagic",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "author": "Mikael Vesavuori",
   "main": "index.js",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "request": "^2.85.0"
   },
   "config": {
-    "figmagicPath": "."
+    "figmagicPath": "./node_modules/figmagic"
   },
   "scripts": {
     "figmagic": "yarn figmagic:clean && yarn run figmagic:saveFromApi && yarn figmagic:build && yarn figmagic:getImages && yarn figmagic:downloadImages",
