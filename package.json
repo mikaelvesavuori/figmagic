@@ -5,6 +5,11 @@
 	"main": "index.js",
 	"license": "MIT",
 	"dependencies": {
+		"babel-eslint": "^8.2.3",
+		"eslint": "^4.19.1",
+		"eslint-config-prettier": "^2.9.0",
+		"eslint-plugin-prettier": "^2.6.0",
+		"prettier": "^1.12.1",
 		"request": "^2.85.0"
 	},
 	"config": {
