@@ -1,18 +1,21 @@
-import { units } from '../meta/units.mjs';
-import { camelize } from './camelize.mjs';
-import { formatName } from './formatName.mjs';
-import { normalizeUnits } from './normalizeUnits.mjs';
+import { camelize } from "./camelize.mjs";
+import { formatName } from "./formatName.mjs";
+import { normalizeUnits } from "./normalizeUnits.mjs";
 
 export function setupLineHeightTokens(frame) {
-	let lineHeightObject = {};
+  let lineHeightObject = {};
 
-	frame.children.forEach(type => {
-		let name = camelize(type.name);
-		name = formatName(name);
-		const lineHeight = normalizeUnits(type.style.lineHeightPercent, 'percent', 'unitless');
+  frame.children.forEach(type => {
+    let name = camelize(type.name);
+    name = formatName(name);
+    const lineHeight = normalizeUnits(
+      type.style.lineHeightPercent,
+      "percent",
+      "unitless"
+    );
 
-		lineHeightObject[name] = lineHeight;
-	});
+    lineHeightObject[name] = lineHeight;
+  });
 
-	return lineHeightObject;
+  return lineHeightObject;
 }

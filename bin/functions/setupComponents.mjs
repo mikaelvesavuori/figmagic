@@ -1,37 +1,37 @@
-import { getSubComponents } from './getSubComponents.mjs';
-import { mapDimensionToGridUnits } from './mapDimensionToGridUnits.mjs';
-import { getDimension } from './getDimension.mjs';
+import { getSubComponents } from "./getSubComponents.mjs";
+import { mapDimensionToGridUnits } from "./mapDimensionToGridUnits.mjs";
+import { getDimension } from "./getDimension.mjs";
 
 export function setupComponents(figmaComponents, componentsPage) {
-	let components = [];
+  let components = [];
 
-	Object.values(figmaComponents).forEach((component, index) => {
-		const unitWidth = getDimension(component.name, 'width', componentsPage);
-		const mappedDimensions = mapDimensionToGridUnits(unitWidth, 'width');
+  Object.values(figmaComponents).forEach((component, index) => {
+    const unitWidth = getDimension(component.name, "width", componentsPage);
+    const mappedDimensions = mapDimensionToGridUnits(unitWidth, "width");
 
-		const gridWidth = mappedDimensions.gridWidth;
-		const perfectlyFitsGrid = mappedDimensions.perfectlyFitsGrid;
+    const gridWidth = mappedDimensions.gridWidth;
+    const perfectlyFitsGrid = mappedDimensions.perfectlyFitsGrid;
 
-		const unitHeight = getDimension(component.name, 'height', componentsPage);
+    const unitHeight = getDimension(component.name, "height", componentsPage);
 
-		let componentObject = {
-			name: component.name,
-			gridWidth: gridWidth,
-			perfectlyFitsGrid: perfectlyFitsGrid,
-			pxWidth: unitWidth,
-			pxHeight: unitHeight,
-			description: component.description,
-			subComponents: getSubComponents(component.name, componentsPage),
-			id: Object.keys(figmaComponents)[index]
-		};
+    let componentObject = {
+      name: component.name,
+      gridWidth,
+      perfectlyFitsGrid,
+      pxWidth: unitWidth,
+      pxHeight: unitHeight,
+      description: component.description,
+      subComponents: getSubComponents(component.name, componentsPage),
+      id: Object.keys(figmaComponents)[index]
+    };
 
-		// Remove zero-length subComponents property
-		if (componentObject.subComponents.length === 0) {
-			delete componentObject.subComponents;
-		}
+    // Remove zero-length subComponents property
+    if (componentObject.subComponents.length === 0) {
+      delete componentObject.subComponents;
+    }
 
-		components.push(componentObject);
-	});
+    components.push(componentObject);
+  });
 
-	return components;
+  return components;
 }

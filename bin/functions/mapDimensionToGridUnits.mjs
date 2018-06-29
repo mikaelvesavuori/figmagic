@@ -1,5 +1,5 @@
 import { getGridUnitCount } from "./getGridUnitCount.mjs";
-import grid from "../../../../tokens/grid.mjs"; // For dev: '../../tokens/grid.mjs'
+import grid from "../../../../tokens/grid.mjs"; // For dev: '../../tokens/grid.mjs'; For package use: '../../../../tokens/grid.mjs'
 
 /* TODO
 ** Map heights as well?

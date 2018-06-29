@@ -3,13 +3,13 @@
 */
 
 export function getGridUnitCount(pxWidth, gridSize, gridCount, gutterSize) {
-	let gridUnits = 1;
+  let gridUnits = 1;
 
-	for (let index = 1; index < gridCount; index++) {
-		if (pxWidth > index * gridSize + (index * gutterSize - 1)) {
-			gridUnits++;
-		}
-	}
+  for (let index = 1; index < gridCount; index++) {
+    if (pxWidth > index * gridSize + (index * gutterSize - 1)) {
+      gridUnits++;
+    }
+  }
 
-	return gridUnits;
+  return gridUnits;
 }
