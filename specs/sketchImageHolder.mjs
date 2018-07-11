@@ -1,7 +1,7 @@
 const sketchImageHolder = {
   name: "Sketch Image Holder",
-  gridWidth: 1,
-  perfectlyFitsGrid: false,
+  gridWidth: 4,
+  perfectlyFitsGrid: true,
   pxWidth: 416,
   pxHeight: 228,
   description: "",

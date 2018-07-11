@@ -1,11 +1,10 @@
 import { getGridUnitCount } from "./getGridUnitCount.mjs";
-import grid from "../../../../tokens/grid.mjs"; // For dev: '../../tokens/grid.mjs'; For package use: '../../../../tokens/grid.mjs'
 
 /* TODO
 ** Map heights as well?
 */
 
-export function mapDimensionToGridUnits(pxValue, dimension) {
+export function mapDimensionToGridUnits(grid, pxValue, dimension) {
   if (dimension === "width") {
     const maxWidth = grid.totalWidth; // Canvas max width? (Desktop mode)
     // Assume columns
@@ -26,8 +25,8 @@ export function mapDimensionToGridUnits(pxValue, dimension) {
       pxValue === gridWidth * gridSize + gutterSize * (gridWidth - 1);
 
     const mappedComponent = {
-      gridWidth: gridWidth,
-      perfectlyFitsGrid: perfectlyFitsGrid
+      gridWidth,
+      perfectlyFitsGrid
     };
 
     return mappedComponent;

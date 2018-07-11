@@ -8,7 +8,7 @@ import { writeComponents } from "./functions/writeComponents.mjs";
 import { setupComponents } from "./functions/setupComponents.mjs";
 
 // Refs
-import figmaDocument from "../../../figma/figma.json"; // For dev: '../figma/figma.json'; For package use: '../../../figma/figma.json'
+import figmaDocument from "../figma/figma.json"; // For dev: '../figma/figma.json'; For package use: '../../../figma/figma.json'
 const figmaPages = figmaDocument.document.children;
 const figmaComponents = figmaDocument.components;
 
@@ -24,9 +24,9 @@ pageNames.forEach(page => {
 createIds(figmaComponents);
 
 // Create grid, tokens, components
-writeTokens(pages.grid[0], true);
+const gridValues = writeTokens(pages.grid[0], true);
 writeTokens(pages.designtokens.children);
-writeComponents(setupComponents(figmaComponents, pages.components));
+writeComponents(setupComponents(figmaComponents, pages.components, gridValues));
 
 /* TODO
 ** Add null checking

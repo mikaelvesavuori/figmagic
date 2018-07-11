@@ -1,6 +1,6 @@
 const buttonSketch = {
   name: "Button Sketch",
-  gridWidth: 1,
+  gridWidth: 3,
   perfectlyFitsGrid: false,
   pxWidth: 231,
   pxHeight: 40,

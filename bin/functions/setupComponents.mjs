@@ -2,12 +2,16 @@ import { getSubComponents } from "./getSubComponents.mjs";
 import { mapDimensionToGridUnits } from "./mapDimensionToGridUnits.mjs";
 import { getDimension } from "./getDimension.mjs";
 
-export function setupComponents(figmaComponents, componentsPage) {
+export function setupComponents(figmaComponents, componentsPage, gridValues) {
   let components = [];
 
   Object.values(figmaComponents).forEach((component, index) => {
     const unitWidth = getDimension(component.name, "width", componentsPage);
-    const mappedDimensions = mapDimensionToGridUnits(unitWidth, "width");
+    const mappedDimensions = mapDimensionToGridUnits(
+      gridValues,
+      unitWidth,
+      "width"
+    );
 
     const gridWidth = mappedDimensions.gridWidth;
     const perfectlyFitsGrid = mappedDimensions.perfectlyFitsGrid;

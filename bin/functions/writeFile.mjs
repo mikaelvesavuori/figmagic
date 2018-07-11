@@ -14,7 +14,7 @@ export function writeFile(file, name, path = "tokens") {
     )}\n\nexport default ${name};`;
     // const legacyJsStyle = 'module.exports = ' + JSON.stringify(file, null, ' ');
 
-    fs.writeFileSync(fileName, mjsStyle, "utf-8", function(error) {
+    fs.writeFile(fileName, mjsStyle, "utf-8", function(error) {
       if (error) {
         return console.log(error);
       }

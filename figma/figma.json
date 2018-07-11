@@ -1864,6 +1864,7 @@
               "width": 1280,
               "height": 523
             },
+            "transitionNodeID": "-1:-1",
             "constraints": { "vertical": "TOP", "horizontal": "LEFT" },
             "backgroundColor": { "r": 1, "g": 1, "b": 1, "a": 1 },
             "clipsContent": true,
