@@ -11,9 +11,10 @@ import { setupComponents } from "./functions/setupComponents.mjs";
 import figmaDocument from "../figma/figma.json"; // For dev: '../figma/figma.json'; For package use: '../../../figma/figma.json'
 const figmaPages = figmaDocument.document.children;
 const figmaComponents = figmaDocument.components;
+// const figmaStyles = figmaDocument.styles;
 
 // Page setup
-let pageNames = ["grid", "designtokens", "components"];
+let pageNames = ["grid", "designtokens", "components", "graphics"];
 let pages = {};
 
 pageNames.forEach(page => {
@@ -27,6 +28,11 @@ createIds(figmaComponents);
 const gridValues = writeTokens(pages.grid[0], true);
 writeTokens(pages.designtokens.children);
 writeComponents(setupComponents(figmaComponents, pages.components, gridValues));
+writeGraphics(pages.graphics[0]);
+
+function writeGraphics(page) {
+  // console.log(page);
+}
 
 /* TODO
 ** Add null checking

@@ -6,7 +6,7 @@ import { writeFile } from "./writeFile.mjs";
 export function writeTokens(tokens, isGrid = false) {
   if (isGrid) {
     const processedValues = processTokens(tokens, "grid");
-    writeFile(processedValues, "grid");
+    writeFile(processedValues, "grid", "grid", true);
     return processedValues;
   } else {
     tokens.forEach(token => {
@@ -14,7 +14,8 @@ export function writeTokens(tokens, isGrid = false) {
       tokenName = formatName(tokenName);
 
       const processedToken = processTokens(token, tokenName);
-      writeFile(processedToken, tokenName);
+
+      writeFile(processedToken, "tokens", tokenName, true);
     });
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "figmagic",
-  "version": "0.5.2",
+  "version": "0.6.1",
   "author": "Mikael Vesavuori",
   "main": "index.js",
   "license": "MIT",
@@ -12,16 +12,20 @@
     "husky": "^0.14.3",
     "prettier": "^1.13.7",
     "pretty-quick": "^1.6.0",
-    "request": "^2.87.0"
+    "request": "^2.87.0",
+    "svgo": "^1.0.5"
   },
   "scripts": {
-    "figmagic": "yarn figmagic:clean && yarn run figmagic:saveFromApi && yarn figmagic:build && yarn figmagic:getImages && yarn figmagic:downloadImages",
-    "figmagic:clean": "rm -rf specs/ && rm -rf tokens/ && rm -rf figma && mkdir tokens && cp .gridTemplate.mjs tokens/ && mv tokens/.gridTemplate.mjs tokens/grid.mjs",
+    "figmagic": "yarn figmagic:clean && yarn figmagic:saveFromApi && yarn figmagic:build && yarn figmagic:getImages && yarn figmagic:downloadImages",
+    "figmagic:clean": "rm -rf specs/ && rm -rf tokens/ && rm -rf grid/ && rm -rf figma && mkdir tokens && cp .gridTemplate.mjs tokens/ && mv tokens/.gridTemplate.mjs tokens/grid.mjs",
     "figmagic:saveFromApi": "mkdir -p figma && wget 'https://api.figma.com/v1/files/{URL}' --header='X-Figma-Token: {TOKEN}' -O figma/figma.json",
     "figmagic:tokens": "yarn figmagic:clean && yarn figmagic:saveFromApi && yarn figmagic:build",
     "figmagic:build": "node --experimental-modules bin/index.mjs",
     "figmagic:getImages": "node --experimental-modules bin/getImages.mjs",
+    "figmagic:getGraphics": "node --experimental-modules bin/getImages.mjs --graphics",
     "figmagic:downloadImages": "node --experimental-modules bin/downloadImages.mjs",
+    "figmagic:downloadGraphics": "node --experimental-modules bin/downloadImages.mjs --graphics",
+    "figmagic:optimizeGraphics": "svgo -f ./specs/graphics/ --multipass --disable=removeViewBox --enable=removeDimensions",
     "precommit": "echo Running pre-commit linting... && pretty-quick --staged && npm --no-git-tag-version version patch && git add package.json"
   }
 }

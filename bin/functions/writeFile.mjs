@@ -1,20 +1,24 @@
 import fs from "fs";
 import { createFolder } from "./createFolder.mjs";
 
-export function writeFile(file, name, path = "tokens") {
+export function writeFile(file, path, name, isToken = false) {
   createFolder(path);
   write();
 
   function write() {
-    const fileName = `${path}/${name}.mjs`;
-    const mjsStyle = `const ${name} = ${JSON.stringify(
-      file,
-      null,
-      " "
-    )}\n\nexport default ${name};`;
-    // const legacyJsStyle = 'module.exports = ' + JSON.stringify(file, null, ' ');
+    let fileContent = file;
+    let filePath = `${path}/${name}`;
 
-    fs.writeFile(fileName, mjsStyle, "utf-8", function(error) {
+    if (isToken) {
+      fileContent = `const ${name} = ${JSON.stringify(
+        file,
+        null,
+        " "
+      )}\n\nexport default ${name};`;
+      filePath += `.mjs`;
+    }
+
+    fs.writeFile(filePath, fileContent, "utf-8", function(error) {
       if (error) {
         return console.log(error);
       }

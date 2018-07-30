@@ -1,5 +1,5 @@
-import fs from "fs";
 import request from "request";
+import { writeFile } from "./functions/writeFile.mjs";
 import imagesJson from "../figma/resolvedImages.js"; // For dev: '../figma/resolvedImages.js'; For package use: '../../../figma/resolvedImages.js'
 import keys from "./meta/keys.mjs";
 
@@ -7,6 +7,14 @@ const figmaUrl = keys.url;
 const figmaToken = keys.token;
 const resolvedImages = JSON.parse(imagesJson);
 const resolvedImageIds = resolvedImages.fixedIds;
+
+const fileFormat = (() => {
+  if (process.argv[2] === "--graphics") {
+    return "svg";
+  } else {
+    return "png";
+  }
+})();
 
 const invalidKeys = (() => {
   if (
@@ -27,7 +35,7 @@ if (invalidKeys) {
   console.warn("Invalid or non-existing values in bin/meta/keys.mjs!");
 } else {
   const options = {
-    url: `https://api.figma.com/v1/images/${figmaUrl}?ids=${resolvedImageIds}&format=png&scale=2`,
+    url: `https://api.figma.com/v1/images/${figmaUrl}?ids=${resolvedImageIds}&format=${fileFormat}&scale=2`,
     headers: {
       "X-Figma-Token": figmaToken
     }
@@ -52,19 +60,10 @@ function callback(error, response, body) {
       });
     });
 
-    /* TODO:
-		** Use ./writeFile.mjs instead?
-		*/
-
-    fs.writeFile(
-      `${process.cwd()}/figma/images.json`,
+    writeFile(
       JSON.stringify(namedComponentsWithImages),
-      "utf-8",
-      function(error) {
-        if (error) {
-          return console.log(error);
-        }
-      }
+      "figma",
+      "images.json"
     );
   } else {
     console.warn(error);
