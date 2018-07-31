@@ -8,7 +8,7 @@ import { writeComponents } from "./functions/writeComponents.mjs";
 import { setupComponents } from "./functions/setupComponents.mjs";
 
 // Refs
-import figmaDocument from "../figma/figma.json"; // For dev: '../figma/figma.json'; For package use: '../../../figma/figma.json'
+import figmaDocument from "../../../figma/figma.json"; // For dev: '../figma/figma.json'; For package use: '../../../figma/figma.json'
 const figmaPages = figmaDocument.document.children;
 const figmaComponents = figmaDocument.components;
 // const figmaStyles = figmaDocument.styles;

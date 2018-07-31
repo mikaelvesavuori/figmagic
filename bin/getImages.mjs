@@ -1,6 +1,6 @@
 import request from "request";
 import { writeFile } from "./functions/writeFile.mjs";
-import imagesJson from "../figma/resolvedImages.js"; // For dev: '../figma/resolvedImages.js'; For package use: '../../../figma/resolvedImages.js'
+import imagesJson from "../../../figma/resolvedImages.js"; // For dev: '../figma/resolvedImages.js'; For package use: '../../../figma/resolvedImages.js'
 import keys from "./meta/keys.mjs";
 
 const figmaUrl = keys.url;
