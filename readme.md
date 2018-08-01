@@ -44,7 +44,7 @@ Use `.` as a value in the path in the NPM config block to resolve from the Figma
 
 ### As part of a Node.js project
 
-You will probably want to use it as a straight dependency.
+You will probably want to consume it as a regular dependency.
 
 - Add Figmagic as a project dependency, by running `yarn add figmagic -S` or `npm install figmagic -S`
 - Add the below commands to your NPM scripts block
@@ -52,12 +52,24 @@ You will probably want to use it as a straight dependency.
 
 ## Key/token locations
 
+### For use as a dependency
+
+1.  `node_modules/figmagic/package.json`: In the scripts block you will need to change the blanks to your actual file and token
+2.  `node_modules/figmagic/bin/meta/keys.mjs`: In the options object you will also need to change to your actual values; these are then used by Figmagic's functions
+
+### For development
+
 1.  `package.json`: In the scripts block you will need to change the blanks to your actual file and token
 2.  `bin/meta/keys.mjs`: In the options object you will also need to change to your actual values; these are then used by Figmagic's functions
 
-## Commands
+Also, you will need to update the relative paths in the following files, if you wish to develop Figmagic rather than consume it as a dependency. The correct paths are available on the respective lines, but are commented out.
 
-The Figmagic commands (NPM scripts block) is below, listing what commands are available to you.
+- `bin/index.mjs`; Update the `import figmaDocument...` path
+- `bin/getImages.mjs`; Update the `import imagesJson...` path
+
+## Add Figmagic commands to your package.json file
+
+The following block represents how you could add Figmagic commands to your NPM scripts block. Make sure to update to correct URL and token in the command `figmagic:saveFromApi`.
 
 ```json
 "config": {
@@ -65,16 +77,15 @@ The Figmagic commands (NPM scripts block) is below, listing what commands are av
 },
 "scripts": {
 		"figmagic": "yarn figmagic:clean && yarn figmagic:saveFromApi && yarn figmagic:build && yarn figmagic:getImages && yarn figmagic:downloadImages",
-		"figmagic:clean": "rm -rf specs/ && rm -rf tokens/ && rm -rf grid/ && rm -rf figma && mkdir tokens && cp .gridTemplate.mjs tokens/ && mv tokens/.gridTemplate.mjs tokens/grid.mjs",
+		"figmagic:clean": "rm -rf specs/ && rm -rf tokens/ && rm -rf grid/ && rm -rf figma && mkdir tokens && cp $npm_package_config_figmagicPath/.gridTemplate.mjs tokens/ && mv tokens/.gridTemplate.mjs tokens/grid.mjs",
 		"figmagic:saveFromApi": "mkdir -p figma && wget 'https://api.figma.com/v1/files/{URL}' --header='X-Figma-Token: {TOKEN}' -O figma/figma.json",
 		"figmagic:tokens": "yarn figmagic:clean && yarn figmagic:saveFromApi && yarn figmagic:build",
-		"figmagic:build": "node --experimental-modules bin/index.mjs",
-		"figmagic:getImages": "node --experimental-modules bin/getImages.mjs",
-		"figmagic:getGraphics": "node --experimental-modules bin/getImages.mjs --graphics",
-		"figmagic:downloadImages": "node --experimental-modules bin/downloadImages.mjs",
-		"figmagic:downloadGraphics": "node --experimental-modules bin/downloadImages.mjs --graphics",
-		"figmagic:optimizeGraphics": "svgo -f ./specs/graphics/ --multipass --disable=removeViewBox --enable=removeDimensions",
-		"precommit": "echo Running pre-commit linting... && pretty-quick --staged && npm --no-git-tag-version version patch && git add package.json"
+		"figmagic:build": "node --experimental-modules $npm_package_config_figmagicPath/bin/index.mjs",
+		"figmagic:getImages": "node --experimental-modules $npm_package_config_figmagicPath/bin/getImages.mjs",
+		"figmagic:getGraphics": "node --experimental-modules $npm_package_config_figmagicPath/bin/getImages.mjs --graphics",
+		"figmagic:downloadImages": "node --experimental-modules $npm_package_config_figmagicPath/bin/downloadImages.mjs",
+		"figmagic:downloadGraphics": "node --experimental-modules $npm_package_config_figmagicPath/bin/downloadImages.mjs --graphics",
+		"figmagic:optimizeGraphics": "svgo -f ./specs/graphics/ --multipass --disable=removeViewBox --enable=removeDimensions"
 }
 ```
 
@@ -106,7 +117,7 @@ Because of this difference, the appropriate way to structure a Figmagic-compatib
 
 ### OK, but should I use Figma styles (also) when using Figmagic?
 
-Whatever suits you! As long as you remember that what Figmagic fetches are those single (unidimensional) values from each design item/token it should all work. Figma styles may help you to work though, and is probably just a good thing. Again, Figmagic does not use those values.
+Whatever suits you! As long as you remember that what Figmagic fetches are those single (unidimensional) values from each design item/token it should all work. Figma styles may help you to work though, and is probably just a good thing for any regular normal design work. Again though, Figmagic does not use those values.
 
 ## Token formatting/conversion
 
