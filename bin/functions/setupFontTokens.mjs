@@ -2,15 +2,17 @@ import { camelize } from "./camelize.mjs";
 import { formatName } from "./formatName.mjs";
 
 export function setupFontTokens(frame) {
-  let fontObject = {};
+  if (frame) {
+    let fontObject = {};
 
-  frame.children.forEach(type => {
-    let name = camelize(type.name);
-    name = formatName(name);
-    const font = type.style.fontPostScriptName;
+    frame.children.forEach(type => {
+      let name = camelize(type.name);
+      name = formatName(name);
+      const font = type.style.fontPostScriptName;
 
-    fontObject[name] = font;
-  });
+      fontObject[name] = font;
+    });
 
-  return fontObject;
+    return fontObject;
+  } else console.error("No frame for setupFontTokens()!");
 }

@@ -3,19 +3,21 @@ import { formatName } from "./formatName.mjs";
 import { normalizeUnits } from "./normalizeUnits.mjs";
 
 export function setupLineHeightTokens(frame) {
-  let lineHeightObject = {};
+  if (frame) {
+    let lineHeightObject = {};
 
-  frame.children.forEach(type => {
-    let name = camelize(type.name);
-    name = formatName(name);
-    const lineHeight = normalizeUnits(
-      type.style.lineHeightPercent,
-      "percent",
-      "unitless"
-    );
+    frame.children.forEach(type => {
+      let name = camelize(type.name);
+      name = formatName(name);
+      const lineHeight = normalizeUnits(
+        type.style.lineHeightPercent,
+        "percent",
+        "unitless"
+      );
 
-    lineHeightObject[name] = lineHeight;
-  });
+      lineHeightObject[name] = lineHeight;
+    });
 
-  return lineHeightObject;
+    return lineHeightObject;
+  } else console.error("No frame for setupLineHeightTokens()!");
 }

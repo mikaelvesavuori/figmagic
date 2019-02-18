@@ -2,26 +2,29 @@ import fs from "fs";
 import { createFolder } from "./createFolder.mjs";
 
 export function writeFile(file, path, name, isToken = false) {
-  createFolder(path);
-  write();
+  if (file && path && name) {
+    createFolder(path);
+    write(file, path, name, isToken);
+  } else
+    console.error("Missing required parameters to correctly run writeFile()!");
+}
 
-  function write() {
-    let fileContent = file;
-    let filePath = `${path}/${name}`;
+function write(file, path, name, isToken) {
+  let fileContent = file;
+  let filePath = `${path}/${name}`;
 
-    if (isToken) {
-      fileContent = `const ${name} = ${JSON.stringify(
-        file,
-        null,
-        " "
-      )}\n\nexport default ${name};`;
-      filePath += `.mjs`;
-    }
-
-    fs.writeFile(filePath, fileContent, "utf-8", function(error) {
-      if (error) {
-        return console.log(error);
-      }
-    });
+  if (isToken) {
+    fileContent = `const ${name} = ${JSON.stringify(
+      file,
+      null,
+      " "
+    )}\n\nexport default ${name};`;
+    filePath += `.mjs`;
   }
+
+  fs.writeFile(filePath, fileContent, "utf-8", function(error) {
+    if (error) {
+      return console.log(error);
+    }
+  });
 }

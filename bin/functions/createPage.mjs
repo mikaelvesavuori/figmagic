@@ -1,58 +1,39 @@
-let creationState = {
-  hasCreatedGridPage: false,
-  hasCreatedDesignTokensPage: false,
-  hasCreatedSubcomponentsPage: false,
-  hasCreatedComponentsPage: false,
-  hasCreatedGraphicsPage: false
-};
+// Use these if you want to create tokens from the local file, else we assume that you want tokens from returned data from a Figma API fetch
+// import figmaDocument from './figma/figma.json';
+// figmaDocument.document.children
 
 export function createPage(figmaPages) {
-  let correctPage = undefined;
-  let isMatchFound = false;
+  let hasCreatedDesignTokensPage = false;
 
-  function findShortenedNameMatch(originalString, matchString) {
-    return originalString.toLowerCase().replace(" ", "") === matchString;
-  }
+  if (figmaPages && figmaPages.length > 0) {
+    let correctPage = undefined;
+    let isMatchFound = false;
 
-  figmaPages.forEach(page => {
-    if (!isMatchFound) {
-      if (
-        (findShortenedNameMatch(page.name, "grid") &&
-          creationState.hasCreatedGridPage === false) ||
-        (findShortenedNameMatch(page.name, "designtokens") &&
-          creationState.hasCreatedDesignTokensPage === false) ||
-        (findShortenedNameMatch(page.name, "subcomponents") &&
-          creationState.hasCreatedSubcomponentsPage === false) ||
-        (findShortenedNameMatch(page.name, "components") &&
-          creationState.hasCreatedComponentsPage === false) ||
-        (findShortenedNameMatch(page.name, "graphics") &&
-          creationState.hasCreatedGraphicsPage === false)
-      ) {
-        isMatchFound = true;
-        foundMatch(page);
+    figmaPages.forEach(page => {
+      if (!isMatchFound) {
+        if (
+          findShortenedNameMatch(page.name, "designtokens") &&
+          hasCreatedDesignTokensPage === false
+        ) {
+          isMatchFound = true;
+          foundMatch(page);
+        }
       }
-    }
 
-    function foundMatch(page) {
-      const fixedPageName = page.name.toLowerCase().replace(" ", "");
-      if (fixedPageName === "grid") {
-        creationState.hasCreatedGridPage = true;
-        correctPage = page.children[0].children;
-      } else if (fixedPageName === "designtokens") {
-        creationState.hasCreatedDesignTokensPage = true;
-        correctPage = page;
-      } else if (fixedPageName === "subcomponents") {
-        creationState.hasCreatedSubcomponentsPage = true;
-        correctPage = page.children[0].children;
-      } else if (fixedPageName === "components") {
-        creationState.hasCreatedComponentsPage = true;
-        correctPage = page.children[0].children;
-      } else if (fixedPageName === "graphics") {
-        creationState.hasCreatedGraphicsPage = true;
-        correctPage = page.children[0].children;
+      function foundMatch(page) {
+        const fixedPageName = page.name.toLowerCase().replace(" ", "");
+
+        if (fixedPageName === "designtokens") {
+          hasCreatedDesignTokensPage = true;
+          correctPage = page;
+        }
       }
-    }
-  });
+    });
 
-  return correctPage;
+    return correctPage;
+  } else console.error("No pages provided to createPage()!");
+}
+
+function findShortenedNameMatch(originalString, matchString) {
+  return originalString.toLowerCase().replace(" ", "") === matchString;
 }
