@@ -1,4 +1,5 @@
-#!/usr/bin/env node --experimental-modules --no-warnings
+#!/bin/sh
+":"; //#; exec /usr/bin/env node --experimental-modules --no-warnings "$0" "$@"
 
 import { createFolder } from "./bin/functions/createFolder.mjs";
 import { getFromApi } from "./bin/functions/getFromApi.mjs";
