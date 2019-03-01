@@ -1,37 +1,37 @@
 {
-  "name": "figmagic",
-  "description": "Automate the generation of design tokens and specs from your Figma documents. Inspired by Salesforce Theo.",
-  "keywords": [
-    "figma",
-    "figma api",
-    "design tokens",
-    "tokens",
-    "design system",
-    "salesforce theo"
-  ],
-  "homepage": "https://www.figmagic.com",
-  "version": "1.0.6",
-  "author": "Mikael Vesavuori",
-  "main": "bin/index.mjs",
-  "license": "MIT",
-  "dependencies": {
-    "babel-eslint": "^10.0.1",
-    "dotenv": "^6.2.0",
-    "eslint": "^5.14.0",
-    "eslint-config-prettier": "^4.0.0",
-    "eslint-plugin-prettier": "^3.0.1",
-    "husky": "^1.3.1",
-    "node-fetch": "^2.3.0",
-    "prettier": "^1.16.4",
-    "pretty-quick": "^1.10.0",
-    "rimraf": "^2.6.3"
-  },
-  "bin": {
-    "figmagic": "./index.mjs"
-  },
-  "scripts": {
-    "setup": "rm -rf yarn.lock && rm -rf /node_modules && rm -rf /usr/local/lib/node_modules/figmagic && npm install -g",
-    "figmagic": "node --experimental-modules index.mjs",
-    "precommit": "echo Running pre-commit linting... && pretty-quick --staged && npm --no-git-tag-version version patch && git add package.json"
-  }
+	"name": "figmagic",
+	"description": "Automate the generation of design tokens and specs from your Figma documents. Inspired by Salesforce Theo.",
+	"keywords": [
+		"figma",
+		"figma api",
+		"design tokens",
+		"tokens",
+		"design system",
+		"salesforce theo"
+	],
+	"homepage": "https://www.figmagic.com",
+	"version": "1.0.8",
+	"author": "Mikael Vesavuori",
+	"main": "bin/index.mjs",
+	"license": "MIT",
+	"dependencies": {
+		"babel-eslint": "^10.0.1",
+		"dotenv": "^6.2.0",
+		"eslint": "^5.14.0",
+		"eslint-config-prettier": "^4.0.0",
+		"eslint-plugin-prettier": "^3.0.1",
+		"husky": "^1.3.1",
+		"node-fetch": "^2.3.0",
+		"prettier": "^1.16.4",
+		"pretty-quick": "^1.10.0",
+		"rimraf": "^2.6.3"
+	},
+	"bin": {
+		"figmagic": "./index.mjs"
+	},
+	"scripts": {
+		"setup": "rm -rf yarn.lock && rm -rf /node_modules && rm -rf /usr/local/lib/node_modules/figmagic && npm install -g",
+		"figmagic": "node --experimental-modules index.mjs",
+		"precommit": "echo Running pre-commit linting... && pretty-quick --staged && npm --no-git-tag-version version patch && git add package.json"
+	}
 }

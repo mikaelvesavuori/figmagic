@@ -1,13 +1,16 @@
 export function formatName(str) {
-  if (str) {
-    const forbiddenCharacters = ["-", "–", "—", "|", "."];
+	if (str) {
+		const forbiddenCharacters = ['-', '–', '—', '|', '.'];
 
-    let fixedString = str;
+		let fixedString = str;
 
-    forbiddenCharacters.forEach(char => {
-      fixedString = fixedString.replace(char, "");
-    });
+		forbiddenCharacters.forEach(char => {
+			fixedString = fixedString.replace(char, '');
+		});
 
-    return fixedString;
-  } else console.error("No string for formatName()!");
+		return fixedString;
+	} else {
+		console.error('No string for formatName()!');
+		process.exit(1);
+	}
 }

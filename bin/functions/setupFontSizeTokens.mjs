@@ -1,19 +1,22 @@
-import { units } from "../meta/units.mjs";
-import { camelize } from "./camelize.mjs";
-import { formatName } from "./formatName.mjs";
+import { units } from '../meta/units.mjs';
+import { camelize } from './camelize.mjs';
+import { formatName } from './formatName.mjs';
 
 export function setupFontSizeTokens(frame) {
-  if (frame) {
-    let fontSizeObject = {};
+	if (frame) {
+		let fontSizeObject = {};
 
-    frame.children.forEach(type => {
-      let name = camelize(type.name);
-      name = formatName(name);
-      const fontSize = type.style.fontSize / units.globalRemSize + "rem"; // TODO: Use a converter function?
+		frame.children.forEach(type => {
+			let name = camelize(type.name);
+			name = formatName(name);
+			const fontSize = type.style.fontSize / units.globalRemSize + 'rem'; // TODO: Use a converter function?
 
-      fontSizeObject[name] = fontSize;
-    });
+			fontSizeObject[name] = fontSize;
+		});
 
-    return fontSizeObject;
-  } else console.error("No frame for setupFontSizeTokens()!");
+		return fontSizeObject;
+	} else {
+		console.error('No frame for setupFontSizeTokens()!');
+		process.exit(1);
+	}
 }

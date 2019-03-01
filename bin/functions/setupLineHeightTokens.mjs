@@ -1,23 +1,22 @@
-import { camelize } from "./camelize.mjs";
-import { formatName } from "./formatName.mjs";
-import { normalizeUnits } from "./normalizeUnits.mjs";
+import { camelize } from './camelize.mjs';
+import { formatName } from './formatName.mjs';
+import { normalizeUnits } from './normalizeUnits.mjs';
 
 export function setupLineHeightTokens(frame) {
-  if (frame) {
-    let lineHeightObject = {};
+	if (frame) {
+		let lineHeightObject = {};
 
-    frame.children.forEach(type => {
-      let name = camelize(type.name);
-      name = formatName(name);
-      const lineHeight = normalizeUnits(
-        type.style.lineHeightPercent,
-        "percent",
-        "unitless"
-      );
+		frame.children.forEach(type => {
+			let name = camelize(type.name);
+			name = formatName(name);
+			const lineHeight = normalizeUnits(type.style.lineHeightPercent, 'percent', 'unitless');
 
-      lineHeightObject[name] = lineHeight;
-    });
+			lineHeightObject[name] = lineHeight;
+		});
 
-    return lineHeightObject;
-  } else console.error("No frame for setupLineHeightTokens()!");
+		return lineHeightObject;
+	} else {
+		console.error('No frame for setupLineHeightTokens()!');
+		process.exit(1);
+	}
 }
