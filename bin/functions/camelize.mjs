@@ -1,3 +1,10 @@
+/**
+ * Camel-case transform a string
+ *
+ * @export
+ * @param {string} str - The string
+ * @returns
+ */
 export function camelize(str) {
 	if (str) {
 		return str

@@ -1,3 +1,10 @@
+/**
+ * Used to clean and format the name of a file
+ *
+ * @export
+ * @param {string} str - The incoming name
+ * @returns
+ */
 export function formatName(str) {
 	if (str) {
 		const forbiddenCharacters = ['-', '–', '—', '|', '.'];

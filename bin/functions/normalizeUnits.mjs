@@ -1,9 +1,5 @@
 import { units } from '../meta/units.mjs';
 
-/* TODO
- ** Add support for unitless units (line-height)
- */
-
 export function normalizeUnits(value, currentUnit, newUnit) {
 	if (value && currentUnit && newUnit) {
 		let rootSize = undefined;
