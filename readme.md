@@ -1,4 +1,5 @@
 # Figmagic
+
 [![Build Status](https://travis-ci.org/mikaelvesavuori/figmagic.svg?branch=master)](https://travis-ci.org/mikaelvesavuori/figmagic)
 
 Automate the generation of design tokens and specs from your Figma documents. Inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo).
@@ -40,7 +41,7 @@ An example project—using React, Webpack and Styled Components—is available a
 - Clone Figmagic
 - Step into the Figmagic directory, and run `yarn setup` or `npm setup` to add it globally to your system
 - Step into a project directory, and add or replace **FIGMA_URL** and **FIGMA_TOKEN** in .env with your own file ID and token key (for more on this, [go to Figma's developer docs](https://www.figma.com/developers/docs))
-- Run `figmagic`
+- Run `figmagic` (default is .MJS token files), or `figmagic js` if you want to have regular old .JS files instead
 - You should now have a `/figma` and `/tokens` folder in the root! The `/tokens` folder has the good stuff you want :)
 
 ## Figma setup
@@ -101,7 +102,7 @@ Em units.
 
 ## Structure
 
-- `bin` contains the project's MJS files; `bin/functions` contains most of the functions
+- `bin` contains the project's MJS/JS files; `bin/functions` contains most of the functions
 - `figma` will contain the extracted Figma JSON and various build-time JSON files
 - `tokens` will contain the token files (in .mjs format)
 
