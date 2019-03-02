@@ -15,7 +15,6 @@ export function setupFontWeightTokens(frame) {
 
 		return fontWeightObject;
 	} else {
-		console.error('No frame for setupFontWeightTokens()!');
-		process.exit(1);
+		throw new Error('No frame for setupFontWeightTokens()!');
 	}
 }

@@ -15,7 +15,6 @@ export function setupFontTokens(frame) {
 
 		return fontObject;
 	} else {
-		console.error('No frame for setupFontTokens()!');
-		process.exit(1);
+		throw new Error('No frame for setupFontTokens()!');
 	}
 }

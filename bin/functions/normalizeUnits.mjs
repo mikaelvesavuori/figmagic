@@ -38,7 +38,6 @@ export function normalizeUnits(value, currentUnit, newUnit) {
 			return;
 		}
 	} else {
-		console.error('Missing parameters for normalizeUnits()!');
-		process.exit(1);
+		throw new Error('Missing parameters for normalizeUnits()!');
 	}
 }

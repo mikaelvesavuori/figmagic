@@ -16,7 +16,6 @@ export function setupColorTokens(colorFrame) {
 
 		return colors;
 	} else {
-		console.error('No frame for setupColorTokens()!');
-		process.exit(1);
+		throw new Error('No frame for setupColorTokens()!');
 	}
 }

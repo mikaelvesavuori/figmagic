@@ -16,7 +16,6 @@ export function setupLineHeightTokens(frame) {
 
 		return lineHeightObject;
 	} else {
-		console.error('No frame for setupLineHeightTokens()!');
-		process.exit(1);
+		throw new Error('No frame for setupLineHeightTokens()!');
 	}
 }

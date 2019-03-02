@@ -8,6 +8,12 @@ test('It should lower-case the string', () => {
 	expect(camelize('ASDF')).toBe('asdf');
 });
 
-test('Trailing whitespace should be trimmed', () => {
+test('It should trim trailing whitespace', () => {
 	expect(camelize('text       ')).toBe('text');
+});
+
+test('It should throw an error if no parameter is provided', () => {
+	expect(() => {
+		camelize();
+	}).toThrow();
 });

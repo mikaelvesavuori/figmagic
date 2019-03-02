@@ -16,7 +16,6 @@ export function setupSpacingTokens(spacingFrame) {
 
 		return spacingObject;
 	} else {
-		console.error('No frame for setupSpacingTokens()!');
-		process.exit(1);
+		throw new Error('No frame for setupSpacingTokens()!');
 	}
 }

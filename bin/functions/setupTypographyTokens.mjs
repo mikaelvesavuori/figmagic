@@ -33,7 +33,6 @@ export function setupTypographyTokens(typographyFrame) {
 
 		return typeTestObject;
 	} else {
-		console.error('No frame for setupTypographyTokens()!');
-		process.exit(1);
+		throw new Error('No frame for setupTypographyTokens()!');
 	}
 }

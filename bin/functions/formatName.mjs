@@ -17,7 +17,6 @@ export function formatName(str) {
 
 		return fixedString;
 	} else {
-		console.error('No string for formatName()!');
-		process.exit(1);
+		throw new Error('No string for formatName()!');
 	}
 }

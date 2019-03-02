@@ -6,8 +6,7 @@ export function writeFile(file, path, name, isToken = false, format) {
 		createFolder(path);
 		write(file, path, name, isToken, format);
 	} else {
-		console.error('Missing required parameters to correctly run writeFile()!');
-		process.exit(1);
+		throw new Error('Missing required parameters to correctly run writeFile()!');
 	}
 }
 
@@ -22,7 +21,7 @@ function write(file, path, name, isToken, format) {
 
 	fs.writeFile(filePath, fileContent, 'utf-8', function(error) {
 		if (error) {
-			return console.error(error);
+			throw new Error('Error in write() > writeFile(): ', error);
 		}
 	});
 }

@@ -16,7 +16,6 @@ export function setupFontSizeTokens(frame) {
 
 		return fontSizeObject;
 	} else {
-		console.error('No frame for setupFontSizeTokens()!');
-		process.exit(1);
+		throw new Error('No frame for setupFontSizeTokens()!');
 	}
 }

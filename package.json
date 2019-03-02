@@ -10,7 +10,7 @@
 		"salesforce theo"
 	],
 	"homepage": "https://www.figmagic.com",
-	"version": "1.0.10",
+	"version": "1.0.11",
 	"author": "Mikael Vesavuori",
 	"main": "bin/index.mjs",
 	"license": "MIT",
@@ -40,6 +40,7 @@
 	"scripts": {
 		"setup": "rm -rf yarn.lock && rm -rf /node_modules && rm -rf /usr/local/lib/node_modules/figmagic && npm install -g",
 		"figmagic": "node --experimental-modules index.mjs",
+		"test": "npx jest",
 		"precommit": "echo Running pre-commit linting... && pretty-quick --staged && npm --no-git-tag-version version patch && git add package.json"
 	}
 }

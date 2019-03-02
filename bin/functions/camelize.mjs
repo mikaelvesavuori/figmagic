@@ -14,7 +14,6 @@ export function camelize(str) {
 			})
 			.replace(/\s+/g, '');
 	} else {
-		console.error('No string provided to camelize()!');
-		process.exit(1);
+		throw new Error('No string provided to camelize()!');
 	}
 }

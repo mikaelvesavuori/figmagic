@@ -14,7 +14,6 @@ export function writeTokens(tokens, format) {
 			writeFile(processedToken, 'tokens', tokenName, true, format);
 		});
 	} else {
-		console.error('Less than one token provided to writeTokens()!');
-		process.exit(1);
+		throw new Error('Less than one token provided to writeTokens()!');
 	}
 }

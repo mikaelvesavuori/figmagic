@@ -32,7 +32,6 @@ export function processTokens(sheet, name) {
 
 		return processedTokens;
 	} else {
-		console.error('No sheet or name for processTokens()!');
-		process.exit(1);
+		throw new Error('No sheet or name for processTokens()!');
 	}
 }

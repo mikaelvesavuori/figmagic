@@ -32,11 +32,14 @@ export function createPage(figmaPages) {
 
 		return correctPage;
 	} else {
-		console.error('No pages provided to createPage()!');
-		process.exit(1);
+		throw new Error('No pages provided to createPage()!');
 	}
 }
 
-function findShortenedNameMatch(originalString, matchString) {
-	return originalString.toLowerCase().replace(' ', '') === matchString;
+export function findShortenedNameMatch(originalString, matchString) {
+	if (originalString) {
+		if (matchString) {
+			return originalString.toLowerCase().replace(' ', '') === matchString;
+		} else throw new Error('No "matchString" was provided to findShortenedNameMatch()!');
+	} else throw new Error('No "originalString" was provided to findShortenedNameMatch()!');
 }
