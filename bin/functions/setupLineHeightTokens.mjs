@@ -9,7 +9,11 @@ export function setupLineHeightTokens(frame) {
 		frame.children.forEach(type => {
 			let name = camelize(type.name);
 			name = formatName(name);
-			const lineHeight = normalizeUnits(type.style.lineHeightPercent, 'percent', 'unitless');
+			const lineHeight = normalizeUnits(
+				type.style.lineHeightPercentFontSize,
+				'percent',
+				'unitless'
+			);
 
 			lineHeightObject[name] = lineHeight;
 		});
