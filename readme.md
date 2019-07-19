@@ -39,7 +39,7 @@ An example project—using React, Webpack and Styled Components—is available a
 ### Installation
 
 - Clone Figmagic
-- Step into the Figmagic directory, and run `yarn setup` or `npm setup` to add it globally to your system
+- Step into the Figmagic directory, and run `yarn setup` or `npm run setup` to add it globally to your system
 - Step into a project directory, and add or replace **FIGMA_URL** and **FIGMA_TOKEN** in .env with your own file ID and token key (for more on this, [go to Figma's developer docs](https://www.figma.com/developers/docs))
 - Run `figmagic` (default is .MJS token files), or `figmagic js` if you want to have regular old .JS files instead
 - You should now have a `/figma` and `/tokens` folder in the root! The `/tokens` folder has the good stuff you want :)
