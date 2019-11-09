@@ -10,29 +10,33 @@
 		"salesforce theo"
 	],
 	"homepage": "https://www.figmagic.com",
-	"version": "1.0.14",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mikaelvesavuori/figmagic.git"
+	},
+	"version": "1.0.15",
 	"author": "Mikael Vesavuori",
 	"main": "bin/index.mjs",
 	"license": "MIT",
 	"devDependencies": {
-		"@babel/core": "^7.4.5",
-		"@babel/plugin-transform-modules-commonjs": "^7.4.4",
-		"@babel/preset-env": "^7.4.5",
+		"@babel/core": "^7.7.2",
+		"@babel/plugin-transform-modules-commonjs": "^7.7.0",
+		"@babel/preset-env": "^7.7.1",
 		"babel": "^6.23.0",
-		"babel-eslint": "^10.0.2",
-		"babel-jest": "^24.8.0",
-		"eslint": "^6.0.1",
-		"eslint-config-prettier": "^5.1.0",
-		"eslint-plugin-prettier": "^3.1.0",
-		"husky": "^2.5.0",
-		"jest": "^24.8.0",
-		"prettier": "^1.18.2",
-		"pretty-quick": "^1.11.1"
+		"babel-eslint": "^10.0.3",
+		"babel-jest": "^24.9.0",
+		"eslint": "^6.6.0",
+		"eslint-config-prettier": "^6.5.0",
+		"eslint-plugin-prettier": "^3.1.1",
+		"husky": "^3.0.9",
+		"jest": "^24.9.0",
+		"prettier": "^1.19.1",
+		"pretty-quick": "^2.0.1"
 	},
 	"dependencies": {
-		"dotenv": "^8.0.0",
+		"dotenv": "^8.2.0",
 		"node-fetch": "^2.6.0",
-		"rimraf": "^2.6.3"
+		"rimraf": "^3.0.0"
 	},
 	"bin": {
 		"figmagic": "./index.mjs"
