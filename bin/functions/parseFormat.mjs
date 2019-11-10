@@ -1,9 +1,10 @@
 /**
  * Parse the third process.env argument (first user-specified argument) to select a token format for the exported files
  *
- * @export
+ * @exports
+ * @function
  * @param {string} value - The kind of value that is requested, either "mjs" or "js"
- * @returns
+ * @returns {string} - Returns new format as string
  */
 export function parseFormat(value) {
 	if (value === undefined) {

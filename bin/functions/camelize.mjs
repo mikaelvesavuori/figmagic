@@ -1,9 +1,11 @@
 /**
  * Camel-case transform a string
  *
- * @export
- * @param {string} str - The string
- * @returns
+ * @exports
+ * @function
+ * @param {string} str - The string to camelcase
+ * @returns {string} - The final string
+ * @throws {Error} - When no string is provided
  */
 export function camelize(str) {
 	if (str) {

@@ -4,6 +4,15 @@
 
 import units from '../meta/units.mjs';
 
+/**
+ * Places all Figma font sizes into a clean object
+ *
+ * @exports
+ * @function
+ * @param {object} typographyFrame - The typography frame from Figma
+ * @returns {object} - Returns an object with all the font-relating aspects collected
+ * @throws {Error} - When there is no provided Figma frame
+ */
 export function setupTypographyTokens(typographyFrame) {
 	if (typographyFrame) {
 		let typeTestObject = {};

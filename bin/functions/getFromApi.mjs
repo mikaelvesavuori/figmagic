@@ -1,6 +1,14 @@
 import { writeFile } from './writeFile.mjs';
 import fetch from 'node-fetch';
 
+/**
+ * Get data from API
+ *
+ * @exports
+ * @async
+ * @function
+ * @returns {object} - The fetched data inside of an object
+ */
 export async function getFromApi() {
 	let data = {};
 

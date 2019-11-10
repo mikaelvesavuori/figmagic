@@ -5,6 +5,16 @@ import { setupFontSizeTokens } from './setupFontSizeTokens.mjs';
 import { setupFontWeightTokens } from './setupFontWeightTokens.mjs';
 import { setupLineHeightTokens } from './setupLineHeightTokens.mjs';
 
+/**
+ * Process tokens
+ *
+ * @exports
+ * @function
+ * @param {object} sheet - Sheet object from Figma
+ * @param {string} name - Token name
+ * @returns
+ * @throws {Error} - When missing sheet or name
+ */
 export function processTokens(sheet, name) {
 	if (sheet && name) {
 		const _name = name.toLowerCase();

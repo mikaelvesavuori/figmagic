@@ -2,6 +2,15 @@ import { camelize } from './camelize.mjs';
 import { formatName } from './formatName.mjs';
 import { roundColorValue } from './roundColorValue.mjs';
 
+/**
+ * Places all Figma color frames into a clean object
+ *
+ * @exports
+ * @function
+ * @param {object} colorFrame - The color frame from Figma
+ * @returns {object} - Returns an object with all the colors
+ * @throws {Error} - When there is no provided Figma frame
+ */
 export function setupColorTokens(colorFrame) {
 	if (colorFrame) {
 		let colors = {};
