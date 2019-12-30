@@ -13,7 +13,6 @@ script:
   - \[ -d figma \]
   - \[ -f figma/figma.json \]
   - \[ -d tokens \]
-  - \[ -f tokens/colors.mjs \]
 
 notifications:
   email: false
