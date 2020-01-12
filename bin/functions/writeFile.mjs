@@ -41,7 +41,7 @@ function write(file, path, name, isToken, format) {
 
 	fs.writeFile(filePath, fileContent, 'utf-8', function(error) {
 		if (error) {
-			throw new Error('Error in write() > writeFile(): ', error);
+			throw new Error(`Error in writeFile(): ${error}`);
 		}
 	});
 }
