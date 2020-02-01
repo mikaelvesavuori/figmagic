@@ -48,7 +48,7 @@ jobs:
           CI: true
 
   publish-npm:
-    needs: build
+    needs: build-mac
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
