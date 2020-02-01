@@ -1,6 +1,14 @@
 name: CI, testing, and publishing to NPM
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - 'feature/*'
+      - 'hotfix/*'
+  pull_request:
+    branches:
+      - 'feature/*'
+      - 'hotfix/*'
 
 jobs:
   build-linux:
@@ -46,17 +54,3 @@ jobs:
       - run: \[ -f figma/figma.json \]
         env:
           CI: true
-
-  publish-npm:
-    needs: build-mac
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
