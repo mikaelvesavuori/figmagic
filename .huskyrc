@@ -1,5 +1,5 @@
 {
   "hooks": {
-    "pre-commit": "echo Running pre-commit linting... && pretty-quick --staged && npm --no-git-tag-version version patch && git add package.json"
+    "pre-commit": "echo Running pre-commit linting... && pretty-quick --staged"
   }
 }
