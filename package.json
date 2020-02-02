@@ -54,6 +54,6 @@
 	"scripts": {
 		"setup": "rm -rf yarn.lock && rm -rf /node_modules && rm -rf /usr/local/lib/node_modules/figmagic && npm install -g",
 		"figmagic": "node --experimental-modules index.mjs",
-		"test": "npx jest"
+		"test": "jest __tests__ --collectCoverage"
 	}
 }
