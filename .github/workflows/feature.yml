@@ -11,32 +11,11 @@ on:
       - 'hotfix/*'
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 13.x]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm audit
-      - run: npm test
-      - run: npm run setup
-      - run: figmagic
-      - run: \[ -d figma \]
-      - run: \[ -f figma/figma.json \]
-        env:
-          CI: true
-
-  build-mac:
-    runs-on: macos-latest
-    strategy:
-      matrix:
+        os: ['macos-latest', 'ubuntu-latest']
         node-version: [10.x, 12.x, 13.x]
     steps:
       - uses: actions/checkout@v2
