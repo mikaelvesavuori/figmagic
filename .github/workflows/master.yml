@@ -44,7 +44,6 @@ jobs:
       - run: npm ci
       - run: git config --global user.email "mikaelvesavuori@gmail.com"
       - run: git config --global user.name "Mikael Vesavuori"
-      - run: npm version patch
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
