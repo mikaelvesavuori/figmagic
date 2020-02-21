@@ -1,4 +1,4 @@
-name: CI, testing, and publishing to NPM
+name: CI and testing (feature branch)
 
 on:
   push:
