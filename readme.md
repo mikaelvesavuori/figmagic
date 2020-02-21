@@ -107,6 +107,12 @@ Em units.
 - `figma` will contain the extracted Figma JSON and various build-time JSON files
 - `tokens` will contain the token files (in .mjs format)
 
+## Possible future work items
+
+- Validated Windows support and corresponding Github Actions tasks
+- Possibility to set `em` or `rem` for font sizes etc.
+- Add Figmagic API token support through env var or CLI option (similar to AWS CLI or something)
+
 ## Want to add or rethink something in Figmagic?
 
 You are very welcome to contribute to the project! Pull requests welcome, as well as issues or plain messages.
