@@ -9,7 +9,7 @@ Automate the generation of design tokens and specs from your Figma documents. In
 
 Extract design tokens for colors, typography (line heights, font sizes, font families), and spacing. A typical use case for the generated documents is to use the extracted values as a token base in CSS systems that support external values (such as Styled Components, other CSS-in-JS libraries, or Sass).
 
-Figmagic uses ESM imports, so make sure you have a recent Node version, preferably version 10+.
+Figmagic uses ESM imports, so make sure you have a recent Node version, preferably version 12.16 or later.
 
 **Please note:** Figmagic requires that your document structure is identical to what I show in the template site at [https://www.figma.com/file/UkrKTnjjKB0lJKYAifn9YWXU/Figmagic---Design-Token-Example-v1.0](https://www.figma.com/file/UkrKTnjjKB0lJKYAifn9YWXU/Figmagic---Design-Token-Example-v1.0).
 
@@ -28,7 +28,7 @@ The basic idea of Figmagic is to support an informed handoff between designers a
 
 ### Installation
 
-- Clone Figmagic
+- Clone Figmagic with `https://github.com/mikaelvesavuori/figmagic.git` or `git@github.com:mikaelvesavuori/figmagic.git`
 - Step into the Figmagic directory, and run `yarn setup` or `npm run setup` to add it globally to your system
 
 ### Running Figmagic
@@ -46,9 +46,9 @@ Then:
 
 #### Overwritten files are moved to trash
 
-When running `figmagic`, files will be moved with the node module [trash](https://github.com/sindresorhus/trash) (multi-platform) into your OS's trash can. Thus, you can recover anything _unintentionally_ overwritten.
+When running `figmagic`, files will be moved with the Node module [trash](https://github.com/sindresorhus/trash) (multi-platform) into your OS's trash can. Thus, you can recover anything _unintentionally_ overwritten.
 
-This behavior is added since the previous version 1.
+This behavior is a new behavior added since the previous version 1 that destroyed all old files.
 
 ## Figma setup
 
@@ -60,7 +60,7 @@ Your structure needs to correspond to the following:
 
 See a demo/template at [https://www.figma.com/file/UkrKTnjjKB0lJKYAifn9YWXU/Figmagic---Design-Token-Example-v1.0](https://www.figma.com/file/UkrKTnjjKB0lJKYAifn9YWXU/Figmagic---Design-Token-Example-v1.0). Feel free to simply copy it and paste it into your own document.
 
-**Note:** Refer to the the document structure in the image below and in the template linked above.
+**Note:** Refer to the document structure in the image below and in the template linked above.
 
 ![Figma Document Structure](project-structure.png)
 
@@ -213,16 +213,17 @@ Default: `rem` units. Can be set to `rem` or `em`.
 
 ## Structure
 
-- `bin` contains the project's MJS/JS files; `bin/functions` contains most of the functions
-- `figma` will contain the extracted Figma JSON and various build-time JSON files
-- `tokens` will contain the token files (in .mjs format)
+- `bin/functions`: main functionality
+- `bin/meta`: configuration and system texts etc.
+
+Generated:
+
+- `figma` (default folder name) will contain the extracted Figma JSON
+- `tokens` (default folder name) will contain the token files (in `.mjs` or `.js` format)
 
 ## Possible future work items
 
 - Validated Windows support and corresponding Github Actions tasks
-- Possibility to set `em` or `rem` for font sizes etc.
-- Add Figmagic API token support through env var or CLI option (similar to AWS CLI or something)
-- Move all error texts into separate document
 - Create "real" JS errors?
 
 ## Want to add or rethink something in Figmagic?
