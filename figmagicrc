@@ -1,5 +1,4 @@
 {
-	"rcFile": true,
 	"debugMode": false,
 	"fontUnit": "rem",
 	"outputFileName": "figma.json",
@@ -7,6 +6,5 @@
 	"outputFolderTokens": "tokens",
 	"outputTokenFormat": "mjs",
 	"spacingUnit": "rem",
-	"usePostscriptFontNames": false,
-	"token": "rctoken"
+	"usePostscriptFontNames": false
 }
