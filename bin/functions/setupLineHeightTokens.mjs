@@ -26,7 +26,7 @@ export function setupLineHeightTokens(frame) {
       );
 
       // Do a tiny bit of rounding to avoid ugly numbers
-      lineHeightObject[name] = parseFloat(LINE_HEIGHT) * parseInt(LINE_HEIGHT).toFixed(2);
+      lineHeightObject[name] = LINE_HEIGHT.toFixed(2);
     });
 
     return lineHeightObject;
