@@ -2,8 +2,7 @@ import { config } from './../meta/config.mjs';
 import {
 	warnParseArgsOutputFormat,
 	warnParseArgsFontUnit,
-	warnParseArgsSpacingUnit,
-	warnParseArgsPostscriptNames
+	warnParseArgsSpacingUnit
 } from '../meta/warnings.mjs';
 
 /**
@@ -82,22 +81,9 @@ export function parseArgs(argsArray) {
 				else if (arg === '--outputFileName' || arg == '-file') {
 					settings.outputFileName = argsArray[index + 1];
 				}
-				// asdf
+				// Set font family name to be "common name" or Postscript name
 				else if (arg === '--usePostscriptFontNames' || arg === '-ps') {
-					const BOOL = argsArray[index + 1];
-
-					if (BOOL === true || BOOL === false) {
-						settings.usePostscriptFontNames = BOOL;
-					}
-
-					// Do some ugly recasting so these will always be actual boolean values
-					else if (BOOL.toLowerCase() === 'true') {
-						settings.usePostscriptFontNames = true;
-					} else if (BOOL.toLowerCase() === 'false') {
-						settings.usePostscriptFontNames = false;
-					} else {
-						console.warn(warnParseArgsPostscriptNames);
-					}
+					settings.usePostscriptFontNames = true;
 				}
 			});
 		}

@@ -1,14 +1,15 @@
 import { units } from '../meta/units.mjs';
 import { errorNormalizeUnits } from '../meta/errors.mjs';
 import { warnNormalizeUnits } from '../meta/warnings.mjs';
+
 /**
  * Normalize units
  *
  * @exports
  * @function
- * @param {string} value
- * @param {string} currentUnit
- * @param {string} newUnit
+ * @param {number} value - Value to normalize
+ * @param {string} currentUnit - The current unit to of the incoming value
+ * @param {string} newUnit - The unit to convert to
  * @returns {string} - Returns new unit
  * @throws {Error} - When missing parameters
  */

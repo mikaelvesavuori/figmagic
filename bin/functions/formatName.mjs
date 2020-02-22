@@ -1,4 +1,5 @@
 import { errorFormatName } from './../meta/errors.mjs';
+import { forbiddenCharacters } from '../meta/forbiddenCharacters.mjs';
 
 /**
  * Used to clean and format the name of a file
@@ -11,8 +12,6 @@ import { errorFormatName } from './../meta/errors.mjs';
  */
 export function formatName(str) {
 	if (str) {
-		const forbiddenCharacters = ['-', '–', '—', '|', '.'];
-
 		let fixedString = str;
 
 		forbiddenCharacters.forEach(char => {

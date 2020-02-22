@@ -117,6 +117,12 @@ Default is `tokens`.
 
 Default is `figma.json`.
 
+### Set font family name to be Postscript name instead of "common name"
+
+`figmagic --usePostscriptFontNames` or `figmagic -ps`
+
+Default is `false`, i.e. common name.
+
 ## Figma styles
 
 Figma styles became publicly available in June 2018 and are incredibly valuable for designers to create single-sources-of-truth when it comes to design values (tokens). When using Figmagic though, the thinking and usage is a bit different from how Figma styles work.
@@ -137,7 +143,11 @@ Whatever suits you! As long as you remember that what Figmagic fetches are those
 
 ### Font families
 
-Postscript name (eg. FiraSans-Regular).
+The font family name, either as its common name (as picked up by Figma; spaces are removed) or its Postscript name (eg. FiraSans-Regular).
+
+Default: Common name.
+
+**Note**: In previous versions of Figmagic the Postscript font family name was used.
 
 ### Font weights
 

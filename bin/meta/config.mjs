@@ -5,5 +5,5 @@ export const config = {
 	defaultOutputFolderBaseFile: 'figma',
 	defaultOutputFolderTokens: 'tokens',
 	outputOutputFileName: 'figma.json',
-	defaultUsePostscriptFontNames: true
+	defaultUsePostscriptFontNames: false
 };

@@ -19,7 +19,6 @@ export const errorSetupFontTokens = 'No frame for setupFontTokens()!';
 export const errorSetupFontWeightTokens = 'No frame for setupFontWeightTokens()!';
 export const errorSetupLineHeightTokens = 'No frame for setupLineHeightTokens()!';
 export const errorSetupSpacingTokens = 'No frame for setupSpacingTokens()!';
-export const errorSetupTypographyTokens = 'No frame for setupTypographyTokens()!';
 export const errorWriteFile = 'Missing required parameters to correctly run writeFile()!';
 export const errorWrite = 'Error while attempting to write file!';
 export const errorWriteTokens = 'Less than one token provided to writeTokens()!';

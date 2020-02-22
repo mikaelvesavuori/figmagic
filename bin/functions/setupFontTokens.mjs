@@ -13,6 +13,8 @@ import { errorSetupFontTokens } from '../meta/errors.mjs';
  * @throws {Error} - When there is no provided Figma frame
  */
 export function setupFontTokens(frame, usePostscriptFontNames) {
+	console.log('usePostscriptFontNames', usePostscriptFontNames);
+
 	if (frame) {
 		let fontObject = {};
 
