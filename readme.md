@@ -19,8 +19,8 @@ There's a lot to say here about the use cases and approaches taken by other tool
 
 The basic idea of Figmagic is to support an informed handoff between designers and developers. I believe the best way to do this in a solid, mature, and non-impeding way is:
 
-- Expect relative and current value types that are optimally suited for each typology (unitless for line heights, rems for font sizes...). Don't use or expect px values in most cases.
-- Transform values into a common set of tokens rather than output exact values, ie. use something like \${colors.midGray} rather than #3C3C3C.
+- Expect relative and current value types that are optimally suited for each typology (unitless for line heights, rems for font sizes...). Don't use or expect `px` values in most cases.
+- Transform values into a common set of tokens rather than output exact values, ie. use something like `${colors.midGray}` rather than `#3C3C3C`.
 
 ## Example project
 
@@ -30,9 +30,18 @@ An example project—using React, Webpack and Styled Components—is available a
 
 - Clone Figmagic
 - Step into the Figmagic directory, and run `yarn setup` or `npm run setup` to add it globally to your system
-- Step into a project directory, and add or replace **FIGMA_URL** and **FIGMA_TOKEN** in .env with your own file ID and token key (for more on this, [go to Figma's developer docs](https://www.figma.com/developers/docs))
-- Run `figmagic` (default is .MJS token files), or `figmagic js` if you want to have regular old .JS files instead
-- You should now have a `/figma` and `/tokens` folder in the root! The `/tokens` folder has the good stuff you want :)
+
+### Running Figmagic
+
+Pass in your Figma API token and Figma URL by either:
+
+- Stepping into your project directory (where you want Figmagic to run), and add or replace **FIGMA_URL** and **FIGMA_TOKEN** in .env with your own file ID and token key (for more on this, [go to Figma's developer docs](https://www.figma.com/developers/docs))
+- Passing in API token and URL as per instructions below
+
+Then:
+
+- Run `figmagic` (default is .MJS token files) adding any CLI arguments you want to customize for your own usage
+- You should now have a folder with the raw JSON dump (default: `/figma`) and a folder with tokens (default: `/tokens`) in the root
 
 ## Figma setup
 
