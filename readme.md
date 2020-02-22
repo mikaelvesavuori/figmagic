@@ -13,17 +13,6 @@ Figmagic uses ESM imports, so make sure you have a recent Node version, preferab
 
 _Built initially as an internal handoff tool for [Humblebee](https://www.humblebee.se)._
 
-## Major changes between pre-1.0 versions and 1.0
-
-Figmagic versions pre-1.0 were primarily used as an in-house, internal tool at Humblebee. The focus was therefore less on being a good, general tool and didn't enjoy any large amount of testing and so on. The goal with 1.0 has been to minimize any friction in using, implementing and trusting Figmagic for your design token needs.
-
-- With version 1.0, the scope has been focused only on generating design tokens. If you relied on Figmagic to generate specs, or component renders (etc.) then none of those functions exist in this, new version.
-- It should now also work on Windows, since we don't rely on Bash scripts anymore. Cross-platform for the win!
-- Much easier to install and use, since it's a global module rather than a crappily-crafted dependency that's going to break on you whenever there's an update.
-- More error handling, thank God for that...
-
-Note: I've kept the old design system template around, but also updated with a new one to correspond with changes in version 1.0+.
-
 ## Approach and use cases
 
 There's a lot to say here about the use cases and approaches taken by other tools. I will be writing an article on the motivations behind the project later on.
