@@ -143,7 +143,9 @@ Postscript name (eg. FiraSans-Regular).
 
 ### Font sizes
 
-Rem units based on global font size (base 16px, change this within Figmagic also, if you've altered this value in your CSS).
+Default: `rem` units. Can be set to `rem` or `em`.
+
+Units based on global font size (base 16px).
 
 ### Line heights
 
@@ -155,7 +157,7 @@ RGBA colors.
 
 ### Spacing
 
-Em units.
+Default: `rem` units. Can be set to `rem` or `em`.
 
 ## Structure
 
