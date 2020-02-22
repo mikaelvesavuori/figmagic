@@ -77,7 +77,7 @@ Default is `false`.
 
 ### Switch token file format
 
-`figmagic --tokenFormat [mjs|js]||` or `figmagic -tf [mjs|js]`
+`figmagic --outputTokenFormat [mjs|js]||` or `figmagic -tf [mjs|js]`
 
 Default is `mjs`.
 

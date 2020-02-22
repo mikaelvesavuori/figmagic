@@ -1,8 +1,7 @@
-import { config } from './../meta/config.mjs';
 import {
-	warnParseArgsOutputFormat,
-	warnParseArgsFontUnit,
-	warnParseArgsSpacingUnit
+	warnparseCliArgsOutputFormat,
+	warnparseCliArgsFontUnit,
+	warnparseCliArgsSpacingUnit
 } from '../meta/warnings.mjs';
 
 /**
@@ -13,19 +12,8 @@ import {
  * @param {array} argsArray - Array of string arguments
  * @returns {object} - Returns settings object
  */
-export function parseArgs(argsArray) {
-	let settings = {
-		debugMode: false,
-		fontUnit: config.defaultFontUnit,
-		outputFileName: config.defaultOutputOutputFileName,
-		outputFolderBaseFile: config.defaultOutputFolderBaseFile,
-		outputFolderTokens: config.defaultOutputFolderTokens,
-		outputTokenFormat: config.defaultOutputTokenFormat,
-		spacingUnit: config.defaultSpacingUnit,
-		token: process.env.FIGMA_TOKEN ? process.env.FIGMA_TOKEN : null,
-		url: process.env.FIGMA_URL ? process.env.FIGMA_URL : null,
-		usePostscriptFontNames: config.defaultUsePostscriptFontNames
-	};
+export function parseCliArgs(argsArray) {
+	let settings = {};
 
 	if (argsArray) {
 		if (argsArray.length > 0) {
@@ -35,12 +23,12 @@ export function parseArgs(argsArray) {
 					settings.debugMode = true;
 				}
 				// Check and handle token format switch
-				else if (arg === '--tokenFormat' || arg == '-tf') {
+				else if (arg === '--outputTokenFormat' || arg == '-tf') {
 					const FORMAT = argsArray[index + 1].toLowerCase();
 					if (FORMAT === 'mjs' || FORMAT === 'js') {
 						settings.outputTokenFormat = argsArray[index + 1].toLowerCase();
 					} else {
-						console.warn(warnParseArgsOutputFormat);
+						console.warn(warnparseCliArgsOutputFormat);
 					}
 				}
 				// Check and handle font unit switch
@@ -49,7 +37,7 @@ export function parseArgs(argsArray) {
 					if (FORMAT === 'rem' || FORMAT === 'em') {
 						settings.fontUnit = argsArray[index + 1].toLowerCase();
 					} else {
-						console.warn(warnParseArgsFontUnit);
+						console.warn(warnparseCliArgsFontUnit);
 					}
 				}
 				// Check and handle spacing unit switch
@@ -58,7 +46,7 @@ export function parseArgs(argsArray) {
 					if (FORMAT === 'rem' || FORMAT === 'em') {
 						settings.spacingUnit = argsArray[index + 1].toLowerCase();
 					} else {
-						console.warn(warnParseArgsSpacingUnit);
+						console.warn(warnparseCliArgsSpacingUnit);
 					}
 				}
 				// Handle input: Figma API token

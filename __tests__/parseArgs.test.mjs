@@ -1,7 +1,7 @@
-import { parseArgs } from '../bin/functions/parseArgs';
+import { parseCliArgs } from '../bin/functions/parseCliArgs';
 
 test('It should return "mjs" if value is undefined', () => {
-	expect(parseArgs()).toEqual(
+	expect(parseCliArgs()).toEqual(
 		expect.objectContaining({
 			debugMode: false,
 			fontUnit: 'rem',
@@ -17,7 +17,7 @@ test('It should return "mjs" if value is undefined', () => {
 });
 
 test('It should return "js" if value is "js"', () => {
-	expect(parseArgs(['--format', 'js'])).toEqual(
+	expect(parseCliArgs(['--format', 'js'])).toEqual(
 		expect.objectContaining({
 			debugMode: false,
 			fontUnit: 'rem',
@@ -33,7 +33,7 @@ test('It should return "js" if value is "js"', () => {
 });
 
 test('It should return "mjs" if value is invalid (i.e. not "mjs" or "js")', () => {
-	expect(parseArgs(['--format', 'lkjwef'])).toEqual(
+	expect(parseCliArgs(['--format', 'lkjwef'])).toEqual(
 		expect.objectContaining({
 			debugMode: false,
 			fontUnit: 'rem',
@@ -49,7 +49,7 @@ test('It should return "mjs" if value is invalid (i.e. not "mjs" or "js")', () =
 });
 
 test('It should return "mjs" regardless of casing', () => {
-	expect(parseArgs(['--format', 'MJS'])).toEqual(
+	expect(parseCliArgs(['--format', 'MJS'])).toEqual(
 		expect.objectContaining({
 			debugMode: false,
 			fontUnit: 'rem',

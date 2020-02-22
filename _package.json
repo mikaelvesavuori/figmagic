@@ -1,14 +1,7 @@
 {
 	"name": "figmagic",
 	"description": "Automate the generation of design tokens and specs from your Figma documents. Inspired by Salesforce Theo.",
-	"keywords": [
-		"figma",
-		"figma api",
-		"design tokens",
-		"tokens",
-		"design system",
-		"salesforce theo"
-	],
+	"keywords": ["figma", "figma api", "design tokens", "tokens", "design system", "salesforce theo"],
 	"homepage": "https://www.figmagic.com",
 	"repository": {
 		"type": "git",
@@ -30,6 +23,8 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@babel/core": "^7.8.4",
+		"@babel/plugin-transform-modules-commonjs": "^7.8.3",
+		"@babel/preset-env": "^7.8.4",
 		"babel": "^6.23.0",
 		"babel-eslint": "^10.0.3",
 		"babel-jest": "^25.1.0",
