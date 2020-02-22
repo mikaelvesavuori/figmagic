@@ -73,7 +73,7 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
       // Set debug mode to correct setting
       process.env.FIGMA_DEBUG = CONFIG.debugMode;
 
-      if (process.env.FIGMA_DEBUG) {
+      if (process.env.FIGMA_DEBUG === 'true') {
         console.log('USER: ENV_CONFIG');
         console.log(ENV_CONFIG);
         console.log('USER: CLI_CONFIG');

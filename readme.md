@@ -15,6 +15,22 @@ Figmagic uses ESM imports, so make sure you have a recent Node version, preferab
 
 _Built initially as an internal handoff tool for [Humblebee](https://www.humblebee.se)._
 
+## Changes and release notes, version 2 vs version 1
+
+Improvements:
+
+- You can now customize Figmagic a lot more, using both a `.figmagicrc` file and with regular CLI input
+- Running `figmagic` with existing tokens will not insta-delete the old files; now they will simply be put in the trash can (this is a requested safety net, for example when you're combining Figmagic with extra steps and hate having files trashed that have changes in them)
+- Clean-up of code, dependency grooming, and better separation into configuration and system files
+- Improved documentation and instructions
+- More tests and coverage
+- [https://www.figmagic.com](https://www.figmagic.com) is launched! Nothing special, but at least creates a bit more visibility
+
+Things to know when migrating from version 1 to version 2:
+
+- Spacing is now in `rem` units
+- Postscript font family names are no longer used; instead it's the normalized regular names (you can select to use Postscript names if you want, though)
+
 ## Approach and use cases
 
 There's a lot to say here about the use cases and approaches taken by other tools. I will be writing an article on the motivations behind the project later on.
@@ -28,8 +44,19 @@ The basic idea of Figmagic is to support an informed handoff between designers a
 
 ### Installation
 
-- Clone Figmagic with `https://github.com/mikaelvesavuori/figmagic.git` or `git@github.com:mikaelvesavuori/figmagic.git`
-- Step into the Figmagic directory, and run `yarn setup` or `npm run setup` to add it globally to your system
+#### Global (recommended)
+
+Run `npm install -g figmagic` or `yarn global add figmagic`.
+
+#### Local
+
+Local usage should be possible by installing Figmagic as a devDependency with `npm install figmagic -D` or `yarn add figmagic -D`, then using a script pointing to the local version, like so:
+
+```
+"scripts": {
+	"figmagic": "./node_modules/figmagic/index.mjs"
+}
+```
 
 ### Running Figmagic
 
