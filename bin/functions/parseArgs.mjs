@@ -37,7 +37,7 @@ export function parseArgs(argsArray) {
 				else if (arg === '--tokenFormat' || arg == '-tf') {
 					const FORMAT = argsArray[index + 1].toLowerCase();
 					if (FORMAT === 'mjs' || FORMAT === 'js') {
-						settings.outputFormat = argsArray[index + 1].toLowerCase();
+						settings.outputTokenFormat = argsArray[index + 1].toLowerCase();
 					} else {
 						console.warn(warnParseArgsOutputFormat);
 					}
