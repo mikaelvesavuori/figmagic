@@ -59,6 +59,62 @@ See a demo/template at [https://www.figma.com/file/UkrKTnjjKB0lJKYAifn9YWXU/Figm
 
 ![Figma Document Structure](project-structure.png)
 
+## Command line arguments and flags
+
+### Toggle debug mode
+
+`figmagic --debug`
+
+Default is `false`.
+
+### Switch token file format
+
+`figmagic --tokenFormat [mjs|js]||` or `figmagic -tf [mjs|js]`
+
+Default is `mjs`.
+
+### Switch font unit
+
+`figmagic --fontUnit [rem|em]` or `figmagic -f [rem|em]`
+
+Default is `rem`.
+
+### Switch spacing unit
+
+`figmagic --spacingUnit [rem|em]` or `figmagic -s [rem|em]`
+
+Default is `rem`.
+
+### Pass in Figma API token
+
+`figmagic --token [token]` or `figmagic -t [token]`
+
+Default is `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+
+### Pass in Figma URL
+
+`figmagic --url [url_id]` or `figmagic -u [url_id]`
+
+Default is `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+
+### Set Figma base file output folder
+
+`figmagic --outputFolderBaseFile [folder]` or `figmagic -base [folder]`
+
+Default is `figma`.
+
+### Set token output folder
+
+`figmagic --outputFolderTokens [folder]` or `figmagic -tokens [folder]`
+
+Default is `tokens`.
+
+### Set output file name
+
+`figmagic --outputFileName [filename]` or `figmagic -file [filename]`
+
+Default is `figma.json`.
+
 ## Figma styles
 
 Figma styles became publicly available in June 2018 and are incredibly valuable for designers to create single-sources-of-truth when it comes to design values (tokens). When using Figmagic though, the thinking and usage is a bit different from how Figma styles work.
