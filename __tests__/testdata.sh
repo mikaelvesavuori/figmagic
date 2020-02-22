@@ -1,0 +1,1 @@
+yarn run figmagic --format js --token 15616-0c682a9e-c675-4985-a43b-ade0528ea9a9 --url UkrKTnjjKB0lJKYAifn9YWXU
