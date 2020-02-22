@@ -43,6 +43,12 @@ Then:
 - Run `figmagic` (default is .MJS token files) adding any CLI arguments you want to customize for your own usage
 - You should now have a folder with the raw JSON dump (default: `/figma`) and a folder with tokens (default: `/tokens`) in the root
 
+#### Overwritten files are moved to trash
+
+When running `figmagic`, files will be moved with the node module [trash](https://github.com/sindresorhus/trash) (multi-platform) into your OS's trash can. Thus, you can recover anything _unintentionally_ overwritten.
+
+This behavior is added since the previous version 1.
+
 ## Figma setup
 
 Your structure needs to correspond to the following:

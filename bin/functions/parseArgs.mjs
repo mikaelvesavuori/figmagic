@@ -17,7 +17,7 @@ export function parseArgs(argsArray) {
 	let settings = {
 		debugMode: false,
 		fontUnit: config.defaultFontUnit,
-		outputFileName: config.outputOutputFileName,
+		outputFileName: config.defaultOutputOutputFileName,
 		outputFolderBaseFile: config.defaultOutputFolderBaseFile,
 		outputFolderTokens: config.defaultOutputFolderTokens,
 		outputTokenFormat: config.defaultOutputTokenFormat,
