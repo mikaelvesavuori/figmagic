@@ -16,30 +16,30 @@ import { errorProcessTokens } from '../meta/errors.mjs';
  * @param {string} name - Token name
  * @param {object} settings - User configuration object
  * @returns
- * @throws {Error} - When missing sheet or name
+ * @throws {error} - When missing sheet or name
  */
 export function processTokens(sheet, name, settings) {
   if (sheet && name) {
-    const _name = name.toLowerCase();
+    const _NAME = name.toLowerCase();
     let processedTokens = undefined;
 
     // Design tokens
-    if (_name === 'color' || _name === 'colour' || _name === 'colors' || _name === 'colours') {
+    if (_NAME === 'color' || _NAME === 'colour' || _NAME === 'colors' || _NAME === 'colours') {
       processedTokens = setupColorTokens(sheet);
     }
-    if (_name === 'spacing' || _name === 'spacings') {
+    if (_NAME === 'spacing' || _NAME === 'spacings') {
       processedTokens = setupSpacingTokens(sheet, settings.spacingUnit);
     }
-    if (_name === 'fontfamily' || _name === 'fontfamilies') {
+    if (_NAME === 'fontfamily' || _NAME === 'fontfamilies') {
       processedTokens = setupFontTokens(sheet, settings.usePostscriptFontNames);
     }
-    if (_name === 'fontsize' || _name === 'fontsizes') {
+    if (_NAME === 'fontsize' || _NAME === 'fontsizes') {
       processedTokens = setupFontSizeTokens(sheet, settings.fontUnit);
     }
-    if (_name === 'fontweight' || _name === 'fontweights') {
+    if (_NAME === 'fontweight' || _NAME === 'fontweights') {
       processedTokens = setupFontWeightTokens(sheet);
     }
-    if (_name === 'lineheight' || _name === 'lineheights') {
+    if (_NAME === 'lineheight' || _NAME === 'lineheights') {
       processedTokens = setupLineHeightTokens(sheet);
     }
 

@@ -11,21 +11,21 @@ import { errorSetupSpacingTokens } from '../meta/errors.mjs';
  * @param {object} frame - The spacing frame from Figma
  * @param {string} spacingUnit - The spacing unit
  * @returns {object} - Returns an object with all the spacings
- * @throws {Error} - When there is no provided Figma frame
+ * @throws {error} - When there is no provided Figma frame
  */
 export function setupSpacingTokens(spacingFrame, spacingUnit) {
   if (spacingFrame) {
-    const spacings = spacingFrame.children;
-    const spacingObject = {};
+    const SPACINGS = spacingFrame.children;
+    const SPACING_OBJECT = {};
 
-    spacings.forEach(spacing => {
+    SPACINGS.forEach(spacing => {
       let normalizedName = camelize(spacing.name);
       normalizedName = formatName(normalizedName);
-      const normalizedUnit = normalizeUnits(spacing.absoluteBoundingBox.width, 'px', spacingUnit);
-      spacingObject[normalizedName] = normalizedUnit;
+      const NORMALIZED_UNIT = normalizeUnits(spacing.absoluteBoundingBox.width, 'px', spacingUnit);
+      SPACING_OBJECT[normalizedName] = NORMALIZED_UNIT;
     });
 
-    return spacingObject;
+    return SPACING_OBJECT;
   } else {
     throw new Error(errorSetupSpacingTokens);
   }

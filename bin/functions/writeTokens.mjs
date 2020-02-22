@@ -9,10 +9,10 @@ import { errorWriteTokens } from '../meta/errors.mjs';
  *
  * @exports
  * @function
- * @param {Array} tokens - The final array of design tokens
+ * @param {array} tokens - The final array of design tokens
  * @param {object} settings - User configuration object
  * @returns {void} - Will write file to disk through writeFile()
- * @throws {Error} - When no than one token is provided
+ * @throws {error} - When no than one token is provided
  */
 export function writeTokens(tokens, settings) {
   if (tokens.length > 0) {
@@ -20,10 +20,10 @@ export function writeTokens(tokens, settings) {
       let tokenName = camelize(token.name);
       tokenName = formatName(tokenName);
 
-      const processedToken = processTokens(token, tokenName, settings);
+      const PROCESSED_TOKEN = processTokens(token, tokenName, settings);
 
       writeFile(
-        processedToken,
+        PROCESSED_TOKEN,
         settings.outputFolderTokens,
         tokenName,
         true,

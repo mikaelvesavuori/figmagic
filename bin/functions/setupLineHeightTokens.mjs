@@ -10,7 +10,7 @@ import { errorSetupLineHeightTokens } from '../meta/errors.mjs';
  * @function
  * @param {object} frame - The line heights frame from Figma
  * @returns {object} - Returns an object with all the line heights
- * @throws {Error} - When there is no provided Figma frame
+ * @throws {error} - When there is no provided Figma frame
  */
 export function setupLineHeightTokens(frame) {
   if (frame) {
@@ -19,13 +19,14 @@ export function setupLineHeightTokens(frame) {
     frame.children.forEach(type => {
       let name = camelize(type.name);
       name = formatName(name);
-      const lineHeight = normalizeUnits(
+      const LINE_HEIGHT = normalizeUnits(
         type.style.lineHeightPercentFontSize,
         'percent',
         'unitless'
       );
 
-      lineHeightObject[name] = lineHeight;
+      // Do a tiny bit of rounding to avoid ugly numbers
+      lineHeightObject[name] = parseFloat(LINE_HEIGHT) * parseInt(LINE_HEIGHT).toFixed(2);
     });
 
     return lineHeightObject;

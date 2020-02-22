@@ -9,7 +9,7 @@ import fs from 'fs';
  * @function
  * @param {string} dir - The name of the directory that the user wants to create
  * @returns {void} - New folder created with fs.mkdirSync()
- * @throws {Error} - When no directory specified
+ * @throws {error} - When no directory specified
  */
 export function createFolder(dir) {
   if (dir) {

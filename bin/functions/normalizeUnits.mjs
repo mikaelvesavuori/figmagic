@@ -11,7 +11,7 @@ import { warnNormalizeUnits } from '../meta/warnings.mjs';
  * @param {string} currentUnit - The current unit to of the incoming value
  * @param {string} newUnit - The unit to convert to
  * @returns {string} - Returns new unit
- * @throws {Error} - When missing parameters
+ * @throws {error} - When missing parameters
  */
 export function normalizeUnits(value, currentUnit, newUnit) {
   if (value && currentUnit && newUnit) {
@@ -41,8 +41,8 @@ export function normalizeUnits(value, currentUnit, newUnit) {
       if (newUnit === 'unitless') {
         return unitSize;
       } else {
-        const adjustedValue = value * (rootSize / unitSize);
-        return `${adjustedValue}${newUnit}`;
+        const ADJUSTED_VALUE = value * (rootSize / unitSize);
+        return `${ADJUSTED_VALUE}${newUnit}`;
       }
     } else {
       console.warn(warnNormalizeUnits);

@@ -11,7 +11,7 @@ import { errorSetupFontSizeTokens } from '../meta/errors.mjs';
  * @param {object} frame - The font size frame from Figma
  * @param {string} fontUnit - The font unit type
  * @returns {object} - Returns an object with all the font sizes
- * @throws {Error} - When there is no provided Figma frame
+ * @throws {error} - When there is no provided Figma frame
  */
 export function setupFontSizeTokens(frame, fontUnit) {
   if (frame) {
@@ -20,9 +20,9 @@ export function setupFontSizeTokens(frame, fontUnit) {
     frame.children.forEach(type => {
       let name = camelize(type.name);
       name = formatName(name);
-      const fontSize = type.style.fontSize / units.globalRemSize + fontUnit;
+      const FONT_SIZE = type.style.fontSize / units.globalRemSize + fontUnit;
 
-      fontSizeObject[name] = fontSize;
+      fontSizeObject[name] = FONT_SIZE;
     });
 
     return fontSizeObject;

@@ -14,7 +14,7 @@ import {
  * @function
  * @param {object} figmaPages - Object with Figma pages
  * @returns {object} - Return correct page as object
- * @throws {Error} - When no page(s) are provided
+ * @throws {error} - When no page(s) are provided
  */
 export function createPage(figmaPages) {
   let hasCreatedDesignTokensPage = false;
@@ -39,9 +39,9 @@ export function createPage(figmaPages) {
        * @param {object} page - The current Figma page
        */
       function foundMatch(page) {
-        const fixedPageName = page.name.toLowerCase().replace(' ', '');
+        const FIXED_PAGE_NAME = page.name.toLowerCase().replace(' ', '');
 
-        if (fixedPageName === 'designtokens') {
+        if (FIXED_PAGE_NAME === 'designtokens') {
           hasCreatedDesignTokensPage = true;
           correctPage = page;
         }
@@ -61,8 +61,8 @@ export function createPage(figmaPages) {
  * @param {string} originalString - The original string
  * @param {string} matchString - String to match with
  * @returns {string} - The final string
- * @throws {Error} - When no 'matchString' is provided
- * @throws {Error} - When no 'originalString' is provided
+ * @throws {error} - When no 'matchString' is provided
+ * @throws {error} - When no 'originalString' is provided
  */
 export function findShortenedNameMatch(originalString, matchString) {
   if (originalString) {

@@ -9,7 +9,7 @@ import { errorSetupFontWeightTokens } from '../meta/errors.mjs';
  * @function
  * @param {object} frame - The font weight frame from Figma
  * @returns {object} - Returns an object with all the font weights
- * @throws {Error} - When there is no provided Figma frame
+ * @throws {error} - When there is no provided Figma frame
  */
 export function setupFontWeightTokens(frame) {
   if (frame) {

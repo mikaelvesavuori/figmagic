@@ -7,8 +7,8 @@ test('It should throw an error if no parameter is provided', () => {
 });
 
 test('It should throw an error if array is empty', () => {
-  const figmaPages = [];
+  const FIGMA_PAGES = [];
   expect(() => {
-    createPage(figmaPages);
+    createPage(FIGMA_PAGES);
   }).toThrow();
 });
