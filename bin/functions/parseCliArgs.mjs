@@ -77,10 +77,5 @@ export function parseCliArgs(argsArray) {
 		}
 	}
 
-	if (settings.debugMode) {
-		console.log('USER CONFIGURATION');
-		console.log(settings);
-	}
-
 	return settings;
 }

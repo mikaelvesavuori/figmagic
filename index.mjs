@@ -16,8 +16,7 @@ const [, , ...CLI_ARGS] = process.argv;
 const USER_CONFIG_PATH = `${process.cwd()}/.figmagicrc`;
 
 (async () => {
-	const CONFIG = createConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
-	/*
+	const CONFIG = await createConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
 	const { token, url, outputFolderBaseFile, outputFolderTokens, outputFileName } = CONFIG;
 
 	// Remove old folders
@@ -27,9 +26,6 @@ const USER_CONFIG_PATH = `${process.cwd()}/.figmagicrc`;
 	// Add new folders
 	createFolder(outputFolderTokens);
 	createFolder(outputFolderBaseFile);
-
-	//console.log(process.cwd());
-	console.log('asdf');
 
 	// Attempt to get data
 	const DATA = await getFromApi(token, url, outputFolderBaseFile, outputFileName);
@@ -41,5 +37,4 @@ const USER_CONFIG_PATH = `${process.cwd()}/.figmagicrc`;
 	} else {
 		console.error(errorGetData);
 	}
-	*/
 })();

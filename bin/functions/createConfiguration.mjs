@@ -16,8 +16,6 @@ import { parseCliArgs } from './parseCliArgs.mjs';
  * @async
  * @function
  * @param {string} userConfigPath - Path to user configuration file, based out of user's current working directory
- * @param {string} envToken - Figma API token through environment variable
- * @param {string} envUrl - Figma URL through environment variable
  * @param {array} cliArgs - Array of any user-provided command line arguments and flags
  * @returns {object} - The final, validated and collated configuration object
  */
@@ -43,25 +41,20 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
 		url: DEFAULT_CONFIG.url
 	};
 
-	console.log('ENV_CONFIG');
-	console.log(ENV_CONFIG);
-
 	// CLI arguments configuration
 	// Medium priority
 	const CLI_CONFIG = parseCliArgs(cliArgs);
-	console.log('CLI_CONFIG');
-	console.log(CLI_CONFIG);
 
 	// RC file configuration
 	// Highest priority
-	let RC_CONFIG = undefined;
+	let RC_CONFIG = {};
 
 	// Check for, and read, any existing user configuration
-	await new Promise((resolve, reject) => {
+	return await new Promise((resolve, reject) => {
 		if (fs.existsSync(userConfigPath)) {
 			try {
-				fs.readFile(userConfigPath, 'utf8', (err, data) => {
-					if (err) throw new Error(err);
+				fs.readFile(userConfigPath, 'utf8', (error, data) => {
+					if (error) throw new Error(error);
 					RC_CONFIG = JSON.parse(data);
 					resolve();
 				});
@@ -69,17 +62,31 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
 				console.error(error);
 				reject();
 			}
+		} else {
+			resolve();
 		}
-	});
+	})
+		.then(() => {
+			// Merge configurations in order of prioritization
+			const CONFIG = { ...DEFAULT_CONFIG, ...ENV_CONFIG, ...CLI_CONFIG, ...RC_CONFIG };
 
-	console.log('RC_CONFIG');
-	console.log(RC_CONFIG);
+			// Set debug mode to correct setting
+			process.env.FIGMA_DEBUG = CONFIG.debugMode;
 
-	console.log('—————');
+			if (process.env.FIGMA_DEBUG) {
+				console.log('USER: ENV_CONFIG');
+				console.log(ENV_CONFIG);
+				console.log('USER: CLI_CONFIG');
+				console.log(CLI_CONFIG);
+				console.log('USER: RC_CONFIG');
+				console.log(RC_CONFIG);
+				console.log('SYSTEM: FINAL CONFIG');
+				console.log(CONFIG);
+			}
 
-	const CONFIG = { ...DEFAULT_CONFIG, ...ENV_CONFIG, ...CLI_CONFIG, ...RC_CONFIG };
-	console.log('CONFIG');
-	console.log(CONFIG);
-
-	return CONFIG;
+			return CONFIG;
+		})
+		.catch(error => {
+			console.error(error);
+		});
 }
