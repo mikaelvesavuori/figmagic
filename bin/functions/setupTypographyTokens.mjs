@@ -17,6 +17,7 @@ export function setupTypographyTokens(typographyFrame) {
 
 		typographyFrame.children.forEach(type => {
 			const fontName = type.name;
+			console.log('type.style', type.style);
 			const fontFamily = type.style.fontPostScriptName;
 			const fontSize = type.style.fontSize / units.globalRemSize + 'rem';
 			const fontWeight = type.style.fontWeight;

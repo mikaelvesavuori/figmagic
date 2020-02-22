@@ -1,3 +1,5 @@
+![Figmagic cover art](cover.png)
+
 # Figmagic
 
 [![Build Status](https://travis-ci.org/mikaelvesavuori/figmagic.svg?branch=master)](https://travis-ci.org/mikaelvesavuori/figmagic)
