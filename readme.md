@@ -22,9 +22,7 @@ The basic idea of Figmagic is to support an informed handoff between designers a
 - Expect relative and current value types that are optimally suited for each typology (unitless for line heights, rems for font sizes...). Don't use or expect `px` values in most cases.
 - Transform values into a common set of tokens rather than output exact values, ie. use something like `${colors.midGray}` rather than `#3C3C3C`.
 
-## Example project
-
-An example project—using React, Webpack and Styled Components—is available at [https://github.com/mikaelvesavuori/figmagic-example](https://github.com/mikaelvesavuori/figmagic-example).
+## Using Figmagic
 
 ### Installation
 
@@ -56,6 +54,10 @@ See a demo/template at [https://www.figma.com/file/UkrKTnjjKB0lJKYAifn9YWXU/Figm
 **Note:** Refer to the the document structure in the image below and in the template linked above.
 
 ![Figma Document Structure](project-structure.png)
+
+## Example project
+
+An example project—using React, Webpack and Styled Components—is available at [https://github.com/mikaelvesavuori/figmagic-example](https://github.com/mikaelvesavuori/figmagic-example).
 
 ## Command line arguments and flags
 
