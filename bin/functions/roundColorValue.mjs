@@ -10,9 +10,9 @@ import { errorRoundColorValue } from '../meta/errors.mjs';
  * @returns {number} - The final number
  */
 export function roundColorValue(quantity, scale = 255) {
-	if (scale <= 255) {
-		return (parseFloat(quantity) * parseInt(scale)).toFixed(0);
-	} else {
-		throw new Error(errorRoundColorValue);
-	}
+  if (scale <= 255) {
+    return (parseFloat(quantity) * parseInt(scale)).toFixed(0);
+  } else {
+    throw new Error(errorRoundColorValue);
+  }
 }

@@ -14,19 +14,19 @@ import { errorSetupFontSizeTokens } from '../meta/errors.mjs';
  * @throws {Error} - When there is no provided Figma frame
  */
 export function setupFontSizeTokens(frame, fontUnit) {
-	if (frame) {
-		let fontSizeObject = {};
+  if (frame) {
+    let fontSizeObject = {};
 
-		frame.children.forEach(type => {
-			let name = camelize(type.name);
-			name = formatName(name);
-			const fontSize = type.style.fontSize / units.globalRemSize + fontUnit;
+    frame.children.forEach(type => {
+      let name = camelize(type.name);
+      name = formatName(name);
+      const fontSize = type.style.fontSize / units.globalRemSize + fontUnit;
 
-			fontSizeObject[name] = fontSize;
-		});
+      fontSizeObject[name] = fontSize;
+    });
 
-		return fontSizeObject;
-	} else {
-		throw new Error(errorSetupFontSizeTokens);
-	}
+    return fontSizeObject;
+  } else {
+    throw new Error(errorSetupFontSizeTokens);
+  }
 }

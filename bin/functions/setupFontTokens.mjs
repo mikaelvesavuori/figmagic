@@ -13,23 +13,23 @@ import { errorSetupFontTokens } from '../meta/errors.mjs';
  * @throws {Error} - When there is no provided Figma frame
  */
 export function setupFontTokens(frame, usePostscriptFontNames) {
-	if (frame) {
-		let fontObject = {};
+  if (frame) {
+    let fontObject = {};
 
-		frame.children.forEach(type => {
-			let name = camelize(type.name);
-			name = formatName(name);
+    frame.children.forEach(type => {
+      let name = camelize(type.name);
+      name = formatName(name);
 
-			// Use Postscript font names or the default font family names (without spaces)
-			const font = usePostscriptFontNames
-				? type.style.fontPostScriptName
-				: type.style.fontFamily.replace(' ', '');
+      // Use Postscript font names or the default font family names (without spaces)
+      const font = usePostscriptFontNames
+        ? type.style.fontPostScriptName
+        : type.style.fontFamily.replace(' ', '');
 
-			fontObject[name] = font;
-		});
+      fontObject[name] = font;
+    });
 
-		return fontObject;
-	} else {
-		throw new Error(errorSetupFontTokens);
-	}
+    return fontObject;
+  } else {
+    throw new Error(errorSetupFontTokens);
+  }
 }

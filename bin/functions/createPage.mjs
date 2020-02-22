@@ -1,7 +1,7 @@
 import {
-	errorCreatePage,
-	errorFindShortenedNameMatchString,
-	errorFindShortenedNameMatchOriginal
+  errorCreatePage,
+  errorFindShortenedNameMatchString,
+  errorFindShortenedNameMatchOriginal
 } from './../meta/errors.mjs';
 
 /**
@@ -17,41 +17,41 @@ import {
  * @throws {Error} - When no page(s) are provided
  */
 export function createPage(figmaPages) {
-	let hasCreatedDesignTokensPage = false;
+  let hasCreatedDesignTokensPage = false;
 
-	if (figmaPages && figmaPages.length > 0) {
-		let correctPage = undefined;
-		let isMatchFound = false;
+  if (figmaPages && figmaPages.length > 0) {
+    let correctPage = undefined;
+    let isMatchFound = false;
 
-		figmaPages.forEach(page => {
-			if (!isMatchFound) {
-				if (
-					findShortenedNameMatch(page.name, 'designtokens') &&
-					hasCreatedDesignTokensPage === false
-				) {
-					isMatchFound = true;
-					foundMatch(page);
-				}
-			}
+    figmaPages.forEach(page => {
+      if (!isMatchFound) {
+        if (
+          findShortenedNameMatch(page.name, 'designtokens') &&
+          hasCreatedDesignTokensPage === false
+        ) {
+          isMatchFound = true;
+          foundMatch(page);
+        }
+      }
 
-			/**
-			 * If a matching page is found, set local values to this page
-			 * @param {object} page - The current Figma page
-			 */
-			function foundMatch(page) {
-				const fixedPageName = page.name.toLowerCase().replace(' ', '');
+      /**
+       * If a matching page is found, set local values to this page
+       * @param {object} page - The current Figma page
+       */
+      function foundMatch(page) {
+        const fixedPageName = page.name.toLowerCase().replace(' ', '');
 
-				if (fixedPageName === 'designtokens') {
-					hasCreatedDesignTokensPage = true;
-					correctPage = page;
-				}
-			}
-		});
+        if (fixedPageName === 'designtokens') {
+          hasCreatedDesignTokensPage = true;
+          correctPage = page;
+        }
+      }
+    });
 
-		return correctPage;
-	} else {
-		throw new Error(errorCreatePage);
-	}
+    return correctPage;
+  } else {
+    throw new Error(errorCreatePage);
+  }
 }
 
 /**
@@ -65,9 +65,9 @@ export function createPage(figmaPages) {
  * @throws {Error} - When no 'originalString' is provided
  */
 export function findShortenedNameMatch(originalString, matchString) {
-	if (originalString) {
-		if (matchString) {
-			return originalString.toLowerCase().replace(' ', '') === matchString;
-		} else throw new Error(errorFindShortenedNameMatchString);
-	} else throw new Error(errorFindShortenedNameMatchOriginal);
+  if (originalString) {
+    if (matchString) {
+      return originalString.toLowerCase().replace(' ', '') === matchString;
+    } else throw new Error(errorFindShortenedNameMatchString);
+  } else throw new Error(errorFindShortenedNameMatchOriginal);
 }

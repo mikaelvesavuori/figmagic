@@ -19,32 +19,32 @@ import { errorProcessTokens } from '../meta/errors.mjs';
  * @throws {Error} - When missing sheet or name
  */
 export function processTokens(sheet, name, settings) {
-	if (sheet && name) {
-		const _name = name.toLowerCase();
-		let processedTokens = undefined;
+  if (sheet && name) {
+    const _name = name.toLowerCase();
+    let processedTokens = undefined;
 
-		// Design tokens
-		if (_name === 'color' || _name === 'colour' || _name === 'colors' || _name === 'colours') {
-			processedTokens = setupColorTokens(sheet);
-		}
-		if (_name === 'spacing' || _name === 'spacings') {
-			processedTokens = setupSpacingTokens(sheet, settings.spacingUnit);
-		}
-		if (_name === 'fontfamily' || _name === 'fontfamilies') {
-			processedTokens = setupFontTokens(sheet, settings.usePostscriptFontNames);
-		}
-		if (_name === 'fontsize' || _name === 'fontsizes') {
-			processedTokens = setupFontSizeTokens(sheet, settings.fontUnit);
-		}
-		if (_name === 'fontweight' || _name === 'fontweights') {
-			processedTokens = setupFontWeightTokens(sheet);
-		}
-		if (_name === 'lineheight' || _name === 'lineheights') {
-			processedTokens = setupLineHeightTokens(sheet);
-		}
+    // Design tokens
+    if (_name === 'color' || _name === 'colour' || _name === 'colors' || _name === 'colours') {
+      processedTokens = setupColorTokens(sheet);
+    }
+    if (_name === 'spacing' || _name === 'spacings') {
+      processedTokens = setupSpacingTokens(sheet, settings.spacingUnit);
+    }
+    if (_name === 'fontfamily' || _name === 'fontfamilies') {
+      processedTokens = setupFontTokens(sheet, settings.usePostscriptFontNames);
+    }
+    if (_name === 'fontsize' || _name === 'fontsizes') {
+      processedTokens = setupFontSizeTokens(sheet, settings.fontUnit);
+    }
+    if (_name === 'fontweight' || _name === 'fontweights') {
+      processedTokens = setupFontWeightTokens(sheet);
+    }
+    if (_name === 'lineheight' || _name === 'lineheights') {
+      processedTokens = setupLineHeightTokens(sheet);
+    }
 
-		return processedTokens;
-	} else {
-		throw new Error(errorProcessTokens);
-	}
+    return processedTokens;
+  } else {
+    throw new Error(errorProcessTokens);
+  }
 }

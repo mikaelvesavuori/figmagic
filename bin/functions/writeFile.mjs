@@ -15,12 +15,12 @@ import { errorWriteFile, errorWrite } from '../meta/errors.mjs';
  * @param {string} format - File format
  */
 export function writeFile(file, path, name, isToken = false, format) {
-	if (file && path && name) {
-		createFolder(path);
-		write(file, path, name, isToken, format);
-	} else {
-		throw new Error(errorWriteFile);
-	}
+  if (file && path && name) {
+    createFolder(path);
+    write(file, path, name, isToken, format);
+  } else {
+    throw new Error(errorWriteFile);
+  }
 }
 
 /**
@@ -33,17 +33,17 @@ export function writeFile(file, path, name, isToken = false, format) {
  * @param {string} format - File format
  */
 function write(file, path, name, isToken, format) {
-	let fileContent = file;
-	let filePath = `${path}/${name}`;
+  let fileContent = file;
+  let filePath = `${path}/${name}`;
 
-	if (isToken) {
-		fileContent = `const ${name} = ${JSON.stringify(file, null, ' ')}\n\nexport default ${name};`;
-		filePath += `.${format}`;
-	}
+  if (isToken) {
+    fileContent = `const ${name} = ${JSON.stringify(file, null, ' ')}\n\nexport default ${name};`;
+    filePath += `.${format}`;
+  }
 
-	fs.writeFile(filePath, fileContent, 'utf-8', function(error) {
-		if (error) {
-			throw new Error(`${errorWrite}: ${error}`);
-		}
-	});
+  fs.writeFile(filePath, fileContent, 'utf-8', function(error) {
+    if (error) {
+      throw new Error(`${errorWrite}: ${error}`);
+    }
+  });
 }

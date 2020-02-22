@@ -10,14 +10,14 @@ import { errorCamelize } from '../meta/errors.mjs';
  * @throws {Error} - When no string is provided
  */
 export function camelize(str) {
-	if (str) {
-		return str
-			.toLowerCase()
-			.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
-				return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
-			})
-			.replace(/\s+/g, '');
-	} else {
-		throw new Error(errorCamelize);
-	}
+  if (str) {
+    return str
+      .toLowerCase()
+      .replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
+        return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+      })
+      .replace(/\s+/g, '');
+  } else {
+    throw new Error(errorCamelize);
+  }
 }

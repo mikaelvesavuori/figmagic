@@ -13,23 +13,23 @@ import { errorSetupLineHeightTokens } from '../meta/errors.mjs';
  * @throws {Error} - When there is no provided Figma frame
  */
 export function setupLineHeightTokens(frame) {
-	if (frame) {
-		let lineHeightObject = {};
+  if (frame) {
+    let lineHeightObject = {};
 
-		frame.children.forEach(type => {
-			let name = camelize(type.name);
-			name = formatName(name);
-			const lineHeight = normalizeUnits(
-				type.style.lineHeightPercentFontSize,
-				'percent',
-				'unitless'
-			);
+    frame.children.forEach(type => {
+      let name = camelize(type.name);
+      name = formatName(name);
+      const lineHeight = normalizeUnits(
+        type.style.lineHeightPercentFontSize,
+        'percent',
+        'unitless'
+      );
 
-			lineHeightObject[name] = lineHeight;
-		});
+      lineHeightObject[name] = lineHeight;
+    });
 
-		return lineHeightObject;
-	} else {
-		throw new Error(errorSetupLineHeightTokens);
-	}
+    return lineHeightObject;
+  } else {
+    throw new Error(errorSetupLineHeightTokens);
+  }
 }

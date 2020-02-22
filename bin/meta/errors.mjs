@@ -3,16 +3,16 @@ export const errorCamelize = 'No string provided to camelize()!';
 export const errorCreateFolder = 'No directory specified for createFolder()!';
 export const errorCreatePage = 'No pages provided to createPage()!';
 export const errorFindShortenedNameMatchString =
-	'No "matchString" was provided to findShortenedNameMatch()!';
+  'No "matchString" was provided to findShortenedNameMatch()!';
 export const errorFindShortenedNameMatchOriginal =
-	'No "originalString" was provided to findShortenedNameMatch()!';
+  'No "originalString" was provided to findShortenedNameMatch()!';
 export const errorFormatName = 'No string for formatName()!';
 export const errorGetFromApi =
-	'Missing one or more of required arguments: "figmaToken", "figmaUrl", "outputFolder", "outputFileName"!';
+  'Missing one or more of required arguments: "figmaToken", "figmaUrl", "outputFolder", "outputFileName"!';
 export const errorNormalizeUnits = 'Missing parameters for normalizeUnits()!';
 export const errorProcessTokens = 'No sheet or name for processTokens()!';
 export const errorRoundColorValue =
-	'Error while rounding color value: Scale value must be equal to or less than 255!';
+  'Error while rounding color value: Scale value must be equal to or less than 255!';
 export const errorSetupColorTokens = 'No frame for setupColorTokens()!';
 export const errorSetupFontSizeTokens = 'No frame for setupFontSizeTokens()!';
 export const errorSetupFontTokens = 'No frame for setupFontTokens()!';

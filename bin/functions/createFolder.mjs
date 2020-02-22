@@ -12,11 +12,11 @@ import fs from 'fs';
  * @throws {Error} - When no directory specified
  */
 export function createFolder(dir) {
-	if (dir) {
-		if (!fs.existsSync(dir)) {
-			fs.mkdirSync(dir);
-		}
-	} else {
-		throw new Error(errorCreateFolder);
-	}
+  if (dir) {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
+  } else {
+    throw new Error(errorCreateFolder);
+  }
 }
