@@ -3,7 +3,6 @@
 
 import trash from 'trash';
 import dotenv from 'dotenv';
-dotenv.config();
 
 import { createConfiguration } from './bin/functions/createConfiguration.mjs';
 import { createFolder } from './bin/functions/createFolder.mjs';
@@ -14,6 +13,7 @@ import { errorGetData } from './bin/meta/errors.mjs';
 
 (async () => {
   // Setup
+  dotenv.config();
   const [, , ...CLI_ARGS] = process.argv;
   const USER_CONFIG_PATH = `${process.cwd()}/.figmagicrc`;
   const CONFIG = await createConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
