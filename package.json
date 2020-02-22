@@ -1,57 +1,57 @@
 {
-	"name": "figmagic",
-	"description": "Automate the generation of design tokens and specs from your Figma documents. Inspired by Salesforce Theo.",
-	"keywords": [
-		"figma",
-		"figma api",
-		"design tokens",
-		"tokens",
-		"design system",
-		"salesforce theo"
-	],
-	"homepage": "https://www.figmagic.com",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/mikaelvesavuori/figmagic.git"
-	},
-	"version": "1.0.36",
-	"author": "Mikael Vesavuori",
-	"contributors": [
-		{
-			"name": "Victor",
-			"url": "https://github.com/vspedr"
-		},
-		{
-			"name": "Zack Brown",
-			"url": "https://github.com/zackbrown"
-		}
-	],
-	"module": "index.mjs",
-	"license": "MIT",
-	"devDependencies": {
-		"@babel/core": "^7.8.4",
-		"babel": "^6.23.0",
-		"babel-eslint": "^10.0.3",
-		"babel-jest": "^25.1.0",
-		"eslint": "^6.8.0",
-		"eslint-config-prettier": "^6.10.0",
-		"eslint-plugin-prettier": "^3.1.2",
-		"husky": "^4.2.3",
-		"jest": "^25.1.0",
-		"prettier": "^1.19.1",
-		"pretty-quick": "^2.0.1"
-	},
-	"dependencies": {
-		"dotenv": "^8.2.0",
-		"node-fetch": "^2.6.0",
-		"trash": "^6.1.1"
-	},
-	"bin": {
-		"figmagic": "./index.mjs"
-	},
-	"scripts": {
-		"setup": "rm -rf yarn.lock && rm -rf /node_modules && rm -rf /usr/local/lib/node_modules/figmagic && npm install -g",
-		"figmagic": "node --experimental-modules index.mjs",
-		"test": "jest __tests__ --collectCoverage"
-	}
+  "name": "figmagic",
+  "description": "Automate the generation of design tokens and specs from your Figma documents. Inspired by Salesforce Theo.",
+  "keywords": [
+    "figma",
+    "figma api",
+    "design tokens",
+    "tokens",
+    "design system",
+    "salesforce theo"
+  ],
+  "homepage": "https://www.figmagic.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikaelvesavuori/figmagic.git"
+  },
+  "version": "1.0.36",
+  "author": "Mikael Vesavuori",
+  "contributors": [
+    {
+      "name": "Victor",
+      "url": "https://github.com/vspedr"
+    },
+    {
+      "name": "Zack Brown",
+      "url": "https://github.com/zackbrown"
+    }
+  ],
+  "module": "index.mjs",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "babel": "^6.23.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^25.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0",
+    "trash": "^6.1.1"
+  },
+  "bin": {
+    "figmagic": "./index.mjs"
+  },
+  "scripts": {
+    "setup": "rm -rf yarn.lock && rm -rf /node_modules && rm -rf /usr/local/lib/node_modules/figmagic && npm install -g",
+    "figmagic": "node --experimental-modules index.mjs",
+    "test": "jest __tests__ --collectCoverage"
+  }
 }
