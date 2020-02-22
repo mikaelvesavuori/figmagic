@@ -1,7 +1,8 @@
 import fs from 'fs';
 
-import { config } from './../meta/config.mjs';
 import { parseCliArgs } from './parseCliArgs.mjs';
+
+import { config } from './../meta/config.mjs';
 
 /**
  * Create configuration object

@@ -1,6 +1,6 @@
-import { errorCreateFolder } from '../meta/errors.mjs';
-
 import fs from 'fs';
+
+import { errorCreateFolder } from '../meta/errors.mjs';
 
 /**
  * Create folder, checking also if it already exists
