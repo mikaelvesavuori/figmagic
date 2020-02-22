@@ -54,7 +54,7 @@ Local usage should be possible by installing Figmagic as a devDependency with `n
 
 ```
 "scripts": {
-	"figmagic": "./node_modules/figmagic/index.mjs"
+  "figmagic": "./node_modules/figmagic/index.mjs"
 }
 ```
 
