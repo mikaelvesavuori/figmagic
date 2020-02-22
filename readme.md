@@ -37,10 +37,11 @@ Pass in your Figma API token and Figma URL by either:
 
 - Stepping into your project directory (where you want Figmagic to run), and add or replace **FIGMA_URL** and **FIGMA_TOKEN** in .env with your own file ID and token key (for more on this, [go to Figma's developer docs](https://www.figma.com/developers/docs))
 - Passing in API token and URL as per instructions below
+- Setting them in `.figmagicrc` under `token` and `url`. This is discouraged since you will display these values in clear text and you probably don't want that
 
 Then:
 
-- Run `figmagic` (default is .MJS token files) adding any CLI arguments you want to customize for your own usage
+- Run `figmagic`
 - You should now have a folder with the raw JSON dump (default: `/figma`) and a folder with tokens (default: `/tokens`) in the root
 
 #### Overwritten files are moved to trash
@@ -67,63 +68,96 @@ See a demo/template at [https://www.figma.com/file/UkrKTnjjKB0lJKYAifn9YWXU/Figm
 
 An example project—using React, Webpack and Styled Components—is available at [https://github.com/mikaelvesavuori/figmagic-example](https://github.com/mikaelvesavuori/figmagic-example).
 
-## Command line arguments and flags
+## User settings
 
-### Toggle debug mode
+There are several ways in which you can provide Figmagic with knowledge about how you want it to parse your tokens. You can combine them, but beware of the below prioritization chart:
+
+1. User-provided configuration from `.figmagicrc` file
+2. Command-line arguments and flags
+3. Environment variables from `.env` file
+
+If possible, stick to one way of providing settings.
+
+Non-provided values will fall back to defaults outlined in `bin/meta/config.mjs`.
+
+### Configuration file `.figmagicrc`
+
+You can use a JSON-formated configuration file at the root of a project to use its settings. Figmagic will pick up the path by assessing the current working directory and looking at a `.figmagicrc` file there. If it finds it, it will use it.
+
+An example file is provided in Figmagic, using the default values:
+
+```
+{
+	"debugMode": false,
+	"fontUnit": "rem",
+	"outputFileName": "figma.json",
+	"outputFolderBaseFile": "figma",
+	"outputFolderTokens": "tokens",
+	"outputTokenFormat": "mjs",
+	"spacingUnit": "rem",
+	"usePostscriptFontNames": false
+}
+```
+
+### CLI arguments
+
+Run these in your command line environment of choice.
+
+#### Toggle debug mode
 
 `figmagic --debug`
 
 Default is `false`.
 
-### Switch token file format
+#### Switch token file format
 
 `figmagic --outputTokenFormat [mjs|js]||` or `figmagic -tf [mjs|js]`
 
 Default is `mjs`.
 
-### Switch font unit
+#### Switch font unit
 
 `figmagic --fontUnit [rem|em]` or `figmagic -f [rem|em]`
 
 Default is `rem`.
 
-### Switch spacing unit
+#### Switch spacing unit
 
 `figmagic --spacingUnit [rem|em]` or `figmagic -s [rem|em]`
 
 Default is `rem`.
 
-### Pass in Figma API token
+#### Pass in Figma API token
 
 `figmagic --token [token]` or `figmagic -t [token]`
 
 Default is `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
 
-### Pass in Figma URL
+#### Pass in Figma URL
 
 `figmagic --url [url_id]` or `figmagic -u [url_id]`
 
 Default is `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
 
-### Set Figma base file output folder
+#### Set Figma base file output folder
 
 `figmagic --outputFolderBaseFile [folder]` or `figmagic -base [folder]`
 
 Default is `figma`.
 
-### Set token output folder
+#### Set token output folder
 
 `figmagic --outputFolderTokens [folder]` or `figmagic -tokens [folder]`
 
 Default is `tokens`.
 
-### Set output file name
+#### Set output file name
 
 `figmagic --outputFileName [filename]` or `figmagic -file [filename]`
 
 Default is `figma.json`.
 
-### Set font family name to be Postscript name instead of "common name"
+#### Set font family name to be Postscript name instead of "common name"
 
 `figmagic --usePostscriptFontNames` or `figmagic -ps`
 
