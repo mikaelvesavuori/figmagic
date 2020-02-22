@@ -145,9 +145,9 @@ Postscript name (eg. FiraSans-Regular).
 
 ### Font sizes
 
-Default: `rem` units. Can be set to `rem` or `em`.
-
 Units based on global font size (base 16px).
+
+Default: `rem` units. Can be set to `rem` or `em`.
 
 ### Line heights
 

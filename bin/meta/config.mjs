@@ -4,5 +4,6 @@ export const config = {
 	defaultSpacingUnit: 'rem',
 	defaultOutputFolderBaseFile: 'figma',
 	defaultOutputFolderTokens: 'tokens',
-	outputOutputFileName: 'figma.json'
+	outputOutputFileName: 'figma.json',
+	defaultUsePostscriptFontNames: true
 };

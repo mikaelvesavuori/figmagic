@@ -6,3 +6,5 @@ export const warnParseArgsFontUnit =
 	'Received unrecognized "fontUnit" argument, it must be "rem" (default) or "em". Setting to default value...';
 export const warnParseArgsSpacingUnit =
 	'Received unrecognized "spacingUnit" argument, it must be "rem" (default) or "em". Setting to default value...';
+export const warnParseArgsPostscriptNames =
+	'Received unrecognized "usePostscriptNames" argument, it must be "true" (default) or "false". Setting to default value...';

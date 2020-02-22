@@ -2,7 +2,8 @@ import { config } from './../meta/config.mjs';
 import {
 	warnParseArgsOutputFormat,
 	warnParseArgsFontUnit,
-	warnParseArgsSpacingUnit
+	warnParseArgsSpacingUnit,
+	warnParseArgsPostscriptNames
 } from '../meta/warnings.mjs';
 
 /**
@@ -23,7 +24,8 @@ export function parseArgs(argsArray) {
 		outputTokenFormat: config.defaultOutputTokenFormat,
 		spacingUnit: config.defaultSpacingUnit,
 		token: process.env.FIGMA_TOKEN ? process.env.FIGMA_TOKEN : null,
-		url: process.env.FIGMA_URL ? process.env.FIGMA_URL : null
+		url: process.env.FIGMA_URL ? process.env.FIGMA_URL : null,
+		usePostscriptFontNames: config.defaultUsePostscriptFontNames
 	};
 
 	if (argsArray) {
@@ -79,6 +81,23 @@ export function parseArgs(argsArray) {
 				// Handle input: output file name
 				else if (arg === '--outputFileName' || arg == '-file') {
 					settings.outputFileName = argsArray[index + 1];
+				}
+				// asdf
+				else if (arg === '--usePostscriptFontNames' || arg === '-ps') {
+					const BOOL = argsArray[index + 1];
+
+					if (BOOL === true || BOOL === false) {
+						settings.usePostscriptFontNames = BOOL;
+					}
+
+					// Do some ugly recasting so these will always be actual boolean values
+					else if (BOOL.toLowerCase() === 'true') {
+						settings.usePostscriptFontNames = true;
+					} else if (BOOL.toLowerCase() === 'false') {
+						settings.usePostscriptFontNames = false;
+					} else {
+						console.warn(warnParseArgsPostscriptNames);
+					}
 				}
 			});
 		}

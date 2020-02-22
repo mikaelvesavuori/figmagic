@@ -8,17 +8,22 @@ import { errorSetupFontTokens } from '../meta/errors.mjs';
  * @exports
  * @function
  * @param {object} frame - The font frame from Figma
+ * @param {boolean} usePostscriptFontNames - Boolean to decide if to use Postscript font names or the default font family names (without spaces)
  * @returns {object} - Returns an object with all the fonts
  * @throws {Error} - When there is no provided Figma frame
  */
-export function setupFontTokens(frame) {
+export function setupFontTokens(frame, usePostscriptFontNames) {
 	if (frame) {
 		let fontObject = {};
 
 		frame.children.forEach(type => {
 			let name = camelize(type.name);
 			name = formatName(name);
-			const font = type.style.fontPostScriptName;
+
+			// Use Postscript font names or the default font family names (without spaces)
+			const font = usePostscriptFontNames
+				? type.style.fontPostScriptName
+				: type.style.fontFamily.replace(' ', '');
 
 			fontObject[name] = font;
 		});

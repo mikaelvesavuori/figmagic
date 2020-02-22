@@ -31,7 +31,7 @@ export function processTokens(sheet, name, settings) {
 			processedTokens = setupSpacingTokens(sheet, settings.spacingUnit);
 		}
 		if (_name === 'fontfamily' || _name === 'fontfamilies') {
-			processedTokens = setupFontTokens(sheet);
+			processedTokens = setupFontTokens(sheet, settings.usePostscriptFontNames);
 		}
 		if (_name === 'fontsize' || _name === 'fontsizes') {
 			processedTokens = setupFontSizeTokens(sheet, settings.fontUnit);
