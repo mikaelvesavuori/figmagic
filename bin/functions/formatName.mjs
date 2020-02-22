@@ -1,3 +1,5 @@
+import { errorFormatName } from './../meta/errors.mjs';
+
 /**
  * Used to clean and format the name of a file
  *
@@ -19,6 +21,6 @@ export function formatName(str) {
 
 		return fixedString;
 	} else {
-		throw new Error('No string for formatName()!');
+		throw new Error(errorFormatName);
 	}
 }

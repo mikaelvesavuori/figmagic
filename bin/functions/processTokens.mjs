@@ -5,6 +5,8 @@ import { setupFontSizeTokens } from './setupFontSizeTokens.mjs';
 import { setupFontWeightTokens } from './setupFontWeightTokens.mjs';
 import { setupLineHeightTokens } from './setupLineHeightTokens.mjs';
 
+import { errorProcessTokens } from '../meta/errors.mjs';
+
 /**
  * Process tokens
  *
@@ -12,10 +14,11 @@ import { setupLineHeightTokens } from './setupLineHeightTokens.mjs';
  * @function
  * @param {object} sheet - Sheet object from Figma
  * @param {string} name - Token name
+ * @param {object} settings - User configuration object
  * @returns
  * @throws {Error} - When missing sheet or name
  */
-export function processTokens(sheet, name) {
+export function processTokens(sheet, name, settings) {
 	if (sheet && name) {
 		const _name = name.toLowerCase();
 		let processedTokens = undefined;
@@ -25,13 +28,13 @@ export function processTokens(sheet, name) {
 			processedTokens = setupColorTokens(sheet);
 		}
 		if (_name === 'spacing' || _name === 'spacings') {
-			processedTokens = setupSpacingTokens(sheet);
+			processedTokens = setupSpacingTokens(sheet, settings.spacingUnit);
 		}
 		if (_name === 'fontfamily' || _name === 'fontfamilies') {
 			processedTokens = setupFontTokens(sheet);
 		}
 		if (_name === 'fontsize' || _name === 'fontsizes') {
-			processedTokens = setupFontSizeTokens(sheet);
+			processedTokens = setupFontSizeTokens(sheet, settings.fontUnit);
 		}
 		if (_name === 'fontweight' || _name === 'fontweights') {
 			processedTokens = setupFontWeightTokens(sheet);
@@ -42,6 +45,6 @@ export function processTokens(sheet, name) {
 
 		return processedTokens;
 	} else {
-		throw new Error('No sheet or name for processTokens()!');
+		throw new Error(errorProcessTokens);
 	}
 }

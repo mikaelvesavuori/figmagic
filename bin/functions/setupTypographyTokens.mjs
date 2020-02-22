@@ -1,8 +1,5 @@
-/*
- ** TODO: Make sure this is single-dimensional, as the current one is multi-dimensional
- */
-
 import units from '../meta/units.mjs';
+import { errorSetupTypographyTokens } from '../meta/errors.mjs';
 
 /**
  * Places all Figma font sizes into a clean object
@@ -33,7 +30,7 @@ export function setupTypographyTokens(typographyFrame) {
 				'line-height': lineHeight
 			};
 
-			// How to deal with nested information?
+			// TODO: How to deal with nested information?
 			typeTestObject[fontName] = fontSize;
 
 			const content = JSON.stringify(typeObject);
@@ -42,6 +39,6 @@ export function setupTypographyTokens(typographyFrame) {
 
 		return typeTestObject;
 	} else {
-		throw new Error('No frame for setupTypographyTokens()!');
+		throw new Error(errorSetupTypographyTokens);
 	}
 }

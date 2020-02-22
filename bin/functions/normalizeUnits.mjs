@@ -1,5 +1,5 @@
 import { units } from '../meta/units.mjs';
-
+import { errorNormalizeUnits } from '../meta/errors.mjs';
 /**
  * Normalize units
  *
@@ -49,6 +49,6 @@ export function normalizeUnits(value, currentUnit, newUnit) {
 			return;
 		}
 	} else {
-		throw new Error('Missing parameters for normalizeUnits()!');
+		throw new Error(errorNormalizeUnits);
 	}
 }

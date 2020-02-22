@@ -1,6 +1,7 @@
 import { camelize } from './camelize.mjs';
 import { formatName } from './formatName.mjs';
 import { normalizeUnits } from './normalizeUnits.mjs';
+import { errorSetupLineHeightTokens } from '../meta/errors.mjs';
 
 /**
  * Places all Figma line heights into a clean object
@@ -29,6 +30,6 @@ export function setupLineHeightTokens(frame) {
 
 		return lineHeightObject;
 	} else {
-		throw new Error('No frame for setupLineHeightTokens()!');
+		throw new Error(errorSetupLineHeightTokens);
 	}
 }

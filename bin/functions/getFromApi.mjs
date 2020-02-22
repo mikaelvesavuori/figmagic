@@ -1,5 +1,7 @@
-import { writeFile } from './writeFile.mjs';
 import fetch from 'node-fetch';
+
+import { errorGetFromApi } from '../meta/errors.mjs';
+import { writeFile } from './writeFile.mjs';
 
 /**
  * Get data from API
@@ -7,23 +9,31 @@ import fetch from 'node-fetch';
  * @exports
  * @async
  * @function
+ * @param {string} figmaToken - User's Figma token
+ * @param {string} figmaUrl - String representing user's Figma document
+ * @param {string} outputFolderBaseFile - Folder to output Figma base document (JSON) to
+ * @param {string} outputFileName - Name of base Figma document to process
  * @returns {object} - The fetched data inside of an object
  */
-export async function getFromApi() {
-	let data = {};
+export async function getFromApi(figmaToken, figmaUrl, outputFolderBaseFile, outputFileName) {
+	if (figmaToken && figmaUrl && outputFolderBaseFile && outputFileName) {
+		let data = {};
 
-	const url = 'https://api.figma.com/v1/files/' + process.env.FIGMA_URL;
+		const URL = 'https://api.figma.com/v1/files/' + figmaUrl;
 
-	await fetch(url, {
-		headers: {
-			'X-Figma-Token': process.env.FIGMA_TOKEN
-		}
-	})
-		.then(res => res.json())
-		.then(json => {
-			data = json;
-			writeFile(JSON.stringify(json), 'figma', 'figma.json');
-		});
+		await fetch(URL, {
+			headers: {
+				'X-Figma-Token': figmaToken
+			}
+		})
+			.then(res => res.json())
+			.then(json => {
+				data = json;
+				writeFile(JSON.stringify(json), outputFolderBaseFile, outputFileName);
+			});
 
-	return data;
+		return data;
+	} else {
+		throw new Error(errorGetFromApi);
+	}
 }

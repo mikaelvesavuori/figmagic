@@ -112,6 +112,8 @@ Em units.
 - Validated Windows support and corresponding Github Actions tasks
 - Possibility to set `em` or `rem` for font sizes etc.
 - Add Figmagic API token support through env var or CLI option (similar to AWS CLI or something)
+- Move all error texts into separate document
+- Create "real" JS errors?
 
 ## Want to add or rethink something in Figmagic?
 

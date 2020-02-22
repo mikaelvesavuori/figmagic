@@ -1,5 +1,6 @@
 import { camelize } from './camelize.mjs';
 import { formatName } from './formatName.mjs';
+import { errorSetupFontWeightTokens } from '../meta/errors.mjs';
 
 /**
  * Places all Figma font weights into a clean object
@@ -24,6 +25,6 @@ export function setupFontWeightTokens(frame) {
 
 		return fontWeightObject;
 	} else {
-		throw new Error('No frame for setupFontWeightTokens()!');
+		throw new Error(errorSetupFontWeightTokens);
 	}
 }

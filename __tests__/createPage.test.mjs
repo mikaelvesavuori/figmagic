@@ -1,4 +1,4 @@
-import { createPage } from '../bin/functions/createPage.mjs';
+import { createPage } from '../bin/functions/createPage';
 
 test('It should throw an error if no parameter is provided', () => {
 	expect(() => {

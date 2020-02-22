@@ -1,4 +1,4 @@
-import { camelize } from '../bin/functions/camelize.mjs';
+import { camelize } from '../bin/functions/camelize';
 
 test('It should remove spaces and capitalize first letter of the word coming after the removed space', () => {
 	expect(camelize('John Johnson')).toBe('johnJohnson');

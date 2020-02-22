@@ -1,3 +1,5 @@
+import { errorCreateFolder } from '../meta/errors.mjs';
+
 import fs from 'fs';
 
 /**
@@ -15,6 +17,6 @@ export function createFolder(dir) {
 			fs.mkdirSync(dir);
 		}
 	} else {
-		throw new Error('No directory specified for createFolder()!');
+		throw new Error(errorCreateFolder);
 	}
 }

@@ -1,5 +1,6 @@
 import { camelize } from './camelize.mjs';
 import { formatName } from './formatName.mjs';
+import { errorSetupFontTokens } from '../meta/errors.mjs';
 
 /**
  * Places all Figma fonts into a clean object
@@ -24,6 +25,6 @@ export function setupFontTokens(frame) {
 
 		return fontObject;
 	} else {
-		throw new Error('No frame for setupFontTokens()!');
+		throw new Error(errorSetupFontTokens);
 	}
 }

@@ -1,3 +1,5 @@
+import { errorCamelize } from '../meta/errors.mjs';
+
 /**
  * Camel-case transform a string
  *
@@ -16,6 +18,6 @@ export function camelize(str) {
 			})
 			.replace(/\s+/g, '');
 	} else {
-		throw new Error('No string provided to camelize()!');
+		throw new Error(errorCamelize);
 	}
 }

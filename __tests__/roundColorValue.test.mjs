@@ -1,4 +1,4 @@
-import { roundColorValue } from '../bin/functions/roundColorValue.mjs';
+import { roundColorValue } from '../bin/functions/roundColorValue';
 
 test('It should round a color value into a single decimal', () => {
 	expect(roundColorValue(0.5176470875740051, 255)).toBe('132');

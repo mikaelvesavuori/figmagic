@@ -1,6 +1,7 @@
 import { camelize } from './camelize.mjs';
 import { formatName } from './formatName.mjs';
 import { roundColorValue } from './roundColorValue.mjs';
+import { errorSetupColorTokens } from '../meta/errors.mjs';
 
 /**
  * Places all Figma color frames into a clean object
@@ -31,6 +32,6 @@ export function setupColorTokens(colorFrame) {
 
 		return colors;
 	} else {
-		throw new Error('No frame for setupColorTokens()!');
+		throw new Error(errorSetupColorTokens);
 	}
 }

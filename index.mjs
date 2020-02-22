@@ -1,7 +1,8 @@
 #!/bin/sh
 ':'; //# ; exec /usr/bin/env node --experimental-modules --no-warnings "$0" "$@"
 
-import { parseFormat } from './bin/functions/parseFormat.mjs';
+import { errorGetData } from './bin/meta/errors.mjs';
+import { parseArgs } from './bin/functions/parseArgs.mjs';
 import { createFolder } from './bin/functions/createFolder.mjs';
 import { getFromApi } from './bin/functions/getFromApi.mjs';
 import { createPage } from './bin/functions/createPage.mjs';
@@ -11,22 +12,23 @@ import rimraf from 'rimraf';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const [, , ...args] = process.argv;
-const format = parseFormat(args[0]);
+const [, , ...ARGS] = process.argv;
+const SETTINGS = parseArgs([...ARGS]);
+const { token, url, outputFolderBaseFile, outputFolderTokens, outputFileName } = SETTINGS;
 
 (async () => {
-	rimraf('./tokens', () => {});
-	rimraf('./figma', () => {});
+	rimraf(`./${outputFolderTokens}`, () => {});
+	rimraf(`./${outputFolderBaseFile}`, () => {});
 
-	createFolder('tokens');
-	createFolder('figma');
+	createFolder(outputFolderTokens);
+	createFolder(outputFolderBaseFile);
 
-	const data = await getFromApi();
+	const DATA = await getFromApi(token, url, outputFolderBaseFile, outputFileName);
 
-	if (data && data.status !== 403) {
-		const tokens = createPage(data.document.children);
-		writeTokens(tokens.children, format);
+	if (DATA && DATA.status !== 403) {
+		const TOKENS = createPage(DATA.document.children);
+		writeTokens(TOKENS.children, SETTINGS);
 	} else {
-		console.error('Could not retrieve any data. Are you missing a valid API key?');
+		console.error(errorGetData);
 	}
 })();

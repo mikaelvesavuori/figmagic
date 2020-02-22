@@ -1,5 +1,7 @@
 import fs from 'fs';
+
 import { createFolder } from './createFolder.mjs';
+import { errorWriteFile, errorWrite } from '../meta/errors.mjs';
 
 /**
  * Exposed function that handles writing files to disk
@@ -17,7 +19,7 @@ export function writeFile(file, path, name, isToken = false, format) {
 		createFolder(path);
 		write(file, path, name, isToken, format);
 	} else {
-		throw new Error('Missing required parameters to correctly run writeFile()!');
+		throw new Error(errorWriteFile);
 	}
 }
 
@@ -41,7 +43,7 @@ function write(file, path, name, isToken, format) {
 
 	fs.writeFile(filePath, fileContent, 'utf-8', function(error) {
 		if (error) {
-			throw new Error(`Error in writeFile(): ${error}`);
+			throw new Error(`${errorWrite}: ${error}`);
 		}
 	});
 }

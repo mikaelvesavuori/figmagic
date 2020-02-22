@@ -1,3 +1,5 @@
+import { errorRoundColorValue } from '../meta/errors.mjs';
+
 /**
  * Round color values so they are whole integers
  *
@@ -8,5 +10,9 @@
  * @returns {number} - The final number
  */
 export function roundColorValue(quantity, scale = 255) {
-	return (parseFloat(quantity) * parseInt(scale)).toFixed(0);
+	if (scale <= 255) {
+		return (parseFloat(quantity) * parseInt(scale)).toFixed(0);
+	} else {
+		throw new Error(errorRoundColorValue);
+	}
 }

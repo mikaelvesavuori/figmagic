@@ -1,4 +1,4 @@
-import { formatName } from '../bin/functions/formatName.mjs';
+import { formatName } from '../bin/functions/formatName';
 
 test('It should remove single instances of forbidden characters', () => {
 	expect(formatName('as–df')).toBe('asdf');
