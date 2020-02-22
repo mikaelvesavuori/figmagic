@@ -1,4 +1,9 @@
 import { config } from './../meta/config.mjs';
+import {
+	warnParseArgsOutputFormat,
+	warnParseArgsFontUnit,
+	warnParseArgsSpacingUnit
+} from '../meta/warnings.mjs';
 
 /**
  * Parse CLI arguments and return settings object
@@ -34,9 +39,7 @@ export function parseArgs(argsArray) {
 					if (FORMAT === 'mjs' || FORMAT === 'js') {
 						settings.outputFormat = argsArray[index + 1].toLowerCase();
 					} else {
-						console.warn(
-							'Received unrecognized "outputFormat" argument, it must be "mjs" (default) or "js". Setting to default value...'
-						);
+						console.warn(warnParseArgsOutputFormat);
 					}
 				}
 				// Check and handle font unit switch
@@ -45,9 +48,7 @@ export function parseArgs(argsArray) {
 					if (FORMAT === 'rem' || FORMAT === 'em') {
 						settings.fontUnit = argsArray[index + 1].toLowerCase();
 					} else {
-						console.warn(
-							'Received unrecognized "fontUnit" argument, it must be "rem" (default) or "em". Setting to default value...'
-						);
+						console.warn(warnParseArgsFontUnit);
 					}
 				}
 				// Check and handle spacing unit switch
@@ -56,9 +57,7 @@ export function parseArgs(argsArray) {
 					if (FORMAT === 'rem' || FORMAT === 'em') {
 						settings.spacingUnit = argsArray[index + 1].toLowerCase();
 					} else {
-						console.warn(
-							'Received unrecognized "spacingUnit" argument, it must be "rem" (default) or "em". Setting to default value...'
-						);
+						console.warn(warnParseArgsSpacingUnit);
 					}
 				}
 				// Handle input: Figma API token

@@ -1,5 +1,6 @@
 import { units } from '../meta/units.mjs';
 import { errorNormalizeUnits } from '../meta/errors.mjs';
+import { warnNormalizeUnits } from '../meta/warnings.mjs';
 /**
  * Normalize units
  *
@@ -43,9 +44,7 @@ export function normalizeUnits(value, currentUnit, newUnit) {
 				return `${adjustedValue}${newUnit}`;
 			}
 		} else {
-			console.warn(
-				'normalizeUnits(): rootSize and/or unitSize variables are either undefined or not incoming as px values.'
-			);
+			console.warn(warnNormalizeUnits);
 			return;
 		}
 	} else {
