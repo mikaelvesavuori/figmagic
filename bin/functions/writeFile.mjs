@@ -15,12 +15,10 @@ import { errorWriteFile, errorWrite } from '../meta/errors.mjs';
  * @param {string} format - File format
  */
 export function writeFile(file, path, name, isToken = false, format) {
-  if (file && path && name) {
-    createFolder(path);
-    write(file, path, name, isToken, format);
-  } else {
-    throw new Error(errorWriteFile);
-  }
+  if (!file || !path || !name) throw new Error(errorWriteFile);
+
+  createFolder(path);
+  write(file, path, name, isToken, format);
 }
 
 /**

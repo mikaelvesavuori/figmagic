@@ -30,6 +30,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.8.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.8.3",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^25.1.0",
     "eslint": "^6.8.0",

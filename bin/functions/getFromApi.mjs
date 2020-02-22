@@ -16,24 +16,23 @@ import { writeFile } from './writeFile.mjs';
  * @returns {object} - The fetched data inside of an object
  */
 export async function getFromApi(figmaToken, figmaUrl, outputFolderBaseFile, outputFileName) {
-  if (figmaToken && figmaUrl && outputFolderBaseFile && outputFileName) {
-    let data = {};
-
-    const URL = 'https://api.figma.com/v1/files/' + figmaUrl;
-
-    await fetch(URL, {
-      headers: {
-        'X-Figma-Token': figmaToken
-      }
-    })
-      .then(res => res.json())
-      .then(json => {
-        data = json;
-        writeFile(JSON.stringify(json), outputFolderBaseFile, outputFileName);
-      });
-
-    return data;
-  } else {
+  if (!figmaToken || !figmaUrl || !outputFolderBaseFile || !outputFileName)
     throw new Error(errorGetFromApi);
-  }
+
+  let data = {};
+
+  const URL = 'https://api.figma.com/v1/files/' + figmaUrl;
+
+  await fetch(URL, {
+    headers: {
+      'X-Figma-Token': figmaToken
+    }
+  })
+    .then(res => res.json())
+    .then(json => {
+      data = json;
+      writeFile(JSON.stringify(json), outputFolderBaseFile, outputFileName);
+    });
+
+  return data;
 }

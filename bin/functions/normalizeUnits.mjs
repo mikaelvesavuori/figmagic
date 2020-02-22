@@ -14,41 +14,39 @@ import { warnNormalizeUnits } from '../meta/warnings.mjs';
  * @throws {error} - When missing parameters
  */
 export function normalizeUnits(value, currentUnit, newUnit) {
-  if (value && currentUnit && newUnit) {
-    let rootSize = undefined;
-    let unitSize = undefined;
+  if (!value || !currentUnit || !newUnit) throw new Error(errorNormalizeUnits);
 
-    // Set root size
-    if (currentUnit === 'px') {
-      rootSize = units.globalPxSize;
-    }
+  let rootSize = undefined;
+  let unitSize = undefined;
 
-    // Set root size; Kind of a hack? Not sure if this is going to break anything. Used because of 'unitless'
-    if (currentUnit === 'percent') {
-      rootSize = units.globalPxSize;
-    }
+  // Set root size
+  if (currentUnit === 'px') {
+    rootSize = units.globalPxSize;
+  }
 
-    // Set new unit
-    if (newUnit === 'rem' || newUnit === 'em') {
-      unitSize = units.globalRemSize;
-    }
+  // Set root size; Kind of a hack? Not sure if this is going to break anything. Used because of 'unitless'
+  if (currentUnit === 'percent') {
+    rootSize = units.globalPxSize;
+  }
 
+  // Set new unit
+  if (newUnit === 'rem' || newUnit === 'em') {
+    unitSize = units.globalRemSize;
+  }
+
+  if (newUnit === 'unitless') {
+    unitSize = value / 100;
+  }
+
+  if (rootSize !== undefined && unitSize !== undefined) {
     if (newUnit === 'unitless') {
-      unitSize = value / 100;
-    }
-
-    if (rootSize !== undefined && unitSize !== undefined) {
-      if (newUnit === 'unitless') {
-        return unitSize;
-      } else {
-        const ADJUSTED_VALUE = value * (rootSize / unitSize);
-        return `${ADJUSTED_VALUE}${newUnit}`;
-      }
+      return unitSize;
     } else {
-      console.warn(warnNormalizeUnits);
-      return;
+      const ADJUSTED_VALUE = value * (rootSize / unitSize);
+      return `${ADJUSTED_VALUE}${newUnit}`;
     }
   } else {
-    throw new Error(errorNormalizeUnits);
+    console.warn(warnNormalizeUnits);
+    return;
   }
 }

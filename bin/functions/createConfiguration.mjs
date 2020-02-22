@@ -24,7 +24,7 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
   const DEFAULT_CONFIG = {
     debugMode: false,
     fontUnit: config.defaultFontUnit,
-    outputFileName: config.defaultOutputOutputFileName,
+    outputFileName: config.defaultOutputFileName,
     outputFolderBaseFile: config.defaultOutputFolderBaseFile,
     outputFolderTokens: config.defaultOutputFolderTokens,
     outputTokenFormat: config.defaultOutputTokenFormat,
@@ -44,6 +44,9 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
   // CLI arguments configuration
   // Medium priority
   const CLI_CONFIG = parseCliArgs(cliArgs);
+
+  console.log(cliArgs);
+  console.log(CLI_CONFIG);
 
   // RC file configuration
   // Highest priority
@@ -83,6 +86,9 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
         console.log('SYSTEM: FINAL CONFIG');
         console.log(CONFIG);
       }
+
+      console.log('CONFIG');
+      console.log(CONFIG);
 
       return CONFIG;
     })

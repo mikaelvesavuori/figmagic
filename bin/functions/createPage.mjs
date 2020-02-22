@@ -19,7 +19,9 @@ import {
 export function createPage(figmaPages) {
   let hasCreatedDesignTokensPage = false;
 
-  if (figmaPages && figmaPages.length > 0) {
+  if (!figmaPages || !figmaPages.length > 0) {
+    throw new Error(errorCreatePage);
+  } else {
     let correctPage = undefined;
     let isMatchFound = false;
 
@@ -49,13 +51,12 @@ export function createPage(figmaPages) {
     });
 
     return correctPage;
-  } else {
-    throw new Error(errorCreatePage);
   }
 }
 
 /**
- * asdf
+ * Find short name match
+ *
  * @exports
  * @function
  * @param {string} originalString - The original string
@@ -65,9 +66,9 @@ export function createPage(figmaPages) {
  * @throws {error} - When no 'originalString' is provided
  */
 export function findShortenedNameMatch(originalString, matchString) {
-  if (originalString) {
-    if (matchString) {
-      return originalString.toLowerCase().replace(' ', '') === matchString;
-    } else throw new Error(errorFindShortenedNameMatchString);
-  } else throw new Error(errorFindShortenedNameMatchOriginal);
+  if (!originalString) throw new Error(errorFindShortenedNameMatchOriginal);
+
+  if (!matchString) throw new Error(errorFindShortenedNameMatchString);
+
+  return originalString.toLowerCase().replace(' ', '') === matchString;
 }

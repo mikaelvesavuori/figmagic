@@ -12,19 +12,17 @@ import { errorSetupFontWeightTokens } from '../meta/errors.mjs';
  * @throws {error} - When there is no provided Figma frame
  */
 export function setupFontWeightTokens(frame) {
-  if (frame) {
-    let fontWeightObject = {};
+  if (!frame) throw new Error(errorSetupFontWeightTokens);
 
-    frame.children.forEach(type => {
-      let name = camelize(type.name);
-      name = formatName(name);
-      const fontWeight = type.style.fontWeight;
+  let fontWeightObject = {};
 
-      fontWeightObject[name] = fontWeight;
-    });
+  frame.children.forEach(type => {
+    let name = camelize(type.name);
+    name = formatName(name);
+    const fontWeight = type.style.fontWeight;
 
-    return fontWeightObject;
-  } else {
-    throw new Error(errorSetupFontWeightTokens);
-  }
+    fontWeightObject[name] = fontWeight;
+  });
+
+  return fontWeightObject;
 }

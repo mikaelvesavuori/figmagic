@@ -15,22 +15,20 @@ import { errorWriteTokens } from '../meta/errors.mjs';
  * @throws {error} - When no than one token is provided
  */
 export function writeTokens(tokens, settings) {
-  if (tokens.length > 0) {
-    tokens.forEach(token => {
-      let tokenName = camelize(token.name);
-      tokenName = formatName(tokenName);
+  if (!tokens.length > 0) throw new Error(errorWriteTokens);
 
-      const PROCESSED_TOKEN = processTokens(token, tokenName, settings);
+  tokens.forEach(token => {
+    let tokenName = camelize(token.name);
+    tokenName = formatName(tokenName);
 
-      writeFile(
-        PROCESSED_TOKEN,
-        settings.outputFolderTokens,
-        tokenName,
-        true,
-        settings.outputTokenFormat
-      );
-    });
-  } else {
-    throw new Error(errorWriteTokens);
-  }
+    const PROCESSED_TOKEN = processTokens(token, tokenName, settings);
+
+    writeFile(
+      PROCESSED_TOKEN,
+      settings.outputFolderTokens,
+      tokenName,
+      true,
+      settings.outputTokenFormat
+    );
+  });
 }

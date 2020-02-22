@@ -11,15 +11,13 @@ import { forbiddenCharacters } from '../meta/forbiddenCharacters.mjs';
  * @throws {error} - When no string is provided
  */
 export function formatName(str) {
-  if (str) {
-    let fixedString = str;
+  if (!str) throw new Error(errorFormatName);
 
-    forbiddenCharacters.forEach(char => {
-      fixedString = fixedString.replace(char, '');
-    });
+  let fixedString = str;
 
-    return fixedString;
-  } else {
-    throw new Error(errorFormatName);
-  }
+  forbiddenCharacters.forEach(char => {
+    fixedString = fixedString.replace(char, '');
+  });
+
+  return fixedString;
 }

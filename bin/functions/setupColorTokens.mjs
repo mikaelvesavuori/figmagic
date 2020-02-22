@@ -13,25 +13,23 @@ import { errorSetupColorTokens } from '../meta/errors.mjs';
  * @throws {error} - When there is no provided Figma frame
  */
 export function setupColorTokens(colorFrame) {
-  if (colorFrame) {
-    let colors = {};
+  if (!colorFrame) throw new Error(errorSetupColorTokens);
 
-    colorFrame.children.forEach(color => {
-      const COLOR_STRING = `rgba(${roundColorValue(color.fills[0].color.r, 255)}, ${roundColorValue(
-        color.fills[0].color.g,
-        255
-      )}, ${roundColorValue(color.fills[0].color.b, 255)}, ${roundColorValue(
-        color.fills[0].color.a,
-        1
-      )})`;
+  let colors = {};
 
-      let normalizedName = camelize(color.name);
-      normalizedName = formatName(normalizedName);
-      colors[normalizedName] = COLOR_STRING;
-    });
+  colorFrame.children.forEach(color => {
+    const COLOR_STRING = `rgba(${roundColorValue(color.fills[0].color.r, 255)}, ${roundColorValue(
+      color.fills[0].color.g,
+      255
+    )}, ${roundColorValue(color.fills[0].color.b, 255)}, ${roundColorValue(
+      color.fills[0].color.a,
+      1
+    )})`;
 
-    return colors;
-  } else {
-    throw new Error(errorSetupColorTokens);
-  }
+    let normalizedName = camelize(color.name);
+    normalizedName = formatName(normalizedName);
+    colors[normalizedName] = COLOR_STRING;
+  });
+
+  return colors;
 }

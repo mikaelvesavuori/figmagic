@@ -16,25 +16,25 @@ const [, , ...CLI_ARGS] = process.argv;
 const USER_CONFIG_PATH = `${process.cwd()}/.figmagicrc`;
 
 (async () => {
-	const CONFIG = await createConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
-	const { token, url, outputFolderBaseFile, outputFolderTokens, outputFileName } = CONFIG;
+  const CONFIG = await createConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
+  const { token, url, outputFolderBaseFile, outputFolderTokens, outputFileName } = CONFIG;
 
-	// Remove old folders
-	await trash([`./${outputFolderTokens}`]);
-	await trash([`./${outputFolderBaseFile}`]);
+  // Remove old folders
+  await trash([`./${outputFolderTokens}`]);
+  await trash([`./${outputFolderBaseFile}`]);
 
-	// Add new folders
-	createFolder(outputFolderTokens);
-	createFolder(outputFolderBaseFile);
+  // Add new folders
+  createFolder(outputFolderTokens);
+  createFolder(outputFolderBaseFile);
 
-	// Attempt to get data
-	const DATA = await getFromApi(token, url, outputFolderBaseFile, outputFileName);
+  // Attempt to get data
+  const DATA = await getFromApi(token, url, outputFolderBaseFile, outputFileName);
 
-	// If there's data and all is OK, start processing tokens
-	if (DATA && DATA.status !== 403) {
-		const TOKENS = createPage(DATA.document.children);
-		writeTokens(TOKENS.children, CONFIG);
-	} else {
-		console.error(errorGetData);
-	}
+  // If there's data and all is OK, start processing tokens
+  if (DATA && DATA.status !== 403) {
+    const TOKENS = createPage(DATA.document.children);
+    writeTokens(TOKENS.children, CONFIG);
+  } else {
+    console.error(errorGetData);
+  }
 })();

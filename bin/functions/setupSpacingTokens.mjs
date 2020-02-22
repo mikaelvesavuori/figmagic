@@ -14,19 +14,17 @@ import { errorSetupSpacingTokens } from '../meta/errors.mjs';
  * @throws {error} - When there is no provided Figma frame
  */
 export function setupSpacingTokens(spacingFrame, spacingUnit) {
-  if (spacingFrame) {
-    const SPACINGS = spacingFrame.children;
-    const SPACING_OBJECT = {};
+  if (!spacingFrame) throw new Error(errorSetupSpacingTokens);
 
-    SPACINGS.forEach(spacing => {
-      let normalizedName = camelize(spacing.name);
-      normalizedName = formatName(normalizedName);
-      const NORMALIZED_UNIT = normalizeUnits(spacing.absoluteBoundingBox.width, 'px', spacingUnit);
-      SPACING_OBJECT[normalizedName] = NORMALIZED_UNIT;
-    });
+  const SPACINGS = spacingFrame.children;
+  const SPACING_OBJECT = {};
 
-    return SPACING_OBJECT;
-  } else {
-    throw new Error(errorSetupSpacingTokens);
-  }
+  SPACINGS.forEach(spacing => {
+    let normalizedName = camelize(spacing.name);
+    normalizedName = formatName(normalizedName);
+    const NORMALIZED_UNIT = normalizeUnits(spacing.absoluteBoundingBox.width, 'px', spacingUnit);
+    SPACING_OBJECT[normalizedName] = NORMALIZED_UNIT;
+  });
+
+  return SPACING_OBJECT;
 }
