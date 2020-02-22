@@ -88,14 +88,14 @@ An example file is provided in Figmagic, using the default values:
 
 ```
 {
-	"debugMode": false,
-	"fontUnit": "rem",
-	"outputFileName": "figma.json",
-	"outputFolderBaseFile": "figma",
-	"outputFolderTokens": "tokens",
-	"outputTokenFormat": "mjs",
-	"spacingUnit": "rem",
-	"usePostscriptFontNames": false
+  "debugMode": false,
+  "fontUnit": "rem",
+  "outputFileName": "figma.json",
+  "outputFolderBaseFile": "figma",
+  "outputFolderTokens": "tokens",
+  "outputTokenFormat": "mjs",
+  "spacingUnit": "rem",
+  "usePostscriptFontNames": false
 }
 ```
 
