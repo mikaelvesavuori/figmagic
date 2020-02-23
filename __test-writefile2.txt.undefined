@@ -1,3 +1,0 @@
-const __test-writefile2.txt = "{\"something\":1234}"
-
-export default __test-writefile2.txt;
