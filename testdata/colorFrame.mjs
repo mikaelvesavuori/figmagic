@@ -9,13 +9,24 @@ export const colorFrame = {
       name: 'Green 3',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -254, y: -106, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.43529412150382996,
+            g: 0.8117647171020508,
+            b: 0.5921568870544434,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:118' },
       effects: []
     },
     {
@@ -23,13 +34,24 @@ export const colorFrame = {
       name: 'Green 2',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -254, y: -186, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.15294118225574493,
+            g: 0.6823529601097107,
+            b: 0.3764705955982208,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:117' },
       effects: []
     },
     {
@@ -37,13 +59,24 @@ export const colorFrame = {
       name: 'Green 1',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -254, y: -266, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.12941177189350128,
+            g: 0.5882353186607361,
+            b: 0.32549020648002625,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:116' },
       effects: []
     },
     {
@@ -51,13 +84,24 @@ export const colorFrame = {
       name: 'Blue 3',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -394, y: -106, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.33725491166114807,
+            g: 0.800000011920929,
+            b: 0.9490196108818054,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:115' },
       effects: []
     },
     {
@@ -65,13 +109,24 @@ export const colorFrame = {
       name: 'Blue 2',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -394, y: -186, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.1764705926179886,
+            g: 0.6117647290229797,
+            b: 0.8588235378265381,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:114' },
       effects: []
     },
     {
@@ -79,13 +134,24 @@ export const colorFrame = {
       name: 'Blue 1',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -394, y: -266, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.18431372940540314,
+            g: 0.501960813999176,
+            b: 0.929411768913269,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:113' },
       effects: []
     },
     {
@@ -93,13 +159,24 @@ export const colorFrame = {
       name: 'Yellow',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -534, y: -106, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.9490196108818054,
+            g: 0.7882353067398071,
+            b: 0.2980392277240753,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:112' },
       effects: []
     },
     {
@@ -107,13 +184,24 @@ export const colorFrame = {
       name: 'Orange',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -534, y: -186, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.9490196108818054,
+            g: 0.6000000238418579,
+            b: 0.29019609093666077,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:111' },
       effects: []
     },
     {
@@ -121,13 +209,24 @@ export const colorFrame = {
       name: 'Red',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -534, y: -266, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.9215686321258545,
+            g: 0.34117648005485535,
+            b: 0.34117648005485535,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:110' },
       effects: []
     },
     {
@@ -135,9 +234,15 @@ export const colorFrame = {
       name: 'Neon',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -534, y: -26, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: { r: 0.893666684627533, g: 1, b: 0.7583333253860474, a: 1 }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
@@ -148,13 +253,24 @@ export const colorFrame = {
       name: 'Gray 5',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -674, y: 54, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.9490196108818054,
+            g: 0.9490196108818054,
+            b: 0.9490196108818054,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:106' },
       effects: []
     },
     {
@@ -162,13 +278,24 @@ export const colorFrame = {
       name: 'Gray 4',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -674, y: -26, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.8784313797950745,
+            g: 0.8784313797950745,
+            b: 0.8784313797950745,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:105' },
       effects: []
     },
     {
@@ -176,13 +303,24 @@ export const colorFrame = {
       name: 'Gray 3',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -674, y: -106, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.7411764860153198,
+            g: 0.7411764860153198,
+            b: 0.7411764860153198,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:104' },
       effects: []
     },
     {
@@ -190,13 +328,24 @@ export const colorFrame = {
       name: 'Gray 2',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -674, y: -186, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.5098039507865906,
+            g: 0.5098039507865906,
+            b: 0.5098039507865906,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:103' },
       effects: []
     },
     {
@@ -204,13 +353,24 @@ export const colorFrame = {
       name: 'Gray 1',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -674, y: -266, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.30980393290519714,
+            g: 0.30980393290519714,
+            b: 0.30980393290519714,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:102' },
       effects: []
     },
     {
@@ -218,13 +378,30 @@ export const colorFrame = {
       name: 'White',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
-      strokes: [Array],
+      absoluteBoundingBox: { x: -814, y: -186, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: { r: 1, g: 1, b: 1, a: 1 }
+        }
+      ],
+      strokes: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.9563318490982056,
+            g: 0.9563318490982056,
+            b: 0.9563318490982056,
+            a: 1
+          }
+        }
+      ],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      styles: [Object],
+      styles: { fill: '1:101' },
       effects: []
     },
     {
@@ -232,9 +409,20 @@ export const colorFrame = {
       name: 'Black',
       type: 'VECTOR',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: { x: -814, y: -266, width: 100, height: 40 },
+      constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.0034934463910758495,
+            g: 0,
+            b: 0.17467248439788818,
+            a: 1
+          }
+        }
+      ],
       strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
@@ -244,8 +432,20 @@ export const colorFrame = {
   absoluteBoundingBox: { x: -862, y: -308, width: 756, height: 445 },
   constraints: { vertical: 'TOP', horizontal: 'LEFT' },
   clipsContent: true,
-  background: [{ blendMode: 'NORMAL', type: 'SOLID', color: [Object] }],
-  fills: [{ blendMode: 'NORMAL', type: 'SOLID', color: [Object] }],
+  background: [
+    {
+      blendMode: 'NORMAL',
+      type: 'SOLID',
+      color: { r: 1, g: 1, b: 1, a: 1 }
+    }
+  ],
+  fills: [
+    {
+      blendMode: 'NORMAL',
+      type: 'SOLID',
+      color: { r: 1, g: 1, b: 1, a: 1 }
+    }
+  ],
   strokes: [],
   strokeWeight: 1,
   strokeAlign: 'INSIDE',
