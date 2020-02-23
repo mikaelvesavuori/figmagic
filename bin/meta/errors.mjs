@@ -15,7 +15,9 @@ export const errorFindShortenedNameMatchWrongType = 'Arguments are not of string
 export const errorFormatName = 'No string for formatName()!';
 
 export const errorGetFromApi =
-  'Missing one or more of required arguments: "figmaToken", "figmaUrl", "outputFolder", "outputFileName"!';
+  'Missing one or more of required arguments: "figmaToken", "figmaUrl"!';
+
+export const errorLoadFile = 'Could not find file!';
 
 export const errorNormalizeUnits = 'Missing parameters for normalizeUnits()!';
 export const errorNormalizeUnitsUndefined = 'Parameters "rootSize" or "unitSize" are undefined!';

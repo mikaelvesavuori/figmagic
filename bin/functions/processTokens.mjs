@@ -19,30 +19,29 @@ import { errorProcessTokens } from '../meta/errors.mjs';
  * @throws {error} - When missing sheet or name
  */
 export function processTokens(sheet, name, settings) {
+  //console.log('||||||');
+  //console.log(sheet);
+  //console.log(name);
+  //console.log(settings);
+
   if (!sheet || !name) throw new Error(errorProcessTokens);
 
   const _NAME = name.toLowerCase();
   let processedTokens = undefined;
 
   // Design tokens
-  if (_NAME === 'color' || _NAME === 'colour' || _NAME === 'colors' || _NAME === 'colours') {
+  if (_NAME === 'color' || _NAME === 'colour' || _NAME === 'colors' || _NAME === 'colours')
     processedTokens = setupColorTokens(sheet);
-  }
-  if (_NAME === 'spacing' || _NAME === 'spacings') {
+  if (_NAME === 'spacing' || _NAME === 'spacings')
     processedTokens = setupSpacingTokens(sheet, settings.spacingUnit);
-  }
-  if (_NAME === 'fontfamily' || _NAME === 'fontfamilies') {
+  if (_NAME === 'fontfamily' || _NAME === 'fontfamilies')
     processedTokens = setupFontTokens(sheet, settings.usePostscriptFontNames);
-  }
-  if (_NAME === 'fontsize' || _NAME === 'fontsizes') {
+  if (_NAME === 'fontsize' || _NAME === 'fontsizes')
     processedTokens = setupFontSizeTokens(sheet, settings.fontUnit);
-  }
-  if (_NAME === 'fontweight' || _NAME === 'fontweights') {
+  if (_NAME === 'fontweight' || _NAME === 'fontweights')
     processedTokens = setupFontWeightTokens(sheet);
-  }
-  if (_NAME === 'lineheight' || _NAME === 'lineheights') {
+  if (_NAME === 'lineheight' || _NAME === 'lineheights')
     processedTokens = setupLineHeightTokens(sheet);
-  }
 
   return processedTokens;
 }

@@ -1,0 +1,253 @@
+{
+  "components": {
+    "145:4": { "description": "", "key": "", "name": "Close" },
+    "146:6": { "description": "", "key": "", "name": "More" }
+  },
+  "document": {
+    "children": [
+      {
+        "backgroundColor": {
+          "a": 1,
+          "b": 0.8980392217636108,
+          "g": 0.8980392217636108,
+          "r": 0.8980392217636108
+        },
+        "children": [[Object], [Object], [Object], [Object], [Object], [Object]],
+        "id": "0:1",
+        "name": "Design Tokens",
+        "prototypeDevice": { "rotation": "NONE", "type": "NONE" },
+        "prototypeStartNodeID": null,
+        "type": "CANVAS"
+      },
+      {
+        "backgroundColor": {
+          "a": 1,
+          "b": 0.8980392217636108,
+          "g": 0.8980392217636108,
+          "r": 0.8980392217636108
+        },
+        "children": [[Object]],
+        "id": "145:2",
+        "name": "Graphics",
+        "prototypeDevice": { "rotation": "NONE", "type": "NONE" },
+        "prototypeStartNodeID": null,
+        "type": "CANVAS"
+      }
+    ],
+    "id": "0:0",
+    "name": "Document",
+    "type": "DOCUMENT"
+  },
+  "lastModified": "2020-02-23T08:34:32.469681Z",
+  "name": "Figmagic - Design Token Example v1.0",
+  "role": "owner",
+  "schemaVersion": 0,
+  "styles": {
+    "1:100": {
+      "description": "",
+      "key": "6694326a6593a6dc357192a9ebe718f5b194de8c",
+      "name": "Black",
+      "styleType": "FILL"
+    },
+    "1:101": {
+      "description": "",
+      "key": "0d4f468b2fda1fd9fe044baa06470cdd24aea602",
+      "name": "White",
+      "styleType": "FILL"
+    },
+    "1:102": {
+      "description": "",
+      "key": "d0f8f42c0b79f3df9c218c16f2dbc5d377496593",
+      "name": "Gray 1",
+      "styleType": "FILL"
+    },
+    "1:103": {
+      "description": "",
+      "key": "c8c45b86bc838d0d9a228ab53c5529aa048ec40b",
+      "name": "Gray 2",
+      "styleType": "FILL"
+    },
+    "1:104": {
+      "description": "",
+      "key": "58fcd10083a70b5c9f65853cab0364bfa931e78f",
+      "name": "Gray 3",
+      "styleType": "FILL"
+    },
+    "1:105": {
+      "description": "",
+      "key": "3ff6f2510b6886732f15d3612c4b60b6ccb592cb",
+      "name": "Gray 4",
+      "styleType": "FILL"
+    },
+    "1:106": {
+      "description": "",
+      "key": "e7246d7a2efef4d3a74a9fc0678687ff697b7381",
+      "name": "Gray 5",
+      "styleType": "FILL"
+    },
+    "1:110": {
+      "description": "",
+      "key": "eb3f4a7455f9310702893c1fee058d7aa7fbb614",
+      "name": "Red",
+      "styleType": "FILL"
+    },
+    "1:111": {
+      "description": "",
+      "key": "545baa49d0d33fbf978fdd1108d0b0c673e74cca",
+      "name": "Orange",
+      "styleType": "FILL"
+    },
+    "1:112": {
+      "description": "",
+      "key": "d43376824d3998db7fdd948b7c2865ec6ed8f44a",
+      "name": "Yellow",
+      "styleType": "FILL"
+    },
+    "1:113": {
+      "description": "",
+      "key": "e2791cb51a7b333453624ecdd86f38944ff1c2ca",
+      "name": "Blue 1",
+      "styleType": "FILL"
+    },
+    "1:114": {
+      "description": "",
+      "key": "158551c625075cae49c87e1db51fac97bce9fe2c",
+      "name": "Blue 2",
+      "styleType": "FILL"
+    },
+    "1:115": {
+      "description": "",
+      "key": "3bbffa755ca058fc3f1e4b8d22ba8a9ed702c9fe",
+      "name": "Blue 3",
+      "styleType": "FILL"
+    },
+    "1:116": {
+      "description": "",
+      "key": "72bd37b0e1fc0c19d037544b950b9c23dff6e625",
+      "name": "Green 1",
+      "styleType": "FILL"
+    },
+    "1:117": {
+      "description": "",
+      "key": "b9281c402ebd4608e73fd0b6cba8e836bfa2ae64",
+      "name": "Green 2",
+      "styleType": "FILL"
+    },
+    "1:118": {
+      "description": "",
+      "key": "389dbf9865820228998d5779d3cf41532cd31d80",
+      "name": "Green 3",
+      "styleType": "FILL"
+    },
+    "1:82": {
+      "description": "",
+      "key": "a6ea3e5e6aa9c0445aa0bcebfc25cc5a8ea55b1d",
+      "name": "Font Weight Regular",
+      "styleType": "TEXT"
+    },
+    "1:83": {
+      "description": "",
+      "key": "7d1e73aad6db7ab3e7fb4d08e71442b0fa2ac8b4",
+      "name": "Font Weight Medium",
+      "styleType": "TEXT"
+    },
+    "1:84": {
+      "description": "",
+      "key": "fdc766dcbdac41575ce39cc764ac6a1d21f51354",
+      "name": "Font Weight Light",
+      "styleType": "TEXT"
+    },
+    "1:85": {
+      "description": "",
+      "key": "9941dea061536393b0da9074e0372fda1f4fb7b3",
+      "name": "Line Height L",
+      "styleType": "TEXT"
+    },
+    "1:86": {
+      "description": "",
+      "key": "04c32d9ba6c55a4e8f9109a47d814b932498163b",
+      "name": "Line Height M",
+      "styleType": "TEXT"
+    },
+    "1:87": {
+      "description": "",
+      "key": "5d2e12e829ac9935bf58ddc788199f29254397fd",
+      "name": "Line Height S",
+      "styleType": "TEXT"
+    },
+    "1:88": {
+      "description": "",
+      "key": "14b54552daafcb287f1ed853760de6acbbdbd05b",
+      "name": "Line Height XS",
+      "styleType": "TEXT"
+    },
+    "1:89": {
+      "description": "",
+      "key": "a8c5845dcce77baac3d0249b60c8547fb7baf281",
+      "name": "Font Regular",
+      "styleType": "TEXT"
+    },
+    "1:90": {
+      "description": "",
+      "key": "84e8de0a7c95ab60638137999fc820a6393cf281",
+      "name": "Font Medium",
+      "styleType": "TEXT"
+    },
+    "1:91": {
+      "description": "",
+      "key": "4c27051c1704446e5b11a563ea422dc6cc67f26b",
+      "name": "Font Light",
+      "styleType": "TEXT"
+    },
+    "1:92": {
+      "description": "",
+      "key": "0f3841d585bce3fc2736e1ab860e220f1ab93b5c",
+      "name": "Heading L",
+      "styleType": "TEXT"
+    },
+    "1:93": {
+      "description": "",
+      "key": "2c4bc69c7c64672bb763f57ceffbb3293628aee5",
+      "name": "Heading M",
+      "styleType": "TEXT"
+    },
+    "1:94": {
+      "description": "",
+      "key": "fb18b232c4aae6e80b029b17ffca9ad48c6c4245",
+      "name": "Heading S",
+      "styleType": "TEXT"
+    },
+    "1:95": {
+      "description": "",
+      "key": "2e6b1a6e564000147bba1010f1190fe86606be25",
+      "name": "Heading XS",
+      "styleType": "TEXT"
+    },
+    "1:96": {
+      "description": "",
+      "key": "743788e493f854cb169ac4b52680298951bfbe23",
+      "name": "Body L",
+      "styleType": "TEXT"
+    },
+    "1:97": {
+      "description": "",
+      "key": "d3ee27203c2a78e1be319607df37046bc6fc591b",
+      "name": "Body M",
+      "styleType": "TEXT"
+    },
+    "1:98": {
+      "description": "",
+      "key": "f61192adf1168d4c57b59f3a72550494c8703d4d",
+      "name": "Body S",
+      "styleType": "TEXT"
+    },
+    "1:99": {
+      "description": "",
+      "key": "2248690b0fbfc489245401131e9f97d2d8ec24e9",
+      "name": "Microcopy",
+      "styleType": "TEXT"
+    }
+  },
+  "thumbnailUrl": "https://s3-alpha-sig.figma.com/thumbnails/dd6cb7b6-3dc9-4f20-9506-8aacabfe578f?Expires=1583107200&Signature=fRu1DKlVPJidoRqhnfOrlJpmjnn1Old7EPc3cJCz168RzlRyzbbhVerrTprW~sT1FYi3MvdatQg7AY39NwhHLllwdbgaq0k1VLV2WqVgUKjTnuBycWCnDfJbePkNlOwelzAo0M6ei1RGII9XOhTLmounb1VWlj3Jld9r9vXviNl8TmzVJFKl-jJ1onrHX7-WWB8QkcZsu6QJnAORoCE2qlXIQ3qP0dS2oDh3AKQX7Dyiqo728-MHdNmfsQkxQB8MBH~mVVpoX8CuugJwCuIYgnre7YBH8AemRAQBLnew6UorKgsikHcyVYTqs-cDK2eLLv292jxrYF4JVfUhR6Mq-Q__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+  "version": "256866175"
+}

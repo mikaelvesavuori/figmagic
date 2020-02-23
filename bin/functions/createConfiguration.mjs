@@ -1,5 +1,5 @@
-import fs from 'fs';
-
+//import fs from 'fs';
+import { loadFile } from './loadFile.mjs';
 import { parseCliArgs } from './parseCliArgs.mjs';
 
 import { config } from './../meta/config.mjs';
@@ -46,56 +46,29 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
   // Medium priority
   const CLI_CONFIG = parseCliArgs(cliArgs);
 
-  console.log(cliArgs);
-  console.log(CLI_CONFIG);
-
-  // RC file configuration
+  // RC file configuration is loaded below
   // Highest priority
-  let RC_CONFIG = {};
+  const RC_CONFIG = await loadFile(userConfigPath);
 
-  // Check for, and read, any existing user configuration
-  return await new Promise(async (resolve, reject) => {
-    if (fs.existsSync(userConfigPath)) {
-      try {
-        return await new Promise((resolve, reject) => {
-          fs.readFile(userConfigPath, 'utf8', (error, data) => {
-            if (error) reject(error); //throw new Error(error);
-            RC_CONFIG = JSON.parse(data);
-            resolve(RC_CONFIG);
-          });
-        });
-      } catch (error) {
-        console.error(error);
-        reject();
-      }
-    } else {
-      resolve();
-    }
-  })
-    .then(() => {
-      // Merge configurations in order of prioritization
-      const CONFIG = { ...DEFAULT_CONFIG, ...ENV_CONFIG, ...CLI_CONFIG, ...RC_CONFIG };
+  // Merge configurations in order of prioritization
+  const CONFIG = { ...DEFAULT_CONFIG, ...ENV_CONFIG, ...CLI_CONFIG, ...RC_CONFIG };
 
-      // Set debug mode to correct setting
-      process.env.FIGMA_DEBUG = CONFIG.debugMode;
+  // Set debug mode to correct setting
+  process.env.FIGMA_DEBUG = CONFIG.debugMode;
 
-      if (process.env.FIGMA_DEBUG === 'true') {
-        console.log('USER: ENV_CONFIG');
-        console.log(ENV_CONFIG);
-        console.log('USER: CLI_CONFIG');
-        console.log(CLI_CONFIG);
-        console.log('USER: RC_CONFIG');
-        console.log(RC_CONFIG);
-        console.log('SYSTEM: FINAL CONFIG');
-        console.log(CONFIG);
-      }
+  if (process.env.FIGMA_DEBUG === 'true') {
+    console.log('USER: ENV_CONFIG');
+    console.log(ENV_CONFIG);
+    console.log('USER: CLI_CONFIG');
+    console.log(CLI_CONFIG);
+    console.log('USER: RC_CONFIG');
+    console.log(RC_CONFIG);
+    console.log('SYSTEM: FINAL CONFIG');
+    console.log(CONFIG);
+  }
 
-      console.log('CONFIG');
-      console.log(CONFIG);
+  console.log('CONFIG');
+  console.log(CONFIG);
 
-      return CONFIG;
-    })
-    .catch(error => {
-      console.error(error);
-    });
+  return CONFIG;
 }
