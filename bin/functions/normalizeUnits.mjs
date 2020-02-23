@@ -3,7 +3,7 @@ import { errorNormalizeUnits } from '../meta/errors.mjs';
 import { warnNormalizeUnits } from '../meta/warnings.mjs';
 
 /**
- * Normalize units
+ * Normalize and convert units
  *
  * @exports
  * @function
