@@ -9,7 +9,7 @@ import { errorSetupSpacingTokens } from '../meta/errors.mjs';
  *
  * @exports
  * @function
- * @param {object} frame - The spacing frame from Figma
+ * @param {object} spacingFrame - The spacing frame from Figma
  * @param {string} spacingUnit - The spacing unit
  * @returns {object} - Returns an object with all the spacings
  * @throws {error} - When there is no provided Figma frame

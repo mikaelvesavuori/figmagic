@@ -8,16 +8,16 @@ import { errorSetupFontWeightTokens } from '../meta/errors.mjs';
  *
  * @exports
  * @function
- * @param {object} frame - The font weight frame from Figma
+ * @param {object} fontWeightFrame - The font weight frame from Figma
  * @returns {object} - Returns an object with all the font weights
  * @throws {error} - When there is no provided Figma frame
  */
-export function setupFontWeightTokens(frame) {
-  if (!frame) throw new Error(errorSetupFontWeightTokens);
+export function setupFontWeightTokens(fontWeightFrame) {
+  if (!fontWeightFrame) throw new Error(errorSetupFontWeightTokens);
 
   let fontWeightObject = {};
 
-  frame.children.forEach(type => {
+  fontWeightFrame.children.forEach(type => {
     let name = camelize(type.name);
     name = formatName(name);
     const fontWeight = type.style.fontWeight;
