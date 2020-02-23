@@ -1,7 +1,5 @@
 import { camelize } from '../bin/functions/camelize';
 
-import { errorCamelize } from '../bin/meta/errors.mjs';
-
 test('It should remove spaces and capitalize first letter of the word coming after the removed space', () => {
   expect(camelize('John Johnson')).toBe('johnJohnson');
 });
@@ -15,5 +13,7 @@ test('It should trim trailing whitespace', () => {
 });
 
 test('It should throw an error if no parameter is provided', () => {
-  expect(camelize()).toThrow(errorCamelize);
+  expect(() => {
+    camelize();
+  }).toThrow();
 });

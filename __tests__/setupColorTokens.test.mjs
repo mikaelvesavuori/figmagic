@@ -27,7 +27,9 @@ test('It should return a complete object when passing in valid input', () => {
 });
 
 test('It should throw an error if frame is missing "children" array', () => {
-  expect(setupColorTokens({})).toThrow();
+  expect(() => {
+    setupColorTokens({});
+  }).toThrow();
 });
 
 test('It should throw an error if frame has "color" property but not "color.fills"', () => {

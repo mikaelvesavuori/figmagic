@@ -1,5 +1,6 @@
 import { processTokens } from '../bin/functions/processTokens';
 
+import { defaultSettings } from '../testdata/defaultSettings.mjs';
 import { colorFrame } from '../testdata/colorFrame.mjs';
 import { spacingFrame } from '../testdata/spacingFrame.mjs';
 import { fontFrame } from '../testdata/fontFrame.mjs';
@@ -7,24 +8,14 @@ import { fontSizeFrame } from '../testdata/fontSizeFrame.mjs';
 import { fontWeightFrame } from '../testdata/fontWeightFrame.mjs';
 import { lineHeightFrame } from '../testdata/lineHeightFrame.mjs';
 
-const settings = {
-  debugMode: false,
-  fontUnit: 'rem',
-  outputFileName: 'figma.json',
-  outputFolderBaseFile: 'figma',
-  outputFolderTokens: 'tokens',
-  outputTokenFormat: 'mjs',
-  spacingUnit: 'rem',
-  usePostscriptFontNames: false
-};
-
 test('It should throw an error if no parameter is provided', () => {
-  //expect.assertions(1);
-  expect(processTokens()).rejects.toThrow();
+  expect(() => {
+    processTokens();
+  }).toThrow();
 });
 
 test('It should return data when passed valid color frame and valid settings', () => {
-  expect(processTokens(colorFrame, 'color', settings)).toEqual(
+  expect(processTokens(colorFrame, 'color', defaultSettings)).toEqual(
     expect.objectContaining({
       black: 'rgba(1, 0, 45, 1)',
       blue1: 'rgba(47, 128, 237, 1)',
@@ -48,7 +39,7 @@ test('It should return data when passed valid color frame and valid settings', (
 });
 
 test('It should return data when passed valid spacing frame and valid settings', () => {
-  expect(processTokens(spacingFrame, 'spacing', settings)).toEqual(
+  expect(processTokens(spacingFrame, 'spacing', defaultSettings)).toEqual(
     expect.objectContaining({
       huge: '5rem',
       large: '4.375rem',
@@ -60,7 +51,7 @@ test('It should return data when passed valid spacing frame and valid settings',
 });
 
 test('It should return data when passed valid font families frame and valid settings', () => {
-  expect(processTokens(fontFrame, 'fontfamilies', settings)).toEqual(
+  expect(processTokens(fontFrame, 'fontfamilies', defaultSettings)).toEqual(
     expect.objectContaining({
       light: 'HelveticaNeue',
       medium: 'HelveticaNeue',
@@ -70,7 +61,7 @@ test('It should return data when passed valid font families frame and valid sett
 });
 
 test('It should return data when passed valid font size frame and valid settings', () => {
-  expect(processTokens(fontSizeFrame, 'fontsizes', settings)).toEqual(
+  expect(processTokens(fontSizeFrame, 'fontsizes', defaultSettings)).toEqual(
     expect.objectContaining({
       h1: '3rem',
       h2: '2.5rem',
@@ -85,13 +76,13 @@ test('It should return data when passed valid font size frame and valid settings
 });
 
 test('It should return data when passed valid font weights frame and valid settings', () => {
-  expect(processTokens(fontWeightFrame, 'fontweights', settings)).toEqual(
+  expect(processTokens(fontWeightFrame, 'fontweights', defaultSettings)).toEqual(
     expect.objectContaining({ light: 300, medium: 500, regular: 400 })
   );
 });
 
 test('It should return data when passed valid line heights frame and valid settings', () => {
-  expect(processTokens(lineHeightFrame, 'lineheights', settings)).toEqual(
+  expect(processTokens(lineHeightFrame, 'lineheights', defaultSettings)).toEqual(
     expect.objectContaining({ l: '1.99', m: '1.76', s: '1.46', xs: '1.00' })
   );
 });

@@ -24,7 +24,9 @@ test('It should throw an error if no parameter is provided', () => {
 });
 
 test('It should throw an error if frame is missing "children" array', () => {
-  expect(setupFontSizeTokens({})).toThrow();
+  expect(() => {
+    setupFontSizeTokens({});
+  }).toThrow();
 });
 
 test('It should throw an error if frame does not contain "style" property', () => {

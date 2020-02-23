@@ -25,6 +25,13 @@ export function setupColorTokens(colorFrame) {
 
   colorFrame.children.forEach(color => {
     if (!color.fills) throw new Error(errorSetupColorTokensNoFills);
+    /*
+    if (!color.fills[0]) throw new Error(errorSetupColorTokensNoFills);
+    if (!color.fills[0].color) throw new Error(errorSetupColorTokensNoFills);
+    if (!color.fills[0].color.r) throw new Error(errorSetupColorTokensNoFills);
+    if (!color.fills[0].color.g) throw new Error(errorSetupColorTokensNoFills);
+		if (!color.fills[0].color.b) throw new Error(errorSetupColorTokensNoFills);
+		*/
 
     const COLOR_STRING = `rgba(${roundColorValue(color.fills[0].color.r, 255)}, ${roundColorValue(
       color.fills[0].color.g,

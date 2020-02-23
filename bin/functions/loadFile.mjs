@@ -12,6 +12,7 @@ import { errorLoadFile } from '../meta/errors.mjs';
  * @returns {object} - The parsed JSON object
  */
 export async function loadFile(path) {
+  if (!path) throw new Error(errorLoadFile);
   if (!fs.existsSync(path)) throw new Error(errorLoadFile);
 
   return await new Promise((resolve, reject) => {

@@ -3,7 +3,7 @@ import { formatName } from './formatName.mjs';
 import { processTokens } from './processTokens.mjs';
 import { writeFile } from './writeFile.mjs';
 
-import { errorWriteTokens } from '../meta/errors.mjs';
+import { errorWriteTokens, errorWriteTokensNoSettings } from '../meta/errors.mjs';
 
 /**
  * Write tokens to file
@@ -12,11 +12,12 @@ import { errorWriteTokens } from '../meta/errors.mjs';
  * @function
  * @param {array} tokens - The final array of design tokens
  * @param {object} settings - User configuration object
- * @returns {void} - Will write file to disk through writeFile()
+ * @returns {true} - Return true when finished
  * @throws {error} - When no than one token is provided
  */
 export function writeTokens(tokens, settings) {
   if (!tokens.length > 0) throw new Error(errorWriteTokens);
+  if (!settings) throw new Error(errorWriteTokensNoSettings);
 
   tokens.forEach(token => {
     let tokenName = camelize(token.name);
@@ -32,4 +33,6 @@ export function writeTokens(tokens, settings) {
       settings.outputTokenFormat
     );
   });
+
+  return true;
 }

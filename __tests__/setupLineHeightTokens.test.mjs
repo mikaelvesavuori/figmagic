@@ -15,11 +15,13 @@ test('It should throw an error if no parameter is provided', () => {
 });
 
 test('It should throw an error if children are missing', () => {
-  expect(setupLineHeightTokens({})).toThrow();
+  expect(() => {
+    setupLineHeightTokens({});
+  }).toThrow();
 });
 
 test('It should throw an error if children are missing "name" and "style" properties', () => {
-  expect(
+  expect(() => {
     setupLineHeightTokens({
       children: [
         {
@@ -27,12 +29,12 @@ test('It should throw an error if children are missing "name" and "style" proper
           styleMismatch: {}
         }
       ]
-    })
-  ).toThrow();
+    });
+  }).toThrow();
 });
 
 test('It should throw an error if children has "style" property but not "lineHeightPercentFontSize"', () => {
-  expect(
+  expect(() => {
     setupLineHeightTokens({
       children: [
         {
@@ -42,6 +44,6 @@ test('It should throw an error if children has "style" property but not "lineHei
           }
         }
       ]
-    })
-  ).toThrow();
+    });
+  }).toThrow();
 });

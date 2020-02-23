@@ -35,7 +35,7 @@ test('It should choose Postscript name if passing in "usePostscriptFontNames" bo
 });
 
 test('It should throw an error if frame has "style" and "name" properties but not "style.fontPostScriptName" or "style.fontFamily"', () => {
-  expect(
+  expect(() => {
     setupFontTokens({
       children: [
         {
@@ -46,6 +46,6 @@ test('It should throw an error if frame has "style" and "name" properties but no
           }
         }
       ]
-    })
-  ).toThrow();
+    });
+  });
 });

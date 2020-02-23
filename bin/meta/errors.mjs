@@ -24,6 +24,8 @@ export const errorNormalizeUnitsUndefined = 'Parameters "rootSize" or "unitSize"
 
 export const errorProcessTokens = 'No sheet or name for processTokens()!';
 
+export const errorRoundColor =
+  'Error while rounding color value: Required argument "quantity" was not passed in!';
 export const errorRoundColorValue =
   'Error while rounding color value: Scale value must be equal to or less than 255!';
 
@@ -66,3 +68,5 @@ export const errorWriteFile = 'Missing required parameters to correctly run writ
 
 export const errorWrite = 'Error while attempting to write file!';
 export const errorWriteTokens = 'Less than one token provided to writeTokens()!';
+export const errorWriteTokensNoSettings =
+  'Missing "settings" argument/object when attempting to write tokens!';

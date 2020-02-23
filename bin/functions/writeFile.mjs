@@ -45,7 +45,7 @@ async function write(file, path, name, isToken, format) {
 
   return await new Promise((resolve, reject) => {
     try {
-      fs.writeFile(filePath, fileContent, 'utf-8', function(error) {
+      fs.writeFile(filePath, fileContent, 'utf-8', error => {
         if (error) throw new Error(`${errorWrite}: ${error}`);
         resolve();
       });

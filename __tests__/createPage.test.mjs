@@ -1,16 +1,16 @@
 import { createPage } from '../bin/functions/createPage';
 
-import { errorCreatePage } from '../bin/meta/errors.mjs';
-
 test('It should throw an error if no parameter is provided', () => {
-  //expect.assertions(1);
-  expect(createPage()).rejects.toThrow(errorCreatePage);
+  expect(() => {
+    createPage();
+  }).toThrow();
 });
 
 test('It should throw an error if array is empty', () => {
   const FIGMA_PAGES = [];
-  //expect.assertions(1);
-  expect(createPage(FIGMA_PAGES)).rejects.toThrow(errorCreatePage);
+  expect(() => {
+    createPage(FIGMA_PAGES);
+  }).toThrow();
 });
 
 /*

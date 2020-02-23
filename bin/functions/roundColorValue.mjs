@@ -1,4 +1,4 @@
-import { errorRoundColorValue } from '../meta/errors.mjs';
+import { errorRoundColor, errorRoundColorValue } from '../meta/errors.mjs';
 
 /**
  * Round color values so they are whole integers
@@ -10,6 +10,7 @@ import { errorRoundColorValue } from '../meta/errors.mjs';
  * @returns {number} - The final number
  */
 export function roundColorValue(quantity, scale = 255) {
+  if (!quantity) throw new Error(errorRoundColor);
   if (scale < 0 || scale > 255) throw new Error(errorRoundColorValue);
   return (parseFloat(quantity) * parseInt(scale)).toFixed(0);
 }

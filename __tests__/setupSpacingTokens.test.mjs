@@ -27,7 +27,7 @@ test('It should throw an error if frame is empty', () => {
 });
 
 test('It should throw an error if children are missing "name" and "absoluteBoundingBox" properties', () => {
-  expect(
+  expect(() => {
     setupSpacingTokens({
       children: [
         {
@@ -35,6 +35,6 @@ test('It should throw an error if children are missing "name" and "absoluteBound
           absoluteBoundingBoxMismatch: 100
         }
       ]
-    })
-  ).toThrow();
+    });
+  }).toThrow();
 });

@@ -1,15 +1,48 @@
-import { setupFontSizeTokens } from '../bin/functions/setupFontSizeTokens';
+import { setupFontWeightTokens } from '../bin/functions/setupFontWeightTokens';
 
 import { fontWeightFrame } from '../testdata/fontWeightFrame.mjs';
 
 test('It should return a complete object when passing in valid input', () => {
-  expect(setupFontSizeTokens(fontWeightFrame)).toEqual(
-    expect.objectContaining({ light: NaN, medium: NaN, regular: NaN })
+  expect(setupFontWeightTokens(fontWeightFrame)).toEqual(
+    expect.objectContaining({ light: 300, medium: 500, regular: 400 })
   );
 });
 
 test('It should throw an error if no parameter is provided', () => {
   expect(() => {
-    setupFontSizeTokens();
+    setupFontWeightTokens();
+  }).toThrow();
+});
+
+test('It should throw an error if children are missing', () => {
+  expect(() => {
+    setupFontWeightTokens({});
+  }).toThrow();
+});
+
+test('It should throw an error if children are missing "name" and "style" properties', () => {
+  expect(
+    setupFontWeightTokens({
+      children: [
+        {
+          someValue: 1234
+        }
+      ]
+    })
+  ).toThrow();
+});
+
+test('It should throw an error if children has "style" property but not "fontWeight"', () => {
+  expect(() => {
+    setupFontWeightTokens({
+      children: [
+        {
+          name: 'Something',
+          style: {
+            fontWeightMismatch: 100
+          }
+        }
+      ]
+    });
   }).toThrow();
 });
