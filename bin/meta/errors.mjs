@@ -10,6 +10,7 @@ export const errorFindShortenedNameMatchString =
   'No "matchString" was provided to findShortenedNameMatch()!';
 export const errorFindShortenedNameMatchOriginal =
   'No "originalString" was provided to findShortenedNameMatch()!';
+export const errorFindShortenedNameMatchWrongType = 'Arguments are not of string type!';
 
 export const errorFormatName = 'No string for formatName()!';
 
@@ -17,6 +18,7 @@ export const errorGetFromApi =
   'Missing one or more of required arguments: "figmaToken", "figmaUrl", "outputFolder", "outputFileName"!';
 
 export const errorNormalizeUnits = 'Missing parameters for normalizeUnits()!';
+export const errorNormalizeUnitsUndefined = 'Parameters "rootSize" or "unitSize" are undefined!';
 
 export const errorProcessTokens = 'No sheet or name for processTokens()!';
 
@@ -54,7 +56,7 @@ export const errorSetupLineHeightTokensMissingPercent =
   'Missing "style.lineHeightPercentFontSize" property in line heights frame!';
 
 export const errorSetupSpacingTokensNoFrame = 'No frame for setupSpacingTokens()!';
-export const errorSetupSpacingTokensZeroLength = 'Spacing frame is zero length!';
+export const errorSetupSpacingTokensNoChildren = 'Spacing frame has no children!';
 export const errorSetupSpacingTokensMissingProps =
   'Missing "name" or "absoluteBoundingBox" properties in spacing frame!';
 

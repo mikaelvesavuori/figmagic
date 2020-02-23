@@ -13,3 +13,35 @@ test('It should throw an error if no parameter is provided', () => {
     setupLineHeightTokens();
   }).toThrow();
 });
+
+test('It should throw an error if children are missing', () => {
+  expect(setupLineHeightTokens({})).toThrow();
+});
+
+test('It should throw an error if children are missing "name" and "style" properties', () => {
+  expect(
+    setupLineHeightTokens({
+      children: [
+        {
+          nameMismatch: 'Something',
+          styleMismatch: {}
+        }
+      ]
+    })
+  ).toThrow();
+});
+
+test('It should throw an error if children has "style" property but not "lineHeightPercentFontSize"', () => {
+  expect(
+    setupLineHeightTokens({
+      children: [
+        {
+          name: 'Something',
+          style: {
+            lineHeightPercentFontSizeMismatch: 100
+          }
+        }
+      ]
+    })
+  ).toThrow();
+});

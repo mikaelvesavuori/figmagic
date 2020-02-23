@@ -1,8 +1,6 @@
-import {
-  errorCreatePage,
-  errorFindShortenedNameMatchString,
-  errorFindShortenedNameMatchOriginal
-} from './../meta/errors.mjs';
+import { findShortenedNameMatch } from './findShortenedNameMatch.mjs';
+
+import { errorCreatePage } from './../meta/errors.mjs';
 
 /**
  * Creates cleaned pages from the raw Figma data, for further processing
@@ -31,6 +29,7 @@ export function createPage(figmaPages) {
         hasCreatedDesignTokensPage === false
       ) {
         isMatchFound = true;
+        // TODO: This is uncovered in test
         if (page.name.toLowerCase().replace(' ', '') === 'designtokens') {
           hasCreatedDesignTokensPage = true;
           correctPage = page;
@@ -40,23 +39,4 @@ export function createPage(figmaPages) {
   });
 
   return correctPage;
-}
-
-/**
- * Find short name match
- *
- * @exports
- * @function
- * @param {string} originalString - The original string
- * @param {string} matchString - String to match with
- * @returns {string} - The final string
- * @throws {error} - When no 'matchString' is provided
- * @throws {error} - When no 'originalString' is provided
- */
-export function findShortenedNameMatch(originalString, matchString) {
-  if (!originalString) throw new Error(errorFindShortenedNameMatchOriginal);
-
-  if (!matchString) throw new Error(errorFindShortenedNameMatchString);
-
-  return originalString.toLowerCase().replace(' ', '') === matchString;
 }

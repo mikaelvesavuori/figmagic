@@ -1,5 +1,5 @@
 import { units } from '../meta/units.mjs';
-import { errorNormalizeUnits } from '../meta/errors.mjs';
+import { errorNormalizeUnits, errorNormalizeUnitsUndefined } from '../meta/errors.mjs';
 import { warnNormalizeUnits } from '../meta/warnings.mjs';
 
 /**
@@ -38,15 +38,14 @@ export function normalizeUnits(value, currentUnit, newUnit) {
     unitSize = value / 100;
   }
 
-  if (rootSize !== undefined && unitSize !== undefined) {
-    if (newUnit === 'unitless') {
-      return unitSize;
-    } else {
-      const ADJUSTED_VALUE = value * (rootSize / unitSize);
-      return `${ADJUSTED_VALUE}${newUnit}`;
-    }
+  // TODO: This is uncovered in test
+  if (rootSize === undefined || unitSize === undefined)
+    throw new Error(errorNormalizeUnitsUndefined);
+
+  if (newUnit === 'unitless') {
+    return unitSize;
   } else {
-    console.warn(warnNormalizeUnits);
-    return;
+    const ADJUSTED_VALUE = value * (rootSize / unitSize);
+    return `${ADJUSTED_VALUE}${newUnit}`;
   }
 }

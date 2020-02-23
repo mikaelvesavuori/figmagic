@@ -19,3 +19,22 @@ test('It should throw an error if no parameter is provided', () => {
     setupSpacingTokens();
   }).toThrow();
 });
+
+test('It should throw an error if frame is empty', () => {
+  expect(() => {
+    setupSpacingTokens({});
+  }).toThrow();
+});
+
+test('It should throw an error if children are missing "name" and "absoluteBoundingBox" properties', () => {
+  expect(
+    setupSpacingTokens({
+      children: [
+        {
+          nameMismatch: 'Something',
+          absoluteBoundingBoxMismatch: 100
+        }
+      ]
+    })
+  ).toThrow();
+});

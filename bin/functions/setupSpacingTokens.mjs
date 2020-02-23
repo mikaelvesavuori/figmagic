@@ -4,7 +4,7 @@ import { normalizeUnits } from './normalizeUnits.mjs';
 
 import {
   errorSetupSpacingTokensNoFrame,
-  errorSetupSpacingTokensZeroLength,
+  errorSetupSpacingTokensNoChildren,
   errorSetupSpacingTokensMissingProps
 } from '../meta/errors.mjs';
 
@@ -20,7 +20,7 @@ import {
  */
 export function setupSpacingTokens(spacingFrame, spacingUnit) {
   if (!spacingFrame) throw new Error(errorSetupSpacingTokensNoFrame);
-  if (!spacingFrame.length > 0) throw new Error(errorSetupSpacingTokensZeroLength);
+  if (!spacingFrame.children) throw new Error(errorSetupSpacingTokensNoChildren);
 
   const SPACINGS = spacingFrame.children;
   const SPACING_OBJECT = {};
