@@ -8,7 +8,7 @@ import { fontSizeFrame } from '../testdata/fontSizeFrame.mjs';
 import { fontWeightFrame } from '../testdata/fontWeightFrame.mjs';
 import { lineHeightFrame } from '../testdata/lineHeightFrame.mjs';
 
-test('It should ', () => {
+test('It should return tokens if passed a valid set of frame and settings', () => {
   const TOKENS = [
     colorFrame,
     spacingFrame,
