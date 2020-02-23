@@ -7,7 +7,7 @@
 
 Automate the generation of design tokens and specs from your Figma documents. Inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo).
 
-Extract design tokens for colors, typography (line heights, font sizes, font families), and spacing. A typical use case for the generated documents is to use the extracted values as a token base in CSS systems that support external values (such as Styled Components, other CSS-in-JS libraries, or Sass).
+Extract design tokens from colors, typography (line heights, font sizes, font families), and spacing. A typical use case for the generated documents is to use the extracted values as a token base in CSS systems that support external values (such as Styled Components, other CSS-in-JS libraries, or Sass).
 
 Figmagic uses ESM imports, so make sure you have a recent Node version, preferably version 12.16 or later.
 
