@@ -17,7 +17,7 @@ _Built initially as an internal handoff tool for [Humblebee](https://www.humbleb
 
 ## Changes and release notes, version 2 vs version 1
 
-Improvements:
+### Improvements
 
 - You can now customize Figmagic a lot more, using both a `.figmagicrc` file and with regular CLI input
 - Running `figmagic` with existing tokens will not insta-delete the old files; now they will simply be put in the trash can (this is a requested safety net, for example when you're combining Figmagic with extra steps and hate having files trashed that have changes in them)
@@ -26,7 +26,7 @@ Improvements:
 - More tests and coverage
 - [https://www.figmagic.com](https://www.figmagic.com) is launched! Nothing special, but at least creates a bit more visibility
 
-Things to know when migrating from version 1 to version 2:
+### Changes to keep in mind when migrating
 
 - Spacing is now in `rem` units
 - Postscript font family names are no longer used; instead it's the normalized regular names (you can select to use Postscript names if you want, though)
