@@ -8,13 +8,24 @@ import { errorCreateFolder } from '../meta/errors.mjs';
  * @exports
  * @function
  * @param {string} dir - The name of the directory that the user wants to create
- * @returns {void} - New folder created with fs.mkdirSync()
+ * @returns {Promise} - Returns promise from wrapped fs.mkdir
  * @throws {error} - When no directory specified
  */
-export function createFolder(dir) {
+export async function createFolder(dir) {
   if (!dir) throw new Error(errorCreateFolder);
 
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
-  }
+  return new Promise((resolve, reject) => {
+    try {
+      if (!fs.existsSync(dir)) {
+        fs.mkdir(dir, { recursive: true }, error => {
+          if (error) throw error;
+          resolve();
+        });
+      }
+
+      resolve();
+    } catch (error) {
+      reject(error);
+    }
+  });
 }

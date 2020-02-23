@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-import { writeFile } from './writeFile.mjs';
+//import { writeFile } from './writeFile.mjs';
 
 import { errorGetFromApi } from '../meta/errors.mjs';
 
@@ -20,20 +20,11 @@ export async function getFromApi(figmaToken, figmaUrl, outputFolderBaseFile, out
   if (!figmaToken || !figmaUrl || !outputFolderBaseFile || !outputFileName)
     throw new Error(errorGetFromApi);
 
-  let data = {};
-
   const URL = 'https://api.figma.com/v1/files/' + figmaUrl;
 
-  await fetch(URL, {
+  return await fetch(URL, {
     headers: {
       'X-Figma-Token': figmaToken
     }
-  })
-    .then(res => res.json())
-    .then(json => {
-      data = json;
-      writeFile(JSON.stringify(json), outputFolderBaseFile, outputFileName);
-    });
-
-  return data;
+  }).then(res => res.json());
 }

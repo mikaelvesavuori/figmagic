@@ -24,14 +24,17 @@ export function writeFile(file, path, name, isToken = false, format) {
 
 /**
  * Local helper that does most of the actual formatting and writing of the file
+ *
+ * @async
  * @function
  * @param {string} file - File contents
  * @param {string} path - File path minus file name
  * @param {string} name - File name
  * @param {boolean} isToken - If this is a token or not
  * @param {string} format - File format
+ * @returns {Promise} - Returns promise from wrapped fs.writeFile
  */
-function write(file, path, name, isToken, format) {
+async function write(file, path, name, isToken, format) {
   let fileContent = file;
   let filePath = `${path}/${name}`;
 
@@ -40,9 +43,14 @@ function write(file, path, name, isToken, format) {
     filePath += `.${format}`;
   }
 
-  fs.writeFile(filePath, fileContent, 'utf-8', function(error) {
-    if (error) {
-      throw new Error(`${errorWrite}: ${error}`);
+  return await new Promise((resolve, reject) => {
+    try {
+      fs.writeFile(filePath, fileContent, 'utf-8', function(error) {
+        if (error) throw new Error(`${errorWrite}: ${error}`);
+        resolve();
+      });
+    } catch (error) {
+      reject(error);
     }
   });
 }

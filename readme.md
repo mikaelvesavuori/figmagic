@@ -35,7 +35,7 @@ _Built initially as an internal handoff tool for [Humblebee](https://www.humbleb
 
 There's a lot to say here about the use cases and approaches taken by other tools. I will be writing an article on the motivations behind the project later on.
 
-The basic idea of Figmagic is to support an informed handoff between designers and developers. I believe the best way to do this in a solid, mature, and non-impeding way is:
+The idea of Figmagic is to support an informed handoff between designers and developers. I believe the best way to do this in a solid, mature, and non-impeding way is:
 
 - Expect relative and current value types that are optimally suited for each typology (unitless for line heights, rems for font sizes...). Don't use or expect `px` values in most cases.
 - Transform values into a common set of tokens rather than output exact values, ie. use something like `${colors.midGray}` rather than `#3C3C3C`.

@@ -54,13 +54,15 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
   let RC_CONFIG = {};
 
   // Check for, and read, any existing user configuration
-  return await new Promise((resolve, reject) => {
+  return await new Promise(async (resolve, reject) => {
     if (fs.existsSync(userConfigPath)) {
       try {
-        fs.readFile(userConfigPath, 'utf8', (error, data) => {
-          if (error) throw new Error(error);
-          RC_CONFIG = JSON.parse(data);
-          resolve();
+        return await new Promise((resolve, reject) => {
+          fs.readFile(userConfigPath, 'utf8', (error, data) => {
+            if (error) reject(error); //throw new Error(error);
+            RC_CONFIG = JSON.parse(data);
+            resolve(RC_CONFIG);
+          });
         });
       } catch (error) {
         console.error(error);

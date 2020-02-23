@@ -9,6 +9,8 @@ import { createFolder } from './bin/functions/createFolder.mjs';
 import { getFromApi } from './bin/functions/getFromApi.mjs';
 import { createPage } from './bin/functions/createPage.mjs';
 import { writeTokens } from './bin/functions/writeTokens.mjs';
+import { writeFile } from './bin/functions/writeFile.mjs';
+
 import { errorGetData } from './bin/meta/errors.mjs';
 
 (async () => {
@@ -25,13 +27,13 @@ import { errorGetData } from './bin/meta/errors.mjs';
   // If there's no data or something went funky, eject
   if (!DATA || DATA.status === 403) throw new Error(errorGetData);
 
-  // Remove old folders
   await trash([`./${outputFolderTokens}`]);
   await trash([`./${outputFolderBaseFile}`]);
+  await createFolder(outputFolderTokens);
+  await createFolder(outputFolderBaseFile);
 
-  // Add new folders
-  createFolder(outputFolderTokens);
-  createFolder(outputFolderBaseFile);
+  // Write base Figma JSON
+  await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
 
   // Process tokens
   const TOKENS = createPage(DATA.document.children);
