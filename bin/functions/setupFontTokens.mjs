@@ -1,7 +1,11 @@
 import { camelize } from './camelize.mjs';
 import { formatName } from './formatName.mjs';
 
-import { errorSetupFontTokens } from '../meta/errors.mjs';
+import {
+  errorSetupFontTokensNoFrame,
+  errorSetupFontTokensNoChildren,
+  errorSetupFontTokensMissingProps
+} from '../meta/errors.mjs';
 
 /**
  * Places all Figma fonts into a clean object
@@ -14,11 +18,16 @@ import { errorSetupFontTokens } from '../meta/errors.mjs';
  * @throws {error} - When there is no provided Figma frame
  */
 export function setupFontTokens(fontFrame, usePostscriptFontNames) {
-  if (!fontFrame) throw new Error(errorSetupFontTokens);
+  if (!fontFrame) throw new Error(errorSetupFontTokensNoFrame);
+  if (!fontFrame.children) throw new Error(errorSetupFontTokensNoChildren);
 
   let fontObject = {};
 
   fontFrame.children.forEach(type => {
+    if (!type.name || !type.style) throw new Error(errorSetupFontTokensMissingProps);
+    if (!type.style.fontPostScriptName || !type.style.fontFamily)
+      throw new Error(errorSetupFontTokensMissingProps);
+
     let name = camelize(type.name);
     name = formatName(name);
 

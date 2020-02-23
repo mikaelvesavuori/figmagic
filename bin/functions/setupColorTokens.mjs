@@ -2,7 +2,11 @@ import { camelize } from './camelize.mjs';
 import { formatName } from './formatName.mjs';
 import { roundColorValue } from './roundColorValue.mjs';
 
-import { errorSetupColorTokens } from '../meta/errors.mjs';
+import {
+  errorSetupColorTokensNoFrame,
+  errorSetupColorTokensNoChildren,
+  errorSetupColorTokensNoFills
+} from '../meta/errors.mjs';
 
 /**
  * Places all Figma color frames into a clean object
@@ -14,11 +18,14 @@ import { errorSetupColorTokens } from '../meta/errors.mjs';
  * @throws {error} - When there is no provided Figma frame
  */
 export function setupColorTokens(colorFrame) {
-  if (!colorFrame) throw new Error(errorSetupColorTokens);
+  if (!colorFrame) throw new Error(errorSetupColorTokensNoFrame);
+  if (!colorFrame.children) throw new Error(errorSetupColorTokensNoChildren);
 
   let colors = {};
 
   colorFrame.children.forEach(color => {
+    if (!color.fills) throw new Error(errorSetupColorTokensNoFills);
+
     const COLOR_STRING = `rgba(${roundColorValue(color.fills[0].color.r, 255)}, ${roundColorValue(
       color.fills[0].color.g,
       255

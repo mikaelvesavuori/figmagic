@@ -1,7 +1,12 @@
 import { camelize } from './camelize.mjs';
 import { formatName } from './formatName.mjs';
 
-import { errorSetupFontWeightTokens } from '../meta/errors.mjs';
+import {
+  errorSetupFontWeightTokensNoFrame,
+  errorSetupFontWeightTokensNoChildren,
+  errorSetupFontWeightTokensMissingProps,
+  errorSetupFontWeightTokensMissingWeight
+} from '../meta/errors.mjs';
 
 /**
  * Places all Figma font weights into a clean object
@@ -13,11 +18,15 @@ import { errorSetupFontWeightTokens } from '../meta/errors.mjs';
  * @throws {error} - When there is no provided Figma frame
  */
 export function setupFontWeightTokens(fontWeightFrame) {
-  if (!fontWeightFrame) throw new Error(errorSetupFontWeightTokens);
+  if (!fontWeightFrame) throw new Error(errorSetupFontWeightTokensNoFrame);
+  if (!fontWeightFrame.children) throw new Error(errorSetupFontWeightTokensNoChildren);
 
   let fontWeightObject = {};
 
   fontWeightFrame.children.forEach(type => {
+    if (!type.name || !type.style) throw new Error(errorSetupFontWeightTokensMissingProps);
+    if (!type.style.fontWeight) throw new Error(errorSetupFontWeightTokensMissingWeight);
+
     let name = camelize(type.name);
     name = formatName(name);
     const fontWeight = type.style.fontWeight;

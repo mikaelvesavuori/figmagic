@@ -17,41 +17,29 @@ import {
  * @throws {error} - When no page(s) are provided
  */
 export function createPage(figmaPages) {
+  if (!figmaPages || !figmaPages.length > 0) throw new Error(errorCreatePage);
+
   let hasCreatedDesignTokensPage = false;
+  let correctPage = {};
+  let isMatchFound = false;
 
-  if (!figmaPages || !figmaPages.length > 0) {
-    throw new Error(errorCreatePage);
-  } else {
-    let correctPage = undefined;
-    let isMatchFound = false;
-
-    figmaPages.forEach(page => {
-      if (!isMatchFound) {
-        if (
-          findShortenedNameMatch(page.name, 'designtokens') &&
-          hasCreatedDesignTokensPage === false
-        ) {
-          isMatchFound = true;
-          foundMatch(page);
-        }
-      }
-
-      /**
-       * If a matching page is found, set local values to this page
-       * @param {object} page - The current Figma page
-       */
-      function foundMatch(page) {
-        const FIXED_PAGE_NAME = page.name.toLowerCase().replace(' ', '');
-
-        if (FIXED_PAGE_NAME === 'designtokens') {
+  figmaPages.forEach(page => {
+    // Loop only until match is found
+    if (!isMatchFound && page.name) {
+      if (
+        findShortenedNameMatch(page.name, 'designtokens') &&
+        hasCreatedDesignTokensPage === false
+      ) {
+        isMatchFound = true;
+        if (page.name.toLowerCase().replace(' ', '') === 'designtokens') {
           hasCreatedDesignTokensPage = true;
           correctPage = page;
         }
       }
-    });
+    }
+  });
 
-    return correctPage;
-  }
+  return correctPage;
 }
 
 /**

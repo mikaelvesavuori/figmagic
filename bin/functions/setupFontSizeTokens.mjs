@@ -2,7 +2,12 @@ import { camelize } from './camelize.mjs';
 import { formatName } from './formatName.mjs';
 
 import { units } from '../meta/units.mjs';
-import { errorSetupFontSizeTokens } from '../meta/errors.mjs';
+import {
+  errorSetupFontSizeTokensNoFrame,
+  errorSetupFontSizeTokensNoChildren,
+  errorSetupFontSizeTokensMissingProps,
+  errorSetupFontSizeTokensMissingSize
+} from '../meta/errors.mjs';
 
 /**
  * Places all Figma font sizes into a clean object
@@ -15,11 +20,15 @@ import { errorSetupFontSizeTokens } from '../meta/errors.mjs';
  * @throws {error} - When there is no provided Figma frame
  */
 export function setupFontSizeTokens(fontSizeFrame, fontUnit) {
-  if (!fontSizeFrame) throw new Error(errorSetupFontSizeTokens);
+  if (!fontSizeFrame) throw new Error(errorSetupFontSizeTokensNoFrame);
+  if (!fontSizeFrame.children) throw new Error(errorSetupFontSizeTokensNoChildren);
 
   let fontSizeObject = {};
 
   fontSizeFrame.children.forEach(type => {
+    if (!type.name || !type.style) throw new Error(errorSetupFontSizeTokensMissingProps);
+    if (!type.style.fontSize) throw new Error(errorSetupFontSizeTokensMissingSize);
+
     let name = camelize(type.name);
     name = formatName(name);
     const FONT_SIZE = type.style.fontSize / units.globalRemSize + fontUnit;
