@@ -2,17 +2,7 @@ import { setupColorTokens } from '../bin/functions/setupColorTokens';
 
 import { colorFrame } from '../testdata/colorFrame.mjs';
 
-/*
-test('It should return true for debugMode if passing "--debug"', () => {
-  expect(parseCliArgs(['--debug'])).toEqual(
-    expect.objectContaining({
-      debugMode: true
-    })
-  );
-});
-*/
-
-test('something here', () => {
+test('It should return a complete object when passing in valid input', () => {
   expect(setupColorTokens(colorFrame)).toEqual(
     expect.objectContaining({
       black: 'rgba(1, 0, 45, 1)',
@@ -34,6 +24,22 @@ test('something here', () => {
       yellow: 'rgba(242, 201, 76, 1)'
     })
   );
+});
+
+test('It should throw an error if frame is missing "children" array', () => {
+  expect(setupColorTokens({})).toThrow();
+});
+
+test('It should throw an error if frame has "color" property but not "color.fills"', () => {
+  expect(
+    setupColorTokens({
+      children: [
+        {
+          somethingElse: 123
+        }
+      ]
+    })
+  ).toThrow();
 });
 
 test('It should throw an error if no parameter is provided', () => {

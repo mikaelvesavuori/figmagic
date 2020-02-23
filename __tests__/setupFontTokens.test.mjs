@@ -2,11 +2,15 @@ import { setupFontTokens } from '../bin/functions/setupFontTokens';
 
 import { fontFrame } from '../testdata/fontFrame.mjs';
 
-/*
-test('It should normalize the unit, given a width, px basis, and a conversion type', () => {
-  expect(setupFontTokens(400, 'px', 'rem')).toBe('25rem');
+test('It should return a complete object when passing in valid input', () => {
+  expect(setupFontTokens(fontFrame)).toEqual(
+    expect.objectContaining({
+      light: 'HelveticaNeue',
+      medium: 'HelveticaNeue',
+      regular: 'HelveticaNeue'
+    })
+  );
 });
-*/
 
 test('It should throw an error if no parameter is provided', () => {
   expect(() => {
@@ -30,12 +34,18 @@ test('It should choose Postscript name if passing in "usePostscriptFontNames" bo
   expect(setupFontTokens(fontFrame, true)).toEqual(expect.objectContaining({}));
 });
 
-test('It should return a complete object when passing in valid input', () => {
-  expect(setupFontTokens(fontFrame)).toEqual(
-    expect.objectContaining({
-      light: 'HelveticaNeue',
-      medium: 'HelveticaNeue',
-      regular: 'HelveticaNeue'
+test('It should throw an error if frame has "style" and "name" properties but not "style.fontPostScriptName" or "style.fontFamily"', () => {
+  expect(
+    setupFontTokens({
+      children: [
+        {
+          name: 'Something',
+          style: {
+            fontPostScriptNameMismatch: false,
+            fontFamilyMismatch: 'Something'
+          }
+        }
+      ]
     })
-  );
+  ).toThrow();
 });
