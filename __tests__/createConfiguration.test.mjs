@@ -1,8 +1,10 @@
 import { createConfiguration } from '../bin/functions/createConfiguration';
 
 test('It should return a valid merged configuration if given a path to an RC file and a set of CLI arguments', async () => {
+  const USER_CONFIG_PATH = `${process.cwd()}/.figmagicrc`;
   const CLI_ARGS = ['-t', 'asdf1234'];
-  expect(await createConfiguration(`${process.cwd}/.figmagicrc`, ...CLI_ARGS)).toEqual(
+
+  expect(await createConfiguration(USER_CONFIG_PATH, ...CLI_ARGS)).toEqual(
     expect.objectContaining({
       debugMode: false,
       fontUnit: 'rem',
@@ -18,8 +20,6 @@ test('It should return a valid merged configuration if given a path to an RC fil
   );
 });
 
-test('It should throw an error when missing user configuration path', () => {
-  expect(() => {
-    createConfiguration();
-  }).toThrow();
+test('It should throw an error when missing user configuration path', async () => {
+  await expect(createConfiguration()).rejects.toThrow();
 });

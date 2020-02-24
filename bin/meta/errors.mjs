@@ -22,6 +22,8 @@ export const errorLoadFile = 'Could not find file!';
 export const errorNormalizeUnits = 'Missing parameters for normalizeUnits()!';
 export const errorNormalizeUnitsUndefined = 'Parameters "rootSize" or "unitSize" are undefined!';
 
+export const errorParseCliArgs = 'No arguments array passed to parseCliArgs()!';
+
 export const errorProcessTokens = 'No sheet or name for processTokens()!';
 
 export const errorRoundColor =

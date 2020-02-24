@@ -21,15 +21,16 @@ test('It should throw an error if children are missing', () => {
 });
 
 test('It should throw an error if children are missing "name" and "style" properties', () => {
-  expect(
+  expect(() => {
     setupFontWeightTokens({
       children: [
         {
-          someValue: 1234
+          nameMismatch: 'Something',
+          styleMismatch: {}
         }
       ]
-    })
-  ).toThrow();
+    });
+  }).toThrow();
 });
 
 test('It should throw an error if children has "style" property but not "fontWeight"', () => {

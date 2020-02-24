@@ -33,15 +33,15 @@ test('It should throw an error if frame is missing "children" array', () => {
 });
 
 test('It should throw an error if frame has "color" property but not "color.fills"', () => {
-  expect(
+  expect(() => {
     setupColorTokens({
       children: [
         {
           somethingElse: 123
         }
       ]
-    })
-  ).toThrow();
+    });
+  }).toThrow();
 });
 
 test('It should throw an error if no parameter is provided', () => {

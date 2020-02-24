@@ -1,6 +1,5 @@
 import { units } from '../meta/units.mjs';
 import { errorNormalizeUnits, errorNormalizeUnitsUndefined } from '../meta/errors.mjs';
-import { warnNormalizeUnits } from '../meta/warnings.mjs';
 
 /**
  * Normalize and convert units

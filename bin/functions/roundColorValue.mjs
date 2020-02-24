@@ -1,4 +1,4 @@
-import { errorRoundColor, errorRoundColorValue } from '../meta/errors.mjs';
+import { errorRoundColorValue } from '../meta/errors.mjs';
 
 /**
  * Round color values so they are whole integers

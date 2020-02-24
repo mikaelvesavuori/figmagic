@@ -13,7 +13,6 @@ import { errorCreateFolder } from '../meta/errors.mjs';
  */
 export async function createFolder(dir) {
   if (!dir) throw new Error(errorCreateFolder);
-
   return new Promise((resolve, reject) => {
     try {
       if (!fs.existsSync(dir)) {

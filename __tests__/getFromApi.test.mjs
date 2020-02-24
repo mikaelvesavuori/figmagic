@@ -4,10 +4,8 @@ import { getFromApi } from '../bin/functions/getFromApi';
 
 dotenv.config();
 
-test('It should throw an error if no parameter is provided', () => {
-  expect(async () => {
-    await getFromApi();
-  }).rejects.toThrow();
+test('It should throw an error if no parameter is provided', async () => {
+  await expect(getFromApi()).rejects.toThrow();
 });
 
 test('It should throw an error when receiving invalid token and/or URL', async () => {

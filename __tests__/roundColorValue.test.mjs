@@ -1,5 +1,13 @@
 import { roundColorValue } from '../bin/functions/roundColorValue';
 
+test('It should return a value based on the two defaults for "quantity" and "scale"', () => {
+  expect(roundColorValue()).toBe(0);
+});
+
+test('It should set a negative "quantity" to 0 and return a value based on the two defaults for "quantity" and "scale"', () => {
+  expect(roundColorValue(-4.2)).toBe(0);
+});
+
 test('It should round a color value into a single decimal', () => {
   expect(roundColorValue(0.5176470875740051, 255)).toBe(132);
 });

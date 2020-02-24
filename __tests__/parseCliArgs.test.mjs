@@ -1,5 +1,13 @@
 import { parseCliArgs } from '../bin/functions/parseCliArgs';
 
+import { config } from '../bin/meta/config.mjs';
+
+test('It should throw an error if no arguments array is passed', () => {
+  expect(() => {
+    parseCliArgs();
+  }).toThrow();
+});
+
 /*
  * Debug mode
  */
@@ -26,6 +34,68 @@ test('It should return "js" for outputTokenFormat if passing "js" (short-hand)',
   expect(parseCliArgs(['-tf', 'js'])).toEqual(
     expect.objectContaining({
       outputTokenFormat: 'js'
+    })
+  );
+});
+
+test('It should return default value for outputTokenFormat if passing invalid value (long-hand)', () => {
+  expect(parseCliArgs(['--outputTokenFormat', 'asdf'])).toEqual(
+    expect.objectContaining({
+      outputTokenFormat: config.defaultOutputTokenFormat
+    })
+  );
+});
+
+/*
+ * Font unit
+ */
+test('It should return "em" for fontUnit if passing "em" (long-hand)', () => {
+  expect(parseCliArgs(['--fontUnit', 'em'])).toEqual(
+    expect.objectContaining({
+      fontUnit: 'em'
+    })
+  );
+});
+
+test('It should return "em" for fontUnit if passing "em" (short-hand)', () => {
+  expect(parseCliArgs(['-f', 'em'])).toEqual(
+    expect.objectContaining({
+      fontUnit: 'em'
+    })
+  );
+});
+
+test('It should return default value for fontUnit if passing invalid value (long-hand)', () => {
+  expect(parseCliArgs(['--fontUnit', 'asdf'])).toEqual(
+    expect.objectContaining({
+      fontUnit: config.defaultFontUnit
+    })
+  );
+});
+
+/*
+ * Spacing unit
+ */
+test('It should return "em" for outputTokenFormat if passing "em" (long-hand)', () => {
+  expect(parseCliArgs(['--spacingUnit', 'em'])).toEqual(
+    expect.objectContaining({
+      spacingUnit: 'em'
+    })
+  );
+});
+
+test('It should return "em" for outputTokenFormat if passing "em" (short-hand)', () => {
+  expect(parseCliArgs(['-s', 'em'])).toEqual(
+    expect.objectContaining({
+      spacingUnit: 'em'
+    })
+  );
+});
+
+test('It should return default value for spacingUnit if passing invalid value', () => {
+  expect(parseCliArgs(['--spacingUnit', 'asdf'])).toEqual(
+    expect.objectContaining({
+      spacingUnit: config.defaultSpacingUnit
     })
   );
 });
