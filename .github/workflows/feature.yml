@@ -27,12 +27,16 @@ jobs:
       - run: npm run build --if-present
       - run: npm audit
       - run: npm test
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_URL: ${{ secrets.FIGMA_URL }}
       #- run: npm install -g figmagic # This is the desired, user-friendly way but seems to fail in a stupid way in CI...
       - run: npm run setup
       - run: npm run figmagic
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_URL: ${{ secrets.FIGMA_URL }}
       - run: \[ -d figma \]
       - run: \[ -f figma/figma.json \]
         env:
           CI: true
-          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
-          FIGMA_URL: ${{ secrets.FIGMA_URL }}
