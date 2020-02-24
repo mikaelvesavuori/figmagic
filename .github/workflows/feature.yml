@@ -30,7 +30,8 @@ jobs:
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
-      - run: npm install -g figmagic
+      #- run: npm install -g figmagic # This is the desired, user-friendly way but seems to fail in a stupid way in CI...
+      - run: npm run setup
       - run: figmagic
       - run: \[ -d figma \]
       - run: \[ -f figma/figma.json \]
