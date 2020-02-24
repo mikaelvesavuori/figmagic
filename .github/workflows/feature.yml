@@ -23,6 +23,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+        env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
       - run: npm ci
