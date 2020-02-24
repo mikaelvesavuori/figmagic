@@ -16,20 +16,6 @@ test('It should set full "quantity" value (1.0) to be 255', () => {
   expect(roundColorValue(1.0, 255)).toBe(255);
 });
 
-/*
-test('It should throw an error when quantity is not passed', () => {
-  expect(() => {
-    roundColorValue();
-  }).toThrow();
-});
-
-test('It should throw an error when receiving a zero "quantity" value (0.0)', () => {
-  expect(() => {
-    roundColorValue(0.0, 255);
-  }).toThrow();
-});
-*/
-
 test('It should set scale to 255 if user does not provide value', () => {
   expect(roundColorValue(1.0)).toBe(255);
 });
