@@ -23,14 +23,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-        env:
-          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
-          FIGMA_URL: ${{ secrets.FIGMA_URL }}
       - run: npm ci
       - run: npm run build --if-present
       - run: npm audit
       - run: npm test
-      - run: npm run setup
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_URL: ${{ secrets.FIGMA_URL }}
+      - run: npm install -g figmagic
       - run: figmagic
       - run: \[ -d figma \]
       - run: \[ -f figma/figma.json \]
