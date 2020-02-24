@@ -13,15 +13,6 @@ test('It should throw an error if array is empty', () => {
   }).toThrow();
 });
 
-/*
-test('It should return if array has non-matching values', () => {
-  const FIGMA_PAGES = ['asdf', 123];
-  expect(() => {
-    createPage(FIGMA_PAGES);
-  }).toThrow();
-});
-*/
-
 test('It should return an empty object if array has non-matching values', () => {
   const FIGMA_PAGES = ['asdf', 123];
   expect(createPage(FIGMA_PAGES)).toEqual(expect.objectContaining({}));

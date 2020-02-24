@@ -101,20 +101,6 @@ test('It should return default value for spacingUnit if passing invalid value', 
 });
 
 /*
-test('It should warn and set default value if passing invalid value for outputTokenFormat', () => {
-  const consoleSpy = jest.spyOn(console, 'warn');
-  console.warn('hello');
-  expect(consoleSpy).toHaveBeenCalledWith('hello');
-
-  expect(parseCliArgs(['-tf', 'asdf'])).toEqual(
-    expect.objectContaining({
-      outputTokenFormat: 'js'
-    })
-  );
-});
-*/
-
-/*
  * Token
  */
 test('It should return "asdf" for token if passing "asdf" (long-hand)', () => {
@@ -227,37 +213,3 @@ test('It should return true for usePostscriptFontNames if passing true (short-ha
     })
   );
 });
-
-/*
-test('It should return "mjs" if value is invalid (i.e. not "mjs" or "js")', () => {
-  expect(parseCliArgs(['--format', 'lkjwef'])).toEqual(
-    expect.objectContaining({
-      debugMode: false,
-      fontUnit: 'rem',
-      outputFileName: 'figma.json',
-      outputFolderBaseFile: 'figma',
-      outputFolderTokens: 'tokens',
-      outputTokenFormat: 'mjs',
-      spacingUnit: 'rem',
-      token: null,
-      url: null
-    })
-  );
-});
-
-test('It should return "mjs" regardless of casing', () => {
-  expect(parseCliArgs(['--format', 'MJS'])).toEqual(
-    expect.objectContaining({
-      debugMode: false,
-      fontUnit: 'rem',
-      outputFileName: 'figma.json',
-      outputFolderBaseFile: 'figma',
-      outputFolderTokens: 'tokens',
-      outputTokenFormat: 'mjs',
-      spacingUnit: 'rem',
-      token: null,
-      url: null
-    })
-  );
-});
-*/
