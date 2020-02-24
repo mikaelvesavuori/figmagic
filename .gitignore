@@ -5,6 +5,7 @@
 /jest-coverage
 **/jest-coverage
 
+package-lock.json
 yarn.lock
 
 ### Node ###

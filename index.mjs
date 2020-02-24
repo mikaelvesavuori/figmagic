@@ -33,7 +33,7 @@ import { errorGetData } from './bin/meta/errors.mjs';
   await createFolder(outputFolderBaseFile);
 
   // Write base Figma JSON
-  const wroteFile = await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
+  await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
 
   // Process tokens
   const TOKENS = createPage(DATA.document.children);
