@@ -29,7 +29,6 @@ export function createPage(figmaPages) {
         hasCreatedDesignTokensPage === false
       ) {
         isMatchFound = true;
-        // TODO: This is uncovered in test
         if (page.name.toLowerCase().replace(' ', '') === 'designtokens') {
           hasCreatedDesignTokensPage = true;
           correctPage = page;
