@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/mikaelvesavuori/figmagic.svg?branch=master)](https://travis-ci.org/mikaelvesavuori/figmagic)
 [![DeepScan grade](https://deepscan.io/api/teams/6692/projects/8785/branches/111253/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=6692&pid=8785&bid=111253)
 
-Automate the generation of design tokens and specs from your Figma documents. Inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo).
+Automate the generation of design tokens from your Figma documents. Inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo).
 
 Extract design tokens from colors, typography (line heights, font sizes, font families), and spacing. A typical use case for the generated documents is to use the extracted values as a token base in CSS systems that support external values (such as Styled Components, other CSS-in-JS libraries, or Sass).
 
@@ -218,7 +218,7 @@ Default: Common name.
 
 ### Font weights
 
-**Work in progress**.
+Typical font weight values like `200`, `300` etc.
 
 ### Font sizes
 

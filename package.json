@@ -1,6 +1,6 @@
 {
   "name": "figmagic",
-  "description": "Automate the generation of design tokens and specs from your Figma documents. Inspired by Salesforce Theo.",
+  "description": "Automate the generation of design tokens from your Figma documents. Inspired by Salesforce Theo.",
   "keywords": [
     "figma",
     "figma api",
