@@ -22,7 +22,7 @@ import { errorGetData } from './bin/meta/errors.mjs';
   const { token, url, outputFolderBaseFile, outputFolderTokens, outputFileName } = CONFIG;
 
   // Attempt to get data
-  const DATA = await getFromApi(token, url, outputFolderBaseFile, outputFileName);
+  const DATA = await getFromApi(token, url);
 
   // If there's no data or something went funky, eject
   if (!DATA || DATA.status === 403) throw new Error(errorGetData);
@@ -33,7 +33,7 @@ import { errorGetData } from './bin/meta/errors.mjs';
   await createFolder(outputFolderBaseFile);
 
   // Write base Figma JSON
-  await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
+  const wroteFile = await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
 
   // Process tokens
   const TOKENS = createPage(DATA.document.children);

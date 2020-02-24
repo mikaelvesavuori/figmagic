@@ -16,7 +16,7 @@ import { errorWriteTokens, errorWriteTokensNoSettings } from '../meta/errors.mjs
  * @throws {error} - When no than one token is provided
  */
 export function writeTokens(tokens, settings) {
-  if (!tokens.length > 0) throw new Error(errorWriteTokens);
+  if (!(tokens.length > 0)) throw new Error(errorWriteTokens);
   if (!settings) throw new Error(errorWriteTokensNoSettings);
 
   tokens.forEach(token => {

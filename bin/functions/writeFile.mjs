@@ -47,7 +47,7 @@ async function write(file, path, name, isToken, format) {
     try {
       fs.writeFile(filePath, fileContent, 'utf-8', error => {
         if (error) throw new Error(`${errorWrite}: ${error}`);
-        resolve();
+        resolve(true);
       });
     } catch (error) {
       reject(error);

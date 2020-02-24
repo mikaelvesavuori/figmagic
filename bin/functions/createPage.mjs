@@ -15,7 +15,7 @@ import { errorCreatePage } from './../meta/errors.mjs';
  * @throws {error} - When no page(s) are provided
  */
 export function createPage(figmaPages) {
-  if (!figmaPages || !figmaPages.length > 0) throw new Error(errorCreatePage);
+  if (!figmaPages || !(figmaPages.length > 0)) throw new Error(errorCreatePage);
 
   let hasCreatedDesignTokensPage = false;
   let correctPage = {};
