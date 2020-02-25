@@ -1,0 +1,8 @@
+fileignoreconfig:
+- filename: README.md
+  checksum: 84fb9a56f9ae5663eea16c9b0d9234c15aeb607418937d1043bed22043d7838d
+  ignore_detectors: []
+- filename: package-lock.json
+  checksum: 22735f2a921afd598912e0ffaf04c68a99f0e2309466965ab95bc4dfded4a683
+  ignore_detectors: []
+scopeconfig: []
