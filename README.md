@@ -7,11 +7,26 @@
 
 Automate the generation of design tokens from your Figma documents. Inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo).
 
-Extract design tokens from colors, typography (line heights, font sizes, font families), and spacing. A typical use case for the generated documents is to use the extracted values as a token base in CSS systems that support external values (such as Styled Components, other CSS-in-JS libraries, or Sass).
+You can currently extract design tokens for:
+
+- Colors
+- Font Sizes
+- Spacing
+- Font Weights
+- Line Heights
+- Font Families
+- Letter Spacings
+- Z Indices
+- Radii
+- Border Widths
+- Shadows
+- Media Queries
+
+A typical use-case for the generated documents is to feed the extracted values into CSS systems that support external values (such as Styled Components, Emotion, Styled System, any other CSS-in-JS libraries, or maybe even Sass).
 
 Figmagic uses ESM imports, so make sure you have a recent Node version, preferably version 12.16 or later.
 
-**Please note:** Figmagic requires that your document structure is identical to what I show in the template site at [https://www.figma.com/file/UkrKTnjjKB0lJKYAifn9YWXU/Figmagic---Design-Token-Example-v1.0](https://www.figma.com/file/UkrKTnjjKB0lJKYAifn9YWXU/Figmagic---Design-Token-Example-v1.0).
+**Please note:** Figmagic requires that your document structure is identical to what I show in the template site at [https://www.figma.com/file/K39TRbltDVcWFlpzw9r7Zh/Figmagic-%E2%80%94-Design-System-for-Tokens?node-id=2605%3A12](https://www.figma.com/file/K39TRbltDVcWFlpzw9r7Zh/Figmagic-%E2%80%94-Design-System-for-Tokens?node-id=2605%3A12). The link shows you the current version `2.1.0` Design System example.
 
 _Built initially as an internal handoff tool for [Humblebee](https://www.humblebee.se)._
 
