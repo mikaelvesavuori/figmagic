@@ -14,7 +14,7 @@
     "type": "git",
     "url": "https://github.com/mikaelvesavuori/figmagic.git"
   },
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "Mikael Vesavuori",
   "contributors": [
     {
@@ -29,9 +29,9 @@
   "module": "index.mjs",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.8.4",
+    "@babel/core": "^7.8.7",
     "@babel/plugin-transform-modules-commonjs": "^7.8.3",
-    "babel-eslint": "^10.0.3",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^25.1.0",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.1.0",

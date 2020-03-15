@@ -100,7 +100,7 @@ Your structure needs to correspond to the following:
 - Further, inside the "Design tokens" page, frames need to be exist. Name them "Colors", "Font sizes", "Font families", "Font weights", "Line heights", and "Spacing" – exact casing is not important, however the **spelling is important!**
 - All items on a page need to be contained within one or more frames
 
-See a demo/template at [https://www.figma.com/file/UkrKTnjjKB0lJKYAifn9YWXU/Figmagic---Design-Token-Example-v1.0](https://www.figma.com/file/UkrKTnjjKB0lJKYAifn9YWXU/Figmagic---Design-Token-Example-v1.0). Feel free to simply copy it and paste it into your own document.
+See a demo/template at [https://www.figma.com/file/K39TRbltDVcWFlpzw9r7Zh/Figmagic-%E2%80%94-Design-System-for-Tokens?node-id=2605%3A12](https://www.figma.com/file/K39TRbltDVcWFlpzw9r7Zh/Figmagic-%E2%80%94-Design-System-for-Tokens?node-id=2605%3A12). Feel free to simply copy it and paste it into your own document.
 
 **Note:** Refer to the document structure in the image below and in the template linked above.
 
@@ -262,6 +262,12 @@ Generated:
 
 - `figma` (default folder name) will contain the extracted Figma JSON
 - `tokens` (default folder name) will contain the token files (in `.mjs` or `.js` format)
+
+## Planning and roadmap
+
+- `2.1.2`: Output as per Styled System format
+- `2.2.0`: Output graphics (SVG or PNG format)
+- `2.3.0`: Scaffold components and elements with code templates
 
 ## Possible future work items
 
