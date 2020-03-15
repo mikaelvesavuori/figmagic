@@ -7,6 +7,12 @@ import { fontFrame } from '../testdata/fontFrame.mjs';
 import { fontSizeFrame } from '../testdata/fontSizeFrame.mjs';
 import { fontWeightFrame } from '../testdata/fontWeightFrame.mjs';
 import { lineHeightFrame } from '../testdata/lineHeightFrame.mjs';
+import { borderWidthsFrame } from '../testdata/borderWidthsFrame.mjs';
+import { letterSpacingsFrame } from '../testdata/letterSpacingsFrame.mjs';
+import { mediaQueriesFrame } from '../testdata/mediaQueriesFrame.mjs';
+import { radiiFrame } from '../testdata/radiiFrame.mjs';
+import { shadowsFrame } from '../testdata/shadowsFrame.mjs';
+import { zIndicesFrame } from '../testdata/zIndicesFrame.mjs';
 
 test('It should throw an error if no parameter is provided', () => {
   expect(() => {
@@ -84,5 +90,57 @@ test('It should return data when passed valid font weights frame and valid setti
 test('It should return data when passed valid line heights frame and valid settings', () => {
   expect(processTokens(lineHeightFrame, 'lineheights', defaultSettings)).toEqual(
     expect.objectContaining({ l: '1.99', m: '1.76', s: '1.46', xs: '1.00' })
+  );
+});
+
+//
+
+test('It should return data when passed valid border width frame and valid settings', () => {
+  expect(processTokens(borderWidthsFrame, 'borderwidths', defaultSettings)).toEqual(
+    expect.objectContaining({ chunky: '8px', fat: '4px', hairline: '1px', regular: '2px' })
+  );
+});
+
+test('It should return data when passed valid letter spacings frame and valid settings', () => {
+  expect(processTokens(letterSpacingsFrame, 'letterspacings', defaultSettings)).toEqual(
+    expect.objectContaining({ regular: '0px', tight: '-2.40px', wide: '3.30px' })
+  );
+});
+
+test('It should return data when passed valid media queries frame and valid settings', () => {
+  expect(processTokens(mediaQueriesFrame, 'mediaqueries', defaultSettings)).toEqual(
+    expect.objectContaining({
+      desktoplg: '1440px',
+      desktopmd: '1180px',
+      mobilelg: '580px',
+      mobilemax: '767px',
+      mobilemd: '480px',
+      mobilesm: '320px',
+      tabletmax: '1024px',
+      tabletmin: '768px',
+      wide: '1920px'
+    })
+  );
+});
+
+test('It should return data when passed valid radii frame and valid settings', () => {
+  expect(processTokens(radiiFrame, 'radii', defaultSettings)).toEqual(
+    expect.objectContaining({ circle: '100%', hard: '0%', rounded: '4%', soft: '8%' })
+  );
+});
+
+test('It should return data when passed valid shadows frame and valid settings', () => {
+  expect(processTokens(shadowsFrame, 'shadows', defaultSettings)).toEqual(
+    expect.objectContaining({
+      deep: '152px 523px 10px 10px rgba(255, 0, 0, 1)',
+      medium: '152px 523px 10px 10px rgba(255, 0, 0, 1)',
+      soft: '152px 523px 10px 10px rgba(255, 0, 0, 1)'
+    })
+  );
+});
+
+test('It should return data when passed valid Z index frame and valid settings', () => {
+  expect(processTokens(zIndicesFrame, 'zindices', defaultSettings)).toEqual(
+    expect.objectContaining({ focus: '10', high: '1', higher: '2', regular: '0', top: '100' })
   );
 });

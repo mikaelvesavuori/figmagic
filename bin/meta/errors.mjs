@@ -66,6 +66,34 @@ export const errorSetupSpacingTokensNoChildren = 'Spacing frame has no children!
 export const errorSetupSpacingTokensMissingProps =
   'Missing "name" or "absoluteBoundingBox" properties in spacing frame!';
 
+export const errorSetupShadowTokensNoFrame = 'No frame for setupShadowTokens()!';
+export const errorSetupShadowTokensNoChildren = 'Shadow frame has no children!';
+export const errorSetupShadowTokensMissingProps = 'Missing "effects" property in shadow frame!';
+
+export const errorSetupZindexTokensNoFrame = 'No frame for setupZindexTokens()!';
+export const errorSetupZindexTokensNoChildren = 'Z Index frame has no children!';
+export const errorSetupZindexTokensMissingProps =
+  'Missing "name" or "characters" properties in Z index frame!';
+
+export const errorSetupLetterSpacingTokensNoFrame = 'No frame for setupLetterSpacingTokens()!';
+export const errorSetupLetterSpacingTokensNoChildren = 'Letter Spacing frame has no children!';
+export const errorSetupLetterSpacingTokensMissingProps =
+  'Missing "name" or "style" properties in letter spacing frame!';
+
+export const errorSetupMediaQueryTokensNoFrame = 'No frame for setupMediaQueryTokens()!';
+export const errorSetupMediaQueryTokensNoChildren = 'Media Query frame has no children!';
+export const errorSetupMediaQueryTokensMissingProps =
+  'Missing "absoluteBoundingBox" property in media query frame!';
+
+export const errorSetupRadiusTokensNoFrame = 'No frame for setupRadiusTokens()!';
+export const errorSetupRadiusTokensNoChildren = 'Radius frame has no children!';
+export const errorSetupRadiusTokensMissingProps = 'Missing "name"  property in radius frame!';
+
+export const errorSetupBorderWidthTokensNoFrame = 'No frame for setupBorderWidthTokens()!';
+export const errorSetupBorderWidthTokensNoChildren = 'Border Width has no children!';
+export const errorSetupBorderWidthTokensMissingProps =
+  'Missing "name" or "strokeWeight" properties in border width frame!';
+
 export const errorWriteFile = 'Missing required parameters to correctly run writeFile()!';
 
 export const errorWrite = 'Error while attempting to write file!';

@@ -37,6 +37,16 @@ export function normalizeUnits(value, currentUnit, newUnit) {
     unitSize = value / 100;
   }
 
+  // Convert letter spacing to something that seems more correct
+  if (currentUnit === 'letterSpacing' && newUnit === 'adjustedSpacing') {
+    return `${parseFloat(value * 3).toFixed(2)}px`;
+  }
+
+  // Add % to corner radius
+  if (currentUnit === 'cornerRadius' && newUnit === 'adjustedRadius') {
+    return `${value}%`;
+  }
+
   // TODO: This is uncovered in test
   if (rootSize === undefined || unitSize === undefined)
     throw new Error(errorNormalizeUnitsUndefined);

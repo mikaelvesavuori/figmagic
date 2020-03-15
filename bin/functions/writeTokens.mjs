@@ -4,6 +4,7 @@ import { processTokens } from './processTokens.mjs';
 import { writeFile } from './writeFile.mjs';
 
 import { errorWriteTokens, errorWriteTokensNoSettings } from '../meta/errors.mjs';
+import { acceptedTokenTypes } from '../meta/acceptedTokenTypes.mjs';
 
 /**
  * Write tokens to file
@@ -23,15 +24,17 @@ export function writeTokens(tokens, settings) {
     let tokenName = camelize(token.name);
     tokenName = formatName(tokenName);
 
-    const PROCESSED_TOKEN = processTokens(token, tokenName, settings);
+    if (acceptedTokenTypes.includes(tokenName.toLowerCase())) {
+      const PROCESSED_TOKEN = processTokens(token, tokenName, settings);
 
-    writeFile(
-      PROCESSED_TOKEN,
-      settings.outputFolderTokens,
-      tokenName,
-      true,
-      settings.outputTokenFormat
-    );
+      writeFile(
+        PROCESSED_TOKEN,
+        settings.outputFolderTokens,
+        tokenName,
+        true,
+        settings.outputTokenFormat
+      );
+    }
   });
 
   return true;
