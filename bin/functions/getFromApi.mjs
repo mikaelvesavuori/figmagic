@@ -21,5 +21,9 @@ export async function getFromApi(figmaToken, figmaUrl) {
     headers: {
       'X-Figma-Token': figmaToken
     }
-  }).then(res => res.json());
+  })
+    .then(res => res.json())
+    .catch(error => {
+      throw new Error(error);
+    });
 }

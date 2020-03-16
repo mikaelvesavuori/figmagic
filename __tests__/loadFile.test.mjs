@@ -4,7 +4,7 @@ test('It should throw an error if no parameter is provided', async () => {
   await expect(loadFile()).rejects.toThrow();
 });
 
-test('It should throw an error if no parameter is provided', async () => {
+test('It should throw an error if invalid path is provided', async () => {
   const BAD_PATH = `./AKLJR#LJKASlaks`;
   await expect(loadFile(BAD_PATH)).rejects.toThrow();
 });

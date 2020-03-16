@@ -2,6 +2,8 @@ export const errorGetData = 'Could not retrieve any data. Are you missing a vali
 
 export const errorCamelize = 'No string provided to camelize()!';
 
+export const errorCreateConfiguration = 'No path provided to createConfiguration()!';
+
 export const errorCreateFolder = 'No directory specified for createFolder()!';
 
 export const errorCreatePage = 'No pages provided to createPage()!';

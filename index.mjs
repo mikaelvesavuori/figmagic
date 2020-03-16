@@ -15,7 +15,7 @@ import { writeFile } from './bin/functions/writeFile.mjs';
 import { errorGetData } from './bin/meta/errors.mjs';
 import { msgSetDataFromLocal, msgSetDataFromApi } from './bin/meta/messages.mjs';
 
-(async () => {
+async function figmagic() {
   // Setup
   dotenv.config();
   const [, , ...CLI_ARGS] = process.argv;
@@ -31,25 +31,35 @@ import { msgSetDataFromLocal, msgSetDataFromApi } from './bin/meta/messages.mjs'
   } = CONFIG;
 
   const DATA = await (async () => {
-    // We want to get data from the Figma API
+    // Normal: We want to get data from the Figma API
     if (!recompileLocal) {
       console.log(msgSetDataFromApi);
 
       // Attempt to get data
-      const _DATA = await getFromApi(token, url);
+      try {
+        const _DATA = await getFromApi(token, url);
 
-      // If there's no data or something went funky, eject
-      if (!_DATA || _DATA.status === 403) throw new Error(errorGetData);
+        // If there's no data or something went funky, eject
+        if (!_DATA || _DATA.status === 403) throw new Error(errorGetData);
 
-      return _DATA;
+        return _DATA;
+      } catch (error) {
+        throw new Error(error);
+      }
     }
-    // We want to use the existing Figma JSON file
+    // Recompile: We want to use the existing Figma JSON file
     else {
       console.log(msgSetDataFromLocal);
-      const FIGMA_JSON = await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
-      return FIGMA_JSON;
+
+      try {
+        return await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
+      } catch (error) {
+        throw new Error(error);
+      }
     }
-  })();
+  })().catch(error => {
+    throw new Error(error);
+  });
 
   // If this is a fresh pull from the API, trash the old folders
   if (!recompileLocal) {
@@ -70,4 +80,12 @@ import { msgSetDataFromLocal, msgSetDataFromApi } from './bin/meta/messages.mjs'
 
   // All went well
   console.log('Figmagic completed operations successfully!');
+}
+
+(async () => {
+  try {
+    await figmagic();
+  } catch (error) {
+    console.error(error);
+  }
 })();

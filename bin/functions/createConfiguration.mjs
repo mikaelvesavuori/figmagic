@@ -2,6 +2,8 @@
 import { loadFile } from './loadFile.mjs';
 import { parseCliArgs } from './parseCliArgs.mjs';
 
+import { errorCreateConfiguration } from '../meta/errors.mjs';
+
 import { config } from './../meta/config.mjs';
 
 /**
@@ -21,6 +23,8 @@ import { config } from './../meta/config.mjs';
  * @returns {object} - The final, validated and collated configuration object
  */
 export async function createConfiguration(userConfigPath, ...cliArgs) {
+  if (!userConfigPath) throw new Error(errorCreateConfiguration);
+
   // Set default values first
   const DEFAULT_CONFIG = {
     debugMode: false,
