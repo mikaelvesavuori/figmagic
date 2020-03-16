@@ -38,4 +38,7 @@ import { errorGetData } from './bin/meta/errors.mjs';
   // Process tokens
   const TOKENS = createPage(DATA.document.children);
   writeTokens(TOKENS.children, CONFIG);
+
+  // All went well
+  console.log('Figmagic completed operations successfully!');
 })();
