@@ -15,11 +15,11 @@ import { errorWriteFile, errorWrite } from '../meta/errors.mjs';
  * @param {boolean} isToken - If this is a token or not
  * @param {string} format - File format
  */
-export function writeFile(file, path, name, isToken = false, format) {
+export async function writeFile(file, path, name, isToken = false, format) {
   if (!file || !path || !name) throw new Error(errorWriteFile);
 
   createFolder(path);
-  write(file, path, name, isToken, format);
+  return await write(file, path, name, isToken, format);
 }
 
 /**

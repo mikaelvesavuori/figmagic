@@ -14,8 +14,6 @@ import { radiiFrame } from '../testdata/radiiFrame.mjs';
 import { shadowsFrame } from '../testdata/shadowsFrame.mjs';
 import { zIndicesFrame } from '../testdata/zIndicesFrame.mjs';
 
-import { nonacceptedFrame } from '../testdata/nonacceptedFrame.mjs';
-
 test('It should return tokens if passed a valid set of frame and settings', async () => {
   const TOKENS = [
     colorFrame,
