@@ -29,6 +29,7 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
     outputFolderBaseFile: config.defaultOutputFolderBaseFile,
     outputFolderTokens: config.defaultOutputFolderTokens,
     outputTokenFormat: config.defaultOutputTokenFormat,
+    recompileLocal: config.recompileLocal,
     spacingUnit: config.defaultSpacingUnit,
     token: process.env.FIGMA_TOKEN ? process.env.FIGMA_TOKEN : null,
     url: process.env.FIGMA_URL ? process.env.FIGMA_URL : null,

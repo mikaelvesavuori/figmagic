@@ -4,6 +4,7 @@
 import trash from 'trash';
 import dotenv from 'dotenv';
 
+import { loadFile } from './bin/functions/loadFile.mjs';
 import { createConfiguration } from './bin/functions/createConfiguration.mjs';
 import { createFolder } from './bin/functions/createFolder.mjs';
 import { getFromApi } from './bin/functions/getFromApi.mjs';
@@ -12,6 +13,7 @@ import { writeTokens } from './bin/functions/writeTokens.mjs';
 import { writeFile } from './bin/functions/writeFile.mjs';
 
 import { errorGetData } from './bin/meta/errors.mjs';
+import { msgSetDataFromLocal, msgSetDataFromApi } from './bin/meta/messages.mjs';
 
 (async () => {
   // Setup
@@ -19,16 +21,43 @@ import { errorGetData } from './bin/meta/errors.mjs';
   const [, , ...CLI_ARGS] = process.argv;
   const USER_CONFIG_PATH = `${process.cwd()}/.figmagicrc`;
   const CONFIG = await createConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
-  const { token, url, outputFolderBaseFile, outputFolderTokens, outputFileName } = CONFIG;
+  const {
+    token,
+    url,
+    recompileLocal,
+    outputFolderBaseFile,
+    outputFolderTokens,
+    outputFileName
+  } = CONFIG;
 
-  // Attempt to get data
-  const DATA = await getFromApi(token, url);
+  const DATA = await (async () => {
+    // We want to get data from the Figma API
+    if (!recompileLocal) {
+      console.log(msgSetDataFromApi);
 
-  // If there's no data or something went funky, eject
-  if (!DATA || DATA.status === 403) throw new Error(errorGetData);
+      // Attempt to get data
+      const _DATA = await getFromApi(token, url);
 
-  await trash([`./${outputFolderTokens}`]);
-  await trash([`./${outputFolderBaseFile}`]);
+      // If there's no data or something went funky, eject
+      if (!_DATA || _DATA.status === 403) throw new Error(errorGetData);
+
+      return _DATA;
+    }
+    // We want to use the existing Figma JSON file
+    else {
+      console.log(msgSetDataFromLocal);
+      const FIGMA_JSON = await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
+      return FIGMA_JSON;
+    }
+  })();
+
+  // If this is a fresh pull from the API, trash the old folders
+  if (!recompileLocal) {
+    await trash([`./${outputFolderTokens}`]);
+    await trash([`./${outputFolderBaseFile}`]);
+  }
+
+  // Create new folders if they don't exist
   await createFolder(outputFolderTokens);
   await createFolder(outputFolderBaseFile);
 

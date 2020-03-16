@@ -27,6 +27,10 @@ export function parseCliArgs(argsArray) {
       if (arg === '--debug') {
         settings.debugMode = true;
       }
+      // Toggle debug mode if requested
+      else if (arg === '--recompileLocal') {
+        settings.recompileLocal = true;
+      }
       // Check and handle token format switch
       else if (arg === '--outputTokenFormat' || arg == '-tf') {
         const FORMAT = argsArray[index + 1].toLowerCase();

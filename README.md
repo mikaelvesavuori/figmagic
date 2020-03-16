@@ -151,6 +151,12 @@ Run these in your command line environment of choice.
 
 Default is `false`.
 
+#### Recompile data from local Figma JSON file
+
+`figmagic --recompileLocal`
+
+Default is `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+
 #### Switch token file format
 
 `figmagic --outputTokenFormat [mjs|js]||` or `figmagic -tf [mjs|js]`

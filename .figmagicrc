@@ -6,5 +6,5 @@
   "outputFolderTokens": "tokens",
   "outputTokenFormat": "mjs",
   "spacingUnit": "rem",
-  "usePostscriptFontNames": false
+  "usePostscriptFontNames": true
 }
