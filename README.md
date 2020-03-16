@@ -59,6 +59,8 @@ The idea of Figmagic is to support an informed handoff between designers and dev
 
 ### Installation
 
+**Note**: If you get a warning such as `./node_modules/figmagic/index.mjs: line 2: //#: No such file or directory`, this probably only indicates that you have a less recent Node version. Figmagic uses ESM modules so use Node version 13+ and/or provide `node --experimental-modules` as a flag.
+
 #### Global (recommended)
 
 Run `npm install -g figmagic` or `yarn global add figmagic`.
@@ -69,7 +71,7 @@ Local usage should be possible by installing Figmagic as a devDependency with `n
 
 ```
 "scripts": {
-  "figmagic": "./node_modules/figmagic/index.mjs"
+  "figmagic": "node --experimental-modules ./node_modules/figmagic/index.mjs"
 }
 ```
 
