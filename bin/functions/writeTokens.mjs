@@ -17,25 +17,34 @@ import { acceptedTokenTypes } from '../meta/acceptedTokenTypes.mjs';
  * @throws {error} - When no than one token is provided
  */
 export function writeTokens(tokens, settings) {
+  if (!tokens) throw new Error(errorWriteTokens);
   if (!(tokens.length > 0)) throw new Error(errorWriteTokens);
   if (!settings) throw new Error(errorWriteTokensNoSettings);
 
-  tokens.forEach(token => {
-    let tokenName = camelize(token.name);
-    tokenName = formatName(tokenName);
+  const tokensToProcess = new Promise(async (resolve, reject) => {
+    try {
+      tokens.forEach(async token => {
+        let tokenName = camelize(token.name);
+        tokenName = formatName(tokenName);
 
-    if (acceptedTokenTypes.includes(tokenName.toLowerCase())) {
-      const PROCESSED_TOKEN = processTokens(token, tokenName, settings);
+        if (acceptedTokenTypes.includes(tokenName.toLowerCase())) {
+          const PROCESSED_TOKEN = processTokens(token, tokenName, settings);
 
-      writeFile(
-        PROCESSED_TOKEN,
-        settings.outputFolderTokens,
-        tokenName,
-        true,
-        settings.outputTokenFormat
-      );
+          await writeFile(
+            PROCESSED_TOKEN,
+            settings.outputFolderTokens,
+            tokenName,
+            true,
+            settings.outputTokenFormat
+          );
+        }
+      });
+
+      resolve(true);
+    } catch (error) {
+      reject(error);
     }
   });
 
-  return true;
+  return tokensToProcess.catch(error => console.error(error));
 }

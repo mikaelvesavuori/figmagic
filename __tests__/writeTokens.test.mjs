@@ -7,22 +7,33 @@ import { fontFrame } from '../testdata/fontFrame.mjs';
 import { fontSizeFrame } from '../testdata/fontSizeFrame.mjs';
 import { fontWeightFrame } from '../testdata/fontWeightFrame.mjs';
 import { lineHeightFrame } from '../testdata/lineHeightFrame.mjs';
+import { borderWidthsFrame } from '../testdata/borderWidthsFrame.mjs';
+import { letterSpacingsFrame } from '../testdata/letterSpacingsFrame.mjs';
+import { mediaQueriesFrame } from '../testdata/mediaQueriesFrame.mjs';
+import { radiiFrame } from '../testdata/radiiFrame.mjs';
+import { shadowsFrame } from '../testdata/shadowsFrame.mjs';
+import { zIndicesFrame } from '../testdata/zIndicesFrame.mjs';
 
 import { nonacceptedFrame } from '../testdata/nonacceptedFrame.mjs';
 
-test('It should return tokens if passed a valid set of frame and settings', () => {
+test('It should return tokens if passed a valid set of frame and settings', async () => {
   const TOKENS = [
     colorFrame,
     spacingFrame,
     fontFrame,
     fontSizeFrame,
     fontWeightFrame,
-    lineHeightFrame
+    lineHeightFrame,
+    borderWidthsFrame,
+    letterSpacingsFrame,
+    mediaQueriesFrame,
+    radiiFrame,
+    shadowsFrame,
+    zIndicesFrame
   ];
 
   console.log('defaultSettings', defaultSettings);
-
-  expect(writeTokens(TOKENS, defaultSettings)).toBe(true);
+  await expect(writeTokens(TOKENS, defaultSettings)).resolves.toBe(true);
 });
 
 test('It should throw an error if no parameter is provided', () => {

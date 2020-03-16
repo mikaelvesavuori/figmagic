@@ -72,7 +72,7 @@ async function figmagic() {
   await createFolder(outputFolderBaseFile);
 
   // Write base Figma JSON
-  writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
+  await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
 
   // Process tokens
   const TOKENS = createPage(DATA.document.children);
