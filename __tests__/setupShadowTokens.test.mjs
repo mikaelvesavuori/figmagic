@@ -5,9 +5,9 @@ import { shadowsFrame } from '../testdata/shadowsFrame.mjs';
 test('It should return a complete object when passing in valid input', () => {
   expect(setupShadowTokens(shadowsFrame)).toEqual(
     expect.objectContaining({
-      deep: '152px 523px 10px 10px rgba(255, 0, 0, 1)',
-      medium: '152px 523px 10px 10px rgba(255, 0, 0, 1)',
-      soft: '152px 523px 10px 10px rgba(255, 0, 0, 1)'
+      deep: '3px 3px 3px rgba(196, 196, 196, 1)',
+      medium: '0px 0px 5px rgba(0, 0, 0, 1)',
+      soft: '0px 0px 5px rgba(196, 196, 196, 1)'
     })
   );
 });

@@ -4,7 +4,7 @@ import { radiiFrame } from '../testdata/radiiFrame.mjs';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupRadiusTokens(radiiFrame)).toEqual(
-    expect.objectContaining({ circle: '100%', hard: '0%', rounded: '4%', soft: '8%' })
+    expect.objectContaining({ circle: '100px', hard: '0px', rounded: '4px', soft: '8px' })
   );
 });
 

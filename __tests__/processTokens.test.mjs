@@ -125,7 +125,7 @@ test('It should return data when passed valid media queries frame and valid sett
 
 test('It should return data when passed valid radii frame and valid settings', () => {
   expect(processTokens(radiiFrame, 'radii', defaultSettings)).toEqual(
-    expect.objectContaining({ circle: '100%', hard: '0%', rounded: '4%', soft: '8%' })
+    expect.objectContaining({ circle: '100px', hard: '0px', rounded: '4px', soft: '8px' })
   );
 });
 

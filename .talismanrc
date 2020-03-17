@@ -1,8 +1,8 @@
 fileignoreconfig:
-- filename: README.md
-  checksum: 854cf31d62a11a5e19037fe6195c0b85712f91f1810d31da74358ffe534e2dcd
+- filename: testdata/getGraphics.mjs
+  checksum: 38f762bab25278ab472290dedd613325f5d8c14bf50c73483ed3d2a74bf5148e
   ignore_detectors: []
-- filename: package-lock.json
-  checksum: 65b0021bc837b064493fbf590408e93f9e550e4b3741eab770ac08acb61dbfb9
+- filename: README.md
+  checksum: 9757bd4d9aff69b13ca919b943018d6b86edf12d9e14871be61de0bb10b39c2d
   ignore_detectors: []
 scopeconfig: []
