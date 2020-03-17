@@ -77,7 +77,7 @@ const getFileList = (imageResponse, ids, outputFormatGraphics) => {
  */
 const getIds = graphicsPage => {
   if (!graphicsPage) throw new Error(errorGetIds);
-  if (!graphicsPage.length > 0) throw new Error(errorGetIds);
+  if (!(graphicsPage.length > 0)) throw new Error(errorGetIds);
 
   let items = [];
 

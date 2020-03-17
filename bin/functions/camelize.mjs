@@ -1,5 +1,3 @@
-import { forbiddenCharacters } from '../meta/forbiddenCharacters.mjs';
-
 import { errorCamelize } from '../meta/errors.mjs';
 
 /**
