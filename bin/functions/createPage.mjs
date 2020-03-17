@@ -1,5 +1,3 @@
-import { findShortenedNameMatch } from './findShortenedNameMatch.mjs';
-
 import { errorCreatePage } from './../meta/errors.mjs';
 
 /**
@@ -27,13 +25,3 @@ export function createPage(figmaPages, matchingPageName) {
 
   return correctPage;
 }
-
-/*
-if (findShortenedNameMatch(page.name, 'designtokens') && hasCreatedCorrectPage === false) {
-	isMatchFound = true;
-	if (page.name.toLowerCase().replace(' ', '') === 'designtokens') {
-		hasCreatedCorrectPage = true;
-		correctPage = page;
-	}
-}
-*/
