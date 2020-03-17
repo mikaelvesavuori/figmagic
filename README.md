@@ -19,7 +19,7 @@ You can currently extract design tokens for:
 - Z Indices
 - Radii
 - Border Widths
-- Shadows
+- Shadows (currently only supports a single Drop Shadow)
 - Media Queries
 
 A typical use-case for the generated documents is to feed the extracted values into CSS systems that support external values (such as Styled Components, Emotion, Styled System, any other CSS-in-JS libraries, or maybe even Sass).
@@ -36,6 +36,7 @@ _Built initially as an internal handoff tool for [Humblebee](https://www.humbleb
 
 - You can now customize Figmagic a lot more, using both a `.figmagicrc` file and with regular CLI input
 - Running `figmagic` with existing tokens will not insta-delete the old files; now they will simply be put in the trash can (this is a requested safety net, for example when you're combining Figmagic with extra steps and hate having files trashed that have changes in them)
+- Starting in `2.1.8`, you can also export/sync graphics by passing in the flag `--syncGraphics`
 - Clean-up of code, dependency grooming, and better separation into configuration and system files
 - Improved documentation and instructions
 - More tests and coverage
@@ -108,6 +109,12 @@ See a demo/template at [https://www.figma.com/file/K39TRbltDVcWFlpzw9r7Zh/Figmag
 
 ![Figma Document Structure](project-structure.png)
 
+## Syncing graphics
+
+By default this is turned off. Pass in `--syncGraphics` as a flag to sync them. You will need to have a page named "Graphics", where your components lay directly on the artboard.
+
+Again, please look at the demo/template at [https://www.figma.com/file/K39TRbltDVcWFlpzw9r7Zh/Figmagic-%E2%80%94-Design-System-for-Tokens?node-id=2605%3A12](https://www.figma.com/file/K39TRbltDVcWFlpzw9r7Zh/Figmagic-%E2%80%94-Design-System-for-Tokens?node-id=2605%3A12) for reference.
+
 ## Example project
 
 An example project—using React, Webpack and Styled Components—is available at [https://github.com/mikaelvesavuori/figmagic-example](https://github.com/mikaelvesavuori/figmagic-example).
@@ -128,7 +135,9 @@ Non-provided values will fall back to defaults outlined in `bin/meta/config.mjs`
 
 You can use a JSON-formated configuration file at the root of a project to use its settings. Figmagic will pick up the path by assessing the current working directory and looking at a `.figmagicrc` file there. If it finds it, it will use it.
 
-An example file is provided in Figmagic, using the default values:
+An example file is provided in Figmagic, it's in the root of the project. The file is named `figmagicrc`, just add the leading dot and place the file in your own project folder to use it.
+
+Below is a complete set of what you can configure, together with the defaults.
 
 ```
 {
@@ -138,7 +147,13 @@ An example file is provided in Figmagic, using the default values:
   "outputFolderBaseFile": "figma",
   "outputFolderTokens": "tokens",
   "outputTokenFormat": "mjs",
+	"outputFolderGraphics": null,
+	"outputFormatGraphics": null,
+	"recompileLocal": null,
   "spacingUnit": "rem",
+	"syncGraphics": null,
+	"token": null,
+	"url": null,
   "usePostscriptFontNames": false
 }
 ```
@@ -158,6 +173,14 @@ Default is `false`.
 `figmagic --recompileLocal`
 
 Default is `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+
+#### Sync graphics
+
+`figmagic --syncGraphics`
+
+Default is `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+
+Use this when you want to sync graphics in your "Graphics" page in Figma. Use the RC configuration file to pass in options. Default format will be SVG.
 
 #### Switch token file format
 
@@ -260,6 +283,30 @@ RGBA colors.
 ### Spacing
 
 Default: `rem` units. Can be set to `rem` or `em`.
+
+### Border widths
+
+Default: `px` units.
+
+### Letter spacings
+
+Default: `px` units.
+
+### Media queries
+
+Default: `px` units.
+
+### Radii
+
+Default: `px` units.
+
+### Shadows
+
+Default: `px` units for three values (horizontal offset, vertical offset, blur) and RGBA for the color.
+
+### Z indices
+
+Default: numbers (well, actually, numbers in strings).
 
 ## Structure
 

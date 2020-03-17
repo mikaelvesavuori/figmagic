@@ -16,12 +16,12 @@ import { acceptedTokenTypes } from '../meta/acceptedTokenTypes.mjs';
  * @returns {true} - Return true when finished
  * @throws {error} - When no than one token is provided
  */
-export function writeTokens(tokens, settings) {
+export async function writeTokens(tokens, settings) {
   if (!tokens) throw new Error(errorWriteTokens);
   if (!(tokens.length > 0)) throw new Error(errorWriteTokens);
   if (!settings) throw new Error(errorWriteTokensNoSettings);
 
-  const tokensToProcess = new Promise(async (resolve, reject) => {
+  const tokensToProcess = new Promise((resolve, reject) => {
     try {
       tokens.forEach(async token => {
         let tokenName = camelize(token.name);

@@ -18,7 +18,7 @@ import { errorWriteFile, errorWrite } from '../meta/errors.mjs';
 export async function writeFile(file, path, name, isToken = false, format) {
   if (!file || !path || !name) throw new Error(errorWriteFile);
 
-  createFolder(path);
+  await createFolder(path);
   return await write(file, path, name, isToken, format);
 }
 

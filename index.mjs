@@ -4,16 +4,25 @@
 import trash from 'trash';
 import dotenv from 'dotenv';
 
+import { colors } from './bin/meta/colors.mjs';
 import { loadFile } from './bin/functions/loadFile.mjs';
 import { createConfiguration } from './bin/functions/createConfiguration.mjs';
 import { createFolder } from './bin/functions/createFolder.mjs';
 import { getFromApi } from './bin/functions/getFromApi.mjs';
 import { createPage } from './bin/functions/createPage.mjs';
+import { getGraphics } from './bin/functions/getGraphics.mjs';
 import { writeTokens } from './bin/functions/writeTokens.mjs';
 import { writeFile } from './bin/functions/writeFile.mjs';
 
 import { errorGetData } from './bin/meta/errors.mjs';
-import { msgSetDataFromLocal, msgSetDataFromApi } from './bin/meta/messages.mjs';
+import {
+  msgSetDataFromLocal,
+  msgSetDataFromApi,
+  msgWriteBaseFile,
+  msgGetImagesFromApi,
+  msgWriteTokens,
+  msgJobComplete
+} from './bin/meta/messages.mjs';
 
 async function figmagic() {
   // Setup
@@ -25,8 +34,10 @@ async function figmagic() {
     token,
     url,
     recompileLocal,
+    syncGraphics,
     outputFolderBaseFile,
     outputFolderTokens,
+    outputFolderGraphics,
     outputFileName
   } = CONFIG;
 
@@ -40,11 +51,11 @@ async function figmagic() {
         const _DATA = await getFromApi(token, url);
 
         // If there's no data or something went funky, eject
-        if (!_DATA || _DATA.status === 403) throw new Error(errorGetData);
+        if (!_DATA || _DATA.status === 403) throw new Error(`${colors.FgRed}${errorGetData}`);
 
         return _DATA;
       } catch (error) {
-        throw new Error(error);
+        throw new Error(`${colors.FgRed}${error}`);
       }
     }
     // Recompile: We want to use the existing Figma JSON file
@@ -54,38 +65,57 @@ async function figmagic() {
       try {
         return await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
       } catch (error) {
-        throw new Error(error);
+        throw new Error(`${colors.FgRed}${error}`);
       }
     }
   })().catch(error => {
-    throw new Error(error);
+    throw new Error(`${colors.FgRed}${error}`);
   });
 
   // If this is a fresh pull from the API, trash the old folders
   if (!recompileLocal) {
     await trash([`./${outputFolderTokens}`]);
     await trash([`./${outputFolderBaseFile}`]);
+
+    if (syncGraphics) {
+      await trash([`./${outputFolderGraphics}`]);
+    }
   }
 
   // Create new folders if they don't exist
   await createFolder(outputFolderTokens);
   await createFolder(outputFolderBaseFile);
 
-  // Write base Figma JSON
-  await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
+  if (syncGraphics) {
+    await createFolder(outputFolderGraphics);
+  }
+
+  if (!recompileLocal) {
+    // Write base Figma JSON if we are pulling from the web
+    console.log(msgWriteBaseFile);
+    await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
+  }
+
+  // Syncing graphics
+  if (syncGraphics) {
+    console.log(msgGetImagesFromApi);
+    const GRAPHICS_PAGE = createPage(DATA.document.children, 'Graphics');
+    await getGraphics(GRAPHICS_PAGE.children, CONFIG);
+  }
 
   // Process tokens
-  const TOKENS = createPage(DATA.document.children);
-  writeTokens(TOKENS.children, CONFIG);
+  console.log(msgWriteTokens);
+  const TOKENS_PAGE = createPage(DATA.document.children, 'Design Tokens');
+  await writeTokens(TOKENS_PAGE.children, CONFIG);
 
   // All went well
-  console.log('Figmagic completed operations successfully!');
+  console.log(msgJobComplete);
 }
 
 (async () => {
   try {
     await figmagic();
   } catch (error) {
-    console.error(error);
+    console.error(`${colors.FgRed}${error}`);
   }
 })();

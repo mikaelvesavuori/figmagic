@@ -27,9 +27,13 @@ export function parseCliArgs(argsArray) {
       if (arg === '--debug') {
         settings.debugMode = true;
       }
-      // Toggle debug mode if requested
+      // Recompile tokens from local Figma JSON file
       else if (arg === '--recompileLocal') {
         settings.recompileLocal = true;
+      }
+      // Sync graphics from "Graphics" page in Figma
+      else if (arg === '--syncGraphics') {
+        settings.syncGraphics = true;
       }
       // Check and handle token format switch
       else if (arg === '--outputTokenFormat' || arg == '-tf') {

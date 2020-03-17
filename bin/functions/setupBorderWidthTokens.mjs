@@ -8,12 +8,12 @@ import {
 } from '../meta/errors.mjs';
 
 /**
- * Places all Figma line heights into a clean object
+ * Places all Figma border widths into a clean object
  *
  * @exports
  * @function
- * @param {object} borderWidthFrame - The line heights frame from Figma
- * @returns {object} - Returns an object with all the line heights
+ * @param {object} borderWidthFrame - The border widths frame from Figma
+ * @returns {object} - Returns an object with all the border widths
  * @throws {error} - When there is no provided Figma frame
  */
 export function setupBorderWidthTokens(borderWidthFrame) {

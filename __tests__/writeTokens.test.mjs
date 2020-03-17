@@ -34,24 +34,18 @@ test('It should return tokens if passed a valid set of frame and settings', asyn
   await expect(writeTokens(TOKENS, defaultSettings)).resolves.toBe(true);
 });
 
-test('It should throw an error if no parameter is provided', () => {
-  expect(() => {
-    writeTokens();
-  }).toThrow();
+test('It should throw an error if no parameter is provided', async () => {
+  await expect(writeTokens()).rejects.toThrow();
 });
 
-test('It should pass the zero-length token check', () => {
+test('It should pass the zero-length token check', async () => {
   const TOKENS = [{}, {}];
-  expect(() => {
-    writeTokens(TOKENS);
-  }).toThrow();
+  await expect(writeTokens(TOKENS)).rejects.toThrow();
 });
 
-test('It should fail the zero-length token check', () => {
+test('It should fail the zero-length token check', async () => {
   const TOKENS = [];
-  expect(() => {
-    writeTokens(TOKENS);
-  }).toThrow();
+  await expect(writeTokens(TOKENS)).rejects.toThrow();
 });
 
 /*

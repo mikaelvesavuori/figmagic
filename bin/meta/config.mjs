@@ -2,8 +2,12 @@ export const config = {
   defaultOutputTokenFormat: 'mjs',
   defaultFontUnit: 'rem',
   defaultSpacingUnit: 'rem',
+  defaultSyncGraphics: false,
+  defaultOutputFileName: 'figma.json',
   defaultOutputFolderBaseFile: 'figma',
   defaultOutputFolderTokens: 'tokens',
-  defaultOutputFileName: 'figma.json',
+  defaultOutputFolderGraphics: 'graphics',
+  defaultOutputFormatGraphics: 'svg',
+  defaultOutputScaleGraphics: 1,
   defaultUsePostscriptFontNames: false
 };

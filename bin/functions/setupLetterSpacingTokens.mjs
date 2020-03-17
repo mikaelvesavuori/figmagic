@@ -9,12 +9,12 @@ import {
 } from '../meta/errors.mjs';
 
 /**
- * Places all Figma line heights into a clean object
+ * Places all Figma letter spacings into a clean object
  *
  * @exports
  * @function
- * @param {object} letterSpacingFrame - The line heights frame from Figma
- * @returns {object} - Returns an object with all the line heights
+ * @param {object} letterSpacingFrame - The letter spacings frame from Figma
+ * @returns {object} - Returns an object with all the letter spacings
  * @throws {error} - When there is no provided Figma frame
  */
 export function setupLetterSpacingTokens(letterSpacingFrame) {

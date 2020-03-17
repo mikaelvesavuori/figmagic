@@ -9,12 +9,12 @@ import {
 } from '../meta/errors.mjs';
 
 /**
- * Places all Figma line heights into a clean object
+ * Places all Figma radii into a clean object
  *
  * @exports
  * @function
- * @param {object} radiusFrame - The line heights frame from Figma
- * @returns {object} - Returns an object with all the line heights
+ * @param {object} radiusFrame - The radii frame from Figma
+ * @returns {object} - Returns an object with all the radii
  * @throws {error} - When there is no provided Figma frame
  */
 export function setupRadiusTokens(radiusFrame) {
@@ -33,7 +33,7 @@ export function setupRadiusTokens(radiusFrame) {
     const RADIUS = (() => {
       if (type.cornerRadius)
         return normalizeUnits(type.cornerRadius, 'cornerRadius', 'adjustedRadius');
-      else return `0%`;
+      else return `0px`;
     })();
 
     cornerRadiusObject[name] = RADIUS;

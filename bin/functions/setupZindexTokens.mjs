@@ -8,12 +8,12 @@ import {
 } from '../meta/errors.mjs';
 
 /**
- * Places all Figma line heights into a clean object
+ * Places all Figma Z indices into a clean object
  *
  * @exports
  * @function
- * @param {object} zIndexFrame - The line heights frame from Figma
- * @returns {object} - Returns an object with all the line heights
+ * @param {object} zIndexFrame - The Z index frame from Figma
+ * @returns {object} - Returns an object with all the Z indices
  * @throws {error} - When there is no provided Figma frame
  */
 export function setupZindexTokens(zIndexFrame) {

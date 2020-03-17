@@ -14,10 +14,10 @@ import { errorGetFromApi } from '../meta/errors.mjs';
  * @param {string} figmaUrl - String representing user's Figma document ID
  * @returns {object} - The fetched data inside of an object
  */
-export async function getFromApi(figmaToken, figmaUrl) {
+export async function getFromApi(figmaToken, figmaUrl, type = 'files') {
   if (!figmaToken || !figmaUrl) throw new Error(errorGetFromApi);
 
-  return await fetch(`https://api.figma.com/v1/files/${figmaUrl}`, {
+  return await fetch(`https://api.figma.com/v1/${type}/${figmaUrl}`, {
     headers: {
       'X-Figma-Token': figmaToken
     }

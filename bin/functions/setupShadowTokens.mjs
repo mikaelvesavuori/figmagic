@@ -9,12 +9,12 @@ import {
 } from '../meta/errors.mjs';
 
 /**
- * Places all Figma line heights into a clean object
+ * Places all Figma shadows into a clean object
  *
  * @exports
  * @function
- * @param {object} shadowFrame - The line heights frame from Figma
- * @returns {object} - Returns an object with all the line heights
+ * @param {object} shadowFrame - The shadows frame from Figma
+ * @returns {object} - Returns an object with all the shadows
  * @throws {error} - When there is no provided Figma frame
  */
 export function setupShadowTokens(shadowFrame) {
@@ -26,20 +26,27 @@ export function setupShadowTokens(shadowFrame) {
   shadowFrame.children.forEach(type => {
     if (!type.name || !type.effects) throw new Error(errorSetupShadowTokensMissingProps);
 
-    // TODO: Improve so shadow does not have to be the first effect
     let name = camelize(type.name);
     name = formatName(name);
+    let dropShadow = null;
 
-    const X = type.effects[0].offset.x;
-    const Y = type.effects[0].offset.y;
-    const RADIUS = type.effects[0].radius;
-    const R = roundColorValue(type.effects[0].color.r);
-    const G = roundColorValue(type.effects[0].color.g);
-    const B = roundColorValue(type.effects[0].color.b);
-    const A = roundColorValue(type.effects[0].color.a, 1);
+    type.effects.map(effect => {
+      if (effect.type === 'DROP_SHADOW') {
+        dropShadow = effect;
+      }
+    });
 
-    // TODO: Ensure it looks correct, and now 10px is hardcoded since no such value exists in Figma?
-    shadowObject[name] = `${X}px ${Y}px 10px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
+    if (dropShadow) {
+      const X = dropShadow.offset.x;
+      const Y = dropShadow.offset.y;
+      const RADIUS = dropShadow.radius;
+      const R = roundColorValue(dropShadow.color.r);
+      const G = roundColorValue(dropShadow.color.g);
+      const B = roundColorValue(dropShadow.color.b);
+      const A = roundColorValue(dropShadow.color.a, 1);
+
+      shadowObject[name] = `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
+    } else shadowObject[name] = ``;
   });
 
   return shadowObject;

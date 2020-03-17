@@ -1,3 +1,6 @@
+export const errorDownloadFile =
+  'Missing one or more of "url", "folder", or "file" arguments in downloadFile()!';
+
 export const errorGetData = 'Could not retrieve any data. Are you missing a valid API key?';
 
 export const errorCamelize = 'No string provided to camelize()!';
@@ -18,6 +21,11 @@ export const errorFormatName = 'No string for formatName()!';
 
 export const errorGetFromApi =
   'Missing one or more of required arguments: "figmaToken", "figmaUrl"!';
+
+export const errorGetGraphics = 'Error when fetching graphics from Figma API!';
+export const errorGetGraphicsNoImages = 'No images received from Figma API!';
+
+export const errorGetIds = 'No (or zero-length) array passed to getIds()!';
 
 export const errorLoadFile = 'Could not find file!';
 

@@ -1,9 +1,12 @@
 /figma
 /grid
 /tokens
+/graphics
 /specs
 /jest-coverage
 **/jest-coverage
+/__testing
+__test*
 
 yarn.lock
 

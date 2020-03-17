@@ -5,9 +5,6 @@
   "outputFolderBaseFile": "figma",
   "outputFolderTokens": "tokens",
   "outputTokenFormat": "mjs",
-  "outputFolderGraphics": "graphics",
-  "outputFormatGraphics": "svg",
-  "outputScaleGraphics": 1,
   "spacingUnit": "rem",
-  "usePostscriptFontNames": false
+  "usePostscriptFontNames": true
 }

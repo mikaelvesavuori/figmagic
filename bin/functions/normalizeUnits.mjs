@@ -42,9 +42,9 @@ export function normalizeUnits(value, currentUnit, newUnit) {
     return `${parseFloat(value * 3).toFixed(2)}px`;
   }
 
-  // Add % to corner radius
+  // Add px to corner radius
   if (currentUnit === 'cornerRadius' && newUnit === 'adjustedRadius') {
-    return `${value}%`;
+    return `${value}px`;
   }
 
   // TODO: This is uncovered in test
