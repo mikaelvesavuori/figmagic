@@ -147,13 +147,13 @@ Below is a complete set of what you can configure, together with the defaults.
   "outputFolderBaseFile": "figma",
   "outputFolderTokens": "tokens",
   "outputTokenFormat": "mjs",
-	"outputFolderGraphics": null,
-	"outputFormatGraphics": null,
-	"recompileLocal": null,
+  "outputFolderGraphics": null,
+  "outputFormatGraphics": null,
+  "recompileLocal": null,
   "spacingUnit": "rem",
-	"syncGraphics": null,
-	"token": null,
-	"url": null,
+  "syncGraphics": null,
+  "token": null,
+  "url": null,
   "usePostscriptFontNames": false
 }
 ```
