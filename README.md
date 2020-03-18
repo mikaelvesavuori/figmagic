@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/mikaelvesavuori/figmagic.svg?branch=master)](https://travis-ci.org/mikaelvesavuori/figmagic)
 [![DeepScan grade](https://deepscan.io/api/teams/6692/projects/8785/branches/111253/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=6692&pid=8785&bid=111253)
 
-Automate the generation of design tokens from your Figma documents. Inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo).
+Generate design tokens and extract graphics from your Figma documents. Inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo).
 
 You can currently extract design tokens for:
 
