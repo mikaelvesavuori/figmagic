@@ -95,6 +95,7 @@ async function figmagic() {
   if (!recompileLocal) {
     // Write base Figma JSON if we are pulling from the web
     console.log(msgWriteBaseFile);
+		const _DATA = await getFromApi(token, url);
     await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
   }
 
@@ -111,7 +112,13 @@ async function figmagic() {
 	await writeTokens(TOKENS_PAGE.children, CONFIG);
 	*/
 
+  // 1. Load data from web
+  //const DATA = await getFromApi(token, url);
+  //await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
+
+  // 2. Load local data
   const DATA = await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
+
   const COMPONENTS = DATA.components;
   const STYLES = DATA.styles;
 
