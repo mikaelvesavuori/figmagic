@@ -11,6 +11,7 @@ import { createFolder } from './bin/functions/createFolder.mjs';
 import { getFromApi } from './bin/functions/getFromApi.mjs';
 import { createPage } from './bin/functions/createPage.mjs';
 import { getGraphics } from './bin/functions/getGraphics.mjs';
+import { getElements } from './bin/functions/getElements.mjs';
 import { writeTokens } from './bin/functions/writeTokens.mjs';
 import { writeFile } from './bin/functions/writeFile.mjs';
 
@@ -41,6 +42,7 @@ async function figmagic() {
     outputFileName
   } = CONFIG;
 
+  /*
   const DATA = await (async () => {
     // Normal: We want to get data from the Figma API
     if (!recompileLocal) {
@@ -106,7 +108,37 @@ async function figmagic() {
   // Process tokens
   console.log(msgWriteTokens);
   const TOKENS_PAGE = createPage(DATA.document.children, 'Design Tokens');
-  await writeTokens(TOKENS_PAGE.children, CONFIG);
+	await writeTokens(TOKENS_PAGE.children, CONFIG);
+	*/
+
+  const DATA = await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
+  const COMPONENTS = DATA.components;
+  const STYLES = DATA.styles;
+
+  /*
+  //console.log(COMPONENTS);
+  //console.log(STYLES);
+
+  const mapComponentIdsToStyles = (components, styles) => {
+    //console.log(components); // 2743:6
+
+    console.log(components['2743:6']);
+    console.log(styles); //['2743:6']
+
+    //console.log(Object.keys(components).length);
+    //console.log(Object.keys(styles).length);
+
+    components.map(component => {
+      console.log(component.name);
+    });
+  };
+
+	const x = mapComponentIdsToStyles(COMPONENTS, STYLES);
+	*/
+
+  console.log('Attempting to parse elements...');
+  const ELEMENTS_PAGE = createPage(DATA.document.children, 'Elements');
+  await getElements(ELEMENTS_PAGE.children, CONFIG, COMPONENTS);
 
   // All went well
   console.log(msgJobComplete);

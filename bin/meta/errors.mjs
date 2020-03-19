@@ -11,6 +11,9 @@ export const errorCreateFolder = 'No directory specified for createFolder()!';
 
 export const errorCreatePage = 'No pages provided to createPage()!';
 
+export const errorConvertHexToRgba =
+  'Missing one or more of red, green, blue and alpha in convertHexToRgba()!';
+
 export const errorFindShortenedNameMatchString =
   'No "matchString" was provided to findShortenedNameMatch()!';
 export const errorFindShortenedNameMatchOriginal =
