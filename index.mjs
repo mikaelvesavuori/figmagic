@@ -114,11 +114,11 @@ async function figmagic() {
 	*/
 
   // 1. Load data from web
-  //const DATA = await getFromApi(token, url);
-  //await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
+  const DATA = await getFromApi(token, url);
+  await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
 
   // 2. Load local data
-  const DATA = await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
+  //const DATA = await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
 
   const COMPONENTS = DATA.components;
   const STYLES = DATA.styles;
