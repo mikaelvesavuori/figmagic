@@ -78,7 +78,7 @@ async function prepareWrite(type, file, path, name, format, metadata) {
 
   if (type === 'raw') {
     fileContent = `${JSON.stringify(file, null, ' ')}`;
-    filePath += `.${format}`;
+    filePath += `.json`;
   } else if (type === 'token') {
     fileContent = `const ${name} = ${JSON.stringify(file, null, ' ')}\n\nexport default ${name};`;
     filePath += `.${format}`;

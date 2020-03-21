@@ -1,7 +1,5 @@
 import fetch from 'node-fetch';
 
-//import { writeFile } from './writeFile.mjs';
-
 import { errorGetFromApi } from '../meta/errors.mjs';
 
 /**

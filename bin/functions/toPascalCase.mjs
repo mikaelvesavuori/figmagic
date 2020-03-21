@@ -14,7 +14,7 @@ export function toPascalCase(str) {
     return w[0].toUpperCase() + w.slice(1).toLowerCase();
   });
 
-  //recasedString = recasedString.replace(/\s+/g, '');
+  recasedString = recasedString.replace(/\s+/g, '');
 
   return recasedString;
 }

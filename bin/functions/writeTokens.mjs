@@ -34,7 +34,7 @@ export async function writeTokens(tokens, settings) {
             PROCESSED_TOKEN,
             settings.outputFolderTokens,
             tokenName,
-            true,
+            'token',
             settings.outputTokenFormat
           );
         }

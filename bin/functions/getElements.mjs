@@ -48,16 +48,20 @@ function parseElement(element) {
     throw new Error(`Did not find exactly 1 (one) match for element ${element.name}!`);
   let css = getCssFromElement(MAIN_ELEMENT[0]);
   const TEXT_ELEMENT = element.children.filter(e => e.name === 'Text');
-  if (TEXT_ELEMENT.length !== 1)
+  if (TEXT_ELEMENT.length > 1)
     throw new Error(
-      `Did not find exactly 1 (one) match for "Text" node required as child of element ${element.name}!`
+      `Found more than one match for "Text" node. Required: 0 or 1 text nodes as child of element ${element.name}!`
     );
-  let typographyStyling = getTypographyStylingFromElement(TEXT_ELEMENT[0]);
-  css += typographyStyling;
 
-  console.log('1', html);
-  html = html.replace('{{TEXT}}', TEXT_ELEMENT[0].characters);
-  console.log('2', html);
+  let text = ``;
+
+  if (TEXT_ELEMENT.length === 1) {
+    let typographyStyling = getTypographyStylingFromElement(TEXT_ELEMENT[0]);
+    text = TEXT_ELEMENT[0].characters;
+    css += typographyStyling;
+  }
+
+  html = html.replace('{{TEXT}}', text);
 
   newElement.css = css;
 

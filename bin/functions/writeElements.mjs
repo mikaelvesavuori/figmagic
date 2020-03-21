@@ -1,3 +1,4 @@
+import { toPascalCase } from './toPascalCase.mjs';
 import { writeFile } from './writeFile.mjs';
 
 export async function writeElements(elements) {
@@ -7,7 +8,7 @@ export async function writeElements(elements) {
     // TODO: Add folder support, e.g. `components/${NAME}`
     const HTML = comp.html;
     const CSS = comp.css;
-    const NAME = comp.name; //toPascalCase(comp.name);
+    const NAME = toPascalCase(comp.name);
     const FOLDER_COMP = 'components';
     const FOLDER_STORY = 'stories';
     const METADATA = {
