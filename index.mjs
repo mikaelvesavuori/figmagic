@@ -14,6 +14,7 @@ import { getGraphics } from './bin/functions/getGraphics.mjs';
 import { getElements } from './bin/functions/getElements.mjs';
 import { writeTokens } from './bin/functions/writeTokens.mjs';
 import { writeFile } from './bin/functions/writeFile.mjs';
+import { writeElements } from './bin/functions/writeElements.mjs';
 
 import { errorGetData } from './bin/meta/errors.mjs';
 import {
@@ -145,7 +146,8 @@ async function figmagic() {
 
   console.log('Attempting to parse elements...');
   const ELEMENTS_PAGE = createPage(DATA.document.children, 'Elements');
-  await getElements(ELEMENTS_PAGE.children, CONFIG, COMPONENTS);
+  const elements = await getElements(ELEMENTS_PAGE.children, CONFIG, COMPONENTS);
+  await writeElements(elements);
 
   // All went well
   console.log(msgJobComplete);

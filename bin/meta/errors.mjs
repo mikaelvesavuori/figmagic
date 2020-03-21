@@ -108,6 +108,7 @@ export const errorSetupBorderWidthTokensMissingProps =
   'Missing "name" or "strokeWeight" properties in border width frame!';
 
 export const errorWriteFile = 'Missing required parameters to correctly run writeFile()!';
+export const errorWriteFileWrongType = 'Provided invalid file type to writeFile()!';
 
 export const errorWrite = 'Error while attempting to write file!';
 export const errorWriteTokens = 'Less than one token provided to writeTokens()!';
