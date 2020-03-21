@@ -52,6 +52,7 @@ export async function writeFile(file, path, name, type, format = 'mjs', metadata
  * @returns {Promise} - Returns promise from wrapped fs.writeFile
  */
 async function prepareWrite(type, file, path, name, format, metadata) {
+  console.log('metadata', metadata);
   let fileContent = ``;
 
   // Clean name from any slashes
