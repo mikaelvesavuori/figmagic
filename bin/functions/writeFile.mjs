@@ -27,7 +27,8 @@ export async function writeFile(file, path, name, type, format = 'mjs', metadata
     _TYPE !== 'token' &&
     _TYPE !== 'component' &&
     _TYPE !== 'style' &&
-    _TYPE !== 'css'
+    _TYPE !== 'css' &&
+    _TYPE !== 'story'
   )
     throw new Error(errorWriteFileWrongType);
 
@@ -52,7 +53,6 @@ export async function writeFile(file, path, name, type, format = 'mjs', metadata
  * @returns {Promise} - Returns promise from wrapped fs.writeFile
  */
 async function prepareWrite(type, file, path, name, format, metadata) {
-  console.log('metadata', metadata);
   let fileContent = ``;
 
   // Clean name from any slashes
@@ -68,8 +68,8 @@ async function prepareWrite(type, file, path, name, format, metadata) {
 
   const MARKUP = (() => {
     if (metadata) {
-      if (metadata.markup) {
-        return metadata.markup;
+      if (metadata.html) {
+        return metadata.html;
       } else return '';
     } else return '';
   })();
@@ -83,29 +83,52 @@ async function prepareWrite(type, file, path, name, format, metadata) {
     fileContent = `const ${name} = ${JSON.stringify(file, null, ' ')}\n\nexport default ${name};`;
     filePath += `.${format}`;
   } else if (type === 'component') {
-    const SUFFIX = 'Styled';
-    let reactTemplate = await loadFile('templates/react.jsx', true);
-    reactTemplate = reactTemplate.replace(/{{NAME}}/gi, name);
-    reactTemplate = reactTemplate.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
-    reactTemplate = reactTemplate.replace(/{{MARKUP}}/gi, MARKUP);
-    fileContent = `${reactTemplate}`;
+    let template = await loadFile('templates/react.jsx', true);
+    template = template.replace(/{{NAME}}/gi, name);
+    template = template.replace(/{{NAME_STYLED}}/gi, `${name}`);
+    template = template.replace(/{{MARKUP}}/gi, MARKUP);
+    fileContent = `${template}`;
     filePath += `.${format}`;
   } else if (type === 'style') {
     const SUFFIX = 'Styled';
-    let cssTemplate = await loadFile('templates/styled.jsx', true);
-    cssTemplate = cssTemplate.replace(/{{ELEMENT}}/gi, ELEMENT);
-    cssTemplate = cssTemplate.replace(/{{NAME_CSS}}/gi, `${name}Css`);
-    cssTemplate = cssTemplate.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
-    fileContent = `${cssTemplate}`;
+    let template = await loadFile('templates/styled.jsx', true);
+    template = template.replace(/{{ELEMENT}}/gi, ELEMENT);
+    template = template.replace(/{{NAME_CSS}}/gi, `${name}Css`);
+    template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
+    fileContent = `${template}`;
     filePath += `${SUFFIX}.${format}`;
   } else if (type === 'css') {
     const SUFFIX = 'Css';
     fileContent = `const ${name}${SUFFIX} = \`${file}\`\n\nexport default ${name}${SUFFIX};`;
     filePath += `${SUFFIX}.${format}`;
+  } else if (type === 'story') {
+    const SUFFIX = '.stories';
+    let template = await loadFile('templates/story.js', true);
+    template = template.replace(/{{NAME}}/gi, name);
+    template = template.replace(/{{MARKUP}}/gi, MARKUP);
+    fileContent = `${template}`;
+    filePath += `${SUFFIX}.${format}`;
   }
 
   return { fileContent, filePath };
 }
+
+/*
+async function setupFile(templateFile, replacements, suffix, format) {
+  let template = await loadFile(templateFile, true);
+  let fileContent = `${template}`;
+  let filePath = `.${format}`;
+
+  replacements.forEach(replacement => {
+    fileContent = template.replace(/{{NAME}}/gi, "name");
+  });
+
+  return {
+    fileContent,
+    filePath
+  };
+}
+*/
 
 /**
  * Local helper that does most the actual writing of the file

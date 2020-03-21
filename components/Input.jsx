@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import InputStyled from './InputStyled';
+import Input from './Input';
 
-//const Input = props => <InputStyled onClick={props.onClick}>{props.children}</InputStyled>;
-
-const Input = props => <InputStyled onClick={props.onClick}>{props.children}></InputStyled>;
+const Input = props => <Input onClick={props.onClick}>{props.children}</Input>;
 
 Input.propTypes = {
   onClick: PropTypes.func.isRequired

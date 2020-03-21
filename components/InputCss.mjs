@@ -12,6 +12,6 @@ font-family: Helvetica Neue;
 font-weight: 400;
 line-height: 18.75px;
 text-align: LEFT;
-`;
+`
 
 export default InputCss;

@@ -4,22 +4,27 @@ export async function writeElements(elements) {
   await elements.map(comp => {
     console.log('COMP', comp);
 
-    const CSS = comp.css;
-
     // TODO: Add folder support, e.g. `components/${NAME}`
-    //const NAME = toPascalCase(comp.name);
-    const FOLDER = 'components';
+    const HTML = comp.html;
+    const CSS = comp.css;
+    const NAME = comp.name; //toPascalCase(comp.name);
+    const FOLDER_COMP = 'components';
+    const FOLDER_STORY = 'stories';
+    const METADATA = {
+      element: comp.element,
+      html: comp.html
+    };
 
     // Write React component
-    writeFile(CSS, FOLDER, comp.name, 'component', 'jsx', comp.metadata);
+    writeFile(HTML, FOLDER_COMP, NAME, 'component', 'jsx');
 
-    // Write Styled component, and pass metadata
-    writeFile(CSS, FOLDER, comp.name, 'style', 'jsx', comp.metadata);
+    // Write Styled component
+    writeFile(CSS, FOLDER_COMP, NAME, 'style', 'jsx');
 
     // Write CSS
-    writeFile(CSS, FOLDER, comp.name, 'css', 'mjs');
+    writeFile(CSS, FOLDER_COMP, NAME, 'css', 'mjs');
 
     // Write Storybook component
-    //writeFile(CSS, FOLDER, comp.name, 'storybook', 'js');
+    writeFile(CSS, FOLDER_STORY, NAME, 'story', 'js', METADATA);
   });
 }
