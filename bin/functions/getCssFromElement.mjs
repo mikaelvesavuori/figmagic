@@ -1,13 +1,13 @@
 import { roundColorValue } from './roundColorValue.mjs';
 
-export function getCssFromElement(element) {
+export function getCssFromElement(element, textElement) {
   let css = ``;
 
   css += `width: 100%;\n`;
 
   const PADDING_X = (() => {
-    if (element.children) {
-      return Math.round(element.children[0].absoluteBoundingBox.x - element.absoluteBoundingBox.x);
+    if (textElement) {
+      return Math.round(textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x);
     }
   })();
 

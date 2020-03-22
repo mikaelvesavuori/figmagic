@@ -53,17 +53,6 @@ function parseElement(element) {
   // Note: The item is expected to have the same name as the component overall, such as "Input", "Button", or "H1"
   let css = ` `;
 
-  // Process CSS for any component that has a self-named layer
-  // This pattern is how we communicate that it's a layout element, eg. input and not a H1
-  const MAIN_ELEMENT = element.children.filter(e => e.name === element.name);
-  if (MAIN_ELEMENT[0]) {
-    if (MAIN_ELEMENT.length !== 1) {
-      throw new Error(`${errorGetElementsWrongElementCount} ${element.name}!`);
-    }
-
-    css = getCssFromElement(MAIN_ELEMENT[0]);
-  }
-
   // Check for text elements
   const TEXT_ELEMENT = element.children.filter(e => e.name === 'Text');
   if (TEXT_ELEMENT.length > 1)
@@ -92,6 +81,17 @@ function parseElement(element) {
   }
 
   html = html.replace('{{TEXT}}', text);
+
+  // Process CSS for any component that has a self-named layer
+  // This pattern is how we communicate that it's a layout element, eg. input and not a H1
+  const MAIN_ELEMENT = element.children.filter(e => e.name === element.name);
+  if (MAIN_ELEMENT[0]) {
+    if (MAIN_ELEMENT.length !== 1) {
+      throw new Error(`${errorGetElementsWrongElementCount} ${element.name}!`);
+    }
+
+    css = getCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0]);
+  }
 
   // Apply to new object
   newElement.css = css;
