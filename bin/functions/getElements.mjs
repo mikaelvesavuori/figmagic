@@ -90,7 +90,7 @@ function parseElement(element) {
       throw new Error(`${errorGetElementsWrongElementCount} ${element.name}!`);
     }
 
-    css = getCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0]);
+    css += getCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0]);
   }
 
   // Apply to new object
