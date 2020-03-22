@@ -10,6 +10,7 @@ export async function writeElements(elements) {
     const CSS = comp.css;
     const NAME = toPascalCase(comp.name);
     const FOLDER_COMP = 'components';
+    console.log('new folder', `${FOLDER_COMP}/${NAME}`);
     const FOLDER_STORY = 'stories';
     const METADATA = {
       element: comp.element,
