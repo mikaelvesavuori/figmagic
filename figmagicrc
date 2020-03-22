@@ -5,6 +5,8 @@
   "outputFolderBaseFile": "figma",
   "outputFolderTokens": "tokens",
   "outputTokenFormat": "mjs",
+  "outputFolderElements": "elements",
+  "outputFolderComponents": "components",
   "spacingUnit": "rem",
   "usePostscriptFontNames": true
 }

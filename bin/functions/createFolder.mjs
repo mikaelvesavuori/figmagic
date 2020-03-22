@@ -17,7 +17,7 @@ export async function createFolder(dir) {
   return new Promise((resolve, reject) => {
     try {
       if (!fs.existsSync(dir)) {
-        fs.mkdir(dir, { recursive: true }, error => {
+        fs.mkdirSync(dir, { recursive: true }, error => {
           if (error) throw error;
           resolve(true);
         });

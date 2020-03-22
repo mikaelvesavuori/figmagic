@@ -40,6 +40,8 @@ async function figmagic() {
     outputFolderBaseFile,
     outputFolderTokens,
     outputFolderGraphics,
+    outputFolderElements,
+    outputFolderComponents,
     outputFileName
   } = CONFIG;
 
@@ -149,7 +151,7 @@ async function figmagic() {
   console.log('Attempting to parse elements...');
   const ELEMENTS_PAGE = createPage(DATA.document.children, 'Elements');
   const elements = await getElements(ELEMENTS_PAGE.children, CONFIG, COMPONENTS);
-  await writeElements(elements);
+  await writeElements(elements, CONFIG);
 
   // All went well
   console.log(msgJobComplete);

@@ -33,12 +33,19 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
     outputFolderBaseFile: config.defaultOutputFolderBaseFile,
     outputFolderTokens: config.defaultOutputFolderTokens,
     outputTokenFormat: config.defaultOutputTokenFormat,
+    outputFolderElements: config.defaultOutputFolderElements,
+    outputFolderComponents: config.defaultOutputFolderComponents,
     outputFolderGraphics: config.defaultOutputFolderGraphics,
     outputFormatGraphics: config.defaultOutputFormatGraphics,
     outputScaleGraphics: config.defaultOutputScaleGraphics,
     recompileLocal: config.recompileLocal,
     spacingUnit: config.defaultSpacingUnit,
     syncGraphics: config.defaultSyncGraphics,
+    templates: {
+      templatePathReact: config.templates.defaultTemplatePathReact,
+      templatePathStyled: config.templates.defaultTemplatePathStyled,
+      templatePathStorybook: config.templates.defaultTemplatePathStorybook
+    },
     token: process.env.FIGMA_TOKEN ? process.env.FIGMA_TOKEN : null,
     url: process.env.FIGMA_URL ? process.env.FIGMA_URL : null,
     usePostscriptFontNames: config.defaultUsePostscriptFontNames

@@ -4,12 +4,7 @@ import { getTypographyStylingFromElement } from './getTypographyStylingFromEleme
 export function getElements(elementsPage, config, components) {
   const _ELEMENTS = elementsPage.filter(element => element.type === 'COMPONENT');
   const ELEMENTS = addDescriptionToElements(_ELEMENTS, components);
-
   const PARSED_ELEMENTS = ELEMENTS.map(el => parseElement(el));
-
-  console.log('PARSED_ELEMENTS');
-  console.log(PARSED_ELEMENTS);
-
   return PARSED_ELEMENTS;
 }
 

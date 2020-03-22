@@ -1,32 +1,28 @@
 import { toPascalCase } from './toPascalCase.mjs';
 import { writeFile } from './writeFile.mjs';
 
-export async function writeElements(elements) {
+export async function writeElements(elements, config) {
   await elements.map(comp => {
-    console.log('COMP', comp);
-
-    // TODO: Add folder support, e.g. `components/${NAME}`
     const HTML = comp.html;
     const CSS = comp.css;
     const NAME = toPascalCase(comp.name);
-    const FOLDER_COMP = 'components';
-    console.log('new folder', `${FOLDER_COMP}/${NAME}`);
-    const FOLDER_STORY = 'stories';
+    const FOLDER = `${config.outputFolderElements}/${NAME}`;
     const METADATA = {
       element: comp.element,
       html: comp.html
     };
+    const TEMPLATES = config.templates;
 
     // Write React component
-    writeFile(HTML, FOLDER_COMP, NAME, 'component', 'jsx');
+    writeFile(HTML, FOLDER, NAME, 'component', 'jsx', null, TEMPLATES);
 
     // Write Styled component
-    writeFile(CSS, FOLDER_COMP, NAME, 'style', 'jsx');
+    writeFile(CSS, FOLDER, NAME, 'style', 'jsx', null, TEMPLATES);
 
     // Write CSS
-    writeFile(CSS, FOLDER_COMP, NAME, 'css', 'mjs');
+    writeFile(CSS, FOLDER, NAME, 'css', 'mjs', null, TEMPLATES);
 
     // Write Storybook component
-    writeFile(CSS, FOLDER_STORY, NAME, 'story', 'js', METADATA);
+    writeFile(CSS, FOLDER, NAME, 'story', 'js', METADATA, TEMPLATES);
   });
 }

@@ -81,6 +81,14 @@ export function parseCliArgs(argsArray) {
       else if (arg === '--outputFolderTokens' || arg == '-tokens') {
         settings.outputFolderTokens = argsArray[index + 1];
       }
+      // Handle input: element output folder
+      else if (arg === '--outputFolderElements' || arg == '-elements') {
+        settings.outputFolderElements = argsArray[index + 1];
+      }
+      // Handle input: component output folder
+      else if (arg === '--outputFolderComponents' || arg == '-components') {
+        settings.outputFolderComponents = argsArray[index + 1];
+      }
       // Handle input: output file name
       else if (arg === '--outputFileName' || arg == '-file') {
         settings.outputFileName = argsArray[index + 1];

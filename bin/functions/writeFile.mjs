@@ -16,8 +16,9 @@ import { errorWriteFile, errorWriteFileWrongType, errorWrite } from '../meta/err
  * @param {string} type - What type of file is going to be written
  * @param {string} format - File format
  * @param {object} metadata - Any metadata needed for writing
+ * @param {object} templates - Object of templates
  */
-export async function writeFile(file, path, name, type, format = 'mjs', metadata) {
+export async function writeFile(file, path, name, type, format = 'mjs', metadata, templates) {
   if (!file || !path || !name || !type) throw new Error(errorWriteFile);
 
   const _TYPE = type.toLowerCase();
@@ -34,7 +35,15 @@ export async function writeFile(file, path, name, type, format = 'mjs', metadata
 
   createFolder(path);
 
-  const { filePath, fileContent } = await prepareWrite(_TYPE, file, path, name, format, metadata);
+  const { filePath, fileContent } = await prepareWrite(
+    _TYPE,
+    file,
+    path,
+    name,
+    format,
+    metadata,
+    templates
+  );
 
   await write(filePath, fileContent);
 }
@@ -50,9 +59,17 @@ export async function writeFile(file, path, name, type, format = 'mjs', metadata
  * @param {string} name - File name
  * @param {string} format - File format
  * @param {object} metadata - Any metadata needed for writing
+ * @param {object} templates - Object of templates
  * @returns {Promise} - Returns promise from wrapped fs.writeFile
  */
-async function prepareWrite(type, file, path, name, format, metadata) {
+async function prepareWrite(type, file, path, name, format, metadata, templates) {
+  if (type === 'css' || type === 'story' || type === 'component') {
+    if (!templates)
+      throw new Error(
+        'No templates provided to prepareWrite()! Seems like fallback template path also failed...'
+      );
+  }
+
   let fileContent = ``;
 
   // Clean name from any slashes
@@ -83,7 +100,7 @@ async function prepareWrite(type, file, path, name, format, metadata) {
     fileContent = `const ${name} = ${JSON.stringify(file, null, ' ')}\n\nexport default ${name};`;
     filePath += `.${format}`;
   } else if (type === 'component') {
-    let template = await loadFile('templates/react.jsx', true);
+    let template = await loadFile(templates.templatePathReact, true);
     template = template.replace(/{{NAME}}/gi, name);
     template = template.replace(/{{NAME_STYLED}}/gi, `${name}`);
     template = template.replace(/{{MARKUP}}/gi, MARKUP);
@@ -91,7 +108,7 @@ async function prepareWrite(type, file, path, name, format, metadata) {
     filePath += `.${format}`;
   } else if (type === 'style') {
     const SUFFIX = 'Styled';
-    let template = await loadFile('templates/styled.jsx', true);
+    let template = await loadFile(templates.templatePathStyled, true);
     template = template.replace(/{{ELEMENT}}/gi, ELEMENT);
     template = template.replace(/{{NAME_CSS}}/gi, `${name}Css`);
     template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
@@ -103,7 +120,7 @@ async function prepareWrite(type, file, path, name, format, metadata) {
     filePath += `${SUFFIX}.${format}`;
   } else if (type === 'story') {
     const SUFFIX = '.stories';
-    let template = await loadFile('templates/story.js', true);
+    let template = await loadFile(templates.templatePathStorybook, true);
     template = template.replace(/{{NAME}}/gi, name);
     template = template.replace(/{{MARKUP}}/gi, MARKUP);
     fileContent = `${template}`;
