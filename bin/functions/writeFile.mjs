@@ -84,10 +84,20 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     } else return 'div';
   })();
 
+  /*
   const MARKUP = (() => {
     if (metadata) {
       if (metadata.html) {
         return metadata.html;
+      } else return '';
+    } else return '';
+	})();
+	*/
+
+  const TEXT = (() => {
+    if (metadata) {
+      if (metadata.text) {
+        return metadata.text;
       } else return '';
     } else return '';
   })();
@@ -114,6 +124,7 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
     template = template.replace(/{{EXTRA_PROPS}}/gi, EXTRA_PROPS);
     template = template.replace(/\s>/gi, '>'); // Remove any ugly spaces before ending ">"
+    template = template.replace(/{{TEXT}}/gi, TEXT);
     //template = template.replace(/{{MARKUP}}/gi, MARKUP);
     fileContent = `${template}`;
     filePath += `.${format}`;
@@ -133,7 +144,8 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     const SUFFIX = '.stories';
     let template = await loadFile(templates.templatePathStorybook, true);
     template = template.replace(/{{NAME}}/gi, name);
-    template = template.replace(/{{MARKUP}}/gi, MARKUP);
+    template = template.replace(/{{TEXT}}/gi, TEXT);
+    //template = template.replace(/{{MARKUP}}/gi, MARKUP);
     fileContent = `${template}`;
     filePath += `${SUFFIX}.${format}`;
   } else if (type === 'description') {

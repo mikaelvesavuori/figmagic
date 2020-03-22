@@ -6,4 +6,4 @@ import description from './{{NAME}}.description.md';
 
 export default { title: '{{NAME}}', parameters: { notes: description } };
 
-export const {{NAME}}Regular = () => <{{NAME}}></{{NAME}}>
+export const {{NAME}}Regular = () => <{{NAME}}>{{TEXT}}</{{NAME}}>

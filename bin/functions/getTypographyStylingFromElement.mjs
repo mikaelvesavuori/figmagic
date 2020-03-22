@@ -1,5 +1,24 @@
+import { roundColorValue } from './roundColorValue.mjs';
+
+// TODO: Map to Figma Styles instead?
 export function getTypographyStylingFromElement(element) {
   let css = ``;
+
+  const FONT_COLOR = (() => {
+    if (element.fills) {
+      if (element.fills[0]) {
+        if (element.fills[0].type === 'SOLID') {
+          const R = roundColorValue(element.fills[0].color.r);
+          const G = roundColorValue(element.fills[0].color.g);
+          const B = roundColorValue(element.fills[0].color.b);
+          const A = roundColorValue(element.fills[0].color.a, 1);
+          return `rgba(${R}, ${G}, ${B}, ${A})`;
+        }
+      }
+    }
+  })();
+
+  if (FONT_COLOR) css += `color: ${FONT_COLOR};\n`;
 
   const FONT_SIZE = (() => {
     if (element.type === 'TEXT') {
@@ -50,6 +69,20 @@ export function getTypographyStylingFromElement(element) {
   })();
 
   if (FONT_ALIGNMENT) css += `text-align: ${FONT_ALIGNMENT};\n`;
+
+  const FONT_CASE = (() => {
+    if (element.type === 'TEXT') {
+      if (element.style) {
+        if (element.style.textCase) {
+          if (element.style.textCase === 'LOWER') return 'lowercase';
+          if (element.style.textCase === 'UPPER') return 'uppercase';
+          if (element.style.textCase === 'TITLE') return 'capitalize';
+        }
+      }
+    }
+  })();
+
+  if (FONT_CASE) css += `text-transform: ${FONT_CASE};\n`;
 
   return css;
 }
