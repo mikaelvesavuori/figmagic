@@ -5,6 +5,7 @@ export async function writeElements(elements, config) {
   await elements.map(comp => {
     const HTML = comp.html;
     const CSS = comp.css;
+    const DESCRIPTION = comp.description || ' ';
     const NAME = toPascalCase(comp.name);
     const FOLDER = `${config.outputFolderElements}/${NAME}`;
     const METADATA = {
@@ -24,5 +25,8 @@ export async function writeElements(elements, config) {
 
     // Write Storybook component
     writeFile(CSS, FOLDER, NAME, 'story', 'js', METADATA, TEMPLATES);
+
+    // Write description markdown file
+    writeFile(DESCRIPTION, FOLDER, NAME, 'description', 'md');
   });
 }

@@ -1,6 +1,9 @@
 import React from 'react';
-import {{NAME}} from './';
+import {{NAME}} from './{{NAME}}';
 
-export default { title: '{{NAME}}' };
+//import { load, addParameters } from '@storybook/react';
+import description from './{{NAME}}.description.md';
 
-export const {{NAME}} = () => <{{NAME}}></{{NAME}}>
+export default { title: '{{NAME}}', parameters: { notes: description } };
+
+export const {{NAME}}Regular = () => <{{NAME}}></{{NAME}}>

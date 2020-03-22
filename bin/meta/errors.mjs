@@ -22,6 +22,9 @@ export const errorFindShortenedNameMatchWrongType = 'Arguments are not of string
 
 export const errorFormatName = 'No string for formatName()!';
 
+export const errorGetElementsWrongElementCount = `Did not find exactly 1 (one) match for element`;
+export const errorGetElementsWrongTextElementCount = `Found more than one match for "Text" node. Required: 0 or 1 text nodes as child of element`;
+
 export const errorGetFromApi =
   'Missing one or more of required arguments: "figmaToken", "figmaUrl"!';
 

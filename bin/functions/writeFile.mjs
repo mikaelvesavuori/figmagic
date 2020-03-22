@@ -29,7 +29,8 @@ export async function writeFile(file, path, name, type, format = 'mjs', metadata
     _TYPE !== 'component' &&
     _TYPE !== 'style' &&
     _TYPE !== 'css' &&
-    _TYPE !== 'story'
+    _TYPE !== 'story' &&
+    _TYPE !== 'description'
   )
     throw new Error(errorWriteFileWrongType);
 
@@ -95,14 +96,14 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
 
   if (type === 'raw') {
     fileContent = `${JSON.stringify(file, null, ' ')}`;
-    filePath += `.json`;
   } else if (type === 'token') {
     fileContent = `const ${name} = ${JSON.stringify(file, null, ' ')}\n\nexport default ${name};`;
     filePath += `.${format}`;
   } else if (type === 'component') {
+    const SUFFIX = 'Styled';
     let template = await loadFile(templates.templatePathReact, true);
     template = template.replace(/{{NAME}}/gi, name);
-    template = template.replace(/{{NAME_STYLED}}/gi, `${name}`);
+    template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
     template = template.replace(/{{MARKUP}}/gi, MARKUP);
     fileContent = `${template}`;
     filePath += `.${format}`;
@@ -125,6 +126,9 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     template = template.replace(/{{MARKUP}}/gi, MARKUP);
     fileContent = `${template}`;
     filePath += `${SUFFIX}.${format}`;
+  } else if (type === 'description') {
+    fileContent = file;
+    filePath += `.description.${format}`;
   }
 
   return { fileContent, filePath };
