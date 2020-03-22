@@ -10,12 +10,14 @@ export async function writeElements(elements, config) {
     const FOLDER = `${config.outputFolderElements}/${NAME}`;
     const METADATA = {
       element: comp.element,
-      html: comp.html
+      html: comp.html,
+      extraProps: comp.extraProps
     };
     const TEMPLATES = config.templates;
 
     // Write React component
-    writeFile(HTML, FOLDER, NAME, 'component', 'jsx', null, TEMPLATES);
+    console.log('METADATA', METADATA);
+    writeFile(HTML, FOLDER, NAME, 'component', 'jsx', METADATA, TEMPLATES);
 
     // Write Styled component
     writeFile(CSS, FOLDER, NAME, 'style', 'jsx', null, TEMPLATES);

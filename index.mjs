@@ -116,13 +116,13 @@ async function figmagic() {
 	*/
 
   // 1. Load data from web
-  const DATA = await getFromApi(token, url);
-  await writeFile(DATA, outputFolderBaseFile, outputFileName, 'raw');
-  const TOKENS_PAGE = createPage(DATA.document.children, 'Design Tokens');
-  await writeTokens(TOKENS_PAGE.children, CONFIG);
+  //const DATA = await getFromApi(token, url);
+  //await writeFile(DATA, outputFolderBaseFile, outputFileName, 'raw');
+  //const TOKENS_PAGE = createPage(DATA.document.children, 'Design Tokens');
+  //await writeTokens(TOKENS_PAGE.children, CONFIG);
 
   // 2. Load local data
-  //const DATA = await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
+  const DATA = await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
 
   const COMPONENTS = DATA.components;
   const STYLES = DATA.styles;

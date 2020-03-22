@@ -20,10 +20,9 @@ const addDescriptionToElements = (elements, components) => {
 };
 
 function parseElement(element) {
-  console.log('xxx', element);
-
   let html = ``;
   let newElement = {};
+  let extraProps = ``; // Any extra properties, like "placeholder"
 
   newElement.id = element.id;
   newElement.name = element.name;
@@ -46,7 +45,6 @@ function parseElement(element) {
   newElement.description = description;
 
   html += `<${elementType}>{{TEXT}}</${elementType}>`;
-  newElement.html = html;
 
   // Since the Figma component has to put all the styling etc. on an item (ex. a rectangle) contained directly within it,
   // we need to also get the properties from THAT item in order to create/parse CSS.
@@ -60,6 +58,16 @@ function parseElement(element) {
   if (TEXT_ELEMENT.length > 1)
     throw new Error(`${errorGetElementsWrongTextElementCount} ${element.name}!`);
 
+  // Set placeholder text
+  if (element.children) {
+    element.children.filter(c => {
+      if (c.type === 'TEXT' && c.name === 'Placeholder') {
+        //html = html.replace('input>', `input placeholder="${c.characters}">`);
+        extraProps += `placeholder="${c.characters}"`;
+      }
+    });
+  }
+
   let text = ``;
 
   if (TEXT_ELEMENT.length === 1) {
@@ -71,6 +79,8 @@ function parseElement(element) {
   html = html.replace('{{TEXT}}', text);
 
   newElement.css = css;
+  newElement.html = html;
+  newElement.extraProps = extraProps;
 
   return newElement;
 }

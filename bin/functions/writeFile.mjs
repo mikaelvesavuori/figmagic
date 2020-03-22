@@ -92,6 +92,14 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     } else return '';
   })();
 
+  const EXTRA_PROPS = (() => {
+    if (metadata) {
+      if (metadata.extraProps) {
+        return metadata.extraProps;
+      } else return '';
+    } else return '';
+  })();
+
   let filePath = `${path}/${name}`;
 
   if (type === 'raw') {
@@ -104,7 +112,9 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     let template = await loadFile(templates.templatePathReact, true);
     template = template.replace(/{{NAME}}/gi, name);
     template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
-    template = template.replace(/{{MARKUP}}/gi, MARKUP);
+    template = template.replace(/{{EXTRA_PROPS}}/gi, EXTRA_PROPS);
+    template = template.replace(/\s>/gi, '>'); // Remove any ugly spaces before ending ">"
+    //template = template.replace(/{{MARKUP}}/gi, MARKUP);
     fileContent = `${template}`;
     filePath += `.${format}`;
   } else if (type === 'style') {
