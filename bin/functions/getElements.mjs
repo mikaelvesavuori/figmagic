@@ -20,6 +20,8 @@ const addDescriptionToElements = (elements, components) => {
 };
 
 function parseElement(element) {
+  console.log('xxx', element);
+
   let html = ``;
   let newElement = {};
 
