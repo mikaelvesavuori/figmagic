@@ -1,8 +1,5 @@
 fileignoreconfig:
-- filename: testdata/getGraphics.mjs
-  checksum: 38f762bab25278ab472290dedd613325f5d8c14bf50c73483ed3d2a74bf5148e
-  ignore_detectors: []
-- filename: README.md
-  checksum: 9757bd4d9aff69b13ca919b943018d6b86edf12d9e14871be61de0bb10b39c2d
+- filename: __tests__/downloadFile.test.mjs
+  checksum: 4ccf543e2178fc3802b1751f32442eaa7de4d43487e85a36530c2fd6ee845de4
   ignore_detectors: []
 scopeconfig: []
