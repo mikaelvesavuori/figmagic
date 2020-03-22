@@ -3,6 +3,8 @@
 /tokens
 /graphics
 /specs
+/components
+/stories
 /jest-coverage
 **/jest-coverage
 /__testing

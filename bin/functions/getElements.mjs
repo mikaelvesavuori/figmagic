@@ -47,6 +47,7 @@ function parseElement(element) {
   if (MAIN_ELEMENT.length !== 1)
     throw new Error(`Did not find exactly 1 (one) match for element ${element.name}!`);
   let css = getCssFromElement(MAIN_ELEMENT[0]);
+
   const TEXT_ELEMENT = element.children.filter(e => e.name === 'Text');
   if (TEXT_ELEMENT.length > 1)
     throw new Error(

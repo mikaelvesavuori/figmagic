@@ -50,12 +50,14 @@ export function getCssFromElement(element) {
 
   const BORDER_COLOR = (() => {
     if (element.strokes) {
-      if (element.strokes[0].type === 'SOLID') {
-        const R = roundColorValue(element.strokes[0].color.r);
-        const G = roundColorValue(element.strokes[0].color.g);
-        const B = roundColorValue(element.strokes[0].color.b);
-        const A = roundColorValue(element.strokes[0].color.a, 1);
-        return `rgba(${R}, ${G}, ${B}, ${A})`;
+      if (element.strokes.length > 0) {
+        if (element.strokes[0].type === 'SOLID') {
+          const R = roundColorValue(element.strokes[0].color.r);
+          const G = roundColorValue(element.strokes[0].color.g);
+          const B = roundColorValue(element.strokes[0].color.b);
+          const A = roundColorValue(element.strokes[0].color.a, 1);
+          return `rgba(${R}, ${G}, ${B}, ${A})`;
+        }
       }
     }
   })();
