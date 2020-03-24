@@ -24,6 +24,7 @@ function parseElement(element) {
   let newElement = {};
   let extraProps = ``; // Any extra properties, like "placeholder"
   let text = ``;
+  let imports = [];
 
   // Set up the absolute essentials
   newElement.id = element.id;
@@ -40,7 +41,7 @@ function parseElement(element) {
   let description = element.description;
   if (element.description.match(/description=(.*)/)) {
     const INDEX = element.description.indexOf('description=');
-    const MARKER_LENGTH = 12;
+    const MARKER_LENGTH = 12; // "description=" is 12 characters
     description = description.slice(INDEX + MARKER_LENGTH, description.length);
     description.replace(/^\s*\n/gm, '');
     newElement.description = description;
@@ -75,7 +76,9 @@ function parseElement(element) {
 
   // Set text styling
   if (TEXT_ELEMENT.length === 1) {
-    let typographyStyling = getTypographyStylingFromElement(TEXT_ELEMENT[0]);
+    let typography = getTypographyStylingFromElement(TEXT_ELEMENT[0]);
+    let typographyStyling = typography.css;
+    imports = imports.concat(typography.imports); // ????
     text = TEXT_ELEMENT[0].characters;
     css += typographyStyling;
   }
@@ -83,21 +86,28 @@ function parseElement(element) {
   html = html.replace('{{TEXT}}', text);
 
   // Process CSS for any component that has a self-named layer
-  // This pattern is how we communicate that it's a layout element, eg. input and not a H1
+  // This pattern is how we communicate that it's a layout element, e.g. input and not a H1
   const MAIN_ELEMENT = element.children.filter(e => e.name === element.name);
   if (MAIN_ELEMENT[0]) {
     if (MAIN_ELEMENT.length !== 1) {
       throw new Error(`${errorGetElementsWrongElementCount} ${element.name}!`);
     }
 
-    css += getCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0]);
+    let elementStyling = getCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0]);
+    css += elementStyling.css;
+    imports = imports.concat(elementStyling.imports); // ????
   }
+
+  imports = [...new Set(imports)];
 
   // Apply to new object
   newElement.css = css;
   newElement.html = html;
   newElement.extraProps = extraProps;
   newElement.text = text;
+  newElement.imports = imports;
+
+  console.log(newElement);
 
   return newElement;
 }

@@ -1,9 +1,9 @@
 import { errorParseCliArgs } from '../meta/errors.mjs';
 
 import {
-  warnparseCliArgsOutputFormat,
-  warnparseCliArgsFontUnit,
-  warnparseCliArgsSpacingUnit
+  warnParseCliArgsOutputFormat,
+  warnParseCliArgsFontUnit,
+  warnParseCliArgsSpacingUnit
 } from '../meta/warnings.mjs';
 
 import { config } from '../meta/config.mjs';
@@ -41,7 +41,7 @@ export function parseCliArgs(argsArray) {
         if (FORMAT === 'mjs' || FORMAT === 'js') {
           settings.outputTokenFormat = argsArray[index + 1].toLowerCase();
         } else {
-          console.warn(warnparseCliArgsOutputFormat);
+          console.warn(warnParseCliArgsOutputFormat);
           settings.outputTokenFormat = config.defaultOutputTokenFormat;
         }
       }
@@ -51,7 +51,7 @@ export function parseCliArgs(argsArray) {
         if (FORMAT === 'rem' || FORMAT === 'em') {
           settings.fontUnit = argsArray[index + 1].toLowerCase();
         } else {
-          console.warn(warnparseCliArgsFontUnit);
+          console.warn(warnParseCliArgsFontUnit);
           settings.fontUnit = config.defaultFontUnit;
         }
       }
@@ -61,7 +61,7 @@ export function parseCliArgs(argsArray) {
         if (FORMAT === 'rem' || FORMAT === 'em') {
           settings.spacingUnit = argsArray[index + 1].toLowerCase();
         } else {
-          console.warn(warnparseCliArgsSpacingUnit);
+          console.warn(warnParseCliArgsSpacingUnit);
           settings.spacingUnit = config.defaultSpacingUnit;
         }
       }

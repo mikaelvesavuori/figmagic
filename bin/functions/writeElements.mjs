@@ -12,7 +12,8 @@ export async function writeElements(elements, config) {
       element: comp.element,
       html: comp.html,
       extraProps: comp.extraProps,
-      text: comp.text
+      text: comp.text,
+      imports: comp.imports
     };
     const TEMPLATES = config.templates;
 
@@ -23,7 +24,7 @@ export async function writeElements(elements, config) {
     writeFile(CSS, FOLDER, NAME, 'style', 'jsx', METADATA, TEMPLATES);
 
     // Write CSS
-    writeFile(CSS, FOLDER, NAME, 'css', 'mjs', null, TEMPLATES);
+    writeFile(CSS, FOLDER, NAME, 'css', 'mjs', METADATA, TEMPLATES);
 
     // Write Storybook component
     writeFile(CSS, FOLDER, NAME, 'story', 'js', METADATA, TEMPLATES);

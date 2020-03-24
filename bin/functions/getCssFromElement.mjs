@@ -1,17 +1,44 @@
 import { roundColorValue } from './roundColorValue.mjs';
+import { getTokenMatch } from './getTokenMatch.mjs';
+//import { warnGetCssFromElementNoTokenMatch } from '../meta/warnings.mjs';
+
+// TODO: Will these paths break?
+import borderWidths from '../../tokens/borderWidths.mjs';
+import colors from '../../tokens/colors.mjs';
+import radii from '../../tokens/radii.mjs';
+import shadows from '../../tokens/shadows.mjs';
+import spacing from '../../tokens/spacing.mjs';
+//import mediaQueries from '../../tokens/mediaQueries.mjs';
+//import zIndices from '../../tokens/zIndices.mjs';
 
 export function getCssFromElement(element, textElement) {
   let css = ``;
+  let imports = [];
 
+  const REM = 16;
+
+  // TODO: Change?
+  // Set full width
   css += `width: 100%;\n`;
 
+  // TODO: Create PADDING_Y
   const PADDING_X = (() => {
     if (textElement) {
       return Math.round(textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x);
     }
   })();
 
-  if (PADDING_X) css += `padding: 0 ${PADDING_X}px;\n`;
+  if (PADDING_X > 0) {
+    const { updatedCss, updatedImports } = getTokenMatch(
+      spacing,
+      'spacing',
+      'padding',
+      PADDING_X,
+      REM
+    );
+    css += updatedCss;
+    updatedImports.forEach(i => imports.push(i));
+  }
 
   const HEIGHT = (() => {
     if (element.absoluteBoundingBox) {
@@ -19,7 +46,11 @@ export function getCssFromElement(element, textElement) {
     }
   })();
 
-  if (HEIGHT) css += `height: ${HEIGHT}px;\n`;
+  if (HEIGHT) {
+    const { updatedCss, updatedImports } = getTokenMatch(spacing, 'spacing', 'height', HEIGHT, REM);
+    css += updatedCss;
+    updatedImports.forEach(i => imports.push(i));
+  }
 
   const BACKGROUND_COLOR = (() => {
     if (element.fills) {
@@ -35,8 +66,18 @@ export function getCssFromElement(element, textElement) {
     }
   })();
 
-  if (BACKGROUND_COLOR) css += `background-color: ${BACKGROUND_COLOR};\n`;
+  if (BACKGROUND_COLOR) {
+    const { updatedCss, updatedImports } = getTokenMatch(
+      colors,
+      'colors',
+      'background-color',
+      BACKGROUND_COLOR
+    );
+    css += updatedCss;
+    updatedImports.forEach(i => imports.push(i));
+  }
 
+  // TODO: Are these OK as "resets"?
   css += `border: 0;\n`;
   css += `border-style: solid;\n`;
 
@@ -46,7 +87,16 @@ export function getCssFromElement(element, textElement) {
     }
   })();
 
-  if (BORDER_WIDTH) css += `border-width: ${BORDER_WIDTH}px;\n`;
+  if (BORDER_WIDTH) {
+    const { updatedCss, updatedImports } = getTokenMatch(
+      borderWidths,
+      'borderWidths',
+      'border-width',
+      BORDER_WIDTH
+    );
+    css += updatedCss;
+    updatedImports.forEach(i => imports.push(i));
+  }
 
   const BORDER_COLOR = (() => {
     if (element.strokes) {
@@ -62,7 +112,16 @@ export function getCssFromElement(element, textElement) {
     }
   })();
 
-  if (BORDER_COLOR) css += `border-color: ${BORDER_COLOR};\n`;
+  if (BORDER_COLOR) {
+    const { updatedCss, updatedImports } = getTokenMatch(
+      colors,
+      'colors',
+      'border-color',
+      BORDER_COLOR
+    );
+    css += updatedCss;
+    updatedImports.forEach(i => imports.push(i));
+  }
 
   const BORDER_RADIUS = (() => {
     if (element.cornerRadius) {
@@ -70,7 +129,16 @@ export function getCssFromElement(element, textElement) {
     }
   })();
 
-  if (BORDER_RADIUS) css += `border-radius: ${BORDER_RADIUS}px;\n`;
+  if (BORDER_RADIUS) {
+    const { updatedCss, updatedImports } = getTokenMatch(
+      radii,
+      'radii',
+      'border-radius',
+      BORDER_RADIUS
+    );
+    css += updatedCss;
+    updatedImports.forEach(i => imports.push(i));
+  }
 
   const SHADOW = (() => {
     if (element.effects) {
@@ -92,7 +160,11 @@ export function getCssFromElement(element, textElement) {
     }
   })();
 
-  if (SHADOW) css += `box-shadow: ${SHADOW};\n`;
+  if (SHADOW) {
+    const { updatedCss, updatedImports } = getTokenMatch(shadows, 'shadows', 'box-shadow', SHADOW);
+    css += updatedCss;
+    updatedImports.forEach(i => imports.push(i));
+  }
 
-  return css;
+  return { css, imports };
 }

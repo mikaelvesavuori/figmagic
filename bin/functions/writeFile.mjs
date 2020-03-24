@@ -2,6 +2,7 @@ import fs from 'fs';
 
 import { createFolder } from './createFolder.mjs';
 import { loadFile } from './loadFile.mjs';
+import { createImportStringFromList } from './createImportStringFromList.mjs';
 
 import { errorWriteFile, errorWriteFileWrongType, errorWrite } from '../meta/errors.mjs';
 
@@ -110,6 +111,14 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     } else return '';
   })();
 
+  const IMPORTS = (() => {
+    if (metadata) {
+      if (metadata.imports) {
+        return createImportStringFromList(metadata.imports);
+      } else return '';
+    } else return '';
+  })();
+
   let filePath = `${path}/${name}`;
 
   if (type === 'raw') {
@@ -138,7 +147,7 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     filePath += `${SUFFIX}.${format}`;
   } else if (type === 'css') {
     const SUFFIX = 'Css';
-    fileContent = `const ${name}${SUFFIX} = \`${file}\`\n\nexport default ${name}${SUFFIX};`;
+    fileContent = `${IMPORTS}\nconst ${name}${SUFFIX} = \`${file}\`\n\nexport default ${name}${SUFFIX};`;
     filePath += `${SUFFIX}.${format}`;
   } else if (type === 'story') {
     const SUFFIX = '.stories';
