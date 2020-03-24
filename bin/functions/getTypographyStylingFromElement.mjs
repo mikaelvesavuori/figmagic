@@ -148,7 +148,10 @@ export function getTypographyStylingFromElement(element) {
     updatedImports.forEach(i => imports.push(i));
   }
 
-  if (FONT_ALIGNMENT) css += `text-align: ${FONT_ALIGNMENT};\n`;
+  if (FONT_ALIGNMENT) {
+    const ALIGNMENT = FONT_ALIGNMENT.toLowerCase();
+    css += `text-align: ${ALIGNMENT};\n`;
+  }
 
   const FONT_CASE = (() => {
     if (element.type === 'TEXT') {
