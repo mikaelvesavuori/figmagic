@@ -147,7 +147,7 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     filePath += `${SUFFIX}.${format}`;
   } else if (type === 'css') {
     const SUFFIX = 'Css';
-    fileContent = `${IMPORTS}\nconst ${name}${SUFFIX} = \`${file}\`\n\nexport default ${name}${SUFFIX};`;
+    fileContent = `${IMPORTS}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
     filePath += `${SUFFIX}.${format}`;
   } else if (type === 'story') {
     const SUFFIX = '.stories';

@@ -31,6 +31,7 @@ export function setupLineHeightTokens(lineHeightFrame) {
 
     let name = camelize(type.name);
     name = formatName(name);
+    console.log(type.style);
     const LINE_HEIGHT = normalizeUnits(type.style.lineHeightPercentFontSize, 'percent', 'unitless');
 
     // Do a tiny bit of rounding to avoid ugly numbers

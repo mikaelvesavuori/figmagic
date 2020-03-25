@@ -56,11 +56,11 @@ async function figmagic() {
         const _DATA = await getFromApi(token, url);
 
         // If there's no data or something went funky, eject
-        if (!_DATA || _DATA.status === 403) throw new Error(`${colors.FgRed}${errorGetData}`);
+        if (!_DATA || _DATA.status === 403) throw new Error(errorGetData);
 
         return _DATA;
       } catch (error) {
-        throw new Error(`${colors.FgRed}${error}`);
+        throw new Error(error);
       }
     }
     // Recompile: We want to use the existing Figma JSON file
@@ -70,11 +70,11 @@ async function figmagic() {
       try {
         return await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
       } catch (error) {
-        throw new Error(`${colors.FgRed}${error}`);
+        throw new Error(error);
       }
     }
   })().catch(error => {
-    throw new Error(`${colors.FgRed}${error}`);
+    throw new Error(error);
   });
 
   // If this is a fresh pull from the API, trash the old folders

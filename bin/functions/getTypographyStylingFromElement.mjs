@@ -9,11 +9,12 @@ import fontWeights from '../../tokens/fontWeights.mjs';
 import letterSpacings from '../../tokens/letterSpacings.mjs';
 import lineHeights from '../../tokens/lineHeights.mjs';
 
-// TODO: Map to Figma Styles instead?
+// MAYBE TODO: Map to Figma Styles instead?
 export function getTypographyStylingFromElement(element) {
   let css = ``;
   let imports = [];
 
+  // TODO: Get this from config
   const REM = 16;
 
   const FONT_COLOR = (() => {
@@ -44,7 +45,6 @@ export function getTypographyStylingFromElement(element) {
     }
   })();
 
-  // TODO: FIX THIS, can create many font sizes...?
   if (FONT_SIZE) {
     const { updatedCss, updatedImports } = getTokenMatch(
       fontSizes,
@@ -57,18 +57,15 @@ export function getTypographyStylingFromElement(element) {
     updatedImports.forEach(i => imports.push(i));
   }
 
+  // BUG? Will only work correctly with Postscript name?
   const FONT_FAMILY = (() => {
     if (element.type === 'TEXT') {
       if (element.style) {
-        return element.style.fontFamily;
+        return element.style.fontPostScriptName; //fontFamily;
       }
     }
   })();
 
-  // Output: Helvetica Neue
-  //if (FONT_FAMILY) css += `font-family: ${FONT_FAMILY};\n`;
-
-  // Output: HelveticaNeue-Bold
   if (FONT_FAMILY) {
     const { updatedCss, updatedImports } = getTokenMatch(
       fontFamilies,
@@ -102,18 +99,19 @@ export function getTypographyStylingFromElement(element) {
   const FONT_LINE_HEIGHT = (() => {
     if (element.type === 'TEXT') {
       if (element.style) {
-        return element.style.lineHeightPx;
+        return element.style.lineHeightPercent; //lineHeightPx;
       }
     }
   })();
 
-  // TODO: FIX, needs converting from px to unitless
+  // TODO: Fix this, needs converting from px to unitless
   if (FONT_LINE_HEIGHT) {
     const { updatedCss, updatedImports } = getTokenMatch(
       lineHeights,
       'lineHeights',
       'line-height',
-      normalizeUnits(FONT_LINE_HEIGHT, 'px', 'unitless')
+      FONT_LINE_HEIGHT
+      //normalizeUnits(FONT_LINE_HEIGHT, 'px', 'unitless')
     );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));
@@ -137,6 +135,7 @@ export function getTypographyStylingFromElement(element) {
     }
   })();
 
+  // TODO: Normalize letter spacing
   if (LETTER_SPACING) {
     const { updatedCss, updatedImports } = getTokenMatch(
       letterSpacings,

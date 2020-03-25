@@ -83,7 +83,7 @@ export function getCssFromElement(element, textElement) {
 
   const BORDER_WIDTH = (() => {
     if (element.strokeWeight) {
-      return element.strokeWeight;
+      return `${element.strokeWeight}px`;
     }
   })();
 
@@ -125,7 +125,7 @@ export function getCssFromElement(element, textElement) {
 
   const BORDER_RADIUS = (() => {
     if (element.cornerRadius) {
-      return element.cornerRadius;
+      return `${element.cornerRadius}px`;
     }
   })();
 

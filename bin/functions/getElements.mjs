@@ -107,7 +107,5 @@ function parseElement(element) {
   newElement.text = text;
   newElement.imports = imports;
 
-  console.log(newElement);
-
   return newElement;
 }
