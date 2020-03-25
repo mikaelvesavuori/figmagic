@@ -2,6 +2,7 @@ import { roundColorValue } from './roundColorValue.mjs';
 import { getTokenMatch } from './getTokenMatch.mjs';
 import { normalizeUnits } from './normalizeUnits.mjs';
 
+// TODO: Will these paths break?
 import colors from '../../tokens/colors.mjs';
 import fontFamilies from '../../tokens/fontFamilies.mjs';
 import fontSizes from '../../tokens/fontSizes.mjs';
@@ -99,19 +100,19 @@ export function getTypographyStylingFromElement(element) {
   const FONT_LINE_HEIGHT = (() => {
     if (element.type === 'TEXT') {
       if (element.style) {
-        return element.style.lineHeightPercent; //lineHeightPx;
+        if (element.style.lineHeightPercentFontSize) {
+          return element.style.lineHeightPercentFontSize / 100;
+        } else return 1.0;
       }
     }
   })();
 
-  // TODO: Fix this, needs converting from px to unitless
   if (FONT_LINE_HEIGHT) {
     const { updatedCss, updatedImports } = getTokenMatch(
       lineHeights,
       'lineHeights',
       'line-height',
       FONT_LINE_HEIGHT
-      //normalizeUnits(FONT_LINE_HEIGHT, 'px', 'unitless')
     );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));
@@ -135,13 +136,12 @@ export function getTypographyStylingFromElement(element) {
     }
   })();
 
-  // TODO: Normalize letter spacing
   if (LETTER_SPACING) {
     const { updatedCss, updatedImports } = getTokenMatch(
       letterSpacings,
       'letterSpacings',
       'letter-spacing',
-      normalizeUnits(LETTER_SPACING, 'px', 'unitless') // Use 'spacingUnit' variable
+      normalizeUnits(parseFloat(LETTER_SPACING), 'letterSpacing', 'adjustedSpacing')
     );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));

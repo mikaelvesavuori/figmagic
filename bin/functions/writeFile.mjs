@@ -4,6 +4,7 @@ import { createFolder } from './createFolder.mjs';
 import { loadFile } from './loadFile.mjs';
 import { createImportStringFromList } from './createImportStringFromList.mjs';
 
+import { msgGeneratedFileWarning } from '../meta/messages.mjs';
 import { errorWriteFile, errorWriteFileWrongType, errorWrite } from '../meta/errors.mjs';
 
 /**
@@ -124,7 +125,11 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
   if (type === 'raw') {
     fileContent = `${JSON.stringify(file, null, ' ')}`;
   } else if (type === 'token') {
-    fileContent = `const ${name} = ${JSON.stringify(file, null, ' ')}\n\nexport default ${name};`;
+    fileContent = `// ${msgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
+      file,
+      null,
+      ' '
+    )}\n\nexport default ${name};`;
     filePath += `.${format}`;
   } else if (type === 'component') {
     const SUFFIX = 'Styled';
@@ -135,7 +140,7 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     template = template.replace(/\s>/gi, '>'); // Remove any ugly spaces before ending ">"
     template = template.replace(/{{TEXT}}/gi, TEXT);
     //template = template.replace(/{{MARKUP}}/gi, MARKUP);
-    fileContent = `${template}`;
+    fileContent = `// ${msgGeneratedFileWarning}\n\n${template}`;
     filePath += `.${format}`;
   } else if (type === 'style') {
     const SUFFIX = 'Styled';
@@ -147,7 +152,7 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     filePath += `${SUFFIX}.${format}`;
   } else if (type === 'css') {
     const SUFFIX = 'Css';
-    fileContent = `${IMPORTS}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
+    fileContent = `// ${msgGeneratedFileWarning}\n\n${IMPORTS}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
     filePath += `${SUFFIX}.${format}`;
   } else if (type === 'story') {
     const SUFFIX = '.stories';
@@ -155,10 +160,10 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     template = template.replace(/{{NAME}}/gi, name);
     template = template.replace(/{{TEXT}}/gi, TEXT);
     //template = template.replace(/{{MARKUP}}/gi, MARKUP);
-    fileContent = `${template}`;
+    fileContent = `// ${msgGeneratedFileWarning}\n\n${template}`;
     filePath += `${SUFFIX}.${format}`;
   } else if (type === 'description') {
-    fileContent = file;
+    fileContent = `<!--${msgGeneratedFileWarning}-->\n${file}`;
     filePath += `.description.${format}`;
   }
 
