@@ -21,23 +21,57 @@ export function getCssFromElement(element, textElement) {
   // Set full width
   css += `width: 100%;\n`;
 
-  // TODO: Create PADDING_Y
-  const PADDING_X = (() => {
+  // Paddings for top and bottom
+  const PADDING_Y = (() => {
     if (textElement) {
-      return Math.round(textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x);
+      const PARENT_HEIGHT = element.absoluteBoundingBox.height;
+      const TEXT_HEIGHT = textElement.absoluteBoundingBox.height;
+      const PADDING_TOP = textElement.absoluteBoundingBox.y - element.absoluteBoundingBox.y;
+      const PADDING_BOTTOM = PARENT_HEIGHT - (PADDING_TOP + TEXT_HEIGHT);
+
+      return {
+        top: Math.round(PADDING_TOP),
+        bottom: Math.round(PADDING_BOTTOM)
+      };
     }
   })();
 
-  if (PADDING_X > 0) {
-    const { updatedCss, updatedImports } = getTokenMatch(
-      spacing,
-      'spacing',
-      'padding',
-      PADDING_X,
-      REM
-    );
-    css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+  // Paddings for left and right
+  const PADDING_X = (() => {
+    if (textElement) {
+      const PARENT_WIDTH = element.absoluteBoundingBox.width;
+      const TEXT_WIDTH = textElement.absoluteBoundingBox.width;
+      const PADDING_LEFT = textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x;
+      const PADDING_RIGHT = PARENT_WIDTH - (PADDING_LEFT + TEXT_WIDTH);
+
+      return {
+        left: Math.round(PADDING_LEFT),
+        right: Math.round(PADDING_RIGHT)
+      };
+    }
+  })();
+
+  const PADDING = {
+    ...PADDING_Y,
+    ...PADDING_X
+  };
+
+  if (PADDING && Object.keys(PADDING).length > 0) {
+    const PADDINGS = Object.values(PADDING).map(p => p);
+    const IS_ALL_VALUES_ZERO = PADDINGS.every(item => item === 0);
+
+    // Don't set paddings if all values are actually empty
+    if (!IS_ALL_VALUES_ZERO) {
+      const { updatedCss, updatedImports } = getTokenMatch(
+        spacing,
+        'spacing',
+        'padding',
+        PADDING,
+        REM
+      );
+      css += updatedCss;
+      updatedImports.forEach(i => imports.push(i));
+    }
   }
 
   const HEIGHT = (() => {
