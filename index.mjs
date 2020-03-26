@@ -45,7 +45,6 @@ async function figmagic() {
     outputFileName
   } = CONFIG;
 
-  /*
   const DATA = await (async () => {
     // Normal: We want to get data from the Figma API
     if (!recompileLocal) {
@@ -98,8 +97,8 @@ async function figmagic() {
   if (!recompileLocal) {
     // Write base Figma JSON if we are pulling from the web
     console.log(msgWriteBaseFile);
-		const _DATA = await getFromApi(token, url);
-    await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
+    const _DATA = await getFromApi(token, url);
+    await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName, 'raw');
   }
 
   // Syncing graphics
@@ -112,8 +111,7 @@ async function figmagic() {
   // Process tokens
   console.log(msgWriteTokens);
   const TOKENS_PAGE = createPage(DATA.document.children, 'Design Tokens');
-	await writeTokens(TOKENS_PAGE.children, CONFIG);
-	*/
+  await writeTokens(TOKENS_PAGE.children, CONFIG);
 
   // 1. Load data from web
   //const DATA = await getFromApi(token, url);
@@ -122,15 +120,12 @@ async function figmagic() {
   //await writeTokens(TOKENS_PAGE.children, CONFIG);
 
   // 2. Load local data
-  const DATA = await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
+  //const DATA = await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
 
   const COMPONENTS = DATA.components;
   const STYLES = DATA.styles;
 
   /*
-  //console.log(COMPONENTS);
-  //console.log(STYLES);
-
   const mapComponentIdsToStyles = (components, styles) => {
     //console.log(components); // 2743:6
 

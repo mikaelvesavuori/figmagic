@@ -2,16 +2,15 @@ import { roundColorValue } from './roundColorValue.mjs';
 import { getTokenMatch } from './getTokenMatch.mjs';
 import { normalizeUnits } from './normalizeUnits.mjs';
 
-// TODO: Will these paths break?
-import colors from '../../tokens/colors.mjs';
-import fontFamilies from '../../tokens/fontFamilies.mjs';
-import fontSizes from '../../tokens/fontSizes.mjs';
-import fontWeights from '../../tokens/fontWeights.mjs';
-import letterSpacings from '../../tokens/letterSpacings.mjs';
-import lineHeights from '../../tokens/lineHeights.mjs';
-
 // MAYBE TODO: Map to Figma Styles instead?
 export function getTypographyStylingFromElement(element) {
+  const colors = import('../../tokens/colors.mjs');
+  const fontFamilies = import('../../tokens/fontFamilies.mjs');
+  const fontSizes = import('../../tokens/fontSizes.mjs');
+  const fontWeights = import('../../tokens/fontWeights.mjs');
+  const letterSpacings = import('../../tokens/letterSpacings.mjs');
+  const lineHeights = import('../../tokens/lineHeights.mjs');
+
   let css = ``;
   let imports = [];
 

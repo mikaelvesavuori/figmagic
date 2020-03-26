@@ -2,16 +2,16 @@ import { roundColorValue } from './roundColorValue.mjs';
 import { getTokenMatch } from './getTokenMatch.mjs';
 //import { warnGetCssFromElementNoTokenMatch } from '../meta/warnings.mjs';
 
-// TODO: Will these paths break?
-import borderWidths from '../../tokens/borderWidths.mjs';
-import colors from '../../tokens/colors.mjs';
-import radii from '../../tokens/radii.mjs';
-import shadows from '../../tokens/shadows.mjs';
-import spacing from '../../tokens/spacing.mjs';
 //import mediaQueries from '../../tokens/mediaQueries.mjs';
 //import zIndices from '../../tokens/zIndices.mjs';
 
 export function getCssFromElement(element, textElement) {
+  const borderWidths = import('../../tokens/borderWidths.mjs');
+  const colors = import('../../tokens/colors.mjs');
+  const radii = import('../../tokens/radii.mjs');
+  const shadows = import('../../tokens/shadows.mjs');
+  const spacing = import('../../tokens/spacing.mjs');
+
   let css = ``;
   let imports = [];
 
