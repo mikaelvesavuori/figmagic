@@ -21,6 +21,7 @@ export async function getCssFromElement(element, textElement) {
   let css = ``;
   let imports = [];
 
+  // TODO: Take value from config
   const REM = 16;
 
   // TODO: Change?

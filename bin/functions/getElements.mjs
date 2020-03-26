@@ -49,10 +49,21 @@ async function parseElement(element) {
 
   html += `<${elementType}>{{TEXT}}</${elementType}>`;
 
-  // Since the Figma component has to put all the styling etc. on an item (ex. a rectangle) contained directly within it,
-  // we need to also get the properties from THAT item in order to create/parse CSS.
+  // Since the Figma component has to put all the styling etc. on an item (ex. a rectangle) contained directly
+  // within it, we need to also get the properties from THAT item in order to create/parse CSS.
   // Note: The item is expected to have the same name as the component overall, such as "Input", "Button", or "H1"
   let css = ` `;
+
+  if (element.name === 'Button') {
+    console.log(element.children);
+
+		element.children.map(el => {
+			const MAIN_ELEMENT = el.children.filter(e => e.name === el.name);
+      let elementStyling = await getCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0]);
+      css += elementStyling.css;
+			imports = imports.concat(elementStyling.imports);
+		})		
+  }
 
   // Check for text elements
   const TEXT_ELEMENT = element.children.filter(e => e.name === 'Text');
@@ -78,7 +89,7 @@ async function parseElement(element) {
   if (TEXT_ELEMENT.length === 1) {
     let typography = await getTypographyStylingFromElement(TEXT_ELEMENT[0]);
     let typographyStyling = typography.css;
-    imports = imports.concat(typography.imports); // ????
+    imports = imports.concat(typography.imports);
     text = TEXT_ELEMENT[0].characters;
     css += typographyStyling;
   }
