@@ -146,6 +146,7 @@ async function figmagic() {
   console.log('Attempting to parse elements...');
   const ELEMENTS_PAGE = createPage(DATA.document.children, 'Elements');
   const elements = await getElements(ELEMENTS_PAGE.children, CONFIG, COMPONENTS);
+  console.log('elements', elements);
   await writeElements(elements, CONFIG);
 
   // All went well

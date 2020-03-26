@@ -3,13 +3,19 @@ import { getTokenMatch } from './getTokenMatch.mjs';
 import { normalizeUnits } from './normalizeUnits.mjs';
 
 // MAYBE TODO: Map to Figma Styles instead?
-export function getTypographyStylingFromElement(element) {
-  const colors = import('../../tokens/colors.mjs');
-  const fontFamilies = import('../../tokens/fontFamilies.mjs');
-  const fontSizes = import('../../tokens/fontSizes.mjs');
-  const fontWeights = import('../../tokens/fontWeights.mjs');
-  const letterSpacings = import('../../tokens/letterSpacings.mjs');
-  const lineHeights = import('../../tokens/lineHeights.mjs');
+export async function getTypographyStylingFromElement(element) {
+  const _colors = await import('../../tokens/colors.mjs');
+  const colors = _colors.default;
+  const _fontFamilies = await import('../../tokens/fontFamilies.mjs');
+  const fontFamilies = _fontFamilies.default;
+  const _fontSizes = await import('../../tokens/fontSizes.mjs');
+  const fontSizes = _fontSizes.default;
+  const _fontWeights = await import('../../tokens/fontWeights.mjs');
+  const fontWeights = _fontWeights.default;
+  const _letterSpacings = await import('../../tokens/letterSpacings.mjs');
+  const letterSpacings = _letterSpacings.default;
+  const _lineHeights = await import('../../tokens/lineHeights.mjs');
+  const lineHeights = _lineHeights.default;
 
   let css = ``;
   let imports = [];

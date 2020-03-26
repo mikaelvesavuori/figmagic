@@ -4,10 +4,10 @@ import { getTypographyStylingFromElement } from './getTypographyStylingFromEleme
 import { errorGetElementsWrongElementCount } from '../meta/errors.mjs';
 import { errorGetElementsWrongTextElementCount } from '../meta/errors.mjs';
 
-export function getElements(elementsPage, config, components) {
+export async function getElements(elementsPage, config, components) {
   const _ELEMENTS = elementsPage.filter(element => element.type === 'COMPONENT');
   const ELEMENTS = addDescriptionToElements(_ELEMENTS, components);
-  const PARSED_ELEMENTS = ELEMENTS.map(el => parseElement(el));
+  const PARSED_ELEMENTS = await Promise.all(ELEMENTS.map(async el => await parseElement(el)));
   return PARSED_ELEMENTS;
 }
 
@@ -19,7 +19,7 @@ const addDescriptionToElements = (elements, components) => {
   });
 };
 
-function parseElement(element) {
+async function parseElement(element) {
   let html = ``;
   let newElement = {};
   let extraProps = ``; // Any extra properties, like "placeholder"
@@ -76,7 +76,7 @@ function parseElement(element) {
 
   // Set text styling
   if (TEXT_ELEMENT.length === 1) {
-    let typography = getTypographyStylingFromElement(TEXT_ELEMENT[0]);
+    let typography = await getTypographyStylingFromElement(TEXT_ELEMENT[0]);
     let typographyStyling = typography.css;
     imports = imports.concat(typography.imports); // ????
     text = TEXT_ELEMENT[0].characters;
@@ -93,7 +93,7 @@ function parseElement(element) {
       throw new Error(`${errorGetElementsWrongElementCount} ${element.name}!`);
     }
 
-    let elementStyling = getCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0]);
+    let elementStyling = await getCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0]);
     css += elementStyling.css;
     imports = imports.concat(elementStyling.imports); // ????
   }

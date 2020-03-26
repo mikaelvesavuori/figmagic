@@ -5,12 +5,17 @@ import { getTokenMatch } from './getTokenMatch.mjs';
 //import mediaQueries from '../../tokens/mediaQueries.mjs';
 //import zIndices from '../../tokens/zIndices.mjs';
 
-export function getCssFromElement(element, textElement) {
-  const borderWidths = import('../../tokens/borderWidths.mjs');
-  const colors = import('../../tokens/colors.mjs');
-  const radii = import('../../tokens/radii.mjs');
-  const shadows = import('../../tokens/shadows.mjs');
-  const spacing = import('../../tokens/spacing.mjs');
+export async function getCssFromElement(element, textElement) {
+  const _borderWidths = await import('../../tokens/borderWidths.mjs');
+  const borderWidths = _borderWidths.default;
+  const _colors = await import('../../tokens/colors.mjs');
+  const colors = _colors.default;
+  const _radii = await import('../../tokens/radii.mjs');
+  const radii = _radii.default;
+  const _shadows = await import('../../tokens/shadows.mjs');
+  const shadows = _shadows.default;
+  const _spacing = await import('../../tokens/spacing.mjs');
+  const spacing = _spacing.default;
 
   let css = ``;
   let imports = [];

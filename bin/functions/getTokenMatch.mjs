@@ -19,7 +19,6 @@ export function getTokenMatch(tokens, tokenFileName, property, expectedValue, mu
         // Check if we can match value with a token and its value
         Object.entries(tokens).map(s => {
           if (s[1] === value) {
-            console.log('Match', s[1], value);
             updatedCss += `${property}-${key}: \${${tokenFileName}.${s[0]}};\n`;
             foundMatch = true;
           }
