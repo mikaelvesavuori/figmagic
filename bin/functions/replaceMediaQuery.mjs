@@ -18,12 +18,6 @@ export function replaceMediaQuery(str, match) {
   // If match was too greedy
   size.replace(/![0-9]/gi, '');
   console.log('fixed size: ', size);
-  /*
-  if (size.includes('{')) {
-    size = size.replace('{', '');
-    console.log('size', size, str);
-	}
-	*/
 
   // Remove any spaces
   size = size.trim();

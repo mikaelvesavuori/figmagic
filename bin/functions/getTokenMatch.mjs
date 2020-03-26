@@ -1,31 +1,39 @@
 import { normalizeUnits } from './normalizeUnits.mjs';
 
+import { msgGetTokenMatchNoMatch } from '../meta/messages.mjs';
+
 export function getTokenMatch(tokens, tokenFileName, property, expectedValue, multiplier) {
   // TODO: Set errors!
   if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error();
 
   let updatedCss = ``;
   let updatedImports = [];
-  let foundMatch = false;
 
   // Padding requires both X and Y dimensions/values so requires a bit more noodling
   if (property === 'padding') {
     const keys = Object.keys(expectedValue);
 
     keys.forEach(key => {
+      let foundMatch = false;
+
       if (expectedValue[key] && expectedValue[key] > 0) {
-        const value = normalizeUnits(expectedValue[key], 'px', 'rem'); // TODO: Hardcoded to rem?
+        // TODO: Hardcoded to rem, should be variable based on config
+        const value = normalizeUnits(expectedValue[key], 'px', 'rem');
 
         // Check if we can match value with a token and its value
         Object.entries(tokens).map(s => {
+          console.log('key', key);
           if (s[1] === value) {
             updatedCss += `${property}-${key}: \${${tokenFileName}.${s[0]}};\n`;
             foundMatch = true;
           }
         });
 
+        console.log('aaaa', `${property}-${key}: ${value}`, foundMatch);
+
         // Write expected value as-is, since we couldn't match it to a token
         if (!foundMatch) {
+          console.log('no match');
           updatedCss += `${property}-${key}: ${value};\n`;
         }
       }
@@ -33,6 +41,8 @@ export function getTokenMatch(tokens, tokenFileName, property, expectedValue, mu
 
     updatedImports.push(tokenFileName);
   } else {
+    let foundMatch = false;
+
     Object.entries(tokens).map(s => {
       const TOKEN_VALUE = (() => {
         if (typeof s[1] === 'number') return parseFloat(s[1]); // Send any numbers back
@@ -53,6 +63,7 @@ export function getTokenMatch(tokens, tokenFileName, property, expectedValue, mu
 
     // Write expected value as-is, since we couldn't match it to a token
     if (!foundMatch) {
+      console.warn(`${msgGetTokenMatchNoMatch} ${property}: ${expectedValue}`);
       updatedCss += `${property}: ${expectedValue};\n`;
     }
   }

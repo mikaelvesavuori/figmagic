@@ -97,7 +97,7 @@ async function figmagic() {
   if (!recompileLocal) {
     // Write base Figma JSON if we are pulling from the web
     console.log(msgWriteBaseFile);
-    const _DATA = await getFromApi(token, url);
+    const DATA = await getFromApi(token, url);
     await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName, 'raw');
   }
 
@@ -146,7 +146,6 @@ async function figmagic() {
   console.log('Attempting to parse elements...');
   const ELEMENTS_PAGE = createPage(DATA.document.children, 'Elements');
   const elements = await getElements(ELEMENTS_PAGE.children, CONFIG, COMPONENTS);
-  console.log('elements', elements);
   await writeElements(elements, CONFIG);
 
   // All went well

@@ -95,7 +95,7 @@ async function parseElement(element) {
 
     let elementStyling = await getCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0]);
     css += elementStyling.css;
-    imports = imports.concat(elementStyling.imports); // ????
+    imports = imports.concat(elementStyling.imports);
   }
 
   imports = [...new Set(imports)];

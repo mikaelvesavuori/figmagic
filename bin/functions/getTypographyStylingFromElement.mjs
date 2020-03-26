@@ -4,6 +4,7 @@ import { normalizeUnits } from './normalizeUnits.mjs';
 
 // MAYBE TODO: Map to Figma Styles instead?
 export async function getTypographyStylingFromElement(element) {
+  // Dynamic imports
   const _colors = await import('../../tokens/colors.mjs');
   const colors = _colors.default;
   const _fontFamilies = await import('../../tokens/fontFamilies.mjs');

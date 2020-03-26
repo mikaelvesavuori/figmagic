@@ -6,6 +6,7 @@ import { getTokenMatch } from './getTokenMatch.mjs';
 //import zIndices from '../../tokens/zIndices.mjs';
 
 export async function getCssFromElement(element, textElement) {
+  // Dynamic imports
   const _borderWidths = await import('../../tokens/borderWidths.mjs');
   const borderWidths = _borderWidths.default;
   const _colors = await import('../../tokens/colors.mjs');
@@ -23,7 +24,6 @@ export async function getCssFromElement(element, textElement) {
   const REM = 16;
 
   // TODO: Change?
-  // Set full width
   css += `width: 100%;\n`;
 
   // Paddings for top and bottom

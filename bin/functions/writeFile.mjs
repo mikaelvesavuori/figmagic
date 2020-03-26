@@ -140,7 +140,7 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     template = template.replace(/\s>/gi, '>'); // Remove any ugly spaces before ending ">"
     template = template.replace(/{{TEXT}}/gi, TEXT);
     //template = template.replace(/{{MARKUP}}/gi, MARKUP);
-    fileContent = `// ${msgGeneratedFileWarning}\n\n${template}`;
+    fileContent = `${template}`;
     filePath += `.${format}`;
   } else if (type === 'style') {
     const SUFFIX = 'Styled';
@@ -160,7 +160,7 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     template = template.replace(/{{NAME}}/gi, name);
     template = template.replace(/{{TEXT}}/gi, TEXT);
     //template = template.replace(/{{MARKUP}}/gi, MARKUP);
-    fileContent = `// ${msgGeneratedFileWarning}\n\n${template}`;
+    fileContent = `${template};`;
     filePath += `${SUFFIX}.${format}`;
   } else if (type === 'description') {
     fileContent = `<!--${msgGeneratedFileWarning}-->\n${file}`;
@@ -169,23 +169,6 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
 
   return { fileContent, filePath };
 }
-
-/*
-async function setupFile(templateFile, replacements, suffix, format) {
-  let template = await loadFile(templateFile, true);
-  let fileContent = `${template}`;
-  let filePath = `.${format}`;
-
-  replacements.forEach(replacement => {
-    fileContent = template.replace(/{{NAME}}/gi, "name");
-  });
-
-  return {
-    fileContent,
-    filePath
-  };
-}
-*/
 
 /**
  * Local helper that does most the actual writing of the file
