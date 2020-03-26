@@ -22,18 +22,14 @@ export function getTokenMatch(tokens, tokenFileName, property, expectedValue, mu
 
         // Check if we can match value with a token and its value
         Object.entries(tokens).map(s => {
-          console.log('key', key);
           if (s[1] === value) {
             updatedCss += `${property}-${key}: \${${tokenFileName}.${s[0]}};\n`;
             foundMatch = true;
           }
         });
 
-        console.log('aaaa', `${property}-${key}: ${value}`, foundMatch);
-
         // Write expected value as-is, since we couldn't match it to a token
         if (!foundMatch) {
-          console.log('no match');
           updatedCss += `${property}-${key}: ${value};\n`;
         }
       }
