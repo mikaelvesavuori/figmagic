@@ -30,6 +30,7 @@ export function getTokenMatch(tokens, tokenFileName, property, expectedValue, mu
 
         // Write expected value as-is, since we couldn't match it to a token
         if (!foundMatch) {
+          console.warn(`${msgGetTokenMatchNoMatch} ${property}: ${value}`);
           updatedCss += `${property}-${key}: ${value};\n`;
         }
       }
