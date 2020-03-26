@@ -18,7 +18,7 @@ export function getTokenMatch(tokens, tokenFileName, property, expectedValue, mu
         Object.entries(tokens).map(s => {
           if (s[1] === value) {
             updatedCss += `${property}-${key}: \${${tokenFileName}.${s[0]}};\n`;
-          }
+          } else updatedCss += `${property}-${key}: ${value};\n`;
         });
       }
     });
