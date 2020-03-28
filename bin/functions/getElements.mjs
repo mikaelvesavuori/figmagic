@@ -5,7 +5,6 @@ import { processNestedCss } from './processNestedCss.mjs';
 import { errorGetElementsWrongElementCount } from '../meta/errors.mjs';
 import { errorGetElementsWrongTextElementCount } from '../meta/errors.mjs';
 
-// TODO: Don't hardcore [0] and [1] values!
 export async function getElements(elementsPage, config, components) {
   const _ELEMENTS = elementsPage.filter(element => element.type === 'COMPONENT');
   const ELEMENTS = addDescriptionToElements(_ELEMENTS, components);
@@ -82,9 +81,11 @@ async function parseElement(element) {
       })
     );
     css = processNestedCss(css);
-  } else {
+  }
+  // Handle regular non-nested elements below
+  else {
     // Check for text elements
-    const TEXT_ELEMENT = element.children.filter(e => e.name === 'Text');
+    const TEXT_ELEMENT = element.children.filter(e => e.type === 'TEXT');
     if (!TEXT_ELEMENT || TEXT_ELEMENT.length > 1)
       throw new Error(`${errorGetElementsWrongTextElementCount} ${element.name}!`);
 
