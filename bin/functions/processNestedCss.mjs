@@ -28,7 +28,6 @@ export function processNestedCss(css) {
   // Create CSS string
   const CSS = createCssString(INTERSECTIONS, UNIQUE_VALUES);
 
-  //console.log(CSS);
   return CSS;
 }
 
@@ -41,7 +40,6 @@ export function processNestedCss(css) {
  */
 function cleanArrays(classNames, classContent) {
   const totalClassCount = classContent.length;
-  //console.log(totalClassCount, totalClassCount / 2);
 
   let arrays = [];
 
