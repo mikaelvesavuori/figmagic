@@ -1,11 +1,14 @@
 import { roundColorValue } from './roundColorValue.mjs';
 import { getTokenMatch } from './getTokenMatch.mjs';
 //import { warnGetCssFromElementNoTokenMatch } from '../meta/warnings.mjs';
+import { errorGetCssFromElement } from '../meta/errors.mjs';
 
 //import mediaQueries from '../../tokens/mediaQueries.mjs';
 //import zIndices from '../../tokens/zIndices.mjs';
 
 export async function getCssFromElement(element, textElement) {
+  if (!element) throw new Error(errorGetCssFromElement);
+
   // Dynamic imports
   const _borderWidths = await import('../../tokens/borderWidths.mjs');
   const borderWidths = _borderWidths.default;

@@ -4,6 +4,7 @@ import { getTypographyStylingFromElement } from './getTypographyStylingFromEleme
 import { errorGetElementsWrongElementCount } from '../meta/errors.mjs';
 import { errorGetElementsWrongTextElementCount } from '../meta/errors.mjs';
 
+// TODO: Don't hardcore [0] and [1] values!
 export async function getElements(elementsPage, config, components) {
   const _ELEMENTS = elementsPage.filter(element => element.type === 'COMPONENT');
   const ELEMENTS = addDescriptionToElements(_ELEMENTS, components);
@@ -54,20 +55,31 @@ async function parseElement(element) {
   // Note: The item is expected to have the same name as the component overall, such as "Input", "Button", or "H1"
   let css = ` `;
 
+  // WIP: Nested, layered, or "stateful" elements
   if (element.name === 'Button') {
-    console.log(element.children);
+    await Promise.all(
+      element.children.map(async el => {
+        const MAIN_ELEMENT = el.children[0]; //el.children.filter(e => e.name === el.name);
+        const TEXT_ELEMENT = el.children[1];
+        const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
+        console.log('Starting:', MAIN_ELEMENT.name, FIXED_NAME);
 
-		element.children.map(el => {
-			const MAIN_ELEMENT = el.children.filter(e => e.name === el.name);
-      let elementStyling = await getCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0]);
-      css += elementStyling.css;
-			imports = imports.concat(elementStyling.imports);
-		})		
+        let elementStyling = await getCssFromElement(MAIN_ELEMENT, TEXT_ELEMENT);
+        imports = imports.concat(elementStyling.imports);
+        css += `\n.${FIXED_NAME} {\n${elementStyling.css}}`;
+
+        let typography = await getTypographyStylingFromElement(TEXT_ELEMENT);
+        let typographyStyling = typography.css;
+        imports = imports.concat(typography.imports);
+        text = TEXT_ELEMENT.characters;
+        css += `\n.${FIXED_NAME} {\n${typographyStyling}}`;
+      })
+    );
   }
 
   // Check for text elements
   const TEXT_ELEMENT = element.children.filter(e => e.name === 'Text');
-  if (TEXT_ELEMENT.length > 1)
+  if (!TEXT_ELEMENT || TEXT_ELEMENT.length > 1)
     throw new Error(`${errorGetElementsWrongTextElementCount} ${element.name}!`);
 
   // Set placeholder text

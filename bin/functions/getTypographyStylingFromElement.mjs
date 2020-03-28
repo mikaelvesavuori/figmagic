@@ -172,8 +172,5 @@ export async function getTypographyStylingFromElement(element) {
 
   if (FONT_CASE) css += `text-transform: ${FONT_CASE};\n`;
 
-  // Add some nice separation between the typography block and the rest of the styling
-  css += `\n`;
-
   return { css, imports };
 }

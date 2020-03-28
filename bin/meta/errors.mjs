@@ -20,6 +20,8 @@ export const errorFindShortenedNameMatchWrongType = `${colors.FgRed}Arguments ar
 
 export const errorFormatName = `${colors.FgRed}No string for formatName()!`;
 
+export const errorGetCssFromElement = `${colors.FgRed}Missing "element" argument in getCssFromElement()!`;
+
 export const errorGetElementsWrongElementCount = `${colors.FgRed}Did not find exactly 1 (one) match for element`;
 export const errorGetElementsWrongTextElementCount = `${colors.FgRed}Found more than one match for "Text" node. Required: 0 or 1 text nodes as child of element`;
 
