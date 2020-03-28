@@ -1,11 +1,9 @@
-//import { errorCamelize } from '../meta/errors.mjs';
-
 /**
- * Camel-case transform a string
+ * Pascal-case transform a string
  *
  * @exports
  * @function
- * @param {string} str - The string to camelcase
+ * @param {string} str - The string to Pascal case
  * @returns {string} - The final string
  * @throws {error} - When no string is provided
  */

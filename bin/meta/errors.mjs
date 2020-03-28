@@ -22,6 +22,8 @@ export const errorFormatName = `${colors.FgRed}No string for formatName()!`;
 
 export const errorGetCssFromElement = `${colors.FgRed}Missing "element" argument in getCssFromElement()!`;
 
+export const errorGetElements = `${colors.FgRed}Missing one or more of required arguments: "elementsPage", "config", and/or "components"!`;
+
 export const errorGetElementsWrongElementCount = `${colors.FgRed}Did not find exactly 1 (one) match for element`;
 export const errorGetElementsWrongTextElementCount = `${colors.FgRed}Found more than one match for "Text" node. Required: 0 or 1 text nodes as child of element`;
 
@@ -32,6 +34,8 @@ export const errorGetGraphicsNoImages = `${colors.FgRed}No images received from 
 
 export const errorGetIds = `${colors.FgRed}No (or zero-length) array passed to getIds()!`;
 
+export const errorGetTokenMatch = `${colors.FgRed}Missing one or more of required arguments: "tokens", "tokenFileName", "property", and/or "expectedValue"!`;
+
 export const errorLoadFile = `${colors.FgRed}Could not find file!`;
 
 export const errorNormalizeUnits = `${colors.FgRed}Missing parameters for normalizeUnits()!`;
@@ -40,6 +44,9 @@ export const errorNormalizeUnitsUndefined = `${colors.FgRed}Parameters "rootSize
 export const errorParseCliArgs = `${colors.FgRed}No arguments array passed to parseCliArgs()!`;
 
 export const errorProcessTokens = `${colors.FgRed}No sheet or name for processTokens()!`;
+
+export const errorProcessNestedCss = `${colors.FgRed}No 'css' string provided to processNestedCss()!`;
+export const errorCreateCssString = `${colors.FgRed}Missing one or more of required arguments: "intersections", "uniqueValues"!`;
 
 export const errorRoundColor = `${colors.FgRed}Error while rounding color value: Required argument "quantity" was not passed in!`;
 export const errorRoundColorValue = `${colors.FgRed}Error while rounding color value: Scale value must be equal to or less than 255!`;

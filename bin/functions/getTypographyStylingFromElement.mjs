@@ -2,7 +2,11 @@ import { roundColorValue } from './roundColorValue.mjs';
 import { getTokenMatch } from './getTokenMatch.mjs';
 import { normalizeUnits } from './normalizeUnits.mjs';
 
-// MAYBE TODO: Map to Figma Styles instead?
+/**
+ * Description (TODO)
+ *
+ * @param element
+ */
 export async function getTypographyStylingFromElement(element) {
   // Dynamic imports
   const _colors = await import('../../tokens/colors.mjs');

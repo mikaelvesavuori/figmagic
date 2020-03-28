@@ -47,7 +47,6 @@ export function normalizeUnits(value, currentUnit, newUnit) {
     return `${value}px`;
   }
 
-  // TODO: This is uncovered in test
   if (rootSize === undefined || unitSize === undefined)
     throw new Error(errorNormalizeUnitsUndefined);
 

@@ -2,6 +2,14 @@ import { roundColorValue } from './roundColorValue.mjs';
 
 import { errorConvertHexToRgba } from '../meta/errors.mjs';
 
+/**
+ * Description (TODO)
+ *
+ * @param r
+ * @param g
+ * @param b
+ * @param a
+ */
 export function convertHexToRgba(r, g, b, a) {
   if (!r && !g && !b && !a) throw new Error(errorConvertHexToRgba);
 

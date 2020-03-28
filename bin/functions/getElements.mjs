@@ -2,13 +2,31 @@ import { getCssFromElement } from './getCssFromElement.mjs';
 import { getTypographyStylingFromElement } from './getTypographyStylingFromElement.mjs';
 import { processNestedCss } from './processNestedCss.mjs';
 
-import { errorGetElementsWrongElementCount } from '../meta/errors.mjs';
-import { errorGetElementsWrongTextElementCount } from '../meta/errors.mjs';
+import {
+  errorGetElements,
+  errorGetElementsWrongElementCount,
+  errorGetElementsWrongTextElementCount
+} from '../meta/errors.mjs';
 
+/**
+ * Description
+ *
+ * @exports
+ * @function
+ * @param {array} elementsPage - Figma page for Elements
+ * @param {object} config - User configuration
+ * @param {object} components - Figma components
+ * @returns {array} - List of parsed components with css and all
+ * @throws {error} - When...
+ */
 export async function getElements(elementsPage, config, components) {
+  if (!elementsPage || !config || !components) throw new Error(errorGetElements);
+
   const _ELEMENTS = elementsPage.filter(element => element.type === 'COMPONENT');
   const ELEMENTS = addDescriptionToElements(_ELEMENTS, components);
-  const PARSED_ELEMENTS = await Promise.all(ELEMENTS.map(async el => await parseElement(el)));
+  const PARSED_ELEMENTS = await Promise.all(
+    ELEMENTS.map(async el => await parseElement(el, config))
+  );
   return PARSED_ELEMENTS;
 }
 
@@ -20,7 +38,7 @@ const addDescriptionToElements = (elements, components) => {
   });
 };
 
-async function parseElement(element) {
+async function parseElement(element, config) {
   let html = ``;
   let newElement = {};
   let extraProps = ``; // Any extra properties, like "placeholder"

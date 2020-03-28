@@ -1,5 +1,11 @@
 import { replaceMediaQuery } from './replaceMediaQuery.mjs';
 
+/**
+ * Description (TODO)
+ *
+ * @param desc
+ * @param tokens
+ */
 export function parseCssFromDescription(desc, tokens) {
   if (desc === '') return '';
 

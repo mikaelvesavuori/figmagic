@@ -29,7 +29,6 @@ export function setupRadiusTokens(radiusFrame) {
     let name = camelize(type.name);
     name = formatName(name);
 
-    // TODO: Enhance with support for type.rectangleCornerRadii
     const RADIUS = (() => {
       if (type.cornerRadius)
         return normalizeUnits(type.cornerRadius, 'cornerRadius', 'adjustedRadius');

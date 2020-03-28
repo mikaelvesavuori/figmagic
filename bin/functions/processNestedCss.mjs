@@ -1,3 +1,5 @@
+import { errorProcessNestedCss, errorCreateCssString } from '../meta/errors.mjs';
+
 /**
  * Process nested CSS into a format that puts shared/common intersecting CSS properties
  * at the top, while unique values get sorted under their respective CSS classes.
@@ -9,7 +11,7 @@
  * @throws {error} - When no CSS is provided as input
  */
 export function processNestedCss(css) {
-  if (!css) throw new Error('No css provided!'); // TODO: Add real error import
+  if (!css) throw new Error(errorProcessNestedCss);
 
   // Match or split by CSS class name, like ".ButtonWarning {"
   let classNames = css.match(/\..* {/gi);
@@ -124,7 +126,7 @@ function getUniqueValues(arrays, intersections) {
  * @throws {error} - When no intersections or uniqueValues are provided
  */
 function createCssString(intersections, uniqueValues) {
-  if (!intersections || !uniqueValues) throw new Error('Missing values!'); // TODO: Add error
+  if (!intersections || !uniqueValues) throw new Error(errorCreateCssString);
 
   let str = ``;
 

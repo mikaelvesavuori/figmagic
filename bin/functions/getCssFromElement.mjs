@@ -6,6 +6,12 @@ import { errorGetCssFromElement } from '../meta/errors.mjs';
 //import mediaQueries from '../../tokens/mediaQueries.mjs';
 //import zIndices from '../../tokens/zIndices.mjs';
 
+/**
+ * Description (TODO)
+ *
+ * @param element
+ * @param textElement
+ */
 export async function getCssFromElement(element, textElement) {
   if (!element) throw new Error(errorGetCssFromElement);
 
@@ -27,7 +33,6 @@ export async function getCssFromElement(element, textElement) {
   // TODO: Take value from config
   const REM = 16;
 
-  // TODO: Change?
   css += `width: 100%;\n`;
 
   // Paddings for top and bottom
@@ -67,10 +72,10 @@ export async function getCssFromElement(element, textElement) {
 
   if (PADDING && Object.keys(PADDING).length > 0) {
     const PADDINGS = Object.values(PADDING).map(p => p);
-    const IS_ALL_VALUES_ZERO = PADDINGS.every(item => item === 0);
+    const IS_ZERO = PADDINGS.every(item => item === 0);
 
     // Don't set paddings if all values are actually empty
-    if (!IS_ALL_VALUES_ZERO) {
+    if (!IS_ZERO) {
       const { updatedCss, updatedImports } = getTokenMatch(
         spacing,
         'spacing',
@@ -120,7 +125,6 @@ export async function getCssFromElement(element, textElement) {
     updatedImports.forEach(i => imports.push(i));
   }
 
-  // TODO: Are these OK as "resets"?
   css += `border: 0;\n`;
   css += `border-style: solid;\n`;
 

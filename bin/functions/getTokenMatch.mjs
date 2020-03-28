@@ -1,10 +1,19 @@
 import { normalizeUnits } from './normalizeUnits.mjs';
 
 import { msgGetTokenMatchNoMatch } from '../meta/messages.mjs';
+import { errorGetTokenMatch } from '../meta/errors.mjs';
 
+/**
+ * Description (TODO)
+ *
+ * @param tokens
+ * @param tokenFileName
+ * @param property
+ * @param expectedValue
+ * @param multiplier
+ */
 export function getTokenMatch(tokens, tokenFileName, property, expectedValue, multiplier) {
-  // TODO: Set errors!
-  if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error();
+  if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error(errorGetTokenMatch);
 
   let updatedCss = ``;
   let updatedImports = [];

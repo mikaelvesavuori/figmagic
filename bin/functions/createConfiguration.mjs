@@ -64,14 +64,12 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
 
   // RC file configuration is loaded below
   // Highest priority
-  // TODO: Ensure this works when tested
   const RC_CONFIG = await loadFile(userConfigPath);
 
   // Merge configurations in order of prioritization
   const CONFIG = { ...DEFAULT_CONFIG, ...ENV_CONFIG, ...CLI_CONFIG, ...RC_CONFIG };
 
   /*
-	// TODO: Ensure this is passed over/ignored (?) by Jest testing
   // Set debug mode to correct setting
   process.env.FIGMA_DEBUG = CONFIG.debugMode;
 

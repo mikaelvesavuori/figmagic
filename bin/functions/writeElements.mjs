@@ -1,6 +1,12 @@
 import { toPascalCase } from './toPascalCase.mjs';
 import { writeFile } from './writeFile.mjs';
 
+/**
+ * Description (TODO)
+ *
+ * @param elements
+ * @param config
+ */
 export async function writeElements(elements, config) {
   await elements.map(comp => {
     const HTML = comp.html;

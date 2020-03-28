@@ -1,3 +1,9 @@
+/**
+ * Description (TODO)
+ *
+ * @param str
+ * @param match
+ */
 export function replaceMediaQuery(str, match) {
   const index = str.indexOf(match);
   if (index === -1) return str;
@@ -6,7 +12,6 @@ export function replaceMediaQuery(str, match) {
   const QUERY_TYPE = match === '@upto' ? 'max' : 'min';
 
   // Get the right parts
-  // TODO: Looks like shit, but seems to work at least
   const SLICE_START = parseInt(match.length + 1);
   const SLICE_LENGTH = SLICE_START + 6;
   let query = str.slice(index, index + SLICE_LENGTH);
@@ -22,7 +27,8 @@ export function replaceMediaQuery(str, match) {
   // Remove any spaces
   size = size.trim();
 
-  str = str.replace(match, `@media query and (${QUERY_TYPE}-width: ${size}px) {`); // TODO: Will this work globally across string?
+  // Will this work globally across string?
+  str = str.replace(match, `@media query and (${QUERY_TYPE}-width: ${size}px) {`);
 
   // Clean up the remainder
   const REMAINDER = query.replace(match, '');

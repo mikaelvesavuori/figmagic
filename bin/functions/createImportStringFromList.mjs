@@ -1,3 +1,8 @@
+/**
+ * Description (TODO)
+ *
+ * @param importArray
+ */
 export function createImportStringFromList(importArray) {
   let importString = ``;
 
