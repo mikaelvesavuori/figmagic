@@ -15,7 +15,8 @@ export function processNestedCss(css) {
   let classNames = css.match(/\..* {/gi);
   let classContent = css.split(/\..* {/gi);
 
-  classContent.shift(); // Remove first to keep same lengths
+  // Remove first to keep same lengths since it can sometimes be just a space
+  if (classContent[0] === ' \n') classContent.shift();
 
   const ARRAYS = cleanArrays(classNames, classContent);
 
@@ -43,21 +44,24 @@ function cleanArrays(classNames, classContent) {
 
   let arrays = [];
 
-  // Loop all couples
-  // Since all styling comes first—then typography—we need to match them together
+  // Loop all couples: Since all styling comes first—then typography—we need to match them together
   for (let i = 0; i <= totalClassCount / 2 - 1; i++) {
     // Styling
     let arrA = classContent[i].split(/\n/gi);
     arrA = arrA.filter(item => item); // Clean garbage
     arrA = arrA.filter(item => item !== '}');
+
     // Typography
     let arrB = classContent[i + totalClassCount / 2].split(/\n/gi);
     arrB = arrB.filter(item => item);
     arrB = arrB.filter(item => item !== '}');
+
     // Collated and reduced from duplicates
     let arrC = [...new Set([...arrA, ...arrB])];
+
     // Add temp name for class name
     arrC.push(`{{NAME}}${classNames[i]}`);
+
     // Push to external array
     arrays.push(arrC);
   }
@@ -73,12 +77,12 @@ function cleanArrays(classNames, classContent) {
  */
 function getIntersectingValues(arrays) {
   let o = {};
+
   arrays.map((a, index) => {
     o[index] = a;
   });
 
-  const intersections = Object.values(o).reduce((a, b) => b.filter(Set.prototype.has, new Set(a)));
-  return intersections;
+  return Object.values(o).reduce((a, b) => b.filter(Set.prototype.has, new Set(a)));
 }
 
 /**
