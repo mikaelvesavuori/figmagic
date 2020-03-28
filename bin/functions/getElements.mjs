@@ -64,9 +64,8 @@ async function parseElement(element) {
       element.children.map(async el => {
         // Ignore any groups with a leading underscore in their name
         if (el.name[0] !== '_') {
-          console.log(el.children.filter(e => e.name === el.name));
-          const MAIN_ELEMENT = el.children[0]; //el.children.filter(e => e.name === el.name);
-          const TEXT_ELEMENT = el.children[1];
+          const MAIN_ELEMENT = el.children.filter(e => e.type === 'RECTANGLE')[0];
+          const TEXT_ELEMENT = el.children.filter(e => e.type === 'TEXT')[0];
           const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
           console.log(`${MAIN_ELEMENT.name} > ${FIXED_NAME}`);
 
