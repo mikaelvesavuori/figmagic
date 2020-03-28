@@ -85,7 +85,7 @@ async function parseElement(element) {
   // Handle regular non-nested elements below
   else {
     // Check for text elements
-    const TEXT_ELEMENT = element.children.filter(e => e.type === 'TEXT');
+    const TEXT_ELEMENT = element.children.filter(e => e.name === 'Text');
     if (!TEXT_ELEMENT || TEXT_ELEMENT.length > 1)
       throw new Error(`${errorGetElementsWrongTextElementCount} ${element.name}!`);
 

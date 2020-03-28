@@ -137,7 +137,7 @@ function createCssString(intersections, uniqueValues) {
   uniqueValues.forEach(arr => {
     arr.forEach((i, index) => {
       if (i.includes('{{NAME}}')) {
-        const FIXED_CLASS_NAME = i.replace('{{NAME}}', '');
+        const FIXED_CLASS_NAME = i.replace('{{NAME}}', '&');
         str += `${FIXED_CLASS_NAME}\n`;
       } else str += `  ${i}\n`;
 
