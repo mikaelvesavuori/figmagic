@@ -4,7 +4,7 @@ export const msgSetDataFromLocal = `${colors.FgYellow}\nAttempting to recompile 
 export const msgSetDataFromApi = `${colors.FgYellow}\nAttempting to fetch data from Figma API...\n`;
 export const msgWriteBaseFile = `${colors.FgYellow}\nWriting Figma base file...\n`;
 export const msgSyncGraphics = `${colors.FgYellow}\nGetting images from Figma API...\n`;
-export const msgGetTokenMatchNoMatch = `${colors.FgYellow}\nNo matching token! Hard-coding to expected value:`;
+export const msgGetTokenMatchNoMatch = `${colors.FgYellow}\n! No matching token! Hard-coding to expected value:`;
 export const msgDownloadFileWritingFile = path => `${colors.FgYellow}\n* Writing file: ${path}`;
 export const msgWriteTokens = `${colors.FgYellow}\nWriting design tokens...\n`;
 export const msgSyncElements = `${colors.FgYellow}\nAttempting to parse elements...\n`;

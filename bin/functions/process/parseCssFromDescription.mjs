@@ -1,4 +1,4 @@
-import { replaceMediaQuery } from './replaceMediaQuery.mjs';
+import { replaceMediaQuery } from '../helpers/replaceMediaQuery.mjs';
 
 /**
  * Parse CSS from Figma description block
