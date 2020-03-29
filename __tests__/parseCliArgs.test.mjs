@@ -141,7 +141,7 @@ test('It should return "abc123" for url if passing "abc123" (short-hand)', () =>
 /*
  * Output folder base file
  */
-test('It should return "figma" for outputFolderBaseFile if passing "figma" (long-hand)', () => {
+test('It should return ".figma" for outputFolderBaseFile if passing "figma" (long-hand)', () => {
   expect(parseCliArgs(['--outputFolderBaseFile', 'figma'])).toEqual(
     expect.objectContaining({
       outputFolderBaseFile: 'figma'

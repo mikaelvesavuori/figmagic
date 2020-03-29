@@ -4,27 +4,27 @@
 import trash from 'trash';
 import dotenv from 'dotenv';
 
-import { colors } from './bin/meta/colors.mjs';
 import { createConfiguration } from './bin/functions/config/createConfiguration.mjs';
 
 import { loadFile } from './bin/functions/filesystem/loadFile.mjs';
 import { createFolder } from './bin/functions/filesystem/createFolder.mjs';
-
-import { createPage } from './bin/functions/process/createPage.mjs';
-import { processGraphics } from './bin/functions/process/processGraphics.mjs';
-import { processElements } from './bin/functions/process/processElements.mjs';
-
 import { getFromApi } from './bin/functions/filesystem/getFromApi.mjs';
 import { writeTokens } from './bin/functions/filesystem/writeTokens.mjs';
 import { writeFile } from './bin/functions/filesystem/writeFile.mjs';
 import { writeElements } from './bin/functions/filesystem/writeElements.mjs';
 
+import { createPage } from './bin/functions/process/createPage.mjs';
+import { processGraphics } from './bin/functions/process/processGraphics.mjs';
+import { processElements } from './bin/functions/process/processElements.mjs';
+
+import { colors } from './bin/meta/colors.mjs';
 import { errorGetData } from './bin/meta/errors.mjs';
 import {
   msgSetDataFromLocal,
   msgSetDataFromApi,
   msgWriteBaseFile,
-  msgGetImagesFromApi,
+  msgSyncGraphics,
+  msgSyncElements,
   msgWriteTokens,
   msgJobComplete
 } from './bin/meta/messages.mjs';
@@ -102,6 +102,10 @@ async function figmagic() {
     await createFolder(outputFolderGraphics);
   }
 
+  if (syncElements) {
+    await createFolder(outputFolderElements);
+  }
+
   if (!recompileLocal) {
     // Write base Figma JSON if we are pulling from the web
     console.log(msgWriteBaseFile);
@@ -111,7 +115,7 @@ async function figmagic() {
 
   // Syncing graphics
   if (syncGraphics) {
-    console.log(msgGetImagesFromApi);
+    console.log(msgSyncGraphics);
     const GRAPHICS_PAGE = createPage(DATA.document.children, 'Graphics');
     await processGraphics(GRAPHICS_PAGE.children, CONFIG);
   }
@@ -121,21 +125,12 @@ async function figmagic() {
   const TOKENS_PAGE = createPage(DATA.document.children, 'Design Tokens');
   await writeTokens(TOKENS_PAGE.children, CONFIG);
 
-  // 1. Load data from web
-  //const DATA = await getFromApi(token, url);
-  //await writeFile(DATA, outputFolderBaseFile, outputFileName, 'raw');
-  //const TOKENS_PAGE = createPage(DATA.document.children, 'Design Tokens');
-  //await writeTokens(TOKENS_PAGE.children, CONFIG);
-
-  // 2. Load local data
-  //const DATA = await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
-
   const COMPONENTS = DATA.components;
   //const STYLES = DATA.styles;
 
   // Syncing elements
   if (syncElements) {
-    console.log('Attempting to parse elements...');
+    console.log(msgSyncElements);
     const ELEMENTS_PAGE = createPage(DATA.document.children, 'Elements');
     const elements = await processElements(ELEMENTS_PAGE.children, COMPONENTS, CONFIG);
     await writeElements(elements, CONFIG);
