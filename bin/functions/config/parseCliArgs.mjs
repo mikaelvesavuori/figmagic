@@ -20,6 +20,8 @@ export function parseCliArgs(argsArray) {
   if (!argsArray) throw new Error(errorParseCliArgs);
 
   let settings = {};
+  settings.templates = {};
+  settings.skipFileGeneration = {};
 
   if (argsArray.length > 0) {
     argsArray.forEach((arg, index) => {
@@ -38,6 +40,26 @@ export function parseCliArgs(argsArray) {
       // Sync elements from "Elements" page in Figma
       else if (arg === '--syncElements') {
         settings.syncElements = true;
+      }
+      // Skip file generation: React
+      else if (arg === '--skipReact') {
+        settings.skipFileGeneration.react = true;
+      }
+      // Skip file generation: Styled Components
+      else if (arg === '--skipStyled') {
+        settings.skipFileGeneration.styled = true;
+      }
+      // Skip file generation: CSS
+      else if (arg === '--skipCss') {
+        settings.skipFileGeneration.css = true;
+      }
+      // Skip file generation: Storybook
+      else if (arg === '--skipStorybook') {
+        settings.skipFileGeneration.storybook = true;
+      }
+      // Skip file generation: Markdown description
+      else if (arg === '--skipDescription') {
+        settings.skipFileGeneration.description = true;
       }
       // Check and handle token format switch
       else if (arg === '--outputTokenFormat' || arg == '-tf') {

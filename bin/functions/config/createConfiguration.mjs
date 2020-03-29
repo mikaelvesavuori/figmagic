@@ -48,6 +48,13 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
       templatePathStyled: config.templates.defaultTemplatePathStyled,
       templatePathStorybook: config.templates.defaultTemplatePathStorybook
     },
+    skipFileGeneration: {
+      react: config.skipFileGeneration.defaultSkipReact,
+      styled: config.skipFileGeneration.defaultSkipStyled,
+      css: config.skipFileGeneration.defaultSkipCss,
+      storybook: config.skipFileGeneration.defaultSkipStorybook,
+      description: config.skipFileGeneration.defaultSkipDescription
+    },
     token: process.env.FIGMA_TOKEN ? process.env.FIGMA_TOKEN : null,
     url: process.env.FIGMA_URL ? process.env.FIGMA_URL : null,
     usePostscriptFontNames: config.defaultUsePostscriptFontNames

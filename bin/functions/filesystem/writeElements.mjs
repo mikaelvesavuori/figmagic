@@ -15,27 +15,33 @@ export async function writeElements(elements, config) {
     const NAME = toPascalCase(comp.name);
     const FOLDER = `${config.outputFolderElements}/${NAME}`;
     const METADATA = {
-      element: comp.element,
       html: comp.html,
+      element: comp.element,
       extraProps: comp.extraProps,
       text: comp.text,
       imports: comp.imports
     };
     const TEMPLATES = config.templates;
 
+    const SKIP_REACT = config.skipFileGeneration.react;
+    const SKIP_STYLED = config.skipFileGeneration.styled;
+    const SKIP_CSS = config.skipFileGeneration.css;
+    const SKIP_STORYBOOK = config.skipFileGeneration.storybook;
+    const SKIP_DESCRIPTION = config.skipFileGeneration.description;
+
     // Write React component
-    writeFile(HTML, FOLDER, NAME, 'component', 'jsx', METADATA, TEMPLATES);
+    if (!SKIP_REACT) writeFile(HTML, FOLDER, NAME, 'component', 'jsx', METADATA, TEMPLATES);
 
     // Write Styled component
-    writeFile(CSS, FOLDER, NAME, 'style', 'jsx', METADATA, TEMPLATES);
+    if (!SKIP_STYLED) writeFile(CSS, FOLDER, NAME, 'style', 'jsx', METADATA, TEMPLATES);
 
     // Write CSS
-    writeFile(CSS, FOLDER, NAME, 'css', 'mjs', METADATA, TEMPLATES);
+    if (!SKIP_CSS) writeFile(CSS, FOLDER, NAME, 'css', 'mjs', METADATA, TEMPLATES);
 
     // Write Storybook component
-    writeFile(CSS, FOLDER, NAME, 'story', 'js', METADATA, TEMPLATES);
+    if (!SKIP_STORYBOOK) writeFile(CSS, FOLDER, NAME, 'story', 'js', METADATA, TEMPLATES);
 
     // Write description markdown file
-    writeFile(DESCRIPTION, FOLDER, NAME, 'description', 'md');
+    if (!SKIP_DESCRIPTION) writeFile(DESCRIPTION, FOLDER, NAME, 'description', 'md');
   });
 }

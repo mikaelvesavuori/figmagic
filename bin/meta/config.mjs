@@ -17,5 +17,12 @@ export const config = {
     defaultTemplatePathReact: 'templates/react.jsx',
     defaultTemplatePathStyled: 'templates/styled.jsx',
     defaultTemplatePathStorybook: 'templates/story.js'
+  },
+  skipFileGeneration: {
+    defaultSkipReact: false,
+    defaultSkipStyled: false,
+    defaultSkipCss: false,
+    defaultSkipStorybook: false,
+    defaultSkipDescription: false
   }
 };
