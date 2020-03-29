@@ -37,11 +37,12 @@ async function figmagic() {
     url,
     recompileLocal,
     syncGraphics,
+    syncElements,
     outputFolderBaseFile,
     outputFolderTokens,
     outputFolderGraphics,
     outputFolderElements,
-    outputFolderComponents,
+    //outputFolderComponents,
     outputFileName
   } = CONFIG;
 
@@ -84,6 +85,10 @@ async function figmagic() {
     if (syncGraphics) {
       await trash([`./${outputFolderGraphics}`]);
     }
+
+    if (syncElements) {
+      await trash([`./${outputFolderElements}`]);
+    }
   }
 
   // Create new folders if they don't exist
@@ -123,30 +128,15 @@ async function figmagic() {
   //const DATA = await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
 
   const COMPONENTS = DATA.components;
-  const STYLES = DATA.styles;
+  //const STYLES = DATA.styles;
 
-  /*
-  const mapComponentIdsToStyles = (components, styles) => {
-    //console.log(components); // 2743:6
-
-    console.log(components['2743:6']);
-    console.log(styles); //['2743:6']
-
-    //console.log(Object.keys(components).length);
-    //console.log(Object.keys(styles).length);
-
-    components.map(component => {
-      console.log(component.name);
-    });
-  };
-
-	const x = mapComponentIdsToStyles(COMPONENTS, STYLES);
-	*/
-
+  // Syncing elements
+  //if (syncElements) {
   console.log('Attempting to parse elements...');
   const ELEMENTS_PAGE = createPage(DATA.document.children, 'Elements');
-  const elements = await getElements(ELEMENTS_PAGE.children, CONFIG, COMPONENTS);
+  const elements = await getElements(ELEMENTS_PAGE.children, COMPONENTS, CONFIG);
   await writeElements(elements, CONFIG);
+  //}
 
   // All went well
   console.log(msgJobComplete);

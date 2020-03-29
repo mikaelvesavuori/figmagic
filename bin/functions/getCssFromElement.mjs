@@ -10,10 +10,11 @@ import { errorGetCssFromElement } from '../meta/errors.mjs';
  * Description (TODO)
  *
  * @param element
- * @param textElement
+ * @param {?} [textElement]
+ * @param remSize
  */
-export async function getCssFromElement(element, textElement) {
-  if (!element) throw new Error(errorGetCssFromElement);
+export async function getCssFromElement(element, textElement, remSize) {
+  if (!element || !remSize) throw new Error(errorGetCssFromElement);
 
   // Dynamic imports
   const _borderWidths = await import('../../tokens/borderWidths.mjs');
@@ -29,9 +30,6 @@ export async function getCssFromElement(element, textElement) {
 
   let css = ``;
   let imports = [];
-
-  // TODO: Take value from config
-  const REM = 16;
 
   css += `width: 100%;\n`;
 
@@ -81,7 +79,7 @@ export async function getCssFromElement(element, textElement) {
         'spacing',
         'padding',
         PADDING,
-        REM
+        remSize
       );
       css += updatedCss;
       updatedImports.forEach(i => imports.push(i));
@@ -95,7 +93,13 @@ export async function getCssFromElement(element, textElement) {
   })();
 
   if (HEIGHT) {
-    const { updatedCss, updatedImports } = getTokenMatch(spacing, 'spacing', 'height', HEIGHT, REM);
+    const { updatedCss, updatedImports } = getTokenMatch(
+      spacing,
+      'spacing',
+      'height',
+      HEIGHT,
+      remSize
+    );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));
   }
@@ -119,7 +123,8 @@ export async function getCssFromElement(element, textElement) {
       colors,
       'colors',
       'background-color',
-      BACKGROUND_COLOR
+      BACKGROUND_COLOR,
+      remSize
     );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));
@@ -139,7 +144,8 @@ export async function getCssFromElement(element, textElement) {
       borderWidths,
       'borderWidths',
       'border-width',
-      BORDER_WIDTH
+      BORDER_WIDTH,
+      remSize
     );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));
@@ -164,7 +170,8 @@ export async function getCssFromElement(element, textElement) {
       colors,
       'colors',
       'border-color',
-      BORDER_COLOR
+      BORDER_COLOR,
+      remSize
     );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));
@@ -181,7 +188,8 @@ export async function getCssFromElement(element, textElement) {
       radii,
       'radii',
       'border-radius',
-      BORDER_RADIUS
+      BORDER_RADIUS,
+      remSize
     );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));
@@ -208,7 +216,13 @@ export async function getCssFromElement(element, textElement) {
   })();
 
   if (SHADOW) {
-    const { updatedCss, updatedImports } = getTokenMatch(shadows, 'shadows', 'box-shadow', SHADOW);
+    const { updatedCss, updatedImports } = getTokenMatch(
+      shadows,
+      'shadows',
+      'box-shadow',
+      SHADOW,
+      remSize
+    );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));
   }

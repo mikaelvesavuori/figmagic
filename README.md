@@ -150,7 +150,6 @@ Below is a complete set of what you can configure, together with the defaults.
   "outputFolderGraphics": null,
   "outputFormatGraphics": null,
   "outputFolderElements": "elements",
-  "outputFolderComponents": "components",
   "recompileLocal": null,
   "spacingUnit": "rem",
   "syncGraphics": null,
@@ -232,11 +231,13 @@ Default is `tokens`.
 
 Default is `elements`.
 
+<!--
 #### Set components output folder
 
 `figmagic --outputFolderComponents [folder]` or `figmagic -components [folder]`
 
 Default is `components`.
+-->
 
 #### Set output file name
 

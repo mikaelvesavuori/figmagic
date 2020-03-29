@@ -6,7 +6,11 @@
   "outputFolderTokens": "tokens",
   "outputTokenFormat": "mjs",
   "outputFolderElements": "elements",
-  "outputFolderComponents": "components",
+	"templates": {
+  	"templatePathReact": "templates/react.jsx",
+  	"templatePathStyled": "templates/styled.jsx",
+  	"templatePathStorybook": "templates/story.js"
+	},
   "spacingUnit": "rem",
   "usePostscriptFontNames": true
 }

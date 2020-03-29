@@ -5,6 +5,7 @@ import { normalizeUnits } from './normalizeUnits.mjs';
 import {
   errorSetupSpacingTokensNoFrame,
   errorSetupSpacingTokensNoChildren,
+  errorSetupSpacingTokensNoUnits,
   errorSetupSpacingTokensMissingProps
 } from '../meta/errors.mjs';
 
@@ -15,12 +16,14 @@ import {
  * @function
  * @param {object} spacingFrame - The spacing frame from Figma
  * @param {string} spacingUnit - The spacing unit
+ * @param {number} remSize - The body rem size
  * @returns {object} - Returns an object with all the spacings
  * @throws {error} - When there is no provided Figma frame
  */
-export function setupSpacingTokens(spacingFrame, spacingUnit) {
+export function setupSpacingTokens(spacingFrame, spacingUnit, remSize) {
   if (!spacingFrame) throw new Error(errorSetupSpacingTokensNoFrame);
   if (!spacingFrame.children) throw new Error(errorSetupSpacingTokensNoChildren);
+  if (!spacingUnit || !remSize) throw new Error(errorSetupSpacingTokensNoUnits);
 
   const SPACINGS = spacingFrame.children;
   const SPACING_OBJECT = {};
@@ -31,7 +34,12 @@ export function setupSpacingTokens(spacingFrame, spacingUnit) {
 
     let normalizedName = camelize(spacing.name);
     normalizedName = formatName(normalizedName);
-    const NORMALIZED_UNIT = normalizeUnits(spacing.absoluteBoundingBox.width, 'px', spacingUnit);
+    const NORMALIZED_UNIT = normalizeUnits(
+      spacing.absoluteBoundingBox.width,
+      'px',
+      spacingUnit,
+      remSize
+    );
     SPACING_OBJECT[normalizedName] = NORMALIZED_UNIT;
   });
 

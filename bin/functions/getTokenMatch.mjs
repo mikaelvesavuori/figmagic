@@ -1,7 +1,7 @@
 import { normalizeUnits } from './normalizeUnits.mjs';
 
 import { msgGetTokenMatchNoMatch } from '../meta/messages.mjs';
-import { errorGetTokenMatch } from '../meta/errors.mjs';
+import { errorGetTokenMatch, errorGetTokenMatchNoRemSize } from '../meta/errors.mjs';
 
 /**
  * Description (TODO)
@@ -10,9 +10,9 @@ import { errorGetTokenMatch } from '../meta/errors.mjs';
  * @param tokenFileName
  * @param property
  * @param expectedValue
- * @param multiplier
+ * @param {number} [remSize]
  */
-export function getTokenMatch(tokens, tokenFileName, property, expectedValue, multiplier) {
+export function getTokenMatch(tokens, tokenFileName, property, expectedValue, remSize) {
   if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error(errorGetTokenMatch);
 
   let updatedCss = ``;
@@ -26,8 +26,8 @@ export function getTokenMatch(tokens, tokenFileName, property, expectedValue, mu
       let foundMatch = false;
 
       if (expectedValue[key] && expectedValue[key] > 0) {
-        // TODO: Hardcoded to rem, should be variable based on config
-        const value = normalizeUnits(expectedValue[key], 'px', 'rem');
+        if (!remSize) throw new Error(errorGetTokenMatchNoRemSize);
+        const value = normalizeUnits(expectedValue[key], 'px', 'rem', remSize);
 
         // Check if we can match value with a token and its value
         Object.entries(tokens).map(s => {
@@ -52,12 +52,21 @@ export function getTokenMatch(tokens, tokenFileName, property, expectedValue, mu
     Object.entries(tokens).map(s => {
       const TOKEN_VALUE = (() => {
         if (typeof s[1] === 'number') return parseFloat(s[1]); // Send any numbers back
-        if (s[1].match(/\d+rem|\d+em/gi)) return parseFloat(s[1]); // If the value uses rem|em, send back as numbers
+        //if (s[1].match(/\d+rem|\d+em/gi)) return parseFloat(s[1]); // If the value uses rem|em, send back as numbers
         return s[1]; // Else send back as-is (string text)
       })();
 
-      const IS_TOKEN_MATCH = multiplier
-        ? TOKEN_VALUE * multiplier === expectedValue
+      // Multiply rem|em strings through REM size argument
+      const VALUE_THROUGH_REM = (() => {
+        if (TOKEN_VALUE && typeof TOKEN_VALUE === 'string') {
+          if (TOKEN_VALUE.match('rem') || TOKEN_VALUE.match('em')) {
+            return parseFloat(TOKEN_VALUE) * remSize;
+          }
+        }
+      })();
+
+      const IS_TOKEN_MATCH = VALUE_THROUGH_REM
+        ? VALUE_THROUGH_REM === expectedValue
         : TOKEN_VALUE == expectedValue;
 
       if (IS_TOKEN_MATCH) {

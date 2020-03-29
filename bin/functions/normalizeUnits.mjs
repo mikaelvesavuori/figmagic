@@ -1,5 +1,8 @@
-import { units } from '../meta/units.mjs';
-import { errorNormalizeUnits, errorNormalizeUnitsUndefined } from '../meta/errors.mjs';
+import {
+  errorNormalizeUnits,
+  errorNormalizeUnitsNoRemSize,
+  errorNormalizeUnitsUndefined
+} from '../meta/errors.mjs';
 
 /**
  * Normalize and convert units
@@ -8,11 +11,12 @@ import { errorNormalizeUnits, errorNormalizeUnitsUndefined } from '../meta/error
  * @function
  * @param {number} value - Value to normalize
  * @param {string} currentUnit - The current unit to of the incoming value
- * @param {string} newUnit - The unit to convert to
+ * @param {string} spacingUnit - The spacing unit
+ * @param {number} remSize - The body rem size
  * @returns {string} - Returns new unit
  * @throws {error} - When missing parameters
  */
-export function normalizeUnits(value, currentUnit, newUnit) {
+export function normalizeUnits(value, currentUnit, newUnit, remSize) {
   if (!value || !currentUnit || !newUnit) throw new Error(errorNormalizeUnits);
 
   let rootSize = undefined;
@@ -20,17 +24,18 @@ export function normalizeUnits(value, currentUnit, newUnit) {
 
   // Set root size
   if (currentUnit === 'px') {
-    rootSize = units.globalPxSize;
+    rootSize = 1;
   }
 
   // Set root size; Kind of a hack? Not sure if this is going to break anything. Used because of 'unitless'
   if (currentUnit === 'percent') {
-    rootSize = units.globalPxSize;
+    rootSize = 1;
   }
 
   // Set new unit
   if (newUnit === 'rem' || newUnit === 'em') {
-    unitSize = units.globalRemSize;
+    if (!remSize) throw new Error(errorNormalizeUnitsNoRemSize);
+    unitSize = remSize;
   }
 
   if (newUnit === 'unitless') {

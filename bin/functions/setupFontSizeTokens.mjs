@@ -1,10 +1,10 @@
 import { camelize } from './camelize.mjs';
 import { formatName } from './formatName.mjs';
 
-import { units } from '../meta/units.mjs';
 import {
   errorSetupFontSizeTokensNoFrame,
   errorSetupFontSizeTokensNoChildren,
+  errorSetupFontSizeTokensNoSizing,
   errorSetupFontSizeTokensMissingProps,
   errorSetupFontSizeTokensMissingSize
 } from '../meta/errors.mjs';
@@ -16,12 +16,14 @@ import {
  * @function
  * @param {object} fontSizeFrame - The font size frame from Figma
  * @param {string} fontUnit - The font unit type
+ * @param {number} remSize - The body rem size
  * @returns {object} - Returns an object with all the font sizes
  * @throws {error} - When there is no provided Figma frame
  */
-export function setupFontSizeTokens(fontSizeFrame, fontUnit) {
+export function setupFontSizeTokens(fontSizeFrame, fontUnit, remSize) {
   if (!fontSizeFrame) throw new Error(errorSetupFontSizeTokensNoFrame);
   if (!fontSizeFrame.children) throw new Error(errorSetupFontSizeTokensNoChildren);
+  if (!fontUnit || !remSize) throw new Error(errorSetupFontSizeTokensNoSizing);
 
   let fontSizeObject = {};
 
@@ -31,7 +33,7 @@ export function setupFontSizeTokens(fontSizeFrame, fontUnit) {
 
     let name = camelize(type.name);
     name = formatName(name);
-    const FONT_SIZE = type.style.fontSize / units.globalRemSize + fontUnit;
+    const FONT_SIZE = type.style.fontSize / remSize + fontUnit;
 
     fontSizeObject[name] = FONT_SIZE;
   });

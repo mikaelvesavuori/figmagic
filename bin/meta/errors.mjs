@@ -35,10 +35,14 @@ export const errorGetGraphicsNoImages = `${colors.FgRed}No images received from 
 export const errorGetIds = `${colors.FgRed}No (or zero-length) array passed to getIds()!`;
 
 export const errorGetTokenMatch = `${colors.FgRed}Missing one or more of required arguments: "tokens", "tokenFileName", "property", and/or "expectedValue"!`;
+export const errorGetTokenMatchNoRemSize = `${colors.FgRed}Missing required "remSize" argument for getTokenMatch() when converting to rem/em!`;
+
+export const errorGetTypographyStylingFromElement = `${colors.FgRed}Missing one or more of required arguments: "element", or "remSize" when calling getTypographyStylingFromElement()!`;
 
 export const errorLoadFile = `${colors.FgRed}Could not find file!`;
 
 export const errorNormalizeUnits = `${colors.FgRed}Missing parameters for normalizeUnits()!`;
+export const errorNormalizeUnitsNoRemSize = `${colors.FgRed}Missing required "remSize" argument for normalizeUnits() when converting to rem/em!`;
 export const errorNormalizeUnitsUndefined = `${colors.FgRed}Parameters "rootSize" or "unitSize" are undefined!`;
 
 export const errorParseCliArgs = `${colors.FgRed}No arguments array passed to parseCliArgs()!`;
@@ -57,6 +61,7 @@ export const errorSetupColorTokensNoFills = `${colors.FgRed}Color has no "fills"
 
 export const errorSetupFontSizeTokensNoFrame = `${colors.FgRed}No frame for setupFontSizeTokens()!`;
 export const errorSetupFontSizeTokensNoChildren = `${colors.FgRed}Font size frame is missing "children" array!`;
+export const errorSetupFontSizeTokensNoSizing = `${colors.FgRed}Missing "fontUnit" or "remSize" properties when calling setupFontSizeTokens()!`;
 export const errorSetupFontSizeTokensMissingProps = `${colors.FgRed}Missing "name" or "style" properties in font sizes frame!`;
 export const errorSetupFontSizeTokensMissingSize = `${colors.FgRed}Missing required "style.fontSize" property!`;
 
@@ -76,6 +81,7 @@ export const errorSetupLineHeightTokensMissingPercent = `${colors.FgRed}Missing 
 
 export const errorSetupSpacingTokensNoFrame = `${colors.FgRed}No frame for setupSpacingTokens()!`;
 export const errorSetupSpacingTokensNoChildren = `${colors.FgRed}Spacing frame has no children!`;
+export const errorSetupSpacingTokensNoUnits = `${colors.FgRed}Missing "spacingUnit" or "remSize" properties when calling setupSpacingTokens()!`;
 export const errorSetupSpacingTokensMissingProps = `${colors.FgRed}Missing "name" or "absoluteBoundingBox" properties in spacing frame!`;
 
 export const errorSetupShadowTokensNoFrame = `${colors.FgRed}No frame for setupShadowTokens()!`;

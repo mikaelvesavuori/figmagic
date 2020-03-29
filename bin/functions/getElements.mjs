@@ -14,13 +14,13 @@ import {
  * @exports
  * @function
  * @param {array} elementsPage - Figma page for Elements
- * @param {object} config - User configuration
  * @param {object} components - Figma components
+ * @param {object} config - User configuration
  * @returns {array} - List of parsed components with css and all
- * @throws {error} - When...
+ * @throws {error} - When missing required arguments
  */
-export async function getElements(elementsPage, config, components) {
-  if (!elementsPage || !config || !components) throw new Error(errorGetElements);
+export async function getElements(elementsPage, components, config) {
+  if (!elementsPage || !components || !config) throw new Error(errorGetElements);
 
   const _ELEMENTS = elementsPage.filter(element => element.type === 'COMPONENT');
   const ELEMENTS = addDescriptionToElements(_ELEMENTS, components);
@@ -38,12 +38,20 @@ const addDescriptionToElements = (elements, components) => {
   });
 };
 
+/**
+ * Description (TODO)
+ *
+ * @param element
+ * @param config
+ */
 async function parseElement(element, config) {
   let html = ``;
   let newElement = {};
   let extraProps = ``; // Any extra properties, like "placeholder"
   let text = ``;
   let imports = [];
+
+  const REM = config.remSize;
 
   // Set up the absolute essentials
   newElement.id = element.id;
@@ -86,15 +94,16 @@ async function parseElement(element, config) {
           const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
           console.log(`${MAIN_ELEMENT.name} > ${FIXED_NAME}`);
 
-          let elementStyling = await getCssFromElement(MAIN_ELEMENT, TEXT_ELEMENT);
+          // Parse layout CSS from element
+          let elementStyling = await getCssFromElement(MAIN_ELEMENT, TEXT_ELEMENT, REM);
           imports = imports.concat(elementStyling.imports);
           css += `\n.${FIXED_NAME} {\n${elementStyling.css}}`;
 
-          let typography = await getTypographyStylingFromElement(TEXT_ELEMENT);
-          let typographyStyling = typography.css;
+          // Parse typography CSS from element
+          let typography = await getTypographyStylingFromElement(TEXT_ELEMENT, REM);
           imports = imports.concat(typography.imports);
+          css += `\n.${FIXED_NAME} {\n${typography.css}}`;
           text = TEXT_ELEMENT.characters;
-          css += `\n.${FIXED_NAME} {\n${typographyStyling}}`;
         }
       })
     );
@@ -124,11 +133,10 @@ async function parseElement(element, config) {
 
     // Set text styling
     if (TEXT_ELEMENT.length === 1) {
-      let typography = await getTypographyStylingFromElement(TEXT_ELEMENT[0]);
-      let typographyStyling = typography.css;
+      let typography = await getTypographyStylingFromElement(TEXT_ELEMENT[0], REM);
       imports = imports.concat(typography.imports);
+      css += typography.css;
       text = TEXT_ELEMENT[0].characters;
-      css += typographyStyling;
     }
 
     html = html.replace('{{TEXT}}', text);
@@ -141,12 +149,13 @@ async function parseElement(element, config) {
         throw new Error(`${errorGetElementsWrongElementCount} ${element.name}!`);
       }
 
-      let elementStyling = await getCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0]);
-      css += elementStyling.css;
+      let elementStyling = await getCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0], REM);
       imports = imports.concat(elementStyling.imports);
+      css += elementStyling.css;
     }
   }
 
+  // Flatten imports and remove duplicates
   imports = [...new Set(imports)];
 
   // Apply to new object

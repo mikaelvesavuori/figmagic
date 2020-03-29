@@ -2,12 +2,16 @@ import { roundColorValue } from './roundColorValue.mjs';
 import { getTokenMatch } from './getTokenMatch.mjs';
 import { normalizeUnits } from './normalizeUnits.mjs';
 
+import { errorGetTypographyStylingFromElement } from '../meta/errors.mjs';
+
 /**
  * Description (TODO)
  *
  * @param element
  */
-export async function getTypographyStylingFromElement(element) {
+export async function getTypographyStylingFromElement(element, remSize) {
+  if (!element || !remSize) throw new Error(errorGetTypographyStylingFromElement);
+
   // Dynamic imports
   const _colors = await import('../../tokens/colors.mjs');
   const colors = _colors.default;
@@ -25,9 +29,6 @@ export async function getTypographyStylingFromElement(element) {
   let css = ``;
   let imports = [];
 
-  // TODO: Get this from config
-  const REM = 16;
-
   const FONT_COLOR = (() => {
     if (element.fills) {
       if (element.fills[0]) {
@@ -43,7 +44,13 @@ export async function getTypographyStylingFromElement(element) {
   })();
 
   if (FONT_COLOR) {
-    const { updatedCss, updatedImports } = getTokenMatch(colors, 'colors', 'color', FONT_COLOR);
+    const { updatedCss, updatedImports } = getTokenMatch(
+      colors,
+      'colors',
+      'color',
+      FONT_COLOR,
+      remSize
+    );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));
   }
@@ -62,7 +69,7 @@ export async function getTypographyStylingFromElement(element) {
       'fontSizes',
       'font-size',
       FONT_SIZE,
-      REM
+      remSize
     );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));
@@ -82,7 +89,8 @@ export async function getTypographyStylingFromElement(element) {
       fontFamilies,
       'fontFamilies',
       'font-family',
-      FONT_FAMILY
+      FONT_FAMILY,
+      remSize
     );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));
@@ -101,7 +109,8 @@ export async function getTypographyStylingFromElement(element) {
       fontWeights,
       'fontWeights',
       'font-weight',
-      FONT_WEIGHT
+      FONT_WEIGHT,
+      remSize
     );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));
@@ -122,7 +131,8 @@ export async function getTypographyStylingFromElement(element) {
       lineHeights,
       'lineHeights',
       'line-height',
-      FONT_LINE_HEIGHT
+      FONT_LINE_HEIGHT,
+      remSize
     );
     css += updatedCss;
     updatedImports.forEach(i => imports.push(i));

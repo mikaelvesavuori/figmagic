@@ -20,11 +20,11 @@ import { errorProcessTokens } from '../meta/errors.mjs';
  * @function
  * @param {object} sheet - Sheet object from Figma
  * @param {string} name - Token name
- * @param {object} settings - User configuration object
+ * @param {object} config - User configuration object
  * @returns
  * @throws {error} - When missing sheet or name
  */
-export function processTokens(sheet, name, settings) {
+export function processTokens(sheet, name, config) {
   if (!sheet || !name) throw new Error(errorProcessTokens);
 
   const _NAME = name.toLowerCase();
@@ -33,11 +33,11 @@ export function processTokens(sheet, name, settings) {
   if (_NAME === 'color' || _NAME === 'colour' || _NAME === 'colors' || _NAME === 'colours')
     processedTokens = setupColorTokens(sheet);
   if (_NAME === 'space' || _NAME === 'spaces' || _NAME === 'spacing' || _NAME === 'spacings')
-    processedTokens = setupSpacingTokens(sheet, settings.spacingUnit);
+    processedTokens = setupSpacingTokens(sheet, config.spacingUnit, config.remSize);
   if (_NAME === 'fontfamily' || _NAME === 'fontfamilies')
-    processedTokens = setupFontTokens(sheet, settings.usePostscriptFontNames);
+    processedTokens = setupFontTokens(sheet, config.usePostscriptFontNames);
   if (_NAME === 'fontsize' || _NAME === 'fontsizes')
-    processedTokens = setupFontSizeTokens(sheet, settings.fontUnit);
+    processedTokens = setupFontSizeTokens(sheet, config.fontUnit, config.remSize);
   if (_NAME === 'fontweight' || _NAME === 'fontweights')
     processedTokens = setupFontWeightTokens(sheet);
   if (_NAME === 'lineheight' || _NAME === 'lineheights')

@@ -86,9 +86,11 @@ export function parseCliArgs(argsArray) {
         settings.outputFolderElements = argsArray[index + 1];
       }
       // Handle input: component output folder
+      /*
       else if (arg === '--outputFolderComponents' || arg == '-components') {
         settings.outputFolderComponents = argsArray[index + 1];
-      }
+			}
+			*/
       // Handle input: output file name
       else if (arg === '--outputFileName' || arg == '-file') {
         settings.outputFileName = argsArray[index + 1];
