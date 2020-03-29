@@ -1,10 +1,13 @@
 import { replaceMediaQuery } from './replaceMediaQuery.mjs';
 
 /**
- * Description (TODO)
+ * Parse CSS from Figma description block
  *
- * @param desc
- * @param tokens
+ * @exports
+ * @function
+ * @param {string} desc - String with description
+ * @param {array} tokens - Array of design tokens
+ * @returns {object} - Returns object with CSS and metadata
  */
 export function parseCssFromDescription(desc, tokens) {
   if (desc === '') return '';

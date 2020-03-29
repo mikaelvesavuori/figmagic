@@ -1,10 +1,18 @@
+import { errorReplaceMediaQuery } from '../../meta/errors.mjs';
+
 /**
- * Description (TODO)
+ * Replace media query sugar syntax from Figma description block
  *
- * @param str
- * @param match
+ * @exports
+ * @function
+ * @param {string} str - String from Figma description block
+ * @param {string} match - Matching string (regex?)
+ * @returns {string} - String with valid CSS
+ * @throws {error} - Throws error if missing str or match arguments
  */
 export function replaceMediaQuery(str, match) {
+  if (!str || !match) throw new Error(errorReplaceMediaQuery);
+
   const index = str.indexOf(match);
   if (index === -1) return str;
 
@@ -17,12 +25,8 @@ export function replaceMediaQuery(str, match) {
   let query = str.slice(index, index + SLICE_LENGTH);
   let size = query.slice(SLICE_START, SLICE_LENGTH);
 
-  console.log('query', query);
-  console.log('size', size);
-
   // If match was too greedy
   size.replace(/![0-9]/gi, '');
-  console.log('fixed size: ', size);
 
   // Remove any spaces
   size = size.trim();
@@ -32,7 +36,6 @@ export function replaceMediaQuery(str, match) {
 
   // Clean up the remainder
   const REMAINDER = query.replace(match, '');
-  console.log('REMAINDER', REMAINDER);
   str = str.replace(REMAINDER, '');
 
   return str;

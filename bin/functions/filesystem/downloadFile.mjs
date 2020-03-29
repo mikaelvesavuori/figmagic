@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
 
+import { msgDownloadFileWritingFile } from '../../meta/messages.mjs';
 import { errorDownloadFile } from '../../meta/errors.mjs';
 
 /**
@@ -25,7 +26,7 @@ export async function downloadFile(url, folder, file) {
 
   return new Promise((resolve, reject) => {
     const PATH = `${folder}/${file}`;
-    console.log('Writing file:', PATH);
+    console.log(msgDownloadFileWritingFile(PATH));
     const _file = fs.createWriteStream(PATH);
     response.body.pipe(_file);
     _file.on('error', () => reject('Error when downloading file!'));

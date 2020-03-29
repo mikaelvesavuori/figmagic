@@ -4,13 +4,18 @@ import { msgGetTokenMatchNoMatch } from '../../meta/messages.mjs';
 import { errorGetTokenMatch, errorGetTokenMatchNoRemSize } from '../../meta/errors.mjs';
 
 /**
- * Description (TODO)
+ * Match and find design tokens for CSS values
  *
- * @param tokens
- * @param tokenFileName
- * @param property
- * @param expectedValue
- * @param {number} [remSize]
+ * @exports
+ * @function
+ * @param {object} tokens - Design tokens
+ * @param {string} tokenFileName - String representing file name from which the token is exported
+ * @param {string} property - CSS property to be assigned
+ * @param {string|number} expectedValue - Expected value to match for
+ * @param {number} [remSize] - HTML body REM size
+ * @returns {object} - Returns object with updated CSS and imports
+ * @throws {errorGetTokenMatch} - Throws error if missing required arguments
+ * @throws {errorGetTokenMatchNoRemSize} - Throws error if remSize argument is not provided when user needs to convert units (rem, em...)
  */
 export function getTokenMatch(tokens, tokenFileName, property, expectedValue, remSize) {
   if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error(errorGetTokenMatch);

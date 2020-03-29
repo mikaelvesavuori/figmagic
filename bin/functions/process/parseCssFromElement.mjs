@@ -3,15 +3,17 @@ import { getTokenMatch } from './getTokenMatch.mjs';
 //import { warnParseCssFromElementNoTokenMatch } from '../meta/warnings.mjs';
 import { errorParseCssFromElement } from '../../meta/errors.mjs';
 
-//import mediaQueries from '../../tokens/mediaQueries.mjs';
-//import zIndices from '../../tokens/zIndices.mjs';
-
 /**
- * Description (TODO)
+ * Parse layout CSS from "element" (Figma component)
  *
- * @param element
- * @param {?} [textElement]
- * @param remSize
+ * @exports
+ * @async
+ * @function
+ * @param {object} element - Figma object representation of main layout element
+ * @param {object} [textElement] - Figma object representation of the text field connected to the element/component
+ * @param {number} remSize - HTML body REM size
+ * @returns {object} - Returns object with CSS and imports
+ * @throws {error} - Throws error if missing element or remSize arguments
  */
 export async function parseCssFromElement(element, textElement, remSize) {
   if (!element || !remSize) throw new Error(errorParseCssFromElement);
@@ -27,6 +29,7 @@ export async function parseCssFromElement(element, textElement, remSize) {
   const shadows = _shadows.default;
   const _spacing = await import('../../../tokens/spacing.mjs');
   const spacing = _spacing.default;
+  // Not using media queries or Z indices
 
   let css = ``;
   let imports = [];

@@ -4,6 +4,7 @@ import { downloadFile } from '../filesystem/downloadFile.mjs';
 
 import {
   errorProcessGraphics,
+  errorProcessGraphicsImageError,
   errorProcessGraphicsNoImages,
   errorGetIds
 } from '../../meta/errors.mjs';
@@ -19,6 +20,7 @@ import {
  * @returns {promise} - Return promise
  */
 export async function processGraphics(graphicsPage, config) {
+  if (!graphicsPage) throw new Error(errorProcessGraphics);
   const { token, url, outputFolderGraphics, outputFormatGraphics, outputScaleGraphics } = config;
 
   const IDS = getIds(graphicsPage);
@@ -28,7 +30,7 @@ export async function processGraphics(graphicsPage, config) {
 
   const IMAGE_RESPONSE = await getFromApi(token, URL, 'images');
 
-  if (IMAGE_RESPONSE.err) throw new Error(errorProcessGraphics);
+  if (IMAGE_RESPONSE.err) throw new Error(errorProcessGraphicsImageError);
   if (!IMAGE_RESPONSE.images) throw new Error(errorProcessGraphicsNoImages);
 
   const FILE_LIST = getFileList(IMAGE_RESPONSE, IDS, outputFormatGraphics);

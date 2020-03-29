@@ -2,21 +2,29 @@ import { parseCssFromElement } from './parseCssFromElement.mjs';
 import { parseTypographyStylingFromElement } from './parseTypographyStylingFromElement.mjs';
 import { processNestedCss } from './processNestedCss.mjs';
 
+import { msgProcessElementsCreatingElement } from '../../meta/messages.mjs';
+
 import {
   errorProcessElements,
   errorProcessElementsWrongElementCount,
-  errorProcessElementsWrongTextElementCount
+  errorProcessElementsWrongTextElementCount,
+  errorParseElement
 } from '../../meta/errors.mjs';
 
 /**
- * Description
+ * Process all elements from Figma page called "Elements"
+ * 1. Filter out components
+ * 2. Add description from Figma
+ * 3. Parse elements (typography and styling)
+ * 4. Return list of cleaned items
  *
  * @exports
+ * @async
  * @function
  * @param {array} elementsPage - Figma page for Elements
  * @param {object} components - Figma components
  * @param {object} config - User configuration
- * @returns {array} - List of parsed components with css and all
+ * @returns {array} - List of parsed components with CSS and all
  * @throws {error} - When missing required arguments
  */
 export async function processElements(elementsPage, components, config) {
@@ -25,7 +33,7 @@ export async function processElements(elementsPage, components, config) {
   const _ELEMENTS = elementsPage.filter(element => element.type === 'COMPONENT');
   const ELEMENTS = addDescriptionToElements(_ELEMENTS, components);
   const PARSED_ELEMENTS = await Promise.all(
-    ELEMENTS.map(async el => await parseElement(el, config))
+    ELEMENTS.map(async el => await parseElement(el, config.remSize))
   );
   return PARSED_ELEMENTS;
 }
@@ -39,19 +47,23 @@ const addDescriptionToElements = (elements, components) => {
 };
 
 /**
- * Description (TODO)
+ * Do the actual parsing and processing of an "element"-type component from Figma
  *
- * @param element
- * @param config
+ * @async
+ * @function
+ * @param {object} element - Object representation of item
+ * @param {number} remSize - HTML body REM size
+ * @returns {object} - Return new element as object
+ * @throws {error} - Throw error if not provided element or config
  */
-async function parseElement(element, config) {
+async function parseElement(element, remSize) {
+  if (!element || !remSize) throw new Error(errorParseElement);
+
   let html = ``;
   let newElement = {};
   let extraProps = ``; // Any extra properties, like "placeholder"
   let text = ``;
   let imports = [];
-
-  const REM = config.remSize;
 
   // Set up the absolute essentials
   newElement.id = element.id;
@@ -92,15 +104,15 @@ async function parseElement(element, config) {
           const MAIN_ELEMENT = el.children.filter(e => e.type === 'RECTANGLE')[0];
           const TEXT_ELEMENT = el.children.filter(e => e.type === 'TEXT')[0];
           const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
-          console.log(`${MAIN_ELEMENT.name} > ${FIXED_NAME}`);
+          console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
           // Parse layout CSS from element
-          let elementStyling = await parseCssFromElement(MAIN_ELEMENT, TEXT_ELEMENT, REM);
+          let elementStyling = await parseCssFromElement(MAIN_ELEMENT, TEXT_ELEMENT, remSize);
           imports = imports.concat(elementStyling.imports);
           css += `\n.${FIXED_NAME} {\n${elementStyling.css}}`;
 
           // Parse typography CSS from element
-          let typography = await parseTypographyStylingFromElement(TEXT_ELEMENT, REM);
+          let typography = await parseTypographyStylingFromElement(TEXT_ELEMENT, remSize);
           imports = imports.concat(typography.imports);
           css += `\n.${FIXED_NAME} {\n${typography.css}}`;
           text = TEXT_ELEMENT.characters;
@@ -133,7 +145,7 @@ async function parseElement(element, config) {
 
     // Set text styling
     if (TEXT_ELEMENT.length === 1) {
-      let typography = await parseTypographyStylingFromElement(TEXT_ELEMENT[0], REM);
+      let typography = await parseTypographyStylingFromElement(TEXT_ELEMENT[0], remSize);
       imports = imports.concat(typography.imports);
       css += typography.css;
       text = TEXT_ELEMENT[0].characters;
@@ -149,7 +161,7 @@ async function parseElement(element, config) {
         throw new Error(`${errorProcessElementsWrongElementCount} ${element.name}!`);
       }
 
-      let elementStyling = await parseCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0], REM);
+      let elementStyling = await parseCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0], remSize);
       imports = imports.concat(elementStyling.imports);
       css += elementStyling.css;
     }

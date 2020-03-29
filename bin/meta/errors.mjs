@@ -12,6 +12,9 @@ export const errorCreateFolder = `${colors.FgRed}No directory specified for crea
 
 export const errorCreatePage = `${colors.FgRed}No pages provided to createPage()!`;
 
+export const errorCreateImportStringFromList = `${colors.FgRed}No "importArray" provided to createImportStringFromList()!`;
+export const errorCreateImportStringFromListZeroLength = `${colors.FgRed}Provided "importArray" is zero-length when calling createImportStringFromList()!`;
+
 export const errorConvertHexToRgba = `${colors.FgRed}Missing one or more of red, green, blue and alpha in convertHexToRgba()!`;
 
 export const errorFindShortenedNameMatchString = `${colors.FgRed}No "matchString" was provided to findShortenedNameMatch()!`;
@@ -20,16 +23,21 @@ export const errorFindShortenedNameMatchWrongType = `${colors.FgRed}Arguments ar
 
 export const errorFormatName = `${colors.FgRed}No string for formatName()!`;
 
-export const errorParseCssFromElement = `${colors.FgRed}Missing "element" argument in parseCssFromElement()!`;
+export const errorParseCssFromElement = `${colors.FgRed}Missing one or more of required arguments: "element", and/or "remSize" when calling parseCssFromElement()!`;
 
-export const errorProcessElements = `${colors.FgRed}Missing one or more of required arguments: "elementsPage", "config", and/or "components"!`;
+export const errorParseElement = `${colors.FgRed}Missing one or more of required arguments: "element", and/or "remSize" when calling parseElement()!`;
+
+export const errorProcessElements = `${colors.FgRed}Missing one or more of required arguments: "elementsPage", "config", and/or "components"! Make sure you have a page called "Elements" in your Figma document.`;
 
 export const errorProcessElementsWrongElementCount = `${colors.FgRed}Did not find exactly 1 (one) match for element`;
 export const errorProcessElementsWrongTextElementCount = `${colors.FgRed}Found more than one match for "Text" node. Required: 0 or 1 text nodes as child of element`;
 
+export const errorReplaceMediaQuery = `Missing one or more of required arguments: "str", and/or "match" when calling replaceMediaQuery()!`;
+
 export const errorGetFromApi = `${colors.FgRed}Missing one or more of required arguments: "figmaToken", "figmaUrl"!`;
 
-export const errorProcessGraphics = `${colors.FgRed}Error when fetching graphics from Figma API!`;
+export const errorProcessGraphics = `${colors.FgRed}Graphics page is undefined or empty! Make sure you have a page called "Graphics" in your Figma document.`;
+export const errorProcessGraphicsImageError = `${colors.FgRed}Error when fetching graphics from Figma API!`;
 export const errorProcessGraphicsNoImages = `${colors.FgRed}No images received from Figma API!`;
 
 export const errorGetIds = `${colors.FgRed}No (or zero-length) array passed to getIds()!`;
@@ -112,5 +120,7 @@ export const errorWriteFile = `${colors.FgRed}Missing required parameters to cor
 export const errorWriteFileWrongType = `${colors.FgRed}Provided invalid file type to writeFile()!`;
 
 export const errorWrite = `${colors.FgRed}Error while attempting to write file!`;
-export const errorWriteTokens = `${colors.FgRed}Less than one token provided to writeTokens()!`;
+export const errorWriteTokens = `${colors.FgRed}Less than one token provided to writeTokens()! Make sure you have a page called "Design Tokens" in your Figma document.`;
 export const errorWriteTokensNoSettings = `${colors.FgRed}Missing "settings" argument/object when attempting to write tokens!`;
+
+export const errorWriteElements = `${colors.FgRed}Missing "elements" and/or "config" properties when calling writeElements()!`;
