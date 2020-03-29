@@ -4,4 +4,4 @@ export const warnNormalizeUnits = `${colors.FgYellow}normalizeUnits(): rootSize 
 export const warnParseCliArgsOutputFormat = `${colors.FgYellow}Received unrecognized "outputFormat" argument, it must be "mjs" (default) or "js". Setting to default value...`;
 export const warnParseCliArgsFontUnit = `${colors.FgYellow}Received unrecognized "fontUnit" argument, it must be "rem" (default) or "em". Setting to default value...`;
 export const warnParseCliArgsSpacingUnit = `${colors.FgYellow}Received unrecognized "spacingUnit" argument, it must be "rem" (default) or "em". Setting to default value...`;
-export const warnGetCssFromElementNoTokenMatch = `${colors.FgYellow}No token match when processing css from element!`;
+export const warnParseCssFromElementNoTokenMatch = `${colors.FgYellow}No token match when processing css from element!`;

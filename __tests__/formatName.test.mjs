@@ -1,4 +1,4 @@
-import { formatName } from '../bin/functions/formatName';
+import { formatName } from '../bin/functions/helpers/formatName';
 
 test('It should remove single instances of forbidden characters', () => {
   expect(formatName('as–df')).toBe('asdf');

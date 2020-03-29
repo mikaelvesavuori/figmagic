@@ -1,4 +1,4 @@
-import { processTokens } from '../bin/functions/processTokens';
+import { processTokens } from '../bin/functions/process/processTokens';
 
 import { defaultSettings } from '../testdata/defaultSettings.mjs';
 import { colorFrame } from '../testdata/colorFrame.mjs';

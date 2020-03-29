@@ -1,4 +1,4 @@
-import { setupZindexTokens } from '../bin/functions/setupZindexTokens';
+import { setupZindexTokens } from '../bin/functions/tokens/setupZindexTokens';
 
 import { zIndicesFrame } from '../testdata/zIndicesFrame.mjs';
 

@@ -1,4 +1,4 @@
-import { loadFile } from '../bin/functions/loadFile';
+import { loadFile } from '../bin/functions/filesystem/loadFile';
 
 test('It should throw an error if no parameter is provided', async () => {
   await expect(loadFile()).rejects.toThrow();

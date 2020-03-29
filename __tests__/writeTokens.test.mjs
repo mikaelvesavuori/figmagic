@@ -1,4 +1,4 @@
-import { writeTokens } from '../bin/functions/writeTokens';
+import { writeTokens } from '../bin/functions/filesystem/writeTokens';
 
 import { defaultSettings } from '../testdata/defaultSettings.mjs';
 import { colorFrame } from '../testdata/colorFrame.mjs';

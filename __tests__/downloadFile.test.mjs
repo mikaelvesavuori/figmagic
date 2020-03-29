@@ -1,6 +1,6 @@
 import trash from 'trash';
 
-import { downloadFile } from '../bin/functions/downloadFile';
+import { downloadFile } from '../bin/functions/filesystem/downloadFile';
 
 test('It should throw an error if no parameter is provided', async () => {
   await expect(downloadFile()).rejects.toThrow();

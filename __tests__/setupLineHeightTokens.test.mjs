@@ -1,4 +1,4 @@
-import { setupLineHeightTokens } from '../bin/functions/setupLineHeightTokens';
+import { setupLineHeightTokens } from '../bin/functions/tokens/setupLineHeightTokens';
 
 import { lineHeightFrame } from '../testdata/lineHeightFrame.mjs';
 

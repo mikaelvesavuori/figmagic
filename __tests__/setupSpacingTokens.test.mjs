@@ -1,4 +1,4 @@
-import { setupSpacingTokens } from '../bin/functions/setupSpacingTokens';
+import { setupSpacingTokens } from '../bin/functions/tokens/setupSpacingTokens';
 
 import { spacingFrame } from '../testdata/spacingFrame.mjs';
 

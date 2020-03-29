@@ -20,24 +20,24 @@ export const errorFindShortenedNameMatchWrongType = `${colors.FgRed}Arguments ar
 
 export const errorFormatName = `${colors.FgRed}No string for formatName()!`;
 
-export const errorGetCssFromElement = `${colors.FgRed}Missing "element" argument in getCssFromElement()!`;
+export const errorParseCssFromElement = `${colors.FgRed}Missing "element" argument in parseCssFromElement()!`;
 
-export const errorGetElements = `${colors.FgRed}Missing one or more of required arguments: "elementsPage", "config", and/or "components"!`;
+export const errorProcessElements = `${colors.FgRed}Missing one or more of required arguments: "elementsPage", "config", and/or "components"!`;
 
-export const errorGetElementsWrongElementCount = `${colors.FgRed}Did not find exactly 1 (one) match for element`;
-export const errorGetElementsWrongTextElementCount = `${colors.FgRed}Found more than one match for "Text" node. Required: 0 or 1 text nodes as child of element`;
+export const errorProcessElementsWrongElementCount = `${colors.FgRed}Did not find exactly 1 (one) match for element`;
+export const errorProcessElementsWrongTextElementCount = `${colors.FgRed}Found more than one match for "Text" node. Required: 0 or 1 text nodes as child of element`;
 
 export const errorGetFromApi = `${colors.FgRed}Missing one or more of required arguments: "figmaToken", "figmaUrl"!`;
 
-export const errorGetGraphics = `${colors.FgRed}Error when fetching graphics from Figma API!`;
-export const errorGetGraphicsNoImages = `${colors.FgRed}No images received from Figma API!`;
+export const errorProcessGraphics = `${colors.FgRed}Error when fetching graphics from Figma API!`;
+export const errorProcessGraphicsNoImages = `${colors.FgRed}No images received from Figma API!`;
 
 export const errorGetIds = `${colors.FgRed}No (or zero-length) array passed to getIds()!`;
 
 export const errorGetTokenMatch = `${colors.FgRed}Missing one or more of required arguments: "tokens", "tokenFileName", "property", and/or "expectedValue"!`;
 export const errorGetTokenMatchNoRemSize = `${colors.FgRed}Missing required "remSize" argument for getTokenMatch() when converting to rem/em!`;
 
-export const errorGetTypographyStylingFromElement = `${colors.FgRed}Missing one or more of required arguments: "element", or "remSize" when calling getTypographyStylingFromElement()!`;
+export const errorParseTypographyStylingFromElement = `${colors.FgRed}Missing one or more of required arguments: "element", or "remSize" when calling parseTypographyStylingFromElement()!`;
 
 export const errorLoadFile = `${colors.FgRed}Could not find file!`;
 

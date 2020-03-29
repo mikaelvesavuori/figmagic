@@ -1,4 +1,4 @@
-import { setupLetterSpacingTokens } from '../bin/functions/setupLetterSpacingTokens';
+import { setupLetterSpacingTokens } from '../bin/functions/tokens/setupLetterSpacingTokens';
 
 import { letterSpacingsFrame } from '../testdata/letterSpacingsFrame.mjs';
 

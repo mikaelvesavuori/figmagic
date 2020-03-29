@@ -1,4 +1,4 @@
-import { createConfiguration } from '../bin/functions/createConfiguration';
+import { createConfiguration } from '../bin/functions/config/createConfiguration';
 
 test('It should return a valid merged configuration if given a path to an RC file and a set of CLI arguments', async () => {
   const USER_CONFIG_PATH = `${process.cwd()}/testdata/figmagicrc`;

@@ -1,6 +1,6 @@
 import trash from 'trash';
 
-import { createFolder } from '../bin/functions/createFolder';
+import { createFolder } from '../bin/functions/filesystem/createFolder';
 
 import { errorCreateFolder } from '../bin/meta/errors.mjs';
 

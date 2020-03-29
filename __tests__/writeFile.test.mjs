@@ -1,6 +1,6 @@
 import trash from 'trash';
 
-import { writeFile } from '../bin/functions/writeFile';
+import { writeFile } from '../bin/functions/filesystem/writeFile';
 
 test('It should throw an error if no parameter is provided', async () => {
   await expect(writeFile()).rejects.toThrow();

@@ -1,6 +1,6 @@
-import { processNestedCss } from '../bin/functions/processNestedCss';
+import { processNestedCss } from '../bin/functions/process/processNestedCss';
 
-test('It should correctly process CSS that has same appearance as when it hits getElements.mjs', () => {
+test('It should correctly process CSS that has same appearance as when it hits processElements.mjs', () => {
   expect(processNestedCss(css)).toBe(expected);
 });
 

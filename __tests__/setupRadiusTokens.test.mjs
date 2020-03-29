@@ -1,4 +1,4 @@
-import { setupRadiusTokens } from '../bin/functions/setupRadiusTokens';
+import { setupRadiusTokens } from '../bin/functions/tokens/setupRadiusTokens';
 
 import { radiiFrame } from '../testdata/radiiFrame.mjs';
 

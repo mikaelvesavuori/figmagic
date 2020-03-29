@@ -1,4 +1,4 @@
-import { normalizeUnits } from '../bin/functions/normalizeUnits';
+import { normalizeUnits } from '../bin/functions/helpers/normalizeUnits';
 
 test('It should normalize the unit, given a width, px basis, and a conversion type', () => {
   expect(normalizeUnits(400, 'px', 'rem')).toBe('25rem');

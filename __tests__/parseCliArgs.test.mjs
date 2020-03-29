@@ -1,4 +1,4 @@
-import { parseCliArgs } from '../bin/functions/parseCliArgs';
+import { parseCliArgs } from '../bin/functions/config/parseCliArgs';
 
 import { config } from '../bin/meta/config.mjs';
 

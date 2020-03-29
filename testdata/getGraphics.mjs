@@ -1,4 +1,4 @@
-export const getGraphicsTestData = {
+export const processGraphicsTestData = {
   err: null,
   images: {
     '2710:7':
@@ -8,7 +8,7 @@ export const getGraphicsTestData = {
   }
 };
 
-export const getGraphicsTestDataWithError = {
+export const processGraphicsTestDataWithError = {
   err: 400,
   images: {
     '2710:7':

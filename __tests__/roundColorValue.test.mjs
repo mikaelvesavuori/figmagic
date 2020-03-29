@@ -1,4 +1,4 @@
-import { roundColorValue } from '../bin/functions/roundColorValue';
+import { roundColorValue } from '../bin/functions/helpers/roundColorValue';
 
 test('It should return a value based on the two defaults for "quantity" and "scale"', () => {
   expect(roundColorValue()).toBe(0);

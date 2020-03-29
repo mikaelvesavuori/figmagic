@@ -5,16 +5,19 @@ import trash from 'trash';
 import dotenv from 'dotenv';
 
 import { colors } from './bin/meta/colors.mjs';
-import { loadFile } from './bin/functions/loadFile.mjs';
-import { createConfiguration } from './bin/functions/createConfiguration.mjs';
-import { createFolder } from './bin/functions/createFolder.mjs';
-import { getFromApi } from './bin/functions/getFromApi.mjs';
-import { createPage } from './bin/functions/createPage.mjs';
-import { getGraphics } from './bin/functions/getGraphics.mjs';
-import { getElements } from './bin/functions/getElements.mjs';
-import { writeTokens } from './bin/functions/writeTokens.mjs';
-import { writeFile } from './bin/functions/writeFile.mjs';
-import { writeElements } from './bin/functions/writeElements.mjs';
+import { createConfiguration } from './bin/functions/config/createConfiguration.mjs';
+
+import { loadFile } from './bin/functions/filesystem/loadFile.mjs';
+import { createFolder } from './bin/functions/filesystem/createFolder.mjs';
+
+import { createPage } from './bin/functions/process/createPage.mjs';
+import { processGraphics } from './bin/functions/process/processGraphics.mjs';
+import { processElements } from './bin/functions/process/processElements.mjs';
+
+import { getFromApi } from './bin/functions/filesystem/getFromApi.mjs';
+import { writeTokens } from './bin/functions/filesystem/writeTokens.mjs';
+import { writeFile } from './bin/functions/filesystem/writeFile.mjs';
+import { writeElements } from './bin/functions/filesystem/writeElements.mjs';
 
 import { errorGetData } from './bin/meta/errors.mjs';
 import {
@@ -110,7 +113,7 @@ async function figmagic() {
   if (syncGraphics) {
     console.log(msgGetImagesFromApi);
     const GRAPHICS_PAGE = createPage(DATA.document.children, 'Graphics');
-    await getGraphics(GRAPHICS_PAGE.children, CONFIG);
+    await processGraphics(GRAPHICS_PAGE.children, CONFIG);
   }
 
   // Process tokens
@@ -131,12 +134,12 @@ async function figmagic() {
   //const STYLES = DATA.styles;
 
   // Syncing elements
-  //if (syncElements) {
-  console.log('Attempting to parse elements...');
-  const ELEMENTS_PAGE = createPage(DATA.document.children, 'Elements');
-  const elements = await getElements(ELEMENTS_PAGE.children, COMPONENTS, CONFIG);
-  await writeElements(elements, CONFIG);
-  //}
+  if (syncElements) {
+    console.log('Attempting to parse elements...');
+    const ELEMENTS_PAGE = createPage(DATA.document.children, 'Elements');
+    const elements = await processElements(ELEMENTS_PAGE.children, COMPONENTS, CONFIG);
+    await writeElements(elements, CONFIG);
+  }
 
   // All went well
   console.log(msgJobComplete);
