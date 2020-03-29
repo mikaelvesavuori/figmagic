@@ -2,7 +2,7 @@
   "debugMode": false,
   "fontUnit": "rem",
   "outputFileName": "figma.json",
-  "outputFolderBaseFile": "figma",
+  "outputFolderBaseFile": ".figmagic",
   "outputFolderTokens": "tokens",
   "outputTokenFormat": "mjs",
   "outputFolderElements": "elements",

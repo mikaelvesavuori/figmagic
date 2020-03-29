@@ -144,7 +144,7 @@ Below is a complete set of what you can configure, together with the defaults.
   "debugMode": false,
   "fontUnit": "rem",
   "outputFileName": "figma.json",
-  "outputFolderBaseFile": "figma",
+  "outputFolderBaseFile": ".figmagic",
   "outputFolderTokens": "tokens",
   "outputTokenFormat": "mjs",
   "outputFolderGraphics": null,
