@@ -80,49 +80,20 @@ async function figmagic() {
     throw new Error(error);
   });
 
-  // If this is a fresh pull from the API, trash the old folders
-  if (!recompileLocal) {
-    await trash([`./${outputFolderTokens}`]);
-    await trash([`./${outputFolderBaseFile}`]);
-
-    if (syncGraphics) {
-      await trash([`./${outputFolderGraphics}`]);
-    }
-
-    if (syncElements) {
-      await trash([`./${outputFolderElements}`]);
-    }
-  }
-
-  // Create new folders if they don't exist
-  await createFolder(outputFolderTokens);
-  await createFolder(outputFolderBaseFile);
-
-  if (syncGraphics) {
-    await createFolder(outputFolderGraphics);
-  }
-
-  if (syncElements) {
-    await createFolder(outputFolderElements);
-  }
-
   if (!recompileLocal) {
     // Write base Figma JSON if we are pulling from the web
     console.log(msgWriteBaseFile);
     const DATA = await getFromApi(token, url);
+    await trash([`./${outputFolderBaseFile}`]);
+    await createFolder(outputFolderBaseFile);
     await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName, 'raw');
-  }
-
-  // Syncing graphics
-  if (syncGraphics) {
-    console.log(msgSyncGraphics);
-    const GRAPHICS_PAGE = createPage(DATA.document.children, 'Graphics');
-    await processGraphics(GRAPHICS_PAGE.children, CONFIG);
   }
 
   // Process tokens
   console.log(msgWriteTokens);
   const TOKENS_PAGE = createPage(DATA.document.children, 'Design Tokens');
+  await trash([`./${outputFolderTokens}`]);
+  await createFolder(outputFolderTokens);
   await writeTokens(TOKENS_PAGE.children, CONFIG);
 
   const COMPONENTS = DATA.components;
@@ -133,7 +104,18 @@ async function figmagic() {
     console.log(msgSyncElements);
     const ELEMENTS_PAGE = createPage(DATA.document.children, 'Elements');
     const elements = await processElements(ELEMENTS_PAGE.children, COMPONENTS, CONFIG);
+    await trash([`./${outputFolderElements}`]);
+    await createFolder(outputFolderElements);
     await writeElements(elements, CONFIG);
+  }
+
+  // Syncing graphics
+  if (syncGraphics) {
+    console.log(msgSyncGraphics);
+    const GRAPHICS_PAGE = createPage(DATA.document.children, 'Graphics');
+    await trash([`./${outputFolderGraphics}`]);
+    await createFolder(outputFolderGraphics);
+    await processGraphics(GRAPHICS_PAGE.children, CONFIG);
   }
 
   // All went well

@@ -88,7 +88,7 @@ const getFileList = (imageResponse, ids, outputFormatGraphics) => {
  * @param {object} graphicsPage - Figma 'Graphics' page
  * @returns {array} - Array of graphics items
  * @throws {errorGetIds} - Throws error if no graphics page is provided
- * @throws {errorGetIds} - Throws error if no graphics page is of zero-length
+ * @throws {errorGetIds} - Throws error if no graphics page is zero-length
  */
 const getIds = graphicsPage => {
   if (!graphicsPage) throw new Error(errorGetIds);
