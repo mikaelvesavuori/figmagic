@@ -14,7 +14,9 @@ import {
  * @function
  * @param {object} mediaQueryFrame - The media queries frame from Figma
  * @returns {object} - Returns an object with all the media queries
- * @throws {error} - When there is no provided Figma frame
+ * @throws {errorSetupMediaQueryTokensNoFrame} - When there is no provided Figma frame
+ * @throws {errorSetupMediaQueryTokensNoChildren} - When no children in Figma frame
+ * @throws {errorSetupMediaQueryTokensMissingProps} - When missing required props in frame children
  */
 export function setupMediaQueryTokens(mediaQueryFrame) {
   if (!mediaQueryFrame) throw new Error(errorSetupMediaQueryTokensNoFrame);

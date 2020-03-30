@@ -18,7 +18,10 @@ import {
  * @param {string} spacingUnit - The spacing unit
  * @param {number} remSize - The body rem size
  * @returns {object} - Returns an object with all the spacings
- * @throws {error} - When there is no provided Figma frame
+ * @throws {errorSetupSpacingTokensNoFrame} - When there is no provided Figma frame
+ * @throws {errorSetupSpacingTokensNoChildren} - When no children in Figma frame
+ * @throws {errorSetupSpacingTokensNoUnits} - When missing spacingUnit or remSize arguments
+ * @throws {errorSetupSpacingTokensMissingProps} - When missing spacing.name or spacing.absoluteBoundingBox in spacing/children
  */
 export function setupSpacingTokens(spacingFrame, spacingUnit, remSize) {
   if (!spacingFrame) throw new Error(errorSetupSpacingTokensNoFrame);

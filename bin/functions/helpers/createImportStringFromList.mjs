@@ -10,7 +10,8 @@ import {
  * @function
  * @param {array} importArray - List of imports
  * @returns {string} - Returns template literal string with import statements
- * @throws {error} - Throws error if no importArray (or zero-length) is provided
+ * @throws {errorCreateImportStringFromList} - Throws error if no importArray is provided
+ * @throws {errorCreateImportStringFromListZeroLength} - Throws error if zero-length importArray is provided
  */
 export function createImportStringFromList(importArray) {
   if (!importArray) throw new Error(errorCreateImportStringFromList);

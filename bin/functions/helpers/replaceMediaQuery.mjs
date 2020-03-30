@@ -8,7 +8,7 @@ import { errorReplaceMediaQuery } from '../../meta/errors.mjs';
  * @param {string} str - String from Figma description block
  * @param {string} match - Matching string (regex?)
  * @returns {string} - String with valid CSS
- * @throws {error} - Throws error if missing str or match arguments
+ * @throws {errorReplaceMediaQuery} - Throws error if missing str or match arguments
  */
 export function replaceMediaQuery(str, match) {
   if (!str || !match) throw new Error(errorReplaceMediaQuery);

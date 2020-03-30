@@ -13,7 +13,7 @@ import { errorParseTypographyStylingFromElement } from '../../meta/errors.mjs';
  * @param {object} element - Figma object representation of element/component
  * @param {number} remSize - HTML body REM size
  * @returns {object} - Return object with CSS and imports
- * @throws {error} - Throws error if no element or remSize is provided
+ * @throws {errorParseTypographyStylingFromElement} - Throws error if no element or remSize is provided
  */
 export async function parseTypographyStylingFromElement(element, remSize) {
   if (!element || !remSize) throw new Error(errorParseTypographyStylingFromElement);

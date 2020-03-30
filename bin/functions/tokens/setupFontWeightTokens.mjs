@@ -15,7 +15,10 @@ import {
  * @function
  * @param {object} fontWeightFrame - The font weight frame from Figma
  * @returns {object} - Returns an object with all the font weights
- * @throws {error} - When there is no provided Figma frame
+ * @throws {errorSetupFontWeightTokensNoFrame} - When there is no provided Figma frame
+ * @throws {errorSetupFontWeightTokensNoChildren} - When Figma frame is missing children
+ * @throws {errorSetupFontWeightTokensMissingProps} - When missing required props on frame children
+ * @throws {errorSetupFontWeightTokensMissingWeight} - When missing type.style.fontWeight on child
  */
 export function setupFontWeightTokens(fontWeightFrame) {
   if (!fontWeightFrame) throw new Error(errorSetupFontWeightTokensNoFrame);

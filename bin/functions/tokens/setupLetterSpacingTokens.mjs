@@ -15,7 +15,9 @@ import {
  * @function
  * @param {object} letterSpacingFrame - The letter spacings frame from Figma
  * @returns {object} - Returns an object with all the letter spacings
- * @throws {error} - When there is no provided Figma frame
+ * @throws {errorSetupLetterSpacingTokensNoFrame} - When there is no provided Figma frame
+ * @throws {errorSetupLetterSpacingTokensNoChildren} - When missing children on Figma frame
+ * @throws {errorSetupLetterSpacingTokensMissingProps} - When missing required props on frame children
  */
 export function setupLetterSpacingTokens(letterSpacingFrame) {
   if (!letterSpacingFrame) throw new Error(errorSetupLetterSpacingTokensNoFrame);

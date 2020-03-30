@@ -1,15 +1,20 @@
 import { replaceMediaQuery } from '../helpers/replaceMediaQuery.mjs';
 
+import { errorParseCssFromDescription } from '../../meta/errors.mjs';
+
 /**
  * Parse CSS from Figma description block
  *
  * @exports
  * @function
- * @param {string} desc - String with description
+ * @param {string} [desc=""] - String with description
  * @param {array} tokens - Array of design tokens
  * @returns {object} - Returns object with CSS and metadata
+ * @throws {errorParseCssFromDescription} - Throws error if missing tokens
  */
-export function parseCssFromDescription(desc, tokens) {
+export function parseCssFromDescription(desc = '', tokens) {
+  if (!tokens) throw new Error(errorParseCssFromDescription);
+
   if (desc === '') return '';
 
   let metadata = {

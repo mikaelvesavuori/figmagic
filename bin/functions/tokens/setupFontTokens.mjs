@@ -15,7 +15,9 @@ import {
  * @param {object} fontFrame - The font frame from Figma
  * @param {boolean} usePostscriptFontNames - Boolean to decide if to use Postscript font names or the default font family names (without spaces)
  * @returns {object} - Returns an object with all the fonts
- * @throws {error} - When there is no provided Figma frame
+ * @throws {errorSetupFontTokensNoFrame} - When there is no provided Figma frame
+ * @throws {errorSetupFontTokensNoChildren} - When Figma frame is missing children
+ * @throws {errorSetupFontTokensMissingProps} - When missing required props on frame children
  */
 export function setupFontTokens(fontFrame, usePostscriptFontNames) {
   if (!fontFrame) throw new Error(errorSetupFontTokensNoFrame);

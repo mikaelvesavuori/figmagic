@@ -7,7 +7,7 @@ import { errorCamelize } from '../../meta/errors.mjs';
  * @function
  * @param {string} str - The string which is to be camelcased
  * @returns {string} - The final string
- * @throws {error} - When no string is provided
+ * @throws {errorCamelize} - When no string is provided
  */
 export function camelize(str) {
   if (!str) throw new Error(errorCamelize);

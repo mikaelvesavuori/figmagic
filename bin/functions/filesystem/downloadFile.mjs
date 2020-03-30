@@ -10,10 +10,11 @@ import { errorDownloadFile } from '../../meta/errors.mjs';
  * @exports
  * @async
  * @function
- * @param {string} figmaToken - User's Figma API token
- * @param {string} figmaUrl - String representing user's Figma document ID
- * @returns {object} - The fetched data inside of an object
- * @throws {errorDownloadFile} - Throws error if required arguments are missing
+ * @param {string} url - URL path
+ * @param {string} folder - Folder path
+ * @param {string} file - File path
+ * @returns {Promise} - The fetched data
+ * @throws {errorDownloadFile} - Throws error if any required arguments are missing
  */
 export async function downloadFile(url, folder, file) {
   if (!url || !folder || !file) throw new Error(errorDownloadFile);

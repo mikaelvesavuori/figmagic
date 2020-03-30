@@ -12,7 +12,7 @@ import { errorConvertHexToRgba } from '../../meta/errors.mjs';
  * @param {number} b - Color value, blue
  * @param {number} a - Color value, alpha
  * @returns {string} - Returns cleaned string literal with RGBA-formatted color for CSS
- * @throws {error} - Throws error if no R/G/B/A values provided
+ * @throws {errorConvertHexToRgba} - Throws error if no R/G/B/A values provided
  */
 export function convertHexToRgba(r, g, b, a) {
   if (!r && !g && !b && !a) throw new Error(errorConvertHexToRgba);

@@ -15,7 +15,8 @@ import {
  * @function
  * @param {object} colorFrame - The color frame from Figma
  * @returns {object} - Returns an object with all the colors
- * @throws {error} - When there is no provided Figma frame
+ * @throws {errorSetupColorTokensNoFrame} - When there is no provided Figma frame
+ * @throws {errorSetupColorTokensNoChildren} - When Figma frame is missing children
  */
 export function setupColorTokens(colorFrame) {
   if (!colorFrame) throw new Error(errorSetupColorTokensNoFrame);

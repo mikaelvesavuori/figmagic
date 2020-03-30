@@ -16,7 +16,10 @@ import {
  * @function
  * @param {object} lineHeightFrame - The line heights frame from Figma
  * @returns {object} - Returns an object with all the line heights
- * @throws {error} - When there is no provided Figma frame
+ * @throws {errorSetupLineHeightTokensNoFrame} - When there is no provided Figma frame
+ * @throws {errorSetupLineHeightTokensNoChildren} - When missing children in Figma frame
+ * @throws {errorSetupLineHeightTokensMissingProps} - When missing required props on frame children
+ * @throws {errorSetupLineHeightTokensMissingPercent} - When missing type.style.lineHeightPercentFontSize on children
  */
 export function setupLineHeightTokens(lineHeightFrame) {
   if (!lineHeightFrame) throw new Error(errorSetupLineHeightTokensNoFrame);

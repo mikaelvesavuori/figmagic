@@ -11,7 +11,7 @@ import { setupZindexTokens } from '../tokens/setupZindexTokens.mjs';
 import { setupLetterSpacingTokens } from '../tokens/setupLetterSpacingTokens.mjs';
 import { setupMediaQueryTokens } from '../tokens/setupMediaQueryTokens.mjs';
 
-import { errorProcessTokens } from '../../meta/errors.mjs';
+import { errorProcessTokens, errorProcessTokensNoConfig } from '../../meta/errors.mjs';
 
 /**
  * Process tokens
@@ -20,9 +20,10 @@ import { errorProcessTokens } from '../../meta/errors.mjs';
  * @function
  * @param {object} sheet - Sheet object from Figma
  * @param {string} name - Token name
- * @param {object} config - User configuration object
- * @returns
- * @throws {error} - When missing sheet or name
+ * @param {object} [config] - User configuration object
+ * @returns {object} - returns object with design tokens
+ * @throws {errorProcessTokens} - When missing sheet or name
+ * @throws {errorProcessTokensNoConfig} - When missing config, required for certain processing
  */
 export function processTokens(sheet, name, config) {
   if (!sheet || !name) throw new Error(errorProcessTokens);
@@ -32,12 +33,6 @@ export function processTokens(sheet, name, config) {
 
   if (_NAME === 'color' || _NAME === 'colour' || _NAME === 'colors' || _NAME === 'colours')
     processedTokens = setupColorTokens(sheet);
-  if (_NAME === 'space' || _NAME === 'spaces' || _NAME === 'spacing' || _NAME === 'spacings')
-    processedTokens = setupSpacingTokens(sheet, config.spacingUnit, config.remSize);
-  if (_NAME === 'fontfamily' || _NAME === 'fontfamilies')
-    processedTokens = setupFontTokens(sheet, config.usePostscriptFontNames);
-  if (_NAME === 'fontsize' || _NAME === 'fontsizes')
-    processedTokens = setupFontSizeTokens(sheet, config.fontUnit, config.remSize);
   if (_NAME === 'fontweight' || _NAME === 'fontweights')
     processedTokens = setupFontWeightTokens(sheet);
   if (_NAME === 'lineheight' || _NAME === 'lineheights')
@@ -51,6 +46,19 @@ export function processTokens(sheet, name, config) {
     processedTokens = setupLetterSpacingTokens(sheet);
   if (_NAME === 'mediaquery' || _NAME === 'mediaqueries')
     processedTokens = setupMediaQueryTokens(sheet);
+
+  if (_NAME === 'space' || _NAME === 'spaces' || _NAME === 'spacing' || _NAME === 'spacings') {
+    if (!config) throw new Error(errorProcessTokensNoConfig);
+    processedTokens = setupSpacingTokens(sheet, config.spacingUnit, config.remSize);
+  }
+  if (_NAME === 'fontfamily' || _NAME === 'fontfamilies') {
+    if (!config) throw new Error(errorProcessTokensNoConfig);
+    processedTokens = setupFontTokens(sheet, config.usePostscriptFontNames);
+  }
+  if (_NAME === 'fontsize' || _NAME === 'fontsizes') {
+    if (!config) throw new Error(errorProcessTokensNoConfig);
+    processedTokens = setupFontSizeTokens(sheet, config.fontUnit, config.remSize);
+  }
 
   return processedTokens;
 }

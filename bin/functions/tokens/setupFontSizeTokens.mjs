@@ -18,7 +18,11 @@ import {
  * @param {string} fontUnit - The font unit type
  * @param {number} remSize - The body rem size
  * @returns {object} - Returns an object with all the font sizes
- * @throws {error} - When there is no provided Figma frame
+ * @throws {errorSetupFontSizeTokensNoFrame} - When there is no provided Figma frame
+ * @throws {errorSetupFontSizeTokensNoChildren} - When Figma frame is missing children
+ * @throws {errorSetupFontSizeTokensNoSizing} - When missing fontUnit or remSize
+ * @throws {errorSetupFontSizeTokensMissingProps} - When frame child is missing type.name or type.style
+ * @throws {errorSetupFontSizeTokensMissingSize} - When frame child is missing type.style.fontSize
  */
 export function setupFontSizeTokens(fontSizeFrame, fontUnit, remSize) {
   if (!fontSizeFrame) throw new Error(errorSetupFontSizeTokensNoFrame);

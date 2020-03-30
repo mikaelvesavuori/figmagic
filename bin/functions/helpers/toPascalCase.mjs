@@ -1,3 +1,5 @@
+import { errorToPascalCase } from '../../meta/errors.mjs';
+
 /**
  * Pascal-case transform a string
  *
@@ -5,9 +7,11 @@
  * @function
  * @param {string} str - The string to Pascal case
  * @returns {string} - The final string
- * @throws {error} - When no string is provided
+ * @throws {errorToPascalCase} - When no string is provided
  */
 export function toPascalCase(str) {
+  if (!str) throw new Error(errorToPascalCase);
+
   let recasedString = str.replace(/\w+/g, w => {
     return w[0].toUpperCase() + w.slice(1).toLowerCase();
   });

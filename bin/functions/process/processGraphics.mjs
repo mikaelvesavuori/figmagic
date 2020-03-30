@@ -6,7 +6,9 @@ import {
   errorProcessGraphics,
   errorProcessGraphicsImageError,
   errorProcessGraphicsNoImages,
-  errorGetIds
+  errorGetIds,
+  errorGetFileList,
+  errorGetIdString
 } from '../../meta/errors.mjs';
 
 /**
@@ -18,9 +20,11 @@ import {
  * @param {object} graphicsPage - Children of the Figma 'Graphics' page
  * @param {object} config - Configuration object
  * @returns {promise} - Return promise
+ * @throws {errorProcessGraphics} - Throws error if missing missingPage
  */
 export async function processGraphics(graphicsPage, config) {
   if (!graphicsPage) throw new Error(errorProcessGraphics);
+
   const { token, url, outputFolderGraphics, outputFormatGraphics, outputScaleGraphics } = config;
 
   const IDS = getIds(graphicsPage);
@@ -50,8 +54,11 @@ export async function processGraphics(graphicsPage, config) {
  * @param {array} ids - Array of asset IDs
  * @param {string} outputFormatGraphics - String representing expected output format
  * @returns {array} - Array of files with properties
+ * @throws {errorGetFileList} - Throws error if missing required arguments
  */
 const getFileList = (imageResponse, ids, outputFormatGraphics) => {
+  if (!imageResponse || !ids || !outputFormatGraphics) throw new Error(errorGetFileList);
+
   let fileList = [];
 
   Object.entries(imageResponse.images).forEach(async image => {
@@ -80,6 +87,8 @@ const getFileList = (imageResponse, ids, outputFormatGraphics) => {
  * @function
  * @param {object} graphicsPage - Figma 'Graphics' page
  * @returns {array} - Array of graphics items
+ * @throws {errorGetIds} - Throws error if no graphics page is provided
+ * @throws {errorGetIds} - Throws error if no graphics page is of zero-length
  */
 const getIds = graphicsPage => {
   if (!graphicsPage) throw new Error(errorGetIds);
@@ -103,8 +112,11 @@ const getIds = graphicsPage => {
  * @function
  * @param {array} ids - Figma 'Graphics' page
  * @returns {string} - Return ID string
+ * @throws {errorGetIdString} - Throws error when no required arguments are provided
  */
 const getIdString = ids => {
+  if (!ids) throw new Error(errorGetIdString);
+
   let idString = '';
 
   ids.forEach(item => {

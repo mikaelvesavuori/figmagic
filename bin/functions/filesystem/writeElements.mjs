@@ -12,7 +12,7 @@ import { errorWriteElements } from '../../meta/errors.mjs';
  * @param {array} elements - Array of cleaned elements to write out to files
  * @param {object} config - User configuration object
  * @returns {null} - Returns nothing
- * @throws {error} - Throws error if no elements or config is provided
+ * @throws {errorWriteElements} - Throws error if no elements or config is provided
  */
 export async function writeElements(elements, config) {
   if (!elements || !config) throw new Error(errorWriteElements);

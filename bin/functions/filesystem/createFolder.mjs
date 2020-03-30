@@ -6,10 +6,11 @@ import { errorCreateFolder } from '../../meta/errors.mjs';
  * Create folder, checking also if it already exists
  *
  * @exports
+ * @async
  * @function
  * @param {string} dir - The name of the directory that the user wants to create
  * @returns {Promise} - Returns promise
- * @throws {error} - When no directory specified
+ * @throws {errorCreateFolder} - When no directory specified
  */
 export async function createFolder(dir) {
   if (!dir) throw new Error(errorCreateFolder);

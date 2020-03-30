@@ -5,8 +5,8 @@ import { errorRoundColorValue } from '../../meta/errors.mjs';
  *
  * @exports
  * @function
- * @param {number} quantity - Incoming quantity value
- * @param {number} scale - Maximum value
+ * @param {number} quantity - Incoming quantity value, as float
+ * @param {number} scale - Maximum value, as int (?)
  * @returns {number} - The final number
  */
 export function roundColorValue(quantity = 0.0, scale = 255) {

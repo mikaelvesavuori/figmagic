@@ -8,7 +8,7 @@ import { errorCreatePage } from '../../meta/errors.mjs';
  * @param {object} figmaPages - Object with Figma pages
  * @param {string} matchingPageName - String that identifies the correct page name
  * @returns {object} - Return correct page as object
- * @throws {error} - When no page(s) are provided
+ * @throws {errorCreatePage} - When no page(s) are provided
  */
 export function createPage(figmaPages, matchingPageName) {
   if (!figmaPages || !(figmaPages.length > 0)) throw new Error(errorCreatePage);

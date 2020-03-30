@@ -10,11 +10,14 @@ import { acceptedTokenTypes } from '../../meta/acceptedTokenTypes.mjs';
  * Write tokens to file
  *
  * @exports
+ * @async
  * @function
  * @param {array} tokens - The final array of design tokens
  * @param {object} settings - User configuration object
- * @returns {true} - Return true when finished
- * @throws {error} - When no than one token is provided
+ * @returns {boolean} - Returns true when finished
+ * @throws {errorWriteTokens} - Throws error when no tokens are provided
+ * @throws {errorWriteTokens} - Throws error when tokens are zero-length
+ * @throws {errorWriteTokensNoSettings} - Throws error when missing settings
  */
 export async function writeTokens(tokens, settings) {
   if (!tokens) throw new Error(errorWriteTokens);

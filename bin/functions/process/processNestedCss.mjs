@@ -1,4 +1,10 @@
-import { errorProcessNestedCss, errorCreateCssString } from '../../meta/errors.mjs';
+import {
+  errorProcessNestedCss,
+  errorCreateCssString,
+  errorCleanArrays,
+  errorGetIntersectingValues,
+  errorGetUniqueValues
+} from '../../meta/errors.mjs';
 
 /**
  * Process nested CSS into a format that puts shared/common intersecting CSS properties
@@ -8,7 +14,7 @@ import { errorProcessNestedCss, errorCreateCssString } from '../../meta/errors.m
  * @function
  * @param {string} css - Incoming CSS (from processElements.mjs)
  * @returns {string} - The final, cleaned CSS string
- * @throws {error} - When no CSS is provided as input
+ * @throws {errorProcessNestedCss} - When no CSS is provided as input
  */
 export function processNestedCss(css) {
   if (!css) throw new Error(errorProcessNestedCss);
@@ -37,11 +43,15 @@ export function processNestedCss(css) {
 /**
  * Clean, process, and sort arrays for later
  *
+ * @function
  * @param {array} classNames - List of class names
  * @param {array} classContent - CSS properties
  * @returns {array} - Final list of cleaned arrays
+ * @throws {errorCleanArrays} - Throws error when no classNames or classContent are provided
  */
 function cleanArrays(classNames, classContent) {
+  if (!classNames || !classContent) throw new Error(errorCleanArrays);
+
   const totalClassCount = classContent.length;
 
   let arrays = [];
@@ -74,10 +84,14 @@ function cleanArrays(classNames, classContent) {
 /**
  * Get any shared/common/intersecting values that will need to float to the top of the CSS document
  *
+ * @function
  * @param {array} arrays - Arrays to check
  * @returns {array} - Array of intersecting values
+ * @throws {errorGetIntersectingValues} - Throws error when no "arrays" argument if provided
  */
 function getIntersectingValues(arrays) {
+  if (!arrays) throw new Error(errorGetIntersectingValues);
+
   let o = {};
 
   arrays.map((a, index) => {
@@ -90,11 +104,15 @@ function getIntersectingValues(arrays) {
 /**
  * Get any unique values and collect them in arrays per class
  *
+ * @function
  * @param {array} arrays - The cleaned set of arrays
  * @param {array} intersections - The intersecting areas and values
  * @returns {array} - List of unique values per class
+ * @throws {errorGetUniqueValues} - Throws error when missing "arrays" or "intersections" arguments
  */
 function getUniqueValues(arrays, intersections) {
+  if (!arrays || !intersections) throw new Error(errorGetUniqueValues);
+
   let uniqueValues = [];
 
   arrays.map(arr => {
@@ -120,10 +138,11 @@ function getUniqueValues(arrays, intersections) {
 /**
  * Create CSS string literal
  *
+ * @function
  * @param {array} intersections - List of intersecting values
  * @param {array} uniqueValues - List of unique values
  * @returns {string} - The final, cleaned CSS string
- * @throws {error} - When no intersections or uniqueValues are provided
+ * @throws {errorCreateCssString} - When no intersections or uniqueValues are provided
  */
 function createCssString(intersections, uniqueValues) {
   if (!intersections || !uniqueValues) throw new Error(errorCreateCssString);

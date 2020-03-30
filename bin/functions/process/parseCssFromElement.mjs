@@ -13,7 +13,7 @@ import { errorParseCssFromElement } from '../../meta/errors.mjs';
  * @param {object} [textElement] - Figma object representation of the text field connected to the element/component
  * @param {number} remSize - HTML body REM size
  * @returns {object} - Returns object with CSS and imports
- * @throws {error} - Throws error if missing element or remSize arguments
+ * @throws {errorParseCssFromElement} - Throws error if missing element or remSize arguments
  */
 export async function parseCssFromElement(element, textElement, remSize) {
   if (!element || !remSize) throw new Error(errorParseCssFromElement);

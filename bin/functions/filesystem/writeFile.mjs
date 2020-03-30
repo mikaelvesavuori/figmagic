@@ -11,14 +11,16 @@ import { errorWriteFile, errorWriteFileWrongType, errorWrite } from '../../meta/
  * Exposed function that handles writing files to disk
  *
  * @exports
+ * @async
  * @function
  * @param {string} file - File contents
  * @param {string} path - File path minus file name
  * @param {string} name - File name
  * @param {string} type - What type of file is going to be written
- * @param {string} format - File format
- * @param {object} metadata - Any metadata needed for writing
- * @param {object} templates - Object of templates
+ * @param {string} [format=mjs] - File format
+ * @param {object} [metadata] - Any metadata needed for writing
+ * @param {object} [templates] - Object of templates
+ * @throws {errorWriteFile} - Throws error if missing file, path, name or type arguments
  */
 export async function writeFile(file, path, name, type, format = 'mjs', metadata, templates) {
   if (!file || !path || !name || !type) throw new Error(errorWriteFile);

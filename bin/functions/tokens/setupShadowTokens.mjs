@@ -15,7 +15,9 @@ import {
  * @function
  * @param {object} shadowFrame - The shadows frame from Figma
  * @returns {object} - Returns an object with all the shadows
- * @throws {error} - When there is no provided Figma frame
+ * @throws {errorSetupShadowTokensNoFrame} - When there is no provided Figma frame
+ * @throws {errorSetupShadowTokensNoChildren} - When missing children in Figma frame
+ * @throws {errorSetupShadowTokensMissingProps} - When missing required props in frame children
  */
 export function setupShadowTokens(shadowFrame) {
   if (!shadowFrame) throw new Error(errorSetupShadowTokensNoFrame);

@@ -12,7 +12,7 @@ import { errorGetTokenMatch, errorGetTokenMatchNoRemSize } from '../../meta/erro
  * @param {string} tokenFileName - String representing file name from which the token is exported
  * @param {string} property - CSS property to be assigned
  * @param {string|number} expectedValue - Expected value to match for
- * @param {number} [remSize] - HTML body REM size
+ * @param {number} [remSize] - HTML body REM size, required for padding and anything to do with rem/em
  * @returns {object} - Returns object with updated CSS and imports
  * @throws {errorGetTokenMatch} - Throws error if missing required arguments
  * @throws {errorGetTokenMatchNoRemSize} - Throws error if remSize argument is not provided when user needs to convert units (rem, em...)

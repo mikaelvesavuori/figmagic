@@ -9,7 +9,10 @@ import { errorLoadFile } from '../../meta/errors.mjs';
  * @async
  * @function
  * @param {string} path - Path to local file
- * @returns {object} - The parsed JSON object
+ * @param {boolean} [isRaw] - Bool to set if data should be parsed or not
+ * @returns {Promise} - The parsed JSON object
+ * @throws {errorLoadFile} - Throws error if no path
+ * @throws {errorLoadFile} - Throws error if path does not exist
  */
 export async function loadFile(path, isRaw = false) {
   if (!path) throw new Error(errorLoadFile);

@@ -14,7 +14,7 @@ import {
  * @param {string} spacingUnit - The spacing unit
  * @param {number} remSize - The body rem size
  * @returns {string} - Returns new unit
- * @throws {error} - When missing parameters
+ * @throws {errorNormalizeUnits} - When missing parameters
  */
 export function normalizeUnits(value, currentUnit, newUnit, remSize) {
   if (!value || !currentUnit || !newUnit) throw new Error(errorNormalizeUnits);

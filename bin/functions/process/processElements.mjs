@@ -25,7 +25,7 @@ import {
  * @param {object} components - Figma components
  * @param {object} config - User configuration
  * @returns {array} - List of parsed components with CSS and all
- * @throws {error} - When missing required arguments
+ * @throws {errorProcessElements} - When missing required arguments
  */
 export async function processElements(elementsPage, components, config) {
   if (!elementsPage || !components || !config) throw new Error(errorProcessElements);
@@ -54,7 +54,7 @@ const addDescriptionToElements = (elements, components) => {
  * @param {object} element - Object representation of item
  * @param {number} remSize - HTML body REM size
  * @returns {object} - Return new element as object
- * @throws {error} - Throw error if not provided element or config
+ * @throws {errorParseElement} - Throw error if not provided element or config
  */
 async function parseElement(element, remSize) {
   if (!element || !remSize) throw new Error(errorParseElement);

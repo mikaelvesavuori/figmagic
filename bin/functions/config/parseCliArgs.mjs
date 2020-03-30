@@ -15,6 +15,7 @@ import { config } from '../../meta/config.mjs';
  * @function
  * @param {array} argsArray - Array of string arguments
  * @returns {object} - Returns settings object
+ * @throws {errorParseCliArgs} - Throws error if no arguments array is provided
  */
 export function parseCliArgs(argsArray) {
   if (!argsArray) throw new Error(errorParseCliArgs);

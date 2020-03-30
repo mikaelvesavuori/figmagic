@@ -21,6 +21,7 @@ import { config } from '../../meta/config.mjs';
  * @param {string} userConfigPath - Path to user configuration file, based out of user's current working directory
  * @param {array} cliArgs - Array of any user-provided command line arguments and flags
  * @returns {object} - The final, validated and collated configuration object
+ * @throws {errorCreateConfiguration} - Throws error when missing configuration
  */
 export async function createConfiguration(userConfigPath, ...cliArgs) {
   if (!userConfigPath) throw new Error(errorCreateConfiguration);
