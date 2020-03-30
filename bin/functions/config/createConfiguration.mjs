@@ -2,6 +2,12 @@
 import { loadFile } from '../filesystem/loadFile.mjs';
 import { parseCliArgs } from './parseCliArgs.mjs';
 
+import {
+  msgConfigDebugEnv,
+  msgConfigDebugCli,
+  msgConfigDebugRc,
+  msgConfigDebugFinal
+} from '../../meta/messages.mjs';
 import { errorCreateConfiguration } from '../../meta/errors.mjs';
 
 import { defaultConfig } from '../../meta/config.mjs';
@@ -28,26 +34,26 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
 
   // Set default values first
   const DEFAULT_CONFIG = {
-    debugMode: false,
-    fontUnit: defaultConfig.defaultFontUnit,
-    remSize: defaultConfig.defaultRemSize,
-    outputFileName: defaultConfig.defaultOutputFileName,
-    outputFolderBaseFile: defaultConfig.defaultOutputFolderBaseFile,
-    outputFolderTokens: defaultConfig.defaultOutputFolderTokens,
-    outputTokenFormat: defaultConfig.defaultOutputTokenFormat,
-    outputFolderElements: defaultConfig.defaultOutputFolderElements,
-    //outputFolderComponents: defaultConfig.defaultOutputFolderComponents,
-    outputFolderGraphics: defaultConfig.defaultOutputFolderGraphics,
-    outputFormatGraphics: defaultConfig.defaultOutputFormatGraphics,
-    outputScaleGraphics: defaultConfig.defaultOutputScaleGraphics,
+    debugMode: defaultConfig.debugMode,
+    fontUnit: defaultConfig.fontUnit,
+    remSize: defaultConfig.remSize,
+    outputFileName: defaultConfig.outputFileName,
+    outputFolderBaseFile: defaultConfig.outputFolderBaseFile,
+    outputFolderTokens: defaultConfig.outputFolderTokens,
+    outputTokenFormat: defaultConfig.outputTokenFormat,
+    outputFolderElements: defaultConfig.outputFolderElements,
+    //outputFolderComponents: defaultConfig.outputFolderComponents,
+    outputFolderGraphics: defaultConfig.outputFolderGraphics,
+    outputFormatGraphics: defaultConfig.outputFormatGraphics,
+    outputScaleGraphics: defaultConfig.outputScaleGraphics,
     recompileLocal: defaultConfig.recompileLocal,
-    spacingUnit: defaultConfig.defaultSpacingUnit,
-    syncElements: defaultConfig.defaultSyncElements,
-    syncGraphics: defaultConfig.defaultSyncGraphics,
-    // > NOTE: Import "templates" and "skipFileGeneration" in parseCliArgs.mjs do they don't get squashed if inserted here
+    spacingUnit: defaultConfig.spacingUnit,
+    syncElements: defaultConfig.syncElements,
+    syncGraphics: defaultConfig.syncGraphics,
+    // > NOTE: Import "templates" and "skipFileGeneration" in parseCliArgs.mjs so they don't get squashed if inserted here
     token: process.env.FIGMA_TOKEN ? process.env.FIGMA_TOKEN : null,
     url: process.env.FIGMA_URL ? process.env.FIGMA_URL : null,
-    usePostscriptFontNames: defaultConfig.defaultUsePostscriptFontNames
+    usePostscriptFontNames: defaultConfig.usePostscriptFontNames
   };
 
   // Env var configuration
@@ -68,24 +74,16 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
   // Merge configurations in order of prioritization
   const CONFIG = { ...DEFAULT_CONFIG, ...ENV_CONFIG, ...CLI_CONFIG, ...RC_CONFIG };
 
-  /*
-  // Set debug mode to correct setting
-  process.env.FIGMA_DEBUG = CONFIG.debugMode;
-
-  if (process.env.FIGMA_DEBUG === 'true') {
-    console.log('USER: ENV_CONFIG');
+  if (CONFIG.debugMode === true) {
+    console.log(msgConfigDebugEnv);
     console.log(ENV_CONFIG);
-    console.log('USER: CLI_CONFIG');
+    console.log(msgConfigDebugCli);
     console.log(CLI_CONFIG);
-    //console.log('USER: RC_CONFIG');
-    //console.log(RC_CONFIG);
-    console.log('SYSTEM: FINAL CONFIG');
+    console.log(msgConfigDebugRc);
+    console.log(RC_CONFIG);
+    console.log(msgConfigDebugFinal);
     console.log(CONFIG);
   }
-
-  console.log('CONFIG');
-	console.log(CONFIG);
-	*/
 
   return CONFIG;
 }

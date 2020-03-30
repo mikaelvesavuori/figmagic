@@ -33,6 +33,9 @@ export async function writeTokens(tokens, config) {
         if (acceptedTokenTypes.includes(tokenName.toLowerCase())) {
           const PROCESSED_TOKEN = processTokens(token, tokenName, config);
 
+          //console.log(config);
+          if (config.debugMode) console.log(PROCESSED_TOKEN);
+
           await writeFile(
             PROCESSED_TOKEN,
             config.outputFolderTokens,

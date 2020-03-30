@@ -1,5 +1,4 @@
 {
-  "debugMode": false,
   "fontUnit": "rem",
   "outputFileName": "figma.json",
   "outputFolderBaseFile": ".figmagic",

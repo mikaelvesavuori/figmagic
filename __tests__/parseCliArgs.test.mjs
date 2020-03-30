@@ -41,7 +41,7 @@ test('It should return "js" for outputTokenFormat if passing "js" (short-hand)',
 test('It should return default value for outputTokenFormat if passing invalid value (long-hand)', () => {
   expect(parseCliArgs(['--outputTokenFormat', 'asdf'])).toEqual(
     expect.objectContaining({
-      outputTokenFormat: config.defaultOutputTokenFormat
+      outputTokenFormat: config.outputTokenFormat
     })
   );
 });
@@ -68,7 +68,7 @@ test('It should return "em" for fontUnit if passing "em" (short-hand)', () => {
 test('It should return default value for fontUnit if passing invalid value (long-hand)', () => {
   expect(parseCliArgs(['--fontUnit', 'asdf'])).toEqual(
     expect.objectContaining({
-      fontUnit: config.defaultFontUnit
+      fontUnit: config.fontUnit
     })
   );
 });
@@ -95,7 +95,7 @@ test('It should return "em" for outputTokenFormat if passing "em" (short-hand)',
 test('It should return default value for spacingUnit if passing invalid value', () => {
   expect(parseCliArgs(['--spacingUnit', 'asdf'])).toEqual(
     expect.objectContaining({
-      spacingUnit: config.defaultSpacingUnit
+      spacingUnit: config.spacingUnit
     })
   );
 });

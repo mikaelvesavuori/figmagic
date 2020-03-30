@@ -85,7 +85,7 @@ export function parseCliArgs(argsArray) {
           config.outputTokenFormat = argsArray[index + 1].toLowerCase();
         } else {
           console.warn(warnParseCliArgsOutputFormat);
-          config.outputTokenFormat = defaultConfig.defaultOutputTokenFormat;
+          config.outputTokenFormat = defaultConfig.outputTokenFormat;
         }
       }
       // Check and handle font unit switch
@@ -95,7 +95,7 @@ export function parseCliArgs(argsArray) {
           config.fontUnit = argsArray[index + 1].toLowerCase();
         } else {
           console.warn(warnParseCliArgsFontUnit);
-          config.fontUnit = defaultConfig.defaultFontUnit;
+          config.fontUnit = defaultConfig.fontUnit;
         }
       }
       // Check and handle spacing unit switch
@@ -105,7 +105,7 @@ export function parseCliArgs(argsArray) {
           config.spacingUnit = argsArray[index + 1].toLowerCase();
         } else {
           console.warn(warnParseCliArgsSpacingUnit);
-          config.spacingUnit = defaultConfig.defaultSpacingUnit;
+          config.spacingUnit = defaultConfig.spacingUnit;
         }
       }
       // Handle input: Figma API token
