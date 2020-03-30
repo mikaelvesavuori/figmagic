@@ -12,6 +12,7 @@ import { getFromApi } from './bin/functions/filesystem/getFromApi.mjs';
 import { writeTokens } from './bin/functions/filesystem/writeTokens.mjs';
 import { writeFile } from './bin/functions/filesystem/writeFile.mjs';
 import { writeElements } from './bin/functions/filesystem/writeElements.mjs';
+import { writeGraphics } from './bin/functions/filesystem/writeGraphics.mjs';
 
 import { createPage } from './bin/functions/process/createPage.mjs';
 import { processGraphics } from './bin/functions/process/processGraphics.mjs';
@@ -80,8 +81,8 @@ async function figmagic() {
     throw new Error(error);
   });
 
+  // Write base Figma JSON if we are pulling from the web
   if (!recompileLocal) {
-    // Write base Figma JSON if we are pulling from the web
     console.log(msgWriteBaseFile);
     const DATA = await getFromApi(token, url);
     await trash([`./${outputFolderBaseFile}`]);
@@ -115,7 +116,8 @@ async function figmagic() {
     const GRAPHICS_PAGE = createPage(DATA.document.children, 'Graphics');
     await trash([`./${outputFolderGraphics}`]);
     await createFolder(outputFolderGraphics);
-    await processGraphics(GRAPHICS_PAGE.children, CONFIG);
+    const FILE_LIST = await processGraphics(GRAPHICS_PAGE.children, CONFIG);
+    await writeGraphics(FILE_LIST, CONFIG);
   }
 
   // All went well

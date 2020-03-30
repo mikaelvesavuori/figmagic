@@ -90,5 +90,6 @@ export const errorWrite = `${colors.FgRed}Error while attempting to write file!`
 export const errorWriteElements = `${colors.FgRed}Missing "elements" and/or "config" properties when calling writeElements()!`;
 export const errorWriteFile = `${colors.FgRed}Missing required parameters to correctly run writeFile()!`;
 export const errorWriteFileWrongType = `${colors.FgRed}Provided invalid file type to writeFile()!`;
+export const errorWriteGraphics = `${colors.FgRed}Missing "fileList" and/or "config" argument when calling writeGraphics()!`;
 export const errorWriteTokens = `${colors.FgRed}Less than one token provided to writeTokens()! Make sure you have a page called "Design Tokens" in your Figma document.`;
 export const errorWriteTokensNoSettings = `${colors.FgRed}Missing "settings" argument/object when attempting to write tokens!`;

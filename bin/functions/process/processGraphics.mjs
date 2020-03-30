@@ -1,6 +1,5 @@
 import { camelize } from '../helpers/camelize.mjs';
 import { getFromApi } from '../filesystem/getFromApi.mjs';
-import { downloadFile } from '../filesystem/downloadFile.mjs';
 
 import {
   errorProcessGraphics,
@@ -19,13 +18,13 @@ import {
  * @function
  * @param {object} graphicsPage - Children of the Figma 'Graphics' page
  * @param {object} config - Configuration object
- * @returns {promise} - Return promise
+ * @returns {array} - Returns file list
  * @throws {errorProcessGraphics} - Throws error if missing missingPage
  */
 export async function processGraphics(graphicsPage, config) {
   if (!graphicsPage) throw new Error(errorProcessGraphics);
 
-  const { token, url, outputFolderGraphics, outputFormatGraphics, outputScaleGraphics } = config;
+  const { token, url, outputFormatGraphics, outputScaleGraphics } = config;
 
   const IDS = getIds(graphicsPage);
   const ID_STRING = getIdString(IDS);
@@ -37,13 +36,7 @@ export async function processGraphics(graphicsPage, config) {
   if (IMAGE_RESPONSE.err) throw new Error(errorProcessGraphicsImageError);
   if (!IMAGE_RESPONSE.images) throw new Error(errorProcessGraphicsNoImages);
 
-  const FILE_LIST = getFileList(IMAGE_RESPONSE, IDS, outputFormatGraphics);
-
-  await Promise.all(
-    FILE_LIST.map(async file => {
-      await downloadFile(file.url, outputFolderGraphics, file.file);
-    })
-  );
+  return getFileList(IMAGE_RESPONSE, IDS, outputFormatGraphics);
 }
 
 /**
