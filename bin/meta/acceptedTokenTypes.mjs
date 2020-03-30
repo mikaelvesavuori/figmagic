@@ -15,7 +15,7 @@ export const acceptedTokenTypes = [
   'letterspacings',
   'lineheight',
   'lineheights',
-  'mediaqueries'
+  'mediaqueries',
   'mediaquery',
   'radii',
   'radius',
@@ -26,5 +26,5 @@ export const acceptedTokenTypes = [
   'spacing',
   'spacings',
   'zindex',
-  'zindices',
+  'zindices'
 ];
