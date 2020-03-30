@@ -32,6 +32,7 @@ export const errorParseCssFromDescription = `${colors.FgRed}Missing "tokens" whe
 export const errorParseCssFromElement = `${colors.FgRed}Missing one or more of required arguments: "element", and/or "remSize" when calling parseCssFromElement()!`;
 export const errorParseElement = `${colors.FgRed}Missing one or more of required arguments: "element", and/or "remSize" when calling parseElement()!`;
 export const errorParseTypographyStylingFromElement = `${colors.FgRed}Missing one or more of required arguments: "element", or "remSize" when calling parseTypographyStylingFromElement()!`;
+export const errorPrepareWrite = `${colors.FgRed}No templates provided to prepareWrite()! Seems like fallback template path also failed...`;
 export const errorProcessElements = `${colors.FgRed}Missing one or more of required arguments: "elementsPage", "config", and/or "components"! Make sure you have a page called "Elements" in your Figma document.`;
 export const errorProcessElementsWrongElementCount = `${colors.FgRed}Did not find exactly 1 (one) match for element`;
 export const errorProcessElementsWrongTextElementCount = `${colors.FgRed}Found more than one match for "Text" node. Required: 0 or 1 text nodes as child of element`;

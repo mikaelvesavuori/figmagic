@@ -13,16 +13,16 @@ import { acceptedTokenTypes } from '../../meta/acceptedTokenTypes.mjs';
  * @async
  * @function
  * @param {array} tokens - The final array of design tokens
- * @param {object} settings - User configuration object
+ * @param {object} config - User configuration object
  * @returns {boolean} - Returns true when finished
  * @throws {errorWriteTokens} - Throws error when no tokens are provided
  * @throws {errorWriteTokens} - Throws error when tokens are zero-length
- * @throws {errorWriteTokensNoSettings} - Throws error when missing settings
+ * @throws {errorWriteTokensNoSettings} - Throws error when missing config
  */
-export async function writeTokens(tokens, settings) {
+export async function writeTokens(tokens, config) {
   if (!tokens) throw new Error(errorWriteTokens);
   if (!(tokens.length > 0)) throw new Error(errorWriteTokens);
-  if (!settings) throw new Error(errorWriteTokensNoSettings);
+  if (!config) throw new Error(errorWriteTokensNoSettings);
 
   const tokensToProcess = new Promise((resolve, reject) => {
     try {
@@ -31,14 +31,14 @@ export async function writeTokens(tokens, settings) {
         tokenName = formatName(tokenName);
 
         if (acceptedTokenTypes.includes(tokenName.toLowerCase())) {
-          const PROCESSED_TOKEN = processTokens(token, tokenName, settings);
+          const PROCESSED_TOKEN = processTokens(token, tokenName, config);
 
           await writeFile(
             PROCESSED_TOKEN,
-            settings.outputFolderTokens,
+            config.outputFolderTokens,
             tokenName,
             'token',
-            settings.outputTokenFormat
+            config.outputTokenFormat
           );
         }
       });

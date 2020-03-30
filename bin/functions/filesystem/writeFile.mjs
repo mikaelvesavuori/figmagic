@@ -5,7 +5,12 @@ import { loadFile } from './loadFile.mjs';
 import { createImportStringFromList } from '../helpers/createImportStringFromList.mjs';
 
 import { msgGeneratedFileWarning } from '../../meta/messages.mjs';
-import { errorWriteFile, errorWriteFileWrongType, errorWrite } from '../../meta/errors.mjs';
+import {
+  errorWriteFile,
+  errorWriteFileWrongType,
+  errorWrite,
+  errorPrepareWrite
+} from '../../meta/errors.mjs';
 
 /**
  * Exposed function that handles writing files to disk
@@ -66,13 +71,11 @@ export async function writeFile(file, path, name, type, format = 'mjs', metadata
  * @param {object} metadata - Any metadata needed for writing
  * @param {object} templates - Object of templates
  * @returns {Promise} - Returns promise from wrapped fs.writeFile
+ * @throws {errorPrepareWrite} - Throws error if valid type but missing template
  */
 async function prepareWrite(type, file, path, name, format, metadata, templates) {
   if (type === 'css' || type === 'story' || type === 'component') {
-    if (!templates)
-      throw new Error(
-        'No templates provided to prepareWrite()! Seems like fallback template path also failed...'
-      );
+    if (!templates) throw new Error(errorPrepareWrite);
   }
 
   let fileContent = ``;

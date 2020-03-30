@@ -105,7 +105,7 @@ async function figmagic() {
     console.log(msgSyncElements);
     const ELEMENTS_PAGE = createPage(DATA.document.children, 'Elements');
     const elements = await processElements(ELEMENTS_PAGE.children, COMPONENTS, CONFIG);
-    await trash([`./${outputFolderElements}`]);
+    //await trash([`./${outputFolderElements}`]);
     await createFolder(outputFolderElements);
     await writeElements(elements, CONFIG);
   }

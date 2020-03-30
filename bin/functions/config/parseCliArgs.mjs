@@ -31,7 +31,8 @@ export function parseCliArgs(argsArray) {
       styled: defaultConfig.skipFileGeneration.defaultSkipStyled,
       css: defaultConfig.skipFileGeneration.defaultSkipCss,
       storybook: defaultConfig.skipFileGeneration.defaultSkipStorybook,
-      description: defaultConfig.skipFileGeneration.defaultSkipDescription
+      description: defaultConfig.skipFileGeneration.defaultSkipDescription,
+      forceUpdate: defaultConfig.skipFileGeneration.defaultForceUpdate
     }
   };
 
@@ -72,6 +73,10 @@ export function parseCliArgs(argsArray) {
       // Skip file generation: Markdown description
       else if (arg === '--skipDescription') {
         config.skipFileGeneration.description = true;
+      }
+      // Force update all elements
+      else if (arg === '--forceUpdate') {
+        config.skipFileGeneration.forceUpdate = true;
       }
       // Check and handle token format switch
       else if (arg === '--outputTokenFormat' || arg == '-tf') {

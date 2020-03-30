@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 import { toPascalCase } from '../helpers/toPascalCase.mjs';
 import { writeFile } from './writeFile.mjs';
 
@@ -30,6 +32,7 @@ export async function writeElements(elements, config) {
       text: comp.text,
       imports: comp.imports
     };
+    const FORMAT = config.outputTokenFormat;
     const TEMPLATES = config.templates;
 
     const SKIP_REACT = config.skipFileGeneration.react;
@@ -37,20 +40,38 @@ export async function writeElements(elements, config) {
     const SKIP_CSS = config.skipFileGeneration.css;
     const SKIP_STORYBOOK = config.skipFileGeneration.storybook;
     const SKIP_DESCRIPTION = config.skipFileGeneration.description;
+    const FORCE_UPDATE = config.skipFileGeneration.forceUpdate;
 
-    // Write React component
-    if (!SKIP_REACT) writeFile(HTML, FOLDER, NAME, 'component', 'jsx', METADATA, TEMPLATES);
+    const _NAME = NAME.replace('/', '');
 
-    // Write Styled component
-    if (!SKIP_STYLED) writeFile(CSS, FOLDER, NAME, 'style', 'jsx', METADATA, TEMPLATES);
+    // Write React component - is skipped by default if file already exists
+    if (!SKIP_REACT) {
+      const FILE_EXISTS = fs.existsSync(`${FOLDER}/${_NAME}.jsx`);
+      if (!FILE_EXISTS || FORCE_UPDATE) {
+        writeFile(HTML, FOLDER, NAME, 'component', 'jsx', METADATA, TEMPLATES);
+      }
+    }
 
-    // Write CSS
-    if (!SKIP_CSS) writeFile(CSS, FOLDER, NAME, 'css', 'mjs', METADATA, TEMPLATES);
+    // Write Styled component - is skipped by default if file already exists
+    if (!SKIP_STYLED) {
+      const FILE_EXISTS = fs.existsSync(`${FOLDER}/${_NAME}Styled.jsx`);
+      if (!FILE_EXISTS || FORCE_UPDATE) {
+        writeFile(CSS, FOLDER, NAME, 'style', 'jsx', METADATA, TEMPLATES);
+      }
+    }
 
-    // Write Storybook component
-    if (!SKIP_STORYBOOK) writeFile(CSS, FOLDER, NAME, 'story', 'js', METADATA, TEMPLATES);
+    // Write CSS - is overwritten by default
+    if (!SKIP_CSS) writeFile(CSS, FOLDER, NAME, 'css', FORMAT, METADATA, TEMPLATES);
 
-    // Write description markdown file
+    // Write Storybook component - is skipped by default if file already exists
+    if (!SKIP_STORYBOOK) {
+      const FILE_EXISTS = fs.existsSync(`${FOLDER}/${_NAME}.stories.js`);
+      if (!FILE_EXISTS || FORCE_UPDATE) {
+        writeFile(CSS, FOLDER, NAME, 'story', 'js', METADATA, TEMPLATES);
+      }
+    }
+
+    // Write description markdown file - is overwritten by default
     if (!SKIP_DESCRIPTION) writeFile(DESCRIPTION, FOLDER, NAME, 'description', 'md');
   });
 }

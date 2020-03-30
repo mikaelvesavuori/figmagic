@@ -23,6 +23,7 @@ export const defaultConfig = {
     defaultSkipStyled: false,
     defaultSkipCss: false,
     defaultSkipStorybook: false,
-    defaultSkipDescription: false
+    defaultSkipDescription: false,
+    defaultForceUpdate: true
   }
 };
