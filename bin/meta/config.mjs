@@ -1,4 +1,4 @@
-export const config = {
+export const defaultConfig = {
   defaultOutputTokenFormat: 'mjs',
   defaultFontUnit: 'rem',
   defaultRemSize: 16,

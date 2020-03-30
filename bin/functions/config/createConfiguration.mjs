@@ -4,7 +4,7 @@ import { parseCliArgs } from './parseCliArgs.mjs';
 
 import { errorCreateConfiguration } from '../../meta/errors.mjs';
 
-import { config } from '../../meta/config.mjs';
+import { defaultConfig } from '../../meta/config.mjs';
 
 /**
  * Create configuration object
@@ -29,36 +29,25 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
   // Set default values first
   const DEFAULT_CONFIG = {
     debugMode: false,
-    fontUnit: config.defaultFontUnit,
-    remSize: config.defaultRemSize,
-    outputFileName: config.defaultOutputFileName,
-    outputFolderBaseFile: config.defaultOutputFolderBaseFile,
-    outputFolderTokens: config.defaultOutputFolderTokens,
-    outputTokenFormat: config.defaultOutputTokenFormat,
-    outputFolderElements: config.defaultOutputFolderElements,
-    //outputFolderComponents: config.defaultOutputFolderComponents,
-    outputFolderGraphics: config.defaultOutputFolderGraphics,
-    outputFormatGraphics: config.defaultOutputFormatGraphics,
-    outputScaleGraphics: config.defaultOutputScaleGraphics,
-    recompileLocal: config.recompileLocal,
-    spacingUnit: config.defaultSpacingUnit,
-    syncElements: config.defaultSyncElements,
-    syncGraphics: config.defaultSyncGraphics,
-    templates: {
-      templatePathReact: config.templates.defaultTemplatePathReact,
-      templatePathStyled: config.templates.defaultTemplatePathStyled,
-      templatePathStorybook: config.templates.defaultTemplatePathStorybook
-    },
-    skipFileGeneration: {
-      react: config.skipFileGeneration.defaultSkipReact,
-      styled: config.skipFileGeneration.defaultSkipStyled,
-      css: config.skipFileGeneration.defaultSkipCss,
-      storybook: config.skipFileGeneration.defaultSkipStorybook,
-      description: config.skipFileGeneration.defaultSkipDescription
-    },
+    fontUnit: defaultConfig.defaultFontUnit,
+    remSize: defaultConfig.defaultRemSize,
+    outputFileName: defaultConfig.defaultOutputFileName,
+    outputFolderBaseFile: defaultConfig.defaultOutputFolderBaseFile,
+    outputFolderTokens: defaultConfig.defaultOutputFolderTokens,
+    outputTokenFormat: defaultConfig.defaultOutputTokenFormat,
+    outputFolderElements: defaultConfig.defaultOutputFolderElements,
+    //outputFolderComponents: defaultConfig.defaultOutputFolderComponents,
+    outputFolderGraphics: defaultConfig.defaultOutputFolderGraphics,
+    outputFormatGraphics: defaultConfig.defaultOutputFormatGraphics,
+    outputScaleGraphics: defaultConfig.defaultOutputScaleGraphics,
+    recompileLocal: defaultConfig.recompileLocal,
+    spacingUnit: defaultConfig.defaultSpacingUnit,
+    syncElements: defaultConfig.defaultSyncElements,
+    syncGraphics: defaultConfig.defaultSyncGraphics,
+    // > NOTE: Import "templates" and "skipFileGeneration" in parseCliArgs.mjs do they don't get squashed if inserted here
     token: process.env.FIGMA_TOKEN ? process.env.FIGMA_TOKEN : null,
     url: process.env.FIGMA_URL ? process.env.FIGMA_URL : null,
-    usePostscriptFontNames: config.defaultUsePostscriptFontNames
+    usePostscriptFontNames: defaultConfig.defaultUsePostscriptFontNames
   };
 
   // Env var configuration

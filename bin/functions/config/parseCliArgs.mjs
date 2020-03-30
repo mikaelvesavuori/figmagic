@@ -6,128 +6,151 @@ import {
   warnParseCliArgsSpacingUnit
 } from '../../meta/warnings.mjs';
 
-import { config } from '../../meta/config.mjs';
+import { defaultConfig } from '../../meta/config.mjs';
 
 /**
- * Parse CLI arguments and return settings object
+ * Parse CLI arguments and return config object
  *
  * @exports
  * @function
  * @param {array} argsArray - Array of string arguments
- * @returns {object} - Returns settings object
+ * @returns {object} - Returns config object
  * @throws {errorParseCliArgs} - Throws error if no arguments array is provided
  */
 export function parseCliArgs(argsArray) {
   if (!argsArray) throw new Error(errorParseCliArgs);
 
-  let settings = {};
-  settings.templates = {};
-  settings.skipFileGeneration = {};
+  let config = {
+    templates: {
+      templatePathReact: defaultConfig.templates.defaultTemplatePathReact,
+      templatePathStyled: defaultConfig.templates.defaultTemplatePathStyled,
+      templatePathStorybook: defaultConfig.templates.defaultTemplatePathStorybook
+    },
+    skipFileGeneration: {
+      react: defaultConfig.skipFileGeneration.defaultSkipReact,
+      styled: defaultConfig.skipFileGeneration.defaultSkipStyled,
+      css: defaultConfig.skipFileGeneration.defaultSkipCss,
+      storybook: defaultConfig.skipFileGeneration.defaultSkipStorybook,
+      description: defaultConfig.skipFileGeneration.defaultSkipDescription
+    }
+  };
 
   if (argsArray.length > 0) {
     argsArray.forEach((arg, index) => {
       // Toggle debug mode if requested
       if (arg === '--debug') {
-        settings.debugMode = true;
+        config.debugMode = true;
       }
       // Recompile tokens from local Figma JSON file
       else if (arg === '--recompileLocal') {
-        settings.recompileLocal = true;
+        config.recompileLocal = true;
       }
       // Sync graphics from "Graphics" page in Figma
       else if (arg === '--syncGraphics') {
-        settings.syncGraphics = true;
+        config.syncGraphics = true;
       }
       // Sync elements from "Elements" page in Figma
       else if (arg === '--syncElements') {
-        settings.syncElements = true;
+        config.syncElements = true;
       }
       // Skip file generation: React
       else if (arg === '--skipReact') {
-        settings.skipFileGeneration.react = true;
+        config.skipFileGeneration.react = true;
       }
       // Skip file generation: Styled Components
       else if (arg === '--skipStyled') {
-        settings.skipFileGeneration.styled = true;
+        config.skipFileGeneration.styled = true;
       }
       // Skip file generation: CSS
       else if (arg === '--skipCss') {
-        settings.skipFileGeneration.css = true;
+        config.skipFileGeneration.css = true;
       }
       // Skip file generation: Storybook
       else if (arg === '--skipStorybook') {
-        settings.skipFileGeneration.storybook = true;
+        config.skipFileGeneration.storybook = true;
       }
       // Skip file generation: Markdown description
       else if (arg === '--skipDescription') {
-        settings.skipFileGeneration.description = true;
+        config.skipFileGeneration.description = true;
       }
       // Check and handle token format switch
       else if (arg === '--outputTokenFormat' || arg == '-tf') {
         const FORMAT = argsArray[index + 1].toLowerCase();
         if (FORMAT === 'mjs' || FORMAT === 'js') {
-          settings.outputTokenFormat = argsArray[index + 1].toLowerCase();
+          config.outputTokenFormat = argsArray[index + 1].toLowerCase();
         } else {
           console.warn(warnParseCliArgsOutputFormat);
-          settings.outputTokenFormat = config.defaultOutputTokenFormat;
+          config.outputTokenFormat = defaultConfig.defaultOutputTokenFormat;
         }
       }
       // Check and handle font unit switch
       else if (arg === '--fontUnit' || arg == '-f') {
         const FORMAT = argsArray[index + 1].toLowerCase();
         if (FORMAT === 'rem' || FORMAT === 'em') {
-          settings.fontUnit = argsArray[index + 1].toLowerCase();
+          config.fontUnit = argsArray[index + 1].toLowerCase();
         } else {
           console.warn(warnParseCliArgsFontUnit);
-          settings.fontUnit = config.defaultFontUnit;
+          config.fontUnit = defaultConfig.defaultFontUnit;
         }
       }
       // Check and handle spacing unit switch
       else if (arg === '--spacingUnit' || arg == '-s') {
         const FORMAT = argsArray[index + 1].toLowerCase();
         if (FORMAT === 'rem' || FORMAT === 'em') {
-          settings.spacingUnit = argsArray[index + 1].toLowerCase();
+          config.spacingUnit = argsArray[index + 1].toLowerCase();
         } else {
           console.warn(warnParseCliArgsSpacingUnit);
-          settings.spacingUnit = config.defaultSpacingUnit;
+          config.spacingUnit = defaultConfig.defaultSpacingUnit;
         }
       }
       // Handle input: Figma API token
       else if (arg === '--token' || arg == '-t') {
-        settings.token = argsArray[index + 1];
+        config.token = argsArray[index + 1];
       }
       // Handle input: Figma URL
       else if (arg === '--url' || arg == '-u') {
-        settings.url = argsArray[index + 1];
+        config.url = argsArray[index + 1];
       }
       // Handle input: Figma base file output folder
       else if (arg === '--outputFolderBaseFile' || arg == '-base') {
-        settings.outputFolderBaseFile = argsArray[index + 1];
+        config.outputFolderBaseFile = argsArray[index + 1];
       }
       // Handle input: token output folder
       else if (arg === '--outputFolderTokens' || arg == '-tokens') {
-        settings.outputFolderTokens = argsArray[index + 1];
+        config.outputFolderTokens = argsArray[index + 1];
       }
       // Handle input: element output folder
       else if (arg === '--outputFolderElements' || arg == '-elements') {
-        settings.outputFolderElements = argsArray[index + 1];
+        config.outputFolderElements = argsArray[index + 1];
       }
       // Handle input: component output folder
       /*
       else if (arg === '--outputFolderComponents' || arg == '-components') {
-        settings.outputFolderComponents = argsArray[index + 1];
+        config.outputFolderComponents = argsArray[index + 1];
 			}
 			*/
       // Handle input: output file name
       else if (arg === '--outputFileName' || arg == '-file') {
-        settings.outputFileName = argsArray[index + 1];
+        config.outputFileName = argsArray[index + 1];
       }
       // Set font family name to be "common name" or Postscript name
       else if (arg === '--usePostscriptFontNames' || arg === '-ps') {
-        settings.usePostscriptFontNames = true;
+        config.usePostscriptFontNames = true;
+      }
+      // Set custom template path for React
+      else if (arg === '--templatePathReact') {
+        config.templates.templatePathReact = argsArray[index + 1];
+      }
+      // Set custom template path for Styled Components
+      else if (arg === '--templatePathStyled') {
+        config.templates.templatePathStyled = argsArray[index + 1];
+      }
+      // Set custom template path for Storybook
+      else if (arg === '--templatePathStorybook') {
+        config.templates.templatePathStorybook = argsArray[index + 1];
       }
     });
   }
 
-  return settings;
+  return config;
 }
