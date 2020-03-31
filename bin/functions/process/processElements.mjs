@@ -6,6 +6,8 @@ import { msgProcessElementsCreatingElement } from '../../meta/messages.mjs';
 
 import {
   errorProcessElements,
+  errorProcessElementsNoTextElement,
+  errorProcessElementsNoMainElement,
   errorProcessElementsWrongElementCount,
   errorProcessElementsWrongTextElementCount,
   errorParseElement
@@ -26,6 +28,12 @@ import {
  * @param {object} config - User configuration
  * @returns {array} - List of parsed components with CSS and all
  * @throws {errorProcessElements} - When missing required arguments
+ * @throws {errorProcessElementsNoTextElement} - When missing TEXT_ELEMENT
+ * @throws {errorProcessElementsNoMainElement} - When missing MAIN_ELEMENT
+ * @throws {errorProcessElementsWrongElementCount} - When wrong element count
+ * @throws {errorProcessElementsWrongTextElementCount} - When wrong text element count
+ *
+
  */
 export async function processElements(elementsPage, components, config) {
   if (!elementsPage || !components || !config) throw new Error(errorProcessElements);
@@ -103,11 +111,32 @@ async function parseElement(element, remSize) {
         if (el.name[0] !== '_') {
           const MAIN_ELEMENT = el.children.filter(e => e.type === 'RECTANGLE')[0];
           const TEXT_ELEMENT = el.children.filter(e => e.type === 'TEXT')[0];
+
+          if (!MAIN_ELEMENT) throw new Error(errorProcessElementsNoMainElement);
+          if (!TEXT_ELEMENT) throw new Error(errorProcessElementsNoTextElement);
+
+          const IMAGE = (() => {
+            let image = null;
+
+            el.children.map(e => {
+              return e.fills.map(z => {
+                if (z.type === 'IMAGE') image = e;
+              });
+            });
+
+            return image;
+          })();
+
           const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
           console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
           // Parse layout CSS from element
-          let elementStyling = await parseCssFromElement(MAIN_ELEMENT, TEXT_ELEMENT, remSize);
+          let elementStyling = await parseCssFromElement(
+            MAIN_ELEMENT,
+            TEXT_ELEMENT,
+            IMAGE,
+            remSize
+          );
           imports = imports.concat(elementStyling.imports);
           css += `\n.${FIXED_NAME} {\n${elementStyling.css}}`;
 
@@ -161,7 +190,12 @@ async function parseElement(element, remSize) {
         throw new Error(`${errorProcessElementsWrongElementCount} ${element.name}!`);
       }
 
-      let elementStyling = await parseCssFromElement(MAIN_ELEMENT[0], TEXT_ELEMENT[0], remSize);
+      let elementStyling = await parseCssFromElement(
+        MAIN_ELEMENT[0],
+        TEXT_ELEMENT[0],
+        null,
+        remSize
+      );
       imports = imports.concat(elementStyling.imports);
       css += elementStyling.css;
     }

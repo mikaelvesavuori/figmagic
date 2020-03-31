@@ -11,11 +11,12 @@ import { errorParseCssFromElement } from '../../meta/errors.mjs';
  * @function
  * @param {object} element - Figma object representation of main layout element
  * @param {object} [textElement] - Figma object representation of the text field connected to the element/component
+ * @param {object} image - Optional image
  * @param {number} remSize - HTML body REM size
  * @returns {object} - Returns object with CSS and imports
  * @throws {errorParseCssFromElement} - Throws error if missing element or remSize arguments
  */
-export async function parseCssFromElement(element, textElement, remSize) {
+export async function parseCssFromElement(element, textElement, image = null, remSize) {
   if (!element || !remSize) throw new Error(errorParseCssFromElement);
 
   // Dynamic imports
@@ -35,6 +36,19 @@ export async function parseCssFromElement(element, textElement, remSize) {
   let imports = [];
 
   css += `width: 100%;\n`;
+
+  /*
+  // Background image
+  const BACKGROUND_IMAGE = (() => {
+    if (image) {
+      console.log(image.fills[0]);
+      const URL = `${image.fills[0].imageRef}`;
+      return `background-image: url("${URL}")`;
+    }
+  })();
+
+	console.log('BACKGROUND_IMAGE', BACKGROUND_IMAGE);
+	*/
 
   // Paddings for top and bottom
   const PADDING_Y = (() => {
@@ -107,25 +121,58 @@ export async function parseCssFromElement(element, textElement, remSize) {
     updatedImports.forEach(i => imports.push(i));
   }
 
+  /**
+   * Check for background color property
+   * Prioritize solid color, then linear gradient
+   * Expect only one value, and do so by only ever using the first fill match
+   */
   const BACKGROUND_COLOR = (() => {
     if (element.fills) {
-      if (element.fills[0]) {
-        if (element.fills[0].type === 'SOLID') {
-          const R = roundColorValue(element.fills[0].color.r);
-          const G = roundColorValue(element.fills[0].color.g);
-          const B = roundColorValue(element.fills[0].color.b);
-          const A = roundColorValue(element.fills[0].color.a, 1);
-          return `rgba(${R}, ${G}, ${B}, ${A})`;
-        }
+      // Check for solid fills
+      // A solid fill will always be #1 priority
+
+      const fills = element.fills.filter(f => f.type === 'SOLID');
+
+      if (fills.length > 0) {
+        const R = roundColorValue(fills[0].color.r);
+        const G = roundColorValue(fills[0].color.g);
+        const B = roundColorValue(fills[0].color.b);
+        const A = roundColorValue(fills[0].color.a, 1);
+        return `rgba(${R}, ${G}, ${B}, ${A})`;
+      }
+
+      // Check for linear gradient fills
+      // We will check for this only after checking that no solid fill color exists
+      const gradients = element.fills.filter(f => f.type === 'GRADIENT_LINEAR');
+
+      if (fills.length === 0 && gradients.length > 0) {
+        let str = `linear-gradient(`;
+
+        gradients[0].gradientStops.forEach((fill, index) => {
+          const R = roundColorValue(fill.color.r, 255);
+          const G = roundColorValue(fill.color.g, 255);
+          const B = roundColorValue(fill.color.b, 255);
+          const A = roundColorValue(fill.color.a, 255);
+          const POS = roundColorValue(fill.position, 100);
+
+          if (index > 0) str += ` `;
+          str += `rgba(${R}, ${G}, ${B}, ${A}) ${POS}%`;
+          if (index < gradients[0].gradientStops.length - 1) str += `,`;
+          if (index >= gradients[0].gradientStops.length - 1) str += `)`;
+        });
+
+        return str;
       }
     }
   })();
 
   if (BACKGROUND_COLOR) {
+    const PROPERTY = BACKGROUND_COLOR.includes('gradient') ? 'background' : 'background-color';
+
     const { updatedCss, updatedImports } = getTokenMatch(
       colors,
       'colors',
-      'background-color',
+      PROPERTY,
       BACKGROUND_COLOR,
       remSize
     );
