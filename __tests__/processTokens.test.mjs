@@ -103,7 +103,7 @@ test('It should return data when passed valid border width frame and valid setti
 
 test('It should return data when passed valid letter spacings frame and valid settings', () => {
   expect(processTokens(letterSpacingsFrame, 'letterspacings', defaultSettings)).toEqual(
-    expect.objectContaining({ regular: '0px', tight: '-2.40px', wide: '3.30px' })
+    expect.objectContaining({ regular: '0px', tight: '-1.20px', wide: '1.65px' })
   );
 });
 

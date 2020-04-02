@@ -20,6 +20,9 @@ import { errorGetTokenMatch, errorGetTokenMatchNoRemSize } from '../../meta/erro
 export function getTokenMatch(tokens, tokenFileName, property, expectedValue, remSize) {
   if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error(errorGetTokenMatch);
 
+  console.log('asdf');
+  console.log(tokens, tokenFileName, property, expectedValue, remSize);
+
   let updatedCss = ``;
   let updatedImports = [];
 

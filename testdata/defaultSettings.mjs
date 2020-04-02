@@ -6,5 +6,6 @@ export const defaultSettings = {
   outputFolderTokens: 'tokens',
   outputTokenFormat: 'mjs',
   spacingUnit: 'rem',
-  usePostscriptFontNames: false
+  usePostscriptFontNames: false,
+  remSize: 16
 };

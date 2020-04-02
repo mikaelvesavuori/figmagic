@@ -5,3 +5,7 @@ test('It should throw an error if no parameter is provided', () => {
     toPascalCase();
   }).toThrow();
 });
+
+test('It should properly pascal-case a string', () => {
+  expect(toPascalCase('Asdf Asdf asdF')).toBe('AsdfAsdfAsdf');
+});

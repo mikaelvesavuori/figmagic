@@ -1,5 +1,5 @@
 fileignoreconfig:
-- filename: testdata/imageRef.mjs
-  checksum: e93e034f9485c707c312a221248f3dd7c4b94068ea74103b4e520bd8b32b3db7
+- filename: __tests__/downloadFile.test.mjs
+  checksum: 2eb55cb131c601fcc58e4842a72e0d2fbb474e8960f213b2df3a2a428e1a318f
   ignore_detectors: []
 scopeconfig: []

@@ -4,7 +4,7 @@ import { letterSpacingsFrame } from '../testdata/letterSpacingsFrame.mjs';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupLetterSpacingTokens(letterSpacingsFrame)).toEqual(
-    expect.objectContaining({ regular: '0px', tight: '-2.40px', wide: '3.30px' })
+    expect.objectContaining({ regular: '0px', tight: '-1.20px', wide: '1.65px' })
   );
 });
 

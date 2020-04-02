@@ -15,7 +15,7 @@ import { errorConvertHexToRgba } from '../../meta/errors.mjs';
  * @throws {errorConvertHexToRgba} - Throws error if no R/G/B/A values provided
  */
 export function convertHexToRgba(r, g, b, a) {
-  if (!r && !g && !b && !a) throw new Error(errorConvertHexToRgba);
+  if (!r || !g || !b || !a) throw new Error(errorConvertHexToRgba);
 
   const R = roundColorValue(r, 255);
   const G = roundColorValue(g, 255);
