@@ -22,9 +22,7 @@ export async function downloadFile(url, folder, file) {
   const response = await fetch(url);
   if (response.status !== 200) return;
 
-  if (!fs.existsSync(folder)) {
-    fs.mkdirSync(folder);
-  }
+  if (!fs.existsSync(folder)) fs.mkdirSync(folder);
 
   return new Promise((resolve, reject) => {
     const PATH = `${folder}/${file}`;
