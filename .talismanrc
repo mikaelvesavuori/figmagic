@@ -1,5 +1,14 @@
 fileignoreconfig:
-- filename: __tests__/downloadFile.test.mjs
-  checksum: 2eb55cb131c601fcc58e4842a72e0d2fbb474e8960f213b2df3a2a428e1a318f
+- filename: testdata/cssLayoutElementGradient.mjs
+  checksum: 8a91c1e4cf88508ccc333c1933b2fa5c5bc75027ad0575a5805122e6a035457b
+  ignore_detectors: []
+- filename: testdata/elementsPage2.mjs
+  checksum: dc8d7fc42a73280ffcf5feae5d37581960b77d45853d7869880a8f2558ab24a4
+  ignore_detectors: []
+- filename: testdata/figma_20200402.json
+  checksum: 46be9f1c52fbc3ca593910b0551e53cf952b7959b3d624a854cc0572552bb589
+  ignore_detectors: []
+- filename: package-lock.json
+  checksum: 4fc0b7d5690bf58e2a60c3f0d74bac846b528f6db53002ddce1d7ca5beabf038
   ignore_detectors: []
 scopeconfig: []
