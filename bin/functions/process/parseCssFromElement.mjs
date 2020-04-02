@@ -45,7 +45,7 @@ export async function parseCssFromElement(element, textElement, image = null, re
       const URL = `${image.fills[0].imageRef}`;
       return `background-image: url("${URL}")`;
     }
-  })();
+	})();
 
 	console.log('BACKGROUND_IMAGE', BACKGROUND_IMAGE);
 	*/

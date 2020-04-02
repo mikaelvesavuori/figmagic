@@ -6,8 +6,6 @@ import { msgProcessElementsCreatingElement } from '../../meta/messages.mjs';
 
 import {
   errorProcessElements,
-  errorProcessElementsNoTextElement,
-  errorProcessElementsNoMainElement,
   errorProcessElementsWrongElementCount,
   errorProcessElementsWrongTextElementCount,
   errorParseElement
@@ -28,8 +26,6 @@ import {
  * @param {object} config - User configuration
  * @returns {array} - List of parsed components with CSS and all
  * @throws {errorProcessElements} - When missing required arguments
- * @throws {errorProcessElementsNoTextElement} - When missing TEXT_ELEMENT
- * @throws {errorProcessElementsNoMainElement} - When missing MAIN_ELEMENT
  * @throws {errorProcessElementsWrongElementCount} - When wrong element count
  * @throws {errorProcessElementsWrongTextElementCount} - When wrong text element count
  *
@@ -112,9 +108,7 @@ async function parseElement(element, remSize) {
           const MAIN_ELEMENT = el.children.filter(e => e.type === 'RECTANGLE')[0];
           const TEXT_ELEMENT = el.children.filter(e => e.type === 'TEXT')[0];
 
-          if (!MAIN_ELEMENT) throw new Error(errorProcessElementsNoMainElement);
-          if (!TEXT_ELEMENT) throw new Error(errorProcessElementsNoTextElement);
-
+          /*
           const IMAGE = (() => {
             let image = null;
 
@@ -125,26 +119,32 @@ async function parseElement(element, remSize) {
             });
 
             return image;
-          })();
-
-          const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
-          console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
+					})();
+					*/
 
           // Parse layout CSS from element
-          let elementStyling = await parseCssFromElement(
-            MAIN_ELEMENT,
-            TEXT_ELEMENT,
-            IMAGE,
-            remSize
-          );
-          imports = imports.concat(elementStyling.imports);
-          css += `\n.${FIXED_NAME} {\n${elementStyling.css}}`;
+          if (MAIN_ELEMENT) {
+            const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
+            console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
-          // Parse typography CSS from element
-          let typography = await parseTypographyStylingFromElement(TEXT_ELEMENT, remSize);
-          imports = imports.concat(typography.imports);
-          css += `\n.${FIXED_NAME} {\n${typography.css}}`;
-          text = TEXT_ELEMENT.characters;
+            let elementStyling = await parseCssFromElement(
+              MAIN_ELEMENT,
+              TEXT_ELEMENT,
+              null, //IMAGE
+              remSize
+            );
+            imports = imports.concat(elementStyling.imports);
+            css += `\n.${FIXED_NAME} {\n${elementStyling.css}}`;
+          }
+
+          // Parse typography CSS from element (requires layout element to exist)
+          if (MAIN_ELEMENT && TEXT_ELEMENT) {
+            const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
+            let typography = await parseTypographyStylingFromElement(TEXT_ELEMENT, remSize);
+            imports = imports.concat(typography.imports);
+            css += `\n.${FIXED_NAME} {\n${typography.css}}`;
+            text = TEXT_ELEMENT.characters;
+          }
         }
       })
     );
@@ -186,9 +186,8 @@ async function parseElement(element, remSize) {
     // This pattern is how we communicate that it's a layout element, e.g. input and not a H1
     const MAIN_ELEMENT = element.children.filter(e => e.name === element.name);
     if (MAIN_ELEMENT[0]) {
-      if (MAIN_ELEMENT.length !== 1) {
+      if (MAIN_ELEMENT.length !== 1)
         throw new Error(`${errorProcessElementsWrongElementCount} ${element.name}!`);
-      }
 
       let elementStyling = await parseCssFromElement(
         MAIN_ELEMENT[0],

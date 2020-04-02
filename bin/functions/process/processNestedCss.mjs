@@ -57,6 +57,7 @@ function cleanArrays(classNames, classContent) {
   let arrays = [];
 
   // Loop all couples: Since all styling comes first—then typography—we need to match them together
+  // TODO: This section is what needs to be updated in order to allow there to be zero (or more than 1) text or layout elements (since the below assumes pairs of layout+text)
   for (let i = 0; i <= totalClassCount / 2 - 1; i++) {
     // Styling
     let arrA = classContent[i].split(/\n/gi);
