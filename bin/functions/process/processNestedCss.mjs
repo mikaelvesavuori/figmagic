@@ -24,7 +24,7 @@ export function processNestedCss(css) {
   let classContent = css.split(/\..* {/gi);
 
   // Remove first to keep same lengths since it can sometimes be just a space
-  if (classContent[0] === ' \n') classContent.shift();
+  if (classContent[0] === ' \n' || classContent[0] === '\n') classContent.shift();
 
   const ARRAYS = cleanArrays(classNames, classContent);
 

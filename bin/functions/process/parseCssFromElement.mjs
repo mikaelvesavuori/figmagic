@@ -17,7 +17,6 @@ import { errorParseCssFromElement } from '../../meta/errors.mjs';
  * @throws {errorParseCssFromElement} - Throws error if missing element or remSize arguments
  */
 export async function parseCssFromElement(element, textElement, image = null, remSize) {
-  console.log('textElement', textElement);
   if (!element || !remSize) throw new Error(errorParseCssFromElement);
 
   // Dynamic imports

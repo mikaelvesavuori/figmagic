@@ -1,8 +1,6 @@
 import { processElements } from '../bin/functions/process/processElements';
 
 import { elementsPage } from '../testdata/elementsPage.mjs';
-import { elementsPage2 } from '../testdata/elementsPage2.mjs';
-import { groupElements } from '../testdata/groupElements.mjs';
 import { components } from '../testdata/components.mjs';
 
 const config = {
@@ -44,19 +42,21 @@ test('It should throw an error if no parameter is provided', async () => {
 test('It should successfully return a valid element', async () => {
   await expect(processElements(elementsPage, components, config)).resolves.toMatchObject([
     {
-      css: ' ',
+      css: ` color: \${colors.black};
+font-size: \${fontSizes.sub};
+font-family: \${fontFamilies.regular};
+font-weight: \${fontWeights.regular};
+line-height: \${lineHeights.xs};
+text-align: left;
+`,
       description: '\n# Sub\n\nTiny text snippets.',
       element: 'sub',
       extraProps: '',
-      html: '<sub></sub>',
+      html: '<sub>Microcopy</sub>',
       id: '2875:22',
-      imports: [],
+      imports: ['colors', 'fontSizes', 'fontFamilies', 'fontWeights', 'lineHeights'],
       name: 'Microcopy',
-      text: ''
+      text: 'Microcopy'
     }
   ]);
-});
-
-test('It should successfully asdfa asdafs', async () => {
-  await expect(processElements(elementsPage2, components, config)).resolves.toMatchObject([]);
 });

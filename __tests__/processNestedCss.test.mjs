@@ -1,15 +1,5 @@
 import { processNestedCss } from '../bin/functions/process/processNestedCss';
 
-test('It should correctly process CSS that has same appearance as when it hits processElements.mjs', () => {
-  expect(processNestedCss(css)).toBe(expected);
-});
-
-test('It should throw an error if no parameter is provided', () => {
-  expect(() => {
-    processNestedCss();
-  }).toThrow();
-});
-
 const css = `
 .ButtonError {
 width: 100%;
@@ -88,16 +78,26 @@ letter-spacing: \${letterSpacings.wide};
 text-align: center;
 text-transform: uppercase;
 
-.ButtonError {
+&.ButtonError {
   background-color: \${colors.red};
 }
 
-.ButtonWarning {
+&.ButtonWarning {
   background-color: \${colors.orange};
 }
 
-.ButtonRegular {
+&.ButtonRegular {
   background-color: \${colors.blue1};
 }
 
 `;
+
+test('It should throw an error if no parameter is provided', () => {
+  expect(() => {
+    processNestedCss();
+  }).toThrow();
+});
+
+test('It should correctly process CSS that has valid input', () => {
+  expect(processNestedCss(css)).toBe(expected);
+});
