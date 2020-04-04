@@ -34,8 +34,8 @@ jobs:
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
-      - run: \[ -d figma \]
-      - run: \[ -f figma/figma.json \]
+      - run: \[ -d .figmagic \]
+      - run: \[ -f .figmagic/figma.json \]
         env:
           CI: true
 
