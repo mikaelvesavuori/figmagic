@@ -144,11 +144,12 @@ Below is a complete set of what you can configure, together with the defaults.
   "debugMode": false,
   "fontUnit": "rem",
   "outputFileName": "figma.json",
-  "outputFolderBaseFile": "figma",
+  "outputFolderBaseFile": ".figmagic",
   "outputFolderTokens": "tokens",
   "outputTokenFormat": "mjs",
   "outputFolderGraphics": null,
   "outputFormatGraphics": null,
+  "outputFolderElements": "elements",
   "recompileLocal": null,
   "spacingUnit": "rem",
   "syncGraphics": null,
@@ -223,6 +224,20 @@ Default is `figma`.
 `figmagic --outputFolderTokens [folder]` or `figmagic -tokens [folder]`
 
 Default is `tokens`.
+
+#### Set elements output folder
+
+`figmagic --outputFolderElements [folder]` or `figmagic -elements [folder]`
+
+Default is `elements`.
+
+<!--
+#### Set components output folder
+
+`figmagic --outputFolderComponents [folder]` or `figmagic -components [folder]`
+
+Default is `components`.
+-->
 
 #### Set output file name
 

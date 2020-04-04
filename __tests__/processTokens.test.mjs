@@ -1,6 +1,6 @@
-import { processTokens } from '../bin/functions/processTokens';
+import { processTokens } from '../bin/functions/process/processTokens';
 
-import { defaultSettings } from '../testdata/defaultSettings.mjs';
+import { defaultConfig } from '../testdata/defaultConfig.mjs';
 import { colorFrame } from '../testdata/colorFrame.mjs';
 import { spacingFrame } from '../testdata/spacingFrame.mjs';
 import { fontFrame } from '../testdata/fontFrame.mjs';
@@ -21,7 +21,7 @@ test('It should throw an error if no parameter is provided', () => {
 });
 
 test('It should return data when passed valid color frame and valid settings', () => {
-  expect(processTokens(colorFrame, 'color', defaultSettings)).toEqual(
+  expect(processTokens(colorFrame, 'color', defaultConfig)).toEqual(
     expect.objectContaining({
       black: 'rgba(1, 0, 45, 1)',
       blue1: 'rgba(47, 128, 237, 1)',
@@ -45,7 +45,7 @@ test('It should return data when passed valid color frame and valid settings', (
 });
 
 test('It should return data when passed valid spacing frame and valid settings', () => {
-  expect(processTokens(spacingFrame, 'spacing', defaultSettings)).toEqual(
+  expect(processTokens(spacingFrame, 'spacing', defaultConfig)).toEqual(
     expect.objectContaining({
       huge: '5rem',
       large: '4.375rem',
@@ -57,7 +57,7 @@ test('It should return data when passed valid spacing frame and valid settings',
 });
 
 test('It should return data when passed valid font families frame and valid settings', () => {
-  expect(processTokens(fontFrame, 'fontfamilies', defaultSettings)).toEqual(
+  expect(processTokens(fontFrame, 'fontfamilies', defaultConfig)).toEqual(
     expect.objectContaining({
       light: 'HelveticaNeue',
       medium: 'HelveticaNeue',
@@ -67,7 +67,7 @@ test('It should return data when passed valid font families frame and valid sett
 });
 
 test('It should return data when passed valid font size frame and valid settings', () => {
-  expect(processTokens(fontSizeFrame, 'fontsizes', defaultSettings)).toEqual(
+  expect(processTokens(fontSizeFrame, 'fontsizes', defaultConfig)).toEqual(
     expect.objectContaining({
       h1: '3rem',
       h2: '2.5rem',
@@ -82,13 +82,13 @@ test('It should return data when passed valid font size frame and valid settings
 });
 
 test('It should return data when passed valid font weights frame and valid settings', () => {
-  expect(processTokens(fontWeightFrame, 'fontweights', defaultSettings)).toEqual(
+  expect(processTokens(fontWeightFrame, 'fontweights', defaultConfig)).toEqual(
     expect.objectContaining({ light: 300, medium: 500, regular: 400 })
   );
 });
 
 test('It should return data when passed valid line heights frame and valid settings', () => {
-  expect(processTokens(lineHeightFrame, 'lineheights', defaultSettings)).toEqual(
+  expect(processTokens(lineHeightFrame, 'lineheights', defaultConfig)).toEqual(
     expect.objectContaining({ l: '1.99', m: '1.76', s: '1.46', xs: '1.00' })
   );
 });
@@ -96,19 +96,19 @@ test('It should return data when passed valid line heights frame and valid setti
 //
 
 test('It should return data when passed valid border width frame and valid settings', () => {
-  expect(processTokens(borderWidthsFrame, 'borderwidths', defaultSettings)).toEqual(
+  expect(processTokens(borderWidthsFrame, 'borderwidths', defaultConfig)).toEqual(
     expect.objectContaining({ chunky: '8px', fat: '4px', hairline: '1px', regular: '2px' })
   );
 });
 
 test('It should return data when passed valid letter spacings frame and valid settings', () => {
-  expect(processTokens(letterSpacingsFrame, 'letterspacings', defaultSettings)).toEqual(
-    expect.objectContaining({ regular: '0px', tight: '-2.40px', wide: '3.30px' })
+  expect(processTokens(letterSpacingsFrame, 'letterspacings', defaultConfig)).toEqual(
+    expect.objectContaining({ regular: '0px', tight: '-1.20px', wide: '1.65px' })
   );
 });
 
 test('It should return data when passed valid media queries frame and valid settings', () => {
-  expect(processTokens(mediaQueriesFrame, 'mediaqueries', defaultSettings)).toEqual(
+  expect(processTokens(mediaQueriesFrame, 'mediaqueries', defaultConfig)).toEqual(
     expect.objectContaining({
       desktoplg: '1440px',
       desktopmd: '1180px',
@@ -124,13 +124,13 @@ test('It should return data when passed valid media queries frame and valid sett
 });
 
 test('It should return data when passed valid radii frame and valid settings', () => {
-  expect(processTokens(radiiFrame, 'radii', defaultSettings)).toEqual(
+  expect(processTokens(radiiFrame, 'radii', defaultConfig)).toEqual(
     expect.objectContaining({ circle: '100px', hard: '0px', rounded: '4px', soft: '8px' })
   );
 });
 
 test('It should return data when passed valid shadows frame and valid settings', () => {
-  expect(processTokens(shadowsFrame, 'shadows', defaultSettings)).toEqual(
+  expect(processTokens(shadowsFrame, 'shadows', defaultConfig)).toEqual(
     expect.objectContaining({
       deep: '3px 3px 3px rgba(196, 196, 196, 1)',
       medium: '0px 0px 5px rgba(0, 0, 0, 1)',
@@ -140,7 +140,7 @@ test('It should return data when passed valid shadows frame and valid settings',
 });
 
 test('It should return data when passed valid Z index frame and valid settings', () => {
-  expect(processTokens(zIndicesFrame, 'zindices', defaultSettings)).toEqual(
+  expect(processTokens(zIndicesFrame, 'zindices', defaultConfig)).toEqual(
     expect.objectContaining({ focus: '10', high: '1', higher: '2', regular: '0', top: '100' })
   );
 });

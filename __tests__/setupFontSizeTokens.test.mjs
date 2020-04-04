@@ -1,18 +1,18 @@
-import { setupFontSizeTokens } from '../bin/functions/setupFontSizeTokens';
+import { setupFontSizeTokens } from '../bin/functions/tokens/setupFontSizeTokens';
 
 import { fontSizeFrame } from '../testdata/fontSizeFrame.mjs';
 
 test('It should return a complete object when passing in valid input', () => {
-  expect(setupFontSizeTokens(fontSizeFrame)).toEqual(
+  expect(setupFontSizeTokens(fontSizeFrame, 'rem', 16)).toEqual(
     expect.objectContaining({
-      h1: NaN,
-      h2: NaN,
-      h3: NaN,
-      h4: NaN,
-      l: NaN,
-      m: NaN,
-      microcopy: NaN,
-      s: NaN
+      h1: '3rem',
+      h2: '2.5rem',
+      h3: '2rem',
+      h4: '1.25rem',
+      l: '1.25rem',
+      m: '1rem',
+      microcopy: '0.625rem',
+      s: '0.75rem'
     })
   );
 });

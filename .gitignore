@@ -1,12 +1,14 @@
+/.figmagic
 /figma
 /grid
 /tokens
 /graphics
-/specs
+/elements
+/components
+/stories
 /jest-coverage
 **/jest-coverage
 /__testing
-__test*
 
 yarn.lock
 

@@ -1,4 +1,4 @@
-import { setupShadowTokens } from '../bin/functions/setupShadowTokens';
+import { setupShadowTokens } from '../bin/functions/tokens/setupShadowTokens';
 
 import { shadowsFrame } from '../testdata/shadowsFrame.mjs';
 

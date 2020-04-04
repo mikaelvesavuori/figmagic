@@ -1,7 +1,11 @@
 {
   "env": {
     "test": {
-      "plugins": [["@babel/plugin-transform-modules-commonjs", { "spec": true }]]
+      "plugins": [
+        "dynamic-import-node",
+        "@babel/plugin-syntax-dynamic-import",
+        ["@babel/plugin-transform-modules-commonjs", { "spec": true }]
+      ]
     }
   }
 }

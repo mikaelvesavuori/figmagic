@@ -4,22 +4,28 @@
 import trash from 'trash';
 import dotenv from 'dotenv';
 
-import { colors } from './bin/meta/colors.mjs';
-import { loadFile } from './bin/functions/loadFile.mjs';
-import { createConfiguration } from './bin/functions/createConfiguration.mjs';
-import { createFolder } from './bin/functions/createFolder.mjs';
-import { getFromApi } from './bin/functions/getFromApi.mjs';
-import { createPage } from './bin/functions/createPage.mjs';
-import { getGraphics } from './bin/functions/getGraphics.mjs';
-import { writeTokens } from './bin/functions/writeTokens.mjs';
-import { writeFile } from './bin/functions/writeFile.mjs';
+import { createConfiguration } from './bin/functions/config/createConfiguration.mjs';
 
+import { loadFile } from './bin/functions/filesystem/loadFile.mjs';
+import { createFolder } from './bin/functions/filesystem/createFolder.mjs';
+import { getFromApi } from './bin/functions/filesystem/getFromApi.mjs';
+import { writeTokens } from './bin/functions/filesystem/writeTokens.mjs';
+import { writeFile } from './bin/functions/filesystem/writeFile.mjs';
+import { writeElements } from './bin/functions/filesystem/writeElements.mjs';
+import { writeGraphics } from './bin/functions/filesystem/writeGraphics.mjs';
+
+import { createPage } from './bin/functions/process/createPage.mjs';
+import { processGraphics } from './bin/functions/process/processGraphics.mjs';
+import { processElements } from './bin/functions/process/processElements.mjs';
+
+import { colors } from './bin/meta/colors.mjs';
 import { errorGetData } from './bin/meta/errors.mjs';
 import {
   msgSetDataFromLocal,
   msgSetDataFromApi,
   msgWriteBaseFile,
-  msgGetImagesFromApi,
+  msgSyncGraphics,
+  msgSyncElements,
   msgWriteTokens,
   msgJobComplete
 } from './bin/meta/messages.mjs';
@@ -35,9 +41,12 @@ async function figmagic() {
     url,
     recompileLocal,
     syncGraphics,
+    syncElements,
     outputFolderBaseFile,
     outputFolderTokens,
     outputFolderGraphics,
+    outputFolderElements,
+    //outputFolderComponents,
     outputFileName
   } = CONFIG;
 
@@ -51,11 +60,11 @@ async function figmagic() {
         const _DATA = await getFromApi(token, url);
 
         // If there's no data or something went funky, eject
-        if (!_DATA || _DATA.status === 403) throw new Error(`${colors.FgRed}${errorGetData}`);
+        if (!_DATA || _DATA.status === 403) throw new Error(errorGetData);
 
         return _DATA;
       } catch (error) {
-        throw new Error(`${colors.FgRed}${error}`);
+        throw new Error(error);
       }
     }
     // Recompile: We want to use the existing Figma JSON file
@@ -65,48 +74,50 @@ async function figmagic() {
       try {
         return await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
       } catch (error) {
-        throw new Error(`${colors.FgRed}${error}`);
+        throw new Error(error);
       }
     }
   })().catch(error => {
-    throw new Error(`${colors.FgRed}${error}`);
+    throw new Error(error);
   });
 
-  // If this is a fresh pull from the API, trash the old folders
+  // Write base Figma JSON if we are pulling from the web
   if (!recompileLocal) {
-    await trash([`./${outputFolderTokens}`]);
-    await trash([`./${outputFolderBaseFile}`]);
-
-    if (syncGraphics) {
-      await trash([`./${outputFolderGraphics}`]);
-    }
-  }
-
-  // Create new folders if they don't exist
-  await createFolder(outputFolderTokens);
-  await createFolder(outputFolderBaseFile);
-
-  if (syncGraphics) {
-    await createFolder(outputFolderGraphics);
-  }
-
-  if (!recompileLocal) {
-    // Write base Figma JSON if we are pulling from the web
     console.log(msgWriteBaseFile);
-    await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName);
-  }
-
-  // Syncing graphics
-  if (syncGraphics) {
-    console.log(msgGetImagesFromApi);
-    const GRAPHICS_PAGE = createPage(DATA.document.children, 'Graphics');
-    await getGraphics(GRAPHICS_PAGE.children, CONFIG);
+    const DATA = await getFromApi(token, url);
+    await trash([`./${outputFolderBaseFile}`]);
+    await createFolder(outputFolderBaseFile);
+    await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName, 'raw');
   }
 
   // Process tokens
   console.log(msgWriteTokens);
   const TOKENS_PAGE = createPage(DATA.document.children, 'Design Tokens');
+  await trash([`./${outputFolderTokens}`]);
+  await createFolder(outputFolderTokens);
   await writeTokens(TOKENS_PAGE.children, CONFIG);
+
+  const COMPONENTS = DATA.components;
+  //const STYLES = DATA.styles;
+
+  // Syncing elements
+  if (syncElements) {
+    console.log(msgSyncElements);
+    const ELEMENTS_PAGE = createPage(DATA.document.children, 'Elements');
+    const elements = await processElements(ELEMENTS_PAGE.children, COMPONENTS, CONFIG);
+    await createFolder(outputFolderElements);
+    await writeElements(elements, CONFIG);
+  }
+
+  // Syncing graphics
+  if (syncGraphics) {
+    console.log(msgSyncGraphics);
+    const GRAPHICS_PAGE = createPage(DATA.document.children, 'Graphics');
+    await trash([`./${outputFolderGraphics}`]);
+    await createFolder(outputFolderGraphics);
+    const FILE_LIST = await processGraphics(GRAPHICS_PAGE.children, CONFIG);
+    await writeGraphics(FILE_LIST, CONFIG);
+  }
 
   // All went well
   console.log(msgJobComplete);

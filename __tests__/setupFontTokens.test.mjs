@@ -1,4 +1,4 @@
-import { setupFontTokens } from '../bin/functions/setupFontTokens';
+import { setupFontTokens } from '../bin/functions/tokens/setupFontTokens';
 
 import { fontFrame } from '../testdata/fontFrame.mjs';
 

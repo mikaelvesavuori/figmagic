@@ -1,4 +1,4 @@
-import { createConfiguration } from '../bin/functions/createConfiguration';
+import { createConfiguration } from '../bin/functions/config/createConfiguration';
 
 test('It should return a valid merged configuration if given a path to an RC file and a set of CLI arguments', async () => {
   const USER_CONFIG_PATH = `${process.cwd()}/testdata/figmagicrc`;
@@ -9,10 +9,31 @@ test('It should return a valid merged configuration if given a path to an RC fil
       debugMode: false,
       fontUnit: 'rem',
       outputFileName: 'figma.json',
-      outputFolderBaseFile: 'figma',
+      outputFolderBaseFile: '.figmagic',
+      outputFolderElements: 'elements',
+      outputFolderGraphics: 'graphics',
       outputFolderTokens: 'tokens',
+      outputFormatGraphics: 'svg',
+      outputScaleGraphics: 1,
       outputTokenFormat: 'mjs',
+      recompileLocal: false,
+      remSize: 16,
+      skipFileGeneration: {
+        css: false,
+        description: false,
+        forceUpdate: true,
+        react: false,
+        storybook: false,
+        styled: false
+      },
       spacingUnit: 'rem',
+      syncElements: false,
+      syncGraphics: false,
+      templates: {
+        templatePathReact: 'templates/react.jsx',
+        templatePathStorybook: 'templates/story.js',
+        templatePathStyled: 'templates/styled.jsx'
+      },
       usePostscriptFontNames: false
     })
   );

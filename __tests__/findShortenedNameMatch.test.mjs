@@ -1,4 +1,4 @@
-import { findShortenedNameMatch } from '../bin/functions/findShortenedNameMatch';
+import { findShortenedNameMatch } from '../bin/functions/helpers/findShortenedNameMatch';
 
 test('It should throw error when running without arguments', () => {
   expect(() => {

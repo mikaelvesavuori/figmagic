@@ -1,6 +1,6 @@
-import { parseCliArgs } from '../bin/functions/parseCliArgs';
+import { parseCliArgs } from '../bin/functions/config/parseCliArgs';
 
-import { config } from '../bin/meta/config.mjs';
+import { defaultConfig } from '../bin/meta/config.mjs';
 
 test('It should throw an error if no arguments array is passed', () => {
   expect(() => {
@@ -15,6 +15,147 @@ test('It should return true for debugMode if passing "--debug"', () => {
   expect(parseCliArgs(['--debug'])).toEqual(
     expect.objectContaining({
       debugMode: true
+    })
+  );
+});
+
+/*
+ * Recompile only local files
+ */
+test('It should return true for recompileLocal if passing "--recompileLocal"', () => {
+  expect(parseCliArgs(['--recompileLocal'])).toEqual(
+    expect.objectContaining({
+      recompileLocal: true
+    })
+  );
+});
+
+/*
+ * Sync graphics
+ */
+test('It should return true for syncGraphics if passing "--syncGraphics"', () => {
+  expect(parseCliArgs(['--syncGraphics'])).toEqual(
+    expect.objectContaining({
+      syncGraphics: true
+    })
+  );
+});
+
+/*
+ * Sync elements
+ */
+test('It should return true for syncElements if passing "--syncElements"', () => {
+  expect(parseCliArgs(['--syncElements'])).toEqual(
+    expect.objectContaining({
+      syncElements: true
+    })
+  );
+});
+
+/*
+ * Skip file generation: React
+ */
+test('It should return true for skipFileGeneration.react if passing "--skipReact"', () => {
+  expect(parseCliArgs(['--skipReact'])).toEqual(
+    expect.objectContaining({
+      skipFileGeneration: {
+        css: false,
+        description: false,
+        forceUpdate: true,
+        react: true,
+        storybook: false,
+        styled: false
+      }
+    })
+  );
+});
+
+/*
+ * Skip file generation: Styled Components
+ */
+test('It should return true for skipFileGeneration.styled if passing "--skipStyled"', () => {
+  expect(parseCliArgs(['--skipStyled'])).toEqual(
+    expect.objectContaining({
+      skipFileGeneration: {
+        css: false,
+        description: false,
+        forceUpdate: true,
+        react: false,
+        storybook: false,
+        styled: true
+      }
+    })
+  );
+});
+
+/*
+ * Skip file generation: CSS
+ */
+test('It should return true for skipFileGeneration.css if passing "--skipCss"', () => {
+  expect(parseCliArgs(['--skipCss'])).toEqual(
+    expect.objectContaining({
+      skipFileGeneration: {
+        css: true,
+        description: false,
+        forceUpdate: true,
+        react: false,
+        storybook: false,
+        styled: false
+      }
+    })
+  );
+});
+
+/*
+ * Skip file generation: Storybook
+ */
+test('It should return true for skipFileGeneration.storybook if passing "--skipStorybook"', () => {
+  expect(parseCliArgs(['--skipStorybook'])).toEqual(
+    expect.objectContaining({
+      skipFileGeneration: {
+        css: false,
+        description: false,
+        forceUpdate: true,
+        react: false,
+        storybook: true,
+        styled: false
+      }
+    })
+  );
+});
+
+/*
+ * Skip file generation: Markdown description
+ */
+test('It should return true for skipFileGeneration.styled if passing "--skipDescription"', () => {
+  expect(parseCliArgs(['--skipDescription'])).toEqual(
+    expect.objectContaining({
+      skipFileGeneration: {
+        css: false,
+        description: true,
+        forceUpdate: true,
+        react: false,
+        storybook: false,
+        styled: false
+      }
+    })
+  );
+});
+
+/*
+ * Force update
+ */
+test('It should return true for skipFileGeneration.forceUpdate if passing "--forceUpdate"', () => {
+  expect(parseCliArgs(['--forceUpdate'])).toEqual(
+    expect.objectContaining({
+      skipFileGeneration: {
+        css: false,
+        description: false,
+        forceUpdate: true,
+        react: false,
+        storybook: false,
+        styled: false
+      }
     })
   );
 });
@@ -41,7 +182,7 @@ test('It should return "js" for outputTokenFormat if passing "js" (short-hand)',
 test('It should return default value for outputTokenFormat if passing invalid value (long-hand)', () => {
   expect(parseCliArgs(['--outputTokenFormat', 'asdf'])).toEqual(
     expect.objectContaining({
-      outputTokenFormat: config.defaultOutputTokenFormat
+      outputTokenFormat: defaultConfig.outputTokenFormat
     })
   );
 });
@@ -68,7 +209,7 @@ test('It should return "em" for fontUnit if passing "em" (short-hand)', () => {
 test('It should return default value for fontUnit if passing invalid value (long-hand)', () => {
   expect(parseCliArgs(['--fontUnit', 'asdf'])).toEqual(
     expect.objectContaining({
-      fontUnit: config.defaultFontUnit
+      fontUnit: defaultConfig.fontUnit
     })
   );
 });
@@ -95,7 +236,7 @@ test('It should return "em" for outputTokenFormat if passing "em" (short-hand)',
 test('It should return default value for spacingUnit if passing invalid value', () => {
   expect(parseCliArgs(['--spacingUnit', 'asdf'])).toEqual(
     expect.objectContaining({
-      spacingUnit: config.defaultSpacingUnit
+      spacingUnit: defaultConfig.spacingUnit
     })
   );
 });
@@ -141,7 +282,7 @@ test('It should return "abc123" for url if passing "abc123" (short-hand)', () =>
 /*
  * Output folder base file
  */
-test('It should return "figma" for outputFolderBaseFile if passing "figma" (long-hand)', () => {
+test('It should return ".figma" for outputFolderBaseFile if passing "figma" (long-hand)', () => {
   expect(parseCliArgs(['--outputFolderBaseFile', 'figma'])).toEqual(
     expect.objectContaining({
       outputFolderBaseFile: 'figma'
@@ -160,7 +301,7 @@ test('It should return "figma" for outputFolderBaseFile if passing "figma" (shor
 /*
  * Output folder tokens
  */
-test('It should return "tokens" for outputFolderTokens if passing "tokens" (long-hand)', () => {
+test('It should return "tokens" for outputFolderTokens if passing "--outputFolderTokens" (long-hand)', () => {
   expect(parseCliArgs(['--outputFolderTokens', 'tokens'])).toEqual(
     expect.objectContaining({
       outputFolderTokens: 'tokens'
@@ -168,7 +309,7 @@ test('It should return "tokens" for outputFolderTokens if passing "tokens" (long
   );
 });
 
-test('It should return "tokens" for outputFolderTokens if passing "tokens" (short-hand)', () => {
+test('It should return "tokens" for outputFolderTokens if passing "-tokens" (short-hand)', () => {
   expect(parseCliArgs(['-tokens', 'tokens'])).toEqual(
     expect.objectContaining({
       outputFolderTokens: 'tokens'
@@ -177,9 +318,28 @@ test('It should return "tokens" for outputFolderTokens if passing "tokens" (shor
 });
 
 /*
+ * Output folder elements
+ */
+test('It should return "elements" for outputFolderElements if passing "--outputFolderElements" (long-hand)', () => {
+  expect(parseCliArgs(['--outputFolderElements', 'elements'])).toEqual(
+    expect.objectContaining({
+      outputFolderElements: 'elements'
+    })
+  );
+});
+
+test('It should return "elements" for outputFolderElements if passing "-elements" (short-hand)', () => {
+  expect(parseCliArgs(['-elements', 'elements'])).toEqual(
+    expect.objectContaining({
+      outputFolderElements: 'elements'
+    })
+  );
+});
+
+/*
  * Output file name
  */
-test('It should return "tokens" for outputFileName if passing "figma.json" (long-hand)', () => {
+test('It should return "tokens" for outputFileName if passing "--outputFileName figma.json" (long-hand)', () => {
   expect(parseCliArgs(['--outputFileName', 'figma.json'])).toEqual(
     expect.objectContaining({
       outputFileName: 'figma.json'
@@ -187,7 +347,7 @@ test('It should return "tokens" for outputFileName if passing "figma.json" (long
   );
 });
 
-test('It should return "tokens" for outputFileName if passing "figma.json" (short-hand)', () => {
+test('It should return "tokens" for outputFileName if passing "-file figma.json" (short-hand)', () => {
   expect(parseCliArgs(['-file', 'figma.json'])).toEqual(
     expect.objectContaining({
       outputFileName: 'figma.json'
@@ -210,6 +370,46 @@ test('It should return true for usePostscriptFontNames if passing true (short-ha
   expect(parseCliArgs(['-ps', true])).toEqual(
     expect.objectContaining({
       usePostscriptFontNames: true
+    })
+  );
+});
+
+/*
+ * Template paths
+ */
+
+test('It should return template path for React, if provided', () => {
+  expect(parseCliArgs(['--templatePathReact', 'templates/react.jsx'])).toEqual(
+    expect.objectContaining({
+      templates: {
+        templatePathReact: 'templates/react.jsx',
+        templatePathStyled: 'templates/styled.jsx',
+        templatePathStorybook: 'templates/story.js'
+      }
+    })
+  );
+});
+
+test('It should return template path for Styled Components, if provided', () => {
+  expect(parseCliArgs(['--templatePathStyled', 'templates/styled.jsx'])).toEqual(
+    expect.objectContaining({
+      templates: {
+        templatePathReact: 'templates/react.jsx',
+        templatePathStyled: 'templates/styled.jsx',
+        templatePathStorybook: 'templates/story.js'
+      }
+    })
+  );
+});
+
+test('It should return template path for Storybook, if provided', () => {
+  expect(parseCliArgs(['--templatePathStorybook', 'templates/story.js'])).toEqual(
+    expect.objectContaining({
+      templates: {
+        templatePathReact: 'templates/react.jsx',
+        templatePathStyled: 'templates/styled.jsx',
+        templatePathStorybook: 'templates/story.js'
+      }
     })
   );
 });

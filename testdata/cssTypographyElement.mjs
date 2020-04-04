@@ -1,0 +1,30 @@
+export const cssTypographyElement = {
+  id: '2859:3',
+  name: 'Text',
+  type: 'TEXT',
+  blendMode: 'PASS_THROUGH',
+  absoluteBoundingBox: { x: 400, y: 541, width: 320, height: 48 },
+  constraints: { vertical: 'SCALE', horizontal: 'SCALE' },
+  fills: [{ blendMode: 'NORMAL', type: 'SOLID', color: [Object] }],
+  strokes: [],
+  strokeWeight: 1,
+  strokeAlign: 'OUTSIDE',
+  effects: [],
+  characters: 'Button Text',
+  style: {
+    fontFamily: 'Helvetica Neue',
+    fontPostScriptName: 'HelveticaNeue-Bold',
+    fontWeight: 700,
+    paragraphSpacing: 1,
+    textCase: 'UPPER',
+    fontSize: 16,
+    textAlignHorizontal: 'CENTER',
+    textAlignVertical: 'CENTER',
+    letterSpacing: 0.8,
+    lineHeightPx: 18.75,
+    lineHeightPercent: 100,
+    lineHeightUnit: 'INTRINSIC_%'
+  },
+  characterStyleOverrides: [],
+  styleOverrideTable: {}
+};

@@ -1,6 +1,8 @@
-import { writeTokens } from '../bin/functions/writeTokens';
+import trash from 'trash';
 
-import { defaultSettings } from '../testdata/defaultSettings.mjs';
+import { writeTokens } from '../bin/functions/filesystem/writeTokens';
+
+import { defaultConfig } from '../testdata/defaultConfig.mjs';
 import { colorFrame } from '../testdata/colorFrame.mjs';
 import { spacingFrame } from '../testdata/spacingFrame.mjs';
 import { fontFrame } from '../testdata/fontFrame.mjs';
@@ -13,6 +15,24 @@ import { mediaQueriesFrame } from '../testdata/mediaQueriesFrame.mjs';
 import { radiiFrame } from '../testdata/radiiFrame.mjs';
 import { shadowsFrame } from '../testdata/shadowsFrame.mjs';
 import { zIndicesFrame } from '../testdata/zIndicesFrame.mjs';
+
+// Set temp folder
+const TEMP_FOLDER = `__tokens__`;
+defaultConfig.outputFolderTokens = TEMP_FOLDER;
+
+test('It should throw an error if no parameter is provided', async () => {
+  await expect(writeTokens()).rejects.toThrow();
+});
+
+test('It should pass the zero-length token check', async () => {
+  const TOKENS = [{}, {}];
+  await expect(writeTokens(TOKENS)).rejects.toThrow();
+});
+
+test('It should fail the zero-length token check', async () => {
+  const TOKENS = [];
+  await expect(writeTokens(TOKENS)).rejects.toThrow();
+});
 
 test('It should return tokens if passed a valid set of frame and settings', async () => {
   const TOKENS = [
@@ -30,22 +50,9 @@ test('It should return tokens if passed a valid set of frame and settings', asyn
     zIndicesFrame
   ];
 
-  console.log('defaultSettings', defaultSettings);
-  await expect(writeTokens(TOKENS, defaultSettings)).resolves.toBe(true);
-});
-
-test('It should throw an error if no parameter is provided', async () => {
-  await expect(writeTokens()).rejects.toThrow();
-});
-
-test('It should pass the zero-length token check', async () => {
-  const TOKENS = [{}, {}];
-  await expect(writeTokens(TOKENS)).rejects.toThrow();
-});
-
-test('It should fail the zero-length token check', async () => {
-  const TOKENS = [];
-  await expect(writeTokens(TOKENS)).rejects.toThrow();
+  console.log('defaultConfig', defaultConfig);
+  await expect(writeTokens(TOKENS, defaultConfig)).resolves.toBe(true);
+  await trash(TEMP_FOLDER);
 });
 
 /*
