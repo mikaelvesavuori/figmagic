@@ -10,11 +10,13 @@ import { errorWriteGraphics } from '../../meta/errors.mjs';
  * @function
  * @param {array} fileList - List of objects with file information
  * @param {object} config - Configuration object
- * @returns {promise} - Return promise
+ * @returns {boolean} - Return true if finished
  * @throws {errorWriteGraphics} - Throws error if missing fileList or config
  */
 export async function writeGraphics(fileList, config) {
   if (!fileList || !config) throw new Error(errorWriteGraphics);
+
+  console.log('fileList', fileList);
 
   const { outputFolderGraphics } = config;
 
@@ -23,4 +25,6 @@ export async function writeGraphics(fileList, config) {
       await downloadFile(file.url, outputFolderGraphics, file.file);
     })
   );
+
+  return true;
 }

@@ -76,4 +76,6 @@ export async function writeElements(elements, config) {
     // Write description markdown file - is always overwritten
     if (!SKIP_DESCRIPTION) writeFile(DESCRIPTION, FOLDER, NAME, 'description', 'md');
   });
+
+  return true;
 }

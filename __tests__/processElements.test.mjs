@@ -2,46 +2,14 @@ import { processElements } from '../bin/functions/process/processElements';
 
 import { elementsPage } from '../testdata/elementsPage.mjs';
 import { components } from '../testdata/components.mjs';
-
-const config = {
-  debugMode: false,
-  testMode: test,
-  fontUnit: 'rem',
-  remSize: 16,
-  outputFileName: 'figma.json',
-  outputFolderBaseFile: '.figmagic',
-  outputFolderTokens: 'tokens',
-  outputTokenFormat: 'mjs',
-  outputFolderElements: 'elements',
-  outputFolderGraphics: 'graphics',
-  outputFormatGraphics: 'svg',
-  outputScaleGraphics: 1,
-  recompileLocal: false,
-  spacingUnit: 'rem',
-  syncElements: true,
-  syncGraphics: false,
-  usePostscriptFontNames: true,
-  templates: {
-    templatePathReact: 'templates/react.jsx',
-    templatePathStyled: 'templates/styled.jsx',
-    templatePathStorybook: 'templates/story.js'
-  },
-  skipFileGeneration: {
-    react: false,
-    styled: false,
-    css: false,
-    storybook: false,
-    description: false,
-    forceUpdate: true
-  }
-};
+import { defaultConfig } from '../testdata/defaultConfig.mjs';
 
 test('It should throw an error if no parameter is provided', async () => {
   await expect(processElements()).rejects.toThrow();
 });
 
 test('It should successfully return a valid element', async () => {
-  await expect(processElements(elementsPage, components, config)).resolves.toMatchObject([
+  await expect(processElements(elementsPage, components, defaultConfig)).resolves.toMatchObject([
     {
       css: ` color: \${colors.black};
 font-size: \${fontSizes.sub};
