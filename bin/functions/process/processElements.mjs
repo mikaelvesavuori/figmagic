@@ -34,10 +34,12 @@ import {
 export async function processElements(elementsPage, components, config) {
   if (!elementsPage || !components || !config) throw new Error(errorProcessElements);
 
+  const IS_TEST_MODE = config.testMode;
+
   const _ELEMENTS = elementsPage.filter(element => element.type === 'COMPONENT');
   const ELEMENTS = addDescriptionToElements(_ELEMENTS, components);
   const PARSED_ELEMENTS = await Promise.all(
-    ELEMENTS.map(async el => await parseElement(el, config.remSize))
+    ELEMENTS.map(async el => await parseElement(el, config.remSize, IS_TEST_MODE))
   );
   return PARSED_ELEMENTS;
 }
@@ -57,10 +59,11 @@ const addDescriptionToElements = (elements, components) => {
  * @function
  * @param {object} element - Object representation of item
  * @param {number} remSize - HTML body REM size
+ * @param {boolean} isTest - Check if this is test
  * @returns {object} - Return new element as object
  * @throws {errorParseElement} - Throw error if not provided element or config
  */
-async function parseElement(element, remSize) {
+async function parseElement(element, remSize, isTest = false) {
   if (!element || !remSize) throw new Error(errorParseElement);
 
   let html = ``;
@@ -131,7 +134,8 @@ async function parseElement(element, remSize) {
               MAIN_ELEMENT,
               TEXT_ELEMENT,
               null, //IMAGE
-              remSize
+              remSize,
+              isTest
             );
             imports = imports.concat(elementStyling.imports);
             css += `\n.${FIXED_NAME} {\n${elementStyling.css}}`;
@@ -140,7 +144,7 @@ async function parseElement(element, remSize) {
           // Parse typography CSS from element (requires layout element to exist)
           if (MAIN_ELEMENT && TEXT_ELEMENT) {
             const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
-            let typography = await parseTypographyStylingFromElement(TEXT_ELEMENT, remSize);
+            let typography = await parseTypographyStylingFromElement(TEXT_ELEMENT, remSize, isTest);
             imports = imports.concat(typography.imports);
             css += `\n.${FIXED_NAME} {\n${typography.css}}`;
             text = TEXT_ELEMENT.characters;
@@ -174,7 +178,7 @@ async function parseElement(element, remSize) {
 
     // Set text styling
     if (TEXT_ELEMENT.length === 1) {
-      let typography = await parseTypographyStylingFromElement(TEXT_ELEMENT[0], remSize);
+      let typography = await parseTypographyStylingFromElement(TEXT_ELEMENT[0], remSize, isTest);
       imports = imports.concat(typography.imports);
       css += typography.css;
       text = TEXT_ELEMENT[0].characters;
@@ -193,7 +197,8 @@ async function parseElement(element, remSize) {
         MAIN_ELEMENT[0],
         TEXT_ELEMENT[0],
         null,
-        remSize
+        remSize,
+        isTest
       );
       imports = imports.concat(elementStyling.imports);
       css += elementStyling.css;

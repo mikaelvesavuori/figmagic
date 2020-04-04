@@ -13,22 +13,30 @@ import { errorParseCssFromElement } from '../../meta/errors.mjs';
  * @param {object} [textElement] - Figma object representation of the text field connected to the element/component
  * @param {object} image - Optional image
  * @param {number} remSize - HTML body REM size
+ * @param {boolean} isTest - Check if this is test, in which case tokens need to be imported from a stable source
  * @returns {object} - Returns object with CSS and imports
  * @throws {errorParseCssFromElement} - Throws error if missing element or remSize arguments
  */
-export async function parseCssFromElement(element, textElement, image = null, remSize) {
+export async function parseCssFromElement(
+  element,
+  textElement,
+  image = null,
+  remSize,
+  isTest = false
+) {
   if (!element || !remSize) throw new Error(errorParseCssFromElement);
 
   // Dynamic imports
-  const _borderWidths = await import('../../../tokens/borderWidths.mjs');
+  const PATH = isTest ? `testdata/tokens` : `tokens`;
+  const _borderWidths = await import(`../../../${PATH}/borderWidths.mjs`);
   const borderWidths = _borderWidths.default;
-  const _colors = await import('../../../tokens/colors.mjs');
+  const _colors = await import(`../../../${PATH}/colors.mjs`);
   const colors = _colors.default;
-  const _radii = await import('../../../tokens/radii.mjs');
+  const _radii = await import(`../../../${PATH}/radii.mjs`);
   const radii = _radii.default;
-  const _shadows = await import('../../../tokens/shadows.mjs');
+  const _shadows = await import(`../../../${PATH}/shadows.mjs`);
   const shadows = _shadows.default;
-  const _spacing = await import('../../../tokens/spacing.mjs');
+  const _spacing = await import(`../../../${PATH}/spacing.mjs`);
   const spacing = _spacing.default;
   // Not using media queries or Z indices
 

@@ -5,6 +5,7 @@ import { components } from '../testdata/components.mjs';
 
 const config = {
   debugMode: false,
+  testMode: test,
   fontUnit: 'rem',
   remSize: 16,
   outputFileName: 'figma.json',

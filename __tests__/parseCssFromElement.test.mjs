@@ -11,7 +11,7 @@ test('It should throw an error if no parameter is provided', async () => {
 
 test('It should successfully return an object, if given valid input', async () => {
   await expect(
-    parseCssFromElement(cssLayoutElement, cssTypographyElement, null, 16)
+    parseCssFromElement(cssLayoutElement, cssTypographyElement, null, 16, true)
   ).resolves.toMatchObject({
     css: `width: 100%;
 padding-top: 33.8125rem;
@@ -28,9 +28,9 @@ border-radius: \${radii.soft};
 });
 
 // Linear gradient
-test('It should asdf asdf', async () => {
+test('It should apply linear gradient', async () => {
   await expect(
-    parseCssFromElement(cssLayoutElementGradient, cssTypographyElement, null, 16)
+    parseCssFromElement(cssLayoutElementGradient, cssTypographyElement, null, 16, true)
   ).resolves.toMatchObject({
     css: `width: 100%;
 padding-bottom: 17.25rem;
@@ -48,9 +48,9 @@ border-radius: \${radii.soft};
 });
 
 // Shadow
-test('It should 123 123', async () => {
+test('It should apply shadow', async () => {
   await expect(
-    parseCssFromElement(cssLayoutElementShadow, cssTypographyElement, null, 16)
+    parseCssFromElement(cssLayoutElementShadow, cssTypographyElement, null, 16, true)
   ).resolves.toMatchObject({
     css: `width: 100%;
 padding-top: 24.4375rem;

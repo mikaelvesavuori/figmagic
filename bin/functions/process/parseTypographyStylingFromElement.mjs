@@ -12,24 +12,26 @@ import { errorParseTypographyStylingFromElement } from '../../meta/errors.mjs';
  * @function
  * @param {object} element - Figma object representation of element/component
  * @param {number} remSize - HTML body REM size
+ * @param {boolean} isTest - Check if this is test, in which case tokens need to be imported from a stable source
  * @returns {object} - Return object with CSS and imports
  * @throws {errorParseTypographyStylingFromElement} - Throws error if no element or remSize is provided
  */
-export async function parseTypographyStylingFromElement(element, remSize) {
+export async function parseTypographyStylingFromElement(element, remSize, isTest = false) {
   if (!element || !remSize) throw new Error(errorParseTypographyStylingFromElement);
 
   // Dynamic imports
-  const _colors = await import('../../../tokens/colors.mjs');
+  const PATH = isTest ? `testdata/tokens` : `tokens`;
+  const _colors = await import(`../../../${PATH}/colors.mjs`);
   const colors = _colors.default;
-  const _fontFamilies = await import('../../../tokens/fontFamilies.mjs');
+  const _fontFamilies = await import(`../../../${PATH}/fontFamilies.mjs`);
   const fontFamilies = _fontFamilies.default;
-  const _fontSizes = await import('../../../tokens/fontSizes.mjs');
+  const _fontSizes = await import(`../../../${PATH}/fontSizes.mjs`);
   const fontSizes = _fontSizes.default;
-  const _fontWeights = await import('../../../tokens/fontWeights.mjs');
+  const _fontWeights = await import(`../../../${PATH}/fontWeights.mjs`);
   const fontWeights = _fontWeights.default;
-  const _letterSpacings = await import('../../../tokens/letterSpacings.mjs');
+  const _letterSpacings = await import(`../../../${PATH}/letterSpacings.mjs`);
   const letterSpacings = _letterSpacings.default;
-  const _lineHeights = await import('../../../tokens/lineHeights.mjs');
+  const _lineHeights = await import(`../../../${PATH}/lineHeights.mjs`);
   const lineHeights = _lineHeights.default;
 
   let css = ``;
