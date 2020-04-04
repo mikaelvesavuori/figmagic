@@ -34,8 +34,6 @@ test('It should return a valid merged configuration if given a path to an RC fil
         templatePathStorybook: 'templates/story.js',
         templatePathStyled: 'templates/styled.jsx'
       },
-      token: 'asdf1234',
-      url: '***',
       usePostscriptFontNames: false
     })
   );
