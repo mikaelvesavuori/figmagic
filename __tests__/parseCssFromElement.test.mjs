@@ -14,6 +14,7 @@ test('It should successfully return an object, if given valid input', async () =
     parseCssFromElement(cssLayoutElement, cssTypographyElement, null, 16, true)
   ).resolves.toMatchObject({
     css: `width: 100%;
+box-sizing: border-box;
 padding-top: 33.8125rem;
 height: \${spacing.big};
 background-color: rgba(0, 0, 0, 0);
@@ -33,6 +34,7 @@ test('It should apply linear gradient', async () => {
     parseCssFromElement(cssLayoutElementGradient, cssTypographyElement, null, 16, true)
   ).resolves.toMatchObject({
     css: `width: 100%;
+box-sizing: border-box;
 padding-bottom: 17.25rem;
 padding-right: 0.0625rem;
 height: 147;
@@ -53,6 +55,7 @@ test('It should apply shadow', async () => {
     parseCssFromElement(cssLayoutElementShadow, cssTypographyElement, null, 16, true)
   ).resolves.toMatchObject({
     css: `width: 100%;
+box-sizing: border-box;
 padding-top: 24.4375rem;
 padding-left: 25rem;
 height: \${spacing.big};
