@@ -67,7 +67,7 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
   // Medium priority
   const CLI_CONFIG = parseCliArgs(cliArgs);
 
-  // RC file configuration is loaded below
+  // RC file configuration
   // Highest priority
   const RC_CONFIG = await loadFile(userConfigPath);
 

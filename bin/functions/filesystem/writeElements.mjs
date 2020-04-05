@@ -19,7 +19,7 @@ import { errorWriteElements } from '../../meta/errors.mjs';
 export async function writeElements(elements, config) {
   if (!elements || !config) throw new Error(errorWriteElements);
 
-  await elements.map(comp => {
+  await elements.map((comp) => {
     const HTML = comp.html;
     const CSS = comp.css;
     const DESCRIPTION = comp.description || ' ';

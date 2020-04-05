@@ -21,17 +21,17 @@ export async function parseTypographyStylingFromElement(element, remSize, isTest
 
   // Dynamic imports
   const PATH = isTest ? `testdata/tokens` : `tokens`;
-  const _colors = await import(`../../../${PATH}/colors.mjs`);
+  const _colors = await import(`${process.cwd()}/${PATH}/colors.mjs`);
   const colors = _colors.default;
-  const _fontFamilies = await import(`../../../${PATH}/fontFamilies.mjs`);
+  const _fontFamilies = await import(`${process.cwd()}/${PATH}/fontFamilies.mjs`);
   const fontFamilies = _fontFamilies.default;
-  const _fontSizes = await import(`../../../${PATH}/fontSizes.mjs`);
+  const _fontSizes = await import(`${process.cwd()}/${PATH}/fontSizes.mjs`);
   const fontSizes = _fontSizes.default;
-  const _fontWeights = await import(`../../../${PATH}/fontWeights.mjs`);
+  const _fontWeights = await import(`${process.cwd()}/${PATH}/fontWeights.mjs`);
   const fontWeights = _fontWeights.default;
-  const _letterSpacings = await import(`../../../${PATH}/letterSpacings.mjs`);
+  const _letterSpacings = await import(`${process.cwd()}/${PATH}/letterSpacings.mjs`);
   const letterSpacings = _letterSpacings.default;
-  const _lineHeights = await import(`../../../${PATH}/lineHeights.mjs`);
+  const _lineHeights = await import(`${process.cwd()}/${PATH}/lineHeights.mjs`);
   const lineHeights = _lineHeights.default;
 
   let css = ``;
@@ -60,7 +60,7 @@ export async function parseTypographyStylingFromElement(element, remSize, isTest
       remSize
     );
     css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+    updatedImports.forEach((i) => imports.push(i));
   }
 
   const FONT_SIZE = (() => {
@@ -80,7 +80,7 @@ export async function parseTypographyStylingFromElement(element, remSize, isTest
       remSize
     );
     css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+    updatedImports.forEach((i) => imports.push(i));
   }
 
   // BUG? Will only work correctly with Postscript name?
@@ -101,7 +101,7 @@ export async function parseTypographyStylingFromElement(element, remSize, isTest
       remSize
     );
     css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+    updatedImports.forEach((i) => imports.push(i));
   }
 
   const FONT_WEIGHT = (() => {
@@ -121,7 +121,7 @@ export async function parseTypographyStylingFromElement(element, remSize, isTest
       remSize
     );
     css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+    updatedImports.forEach((i) => imports.push(i));
   }
 
   const FONT_LINE_HEIGHT = (() => {
@@ -143,7 +143,7 @@ export async function parseTypographyStylingFromElement(element, remSize, isTest
       remSize
     );
     css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+    updatedImports.forEach((i) => imports.push(i));
   }
 
   const FONT_ALIGNMENT = (() => {
@@ -172,7 +172,7 @@ export async function parseTypographyStylingFromElement(element, remSize, isTest
       normalizeUnits(parseFloat(LETTER_SPACING), 'letterSpacing', 'adjustedSpacing')
     );
     css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+    updatedImports.forEach((i) => imports.push(i));
   }
 
   if (FONT_ALIGNMENT) {

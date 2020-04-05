@@ -1,5 +1,5 @@
 fileignoreconfig:
-- filename: testdata/fileList.mjs
-  checksum: 85b0e6b350e80ba39ec0a6981c6fde9a3bb71cda3c9b78879eaf446a18675250
+- filename: package-lock.json
+  checksum: 2f62c9ef92e06b7e56c3ea2a9b8ddf01e076a9d502d857a662e2515c61af8df9
   ignore_detectors: []
 scopeconfig: []

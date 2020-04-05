@@ -28,15 +28,15 @@ export async function parseCssFromElement(
 
   // Dynamic imports
   const PATH = isTest ? `testdata/tokens` : `tokens`;
-  const _borderWidths = await import(`../../../${PATH}/borderWidths.mjs`);
+  const _borderWidths = await import(`${process.cwd()}/${PATH}/borderWidths.mjs`);
   const borderWidths = _borderWidths.default;
-  const _colors = await import(`../../../${PATH}/colors.mjs`);
+  const _colors = await import(`${process.cwd()}/${PATH}/colors.mjs`);
   const colors = _colors.default;
-  const _radii = await import(`../../../${PATH}/radii.mjs`);
+  const _radii = await import(`${process.cwd()}/${PATH}/radii.mjs`);
   const radii = _radii.default;
-  const _shadows = await import(`../../../${PATH}/shadows.mjs`);
+  const _shadows = await import(`${process.cwd()}/${PATH}/shadows.mjs`);
   const shadows = _shadows.default;
-  const _spacing = await import(`../../../${PATH}/spacing.mjs`);
+  const _spacing = await import(`${process.cwd()}/${PATH}/spacing.mjs`);
   const spacing = _spacing.default;
   // Not using media queries or Z indices
 
@@ -95,8 +95,8 @@ export async function parseCssFromElement(
   };
 
   if (PADDING && Object.keys(PADDING).length > 0) {
-    const PADDINGS = Object.values(PADDING).map(p => p);
-    const IS_ZERO = PADDINGS.every(item => item === 0);
+    const PADDINGS = Object.values(PADDING).map((p) => p);
+    const IS_ZERO = PADDINGS.every((item) => item === 0);
 
     // Don't set paddings if all values are actually empty
     if (!IS_ZERO) {
@@ -108,7 +108,7 @@ export async function parseCssFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach(i => imports.push(i));
+      updatedImports.forEach((i) => imports.push(i));
     }
   }
 
@@ -127,7 +127,7 @@ export async function parseCssFromElement(
       remSize
     );
     css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+    updatedImports.forEach((i) => imports.push(i));
   }
 
   /**
@@ -140,7 +140,7 @@ export async function parseCssFromElement(
       // Check for solid fills
       // A solid fill will always be #1 priority
 
-      const fills = element.fills.filter(f => f.type === 'SOLID');
+      const fills = element.fills.filter((f) => f.type === 'SOLID');
 
       if (fills.length > 0) {
         const R = roundColorValue(fills[0].color.r);
@@ -152,7 +152,7 @@ export async function parseCssFromElement(
 
       // Check for linear gradient fills
       // We will check for this only after checking that no solid fill color exists
-      const gradients = element.fills.filter(f => f.type === 'GRADIENT_LINEAR');
+      const gradients = element.fills.filter((f) => f.type === 'GRADIENT_LINEAR');
 
       if (fills.length === 0 && gradients.length > 0) {
         let str = `linear-gradient(`;
@@ -186,7 +186,7 @@ export async function parseCssFromElement(
       remSize
     );
     css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+    updatedImports.forEach((i) => imports.push(i));
   }
 
   css += `border: 0;\n`;
@@ -207,7 +207,7 @@ export async function parseCssFromElement(
       remSize
     );
     css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+    updatedImports.forEach((i) => imports.push(i));
   }
 
   const BORDER_COLOR = (() => {
@@ -233,7 +233,7 @@ export async function parseCssFromElement(
       remSize
     );
     css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+    updatedImports.forEach((i) => imports.push(i));
   }
 
   const BORDER_RADIUS = (() => {
@@ -251,7 +251,7 @@ export async function parseCssFromElement(
       remSize
     );
     css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+    updatedImports.forEach((i) => imports.push(i));
   }
 
   const SHADOW = (() => {
@@ -283,7 +283,7 @@ export async function parseCssFromElement(
       remSize
     );
     css += updatedCss;
-    updatedImports.forEach(i => imports.push(i));
+    updatedImports.forEach((i) => imports.push(i));
   }
 
   return { css, imports };

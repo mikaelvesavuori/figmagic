@@ -144,7 +144,8 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
   // Component
   else if (type === 'component') {
     const SUFFIX = 'Styled';
-    let template = await loadFile(templates.templatePathReact, true);
+    const PATH = templates.templatePathReact;
+    let template = await loadFile(PATH, true);
     template = template.replace(/{{NAME}}/gi, name);
     template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
     template = template.replace(/{{EXTRA_PROPS}}/gi, EXTRA_PROPS);
@@ -157,7 +158,8 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
   // Styled Components
   else if (type === 'style') {
     const SUFFIX = 'Styled';
-    let template = await loadFile(templates.templatePathStyled, true);
+    const PATH = templates.templatePathStyled;
+    let template = await loadFile(PATH, true);
     template = template.replace(/{{ELEMENT}}/gi, ELEMENT);
     template = template.replace(/{{NAME_CSS}}/gi, `${name}Css`);
     template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
@@ -173,7 +175,8 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
   // Storybook
   else if (type === 'story') {
     const SUFFIX = '.stories';
-    let template = await loadFile(templates.templatePathStorybook, true);
+    const PATH = templates.templatePathStorybook;
+    let template = await loadFile(PATH, true);
     template = template.replace(/{{NAME}}/gi, name);
     template = template.replace(/{{TEXT}}/gi, TEXT);
     //template = template.replace(/{{MARKUP}}/gi, MARKUP);
@@ -201,7 +204,7 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
 async function write(filePath, fileContent) {
   return await new Promise((resolve, reject) => {
     try {
-      fs.writeFile(filePath, fileContent, 'utf-8', error => {
+      fs.writeFile(filePath, fileContent, 'utf-8', (error) => {
         if (error) throw new Error(`${errorWrite}: ${error}`);
         resolve(true);
       });
