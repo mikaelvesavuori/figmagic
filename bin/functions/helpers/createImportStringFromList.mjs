@@ -15,7 +15,7 @@ import {
  */
 export function createImportStringFromList(importArray) {
   if (!importArray) throw new Error(errorCreateImportStringFromList);
-  if (!importArray.length > 0) throw new Error(errorCreateImportStringFromListZeroLength);
+  if (!(importArray.length > 0)) throw new Error(errorCreateImportStringFromListZeroLength);
 
   let importString = ``;
 

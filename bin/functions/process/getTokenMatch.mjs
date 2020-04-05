@@ -35,7 +35,7 @@ export function getTokenMatch(tokens, tokenFileName, property, expectedValue, re
         const value = normalizeUnits(expectedValue[key], 'px', 'rem', remSize);
 
         // Check if we can match value with a token and its value
-        Object.entries(tokens).map(s => {
+        Object.entries(tokens).forEach(s => {
           if (s[1] === value) {
             updatedCss += `${property}-${key}: \${${tokenFileName}.${s[0]}};\n`;
             foundMatch = true;
@@ -54,7 +54,7 @@ export function getTokenMatch(tokens, tokenFileName, property, expectedValue, re
   } else {
     let foundMatch = false;
 
-    Object.entries(tokens).map(s => {
+    Object.entries(tokens).forEach(s => {
       const TOKEN_VALUE = (() => {
         if (typeof s[1] === 'number') return parseFloat(s[1]); // Send any numbers back
         //if (s[1].match(/\d+rem|\d+em/gi)) return parseFloat(s[1]); // If the value uses rem|em, send back as numbers

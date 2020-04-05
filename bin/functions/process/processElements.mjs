@@ -6,6 +6,7 @@ import { msgProcessElementsCreatingElement } from '../../meta/messages.mjs';
 
 import {
   errorProcessElements,
+  errorProcessElementsNoMainElement,
   errorProcessElementsWrongElementCount,
   errorProcessElementsWrongTextElementCount,
   errorParseElement
@@ -26,6 +27,7 @@ import {
  * @param {object} config - User configuration
  * @returns {array} - List of parsed components with CSS and all
  * @throws {errorProcessElements} - When missing required arguments
+ * @throws {errorProcessElementsNoMainElement} - When no main element is found
  * @throws {errorProcessElementsWrongElementCount} - When wrong element count
  * @throws {errorProcessElementsWrongTextElementCount} - When wrong text element count
  *
@@ -156,6 +158,7 @@ async function parseElement(element, remSize, isTest = false) {
           // Check and set correct selector type: class or pseudo-element
           const SELECTOR_TYPE = '.'; //MAIN_ELEMENT.name[0] === ':' ? '' : '.';
           // Clean names from any spaces
+          if (!MAIN_ELEMENT) throw new Error();
           const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
 
           // Parse layout CSS from element
