@@ -156,28 +156,28 @@ async function parseElement(element, remSize, isTest = false) {
 					*/
 
           // Check and set correct selector type: class or pseudo-element
-          const SELECTOR_TYPE = '.'; //MAIN_ELEMENT.name[0] === ':' ? '' : '.';
+          const SELECTOR_TYPE = '.';
+
+          if (!MAIN_ELEMENT) throw new Error(errorProcessElementsNoMainElement);
+
           // Clean names from any spaces
-          if (!MAIN_ELEMENT) throw new Error();
           const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
 
           // Parse layout CSS from element
-          if (MAIN_ELEMENT) {
-            console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
+          console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
-            let elementStyling = await parseCssFromElement(
-              MAIN_ELEMENT,
-              TEXT_ELEMENT,
-              null, //IMAGE
-              remSize,
-              isTest
-            );
-            imports = imports.concat(elementStyling.imports);
-            css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${elementStyling.css}}`;
-          }
+          let elementStyling = await parseCssFromElement(
+            MAIN_ELEMENT,
+            TEXT_ELEMENT,
+            null, //IMAGE
+            remSize,
+            isTest
+          );
+          imports = imports.concat(elementStyling.imports);
+          css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${elementStyling.css}}`;
 
           // Parse typography CSS from element (requires layout element to exist)
-          if (MAIN_ELEMENT && TEXT_ELEMENT) {
+          if (TEXT_ELEMENT) {
             let typography = await parseTypographyStylingFromElement(TEXT_ELEMENT, remSize, isTest);
             imports = imports.concat(typography.imports);
             css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${typography.css}}`;
