@@ -44,6 +44,7 @@ export async function parseCssFromElement(
   let imports = [];
 
   css += `width: 100%;\n`;
+  css += `box-sizing: border-box;\n`;
 
   /*
   // Background image

@@ -20,9 +20,11 @@ export function processNestedCss(css) {
   if (!css) throw new Error(errorProcessNestedCss);
 
   // Match or split by CSS class name, like ".ButtonWarning {"
+  // css.match(/\..* {|:.* {/gi);
   let classNames = css.match(/\..* {/gi);
   let classContent = css.split(/\..* {/gi);
 
+  //if (classNames && classContent) {
   // Remove first to keep same lengths since it can sometimes be just a space
   if (classContent[0] === ' \n' || classContent[0] === '\n') classContent.shift();
 
@@ -38,6 +40,9 @@ export function processNestedCss(css) {
   const CSS = createCssString(INTERSECTIONS, UNIQUE_VALUES);
 
   return CSS;
+  //} else {
+  //  return ` `;
+  //}
 }
 
 /**
@@ -65,9 +70,13 @@ function cleanArrays(classNames, classContent) {
     arrA = arrA.filter(item => item !== '}');
 
     // Typography
-    let arrB = classContent[i + totalClassCount / 2].split(/\n/gi);
-    arrB = arrB.filter(item => item);
-    arrB = arrB.filter(item => item !== '}');
+    let arrB = [];
+    // Allow skipping "implicit matches" for typography
+    if (classContent[i + totalClassCount / 2]) {
+      arrB = classContent[i + totalClassCount / 2].split(/\n/gi);
+      arrB = arrB.filter(item => item);
+      arrB = arrB.filter(item => item !== '}');
+    }
 
     // Collated and reduced from duplicates
     let arrC = [...new Set([...arrA, ...arrB])];
@@ -158,8 +167,14 @@ function createCssString(intersections, uniqueValues) {
 
   uniqueValues.forEach(arr => {
     arr.forEach((i, index) => {
-      if (i.includes('{{NAME}}')) {
-        const FIXED_CLASS_NAME = i.replace('{{NAME}}', '&');
+      // Yep, you'd wish we set class names or CSS pseudo-selector before we came here,
+      // but this is the easiest I've found without breaking everything above.
+      // The below match removes the '.' class selector so we can use only ':' for those
+      // items that have it provided in the name.
+      const MATCH = i.includes(':') ? '{{NAME}}.' : '{{NAME}}';
+
+      if (i.includes(MATCH)) {
+        const FIXED_CLASS_NAME = i.replace(MATCH, '&');
         str += `${FIXED_CLASS_NAME}\n`;
       } else str += `  ${i}\n`;
 

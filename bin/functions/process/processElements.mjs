@@ -78,9 +78,8 @@ async function parseElement(element, remSize, isTest = false) {
 
   // Set element type
   let elementType = 'div';
-  if (element.description.match(/element=(.*)/)) {
+  if (element.description.match(/element=(.*)/))
     elementType = element.description.match(/element=(.*)/)[1];
-  }
   newElement.element = elementType;
 
   // Set description
@@ -106,11 +105,40 @@ async function parseElement(element, remSize, isTest = false) {
   if (element.children.every(a => a.type === 'GROUP')) {
     await Promise.all(
       element.children.map(async el => {
-        // Ignore any groups with a leading underscore in their name
+        // Ignore children with a leading underscore in their name
         if (el.name[0] !== '_') {
-          const MAIN_ELEMENT = el.children.filter(e => e.type === 'RECTANGLE')[0];
-          const TEXT_ELEMENT = el.children.filter(e => e.type === 'TEXT')[0];
+          const MAIN_ELEMENT = el.children.filter(
+            e => e.type === 'RECTANGLE' && e.name[0] !== '_'
+          )[0];
+          const TEXT_ELEMENT = el.children.filter(e => e.type === 'TEXT' && e.name[0] !== '_')[0];
 
+          // Set placeholder text
+          if (element.children) {
+            element.children.filter(child => {
+              if (
+                (child.type === 'GROUP' && child.name.toLowerCase() === 'placeholder') ||
+                (child.type === 'GROUP' && child.name.toLowerCase() === ':placeholder')
+              ) {
+                child.children.filter(c => {
+                  if (
+                    (c.type === 'TEXT' && c.name.toLowerCase() === 'placeholder') ||
+                    (c.type === 'TEXT' && c.name.toLowerCase() === ':placeholder')
+                  ) {
+                    if (!extraProps.includes(`placeholder="${c.characters}"`))
+                      extraProps += `placeholder="${c.characters}" `;
+                  }
+                });
+              }
+            });
+          }
+
+          // Set "type", for example for input element
+          if (element.description.match(/type=(.*)/)) {
+            const TYPE = element.description.match(/type=(.*)/)[1];
+            if (!extraProps.includes(`type="${TYPE}`)) extraProps += `type="${TYPE}" `;
+          }
+
+          // Keep for later, when there should be support for images
           /*
           const IMAGE = (() => {
             let image = null;
@@ -125,9 +153,13 @@ async function parseElement(element, remSize, isTest = false) {
 					})();
 					*/
 
+          // Check and set correct selector type: class or pseudo-element
+          const SELECTOR_TYPE = '.'; //MAIN_ELEMENT.name[0] === ':' ? '' : '.';
+          // Clean names from any spaces
+          const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
+
           // Parse layout CSS from element
           if (MAIN_ELEMENT) {
-            const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
             console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
             let elementStyling = await parseCssFromElement(
@@ -138,15 +170,14 @@ async function parseElement(element, remSize, isTest = false) {
               isTest
             );
             imports = imports.concat(elementStyling.imports);
-            css += `\n.${FIXED_NAME} {\n${elementStyling.css}}`;
+            css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${elementStyling.css}}`;
           }
 
           // Parse typography CSS from element (requires layout element to exist)
           if (MAIN_ELEMENT && TEXT_ELEMENT) {
-            const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
             let typography = await parseTypographyStylingFromElement(TEXT_ELEMENT, remSize, isTest);
             imports = imports.concat(typography.imports);
-            css += `\n.${FIXED_NAME} {\n${typography.css}}`;
+            css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${typography.css}}`;
             text = TEXT_ELEMENT.characters;
           }
         }
@@ -157,14 +188,17 @@ async function parseElement(element, remSize, isTest = false) {
   // Handle regular non-nested elements below
   else {
     // Check for text elements
-    const TEXT_ELEMENT = element.children.filter(e => e.name === 'Text');
+    const TEXT_ELEMENT = element.children.filter(e => e.type === 'TEXT' && e.name[0] !== '_');
     if (!TEXT_ELEMENT || TEXT_ELEMENT.length > 1)
       throw new Error(`${errorProcessElementsWrongTextElementCount} ${element.name}!`);
 
     // Set placeholder text
     if (element.children) {
       element.children.filter(c => {
-        if (c.type === 'TEXT' && c.name === 'Placeholder') {
+        if (
+          (c.type === 'TEXT' && c.name.toLowerCase() === 'placeholder') ||
+          (c.type === 'TEXT' && c.name.toLowerCase() === ':placeholder')
+        ) {
           extraProps += `placeholder="${c.characters}"`;
         }
       });
@@ -192,6 +226,9 @@ async function parseElement(element, remSize, isTest = false) {
     if (MAIN_ELEMENT[0]) {
       if (MAIN_ELEMENT.length !== 1)
         throw new Error(`${errorProcessElementsWrongElementCount} ${element.name}!`);
+
+      const FIXED_NAME = MAIN_ELEMENT[0].name.replace(/\s/gi, '');
+      console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT[0].name, FIXED_NAME));
 
       let elementStyling = await parseCssFromElement(
         MAIN_ELEMENT[0],

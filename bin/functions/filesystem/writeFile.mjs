@@ -120,7 +120,9 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
   const IMPORTS = (() => {
     if (metadata) {
       if (metadata.imports) {
-        return createImportStringFromList(metadata.imports);
+        if (metadata.imports.length > 0) {
+          return createImportStringFromList(metadata.imports);
+        }
       } else return '';
     } else return '';
   })();
@@ -129,14 +131,18 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
 
   if (type === 'raw') {
     fileContent = `${JSON.stringify(file, null, ' ')}`;
-  } else if (type === 'token') {
+  }
+  // Design token
+  else if (type === 'token') {
     fileContent = `// ${msgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
       file,
       null,
       ' '
     )}\n\nexport default ${name};`;
     filePath += `.${format}`;
-  } else if (type === 'component') {
+  }
+  // Component
+  else if (type === 'component') {
     const SUFFIX = 'Styled';
     let template = await loadFile(templates.templatePathReact, true);
     template = template.replace(/{{NAME}}/gi, name);
@@ -147,7 +153,9 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     //template = template.replace(/{{MARKUP}}/gi, MARKUP);
     fileContent = `${template}`;
     filePath += `.${format}`;
-  } else if (type === 'style') {
+  }
+  // Styled Components
+  else if (type === 'style') {
     const SUFFIX = 'Styled';
     let template = await loadFile(templates.templatePathStyled, true);
     template = template.replace(/{{ELEMENT}}/gi, ELEMENT);
@@ -155,11 +163,15 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
     fileContent = `${template}`;
     filePath += `${SUFFIX}.${format}`;
-  } else if (type === 'css') {
+  }
+  // CSS
+  else if (type === 'css') {
     const SUFFIX = 'Css';
     fileContent = `// ${msgGeneratedFileWarning}\n\n${IMPORTS}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
     filePath += `${SUFFIX}.${format}`;
-  } else if (type === 'story') {
+  }
+  // Storybook
+  else if (type === 'story') {
     const SUFFIX = '.stories';
     let template = await loadFile(templates.templatePathStorybook, true);
     template = template.replace(/{{NAME}}/gi, name);
@@ -167,7 +179,9 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
     //template = template.replace(/{{MARKUP}}/gi, MARKUP);
     fileContent = `${template};`;
     filePath += `${SUFFIX}.${format}`;
-  } else if (type === 'description') {
+  }
+  // Markdown description
+  else if (type === 'description') {
     fileContent = `<!--${msgGeneratedFileWarning}-->\n${file}`;
     filePath += `.description.${format}`;
   }
@@ -176,7 +190,7 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
 }
 
 /**
- * Local helper that does most the actual writing of the file
+ * Local helper that does the actual writing of the file
  *
  * @async
  * @function
