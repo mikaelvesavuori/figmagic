@@ -200,9 +200,9 @@ You should definitely still continue to layout your elements/components as they 
 
 **Pro tip**: Use a plugin like [Figma Redlines](https://www.figma.com/resources/assets/figma-redlines/) to communicate hard-to-see tokens/features like the padding inside of an Input element. Don’t forget to add a prefixing `_` so Figmagic can safely ignore the redlines.
 
-### asdf asdf asdf
+### Details and what to know about Element Sync
 
-- On the first generation (when Figmagic does not find anything in your element output folder) it will normally generate all 5 file types (React, Storybook, Styled Components, CSS, Markdown description). When updating, asdf.
+- On the first generation (when Figmagic does not find anything in your element output folder) it will normally generate all 5 file types (React, Storybook, Styled Components, CSS, Markdown description). When updating, it will not normally regenerate the React, Storybook or Styled Components file. This is to ensure that they have stability and that you don't risk anything when you pull fresh.
 - You can write `element=`, `type=`, `placeholder=` in Figma's component description field to set those values in the generated HTML. Type and placeholder becomes React properties, and element defines the actual element type.
 
 ![Nesting: Button, Normal](docs/component-desc-field.png)
@@ -219,7 +219,7 @@ For specifics on how to do any CLI or RC file configuration, see documentation b
 
 _How a Figmagic project could be structured with elements_
 
-### What you should know before using Element Sync
+### Element Sync is still experimental! Caveats, issues and gotchas
 
 First and foremost:
 
