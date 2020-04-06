@@ -14,7 +14,7 @@ test('It should exit correctly after having processed valid input', async () => 
   await expect(
     processGraphics(graphicsFrame.children, {
       outputFileName: 'figma.json',
-      outputFolderBaseFile: 'figma',
+      outputFolderBaseFile: '.figmagic',
       outputFolderTokens: 'tokens',
       outputFolderGraphics: 'graphics',
       outputFormatGraphics: 'svg',
