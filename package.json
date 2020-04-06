@@ -1,6 +1,6 @@
 {
   "name": "figmagic",
-  "description": "Automate the generation of design tokens from your Figma documents. Inspired by Salesforce Theo.",
+  "description": "Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents. Inspired by Salesforce Theo.",
   "keywords": [
     "figma",
     "figma api",
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "https://github.com/mikaelvesavuori/figmagic.git"
   },
-  "version": "3.0.0-beta.0",
+  "version": "3.0.0-beta.1",
   "author": "Mikael Vesavuori",
   "contributors": [
     {
