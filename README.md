@@ -71,7 +71,7 @@ Local usage should be possible by installing Figmagic as a devDependency with `n
 
 ### Recommended: Create configuration file (.figmagicrc)
 
-This is the best way to get going if you want to do Element Sync, in which case **you must explicitly add a block to your `.figmagicrc` file, pointing `templates.templatePath{React|Styled|Storybook}` to `./node_modules/figmagic/templates/{react.jsx|styled.jsx|story.js}`**.
+This is the best way to get going if you want to do Element Sync, in which case **you must explicitly add a block to your `.figmagicrc` file, pointing `templates.templatePath{React|Styled|Storybook}` to `./node_modules/figmagic/templates/{react.jsx|styled.jsx|story.js}`**. Read more under the **User Settings** section.
 
 ### Running Figmagic
 
@@ -108,7 +108,7 @@ This behavior is a new behavior added since the previous version 1 that destroye
 
 ### Easy solution: Copy the public Figma template
 
-Go to [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens) and make your own copy. Go at it by using the document ID as the FIGMA_URL or start copying in your own work.
+Go to [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens) and make your own copy. Go at it by using the document ID as the **FIGMA_URL** or start copying in your own work.
 
 ### Less easy solution: Start from scratch
 
