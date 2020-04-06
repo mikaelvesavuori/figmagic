@@ -3,7 +3,7 @@ export const defaultConfig = {
   fontUnit: 'rem',
   outputTokenFormat: 'mjs',
   outputFileName: 'figma.json',
-  outputFolderBaseFile: 'figma',
+  outputFolderBaseFile: '.figmagic',
   outputFolderTokens: 'tokens',
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
