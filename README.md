@@ -123,7 +123,9 @@ See a template design system at [https://www.figma.com/community/file/8210944514
 
 **Note:** Refer to the document structure in the image below and in the template linked above.
 
-![Figma Document Structure](docs/project-structure.png)
+![Figma Document Structure: Tokens](docs/project-structure-tokens.png)
+
+_How a Figmagic project should be structured in regards to tokens_
 
 ## Design Tokens
 
@@ -212,6 +214,10 @@ _Setting what the Figma component ("element", in Figmagic terms as far as we are
 - You can pass in `--forceUpdate` to force all generated files to be updated.
 
 For specifics on how to do any CLI or RC file configuration, see documentation below.
+
+![Figma Document Structure: Elements](docs/project-structure-elements.png)
+
+_How a Figmagic project could be structured with elements_
 
 ### What you should know before using Element Sync
 
