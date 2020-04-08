@@ -36,11 +36,11 @@ export async function writeElements(elements, config) {
     const TEMPLATES = config.templates;
 
     // Setup for skipping files, if user wants to do so
-    const SKIP_REACT = config.skipFileGeneration.react;
-    const SKIP_STYLED = config.skipFileGeneration.styled;
-    const SKIP_CSS = config.skipFileGeneration.css;
-    const SKIP_STORYBOOK = config.skipFileGeneration.storybook;
-    const SKIP_DESCRIPTION = config.skipFileGeneration.description;
+    const SKIP_REACT = config.skipFileGeneration.skipReact;
+    const SKIP_STYLED = config.skipFileGeneration.skipStyled;
+    const SKIP_CSS = config.skipFileGeneration.skipCss;
+    const SKIP_STORYBOOK = config.skipFileGeneration.skipStorybook;
+    const SKIP_DESCRIPTION = config.skipFileGeneration.skipDescription;
     const FORCE_UPDATE = config.skipFileGeneration.forceUpdate;
 
     // Ensure that name is processed like the "write()" function(s) do, so filename matching is same
