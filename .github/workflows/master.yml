@@ -38,16 +38,12 @@ jobs:
       - run: \[ -f .figmagic/figma.json \]
         env:
           CI: true
-
-  coverage:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - uses: codecov/codecov-action@v1
-      - run: bash <(curl -s https://codecov.io/bash)
+      - name: Send coverage report with Codecov
+      - run: bash <(curl -s https://codecov.io/bash) -f jest-coverage/clover.xml
 
   publish-npm:
-    needs: coverage
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
