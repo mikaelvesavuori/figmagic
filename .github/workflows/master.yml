@@ -16,11 +16,15 @@ jobs:
         os: ['ubuntu-latest'] #'macos-latest'
         node-version: [12.x]
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        id: checkout
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+        id: node
       - run: npm ci
       - run: npm run build --if-present
       - run: npm audit fix
@@ -38,8 +42,10 @@ jobs:
       - run: \[ -f .figmagic/figma.json \]
         env:
           CI: true
-      - uses: codecov/codecov-action@v1
+
       - name: Send coverage report with Codecov
+        uses: codecov/codecov-action@v1
+        id: coverage
       - run: bash <(curl -s https://codecov.io/bash) -f jest-coverage/clover.xml
 
   publish-npm:
