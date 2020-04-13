@@ -24,6 +24,7 @@ jobs:
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
+        id: node
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
