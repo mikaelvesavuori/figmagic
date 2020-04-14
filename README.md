@@ -296,6 +296,7 @@ Below is a complete set of what you can configure, together with the defaults.
   outputFileName: 'figma.json',
   outputFolderBaseFile: '.figmagic',
   outputFolderTokens: 'tokens',
+  outputTokenDataType: 'enum',
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
   outputFormatGraphics: 'svg',
