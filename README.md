@@ -454,7 +454,7 @@ Default is `components`.
 
 Default is `figma.json`.
 
-#### Set output file name
+#### Set output token data type
 
 `figmagic --outputTokenDataType [null | enum]` or `figmagic -tokentype [null | enum]`
 
