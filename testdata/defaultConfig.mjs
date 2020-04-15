@@ -11,6 +11,7 @@ export const defaultConfig = {
   outputFolderGraphics: 'graphics',
   outputFormatGraphics: 'svg',
   outputScaleGraphics: 1,
+  outputTokenDataType: null,
   recompileLocal: false,
   spacingUnit: 'rem',
   syncElements: true,

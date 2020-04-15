@@ -261,6 +261,25 @@ test('It should return "asdf" for token if passing "asdf" (short-hand)', () => {
 });
 
 /*
+ * Token data type
+ */
+test('It should return "enum" for token if passing "enum" (long-hand)', () => {
+  expect(parseCliArgs(['--outputTokenDataType', 'enum'])).toEqual(
+    expect.objectContaining({
+      outputTokenDataType: 'enum'
+    })
+  );
+});
+
+test('It should return "enum" for token if passing "enum" (short-hand)', () => {
+  expect(parseCliArgs(['-tokentype', 'enum'])).toEqual(
+    expect.objectContaining({
+      outputTokenDataType: 'enum'
+    })
+  );
+});
+
+/*
  * URL
  */
 test('It should return "abc123" for url if passing "abc123" (long-hand)', () => {

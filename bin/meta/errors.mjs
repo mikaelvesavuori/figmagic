@@ -5,6 +5,7 @@ export const errorCleanArrays = `${colors.FgRed}Missing one or more of "classNam
 export const errorConvertHexToRgba = `${colors.FgRed}Missing one or more of red, green, blue and alpha in convertHexToRgba()!`;
 export const errorCreateConfiguration = `${colors.FgRed}No path provided to createConfiguration()!`;
 export const errorCreateCssString = `${colors.FgRed}Missing one or more of required arguments: "intersections", "uniqueValues"!`;
+export const errorCreateEnumStringOutOfObject = `${colors.FgRed}No object provided to createEnumStringOutOfObject()!`;
 export const errorCreateFolder = `${colors.FgRed}No directory specified for createFolder()!`;
 export const errorCreateImportStringFromList = `${colors.FgRed}No "importArray" provided to createImportStringFromList()!`;
 export const errorCreateImportStringFromListZeroLength = `${colors.FgRed}Provided "importArray" is zero-length when calling createImportStringFromList()!`;

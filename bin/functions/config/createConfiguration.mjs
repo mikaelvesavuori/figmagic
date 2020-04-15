@@ -41,6 +41,7 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
     outputFolderBaseFile: defaultConfig.outputFolderBaseFile,
     outputFolderTokens: defaultConfig.outputFolderTokens,
     outputTokenFormat: defaultConfig.outputTokenFormat,
+    outputTokenDataType: defaultConfig.outputTokenDataType,
     outputFolderElements: defaultConfig.outputFolderElements,
     //outputFolderComponents: defaultConfig.outputFolderComponents,
     outputFolderGraphics: defaultConfig.outputFolderGraphics,

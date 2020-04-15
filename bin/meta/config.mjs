@@ -8,6 +8,7 @@ export const defaultConfig = {
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
   outputFormatGraphics: 'svg',
+  outputTokenDataType: null,
   outputScaleGraphics: 1,
   recompileLocal: false,
   remSize: 16,

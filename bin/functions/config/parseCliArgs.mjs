@@ -138,6 +138,10 @@ export function parseCliArgs(argsArray) {
       else if (arg === '--outputFileName' || arg == '-file') {
         config.outputFileName = argsArray[index + 1];
       }
+      // Handle input: output token data type
+      else if (arg === '--outputTokenDataType' || arg == '-tokentype') {
+        config.outputTokenDataType = argsArray[index + 1];
+      }
       // Set font family name to be "common name" or Postscript name
       else if (arg === '--usePostscriptFontNames' || arg === '-ps') {
         config.usePostscriptFontNames = true;
