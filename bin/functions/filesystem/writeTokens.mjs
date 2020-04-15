@@ -26,7 +26,7 @@ export async function writeTokens(tokens, config) {
 
   const tokensToProcess = new Promise((resolve, reject) => {
     try {
-      tokens.forEach(async token => {
+      tokens.forEach(async (token) => {
         let tokenName = camelize(token.name);
         tokenName = formatName(tokenName);
 
@@ -41,7 +41,8 @@ export async function writeTokens(tokens, config) {
             config.outputFolderTokens,
             tokenName,
             'token',
-            config.outputTokenFormat
+            config.outputTokenFormat,
+            { dataType: config.outputTokenDataType }
           );
         }
       });
@@ -52,5 +53,5 @@ export async function writeTokens(tokens, config) {
     }
   });
 
-  return tokensToProcess.catch(error => console.error(error));
+  return tokensToProcess.catch((error) => console.error(error));
 }

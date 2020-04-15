@@ -3,6 +3,7 @@ import fs from 'fs';
 import { createFolder } from './createFolder.mjs';
 import { loadFile } from './loadFile.mjs';
 import { createImportStringFromList } from '../helpers/createImportStringFromList.mjs';
+import { createEnumStringOutOfObject } from '../helpers/createEnumStringOutOfObject.mjs';
 
 import { msgGeneratedFileWarning } from '../../meta/messages.mjs';
 import {
@@ -134,11 +135,17 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
   }
   // Design token
   else if (type === 'token') {
-    fileContent = `// ${msgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
-      file,
-      null,
-      ' '
-    )}\n\nexport default ${name};`;
+    if (metadata && metadata.dataType === 'enum') {
+      fileContent = `// ${msgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
+        file
+      )}\n}\n\nexport default ${name};`;
+    } else {
+      fileContent = `// ${msgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
+        file,
+        null,
+        ' '
+      )}\n\nexport default ${name};`;
+    }
     filePath += `.${format}`;
   }
   // Component
