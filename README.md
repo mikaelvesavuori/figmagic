@@ -454,6 +454,13 @@ Default is `components`.
 
 Default is `figma.json`.
 
+#### Set output file name
+
+`figmagic --outputTokenDataType [null | enum]` or `figmagic -tokentype [null | enum]`
+
+Default is null. Currently the only valid value is `enum`.
+
+
 #### Set path to React template
 
 `figmagic --templatePathReact [path]`
