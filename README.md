@@ -458,7 +458,7 @@ Default is `figma.json`.
 
 `figmagic --outputTokenDataType [null | enum]` or `figmagic -tokentype [null | enum]`
 
-Default is null. Currently the only valid non-null value is `enum`.
+Default is `null`. Currently the only valid non-null value is `enum`.
 
 #### Set path to React template
 
