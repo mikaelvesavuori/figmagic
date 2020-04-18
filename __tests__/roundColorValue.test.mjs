@@ -24,6 +24,10 @@ test('It should max out "quantity" at 1.0, returning at most a full value of 255
   expect(roundColorValue(12412.1)).toBe(255);
 });
 
+test('It should set an alpha/opacity value into a cleaned value, fixed to 2 decimals', () => {
+  expect(roundColorValue(0.33000001311302185, 1)).toBe(0.33);
+});
+
 test('It should throw an error when scale is below 0', () => {
   expect(() => {
     roundColorValue(1.0, -1);

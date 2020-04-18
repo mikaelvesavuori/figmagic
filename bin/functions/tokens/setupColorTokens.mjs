@@ -24,7 +24,7 @@ export function setupColorTokens(colorFrame) {
 
   let colors = {};
 
-  colorFrame.children.forEach(color => {
+  colorFrame.children.forEach((color) => {
     if (!color.fills) throw new Error(errorSetupColorTokensNoFills);
     /*
     if (!color.fills[0]) throw new Error(errorSetupColorTokensNoFills);
@@ -34,13 +34,13 @@ export function setupColorTokens(colorFrame) {
 		if (!color.fills[0].color.b) throw new Error(errorSetupColorTokensNoFills);
 		*/
 
+    // It seems RGBA alpha is actually not coming from "color.a", so the below fixes that
+    const ALPHA = color.fills[0].opacity ? color.fills[0].opacity : color.fills[0].color.a;
+
     const COLOR_STRING = `rgba(${roundColorValue(color.fills[0].color.r, 255)}, ${roundColorValue(
       color.fills[0].color.g,
       255
-    )}, ${roundColorValue(color.fills[0].color.b, 255)}, ${roundColorValue(
-      color.fills[0].color.a,
-      1
-    )})`;
+    )}, ${roundColorValue(color.fills[0].color.b, 255)}, ${roundColorValue(ALPHA, 1)})`;
 
     let normalizedName = camelize(color.name);
     normalizedName = formatName(normalizedName);

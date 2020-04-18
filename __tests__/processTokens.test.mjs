@@ -132,8 +132,8 @@ test('It should return data when passed valid radii frame and valid settings', (
 test('It should return data when passed valid shadows frame and valid settings', () => {
   expect(processTokens(shadowsFrame, 'shadows', defaultConfig)).toEqual(
     expect.objectContaining({
-      deep: '3px 3px 3px rgba(196, 196, 196, 1)',
-      medium: '0px 0px 5px rgba(0, 0, 0, 1)',
+      deep: '3px 3px 3px rgba(196, 196, 196, 0.75)',
+      medium: '0px 0px 5px rgba(0, 0, 0, 0.5)',
       soft: '0px 0px 5px rgba(196, 196, 196, 1)'
     })
   );

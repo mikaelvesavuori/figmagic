@@ -17,5 +17,5 @@ test('It should correctly return a CSS standard RGBA string', () => {
 });
 
 test('It should correctly return a CSS standard RGBA string if passed numbers as strings', () => {
-  expect(convertHexToRgba('.51', '.51', '0', '0.5')).toBe(`rgba(130, 130, 0, 1)`);
+  expect(convertHexToRgba('.51', '.51', '0', '0.5')).toBe(`rgba(130, 130, 0, 0.5)`);
 });
