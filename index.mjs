@@ -77,7 +77,7 @@ async function figmagic() {
         throw new Error(error);
       }
     }
-  })().catch(error => {
+  })().catch((error) => {
     throw new Error(error);
   });
 

@@ -15,19 +15,23 @@ import { errorLoadFile } from '../../meta/errors.mjs';
  * @throws {errorLoadFile} - Throws error if path does not exist
  */
 export async function loadFile(path, isRaw = false) {
-  if (!path) throw new Error(errorLoadFile);
-  if (!fs.existsSync(path)) throw new Error(errorLoadFile);
+  if (!path) throw new Error(errorLoadFile(path));
+  if (!fs.existsSync(path)) throw new Error(errorLoadFile(path));
 
-  return await new Promise((resolve, reject) => {
-    fs.readFile(path, 'utf8', (error, data) => {
-      if (error) reject(error);
-      if (isRaw) {
-        resolve(data);
-        return data;
-      }
+  try {
+    return await new Promise((resolve, reject) => {
+      fs.readFile(path, 'utf8', (error, data) => {
+        if (error) reject(error);
+        if (isRaw) {
+          resolve(data);
+          return data;
+        }
 
-      const DATA = JSON.parse(data);
-      resolve(DATA);
+        const DATA = JSON.parse(data);
+        resolve(DATA);
+      });
     });
-  });
+  } catch (error) {
+    console.error(error);
+  }
 }

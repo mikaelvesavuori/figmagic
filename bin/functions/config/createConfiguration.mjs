@@ -70,7 +70,13 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
 
   // RC file configuration
   // Highest priority
-  const RC_CONFIG = await loadFile(userConfigPath);
+  const RC_CONFIG = await (async () => {
+    try {
+      return await loadFile(userConfigPath);
+    } catch (error) {
+      return null;
+    }
+  })();
 
   // Merge configurations in order of prioritization
   const CONFIG = { ...DEFAULT_CONFIG, ...ENV_CONFIG, ...CLI_CONFIG, ...RC_CONFIG };

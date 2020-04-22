@@ -24,7 +24,7 @@ export const errorGetIntersectingValues = `${colors.FgRed}Missing "arrays" argum
 export const errorGetTokenMatch = `${colors.FgRed}Missing one or more of required arguments: "tokens", "tokenFileName", "property", and/or "expectedValue"!`;
 export const errorGetTokenMatchNoRemSize = `${colors.FgRed}Missing required "remSize" argument for getTokenMatch() when converting to rem/em!`;
 export const errorGetUniqueValues = `${colors.FgRed}Missing one or more of required arguments: "arrays", and/or "intersections" when calling getUniqueValues()!`;
-export const errorLoadFile = `${colors.FgRed}Could not find file!`;
+export const errorLoadFile = (path) => `${colors.FgRed}Could not find file: ${path}!`;
 export const errorNormalizeUnits = `${colors.FgRed}Missing parameters for normalizeUnits()!`;
 export const errorNormalizeUnitsNoRemSize = `${colors.FgRed}Missing required "remSize" argument for normalizeUnits() when converting to rem/em!`;
 export const errorNormalizeUnitsUndefined = `${colors.FgRed}Parameters "rootSize" or "unitSize" are undefined!`;
