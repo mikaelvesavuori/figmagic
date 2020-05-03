@@ -53,7 +53,8 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.0",
-    "trash": "^6.1.1"
+    "trash": "^6.1.1",
+    "snyk": "^1.316.2"
   },
   "bin": {
     "figmagic": "./index.mjs"
@@ -61,7 +62,9 @@
   "scripts": {
     "setup": "rm package-lock.json && rm -rf /node_modules && rm -rf /usr/local/lib/node_modules/figmagic && npm install -g",
     "figmagic": "node --experimental-modules index.mjs",
-    "test": "jest __tests__ --collectCoverage"
+    "test": "jest __tests__ --collectCoverage",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "config": {
     "commitizen": {
@@ -85,5 +88,6 @@
       "subjectPatternErrorMsg": "Subject must be in format 'CMS-123 - Commit message'",
       "helpMessage": ""
     }
-  }
+  },
+  "snyk": true
 }
