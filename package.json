@@ -54,7 +54,7 @@
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.0",
     "trash": "^6.1.1",
-    "snyk": "^1.316.2"
+    "snyk": "^1.319.2"
   },
   "bin": {
     "figmagic": "./index.mjs"
