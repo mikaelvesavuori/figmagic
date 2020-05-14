@@ -23,13 +23,14 @@ export function setupBorderWidthTokens(borderWidthFrame) {
 
   let borderWidthObject = {};
 
-  borderWidthFrame.children.forEach(type => {
-    if (!type.name || !type.strokeWeight) throw new Error(errorSetupBorderWidthTokensMissingProps);
+  borderWidthFrame.children.forEach((type) => {
+    if (!type.name || typeof type.strokeWeight === 'undefined')
+      throw new Error(errorSetupBorderWidthTokensMissingProps);
 
     let name = camelize(type.name);
     name = formatName(name);
 
-    borderWidthObject[name] = `${type.strokeWeight}px`;
+    borderWidthObject[name] = `${parseInt(type.strokeWeight, 10)}px`;
   });
 
   return borderWidthObject;
