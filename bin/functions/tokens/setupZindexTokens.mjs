@@ -24,13 +24,13 @@ export function setupZindexTokens(zIndexFrame) {
 
   let zindexObject = {};
 
-  zIndexFrame.children.forEach(type => {
+  zIndexFrame.children.forEach((type) => {
     if (!type.name || !type.characters) throw new Error(errorSetupZindexTokensMissingProps);
 
     let name = camelize(type.name);
     name = formatName(name);
 
-    zindexObject[name] = type.characters;
+    zindexObject[name] = parseInt(type.characters);
   });
 
   return zindexObject;

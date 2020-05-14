@@ -141,6 +141,6 @@ test('It should return data when passed valid shadows frame and valid settings',
 
 test('It should return data when passed valid Z index frame and valid settings', () => {
   expect(processTokens(zIndicesFrame, 'zindices', defaultConfig)).toEqual(
-    expect.objectContaining({ focus: '10', high: '1', higher: '2', regular: '0', top: '100' })
+    expect.objectContaining({ focus: 10, high: 1, higher: 2, regular: 0, top: 100 })
   );
 });
