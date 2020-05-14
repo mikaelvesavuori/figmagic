@@ -59,6 +59,20 @@ export const borderWidthsFrame = {
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
       effects: [Array]
+    },
+    {
+      id: '2657:121',
+      name: 'Borderless',
+      type: 'RECTANGLE',
+      blendMode: 'PASS_THROUGH',
+      absoluteBoundingBox: [{}],
+      preserveRatio: true,
+      constraints: [],
+      fills: [],
+      strokes: [],
+      strokeWeight: 0,
+      strokeAlign: 'INSIDE',
+      effects: []
     }
   ],
   absoluteBoundingBox: { x: 290, y: 891, width: 331, height: 93 },

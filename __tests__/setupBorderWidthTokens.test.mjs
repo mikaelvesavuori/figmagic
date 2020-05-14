@@ -4,7 +4,13 @@ import { borderWidthsFrame } from '../testdata/borderWidthsFrame.mjs';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupBorderWidthTokens(borderWidthsFrame)).toEqual(
-    expect.objectContaining({ chunky: '8px', fat: '4px', hairline: '1px', regular: '2px' })
+    expect.objectContaining({
+      chunky: '8px',
+      fat: '4px',
+      hairline: '1px',
+      regular: '2px',
+      borderless: '0px'
+    })
   );
 });
 
