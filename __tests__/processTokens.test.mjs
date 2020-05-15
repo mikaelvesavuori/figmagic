@@ -10,6 +10,7 @@ import { lineHeightFrame } from '../testdata/lineHeightFrame.mjs';
 import { borderWidthsFrame } from '../testdata/borderWidthsFrame.mjs';
 import { letterSpacingsFrame } from '../testdata/letterSpacingsFrame.mjs';
 import { mediaQueriesFrame } from '../testdata/mediaQueriesFrame.mjs';
+import { opacitiesFrame } from '../testdata/opacitiesFrame.mjs';
 import { radiiFrame } from '../testdata/radiiFrame.mjs';
 import { shadowsFrame } from '../testdata/shadowsFrame.mjs';
 import { zIndicesFrame } from '../testdata/zIndicesFrame.mjs';
@@ -104,6 +105,17 @@ test('It should return data when passed valid border width frame and valid setti
 test('It should return data when passed valid letter spacings frame and valid settings', () => {
   expect(processTokens(letterSpacingsFrame, 'letterspacings', defaultConfig)).toEqual(
     expect.objectContaining({ regular: '0px', tight: '-1.20px', wide: '1.65px' })
+  );
+});
+
+test('It should return data when passed valid media queries frame and valid settings', () => {
+  expect(processTokens(opacitiesFrame, 'opacities', defaultConfig)).toEqual(
+    expect.objectContaining({
+      opaque: 1,
+      disabled: 0.65,
+      semiOpaque: 0.5,
+      transparent: 0
+    })
   );
 });
 

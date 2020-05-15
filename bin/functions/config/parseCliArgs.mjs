@@ -3,6 +3,7 @@ import { errorParseCliArgs } from '../../meta/errors.mjs';
 import {
   warnParseCliArgsOutputFormat,
   warnParseCliArgsFontUnit,
+  warnParseCliArgsOpacitiesUnit,
   warnParseCliArgsSpacingUnit
 } from '../../meta/warnings.mjs';
 
@@ -97,6 +98,15 @@ export function parseCliArgs(argsArray) {
           console.warn(warnParseCliArgsFontUnit);
           config.fontUnit = defaultConfig.fontUnit;
         }
+      }
+      // Check and handle opacities unit switch
+      else if (arg === '--opacitiesUnit' || arg == '-ou') {
+        let FORMAT = argsArray[index + 1].toLowerCase();
+        if (!['float', 'percent'].includes(FORMAT)) {
+          console.warn(warnParseCliArgsOpacitiesUnit);
+          FORMAT = defaultConfig.opacitiesUnit;
+        }
+        config.opacitiesUnit = FORMAT;
       }
       // Check and handle spacing unit switch
       else if (arg === '--spacingUnit' || arg == '-s') {

@@ -10,6 +10,7 @@ import { setupRadiusTokens } from '../tokens/setupRadiusTokens.mjs';
 import { setupZindexTokens } from '../tokens/setupZindexTokens.mjs';
 import { setupLetterSpacingTokens } from '../tokens/setupLetterSpacingTokens.mjs';
 import { setupMediaQueryTokens } from '../tokens/setupMediaQueryTokens.mjs';
+import { setupOpacitiesTokens } from '../tokens/setupOpacitiesTokens.mjs';
 
 import { errorProcessTokens, errorProcessTokensNoConfig } from '../../meta/errors.mjs';
 
@@ -74,6 +75,12 @@ export function processTokens(sheet, name, config) {
     case 'mediaquery':
     case 'mediaqueries': {
       processedTokens = setupMediaQueryTokens(sheet);
+      break;
+    }
+    case 'opacity':
+    case 'opacities': {
+      if (!config) throw new Error(errorProcessTokensNoConfig);
+      processedTokens = setupOpacitiesTokens(sheet, config.opacitiesUnit);
       break;
     }
     case 'radius':

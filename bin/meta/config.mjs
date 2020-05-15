@@ -1,6 +1,7 @@
 export const defaultConfig = {
   debugMode: false,
   fontUnit: 'rem',
+  opacitiesUnit: 'float',
   outputTokenFormat: 'mjs',
   outputFileName: 'figma.json',
   outputFolderBaseFile: '.figmagic',

@@ -17,6 +17,8 @@ export const acceptedTokenTypes = [
   'lineheights',
   'mediaqueries',
   'mediaquery',
+  'opacity',
+  'opacities',
   'radii',
   'radius',
   'shadow',
