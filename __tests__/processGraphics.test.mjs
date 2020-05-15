@@ -25,6 +25,8 @@ test('It should exit correctly after having processed valid input', async () => 
   ).resolves.toEqual(expect.objectContaining({}));
 });
 
+jest.setTimeout(15000);
+
 /*
 
 test('It should throw an error when receiving invalid token and/or URL', async () => {

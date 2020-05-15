@@ -30,50 +30,28 @@ export function setupShadowTokens(shadowFrame) {
 
     let name = camelize(type.name);
     name = formatName(name);
-    let dropShadow = null;
 
-    const asdf = type.effects.map((effect) => {
-      //console.log('effect', effect);
-      if (effect.type === 'DROP_SHADOW') {
-        dropShadow = effect;
-        return effect;
-      }
+    const effects = type.effects.map((effect) => {
+      if (effect.type === 'DROP_SHADOW') return effect;
     });
 
-    console.log('asdf', asdf.length, asdf);
-    //console.log(name);
-    //console.log(dropShadow);
+    console.log('effects', effects);
 
-    if (dropShadow && asdf.length > 0) {
-      const X = dropShadow.offset.x;
-      const Y = dropShadow.offset.y;
-      const RADIUS = dropShadow.radius;
-      const R = roundColorValue(dropShadow.color.r);
-      const G = roundColorValue(dropShadow.color.g);
-      const B = roundColorValue(dropShadow.color.b);
-      const A = roundColorValue(dropShadow.color.a, 1);
+    if (effects.length > 0) {
+      shadowObject[name] = ``;
 
-      shadowObject[name] = `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
+      effects.forEach((e, index) => {
+        const X = e.offset.x;
+        const Y = e.offset.y;
+        const RADIUS = e.radius;
+        const R = roundColorValue(e.color.r);
+        const G = roundColorValue(e.color.g);
+        const B = roundColorValue(e.color.b);
+        const A = roundColorValue(e.color.a, 1);
 
-      let xxx = [];
-
-      asdf.forEach((a, index) => {
-        const X = a.offset.x;
-        const Y = a.offset.y;
-        const RADIUS = a.radius;
-        const R = roundColorValue(a.color.r);
-        const G = roundColorValue(a.color.g);
-        const B = roundColorValue(a.color.b);
-        const A = roundColorValue(a.color.a, 1);
-
-        if (xxx[name] === '' || xxx[name] === undefined) xxx[name] = ``;
-        xxx[name] += `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A}), `;
-        console.log(index, asdf[index]);
-        //if (index === asdf.length - 1) xxx[name] = xxx[name].slice(0, xxx[name.length] - 2);
+        shadowObject[name] += `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
+        if (index !== effects.length - 1) shadowObject[name] += `, `;
       });
-
-      console.log('––––––');
-      console.log(xxx);
     } else shadowObject[name] = ``;
   });
 
