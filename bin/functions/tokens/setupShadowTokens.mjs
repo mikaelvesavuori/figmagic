@@ -35,8 +35,6 @@ export function setupShadowTokens(shadowFrame) {
       if (effect.type === 'DROP_SHADOW') return effect;
     });
 
-    console.log('effects', effects);
-
     if (effects.length > 0) {
       shadowObject[name] = ``;
 
