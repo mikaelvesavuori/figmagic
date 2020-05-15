@@ -154,6 +154,7 @@ You can currently extract design tokens for:
 - Border Widths
 - Shadows (currently supports single/multiple Drop Shadows)
 - Media Queries
+- Opacities
 
 A typical use-case for the generated documents is to feed the extracted values into CSS systems that support external values (such as Styled Components, Emotion, Styled System, any other CSS-in-JS libraries, or maybe even Sass).
 
@@ -292,6 +293,7 @@ Below is a complete set of what you can configure, together with the defaults.
 {
   debugMode: false,
   fontUnit: 'rem',
+  opacitiesUnit: 'float',
   outputTokenFormat: 'mjs',
   outputFileName: 'figma.json',
   outputFolderBaseFile: '.figmagic',
@@ -403,6 +405,12 @@ Default is `mjs`.
 `figmagic --fontUnit [rem|em]` or `figmagic -f [rem|em]`
 
 Default is `rem`.
+
+#### Switch opacities unit
+
+`figmagic --opacitiesUnit [float|percent]` or `figmagic -ou [float|percent]`
+
+Default is `float`.
 
 #### Switch spacing unit
 
@@ -557,6 +565,11 @@ Default: `px` units.
 ### Media queries
 
 Default: `px` units.
+
+### Opacities
+
+Typical 2 decimals numbered values between 0 and 1 like `0` or `0.65`.
+Can be set to `percent` to have them converted to `%` strings instead like `0%` or `65%`.
 
 ### Radii
 

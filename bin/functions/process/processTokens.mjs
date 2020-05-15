@@ -10,6 +10,7 @@ import { setupRadiusTokens } from '../tokens/setupRadiusTokens.mjs';
 import { setupZindexTokens } from '../tokens/setupZindexTokens.mjs';
 import { setupLetterSpacingTokens } from '../tokens/setupLetterSpacingTokens.mjs';
 import { setupMediaQueryTokens } from '../tokens/setupMediaQueryTokens.mjs';
+import { setupOpacitiesTokens } from '../tokens/setupOpacitiesTokens.mjs';
 
 import { errorProcessTokens, errorProcessTokensNoConfig } from '../../meta/errors.mjs';
 
@@ -31,33 +32,80 @@ export function processTokens(sheet, name, config) {
   const _NAME = name.toLowerCase();
   let processedTokens = undefined;
 
-  if (_NAME === 'color' || _NAME === 'colour' || _NAME === 'colors' || _NAME === 'colours')
-    processedTokens = setupColorTokens(sheet);
-  if (_NAME === 'fontweight' || _NAME === 'fontweights')
-    processedTokens = setupFontWeightTokens(sheet);
-  if (_NAME === 'lineheight' || _NAME === 'lineheights')
-    processedTokens = setupLineHeightTokens(sheet);
-  if (_NAME === 'shadow' || _NAME === 'shadows') processedTokens = setupShadowTokens(sheet);
-  if (_NAME === 'borderwidth' || _NAME === 'borderwidths')
-    processedTokens = setupBorderWidthTokens(sheet);
-  if (_NAME === 'radius' || _NAME === 'radii') processedTokens = setupRadiusTokens(sheet);
-  if (_NAME === 'zindex' || _NAME === 'zindices') processedTokens = setupZindexTokens(sheet);
-  if (_NAME === 'letterspacing' || _NAME === 'letterspacings')
-    processedTokens = setupLetterSpacingTokens(sheet);
-  if (_NAME === 'mediaquery' || _NAME === 'mediaqueries')
-    processedTokens = setupMediaQueryTokens(sheet);
-
-  if (_NAME === 'space' || _NAME === 'spaces' || _NAME === 'spacing' || _NAME === 'spacings') {
-    if (!config) throw new Error(errorProcessTokensNoConfig);
-    processedTokens = setupSpacingTokens(sheet, config.spacingUnit, config.remSize);
-  }
-  if (_NAME === 'fontfamily' || _NAME === 'fontfamilies') {
-    if (!config) throw new Error(errorProcessTokensNoConfig);
-    processedTokens = setupFontTokens(sheet, config.usePostscriptFontNames);
-  }
-  if (_NAME === 'fontsize' || _NAME === 'fontsizes') {
-    if (!config) throw new Error(errorProcessTokensNoConfig);
-    processedTokens = setupFontSizeTokens(sheet, config.fontUnit, config.remSize);
+  switch (_NAME) {
+    case 'borderwidth':
+    case 'borderwidths': {
+      processedTokens = setupBorderWidthTokens(sheet);
+      break;
+    }
+    case 'color':
+    case 'colors':
+    case 'colour':
+    case 'colours': {
+      processedTokens = setupColorTokens(sheet);
+      break;
+    }
+    case 'fontfamily':
+    case 'fontfamilies': {
+      if (!config) throw new Error(errorProcessTokensNoConfig);
+      processedTokens = setupFontTokens(sheet, config.usePostscriptFontNames);
+      break;
+    }
+    case 'fontsize':
+    case 'fontsizes': {
+      if (!config) throw new Error(errorProcessTokensNoConfig);
+      processedTokens = setupFontSizeTokens(sheet, config.fontUnit, config.remSize);
+      break;
+    }
+    case 'fontweight':
+    case 'fontweights': {
+      processedTokens = setupFontWeightTokens(sheet);
+      break;
+    }
+    case 'letterspacing':
+    case 'letterspacings': {
+      processedTokens = setupLetterSpacingTokens(sheet);
+      break;
+    }
+    case 'lineheight':
+    case 'lineheights': {
+      processedTokens = setupLineHeightTokens(sheet);
+      break;
+    }
+    case 'mediaquery':
+    case 'mediaqueries': {
+      processedTokens = setupMediaQueryTokens(sheet);
+      break;
+    }
+    case 'opacity':
+    case 'opacities': {
+      if (!config) throw new Error(errorProcessTokensNoConfig);
+      processedTokens = setupOpacitiesTokens(sheet, config.opacitiesUnit);
+      break;
+    }
+    case 'radius':
+    case 'radii': {
+      processedTokens = setupRadiusTokens(sheet);
+      break;
+    }
+    case 'shadow':
+    case 'shadows': {
+      processedTokens = setupShadowTokens(sheet);
+      break;
+    }
+    case 'space':
+    case 'spaces':
+    case 'spacing':
+    case 'spacings': {
+      if (!config) throw new Error(errorProcessTokensNoConfig);
+      processedTokens = setupSpacingTokens(sheet, config.spacingUnit, config.remSize);
+      break;
+    }
+    case 'zindex':
+    case 'zindices': {
+      processedTokens = setupZindexTokens(sheet);
+      break;
+    }
   }
 
   return processedTokens;

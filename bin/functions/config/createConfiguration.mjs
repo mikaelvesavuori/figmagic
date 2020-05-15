@@ -36,6 +36,7 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
   const DEFAULT_CONFIG = {
     debugMode: defaultConfig.debugMode,
     fontUnit: defaultConfig.fontUnit,
+    opacitiesUnit: defaultConfig.opacitiesUnit,
     remSize: defaultConfig.remSize,
     outputFileName: defaultConfig.outputFileName,
     outputFolderBaseFile: defaultConfig.outputFolderBaseFile,

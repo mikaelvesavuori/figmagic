@@ -215,6 +215,35 @@ test('It should return default value for fontUnit if passing invalid value (long
 });
 
 /*
+ * Opacities unit
+ */
+test('It should return the unit for opacitiesUnit if passing valid value (long-hand)', () => {
+  const unit = 'percent';
+  expect(parseCliArgs(['--opacitiesUnit', unit])).toEqual(
+    expect.objectContaining({
+      opacitiesUnit: unit
+    })
+  );
+});
+
+test('It should return the unit for opacitiesUnit if passing valid value (short-hand)', () => {
+  const unit = 'float';
+  expect(parseCliArgs(['-ou', unit])).toEqual(
+    expect.objectContaining({
+      opacitiesUnit: unit
+    })
+  );
+});
+
+test('It should return default value for opacitiesUnit if passing invalid value', () => {
+  expect(parseCliArgs(['--opacitiesUnit', 'asdf'])).toEqual(
+    expect.objectContaining({
+      opacitiesUnit: defaultConfig.opacitiesUnit
+    })
+  );
+});
+
+/*
  * Spacing unit
  */
 test('It should return "em" for outputTokenFormat if passing "em" (long-hand)', () => {
