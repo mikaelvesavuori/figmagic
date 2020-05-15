@@ -152,7 +152,7 @@ You can currently extract design tokens for:
 - Z Indices
 - Radii
 - Border Widths
-- Shadows (currently only supports a single Drop Shadow)
+- Shadows (currently supports single/multiple Drop Shadows)
 - Media Queries
 - Opacities
 
