@@ -152,7 +152,7 @@ You can currently extract design tokens for:
 - Z Indices
 - Radii
 - Border Widths
-- Shadows (currently supports single or multiple Drop Shadows)
+- Shadows (currently supports single/multiple Drop Shadows)
 - Media Queries
 
 A typical use-case for the generated documents is to feed the extracted values into CSS systems that support external values (such as Styled Components, Emotion, Styled System, any other CSS-in-JS libraries, or maybe even Sass).
