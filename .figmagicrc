@@ -1,5 +1,6 @@
 {
   "fontUnit": "rem",
+  "opacitiesUnit": "float",
   "outputFileName": "figma.json",
   "outputFolderBaseFile": ".figmagic",
   "outputFolderTokens": "tokens",
