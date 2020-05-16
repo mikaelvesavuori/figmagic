@@ -30,7 +30,6 @@
       "url": "https://github.com/mike-lvov"
     }
   ],
-  "module": "index.mjs",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -46,6 +45,7 @@
     "eslint-plugin-prettier": "^3.1.3",
     "husky": "^4.2.5",
     "jest": "^25.3.0",
+    "microbundle": "^0.12.0",
     "prettier": "^2.0.4",
     "pretty-quick": "^2.0.1",
     "validate-commit-msg": "^2.14.0"
@@ -57,11 +57,15 @@
     "snyk": "^1.319.2"
   },
   "bin": {
-    "figmagic": "./index.mjs"
+    "figmagic": "node --experimental-modules index.mjs"
   },
+  "source": "index.mjs",
+  "main": "dist/figmagic.umd.js",
+  "module": "dist/figmagic.module.js",
+  "unpkg": "dist/figmagic.umd.js",
   "scripts": {
-    "setup": "rm package-lock.json && rm -rf /node_modules && rm -rf /usr/local/lib/node_modules/figmagic && npm install -g",
     "figmagic": "node --experimental-modules index.mjs",
+    "build": "microbundle index.mjs -f modern,umd --target node --compress --strict",
     "test": "jest __tests__ --collectCoverage",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
