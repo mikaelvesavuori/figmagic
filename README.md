@@ -581,7 +581,7 @@ Default: `px` units for three values (horizontal offset, vertical offset, blur) 
 
 ### Z indices
 
-Default: numbers (well, actually, numbers in strings).
+Default: numbers (whole numbers, i.e. integers).
 
 ## Contribution
 
