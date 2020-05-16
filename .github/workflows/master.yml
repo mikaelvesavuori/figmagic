@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ['ubuntu-latest'] #, 'macos-latest'
+        os: ['ubuntu-latest', 'macos-latest']
         node-version: [12.x]
     steps:
       - name: Checkout
@@ -32,8 +32,7 @@ jobs:
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
-      #- run: npm install -g figmagic # This is the desired, user-friendly way but seems to fail in a stupid way in CI...
-      - run: npm run setup
+      - run: npm install -g
       - run: npm run figmagic
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
@@ -71,8 +70,7 @@ jobs:
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
-      #- run: npm install -g figmagic # This is the desired, user-friendly way but seems to fail in a stupid way in CI...
-      - run: npm run setup
+      - run: npm install -g
       - run: npm run figmagic
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
@@ -81,11 +79,6 @@ jobs:
       - run: Test-Path .figmagic/figma.json -PathType leaf
         env:
           CI: true
-
-      - name: Send coverage report with Codecov
-        uses: codecov/codecov-action@v1
-        id: coverage
-      - run: bash <(curl -s https://codecov.io/bash) -f jest-coverage/clover.xml
 
   publish-npm:
     needs: ['build-unix', 'build-windows']
