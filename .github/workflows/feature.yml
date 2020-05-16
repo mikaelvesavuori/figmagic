@@ -11,11 +11,11 @@ on:
       - 'hotfix/*'
 
 jobs:
-  build:
+  build-unix:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'windows-latest'] #'macos-latest'
+        os: ['ubuntu-latest'] #'macos-latest'
         node-version: [12.x]
     steps:
       - name: Checkout
@@ -42,5 +42,39 @@ jobs:
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
       - run: \[ -d .figmagic \]
       - run: \[ -f .figmagic/figma.json \]
+        env:
+          CI: true
+
+  build-windows:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ['windows-latest'] #'macos-latest'
+        node-version: [12.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        id: checkout
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        id: node
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm audit fix
+      - run: npm test
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_URL: ${{ secrets.FIGMA_URL }}
+      #- run: npm install -g figmagic # This is the desired, user-friendly way but seems to fail in a stupid way in CI...
+      - run: npm run setup
+      - run: npm run figmagic
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_URL: ${{ secrets.FIGMA_URL }}
+      - run: Test-Path .figmagic -PathType leaf
+      - run: Test-Path .figmagic/figma.json -PathType leaf
         env:
           CI: true
