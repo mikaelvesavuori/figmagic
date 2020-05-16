@@ -9,11 +9,11 @@ on:
       - 'master'
 
 jobs:
-  build:
+  build-unix:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'windows-latest'] #'macos-latest'
+        os: ['ubuntu-latest'] #, 'macos-latest'
         node-version: [12.x]
     steps:
       - name: Checkout
@@ -48,8 +48,47 @@ jobs:
         id: coverage
       - run: bash <(curl -s https://codecov.io/bash) -f jest-coverage/clover.xml
 
+  build-windows:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ['windows-latest']
+        node-version: [12.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        id: checkout
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+        id: node
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm audit fix
+      - run: npm test
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_URL: ${{ secrets.FIGMA_URL }}
+      #- run: npm install -g figmagic # This is the desired, user-friendly way but seems to fail in a stupid way in CI...
+      - run: npm run setup
+      - run: npm run figmagic
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_URL: ${{ secrets.FIGMA_URL }}
+      - run: Test-Path .figmagic
+      - run: Test-Path .figmagic/figma.json -PathType leaf
+        env:
+          CI: true
+
+      - name: Send coverage report with Codecov
+        uses: codecov/codecov-action@v1
+        id: coverage
+      - run: bash <(curl -s https://codecov.io/bash) -f jest-coverage/clover.xml
+
   publish-npm:
-    needs: build
+    needs: ['build-unix', 'build-windows']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

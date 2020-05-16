@@ -49,7 +49,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ['windows-latest'] #'macos-latest'
+        os: ['windows-latest']
         node-version: [12.x]
     steps:
       - name: Checkout
@@ -74,7 +74,7 @@ jobs:
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
-      - run: Test-Path .figmagic -PathType leaf
+      - run: Test-Path .figmagic
       - run: Test-Path .figmagic/figma.json -PathType leaf
         env:
           CI: true
