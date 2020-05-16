@@ -1,6 +1,7 @@
 #!/bin/sh
 ':'; //# ; exec /usr/bin/env node --experimental-modules --no-warnings "$0" "$@"
 
+import path from 'path';
 import trash from 'trash';
 import dotenv from 'dotenv';
 
@@ -30,11 +31,13 @@ import {
   msgJobComplete
 } from './bin/meta/messages.mjs';
 
+const FIGMAGIC_RC_FILENAME = `.figmagicrc`;
+
 async function figmagic() {
   // Setup
   dotenv.config();
   const [, , ...CLI_ARGS] = process.argv;
-  const USER_CONFIG_PATH = `${process.cwd()}/.figmagicrc`;
+  const USER_CONFIG_PATH = path.join(`${process.cwd()}`, FIGMAGIC_RC_FILENAME);
   const CONFIG = await createConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
   const {
     token,
@@ -72,7 +75,7 @@ async function figmagic() {
       console.log(msgSetDataFromLocal);
 
       try {
-        return await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
+        return await loadFile(path.join(`${outputFolderBaseFile}`, `${outputFileName}`));
       } catch (error) {
         throw new Error(error);
       }

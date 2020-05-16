@@ -1,3 +1,5 @@
+import path from 'path';
+
 import { roundColorValue } from '../helpers/roundColorValue.mjs';
 import { getTokenMatch } from './getTokenMatch.mjs';
 //import { warnParseCssFromElementNoTokenMatch } from '../meta/warnings.mjs';
@@ -27,16 +29,17 @@ export async function parseCssFromElement(
   if (!element || !remSize) throw new Error(errorParseCssFromElement);
 
   // Dynamic imports
-  const PATH = isTest ? `testdata/tokens` : `tokens`;
-  const _borderWidths = await import(`${process.cwd()}/${PATH}/borderWidths.mjs`);
+  const PATH = isTest ? path.join('testdata', 'tokens') : `tokens`;
+
+  const _borderWidths = await import(path.join(`${process.cwd()}`, `${PATH}`, `borderWidths.mjs`));
   const borderWidths = _borderWidths.default;
-  const _colors = await import(`${process.cwd()}/${PATH}/colors.mjs`);
+  const _colors = await import(path.join(`${process.cwd()}`, `${PATH}`, `colors.mjs`));
   const colors = _colors.default;
-  const _radii = await import(`${process.cwd()}/${PATH}/radii.mjs`);
+  const _radii = await import(path.join(`${process.cwd()}`, `${PATH}`, `radii.mjs`));
   const radii = _radii.default;
-  const _shadows = await import(`${process.cwd()}/${PATH}/shadows.mjs`);
+  const _shadows = await import(path.join(`${process.cwd()}`, `${PATH}`, `shadows.mjs`));
   const shadows = _shadows.default;
-  const _spacing = await import(`${process.cwd()}/${PATH}/spacing.mjs`);
+  const _spacing = await import(path.join(`${process.cwd()}`, `${PATH}`, `spacing.mjs`));
   const spacing = _spacing.default;
   // Not using media queries or Z indices
 

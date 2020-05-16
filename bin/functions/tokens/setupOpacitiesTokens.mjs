@@ -22,8 +22,6 @@ export function setupOpacitiesTokens(opacitiesFrame, opacitiesUnit) {
   if (!opacitiesFrame) throw new Error(errorSetupOpacitiesTokensNoFrame);
   if (!opacitiesFrame.children) throw new Error(errorSetupOpacitiesTokensNoChildren);
 
-  console.info('frame', opacitiesFrame);
-
   // Reduce the children array to a tokens object
   const opacityTokensObject = opacitiesFrame.children.reduce(
     // Reducer function: will add a new key to the current "opacitiesObject" at each iteration
