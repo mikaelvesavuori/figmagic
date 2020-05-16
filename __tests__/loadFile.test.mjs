@@ -1,3 +1,4 @@
+import path from 'path';
 import { loadFile } from '../bin/functions/filesystem/loadFile';
 
 test('It should throw an error if no parameter is provided', async () => {
@@ -10,7 +11,7 @@ test('It should throw an error if invalid path is provided', async () => {
 });
 
 test('It should return data from local file', async () => {
-  const FILE = await loadFile(`${process.cwd()}/testdata/figmagicrc`);
+  const FILE = await loadFile(path.join(`${process.cwd()}`, 'testdata', 'figmagicrc'));
   expect(FILE).toEqual(
     expect.objectContaining({
       debugMode: false,

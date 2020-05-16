@@ -1,3 +1,5 @@
+import path from 'path';
+
 import { roundColorValue } from '../helpers/roundColorValue.mjs';
 import { normalizeUnits } from '../helpers/normalizeUnits.mjs';
 import { getTokenMatch } from './getTokenMatch.mjs';
@@ -20,18 +22,21 @@ export async function parseTypographyStylingFromElement(element, remSize, isTest
   if (!element || !remSize) throw new Error(errorParseTypographyStylingFromElement);
 
   // Dynamic imports
-  const PATH = isTest ? `testdata/tokens` : `tokens`;
-  const _colors = await import(`${process.cwd()}/${PATH}/colors.mjs`);
+  const PATH = isTest ? path.join('testdata', 'tokens') : `tokens`;
+
+  const _colors = await import(path.join(`${process.cwd()}`, `${PATH}`, `colors.mjs`));
   const colors = _colors.default;
-  const _fontFamilies = await import(`${process.cwd()}/${PATH}/fontFamilies.mjs`);
+  const _fontFamilies = await import(path.join(`${process.cwd()}`, `${PATH}`, `fontFamilies.mjs`));
   const fontFamilies = _fontFamilies.default;
-  const _fontSizes = await import(`${process.cwd()}/${PATH}/fontSizes.mjs`);
+  const _fontSizes = await import(path.join(`${process.cwd()}`, `${PATH}`, `fontSizes.mjs`));
   const fontSizes = _fontSizes.default;
-  const _fontWeights = await import(`${process.cwd()}/${PATH}/fontWeights.mjs`);
+  const _fontWeights = await import(path.join(`${process.cwd()}`, `${PATH}`, `fontWeights.mjs`));
   const fontWeights = _fontWeights.default;
-  const _letterSpacings = await import(`${process.cwd()}/${PATH}/letterSpacings.mjs`);
+  const _letterSpacings = await import(
+    path.join(`${process.cwd()}`, `${PATH}`, `letterSpacings.mjs`)
+  );
   const letterSpacings = _letterSpacings.default;
-  const _lineHeights = await import(`${process.cwd()}/${PATH}/lineHeights.mjs`);
+  const _lineHeights = await import(path.join(`${process.cwd()}`, `${PATH}`, `lineHeights.mjs`));
   const lineHeights = _lineHeights.default;
 
   let css = ``;
