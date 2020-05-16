@@ -61,7 +61,7 @@
     "trash": "^6.1.1"
   },
   "bin": {
-    "figmagic": "node --experimental-modules index.mjs"
+    "figmagic": "index.mjs"
   },
   "source": "index.mjs",
   "main": "dist/figmagic.umd.js",
