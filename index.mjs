@@ -75,7 +75,7 @@ async function figmagic() {
       console.log(msgSetDataFromLocal);
 
       try {
-        return await loadFile(`./${outputFolderBaseFile}/${outputFileName}`);
+        return await loadFile(path.join(`${outputFolderBaseFile}`, `${outputFileName}`));
       } catch (error) {
         throw new Error(error);
       }
