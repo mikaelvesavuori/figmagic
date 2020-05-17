@@ -1,5 +1,6 @@
 {
   "fontUnit": "rem",
+  "letterSpacingUnit": "em",
   "opacitiesUnit": "float",
   "outputFileName": "figma.json",
   "outputFolderBaseFile": ".figmagic",

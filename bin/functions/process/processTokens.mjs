@@ -64,7 +64,8 @@ export function processTokens(sheet, name, config) {
     }
     case 'letterspacing':
     case 'letterspacings': {
-      processedTokens = setupLetterSpacingTokens(sheet);
+      if (!config) throw new Error(errorProcessTokensNoConfig);
+      processedTokens = setupLetterSpacingTokens(sheet, config.letterSpacingUnit);
       break;
     }
     case 'lineheight':

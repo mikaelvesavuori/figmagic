@@ -42,11 +42,6 @@ export function normalizeUnits(value, currentUnit, newUnit, remSize) {
     unitSize = value / 100;
   }
 
-  // Convert letter spacing to something that seems more correct
-  if (currentUnit === 'letterSpacing' && newUnit === 'adjustedSpacing') {
-    return `${parseFloat(value * 1.5).toFixed(2)}px`;
-  }
-
   // Add px to corner radius
   if (currentUnit === 'cornerRadius' && newUnit === 'adjustedRadius') {
     return `${value}px`;

@@ -4,6 +4,7 @@ import {
   warnParseCliArgsOutputFormat,
   warnParseCliArgsFontUnit,
   warnParseCliArgsOpacitiesUnit,
+  warnParseCliArgsLetterSpacingUnit,
   warnParseCliArgsSpacingUnit
 } from '../../meta/warnings.mjs';
 
@@ -98,6 +99,15 @@ export function parseCliArgs(argsArray) {
           console.warn(warnParseCliArgsFontUnit);
           config.fontUnit = defaultConfig.fontUnit;
         }
+      }
+      // Check and handle letter-spacing unit switch
+      else if (arg === '--letterSpacingUnit' || arg == '-lsu') {
+        let FORMAT = argsArray[index + 1].toLowerCase();
+        if (!['em', 'px'].includes(FORMAT)) {
+          console.warn(warnParseCliArgsLetterSpacingUnit);
+          FORMAT = defaultConfig.letterSpacingUnit;
+        }
+        config.letterSpacingUnit = FORMAT;
       }
       // Check and handle opacities unit switch
       else if (arg === '--opacitiesUnit' || arg == '-ou') {
