@@ -18,7 +18,8 @@ export const letterSpacingsFrame = {
       effects: [],
       characters: 'Letter Spacing Tight',
       style: {
-        letterSpacing: -0.8
+        fontSize: 16,
+        letterSpacing: -0.72
       },
       layoutVersion: 1,
       characterStyleOverrides: [],
@@ -39,7 +40,8 @@ export const letterSpacingsFrame = {
       effects: [],
       characters: 'Letter Spacing Wide',
       style: {
-        letterSpacing: 1.1
+        fontSize: 16,
+        letterSpacing: 0.8
       },
       layoutVersion: 1,
       characterStyleOverrides: [],
@@ -61,6 +63,7 @@ export const letterSpacingsFrame = {
       effects: [],
       characters: 'Letter Spacing Regular',
       style: {
+        fontSize: 16,
         letterSpacing: 0
       },
       layoutVersion: 1,

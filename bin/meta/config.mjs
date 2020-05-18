@@ -1,6 +1,7 @@
 export const defaultConfig = {
   debugMode: false,
   fontUnit: 'rem',
+  letterSpacingUnit: 'em',
   opacitiesUnit: 'float',
   outputTokenFormat: 'mjs',
   outputFileName: 'figma.json',

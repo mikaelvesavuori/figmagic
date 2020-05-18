@@ -293,6 +293,7 @@ Below is a complete set of what you can configure, together with the defaults.
 {
   debugMode: false,
   fontUnit: 'rem',
+  letterSpacingUnit: 'em',
   opacitiesUnit: 'float',
   outputTokenFormat: 'mjs',
   outputFileName: 'figma.json',
@@ -405,6 +406,12 @@ Default is `mjs`.
 `figmagic --fontUnit [rem|em]` or `figmagic -f [rem|em]`
 
 Default is `rem`.
+
+#### Switch letter-spacing unit
+
+`figmagic --letterSpacingUnit [em|px]` or `figmagic -lsu [em|px]`
+
+Default is `em`.
 
 #### Switch opacities unit
 
@@ -560,7 +567,7 @@ Default: `px` units.
 
 ### Letter spacings
 
-Default: `px` units.
+Default: `em` units.
 
 ### Media queries
 

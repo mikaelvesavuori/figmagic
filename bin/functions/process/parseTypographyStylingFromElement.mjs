@@ -1,7 +1,6 @@
 import path from 'path';
 
 import { roundColorValue } from '../helpers/roundColorValue.mjs';
-import { normalizeUnits } from '../helpers/normalizeUnits.mjs';
 import { getTokenMatch } from './getTokenMatch.mjs';
 
 import { errorParseTypographyStylingFromElement } from '../../meta/errors.mjs';
@@ -169,12 +168,13 @@ export async function parseTypographyStylingFromElement(element, remSize, isTest
     }
   })();
 
-  if (LETTER_SPACING) {
+  if (LETTER_SPACING && FONT_SIZE) {
     const { updatedCss, updatedImports } = getTokenMatch(
       letterSpacings,
       'letterSpacings',
       'letter-spacing',
-      normalizeUnits(parseFloat(LETTER_SPACING), 'letterSpacing', 'adjustedSpacing')
+      // TODO: this duplicates the internal logic of the letter-spacing token processing, and makes the heavy assumption the expected unit is "em"
+      `${LETTER_SPACING / FONT_SIZE}em`
     );
     css += updatedCss;
     updatedImports.forEach((i) => imports.push(i));
