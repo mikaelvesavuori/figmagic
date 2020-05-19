@@ -22,163 +22,201 @@ import { defaultConfig } from '../../meta/config.mjs';
 export function parseCliArgs(argsArray) {
   if (!argsArray) throw new Error(errorParseCliArgs);
 
-  let config = {
-    templates: {
-      templatePathReact: defaultConfig.templates.defaultTemplatePathReact,
-      templatePathStyled: defaultConfig.templates.defaultTemplatePathStyled,
-      templatePathStorybook: defaultConfig.templates.defaultTemplatePathStorybook
-    },
-    skipFileGeneration: {
-      react: defaultConfig.skipFileGeneration.defaultSkipReact,
-      styled: defaultConfig.skipFileGeneration.defaultSkipStyled,
-      css: defaultConfig.skipFileGeneration.defaultSkipCss,
-      storybook: defaultConfig.skipFileGeneration.defaultSkipStorybook,
-      description: defaultConfig.skipFileGeneration.defaultSkipDescription,
-      forceUpdate: defaultConfig.skipFileGeneration.defaultForceUpdate
-    }
-  };
+  let config = {};
 
   if (argsArray.length > 0) {
-    argsArray.forEach((arg, index) => {
-      // Toggle debug mode if requested
-      if (arg === '--debug') {
-        config.debugMode = true;
-      }
-      // Recompile tokens from local Figma JSON file
-      else if (arg === '--recompileLocal') {
-        config.recompileLocal = true;
-      }
-      // Sync graphics from "Graphics" page in Figma
-      else if (arg === '--syncGraphics') {
-        config.syncGraphics = true;
-      }
-      // Sync elements from "Elements" page in Figma
-      else if (arg === '--syncElements') {
-        config.syncElements = true;
-      }
-      // Skip file generation: React
-      else if (arg === '--skipReact') {
-        config.skipFileGeneration.react = true;
-      }
-      // Skip file generation: Styled Components
-      else if (arg === '--skipStyled') {
-        config.skipFileGeneration.styled = true;
-      }
-      // Skip file generation: CSS
-      else if (arg === '--skipCss') {
-        config.skipFileGeneration.css = true;
-      }
-      // Skip file generation: Storybook
-      else if (arg === '--skipStorybook') {
-        config.skipFileGeneration.storybook = true;
-      }
-      // Skip file generation: Markdown description
-      else if (arg === '--skipDescription') {
-        config.skipFileGeneration.description = true;
-      }
-      // Force update all elements
-      else if (arg === '--forceUpdate') {
-        config.skipFileGeneration.forceUpdate = true;
-      }
-      // Check and handle token format switch
-      else if (arg === '--outputTokenFormat' || arg == '-tf') {
-        const FORMAT = argsArray[index + 1].toLowerCase();
-        if (FORMAT === 'mjs' || FORMAT === 'js') {
-          config.outputTokenFormat = argsArray[index + 1].toLowerCase();
-        } else {
-          console.warn(warnParseCliArgsOutputFormat);
-          config.outputTokenFormat = defaultConfig.outputTokenFormat;
+    config = argsArray.reduce(
+      // reducer: add specific keys to the accumulated config when known arguments match
+      (accumulatedConfig, arg, index) => {
+        switch (arg) {
+          // Toggle debug mode if requested
+          case '--debug':
+            accumulatedConfig.debugMode = true;
+            break;
+          // Recompile tokens from local Figma JSON file
+          case '--recompileLocal':
+            accumulatedConfig.recompileLocal = true;
+            break;
+          // Sync graphics from "Graphics" page in Figma
+          case '--syncGraphics':
+            accumulatedConfig.syncGraphics = true;
+            break;
+          // Sync elements from "Elements" page in Figma
+          case '--syncElements':
+            accumulatedConfig.syncElements = true;
+            break;
+          // Skip file generation: React
+          case '--skipReact':
+            accumulatedConfig.skipFileGeneration = {
+              ...accumulatedConfig.skipFileGeneration,
+              react: true
+            };
+            break;
+          // Skip file generation: Styled Components
+          case '--skipStyled':
+            accumulatedConfig.skipFileGeneration = {
+              ...accumulatedConfig.skipFileGeneration,
+              styled: true
+            };
+            break;
+          // Skip file generation: CSS
+          case '--skipCss':
+            accumulatedConfig.skipFileGeneration = {
+              ...accumulatedConfig.skipFileGeneration,
+              css: true
+            };
+            break;
+          // Skip file generation: Storybook
+          case '--skipStorybook':
+            accumulatedConfig.skipFileGeneration = {
+              ...accumulatedConfig.skipFileGeneration,
+              storybook: true
+            };
+            break;
+          // Skip file generation: Markdown description
+          case '--skipDescription':
+            accumulatedConfig.skipFileGeneration = {
+              ...accumulatedConfig.skipFileGeneration,
+              description: true
+            };
+            break;
+          // Force update all elements
+          case '--forceUpdate':
+            accumulatedConfig.skipFileGeneration = {
+              ...accumulatedConfig.skipFileGeneration,
+              forceUpdate: true
+            };
+            break;
+          // Check and handle token format switch
+          case '--outputTokenFormat':
+          case '-tf': {
+            let outputTokenFormat = argsArray[index + 1].toLowerCase();
+            if (!['mjs', 'js'].includes(outputTokenFormat)) {
+              console.warn(warnParseCliArgsOutputFormat);
+              outputTokenFormat = defaultConfig.outputTokenFormat;
+            }
+            accumulatedConfig.outputTokenFormat = outputTokenFormat;
+            break;
+          }
+          // Check and handle font unit switch
+          case '--fontUnit':
+          case '-f': {
+            let fontUnit = argsArray[index + 1].toLowerCase();
+            if (!['rem', 'em'].includes(fontUnit)) {
+              console.warn(warnParseCliArgsFontUnit);
+              fontUnit = defaultConfig.fontUnit;
+            }
+            accumulatedConfig.fontUnit = fontUnit;
+            break;
+          }
+          // Check and handle letter-spacing unit switch
+          case '--letterSpacingUnit':
+          case '-lsu': {
+            let letterSpacingUnit = argsArray[index + 1].toLowerCase();
+            if (!['em', 'px'].includes(letterSpacingUnit)) {
+              console.warn(warnParseCliArgsLetterSpacingUnit);
+              letterSpacingUnit = defaultConfig.letterSpacingUnit;
+            }
+            accumulatedConfig.letterSpacingUnit = letterSpacingUnit;
+            break;
+          }
+          // Check and handle opacities unit switch
+          case '--opacitiesUnit':
+          case '-ou': {
+            let opacitiesUnit = argsArray[index + 1].toLowerCase();
+            if (!['float', 'percent'].includes(opacitiesUnit)) {
+              console.warn(warnParseCliArgsOpacitiesUnit);
+              opacitiesUnit = defaultConfig.opacitiesUnit;
+            }
+            accumulatedConfig.opacitiesUnit = opacitiesUnit;
+            break;
+          }
+          // Check and handle spacing unit switch
+          case '--spacingUnit':
+          case '-s': {
+            let spacingUnit = argsArray[index + 1].toLowerCase();
+            if (!['rem', 'em'].includes(spacingUnit)) {
+              console.warn(warnParseCliArgsSpacingUnit);
+              spacingUnit = defaultConfig.spacingUnit;
+            }
+            accumulatedConfig.spacingUnit = spacingUnit;
+            break;
+          }
+          // Handle input: Figma API token
+          case '--token':
+          case '-t':
+            accumulatedConfig.token = argsArray[index + 1];
+            break;
+          // Handle input: Figma URL
+          case '--url':
+          case '-u':
+            accumulatedConfig.url = argsArray[index + 1];
+            break;
+          // Handle input: Figma base file output folder
+          case '--outputFolderBaseFile':
+          case '-base':
+            accumulatedConfig.outputFolderBaseFile = argsArray[index + 1];
+            break;
+          // Handle input: token output folder
+          case '--outputFolderTokens':
+          case '-tokens':
+            accumulatedConfig.outputFolderTokens = argsArray[index + 1];
+            break;
+          // Handle input: element output folder
+          case '--outputFolderElements':
+          case '-elements':
+            accumulatedConfig.outputFolderElements = argsArray[index + 1];
+            break;
+          // Handle input: component output folder
+          /*
+          case '--outputFolderComponents':
+          case '-components':
+            accumulatedConfig.outputFolderComponents = argsArray[index + 1];
+            break;
+          */
+          // Handle input: output file name
+          case '--outputFileName':
+          case '-file':
+            accumulatedConfig.outputFileName = argsArray[index + 1];
+            break;
+          // Handle input: output token data type
+          case '--outputTokenDataType':
+          case '-tokentype':
+            accumulatedConfig.outputTokenDataType = argsArray[index + 1];
+            break;
+          // Set font family name to be "common name" or Postscript name
+          case '--usePostscriptFontNames':
+          case '-ps':
+            accumulatedConfig.usePostscriptFontNames = true;
+            break;
+          // Set custom template path for React
+          case '--templatePathReact':
+            accumulatedConfig.templates = {
+              ...accumulatedConfig.templates,
+              templatePathReact: argsArray[index + 1]
+            };
+            break;
+          // Set custom template path for Styled Components
+          case '--templatePathStyled':
+            accumulatedConfig.templates = {
+              ...accumulatedConfig.templates,
+              templatePathStyled: argsArray[index + 1]
+            };
+            break;
+          // Set custom template path for Storybook
+          case '--templatePathStorybook':
+            accumulatedConfig.templates = {
+              ...accumulatedConfig.templates,
+              templatePathStorybook: argsArray[index + 1]
+            };
+            break;
         }
-      }
-      // Check and handle font unit switch
-      else if (arg === '--fontUnit' || arg == '-f') {
-        const FORMAT = argsArray[index + 1].toLowerCase();
-        if (FORMAT === 'rem' || FORMAT === 'em') {
-          config.fontUnit = argsArray[index + 1].toLowerCase();
-        } else {
-          console.warn(warnParseCliArgsFontUnit);
-          config.fontUnit = defaultConfig.fontUnit;
-        }
-      }
-      // Check and handle letter-spacing unit switch
-      else if (arg === '--letterSpacingUnit' || arg == '-lsu') {
-        let FORMAT = argsArray[index + 1].toLowerCase();
-        if (!['em', 'px'].includes(FORMAT)) {
-          console.warn(warnParseCliArgsLetterSpacingUnit);
-          FORMAT = defaultConfig.letterSpacingUnit;
-        }
-        config.letterSpacingUnit = FORMAT;
-      }
-      // Check and handle opacities unit switch
-      else if (arg === '--opacitiesUnit' || arg == '-ou') {
-        let FORMAT = argsArray[index + 1].toLowerCase();
-        if (!['float', 'percent'].includes(FORMAT)) {
-          console.warn(warnParseCliArgsOpacitiesUnit);
-          FORMAT = defaultConfig.opacitiesUnit;
-        }
-        config.opacitiesUnit = FORMAT;
-      }
-      // Check and handle spacing unit switch
-      else if (arg === '--spacingUnit' || arg == '-s') {
-        const FORMAT = argsArray[index + 1].toLowerCase();
-        if (FORMAT === 'rem' || FORMAT === 'em') {
-          config.spacingUnit = argsArray[index + 1].toLowerCase();
-        } else {
-          console.warn(warnParseCliArgsSpacingUnit);
-          config.spacingUnit = defaultConfig.spacingUnit;
-        }
-      }
-      // Handle input: Figma API token
-      else if (arg === '--token' || arg == '-t') {
-        config.token = argsArray[index + 1];
-      }
-      // Handle input: Figma URL
-      else if (arg === '--url' || arg == '-u') {
-        config.url = argsArray[index + 1];
-      }
-      // Handle input: Figma base file output folder
-      else if (arg === '--outputFolderBaseFile' || arg == '-base') {
-        config.outputFolderBaseFile = argsArray[index + 1];
-      }
-      // Handle input: token output folder
-      else if (arg === '--outputFolderTokens' || arg == '-tokens') {
-        config.outputFolderTokens = argsArray[index + 1];
-      }
-      // Handle input: element output folder
-      else if (arg === '--outputFolderElements' || arg == '-elements') {
-        config.outputFolderElements = argsArray[index + 1];
-      }
-      // Handle input: component output folder
-      /*
-      else if (arg === '--outputFolderComponents' || arg == '-components') {
-        config.outputFolderComponents = argsArray[index + 1];
-			}
-			*/
-      // Handle input: output file name
-      else if (arg === '--outputFileName' || arg == '-file') {
-        config.outputFileName = argsArray[index + 1];
-      }
-      // Handle input: output token data type
-      else if (arg === '--outputTokenDataType' || arg == '-tokentype') {
-        config.outputTokenDataType = argsArray[index + 1];
-      }
-      // Set font family name to be "common name" or Postscript name
-      else if (arg === '--usePostscriptFontNames' || arg === '-ps') {
-        config.usePostscriptFontNames = true;
-      }
-      // Set custom template path for React
-      else if (arg === '--templatePathReact') {
-        config.templates.templatePathReact = argsArray[index + 1];
-      }
-      // Set custom template path for Styled Components
-      else if (arg === '--templatePathStyled') {
-        config.templates.templatePathStyled = argsArray[index + 1];
-      }
-      // Set custom template path for Storybook
-      else if (arg === '--templatePathStorybook') {
-        config.templates.templatePathStorybook = argsArray[index + 1];
-      }
-    });
+
+        return accumulatedConfig;
+      },
+      // initial object: empty config
+      {}
+    );
   }
 
   return config;

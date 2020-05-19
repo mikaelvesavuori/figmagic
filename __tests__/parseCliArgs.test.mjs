@@ -8,6 +8,10 @@ test('It should throw an error if no arguments array is passed', () => {
   }).toThrow();
 });
 
+test('Should return an empty object if an empty array of args is passed', () => {
+  expect(parseCliArgs([])).toEqual({});
+});
+
 /*
  * Debug mode
  */
@@ -58,14 +62,9 @@ test('It should return true for syncElements if passing "--syncElements"', () =>
 test('It should return true for skipFileGeneration.react if passing "--skipReact"', () => {
   expect(parseCliArgs(['--skipReact'])).toEqual(
     expect.objectContaining({
-      skipFileGeneration: {
-        css: false,
-        description: false,
-        forceUpdate: true,
-        react: true,
-        storybook: false,
-        styled: false
-      }
+      skipFileGeneration: expect.objectContaining({
+        react: true
+      })
     })
   );
 });
@@ -76,14 +75,9 @@ test('It should return true for skipFileGeneration.react if passing "--skipReact
 test('It should return true for skipFileGeneration.styled if passing "--skipStyled"', () => {
   expect(parseCliArgs(['--skipStyled'])).toEqual(
     expect.objectContaining({
-      skipFileGeneration: {
-        css: false,
-        description: false,
-        forceUpdate: true,
-        react: false,
-        storybook: false,
+      skipFileGeneration: expect.objectContaining({
         styled: true
-      }
+      })
     })
   );
 });
@@ -94,14 +88,9 @@ test('It should return true for skipFileGeneration.styled if passing "--skipStyl
 test('It should return true for skipFileGeneration.css if passing "--skipCss"', () => {
   expect(parseCliArgs(['--skipCss'])).toEqual(
     expect.objectContaining({
-      skipFileGeneration: {
-        css: true,
-        description: false,
-        forceUpdate: true,
-        react: false,
-        storybook: false,
-        styled: false
-      }
+      skipFileGeneration: expect.objectContaining({
+        css: true
+      })
     })
   );
 });
@@ -112,14 +101,9 @@ test('It should return true for skipFileGeneration.css if passing "--skipCss"', 
 test('It should return true for skipFileGeneration.storybook if passing "--skipStorybook"', () => {
   expect(parseCliArgs(['--skipStorybook'])).toEqual(
     expect.objectContaining({
-      skipFileGeneration: {
-        css: false,
-        description: false,
-        forceUpdate: true,
-        react: false,
-        storybook: true,
-        styled: false
-      }
+      skipFileGeneration: expect.objectContaining({
+        storybook: true
+      })
     })
   );
 });
@@ -130,14 +114,9 @@ test('It should return true for skipFileGeneration.storybook if passing "--skipS
 test('It should return true for skipFileGeneration.styled if passing "--skipDescription"', () => {
   expect(parseCliArgs(['--skipDescription'])).toEqual(
     expect.objectContaining({
-      skipFileGeneration: {
-        css: false,
-        description: true,
-        forceUpdate: true,
-        react: false,
-        storybook: false,
-        styled: false
-      }
+      skipFileGeneration: expect.objectContaining({
+        description: true
+      })
     })
   );
 });
@@ -148,14 +127,34 @@ test('It should return true for skipFileGeneration.styled if passing "--skipDesc
 test('It should return true for skipFileGeneration.forceUpdate if passing "--forceUpdate"', () => {
   expect(parseCliArgs(['--forceUpdate'])).toEqual(
     expect.objectContaining({
-      skipFileGeneration: {
-        css: false,
-        description: false,
-        forceUpdate: true,
-        react: false,
-        storybook: false,
-        styled: false
-      }
+      skipFileGeneration: expect.objectContaining({
+        forceUpdate: true
+      })
+    })
+  );
+});
+
+/**
+ * Skip file generation: all
+ */
+test('It should return true for all skipFileGeneration properties, if passing all --skip flags', () => {
+  expect(
+    parseCliArgs([
+      '--skipReact',
+      '--skipStyled',
+      '--skipCss',
+      '--skipStorybook',
+      '--skipDescription'
+    ])
+  ).toEqual(
+    expect.objectContaining({
+      skipFileGeneration: expect.objectContaining({
+        css: true,
+        description: true,
+        react: true,
+        storybook: true,
+        styled: true
+      })
     })
   );
 });
@@ -210,6 +209,35 @@ test('It should return default value for fontUnit if passing invalid value (long
   expect(parseCliArgs(['--fontUnit', 'asdf'])).toEqual(
     expect.objectContaining({
       fontUnit: defaultConfig.fontUnit
+    })
+  );
+});
+
+/*
+ * LetterSpacing unit
+ */
+test('It should return the unit for letterSpacingUnit if passing valid value (long-hand)', () => {
+  const unit = 'em';
+  expect(parseCliArgs(['--letterSpacingUnit', unit])).toEqual(
+    expect.objectContaining({
+      letterSpacingUnit: unit
+    })
+  );
+});
+
+test('It should return the unit for letterSpacingUnit if passing valid value (short-hand)', () => {
+  const unit = 'px';
+  expect(parseCliArgs(['-lsu', unit])).toEqual(
+    expect.objectContaining({
+      letterSpacingUnit: unit
+    })
+  );
+});
+
+test('It should return default value for letterSpacingUnit if passing invalid value', () => {
+  expect(parseCliArgs(['--letterSpacingUnit', 'asdf'])).toEqual(
+    expect.objectContaining({
+      letterSpacingUnit: defaultConfig.letterSpacingUnit
     })
   );
 });
@@ -427,37 +455,58 @@ test('It should return true for usePostscriptFontNames if passing true (short-ha
  */
 
 test('It should return template path for React, if provided', () => {
-  expect(parseCliArgs(['--templatePathReact', 'templates/react.jsx'])).toEqual(
+  const templatePathReact = 'foo/react.jsx';
+  expect(parseCliArgs(['--templatePathReact', templatePathReact])).toEqual(
     expect.objectContaining({
-      templates: {
-        templatePathReact: 'templates/react.jsx',
-        templatePathStyled: 'templates/styled.jsx',
-        templatePathStorybook: 'templates/story.js'
-      }
+      templates: expect.objectContaining({
+        templatePathReact
+      })
     })
   );
 });
 
 test('It should return template path for Styled Components, if provided', () => {
-  expect(parseCliArgs(['--templatePathStyled', 'templates/styled.jsx'])).toEqual(
+  const templatePathStyled = 'foo/styled.jsx';
+  expect(parseCliArgs(['--templatePathStyled', templatePathStyled])).toEqual(
     expect.objectContaining({
-      templates: {
-        templatePathReact: 'templates/react.jsx',
-        templatePathStyled: 'templates/styled.jsx',
-        templatePathStorybook: 'templates/story.js'
-      }
+      templates: expect.objectContaining({
+        templatePathStyled
+      })
     })
   );
 });
 
 test('It should return template path for Storybook, if provided', () => {
-  expect(parseCliArgs(['--templatePathStorybook', 'templates/story.js'])).toEqual(
+  const templatePathStorybook = 'foo/story.js';
+  expect(parseCliArgs(['--templatePathStorybook', templatePathStorybook])).toEqual(
     expect.objectContaining({
-      templates: {
-        templatePathReact: 'templates/react.jsx',
-        templatePathStyled: 'templates/styled.jsx',
-        templatePathStorybook: 'templates/story.js'
-      }
+      templates: expect.objectContaining({
+        templatePathStorybook
+      })
+    })
+  );
+});
+
+test('It should return all template paths, if provided', () => {
+  const templatePathReact = 'foo/react.jsx';
+  const templatePathStyled = 'foo/styled.jsx';
+  const templatePathStorybook = 'foo/story.js';
+  expect(
+    parseCliArgs([
+      '--templatePathReact',
+      templatePathReact,
+      '--templatePathStyled',
+      templatePathStyled,
+      '--templatePathStorybook',
+      templatePathStorybook
+    ])
+  ).toEqual(
+    expect.objectContaining({
+      templates: expect.objectContaining({
+        templatePathReact,
+        templatePathStyled,
+        templatePathStorybook
+      })
     })
   );
 });

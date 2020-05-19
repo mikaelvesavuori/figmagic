@@ -271,11 +271,12 @@ _Prefixing with an underscore means we can avoid the conflict, but still clearly
 
 ## User settings
 
-There are several ways in which you can provide Figmagic with knowledge about how you want it to parse your tokens. You can combine them, but beware of the below prioritization chart:
+There are several ways in which you can provide Figmagic with knowledge about how you want it to parse your tokens.
+You can combine them, but beware of the below prioritization chart (from lowest to highest):
 
 1. User-provided configuration from `.figmagicrc` file
-2. Command-line arguments and flags
-3. Environment variables from `.env` file
+2. Environment variables (also loaded from `.env` file using `dotenv`)
+3. Command-line arguments and flags
 
 If possible, stick to one way of providing settings.
 
@@ -324,7 +325,6 @@ Below is a complete set of what you can configure, together with the defaults.
   },
   usePostscriptFontNames: false
 };
-
 ```
 
 ### CLI arguments
