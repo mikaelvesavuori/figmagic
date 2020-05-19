@@ -33,55 +33,50 @@ export async function createConfiguration(userConfigPath, ...cliArgs) {
   if (!userConfigPath) throw new Error(errorCreateConfiguration);
 
   // Set default values first
-  const DEFAULT_CONFIG = {
-    debugMode: defaultConfig.debugMode,
-    fontUnit: defaultConfig.fontUnit,
-    letterSpacingUnit: defaultConfig.letterSpacingUnit,
-    opacitiesUnit: defaultConfig.opacitiesUnit,
-    remSize: defaultConfig.remSize,
-    outputFileName: defaultConfig.outputFileName,
-    outputFolderBaseFile: defaultConfig.outputFolderBaseFile,
-    outputFolderTokens: defaultConfig.outputFolderTokens,
-    outputTokenFormat: defaultConfig.outputTokenFormat,
-    outputTokenDataType: defaultConfig.outputTokenDataType,
-    outputFolderElements: defaultConfig.outputFolderElements,
-    //outputFolderComponents: defaultConfig.outputFolderComponents,
-    outputFolderGraphics: defaultConfig.outputFolderGraphics,
-    outputFormatGraphics: defaultConfig.outputFormatGraphics,
-    outputScaleGraphics: defaultConfig.outputScaleGraphics,
-    recompileLocal: defaultConfig.recompileLocal,
-    spacingUnit: defaultConfig.spacingUnit,
-    syncElements: defaultConfig.syncElements,
-    syncGraphics: defaultConfig.syncGraphics,
-    // > NOTE: Import "templates" and "skipFileGeneration" in parseCliArgs.mjs so they don't get squashed if inserted here
-    token: process.env.FIGMA_TOKEN ? process.env.FIGMA_TOKEN : null,
-    url: process.env.FIGMA_URL ? process.env.FIGMA_URL : null,
-    usePostscriptFontNames: defaultConfig.usePostscriptFontNames
-  };
+  // eslint-disable-next-line no-unused-vars
+  const { outputFolderComponents, ...DEFAULT_CONFIG } = defaultConfig;
+
+  // RC file configuration
+  let RC_CONFIG = {};
+
+  try {
+    RC_CONFIG = await loadFile(userConfigPath);
+  } catch (e) {} // eslint-disable-line no-empty
 
   // Env var configuration
-  // Lowest priority
   const ENV_CONFIG = {
-    token: DEFAULT_CONFIG.token,
-    url: DEFAULT_CONFIG.url
+    token: process.env.FIGMA_TOKEN || null,
+    url: process.env.FIGMA_URL || null
   };
 
   // CLI arguments configuration
-  // Medium priority
   const CLI_CONFIG = parseCliArgs(cliArgs);
 
-  // RC file configuration
-  // Highest priority
-  const RC_CONFIG = await (async () => {
-    try {
-      return await loadFile(userConfigPath);
-    } catch (error) {
-      return null;
-    }
-  })();
-
   // Merge configurations in order of prioritization
-  const CONFIG = { ...DEFAULT_CONFIG, ...ENV_CONFIG, ...CLI_CONFIG, ...RC_CONFIG };
+  // 1. Base required config
+  // 2. Config file: lowest priority
+  // Versioned, "main" local config
+  // NOTE: config is not deep-merged
+  // 3. Environment config: medium priority
+  // Specifically for credentials
+  // 4. CLI arguments: highest priority
+  // Allow to override on specific commands such as: "figmagic --debug --syncGraphics"
+  const CONFIG = {
+    ...DEFAULT_CONFIG,
+    ...RC_CONFIG,
+    ...ENV_CONFIG,
+    ...CLI_CONFIG,
+    templates: {
+      ...DEFAULT_CONFIG.templates,
+      ...RC_CONFIG.templates,
+      ...CLI_CONFIG.templates
+    },
+    skipFileGeneration: {
+      ...DEFAULT_CONFIG.skipFileGeneration,
+      ...RC_CONFIG.skipFileGeneration,
+      ...CLI_CONFIG.skipFileGeneration
+    }
+  };
 
   if (CONFIG.debugMode === true) {
     console.log(msgConfigDebugEnv);

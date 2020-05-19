@@ -50,7 +50,6 @@ test('It should return tokens if passed a valid set of frame and settings', asyn
     zIndicesFrame
   ];
 
-  console.log('defaultConfig', defaultConfig);
   await expect(writeTokens(TOKENS, defaultConfig)).resolves.toBe(true);
   await trash(TEMP_FOLDER);
 });

@@ -15,20 +15,20 @@ export const defaultConfig = {
   recompileLocal: false,
   remSize: 16,
   skipFileGeneration: {
-    defaultSkipReact: false,
-    defaultSkipStyled: false,
-    defaultSkipCss: false,
-    defaultSkipStorybook: false,
-    defaultSkipDescription: false,
-    defaultForceUpdate: true
+    react: false,
+    styled: false,
+    css: false,
+    storybook: false,
+    description: false,
+    forceUpdate: true
   },
   spacingUnit: 'rem',
   syncElements: false,
   syncGraphics: false,
   templates: {
-    defaultTemplatePathReact: 'templates/react.jsx',
-    defaultTemplatePathStyled: 'templates/styled.jsx',
-    defaultTemplatePathStorybook: 'templates/story.js'
+    templatePathReact: 'templates/react.jsx',
+    templatePathStyled: 'templates/styled.jsx',
+    templatePathStorybook: 'templates/story.js'
   },
   usePostscriptFontNames: false
 };
