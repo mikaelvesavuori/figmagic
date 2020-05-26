@@ -14,7 +14,7 @@
     "type": "git",
     "url": "https://github.com/mikaelvesavuori/figmagic.git"
   },
-  "version": "3.0.16",
+  "version": "3.0.17",
   "author": "Mikael Vesavuori",
   "contributors": [
     {
@@ -32,6 +32,10 @@
     {
       "name": "flo-sch",
       "url": "https://github.com/flo-sch"
+    },
+    {
+      "name": "Stanko",
+      "url": "https://github.com/Stanko"
     }
   ],
   "license": "MIT",
