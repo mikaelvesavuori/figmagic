@@ -43,6 +43,25 @@ export const durationsFrame = {
       styleOverrideTable: {}
     },
     {
+      id: '2657:100',
+      name: 'Ignore - Helper text only',
+      type: 'TEXT',
+      blendMode: 'PASS_THROUGH',
+      absoluteBoundingBox: [Object],
+      constraints: [Object],
+      fills: [Array],
+      strokes: [],
+      strokeWeight: 1,
+      strokeAlign: 'OUTSIDE',
+      exportSettings: [Array],
+      effects: [],
+      characters: 'Example text',
+      style: [Object],
+      layoutVersion: 1,
+      characterStyleOverrides: [],
+      styleOverrideTable: {}
+    },
+    {
       id: '2657:101',
       name: 'Medium',
       type: 'TEXT',

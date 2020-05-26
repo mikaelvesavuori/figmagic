@@ -14,6 +14,7 @@ import { setupOpacitiesTokens } from '../tokens/setupOpacitiesTokens.mjs';
 import { setupDurationTokens } from '../tokens/setupDurationTokens.mjs';
 
 import { errorProcessTokens, errorProcessTokensNoConfig } from '../../meta/errors.mjs';
+import { ignoreElementsKeywords } from '../../meta/ignoreElementsKeywords.mjs';
 
 /**
  * Process tokens
@@ -29,6 +30,22 @@ import { errorProcessTokens, errorProcessTokensNoConfig } from '../../meta/error
  */
 export function processTokens(sheet, name, config) {
   if (!sheet || !name) throw new Error(errorProcessTokens);
+
+  // Filter out elements that contain ignore keywords in their name
+  sheet.children = sheet.children.filter((item) => {
+    let shouldInclude = true;
+
+    for (let i = 0; i < ignoreElementsKeywords.length; i++) {
+      const keywordToIgnore = ignoreElementsKeywords[i];
+
+      if (item.name.toLowerCase().indexOf(keywordToIgnore) >= 0) {
+        shouldInclude = false;
+        break;
+      }
+    }
+
+    return shouldInclude;
+  });
 
   const _NAME = name.toLowerCase();
   let processedTokens = undefined;
