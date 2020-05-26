@@ -28,7 +28,6 @@ test('It should successfully write a token to a file if provided valid input', a
   await trash(`__test-writefile*`);
 });
 
-// TODO: Fix? Unclear why it fails
 test('It should fail', async () => {
   const NAME = '__test-writefile23.txt';
   await expect(
