@@ -11,6 +11,7 @@ import { setupZindexTokens } from '../tokens/setupZindexTokens.mjs';
 import { setupLetterSpacingTokens } from '../tokens/setupLetterSpacingTokens.mjs';
 import { setupMediaQueryTokens } from '../tokens/setupMediaQueryTokens.mjs';
 import { setupOpacitiesTokens } from '../tokens/setupOpacitiesTokens.mjs';
+import { setupDurationTokens } from '../tokens/setupDurationTokens.mjs';
 
 import { errorProcessTokens, errorProcessTokensNoConfig } from '../../meta/errors.mjs';
 
@@ -105,6 +106,15 @@ export function processTokens(sheet, name, config) {
     case 'zindex':
     case 'zindices': {
       processedTokens = setupZindexTokens(sheet);
+      break;
+    }
+    case 'duration':
+    case 'durations':
+    case 'animation duration':
+    case 'animation durations':
+    case 'motion duration':
+    case 'motion durations': {
+      processedTokens = setupDurationTokens(sheet);
       break;
     }
   }
