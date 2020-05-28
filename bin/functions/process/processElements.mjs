@@ -38,16 +38,16 @@ export async function processElements(elementsPage, components, config) {
 
   const IS_TEST_MODE = config.testMode;
 
-  const _ELEMENTS = elementsPage.filter(element => element.type === 'COMPONENT');
+  const _ELEMENTS = elementsPage.filter((element) => element.type === 'COMPONENT');
   const ELEMENTS = addDescriptionToElements(_ELEMENTS, components);
   const PARSED_ELEMENTS = await Promise.all(
-    ELEMENTS.map(async el => await parseElement(el, config.remSize, IS_TEST_MODE))
+    ELEMENTS.map(async (el) => await parseElement(el, config.remSize, IS_TEST_MODE))
   );
   return PARSED_ELEMENTS;
 }
 
 const addDescriptionToElements = (elements, components) => {
-  return elements.map(element => {
+  return elements.map((element) => {
     const _ELEMENT = element;
     _ELEMENT.description = components[element.id].description;
     return _ELEMENT;
@@ -104,24 +104,24 @@ async function parseElement(element, remSize, isTest = false) {
   // Nested, layered, or "stateful" elements
   // Requires that "element" (i.e. Figma component) has only groups at the base of the component
   // You can hide groups by adding a leading underscore to their name, like this: "_Redlines" (which would then be ignored below)
-  if (element.children.every(a => a.type === 'GROUP')) {
+  if (element.children.every((a) => a.type === 'GROUP')) {
     await Promise.all(
-      element.children.map(async el => {
+      element.children.map(async (el) => {
         // Ignore children with a leading underscore in their name
         if (el.name[0] !== '_') {
           const MAIN_ELEMENT = el.children.filter(
-            e => e.type === 'RECTANGLE' && e.name[0] !== '_'
+            (e) => e.type === 'RECTANGLE' && e.name[0] !== '_'
           )[0];
-          const TEXT_ELEMENT = el.children.filter(e => e.type === 'TEXT' && e.name[0] !== '_')[0];
+          const TEXT_ELEMENT = el.children.filter((e) => e.type === 'TEXT' && e.name[0] !== '_')[0];
 
           // Set placeholder text
           if (element.children) {
-            element.children.filter(child => {
+            element.children.filter((child) => {
               if (
                 (child.type === 'GROUP' && child.name.toLowerCase() === 'placeholder') ||
                 (child.type === 'GROUP' && child.name.toLowerCase() === ':placeholder')
               ) {
-                child.children.filter(c => {
+                child.children.filter((c) => {
                   if (
                     (c.type === 'TEXT' && c.name.toLowerCase() === 'placeholder') ||
                     (c.type === 'TEXT' && c.name.toLowerCase() === ':placeholder')
@@ -191,13 +191,13 @@ async function parseElement(element, remSize, isTest = false) {
   // Handle regular non-nested elements below
   else {
     // Check for text elements
-    const TEXT_ELEMENT = element.children.filter(e => e.type === 'TEXT' && e.name[0] !== '_');
-    if (!TEXT_ELEMENT || TEXT_ELEMENT.length > 1)
+    const TEXT_ELEMENT = element.children.filter((e) => e.type === 'TEXT' && e.name[0] !== '_');
+    if (TEXT_ELEMENT.length > 1)
       throw new Error(`${errorProcessElementsWrongTextElementCount} ${element.name}!`);
 
     // Set placeholder text
     if (element.children) {
-      element.children.filter(c => {
+      element.children.filter((c) => {
         if (
           (c.type === 'TEXT' && c.name.toLowerCase() === 'placeholder') ||
           (c.type === 'TEXT' && c.name.toLowerCase() === ':placeholder')
@@ -225,24 +225,17 @@ async function parseElement(element, remSize, isTest = false) {
 
     // Process CSS for any component that has a self-named layer
     // This pattern is how we communicate that it's a layout element, e.g. input and not a H1
-    const MAIN_ELEMENT = element.children.filter(e => e.name === element.name);
-    if (MAIN_ELEMENT[0]) {
-      if (MAIN_ELEMENT.length !== 1)
-        throw new Error(`${errorProcessElementsWrongElementCount} ${element.name}!`);
+    const { updatedCss, updatedImports } = await processCssSelfnamedLayer(
+      element,
+      TEXT_ELEMENT,
+      css,
+      imports,
+      remSize,
+      isTest
+    );
 
-      const FIXED_NAME = MAIN_ELEMENT[0].name.replace(/\s/gi, '');
-      console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT[0].name, FIXED_NAME));
-
-      let elementStyling = await parseCssFromElement(
-        MAIN_ELEMENT[0],
-        TEXT_ELEMENT[0],
-        null,
-        remSize,
-        isTest
-      );
-      imports = imports.concat(elementStyling.imports);
-      css += elementStyling.css;
-    }
+    imports = updatedImports;
+    css = updatedCss;
   }
 
   // Flatten imports and remove duplicates
@@ -256,4 +249,33 @@ async function parseElement(element, remSize, isTest = false) {
   newElement.imports = imports;
 
   return newElement;
+}
+
+async function processCssSelfnamedLayer(element, textElement, css, imports, remSize, isTest) {
+  let updatedCss = css;
+  let updatedImports = imports;
+
+  const MAIN_ELEMENT = element.children.filter((e) => e.name === element.name);
+  const TEXT_ELEMENT = textElement;
+
+  if (MAIN_ELEMENT[0]) {
+    if (MAIN_ELEMENT.length !== 1)
+      throw new Error(`${errorProcessElementsWrongElementCount} ${element.name}!`);
+
+    const FIXED_NAME = MAIN_ELEMENT[0].name.replace(/\s/gi, '');
+    console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT[0].name, FIXED_NAME));
+
+    let elementStyling = await parseCssFromElement(
+      MAIN_ELEMENT[0],
+      TEXT_ELEMENT[0],
+      null,
+      remSize,
+      isTest
+    );
+
+    updatedImports = updatedImports.concat(elementStyling.imports);
+    updatedCss += elementStyling.css;
+  }
+
+  return { updatedCss, updatedImports };
 }

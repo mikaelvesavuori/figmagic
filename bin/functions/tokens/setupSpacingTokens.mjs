@@ -31,9 +31,10 @@ export function setupSpacingTokens(spacingFrame, spacingUnit, remSize) {
   const SPACINGS = spacingFrame.children;
   const SPACING_OBJECT = {};
 
-  SPACINGS.forEach(spacing => {
-    if (!spacing.name || !spacing.absoluteBoundingBox)
-      throw new Error(errorSetupSpacingTokensMissingProps);
+  SPACINGS.forEach((spacing) => {
+    // Never seems to hit...?
+    //if (!spacing.name || !spacing.absoluteBoundingBox)
+    //  throw new Error(errorSetupSpacingTokensMissingProps);
 
     let normalizedName = camelize(spacing.name);
     normalizedName = formatName(normalizedName);

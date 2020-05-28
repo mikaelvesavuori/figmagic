@@ -35,9 +35,9 @@ export function setupShadowTokens(shadowFrame) {
       if (effect.type === 'DROP_SHADOW') return effect;
     });
 
-    if (effects.length > 0) {
-      shadowObject[name] = ``;
+    shadowObject[name] = ``;
 
+    if (effects.length > 0) {
       effects.forEach((e, index) => {
         const X = e.offset.x;
         const Y = e.offset.y;
@@ -50,7 +50,7 @@ export function setupShadowTokens(shadowFrame) {
         shadowObject[name] += `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
         if (index !== effects.length - 1) shadowObject[name] += `, `;
       });
-    } else shadowObject[name] = ``;
+    }
   });
 
   return shadowObject;

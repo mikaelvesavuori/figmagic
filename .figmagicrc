@@ -8,5 +8,6 @@
   "outputTokenFormat": "mjs",
   "outputFolderElements": "elements",
   "spacingUnit": "rem",
-  "usePostscriptFontNames": true
+  "usePostscriptFontNames": true,
+	"syncElements": true
 }

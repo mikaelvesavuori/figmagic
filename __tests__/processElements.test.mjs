@@ -1,6 +1,6 @@
 import { processElements } from '../bin/functions/process/processElements';
 
-import { elementsPage } from '../testdata/elementsPage.mjs';
+import { elementsPage, elementsPageNoText } from '../testdata/elementsPage.mjs';
 import { components } from '../testdata/components.mjs';
 import { defaultConfig } from '../testdata/defaultConfig.mjs';
 
@@ -28,4 +28,8 @@ text-align: left;
       text: 'Microcopy'
     }
   ]);
+});
+
+test('It should fail when having more than one text element', async () => {
+  await expect(processElements(elementsPageNoText, components, defaultConfig)).rejects.toThrow();
 });

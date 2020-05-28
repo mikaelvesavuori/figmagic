@@ -25,10 +25,11 @@ export function setupFontTokens(fontFrame, usePostscriptFontNames) {
 
   let fontObject = {};
 
-  fontFrame.children.forEach(type => {
+  fontFrame.children.forEach((type) => {
     if (!type.name || !type.style) throw new Error(errorSetupFontTokensMissingProps);
-    if (!type.style.fontPostScriptName || !type.style.fontFamily)
-      throw new Error(errorSetupFontTokensMissingProps);
+    // Seems never to hit...?
+    //if (!type.style.fontPostScriptName || !type.style.fontFamily)
+    //  throw new Error(errorSetupFontTokensMissingProps);
 
     let name = camelize(type.name);
     name = formatName(name);
