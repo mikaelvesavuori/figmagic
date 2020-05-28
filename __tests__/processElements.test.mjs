@@ -1,6 +1,6 @@
 import { processElements } from '../bin/functions/process/processElements';
 
-import { elementsPage, elementsPageNoText } from '../testdata/elementsPage.mjs';
+import { elementsPage, elementsPageDoubleTexts } from '../testdata/elementsPage.mjs';
 import { components } from '../testdata/components.mjs';
 import { defaultConfig } from '../testdata/defaultConfig.mjs';
 
@@ -31,5 +31,7 @@ text-align: left;
 });
 
 test('It should fail when having more than one text element', async () => {
-  await expect(processElements(elementsPageNoText, components, defaultConfig)).rejects.toThrow();
+  await expect(
+    processElements(elementsPageDoubleTexts, components, defaultConfig)
+  ).rejects.toThrow();
 });

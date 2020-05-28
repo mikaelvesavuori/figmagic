@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 import { processGraphics } from '../bin/functions/process/processGraphics';
 
-import { graphicsFrame } from '../testdata/graphicsFrame.mjs';
+//import { graphicsFrame } from '../testdata/graphicsFrame.mjs';
 
 dotenv.config();
 
