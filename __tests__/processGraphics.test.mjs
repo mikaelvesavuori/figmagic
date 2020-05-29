@@ -1,8 +1,13 @@
 import dotenv from 'dotenv';
 
-import { processGraphics } from '../bin/functions/process/processGraphics';
+import {
+  processGraphics,
+  getFileList,
+  getIds,
+  getIdString
+} from '../bin/functions/process/processGraphics';
 
-//import { graphicsFrame } from '../testdata/graphicsFrame.mjs';
+import { graphicsFrame } from '../testdata/graphicsFrame.mjs';
 
 dotenv.config();
 
@@ -10,7 +15,6 @@ test('It should throw an error if no parameter is provided', async () => {
   await expect(processGraphics()).rejects.toThrow();
 });
 
-/*
 test('It should exit correctly after having processed valid input', async () => {
   await expect(
     processGraphics(graphicsFrame.children, {
@@ -25,9 +29,24 @@ test('It should exit correctly after having processed valid input', async () => 
     })
   ).resolves.toEqual(expect.objectContaining({}));
 });
-*/
 
-jest.setTimeout(15000);
+test('It should throw when missing arguments', () => {
+  expect(() => getFileList()).toThrow();
+});
+
+test('It should throw when missing argument', () => {
+  expect(() => getIds()).toThrow();
+});
+
+test('It should throw when missing items in argument', () => {
+  expect(() => getIds({})).toThrow();
+});
+
+test('It should throw when missing ids', () => {
+  expect(() => getIdString()).toThrow();
+});
+
+jest.setTimeout(60000);
 
 /*
 

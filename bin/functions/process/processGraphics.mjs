@@ -42,6 +42,7 @@ export async function processGraphics(graphicsPage, config) {
 /**
  * Get cleaned list of files
  *
+ * @export
  * @function
  * @param {object} imageResponse - Figma API response
  * @param {array} ids - Array of asset IDs
@@ -49,15 +50,15 @@ export async function processGraphics(graphicsPage, config) {
  * @returns {array} - Array of files with properties
  * @throws {errorGetFileList} - Throws error if missing required arguments
  */
-const getFileList = (imageResponse, ids, outputFormatGraphics) => {
+export const getFileList = (imageResponse, ids, outputFormatGraphics) => {
   if (!imageResponse || !ids || !outputFormatGraphics) throw new Error(errorGetFileList);
 
   let fileList = [];
 
-  Object.entries(imageResponse.images).forEach(async image => {
+  Object.entries(imageResponse.images).forEach(async (image) => {
     let name = '__unnamed__';
 
-    ids.filter(z => {
+    ids.filter((z) => {
       if (z.id === image[0]) {
         name = z.name;
       }
@@ -77,13 +78,14 @@ const getFileList = (imageResponse, ids, outputFormatGraphics) => {
 /**
  * Get IDs from graphics page
  *
+ * @export
  * @function
  * @param {object} graphicsPage - Figma 'Graphics' page
  * @returns {array} - Array of graphics items
  * @throws {errorGetIds} - Throws error if no graphics page is provided
  * @throws {errorGetIds} - Throws error if no graphics page is zero-length
  */
-const getIds = graphicsPage => {
+export const getIds = (graphicsPage) => {
   if (!graphicsPage) throw new Error(errorGetIds);
   if (!(graphicsPage.length > 0)) throw new Error(errorGetIds);
 
@@ -91,8 +93,8 @@ const getIds = graphicsPage => {
 
   // Filter out anything that is not a component
   graphicsPage
-    .filter(item => item.type === 'COMPONENT')
-    .forEach(item => {
+    .filter((item) => item.type === 'COMPONENT')
+    .forEach((item) => {
       items.push({ id: item.id, name: item.name });
     });
 
@@ -102,17 +104,18 @@ const getIds = graphicsPage => {
 /**
  * Collate valid string of IDs
  *
+ * @export
  * @function
  * @param {array} ids - Figma 'Graphics' page
  * @returns {string} - Return ID string
  * @throws {errorGetIdString} - Throws error when no required arguments are provided
  */
-const getIdString = ids => {
+export const getIdString = (ids) => {
   if (!ids) throw new Error(errorGetIdString);
 
   let idString = '';
 
-  ids.forEach(item => {
+  ids.forEach((item) => {
     idString += `${item.id},`;
   });
 
