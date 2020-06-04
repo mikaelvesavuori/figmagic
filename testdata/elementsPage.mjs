@@ -269,3 +269,106 @@ export const elementsPageDoubleTexts = [
     effects: []
   }
 ];
+
+export const elementToProcessWithDescription = {
+  id: '2875:22',
+  name: 'Microcopy',
+  type: 'COMPONENT',
+  blendMode: 'PASS_THROUGH',
+  children: [
+    {
+      id: '2875:21',
+      name: 'Text',
+      type: 'TEXT',
+      blendMode: 'PASS_THROUGH',
+      absoluteBoundingBox: [Object],
+      constraints: [Object],
+      fills: [Array],
+      strokes: [],
+      strokeWeight: 0,
+      strokeAlign: 'OUTSIDE',
+      effects: [],
+      characters: 'Microcopy',
+      style: [Object],
+      layoutVersion: 1,
+      characterStyleOverrides: [],
+      styleOverrideTable: {},
+      styles: [Object]
+    }
+  ],
+  absoluteBoundingBox: { x: 1024, y: 508, width: 57, height: 14 },
+  constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+  clipsContent: false,
+  background: [
+    {
+      blendMode: 'NORMAL',
+      visible: false,
+      type: 'SOLID',
+      color: [Object]
+    }
+  ],
+  fills: [
+    {
+      blendMode: 'NORMAL',
+      visible: false,
+      type: 'SOLID',
+      color: [Object]
+    }
+  ],
+  strokes: [],
+  strokeWeight: 1,
+  strokeAlign: 'INSIDE',
+  backgroundColor: { r: 0, g: 0, b: 0, a: 0 },
+  effects: [],
+  description: 'element=sub\ndescription=\n# Sub\n\nTiny text snippets.'
+};
+
+export const elementWithGroupType = {
+  id: '2875:22',
+  name: 'Microcopy',
+  type: 'COMPONENT',
+  blendMode: 'PASS_THROUGH',
+  children: [
+    {
+      id: '3009:111',
+      name: 'Normal',
+      type: 'RECTANGLE',
+      blendMode: 'PASS_THROUGH',
+      absoluteBoundingBox: { x: 284, y: 581, width: 32, height: 32 },
+      preserveRatio: true,
+      constraints: { vertical: 'CENTER', horizontal: 'CENTER' },
+      fills: [{ blendMode: 'NORMAL', type: 'SOLID', color: [Object] }],
+      strokes: [{ blendMode: 'NORMAL', type: 'SOLID', color: [Object] }],
+      strokeWeight: 1,
+      strokeAlign: 'INSIDE',
+      effects: [],
+      cornerRadius: 100,
+      rectangleCornerRadii: [100, 100, 100, 100]
+    }
+  ],
+  absoluteBoundingBox: { x: 1024, y: 508, width: 57, height: 14 },
+  constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+  clipsContent: false,
+  background: [
+    {
+      blendMode: 'NORMAL',
+      visible: false,
+      type: 'SOLID',
+      color: [Object]
+    }
+  ],
+  fills: [
+    {
+      blendMode: 'NORMAL',
+      visible: false,
+      type: 'SOLID',
+      color: [Object]
+    }
+  ],
+  strokes: [],
+  strokeWeight: 1,
+  strokeAlign: 'INSIDE',
+  backgroundColor: { r: 0, g: 0, b: 0, a: 0 },
+  effects: [],
+  description: 'element=sub\ndescription=\n# Sub\n\nTiny text snippets.'
+};

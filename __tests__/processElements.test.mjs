@@ -1,6 +1,11 @@
-import { processElements } from '../bin/functions/process/processElements';
+import { processElements, parseElement } from '../bin/functions/process/processElements';
 
-import { elementsPage, elementsPageDoubleTexts } from '../testdata/elementsPage.mjs';
+import {
+  elementsPage,
+  elementsPageDoubleTexts,
+  elementToProcessWithDescription,
+  elementWithGroupType
+} from '../testdata/elementsPage.mjs';
 import { components } from '../testdata/components.mjs';
 import { defaultConfig } from '../testdata/defaultConfig.mjs';
 

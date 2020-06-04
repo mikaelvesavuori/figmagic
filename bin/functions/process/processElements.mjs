@@ -57,6 +57,7 @@ const addDescriptionToElements = (elements, components) => {
 /**
  * Do the actual parsing and processing of an "element"-type component from Figma
  *
+ * @export
  * @async
  * @function
  * @param {object} element - Object representation of item
@@ -65,7 +66,10 @@ const addDescriptionToElements = (elements, components) => {
  * @returns {object} - Return new element as object
  * @throws {errorParseElement} - Throw error if not provided element or config
  */
-async function parseElement(element, remSize, isTest = false) {
+export async function parseElement(element, remSize, isTest = false) {
+  //console.log('element', typeof element);
+  //console.log(element);
+
   if (!element || !remSize) throw new Error(errorParseElement);
 
   let html = ``;
@@ -104,14 +108,17 @@ async function parseElement(element, remSize, isTest = false) {
   // Nested, layered, or "stateful" elements
   // Requires that "element" (i.e. Figma component) has only groups at the base of the component
   // You can hide groups by adding a leading underscore to their name, like this: "_Redlines" (which would then be ignored below)
+  console.log('|||||');
   if (element.children.every((a) => a.type === 'GROUP')) {
     await Promise.all(
       element.children.map(async (el) => {
         // Ignore children with a leading underscore in their name
         if (el.name[0] !== '_') {
+          console.log(el.children);
           const MAIN_ELEMENT = el.children.filter(
             (e) => e.type === 'RECTANGLE' && e.name[0] !== '_'
           )[0];
+          console.log('MAIN_ELEMENT', MAIN_ELEMENT);
           const TEXT_ELEMENT = el.children.filter((e) => e.type === 'TEXT' && e.name[0] !== '_')[0];
 
           // Set placeholder text
@@ -139,21 +146,6 @@ async function parseElement(element, remSize, isTest = false) {
             const TYPE = element.description.match(/type=(.*)/)[1];
             if (!extraProps.includes(`type="${TYPE}`)) extraProps += `type="${TYPE}" `;
           }
-
-          // Keep for later, when there should be support for images
-          /*
-          const IMAGE = (() => {
-            let image = null;
-
-            el.children.map(e => {
-              return e.fills.map(z => {
-                if (z.type === 'IMAGE') image = e;
-              });
-            });
-
-            return image;
-					})();
-					*/
 
           // Check and set correct selector type: class or pseudo-element
           const SELECTOR_TYPE = '.';
