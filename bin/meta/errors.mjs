@@ -14,7 +14,6 @@ export const errorDownloadFile = `${colors.FgRed}Missing one or more of "url", "
 export const errorFindShortenedNameMatchOriginal = `${colors.FgRed}No "originalString" was provided to findShortenedNameMatch()!`;
 export const errorFindShortenedNameMatchString = `${colors.FgRed}No "matchString" was provided to findShortenedNameMatch()!`;
 export const errorFindShortenedNameMatchWrongType = `${colors.FgRed}Arguments are not of string type!`;
-export const errorFormatName = `${colors.FgRed}No string for formatName()!`;
 export const errorGetData = `${colors.FgRed}Could not retrieve any data. Are you missing a valid API key?`;
 export const errorGetFileList = `${colors.FgRed}Missing one or more of required arguments: "imageResponse", "ids" and/or "outputFormatGraphics" when calling getFileList()!`;
 export const errorGetFromApi = `${colors.FgRed}Missing one or more of required arguments: "figmaToken", "figmaUrl" when attempting to get data from Figma API!`;

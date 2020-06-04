@@ -1,6 +1,5 @@
 import { camelize } from '../helpers/camelize.mjs';
 import { roundColorValue } from '../helpers/roundColorValue.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupColorTokensNoFrame,
@@ -42,9 +41,9 @@ export function setupColorTokens(colorFrame) {
       255
     )}, ${roundColorValue(color.fills[0].color.b, 255)}, ${roundColorValue(ALPHA, 1)})`;
 
-    let normalizedName = camelize(color.name);
-    normalizedName = formatName(normalizedName);
-    colors[normalizedName] = COLOR_STRING;
+    const name = camelize(color.name);
+
+    colors[name] = COLOR_STRING;
   });
 
   return colors;

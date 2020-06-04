@@ -1,5 +1,4 @@
 import { camelize } from '../helpers/camelize.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupZindexTokensNoFrame,
@@ -27,8 +26,7 @@ export function setupZindexTokens(zIndexFrame) {
   zIndexFrame.children.forEach((type) => {
     if (!type.name || !type.characters) throw new Error(errorSetupZindexTokensMissingProps);
 
-    let name = camelize(type.name);
-    name = formatName(name);
+    const name = camelize(type.name);
 
     zindexObject[name] = parseInt(type.characters);
   });

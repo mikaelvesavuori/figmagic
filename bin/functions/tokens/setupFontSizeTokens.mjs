@@ -1,5 +1,4 @@
 import { camelize } from '../helpers/camelize.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupFontSizeTokensNoFrame,
@@ -31,12 +30,11 @@ export function setupFontSizeTokens(fontSizeFrame, fontUnit, remSize) {
 
   let fontSizeObject = {};
 
-  fontSizeFrame.children.forEach(type => {
+  fontSizeFrame.children.forEach((type) => {
     if (!type.name || !type.style) throw new Error(errorSetupFontSizeTokensMissingProps);
     if (!type.style.fontSize) throw new Error(errorSetupFontSizeTokensMissingSize);
 
-    let name = camelize(type.name);
-    name = formatName(name);
+    const name = camelize(type.name);
     const FONT_SIZE = type.style.fontSize / remSize + fontUnit;
 
     fontSizeObject[name] = FONT_SIZE;

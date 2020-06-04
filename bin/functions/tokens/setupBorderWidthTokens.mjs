@@ -1,5 +1,4 @@
 import { camelize } from '../helpers/camelize.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupBorderWidthTokensNoFrame,
@@ -27,8 +26,7 @@ export function setupBorderWidthTokens(borderWidthFrame) {
     if (!type.name || typeof type.strokeWeight === 'undefined')
       throw new Error(errorSetupBorderWidthTokensMissingProps);
 
-    let name = camelize(type.name);
-    name = formatName(name);
+    const name = camelize(type.name);
 
     borderWidthObject[name] = `${parseInt(type.strokeWeight, 10)}px`;
   });

@@ -1,6 +1,5 @@
 import { camelize } from '../helpers/camelize.mjs';
 import { roundColorValue } from '../helpers/roundColorValue.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupShadowTokensNoFrame,
@@ -28,8 +27,7 @@ export function setupShadowTokens(shadowFrame) {
   shadowFrame.children.forEach((type) => {
     if (!type.name || !type.effects) throw new Error(errorSetupShadowTokensMissingProps);
 
-    let name = camelize(type.name);
-    name = formatName(name);
+    const name = camelize(type.name);
 
     const effects = type.effects.map((effect) => {
       if (effect.type === 'DROP_SHADOW') return effect;

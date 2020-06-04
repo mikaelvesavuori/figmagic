@@ -1,5 +1,4 @@
 import { camelize } from '../helpers/camelize.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupDurationTokensNoFrame,
@@ -27,8 +26,7 @@ export function setupDurationTokens(durationFrame) {
   durationFrame.children.forEach((type) => {
     if (!type.name || !type.characters) throw new Error(errorSetupDurationTokensMissingProps);
 
-    let name = camelize(type.name);
-    name = formatName(name);
+    const name = camelize(type.name);
 
     durationObject[name] = parseFloat(type.characters);
   });
