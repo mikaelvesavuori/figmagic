@@ -1,5 +1,4 @@
 import { camelize } from '../helpers/camelize.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupFontWeightTokensNoFrame,
@@ -26,12 +25,11 @@ export function setupFontWeightTokens(fontWeightFrame) {
 
   let fontWeightObject = {};
 
-  fontWeightFrame.children.forEach(type => {
+  fontWeightFrame.children.forEach((type) => {
     if (!type.name || !type.style) throw new Error(errorSetupFontWeightTokensMissingProps);
     if (!type.style.fontWeight) throw new Error(errorSetupFontWeightTokensMissingWeight);
 
-    let name = camelize(type.name);
-    name = formatName(name);
+    const name = camelize(type.name);
     const fontWeight = type.style.fontWeight;
 
     fontWeightObject[name] = fontWeight;

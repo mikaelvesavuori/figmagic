@@ -5,14 +5,14 @@ import { mediaQueriesFrame } from '../testdata/mediaQueriesFrame.mjs';
 test('It should return a complete object when passing in valid input', () => {
   expect(setupMediaQueryTokens(mediaQueriesFrame)).toEqual(
     expect.objectContaining({
-      desktoplg: '1440px',
-      desktopmd: '1180px',
-      mobilelg: '580px',
-      mobilemax: '767px',
-      mobilemd: '480px',
-      mobilesm: '320px',
-      tabletmax: '1024px',
-      tabletmin: '768px',
+      desktopLg: '1440px',
+      desktopMd: '1180px',
+      mobileLg: '580px',
+      mobileMax: '767px',
+      mobileMd: '480px',
+      mobileSm: '320px',
+      tabletMax: '1024px',
+      tabletMin: '768px',
       wide: '1920px'
     })
   );

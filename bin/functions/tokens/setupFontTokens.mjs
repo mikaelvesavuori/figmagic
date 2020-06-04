@@ -1,5 +1,4 @@
 import { camelize } from '../helpers/camelize.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupFontTokensNoFrame,
@@ -31,8 +30,7 @@ export function setupFontTokens(fontFrame, usePostscriptFontNames) {
     //if (!type.style.fontPostScriptName || !type.style.fontFamily)
     //  throw new Error(errorSetupFontTokensMissingProps);
 
-    let name = camelize(type.name);
-    name = formatName(name);
+    const name = camelize(type.name);
 
     // Use Postscript font names or the default font family names (without spaces)
     const FONT = usePostscriptFontNames

@@ -1,6 +1,5 @@
 import { camelize } from '../helpers/camelize.mjs';
 import { normalizeUnits } from '../helpers/normalizeUnits.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupLineHeightTokensNoFrame,
@@ -27,13 +26,12 @@ export function setupLineHeightTokens(lineHeightFrame) {
 
   let lineHeightObject = {};
 
-  lineHeightFrame.children.forEach(type => {
+  lineHeightFrame.children.forEach((type) => {
     if (!type.name || !type.style) throw new Error(errorSetupLineHeightTokensMissingProps);
     if (!type.style.lineHeightPercentFontSize)
       throw new Error(errorSetupLineHeightTokensMissingPercent);
 
-    let name = camelize(type.name);
-    name = formatName(name);
+    const name = camelize(type.name);
     const LINE_HEIGHT = normalizeUnits(type.style.lineHeightPercentFontSize, 'percent', 'unitless');
 
     // Do a tiny bit of rounding to avoid ugly numbers

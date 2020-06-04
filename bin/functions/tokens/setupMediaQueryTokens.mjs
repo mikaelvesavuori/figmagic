@@ -1,5 +1,4 @@
 import { camelize } from '../helpers/camelize.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupMediaQueryTokensNoFrame,
@@ -24,12 +23,11 @@ export function setupMediaQueryTokens(mediaQueryFrame) {
 
   let mediaQueryObject = {};
 
-  mediaQueryFrame.children.forEach(type => {
+  mediaQueryFrame.children.forEach((type) => {
     if (!type.name || !type.absoluteBoundingBox)
       throw new Error(errorSetupMediaQueryTokensMissingProps);
 
-    let name = camelize(type.name);
-    name = formatName(name);
+    const name = camelize(type.name);
 
     mediaQueryObject[name] = `${type.absoluteBoundingBox.width}px`;
   });

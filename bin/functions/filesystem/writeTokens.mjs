@@ -1,5 +1,4 @@
 import { camelize } from '../helpers/camelize.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 import { processTokens } from '../process/processTokens.mjs';
 import { writeFile } from './writeFile.mjs';
 
@@ -27,8 +26,7 @@ export async function writeTokens(tokens, config) {
   const tokensToProcess = new Promise((resolve, reject) => {
     try {
       tokens.forEach(async (token) => {
-        let tokenName = camelize(token.name);
-        tokenName = formatName(tokenName);
+        const tokenName = camelize(token.name);
 
         if (acceptedTokenTypes.includes(tokenName.toLowerCase())) {
           const PROCESSED_TOKEN = processTokens(token, tokenName, config);

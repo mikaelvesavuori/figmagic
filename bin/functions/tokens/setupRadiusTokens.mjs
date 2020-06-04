@@ -1,6 +1,5 @@
 import { camelize } from '../helpers/camelize.mjs';
 import { normalizeUnits } from '../helpers/normalizeUnits.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupRadiusTokensNoFrame,
@@ -25,11 +24,10 @@ export function setupRadiusTokens(radiusFrame) {
 
   let cornerRadiusObject = {};
 
-  radiusFrame.children.forEach(type => {
+  radiusFrame.children.forEach((type) => {
     if (!type.name) throw new Error(errorSetupRadiusTokensMissingProps);
 
-    let name = camelize(type.name);
-    name = formatName(name);
+    const name = camelize(type.name);
 
     const RADIUS = (() => {
       if (type.cornerRadius)

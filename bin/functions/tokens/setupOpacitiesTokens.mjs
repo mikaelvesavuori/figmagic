@@ -1,5 +1,4 @@
 import { camelize } from '../helpers/camelize.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupOpacitiesTokensNoFrame,
@@ -30,7 +29,7 @@ export function setupOpacitiesTokens(opacitiesFrame, opacitiesUnit) {
 
       // Note: Figma API does not provide an opacity value if its 100%
       // We will assume it defaults to 1 if undefined.
-      const name = formatName(camelize(type.name));
+      const name = camelize(type.name);
       let opacity =
         typeof type.opacity !== 'undefined'
           ? // Keep only 2 decimals of the parsed-to-float value

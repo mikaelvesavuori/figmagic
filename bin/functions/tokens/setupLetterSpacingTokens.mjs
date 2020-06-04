@@ -1,5 +1,4 @@
 import { camelize } from '../helpers/camelize.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupLetterSpacingTokensNoFrame,
@@ -33,7 +32,7 @@ export function setupLetterSpacingTokens(letterSpacingFrame, letterSpacingUnit) 
     (tokens, type) => {
       if (!type.name || !type.style) throw new Error(errorSetupLetterSpacingTokensMissingProps);
 
-      const name = formatName(camelize(type.name));
+      const name = camelize(type.name);
 
       // Assuming Figma API always export the node font-size as an integer in our case
       // https://www.figma.com/plugin-docs/api/TextNode/#fontsize

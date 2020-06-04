@@ -1,6 +1,5 @@
 import { camelize } from '../helpers/camelize.mjs';
 import { normalizeUnits } from '../helpers/normalizeUnits.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupSpacingTokensNoFrame,
@@ -36,15 +35,15 @@ export function setupSpacingTokens(spacingFrame, spacingUnit, remSize) {
     //if (!spacing.name || !spacing.absoluteBoundingBox)
     //  throw new Error(errorSetupSpacingTokensMissingProps);
 
-    let normalizedName = camelize(spacing.name);
-    normalizedName = formatName(normalizedName);
+    const name = camelize(spacing.name);
+
     const NORMALIZED_UNIT = normalizeUnits(
       spacing.absoluteBoundingBox.width,
       'px',
       spacingUnit,
       remSize
     );
-    SPACING_OBJECT[normalizedName] = NORMALIZED_UNIT;
+    SPACING_OBJECT[name] = NORMALIZED_UNIT;
   });
 
   return SPACING_OBJECT;

@@ -12,12 +12,27 @@ import { errorCamelize } from '../../meta/errors.mjs';
 export function camelize(str) {
   if (!str) throw new Error(errorCamelize);
 
-  return str
-    .toLowerCase()
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
-      return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
-    })
-    .replace(/\\/g, '-')
-    .replace(/\//g, '-')
-    .replace(/\s+/g, '');
+  return (
+    str
+      // Add a space after uppercase words
+      .replace(/[A-Z]+/g, function (word, index) {
+        return ' ' + word;
+      })
+      // Replace all characters that are not letter or number with a space
+      .replace(/[^a-zA-Z0-9]+/g, ' ')
+      // Remove leading and trailing spaces
+      .trim()
+      // Find all words, and capitalize the first letter
+      // and lowercase the rest of the word.
+      // Except the first word which is fully lowercased.
+      .replace(/[a-zA-Z0-9]+/g, function (word, index) {
+        if (index === 0) {
+          return word.toLowerCase();
+        }
+
+        return word[0].toUpperCase() + word.slice(1).toLowerCase();
+      })
+      // Finally remove all remaining spaces
+      .replace(/ /g, '')
+  );
 }
