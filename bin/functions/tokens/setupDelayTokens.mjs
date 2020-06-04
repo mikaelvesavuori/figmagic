@@ -1,5 +1,4 @@
 import { camelize } from '../helpers/camelize.mjs';
-import { formatName } from '../helpers/formatName.mjs';
 
 import {
   errorSetupDelayTokensNoFrame,
@@ -27,8 +26,7 @@ export function setupDelayTokens(delayFrame) {
   delayFrame.children.forEach((type) => {
     if (!type.name || !type.characters) throw new Error(errorSetupDelayTokensMissingProps);
 
-    let name = camelize(type.name);
-    name = formatName(name);
+    const name = camelize(type.name);
 
     delayObject[name] = parseFloat(type.characters);
   });
