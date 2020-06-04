@@ -12,6 +12,8 @@ import { setupLetterSpacingTokens } from '../tokens/setupLetterSpacingTokens.mjs
 import { setupMediaQueryTokens } from '../tokens/setupMediaQueryTokens.mjs';
 import { setupOpacitiesTokens } from '../tokens/setupOpacitiesTokens.mjs';
 import { setupDurationTokens } from '../tokens/setupDurationTokens.mjs';
+import { setupDelayTokens } from '../tokens/setupDelayTokens.mjs';
+import { setupEasingTokens } from '../tokens/setupEasingTokens.mjs';
 
 import { errorProcessTokens, errorProcessTokensNoConfig } from '../../meta/errors.mjs';
 import { ignoreElementsKeywords } from '../../meta/ignoreElementsKeywords.mjs';
@@ -132,6 +134,21 @@ export function processTokens(sheet, name, config) {
     case 'motion duration':
     case 'motion durations': {
       processedTokens = setupDurationTokens(sheet);
+      break;
+    }
+    case 'delay':
+    case 'delays':
+    case 'animation delay':
+    case 'animation delays':
+    case 'motion delay':
+    case 'motion delays': {
+      processedTokens = setupDelayTokens(sheet);
+      break;
+    }
+    case 'easing':
+    case 'animation easing':
+    case 'motion easing': {
+      processedTokens = setupEasingTokens(sheet);
       break;
     }
   }

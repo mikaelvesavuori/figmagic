@@ -12,7 +12,7 @@ import {
  * @exports
  * @function
  * @param {object} durationFrame - The durations frame from Figma
- * @returns {object} - Returns an object with all the Z indices
+ * @returns {object} - Returns an object with all the animation duration values
  * @throws {errorSetupDurationTokensNoFrame} - When there is no provided Figma frame
  * @throws {errorSetupDurationTokensNoChildren} - When no children in Figma frame
  * @throws {errorSetupDurationTokensMissingProps} - When missing required props in children
