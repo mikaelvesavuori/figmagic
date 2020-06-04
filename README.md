@@ -156,6 +156,7 @@ You can currently extract design tokens for:
 - Media Queries
 - Opacities
 - Durations (for animations)
+- Delays (for animations)
 
 A typical use-case for the generated documents is to feed the extracted values into CSS systems that support external values (such as Styled Components, Emotion, Styled System, any other CSS-in-JS libraries, or maybe even Sass).
 
