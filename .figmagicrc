@@ -9,5 +9,5 @@
   "outputFolderElements": "elements",
   "spacingUnit": "rem",
   "usePostscriptFontNames": true,
-	"syncElements": false
+	"syncElements": true
 }

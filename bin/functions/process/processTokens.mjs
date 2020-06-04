@@ -13,6 +13,7 @@ import { setupMediaQueryTokens } from '../tokens/setupMediaQueryTokens.mjs';
 import { setupOpacitiesTokens } from '../tokens/setupOpacitiesTokens.mjs';
 import { setupDurationTokens } from '../tokens/setupDurationTokens.mjs';
 import { setupDelayTokens } from '../tokens/setupDelayTokens.mjs';
+import { setupEasingTokens } from '../tokens/setupEasingTokens.mjs';
 
 import { errorProcessTokens, errorProcessTokensNoConfig } from '../../meta/errors.mjs';
 import { ignoreElementsKeywords } from '../../meta/ignoreElementsKeywords.mjs';
@@ -142,6 +143,12 @@ export function processTokens(sheet, name, config) {
     case 'motion delay':
     case 'motion delays': {
       processedTokens = setupDelayTokens(sheet);
+      break;
+    }
+    case 'easing':
+    case 'animation easing':
+    case 'motion easing': {
+      processedTokens = setupEasingTokens(sheet);
       break;
     }
   }
