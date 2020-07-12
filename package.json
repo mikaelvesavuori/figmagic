@@ -56,7 +56,7 @@
     "microbundle": "^0.12.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "snyk": "^1.332.1",
+    "snyk": "^1.346.0",
     "validate-commit-msg": "^2.14.0"
   },
   "dependencies": {
