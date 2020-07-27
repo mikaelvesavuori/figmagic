@@ -14,7 +14,11 @@ test('It should throw an error when receiving invalid token and/or URL', async (
   );
 });
 
+/*
+TODO: Mock integration test
+
 test('It should find valid data (assuming the base document ID to be "0:0") when passed valid token and URL', async () => {
   const DATA = await getFromApi(process.env.FIGMA_TOKEN, process.env.FIGMA_URL);
   expect(DATA.document.id).toEqual('0:0');
 });
+*/
