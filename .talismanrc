@@ -1,5 +1,5 @@
 fileignoreconfig:
-- filename: package-lock.json
-  checksum: c582a775f5c586fef9908b650808bc89fbddbd701d2ac869a740231af1536b93
+- filename: .github/workflows/master.yml
+  checksum: 3506c7baf81cbc7d3cf207b42ba6a0a13869e658f7a850887da24fb8d9b7b9f5
   ignore_detectors: []
 scopeconfig: []

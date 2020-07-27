@@ -46,6 +46,11 @@ jobs:
         id: coverage
       - run: bash <(curl -s https://codecov.io/bash) -f jest-coverage/clover.xml
 
+      - name: Send coverage report with Code Climate
+        uses: paambaati/codeclimate-action@v2.2.4
+        env:
+          CC_TEST_REPORTER_ID: 5f76217754cf70599563d20763da88b651810ba02c0dce1b6a683c15ca19515a
+
   build-windows:
     runs-on: ${{ matrix.os }}
     strategy:
