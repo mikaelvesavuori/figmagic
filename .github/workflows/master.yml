@@ -40,6 +40,7 @@ jobs:
       - run: \[ -f .figmagic/figma.json \]
         env:
           CI: true
+      - run: npx arkit
 
       - name: Send coverage report with Codecov
         uses: codecov/codecov-action@v1
@@ -53,9 +54,6 @@ jobs:
         with:
           coverageCommand: npm run test
           coverageLocations: ${{github.workspace}}/jest-coverage/lcov.info:lcov
-
-      - name: Create Arkit map
-      - run: npx arkit
 
   build-windows:
     runs-on: ${{ matrix.os }}
@@ -88,8 +86,6 @@ jobs:
       - run: Test-Path .figmagic/figma.json -PathType leaf
         env:
           CI: true
-
-      - name: Create Arkit map
       - run: npx arkit
 
   publish-npm:
