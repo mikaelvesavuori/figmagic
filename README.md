@@ -76,6 +76,10 @@ Local usage should be possible by installing Figmagic as a devDependency with `n
 
 This is the best way to get going if you want to do Element Sync, in which case **you must explicitly add a block to your `.figmagicrc` file, pointing `templates.templatePath{React|Styled|Storybook}` to `./node_modules/figmagic/templates/{react.jsx|styled.jsx|story.js}`**. Read more under the **User Settings** section.
 
+## Arkit code structure map
+
+![Arkit code structure map](arkit.svg)
+
 ### Running Figmagic
 
 First of all, get your Figma API token and Figma URL:

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://arkit.js.org/schema.json",
+  "excludePatterns": ["__tests__/"],
+  "components": [
+    {
+      "type": "Main",
+      "patterns": ["index.mjs"]
+    },
+    {
+      "type": "Config",
+      "patterns": ["bin/functions/config/*.mjs"]
+    },
+    {
+      "type": "Filesystem",
+      "patterns": ["bin/functions/filesystem/*.mjs"]
+    },
+    {
+      "type": "Helpers",
+      "patterns": ["bin/functions/helpers/*.mjs"]
+    },
+    {
+      "type": "Process",
+      "patterns": ["bin/functions/process/*.mjs"]
+    },
+    {
+      "type": "Tokens",
+      "patterns": ["bin/functions/tokens/*.mjs"]
+    },
+    {
+      "type": "Dependency",
+      "patterns": ["node_modules/*"]
+    }
+  ],
+  "output": [
+    {
+      "path": "arkit.svg",
+      "groups": [
+        {
+          "first": true,
+          "type": "Main",
+          "components": ["Main"]
+        },
+        {
+          "type": "Config",
+          "components": ["Config"]
+        },
+        {
+          "type": "Filesystem",
+          "components": ["Filesystem"]
+        },
+        {
+          "type": "Helpers",
+          "components": ["Helpers"]
+        },
+        {
+          "type": "Process",
+          "components": ["Process"]
+        },
+        {
+          "type": "Tokens",
+          "components": ["Tokens"]
+        },
+        {
+          "type": "Dependencies",
+          "components": ["Dependency"]
+        }
+      ]
+    }
+  ]
+}

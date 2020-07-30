@@ -1,5 +1,5 @@
 fileignoreconfig:
-- filename: package-lock.json
-  checksum: 66832d594b490d89afaa487c9e1b4d4a253b692c2bf5be8f91e92c28c2714484
+- filename: arkit.svg
+  checksum: 81821e1fce234ae8ba5b83ff13afefa780cfd8f7a9430e3f901cf282ba5a55e0
   ignore_detectors: []
 scopeconfig: []

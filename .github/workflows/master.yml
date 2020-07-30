@@ -54,6 +54,9 @@ jobs:
           coverageCommand: npm run test
           coverageLocations: ${{github.workspace}}/jest-coverage/lcov.info:lcov
 
+      - name: Create Arkit map
+      - run: npx arkit
+
   build-windows:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -85,6 +88,9 @@ jobs:
       - run: Test-Path .figmagic/figma.json -PathType leaf
         env:
           CI: true
+
+      - name: Create Arkit map
+      - run: npx arkit
 
   publish-npm:
     needs: ['build-unix', 'build-windows']
