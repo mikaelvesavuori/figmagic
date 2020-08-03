@@ -2,8 +2,8 @@ import trash from 'trash';
 
 import { writeGraphics } from '../bin/functions/filesystem/writeGraphics';
 
-import { fileList } from '../testdata/fileList.mjs';
-import { defaultConfig } from '../testdata/defaultConfig.mjs';
+import { fileList } from '../testdata/fileList';
+import { defaultConfig } from '../testdata/defaultConfig';
 
 // Set temp folder
 const TEMP_FOLDER = `__graphics__`;

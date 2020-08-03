@@ -1,6 +1,6 @@
 import { setupLineHeightTokens } from '../bin/functions/tokens/setupLineHeightTokens';
 
-import { lineHeightFrame } from '../testdata/lineHeightFrame.mjs';
+import { lineHeightFrame } from '../testdata/lineHeightFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupLineHeightTokens(lineHeightFrame)).toEqual(

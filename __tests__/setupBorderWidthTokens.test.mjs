@@ -1,6 +1,6 @@
 import { setupBorderWidthTokens } from '../bin/functions/tokens/setupBorderWidthTokens';
 
-import { borderWidthsFrame } from '../testdata/borderWidthsFrame.mjs';
+import { borderWidthsFrame } from '../testdata/borderWidthsFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupBorderWidthTokens(borderWidthsFrame)).toEqual(

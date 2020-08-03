@@ -1,6 +1,6 @@
 import { setupColorTokens } from '../bin/functions/tokens/setupColorTokens';
 
-import { colorFrame } from '../testdata/colorFrame.mjs';
+import { colorFrame } from '../testdata/colorFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupColorTokens(colorFrame)).toEqual(

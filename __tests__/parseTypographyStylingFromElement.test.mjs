@@ -1,6 +1,6 @@
 import { parseTypographyStylingFromElement } from '../bin/functions/process/parseTypographyStylingFromElement';
 
-import { cssTypographyElement } from '../testdata/cssTypographyElement.mjs';
+import { cssTypographyElement } from '../testdata/cssTypographyElement';
 
 test('It should throw an error if no parameter is provided', async () => {
   await expect(parseTypographyStylingFromElement()).rejects.toThrow();

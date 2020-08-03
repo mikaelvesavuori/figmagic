@@ -1,6 +1,6 @@
 import { setupLetterSpacingTokens } from '../bin/functions/tokens/setupLetterSpacingTokens';
 
-import { letterSpacingsFrame } from '../testdata/letterSpacingsFrame.mjs';
+import { letterSpacingsFrame } from '../testdata/letterSpacingsFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupLetterSpacingTokens(letterSpacingsFrame)).toEqual(

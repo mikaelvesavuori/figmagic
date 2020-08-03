@@ -1,6 +1,6 @@
 import { setupFontTokens } from '../bin/functions/tokens/setupFontTokens';
 
-import { fontFrame } from '../testdata/fontFrame.mjs';
+import { fontFrame } from '../testdata/fontFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupFontTokens(fontFrame)).toEqual(

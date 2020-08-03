@@ -1,6 +1,6 @@
 import { setupMediaQueryTokens } from '../bin/functions/tokens/setupMediaQueryTokens';
 
-import { mediaQueriesFrame } from '../testdata/mediaQueriesFrame.mjs';
+import { mediaQueriesFrame } from '../testdata/mediaQueriesFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupMediaQueryTokens(mediaQueriesFrame)).toEqual(

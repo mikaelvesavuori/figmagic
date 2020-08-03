@@ -25,14 +25,14 @@ test('It should correctly return a CSS standard RGBA string', () => {
       'fontWeights',
       'lineHeights'
     ])
-  ).toBe(`import spacing from 'tokens/spacing.mjs';
-import colors from 'tokens/colors.mjs';
-import borderWidths from 'tokens/borderWidths.mjs';
-import radii from 'tokens/radii.mjs';
-import shadows from 'tokens/shadows.mjs';
-import fontSizes from 'tokens/fontSizes.mjs';
-import fontFamilies from 'tokens/fontFamilies.mjs';
-import fontWeights from 'tokens/fontWeights.mjs';
-import lineHeights from 'tokens/lineHeights.mjs';
+  ).toBe(`import spacing from 'tokens/spacing';
+import colors from 'tokens/colors';
+import borderWidths from 'tokens/borderWidths';
+import radii from 'tokens/radii';
+import shadows from 'tokens/shadows';
+import fontSizes from 'tokens/fontSizes';
+import fontFamilies from 'tokens/fontFamilies';
+import fontWeights from 'tokens/fontWeights';
+import lineHeights from 'tokens/lineHeights';
 `);
 });

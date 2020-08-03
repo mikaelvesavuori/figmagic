@@ -1,6 +1,6 @@
 import { setupRadiusTokens } from '../bin/functions/tokens/setupRadiusTokens';
 
-import { radiiFrame } from '../testdata/radiiFrame.mjs';
+import { radiiFrame } from '../testdata/radiiFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupRadiusTokens(radiiFrame)).toEqual(

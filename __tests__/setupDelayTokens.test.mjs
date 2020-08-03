@@ -1,6 +1,6 @@
 import { setupDelayTokens } from '../bin/functions/tokens/setupDelayTokens';
 
-import { durationsFrame } from '../testdata/delaysFrame.mjs';
+import { durationsFrame } from '../testdata/delaysFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupDelayTokens(durationsFrame)).toEqual(

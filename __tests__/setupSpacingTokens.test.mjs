@@ -1,6 +1,6 @@
 import { setupSpacingTokens } from '../bin/functions/tokens/setupSpacingTokens';
 
-import { spacingFrame } from '../testdata/spacingFrame.mjs';
+import { spacingFrame } from '../testdata/spacingFrame';
 
 test('It should return valid JSON for spacing elements, using "rem" spacing conversion and standard 16 size', () => {
   expect(setupSpacingTokens(spacingFrame, 'rem', 16)).toEqual(

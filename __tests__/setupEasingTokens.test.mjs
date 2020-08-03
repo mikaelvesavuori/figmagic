@@ -1,6 +1,6 @@
 import { setupEasingTokens } from '../bin/functions/tokens/setupEasingTokens';
 
-import { easingFrame } from '../testdata/easingFrame.mjs';
+import { easingFrame } from '../testdata/easingFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupEasingTokens(easingFrame)).toEqual(

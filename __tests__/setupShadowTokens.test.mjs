@@ -1,6 +1,6 @@
 import { setupShadowTokens } from '../bin/functions/tokens/setupShadowTokens';
 
-import { shadowsFrame, shadowsFrameMultipleShadows } from '../testdata/shadowsFrame.mjs';
+import { shadowsFrame, shadowsFrameMultipleShadows } from '../testdata/shadowsFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupShadowTokens(shadowsFrame)).toEqual(

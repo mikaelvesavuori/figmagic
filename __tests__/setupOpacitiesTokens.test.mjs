@@ -1,6 +1,6 @@
 import { setupOpacitiesTokens } from '../bin/functions/tokens/setupOpacitiesTokens';
 
-import { opacitiesFrame } from '../testdata/opacitiesFrame.mjs';
+import { opacitiesFrame } from '../testdata/opacitiesFrame';
 
 test('It should return a complete object with specific unit when passing in valid input', () => {
   expect(setupOpacitiesTokens(opacitiesFrame, 'float')).toEqual(

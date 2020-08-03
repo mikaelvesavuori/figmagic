@@ -1,8 +1,8 @@
 import { processElements } from '../bin/functions/process/processElements';
 
-import { elementsPage, elementsPageDoubleTexts } from '../testdata/elementsPage.mjs';
-import { components } from '../testdata/components.mjs';
-import { defaultConfig } from '../testdata/defaultConfig.mjs';
+import { elementsPage, elementsPageDoubleTexts } from '../testdata/elementsPage';
+import { components } from '../testdata/components';
+import { defaultConfig } from '../testdata/defaultConfig';
 
 test('It should throw an error if no parameter is provided', async () => {
   await expect(processElements()).rejects.toThrow();

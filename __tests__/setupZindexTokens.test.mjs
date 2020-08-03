@@ -1,6 +1,6 @@
 import { setupZindexTokens } from '../bin/functions/tokens/setupZindexTokens';
 
-import { zIndicesFrame } from '../testdata/zIndicesFrame.mjs';
+import { zIndicesFrame } from '../testdata/zIndicesFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupZindexTokens(zIndicesFrame)).toEqual(

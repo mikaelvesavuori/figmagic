@@ -1,9 +1,9 @@
 import { parseCssFromElement } from '../bin/functions/process/parseCssFromElement';
 
-import { cssLayoutElement } from '../testdata/cssLayoutElement.mjs';
-import { cssLayoutElementGradient } from '../testdata/cssLayoutElementGradient.mjs';
-import { cssLayoutElementShadow } from '../testdata/cssLayoutElementShadow.mjs';
-import { cssTypographyElement } from '../testdata/cssTypographyElement.mjs';
+import { cssLayoutElement } from '../testdata/cssLayoutElement';
+import { cssLayoutElementGradient } from '../testdata/cssLayoutElementGradient';
+import { cssLayoutElementShadow } from '../testdata/cssLayoutElementShadow';
+import { cssTypographyElement } from '../testdata/cssTypographyElement';
 
 test('It should throw an error if no parameter is provided', async () => {
   await expect(parseCssFromElement()).rejects.toThrow();

@@ -2,7 +2,7 @@ import trash from 'trash';
 
 import { createFolder } from '../bin/functions/filesystem/createFolder';
 
-import { errorCreateFolder } from '../bin/meta/errors.mjs';
+import { errorCreateFolder } from '../bin/meta/errors';
 
 test('It should throw an error if no parameter is provided', async () => {
   await expect(createFolder()).rejects.toThrow(errorCreateFolder);

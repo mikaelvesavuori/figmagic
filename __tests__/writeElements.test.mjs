@@ -2,7 +2,7 @@ import trash from 'trash';
 
 import { writeElements } from '../bin/functions/filesystem/writeElements';
 
-import { defaultConfig } from '../testdata/defaultConfig.mjs';
+import { defaultConfig } from '../testdata/defaultConfig';
 
 // Set temp folder
 const TEMP_FOLDER = `__elements__`;

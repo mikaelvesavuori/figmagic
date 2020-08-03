@@ -2,19 +2,19 @@ import trash from 'trash';
 
 import { writeTokens } from '../bin/functions/filesystem/writeTokens';
 
-import { defaultConfig } from '../testdata/defaultConfig.mjs';
-import { colorFrame } from '../testdata/colorFrame.mjs';
-import { spacingFrame } from '../testdata/spacingFrame.mjs';
-import { fontFrame } from '../testdata/fontFrame.mjs';
-import { fontSizeFrame } from '../testdata/fontSizeFrame.mjs';
-import { fontWeightFrame } from '../testdata/fontWeightFrame.mjs';
-import { lineHeightFrame } from '../testdata/lineHeightFrame.mjs';
-import { borderWidthsFrame } from '../testdata/borderWidthsFrame.mjs';
-import { letterSpacingsFrame } from '../testdata/letterSpacingsFrame.mjs';
-import { mediaQueriesFrame } from '../testdata/mediaQueriesFrame.mjs';
-import { radiiFrame } from '../testdata/radiiFrame.mjs';
-import { shadowsFrame } from '../testdata/shadowsFrame.mjs';
-import { zIndicesFrame } from '../testdata/zIndicesFrame.mjs';
+import { defaultConfig } from '../testdata/defaultConfig';
+import { colorFrame } from '../testdata/colorFrame';
+import { spacingFrame } from '../testdata/spacingFrame';
+import { fontFrame } from '../testdata/fontFrame';
+import { fontSizeFrame } from '../testdata/fontSizeFrame';
+import { fontWeightFrame } from '../testdata/fontWeightFrame';
+import { lineHeightFrame } from '../testdata/lineHeightFrame';
+import { borderWidthsFrame } from '../testdata/borderWidthsFrame';
+import { letterSpacingsFrame } from '../testdata/letterSpacingsFrame';
+import { mediaQueriesFrame } from '../testdata/mediaQueriesFrame';
+import { radiiFrame } from '../testdata/radiiFrame';
+import { shadowsFrame } from '../testdata/shadowsFrame';
+import { zIndicesFrame } from '../testdata/zIndicesFrame';
 
 // Set temp folder
 const TEMP_FOLDER = `__tokens__`;

@@ -1,6 +1,6 @@
 import { setupFontWeightTokens } from '../bin/functions/tokens/setupFontWeightTokens';
 
-import { fontWeightFrame } from '../testdata/fontWeightFrame.mjs';
+import { fontWeightFrame } from '../testdata/fontWeightFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupFontWeightTokens(fontWeightFrame)).toEqual(

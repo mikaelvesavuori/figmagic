@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import { createConfiguration } from '../bin/functions/config/createConfiguration';
 
 test('It should return a valid merged configuration if given a path to an RC file and a set of CLI arguments', async () => {
@@ -21,12 +21,12 @@ test('It should return a valid merged configuration if given a path to an RC fil
       recompileLocal: false,
       remSize: 16,
       skipFileGeneration: {
-        css: false,
-        description: false,
-        forceUpdate: true,
-        react: false,
-        storybook: false,
-        styled: false
+        skipReact: false,
+        skipStyled: false,
+        skipCss: false,
+        skipStorybook: false,
+        skipDescription: false,
+        forceUpdate: true
       },
       spacingUnit: 'rem',
       syncElements: false,

@@ -1,6 +1,6 @@
 import { parseCliArgs } from '../bin/functions/config/parseCliArgs';
 
-import { defaultConfig } from '../bin/meta/config.mjs';
+import { defaultConfig } from '../bin/meta/config';
 
 test('It should throw an error if no arguments array is passed', () => {
   expect(() => {
@@ -63,7 +63,7 @@ test('It should return true for skipFileGeneration.react if passing "--skipReact
   expect(parseCliArgs(['--skipReact'])).toEqual(
     expect.objectContaining({
       skipFileGeneration: expect.objectContaining({
-        react: true
+        skipReact: true
       })
     })
   );
@@ -76,7 +76,7 @@ test('It should return true for skipFileGeneration.styled if passing "--skipStyl
   expect(parseCliArgs(['--skipStyled'])).toEqual(
     expect.objectContaining({
       skipFileGeneration: expect.objectContaining({
-        styled: true
+        skipStyled: true
       })
     })
   );
@@ -89,7 +89,7 @@ test('It should return true for skipFileGeneration.css if passing "--skipCss"', 
   expect(parseCliArgs(['--skipCss'])).toEqual(
     expect.objectContaining({
       skipFileGeneration: expect.objectContaining({
-        css: true
+        skipCss: true
       })
     })
   );
@@ -102,7 +102,7 @@ test('It should return true for skipFileGeneration.storybook if passing "--skipS
   expect(parseCliArgs(['--skipStorybook'])).toEqual(
     expect.objectContaining({
       skipFileGeneration: expect.objectContaining({
-        storybook: true
+        skipStorybook: true
       })
     })
   );
@@ -115,7 +115,7 @@ test('It should return true for skipFileGeneration.styled if passing "--skipDesc
   expect(parseCliArgs(['--skipDescription'])).toEqual(
     expect.objectContaining({
       skipFileGeneration: expect.objectContaining({
-        description: true
+        skipDescription: true
       })
     })
   );
@@ -149,11 +149,11 @@ test('It should return true for all skipFileGeneration properties, if passing al
   ).toEqual(
     expect.objectContaining({
       skipFileGeneration: expect.objectContaining({
-        css: true,
-        description: true,
-        react: true,
-        storybook: true,
-        styled: true
+        skipCss: true,
+        skipDescription: true,
+        skipReact: true,
+        skipStorybook: true,
+        skipStyled: true
       })
     })
   );

@@ -1,6 +1,6 @@
 import { setupDurationTokens } from '../bin/functions/tokens/setupDurationTokens';
 
-import { durationsFrame } from '../testdata/durationsFrame.mjs';
+import { durationsFrame } from '../testdata/durationsFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupDurationTokens(durationsFrame)).toEqual(

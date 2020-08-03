@@ -1,4 +1,6 @@
 export const defaultConfig = {
+  token: null,
+  url: null,
   debugMode: false,
   testMode: true,
   fontUnit: 'rem',
@@ -13,6 +15,7 @@ export const defaultConfig = {
   outputScaleGraphics: 1,
   outputTokenDataType: null,
   recompileLocal: false,
+  opacitiesUnit: 'percent',
   spacingUnit: 'rem',
   syncElements: true,
   syncGraphics: false,
@@ -23,11 +26,11 @@ export const defaultConfig = {
     templatePathStorybook: 'templates/story.js'
   },
   skipFileGeneration: {
-    react: false,
-    styled: false,
-    css: false,
-    storybook: false,
-    description: false,
+    skipReact: false,
+    skipStyled: false,
+    skipCss: false,
+    skipStorybook: false,
+    skipDescription: false,
     forceUpdate: true
   }
 };

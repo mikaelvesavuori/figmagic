@@ -1,6 +1,6 @@
 import { setupFontSizeTokens } from '../bin/functions/tokens/setupFontSizeTokens';
 
-import { fontSizeFrame } from '../testdata/fontSizeFrame.mjs';
+import { fontSizeFrame } from '../testdata/fontSizeFrame';
 
 test('It should return a complete object when passing in valid input', () => {
   expect(setupFontSizeTokens(fontSizeFrame, 'rem', 16)).toEqual(
