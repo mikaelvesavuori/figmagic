@@ -79,5 +79,5 @@ export async function writeElements(elements: any[], config: Config): Promise<vo
     if (!SKIP_DESCRIPTION) writeFile(DESCRIPTION, FOLDER, NAME, 'description', 'md');
   });
 
-  return true;
+  return;
 }

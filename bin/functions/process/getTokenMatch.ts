@@ -3,6 +3,8 @@ import { normalizeUnits } from '../helpers/normalizeUnits';
 import { msgGetTokenMatchNoMatch } from '../../meta/messages';
 import { errorGetTokenMatch, errorGetTokenMatchNoRemSize } from '../../meta/errors';
 
+import { TokenMatch } from '../../app/contracts/process/TokenMatch';
+
 /**
  * Match and find design tokens for CSS values
  *
@@ -23,10 +25,10 @@ export function getTokenMatch(
   property: string,
   expectedValue: string | number,
   remSize: number
-): object {
+): TokenMatch {
   if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error(errorGetTokenMatch);
 
-  let updatedCss = ``;
+  let updatedCss: string = ``;
   let updatedImports = [];
 
   // Padding requires both X and Y dimensions/values so requires a bit more noodling

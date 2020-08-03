@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    //"noEmit": true,
     "checkJs": true,
     "allowJs": true,
     "module": "commonjs",
@@ -9,14 +8,12 @@
     "sourceMap": true,
     "lib": ["esnext", "dom"],
     "esModuleInterop": true,
-    /*
-    "noImplicitAny": true,
+    //"noImplicitAny": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "noEmitOnError": true,
+    //"noEmitOnError": true,
     "forceConsistentCasingInFileNames": true,
-		"strictFunctionTypes": true,
-		*/
+    "strictFunctionTypes": true,
     "removeComments": true,
     "importHelpers": true,
     "strict": false

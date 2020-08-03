@@ -31,12 +31,13 @@ import {
   msgJobComplete
 } from './bin/meta/messages';
 
+import { Config } from './bin/app/contracts/config/Config';
+import { Page } from './bin/domain/Page/Page';
+import { FigmaData } from './bin/domain/FigmaData/FigmaData';
+
 import { defaultConfig } from './bin/meta/config';
 
-// TODO: Pick from config?
-const FIGMAGIC_RC_FILENAME = `.figmagicrc`;
-
-async function main(config, userConfigPath) {
+async function main(config: Config): Promise<void> {
   const {
     token,
     url,
@@ -47,105 +48,128 @@ async function main(config, userConfigPath) {
     outputFolderTokens,
     outputFolderGraphics,
     outputFolderElements,
-    //outputFolderComponents,
     outputFileName
   } = config;
 
-  await getData(outputFolderBaseFile, outputFileName);
+  const data: FigmaData = recompileLocal
+    ? await getDataLocal(outputFolderBaseFile, outputFileName)
+    : await getDataRemote(token, url);
 
-  await processTokens(config, data, tokensPage, outputFolderTokens);
+  if (!recompileLocal) await writeBaseJson(outputFolderBaseFile, outputFileName, data);
 
-  const COMPONENTS = DATA.components;
-  //const STYLES = DATA.styles;
+  await processTokens(config, data, outputFolderTokens);
 
-  if (syncElements) await syncElements(config);
-  if (syncGraphics) await syncGraphics(config);
+  if (syncElements) await doSyncElements(config, data, outputFolderElements);
+  if (syncGraphics) await doSyncGraphics(config, data, outputFolderGraphics);
+
   console.log(msgJobComplete);
 }
 
-async function getData(outputFolderBaseFile, outputFileName) {
-  // Normal: We want to get data from the Figma API
-  if (!recompileLocal) {
-    console.log(msgSetDataFromApi);
+async function getDataLocal(
+  outputFolderBaseFile: string,
+  outputFileName: string
+): Promise<FigmaData> {
+  console.log(msgSetDataFromLocal);
 
-    // Attempt to get data
-    try {
-      const _DATA = await getFromApi(token, url);
-
-      // If there's no data or something went funky, eject
-      if (!_DATA || _DATA.status === 403) throw new Error(errorGetData);
-
-      return _DATA;
-    } catch (error) {
-      throw new Error(error);
-    }
-
-    try {
-      if (!recompileLocal) await writeBaseJson(token, url, outputFolderBaseFile, outputFileName);
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
-  // Recompile: We want to use the existing Figma JSON file
-  else {
-    console.log(msgSetDataFromLocal);
-
-    try {
-      return await loadFile(path.join(`${outputFolderBaseFile}`, `${outputFileName}`));
-    } catch (error) {
-      throw new Error(error);
-    }
+  try {
+    return await loadFile(path.join(`${outputFolderBaseFile}`, `${outputFileName}`));
+  } catch (error) {
+    throw new Error(error);
   }
 }
 
-async function writeBaseJson(token, url, outputFolderBaseFile, outputFileName): object {
-  console.log(msgWriteBaseFile);
+async function getDataRemote(token: string, url: string): Promise<FigmaData> {
+  console.log(msgSetDataFromApi);
 
-  const data = await getFromApi(token, url);
-  await trash([`./${outputFolderBaseFile}`]);
-  await createFolder(outputFolderBaseFile);
-  await writeFile(JSON.stringify(DATA), outputFolderBaseFile, outputFileName, 'raw');
+  let data = null;
+
+  try {
+    data = await getFromApi(token, url);
+    if (!data || data.status === 403) throw new Error(errorGetData);
+  } catch (error) {
+    throw new Error(error);
+  }
 
   return data;
 }
 
-async function processTokens(config, data, tokensPage, outputFolderTokens) {
-  console.log(msgWriteTokens);
+async function writeBaseJson(
+  outputFolderBaseFile: string,
+  outputFileName: string,
+  data: object
+): Promise<object> {
+  console.log(msgWriteBaseFile);
+  try {
+    await refresh(outputFolderBaseFile);
+    await writeFile(JSON.stringify(data), outputFolderBaseFile, outputFileName, 'raw');
 
-  const TOKENS_PAGE = createPage(data.document.children, 'Design Tokens');
-  await trash([`./${outputFolderTokens}`]);
-  await createFolder(outputFolderTokens);
-  await writeTokens(tokensPage.children, config);
+    return data;
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
-async function syncElements(config, data, outputFolderElements, elementsPage, components) {
+async function processTokens(config: Config, data: FigmaData, outputFolder: string): Promise<void> {
+  console.log(msgWriteTokens);
+  try {
+    const tokensPage: Page = createPage(data.document.children, 'Design Tokens');
+    await refresh(outputFolder);
+    await writeTokens(tokensPage.children, config);
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+async function doSyncElements(
+  config: Config,
+  data: FigmaData,
+  outputFolder: string
+): Promise<void> {
   console.log(msgSyncElements);
 
-  const ELEMENTS_PAGE = createPage(data.document.children, 'Elements');
-  const elements = await processElements(elementsPage.children, components, config);
-  await createFolder(outputFolderElements);
-  await writeElements(elements, config);
+  try {
+    const { components } = data;
+    const elementsPage = createPage(data.document.children, 'Elements');
+    const elements = await processElements(elementsPage.children, config, components);
+    await createFolder(outputFolder);
+    await writeElements(elements, config);
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
-async function syncGraphics(config, data, outputFolderGraphics, graphicsPage) {
+async function doSyncGraphics(
+  config: Config,
+  data: FigmaData,
+  outputFolder: string
+): Promise<void> {
   console.log(msgSyncGraphics);
-
-  const GRAPHICS_PAGE = createPage(data.document.children, 'Graphics');
-  await trash([`./${outputFolderGraphics}`]);
-  await createFolder(outputFolderGraphics);
-  const FILE_LIST = await processGraphics(graphicsPage.children, config);
-  await writeGraphics(FILE_LIST, config);
+  try {
+    const graphicsPage = createPage(data.document.children, 'Graphics');
+    await refresh(outputFolder);
+    const fileList = await processGraphics(graphicsPage.children, config);
+    await writeGraphics(fileList, config);
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
-(async () => {
+async function refresh(path: string): Promise<void> {
+  await trash([`./${path}`]);
+  await createFolder(path);
+}
+
+async function init(): Promise<void> {
   try {
     dotenv.config();
     const [, , ...CLI_ARGS] = process.argv;
-    const USER_CONFIG_PATH = path.join(`${process.cwd()}`, FIGMAGIC_RC_FILENAME);
-    const CONFIG = await createConfiguration(defaultConfig, USER_CONFIG_PATH, ...CLI_ARGS);
+    const userConfigPath = path.join(`${process.cwd()}`, `.figmagicrc`);
+    const config = await createConfiguration(defaultConfig, userConfigPath, ...CLI_ARGS);
 
-    await main(CONFIG, USER_CONFIG_PATH);
+    await main(config);
   } catch (error) {
     console.error(`${colors.FgRed}${error}`);
   }
-})();
+}
+
+init();

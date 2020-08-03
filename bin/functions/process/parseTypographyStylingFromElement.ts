@@ -59,6 +59,7 @@ export async function parseTypographyStylingFromElement(
         }
       }
     }
+    return null;
   })();
 
   if (FONT_COLOR) {
@@ -79,6 +80,7 @@ export async function parseTypographyStylingFromElement(
         return element.style.fontSize;
       }
     }
+    return null;
   })();
 
   if (FONT_SIZE) {
@@ -100,6 +102,7 @@ export async function parseTypographyStylingFromElement(
         return element.style.fontPostScriptName; //fontFamily;
       }
     }
+    return null;
   })();
 
   if (FONT_FAMILY) {
@@ -120,6 +123,7 @@ export async function parseTypographyStylingFromElement(
         return element.style.fontWeight;
       }
     }
+    return null;
   })();
 
   if (FONT_WEIGHT) {
@@ -142,6 +146,7 @@ export async function parseTypographyStylingFromElement(
         } else return 1.0;
       }
     }
+    return null;
   })();
 
   if (FONT_LINE_HEIGHT) {
@@ -162,6 +167,7 @@ export async function parseTypographyStylingFromElement(
         return element.style.textAlignHorizontal;
       }
     }
+    return null;
   })();
 
   const LETTER_SPACING = (() => {
@@ -172,6 +178,7 @@ export async function parseTypographyStylingFromElement(
         }
       }
     }
+    return null;
   })();
 
   if (LETTER_SPACING && FONT_SIZE) {

@@ -8,14 +8,14 @@ import {
   errorSetupFontSizeTokensMissingSize
 } from '../../meta/errors';
 
-import { FontSizeFrame } from '../../app/contracts/frames/FontSizeFrame';
+import { Frame } from '../../domain/Frame/Frame';
 
 /**
  * Places all Figma font sizes into a clean object
  *
  * @exports
  * @function
- * @param {object} fontSizeFrame - The font size frame from Figma
+ * @param {Frame} fontSizeFrame - The font size frame from Figma
  * @param {string} fontUnit - The font unit type
  * @param {number} remSize - The body rem size
  * @returns {object} - Returns an object with all the font sizes
@@ -26,7 +26,7 @@ import { FontSizeFrame } from '../../app/contracts/frames/FontSizeFrame';
  * @throws {errorSetupFontSizeTokensMissingSize} - When frame child is missing type.style.fontSize
  */
 export function setupFontSizeTokens(
-  fontSizeFrame: FontSizeFrame,
+  fontSizeFrame: Frame,
   fontUnit: string,
   remSize: number
 ): object {
@@ -41,7 +41,7 @@ export function setupFontSizeTokens(
     if (!type.style.fontSize) throw new Error(errorSetupFontSizeTokensMissingSize);
 
     const name = camelize(type.name);
-    const FONT_SIZE = type.style.fontSize / remSize + fontUnit;
+    const FONT_SIZE = ((type.style.fontSize as unknown) as number) / remSize + fontUnit;
 
     fontSizeObject[name] = FONT_SIZE;
   });

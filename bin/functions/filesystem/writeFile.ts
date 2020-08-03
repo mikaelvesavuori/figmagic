@@ -34,8 +34,8 @@ export async function writeFile(
   name: string,
   type: string,
   format: string = 'mjs',
-  metadata: object,
-  templates: object
+  metadata?: object,
+  templates?: object
 ): Promise<void> {
   if (!file || !path || !name || !type) throw new Error(errorWriteFile);
 
@@ -134,6 +134,7 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
         }
       } else return '';
     } else return '';
+    return null;
   })();
 
   let filePath = `${path}/${name}`;

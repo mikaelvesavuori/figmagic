@@ -42,7 +42,7 @@ export async function createConfiguration(
   const { outputFolderComponents, ...DEFAULT_CONFIG } = defaultConfig;
 
   // RC file configuration
-  let RC_CONFIG = {};
+  let RC_CONFIG: Config = {}; // TODO: makeConfig(...) ???
 
   try {
     RC_CONFIG = await loadFile(userConfigPath);
@@ -55,7 +55,7 @@ export async function createConfiguration(
   };
 
   // CLI arguments configuration
-  const CLI_CONFIG = parseCliArgs(cliArgs);
+  const CLI_CONFIG: Config = parseCliArgs(cliArgs);
 
   // Merge configurations in order of prioritization
   // 1. Base required config
@@ -83,16 +83,23 @@ export async function createConfiguration(
     }
   };
 
-  if (CONFIG.debugMode === true) {
-    console.log(msgConfigDebugEnv);
-    console.log(ENV_CONFIG);
-    console.log(msgConfigDebugCli);
-    console.log(CLI_CONFIG);
-    console.log(msgConfigDebugRc);
-    console.log(RC_CONFIG);
-    console.log(msgConfigDebugFinal);
-    console.log(CONFIG);
-  }
+  if (CONFIG.debugMode === true) printConfigs(ENV_CONFIG, CLI_CONFIG, RC_CONFIG, CONFIG);
 
   return CONFIG;
+}
+
+function printConfigs(
+  envConfig: object,
+  cliConfig: object,
+  rcConfig: object,
+  config: object
+): void {
+  console.log(msgConfigDebugEnv);
+  console.log(envConfig);
+  console.log(msgConfigDebugCli);
+  console.log(cliConfig);
+  console.log(msgConfigDebugRc);
+  console.log(rcConfig);
+  console.log(msgConfigDebugFinal);
+  console.log(config);
 }

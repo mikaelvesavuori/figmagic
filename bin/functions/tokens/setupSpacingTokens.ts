@@ -8,14 +8,14 @@ import {
   errorSetupSpacingTokensMissingProps
 } from '../../meta/errors';
 
-import { SpacingFrame } from '../../app/contracts/frames/SpacingFrame';
+import { Frame } from '../../domain/Frame/Frame';
 
 /**
  * Places all Figma spacings into a clean object
  *
  * @exports
  * @function
- * @param {object} spacingFrame - The spacing frame from Figma
+ * @param {Frame} spacingFrame - The spacing frame from Figma
  * @param {string} spacingUnit - The spacing unit
  * @param {number} remSize - The body rem size
  * @returns {object} - Returns an object with all the spacings
@@ -25,7 +25,7 @@ import { SpacingFrame } from '../../app/contracts/frames/SpacingFrame';
  * @throws {errorSetupSpacingTokensMissingProps} - When missing spacing.name or spacing.absoluteBoundingBox in spacing/children
  */
 export function setupSpacingTokens(
-  spacingFrame: SpacingFrame,
+  spacingFrame: Frame,
   spacingUnit: string,
   remSize: number
 ): object {

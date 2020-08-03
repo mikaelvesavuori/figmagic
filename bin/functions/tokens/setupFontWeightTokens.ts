@@ -7,21 +7,21 @@ import {
   errorSetupFontWeightTokensMissingWeight
 } from '../../meta/errors';
 
-import { FontWeightFrame } from '../../app/contracts/frames/FontWeightFrame';
+import { Frame } from '../../domain/Frame/Frame';
 
 /**
  * Places all Figma font weights into a clean object
  *
  * @exports
  * @function
- * @param {object} fontWeightFrame - The font weight frame from Figma
+ * @param {Frame} fontWeightFrame - The font weight frame from Figma
  * @returns {object} - Returns an object with all the font weights
  * @throws {errorSetupFontWeightTokensNoFrame} - When there is no provided Figma frame
  * @throws {errorSetupFontWeightTokensNoChildren} - When Figma frame is missing children
  * @throws {errorSetupFontWeightTokensMissingProps} - When missing required props on frame children
  * @throws {errorSetupFontWeightTokensMissingWeight} - When missing type.style.fontWeight on child
  */
-export function setupFontWeightTokens(fontWeightFrame: FontWeightFrame): object {
+export function setupFontWeightTokens(fontWeightFrame: Frame): object {
   if (!fontWeightFrame) throw new Error(errorSetupFontWeightTokensNoFrame);
   if (!fontWeightFrame.children) throw new Error(errorSetupFontWeightTokensNoChildren);
 

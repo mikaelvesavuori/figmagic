@@ -6,20 +6,20 @@ import {
   errorSetupEasingTokensMissingProps
 } from '../../meta/errors';
 
-import { EasingFrame } from '../../app/contracts/frames/EasingFrame';
+import { Frame } from '../../domain/Frame/Frame';
 
 /**
  * Places all Figma easings into a clean object
  *
  * @exports
  * @function
- * @param {object} easingFrame - The easings frame from Figma
+ * @param {Frame} easingFrame - The easings frame from Figma
  * @returns {object} - Returns an object with all the animation easing values
  * @throws {errorSetupEasingTokensNoFrame} - When there is no provided Figma frame
  * @throws {errorSetupEasingTokensNoChildren} - When no children in Figma frame
  * @throws {errorSetupEasingTokensMissingProps} - When missing required props in children
  */
-export function setupEasingTokens(easingFrame: EasingFrame): object {
+export function setupEasingTokens(easingFrame: Frame): object {
   if (!easingFrame) throw new Error(errorSetupEasingTokensNoFrame);
   if (!easingFrame.children) throw new Error(errorSetupEasingTokensNoChildren);
 

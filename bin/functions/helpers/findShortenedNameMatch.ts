@@ -16,7 +16,7 @@ import {
  * @throws {errorFindShortenedNameMatchString} - When no 'originalString' is provided
  * @throws {errorFindShortenedNameMatchWrongType} - When arguments are not of string type
  */
-export function findShortenedNameMatch(originalString: string, matchString: string): string {
+export function findShortenedNameMatch(originalString: string, matchString: string): boolean {
   if (!originalString) throw new Error(errorFindShortenedNameMatchOriginal);
   if (!matchString) throw new Error(errorFindShortenedNameMatchString);
   if (typeof originalString !== 'string' && typeof matchString !== 'string')

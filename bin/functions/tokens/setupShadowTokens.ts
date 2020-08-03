@@ -7,20 +7,20 @@ import {
   errorSetupShadowTokensMissingProps
 } from '../../meta/errors';
 
-import { ShadowFrame } from '../../app/contracts/frames/ShadowFrame';
+import { Frame } from '../../domain/Frame/Frame';
 
 /**
  * Places all Figma shadows into a clean object
  *
  * @exports
  * @function
- * @param {object} shadowFrame - The shadows frame from Figma
+ * @param {Frame} shadowFrame - The shadows frame from Figma
  * @returns {object} - Returns an object with all the shadows
  * @throws {errorSetupShadowTokensNoFrame} - When there is no provided Figma frame
  * @throws {errorSetupShadowTokensNoChildren} - When missing children in Figma frame
  * @throws {errorSetupShadowTokensMissingProps} - When missing required props in frame children
  */
-export function setupShadowTokens(shadowFrame: ShadowFrame): object {
+export function setupShadowTokens(shadowFrame: Frame): object {
   if (!shadowFrame) throw new Error(errorSetupShadowTokensNoFrame);
   if (!shadowFrame.children) throw new Error(errorSetupShadowTokensNoChildren);
 

@@ -1,5 +1,3 @@
-import { Style } from './Style';
-
 export type AbsoluteBoundingBox = {
   width: number;
   height: number;
@@ -44,7 +42,18 @@ export type Gradients = {
 };
 
 export type GradientStops = {
-  fill: Fills[];
+  color: Color;
+};
+
+export type Style = {
+  fontSize: string;
+  fontWeight: number;
+  letterSpacing: string;
+  lineHeightPercentFontSize: number;
+  fontFamily: string;
+  fontPostScriptName: string;
+  textAlignHorizontal: string;
+  textCase: 'LOWER' | 'UPPER' | 'TITLE';
 };
 
 export interface Element {

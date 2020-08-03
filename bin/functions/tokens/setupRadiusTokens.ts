@@ -7,20 +7,20 @@ import {
   errorSetupRadiusTokensMissingProps
 } from '../../meta/errors';
 
-import { RadiusFrame } from '../../app/contracts/frames/RadiusFrame';
+import { Frame } from '../../domain/Frame/Frame';
 
 /**
  * Places all Figma radii into a clean object
  *
  * @exports
  * @function
- * @param {object} radiusFrame - The radii frame from Figma
+ * @param {Frame} radiusFrame - The radii frame from Figma
  * @returns {object} - Returns an object with all the radii
  * @throws {errorSetupRadiusTokensNoFrame} - When there is no provided Figma frame
  * @throws {errorSetupRadiusTokensNoChildren} - When missing children in Figma frame
  * @throws {errorSetupRadiusTokensMissingProps} - When missing required props in frame children
  */
-export function setupRadiusTokens(radiusFrame: RadiusFrame): object {
+export function setupRadiusTokens(radiusFrame: Frame): object {
   if (!radiusFrame) throw new Error(errorSetupRadiusTokensNoFrame);
   if (!radiusFrame.children) throw new Error(errorSetupRadiusTokensNoChildren);
 

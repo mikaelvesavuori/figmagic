@@ -7,19 +7,19 @@ import {
   errorSetupColorTokensNoFills
 } from '../../meta/errors';
 
-import { ColorFrame } from '../../app/contracts/frames/ColorFrame';
+import { Frame } from '../../domain/Frame/Frame';
 
 /**
  * Places all Figma color frames into a clean object
  *
  * @exports
  * @function
- * @param {object} colorFrame - The color frame from Figma
+ * @param {Frame} colorFrame - The color frame from Figma
  * @returns {object} - Returns an object with all the colors
  * @throws {errorSetupColorTokensNoFrame} - When there is no provided Figma frame
  * @throws {errorSetupColorTokensNoChildren} - When Figma frame is missing children
  */
-export function setupColorTokens(colorFrame: ColorFrame): object {
+export function setupColorTokens(colorFrame: Frame): object {
   if (!colorFrame) throw new Error(errorSetupColorTokensNoFrame);
   if (!colorFrame.children) throw new Error(errorSetupColorTokensNoChildren);
 

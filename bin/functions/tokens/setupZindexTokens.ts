@@ -6,7 +6,7 @@ import {
   errorSetupZindexTokensMissingProps
 } from '../../meta/errors';
 
-import { ZindexFrame } from '../../app/contracts/frames/ZindexFrame';
+import { Frame } from '../../domain/Frame/Frame';
 
 /**
  * Places all Figma Z indices into a clean object
@@ -19,7 +19,7 @@ import { ZindexFrame } from '../../app/contracts/frames/ZindexFrame';
  * @throws {errorSetupZindexTokensNoChildren} - When no children in Figma frame
  * @throws {errorSetupZindexTokensMissingProps} - When missing required props in children
  */
-export function setupZindexTokens(zIndexFrame: ZindexFrame): object {
+export function setupZindexTokens(zIndexFrame: Frame): object {
   if (!zIndexFrame) throw new Error(errorSetupZindexTokensNoFrame);
   if (!zIndexFrame.children) throw new Error(errorSetupZindexTokensNoChildren);
 

@@ -8,21 +8,21 @@ import {
   errorSetupLineHeightTokensMissingPercent
 } from '../../meta/errors';
 
-import { LineHeightFrame } from '../../app/contracts/frames/LineHeightFrame';
+import { Frame } from '../../domain/Frame/Frame';
 
 /**
  * Places all Figma line heights into a clean object
  *
  * @exports
  * @function
- * @param {object} lineHeightFrame - The line heights frame from Figma
+ * @param {Frame} lineHeightFrame - The line heights frame from Figma
  * @returns {object} - Returns an object with all the line heights
  * @throws {errorSetupLineHeightTokensNoFrame} - When there is no provided Figma frame
  * @throws {errorSetupLineHeightTokensNoChildren} - When missing children in Figma frame
  * @throws {errorSetupLineHeightTokensMissingProps} - When missing required props on frame children
  * @throws {errorSetupLineHeightTokensMissingPercent} - When missing type.style.lineHeightPercentFontSize on children
  */
-export function setupLineHeightTokens(lineHeightFrame: LineHeightFrame): object {
+export function setupLineHeightTokens(lineHeightFrame: Frame): object {
   if (!lineHeightFrame) throw new Error(errorSetupLineHeightTokensNoFrame);
   if (!lineHeightFrame.children) throw new Error(errorSetupLineHeightTokensNoChildren);
 

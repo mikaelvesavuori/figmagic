@@ -6,14 +6,14 @@ import {
   errorSetupOpacitiesTokensMissingProps
 } from '../../meta/errors';
 
-import { OpacityFrame } from '../../app/contracts/frames/OpacityFrame';
+import { Frame } from '../../domain/Frame/Frame';
 
 /**
  * Places all Figma opacities scale into a clean object
  *
  * @exports
  * @function
- * @param {object} opacitiesFrame - The opacities frame from Figma
+ * @param {Frame} opacitiesFrame - The opacities frame from Figma
  * @param {string} opacitiesUnit - The opacity unit as a string
  * @returns {object} - Returns an object with all the opacities
  * @throws {errorSetupRadiusTokensNoFrame} - When there is no provided Figma frame
@@ -21,7 +21,7 @@ import { OpacityFrame } from '../../app/contracts/frames/OpacityFrame';
  * @throws {errorSetupRadiusTokensMissingProps} - When missing required props in frame children
  */
 export function setupOpacitiesTokens(
-  opacitiesFrame: OpacityFrame,
+  opacitiesFrame: Frame,
   opacitiesUnit: 'float' | 'percent'
 ): object {
   if (!opacitiesFrame) throw new Error(errorSetupOpacitiesTokensNoFrame);

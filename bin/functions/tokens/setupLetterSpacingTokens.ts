@@ -6,7 +6,7 @@ import {
   errorSetupLetterSpacingTokensMissingProps
 } from '../../meta/errors';
 
-import { LetterSpacingFrame } from '../../app/contracts/frames/LetterSpacingFrame';
+import { Frame } from '../../domain/Frame/Frame';
 
 /**
  * Places all Figma letter spacings into a clean object
@@ -19,7 +19,7 @@ import { LetterSpacingFrame } from '../../app/contracts/frames/LetterSpacingFram
  *
  * @exports
  * @function
- * @param {object} letterSpacingFrame - The letter spacings frame from Figma
+ * @param {Frame} letterSpacingFrame - The letter spacings frame from Figma
  * @param {string} letterSpacingUnit - The letter spacing unit as a string
  * @returns {object} - Returns an object with all the letter spacings
  * @throws {errorSetupLetterSpacingTokensNoFrame} - When there is no provided Figma frame
@@ -27,7 +27,7 @@ import { LetterSpacingFrame } from '../../app/contracts/frames/LetterSpacingFram
  * @throws {errorSetupLetterSpacingTokensMissingProps} - When missing required props on frame children
  */
 export function setupLetterSpacingTokens(
-  letterSpacingFrame: LetterSpacingFrame,
+  letterSpacingFrame: Frame,
   letterSpacingUnit: string
 ): object {
   if (!letterSpacingFrame) throw new Error(errorSetupLetterSpacingTokensNoFrame);

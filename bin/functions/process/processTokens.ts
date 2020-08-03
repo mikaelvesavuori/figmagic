@@ -18,9 +18,11 @@ import { setupEasingTokens } from '../tokens/setupEasingTokens';
 import { errorProcessTokens, errorProcessTokensNoConfig } from '../../meta/errors';
 import { ignoreElementsKeywords } from '../../meta/ignoreElementsKeywords';
 
-import { Sheet } from '../../domain/Sheet/Sheet';
+import { Sheet } from '../../domain/Frame/Frame';
 
 import { Config } from '../../app/contracts/config/Config';
+
+import { Tokens } from '../../domain/Tokens/Tokens';
 
 /**
  * Process tokens
@@ -34,7 +36,7 @@ import { Config } from '../../app/contracts/config/Config';
  * @throws {errorProcessTokens} - When missing sheet or name
  * @throws {errorProcessTokensNoConfig} - When missing config, required for certain processing
  */
-export function processTokens(sheet: Sheet, name: string, config: Config): object {
+export function processTokens(sheet: Sheet, name: string, config: Config): Tokens {
   if (!sheet || !name) throw new Error(errorProcessTokens);
 
   // Filter out elements that contain ignore keywords in their name

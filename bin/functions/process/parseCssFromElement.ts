@@ -2,7 +2,6 @@ import * as path from 'path';
 
 import { roundColorValue } from '../helpers/roundColorValue';
 import { getTokenMatch } from './getTokenMatch';
-//import { warnParseCssFromElementNoTokenMatch } from '../meta/warnings';
 import { errorParseCssFromElement } from '../../meta/errors';
 
 import { Css } from '../../domain/Css/Css';
@@ -33,22 +32,26 @@ export async function parseCssFromElement(
   if (!element || !remSize) throw new Error(errorParseCssFromElement);
 
   // Dynamic imports
-  const PATH = isTest ? path.join('testdata', 'tokens') : `tokens`;
+  const PATH = isTest ? path.join(`testdata`, `tokens`) : `tokens`;
 
   const _borderWidths = await import(path.join(`${process.cwd()}`, `${PATH}`, `borderWidths.ts`));
   const borderWidths = _borderWidths.default;
+
   const _colors = await import(path.join(`${process.cwd()}`, `${PATH}`, `colors.ts`));
   const colors = _colors.default;
+
   const _radii = await import(path.join(`${process.cwd()}`, `${PATH}`, `radii.ts`));
   const radii = _radii.default;
+
   const _shadows = await import(path.join(`${process.cwd()}`, `${PATH}`, `shadows.ts`));
   const shadows = _shadows.default;
+
   const _spacing = await import(path.join(`${process.cwd()}`, `${PATH}`, `spacing.ts`));
   const spacing = _spacing.default;
   // Not using media queries or Z indices
 
-  let css = ``;
-  let imports = [];
+  let css: string = ``;
+  let imports: any = [];
 
   css += `width: 100%;\n`;
   css += `box-sizing: border-box;\n`;
@@ -79,6 +82,7 @@ export async function parseCssFromElement(
         bottom: Math.round(PADDING_BOTTOM)
       };
     }
+    return null;
   })();
 
   // Paddings for left and right
@@ -94,6 +98,7 @@ export async function parseCssFromElement(
         right: Math.round(PADDING_RIGHT)
       };
     }
+    return null;
   })();
 
   const PADDING = {
@@ -120,9 +125,8 @@ export async function parseCssFromElement(
   }
 
   const HEIGHT = (() => {
-    if (element.absoluteBoundingBox) {
-      return element.absoluteBoundingBox.height;
-    }
+    if (element.absoluteBoundingBox) return element.absoluteBoundingBox.height;
+    return null;
   })();
 
   if (HEIGHT) {
@@ -180,6 +184,7 @@ export async function parseCssFromElement(
         return str;
       }
     }
+    return null;
   })();
 
   if (BACKGROUND_COLOR) {
@@ -200,9 +205,8 @@ export async function parseCssFromElement(
   css += `border-style: solid;\n`;
 
   const BORDER_WIDTH = (() => {
-    if (element.strokeWeight) {
-      return `${element.strokeWeight}px`;
-    }
+    if (element.strokeWeight) return `${element.strokeWeight}px`;
+    return null;
   })();
 
   if (BORDER_WIDTH) {
@@ -229,6 +233,7 @@ export async function parseCssFromElement(
         }
       }
     }
+    return null;
   })();
 
   if (BORDER_COLOR) {
@@ -244,9 +249,8 @@ export async function parseCssFromElement(
   }
 
   const BORDER_RADIUS = (() => {
-    if (element.cornerRadius) {
-      return `${element.cornerRadius}px`;
-    }
+    if (element.cornerRadius) return `${element.cornerRadius}px`;
+    return null;
   })();
 
   if (BORDER_RADIUS) {
@@ -279,6 +283,7 @@ export async function parseCssFromElement(
         }
       }
     }
+    return null;
   })();
 
   if (SHADOW) {

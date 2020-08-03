@@ -12,7 +12,7 @@ export type Config = {
   outputFolderElements: string;
   outputFolderGraphics: string;
   outputFormatGraphics: 'svg'; // ???
-  outputFolderComponents: string; // ???
+  outputFolderComponents?: string; // ???
   outputTokenDataType: null; // ???
   outputScaleGraphics: number;
   recompileLocal: boolean;
