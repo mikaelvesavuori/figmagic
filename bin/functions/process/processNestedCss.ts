@@ -42,9 +42,6 @@ export function processNestedCss(css: string): string {
   const CSS = createCssString(INTERSECTIONS, UNIQUE_VALUES);
 
   return CSS;
-  //} else {
-  //  return ` `;
-  //}
 }
 
 /**

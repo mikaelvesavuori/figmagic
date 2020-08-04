@@ -1,5 +1,11 @@
 import { colors } from './colors';
 
+export const errorGetDescription: string = `${colors.FgRed}Missing element in getDescription()!`;
+export const errorExtractDescription: string = `${colors.FgRed}Missing description in extractDescription()!`;
+export const errorGetElementType: string = `${colors.FgRed}Missing element in getElementType()!`;
+export const errorHandleNestedElements: string = `${colors.FgRed}Missing element in handleNestedElements()!`;
+
+export const errorAddDescriptionToElements: string = `${colors.FgRed}Missing elements and/or components in addDescriptionToElements()!`;
 export const errorCamelize: string = `${colors.FgRed}No string provided to camelize()!`;
 export const errorCleanArrays: string = `${colors.FgRed}Missing one or more of "classNames" and/or "classContent" when calling cleanArrays()!`;
 export const errorConvertHexToRgba: string = `${colors.FgRed}Missing one or more of red, green, blue and alpha in convertHexToRgba()!`;
