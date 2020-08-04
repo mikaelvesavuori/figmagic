@@ -3,5 +3,6 @@ type PageChild = {
 };
 
 export interface Page {
+  name: string;
   children: PageChild[];
 }

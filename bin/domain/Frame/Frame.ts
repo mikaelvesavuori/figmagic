@@ -1,14 +1,15 @@
 import { AbsoluteBoundingBox, Effects, Fills, Style } from '../Element/Element';
 
 type FrameChild = {
-  name: string;
-  strokeWeight: string;
-  characters: string;
   absoluteBoundingBox: AbsoluteBoundingBox;
-  effects: Effects[];
+  characters: string;
   cornerRadius: string;
-  style: Style;
+  effects: Effects[];
   fills: Fills;
+  name: string;
+  opacity: number;
+  strokeWeight: string;
+  style: Style;
 };
 
 export interface Frame {

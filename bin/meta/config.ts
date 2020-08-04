@@ -5,33 +5,36 @@ export const defaultConfig: Config = {
   fontUnit: 'rem',
   letterSpacingUnit: 'em',
   opacitiesUnit: 'float',
-  outputTokenFormat: 'mjs',
   outputFileName: 'figma.json',
   outputFolderBaseFile: '.figmagic',
-  outputFolderTokens: 'tokens',
+  outputFolderComponents: '',
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
+  outputFolderTokens: 'tokens',
   outputFormatGraphics: 'svg',
-  outputFolderComponents: '',
-  outputTokenDataType: null,
   outputScaleGraphics: 1,
+  outputTokenDataType: null,
+  outputTokenFormat: 'mjs',
   recompileLocal: false,
   remSize: 16,
   skipFileGeneration: {
-    skipReact: false,
-    skipStyled: false,
+    forceUpdate: true,
     skipCss: false,
-    skipStorybook: false,
     skipDescription: false,
-    forceUpdate: true
+    skipReact: false,
+    skipStorybook: false,
+    skipStyled: false
   },
   spacingUnit: 'rem',
   syncElements: false,
   syncGraphics: false,
   templates: {
     templatePathReact: 'templates/react.jsx',
-    templatePathStyled: 'templates/styled.jsx',
-    templatePathStorybook: 'templates/story.js'
+    templatePathStorybook: 'templates/story.js',
+    templatePathStyled: 'templates/styled.jsx'
   },
+  testMode: false,
+  token: '',
+  url: '',
   usePostscriptFontNames: false
 };

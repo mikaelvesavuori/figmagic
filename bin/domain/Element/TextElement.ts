@@ -1,10 +1,5 @@
-type textElement = {
-  width: number;
-  height: number;
-  x: number;
-  y: number;
-};
+import { AbsoluteBoundingBox } from './Element';
 
 export interface TextElement {
-  absoluteBoundingBox: textElement;
+  absoluteBoundingBox: AbsoluteBoundingBox;
 }

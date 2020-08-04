@@ -22,5 +22,5 @@ export function findShortenedNameMatch(originalString: string, matchString: stri
   if (typeof originalString !== 'string' && typeof matchString !== 'string')
     throw new Error(errorFindShortenedNameMatchWrongType);
 
-  return originalString.toLowerCase().replace(' ', '') === matchString;
+  return originalString.toLowerCase().replace(' /g', '') === matchString;
 }

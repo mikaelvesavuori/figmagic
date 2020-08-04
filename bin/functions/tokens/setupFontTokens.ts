@@ -37,7 +37,7 @@ export function setupFontTokens(fontFrame: Frame, usePostscriptFontNames: boolea
     // Use Postscript font names or the default font family names (without spaces)
     const FONT = usePostscriptFontNames
       ? type.style.fontPostScriptName
-      : type.style.fontFamily.replace(' ', '');
+      : type.style.fontFamily.replace(' /g', '');
 
     fontObject[name] = FONT;
   });

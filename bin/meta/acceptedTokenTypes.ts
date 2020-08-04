@@ -1,4 +1,4 @@
-export const acceptedTokenTypes = [
+export const acceptedTokenTypes: string[] = [
   'animation delay',
   'animation delays',
   'animation duration',

@@ -1,3 +1,4 @@
 export interface Css {
-  asdf: string;
+  css: string;
+  imports: any[];
 }

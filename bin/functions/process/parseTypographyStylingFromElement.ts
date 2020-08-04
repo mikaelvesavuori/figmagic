@@ -6,6 +6,7 @@ import { getTokenMatch } from './getTokenMatch';
 import { errorParseTypographyStylingFromElement } from '../../meta/errors';
 
 import { Element } from '../../domain/Element/Element';
+import { FigmagicTypography } from '../../domain/FigmagicTypography/FigmagicTypography';
 
 /**
  * Parse typography CSS from "element" (Figma component)
@@ -23,7 +24,7 @@ export async function parseTypographyStylingFromElement(
   element: Element,
   remSize: number,
   isTest: boolean = false
-): Promise<object> {
+): Promise<FigmagicTypography> {
   if (!element || !remSize) throw new Error(errorParseTypographyStylingFromElement);
 
   // Dynamic imports

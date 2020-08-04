@@ -1,5 +1,5 @@
 fileignoreconfig:
-- filename: arkit-ts.svg
-  checksum: 7652a8f5372a1ebbedc7a3a2740ab06e3a173c6700a77ea0e21faeefabf11b81
+- filename: dump.json
+  checksum: 755f1f1d7860a5104b2a221d1a2525a39dbbd9360dd701c0f754aeaf38609631
   ignore_detectors: []
 scopeconfig: []

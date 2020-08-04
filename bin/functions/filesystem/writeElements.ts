@@ -21,7 +21,7 @@ import { Config } from '../../app/contracts/config/Config';
 export async function writeElements(elements: any[], config: Config): Promise<void> {
   if (!elements || !config) throw new Error(errorWriteElements);
 
-  await elements.map((comp) => {
+  await elements.forEach((comp) => {
     const HTML = comp.html;
     const CSS = comp.css;
     const DESCRIPTION = comp.description || ' ';
@@ -46,7 +46,7 @@ export async function writeElements(elements: any[], config: Config): Promise<vo
     const FORCE_UPDATE = config.skipFileGeneration.forceUpdate;
 
     // Ensure that name is processed like the "write()" function(s) do, so filename matching is same
-    const _NAME = NAME.replace('/', '');
+    const _NAME = NAME.replace('//g', '');
 
     // Write React component - is skipped by default if file already exists
     if (!SKIP_REACT) {

@@ -31,7 +31,7 @@ export function setupRadiusTokens(radiusFrame: Frame, remSize: number): object {
     if (!type.name) throw new Error(errorSetupRadiusTokensMissingProps);
     const name: string = camelize(type.name);
     const cornerRadius: string = type.cornerRadius
-      ? normalizeUnits(type.cornerRadius, 'cornerRadius', 'adjustedRadius', remSize)
+      ? normalizeUnits(parseFloat(type.cornerRadius), 'cornerRadius', 'adjustedRadius', remSize)
       : '0px';
     cornerRadiusObject[name] = cornerRadius;
   });

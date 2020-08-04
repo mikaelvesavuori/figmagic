@@ -1,37 +1,40 @@
+// TODO: Check this
+
 export type Config = {
-  token: string | null;
-  url: string | null;
   debugMode: boolean;
   fontUnit: 'rem' | 'em'; // ???
   letterSpacingUnit: 'em' | 'rem'; // ???
   opacitiesUnit: 'float' | 'percent';
-  outputTokenFormat: 'mjs'; // ???
   outputFileName: string;
   outputFolderBaseFile: string;
-  outputFolderTokens: string;
+  outputFolderComponents?: string; // ???
   outputFolderElements: string;
   outputFolderGraphics: string;
+  outputFolderTokens: string;
   outputFormatGraphics: 'svg'; // ???
-  outputFolderComponents?: string; // ???
-  outputTokenDataType: null; // ???
   outputScaleGraphics: number;
+  outputTokenDataType: null; // ???
+  outputTokenFormat: 'mjs'; // ???
   recompileLocal: boolean;
   remSize: number;
   skipFileGeneration: {
-    skipReact: boolean;
-    skipStyled: boolean;
-    skipCss: boolean;
-    skipStorybook: boolean;
-    skipDescription: boolean;
     forceUpdate: boolean;
+    skipCss: boolean;
+    skipDescription: boolean;
+    skipReact: boolean;
+    skipStorybook: boolean;
+    skipStyled: boolean;
   };
   spacingUnit: 'rem' | 'em';
   syncElements: boolean;
   syncGraphics: boolean;
   templates: {
     templatePathReact: string;
-    templatePathStyled: string;
     templatePathStorybook: string;
+    templatePathStyled: string;
   };
+  testMode: boolean;
+  token: string | null;
+  url: string | null;
   usePostscriptFontNames: boolean;
 };

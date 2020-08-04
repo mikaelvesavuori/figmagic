@@ -90,7 +90,7 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
   let fileContent = ``;
 
   // Clean name from any slashes
-  name = name.replace('/', '');
+  name = name.replace('//g', '');
 
   const ELEMENT = (() => {
     if (metadata) {

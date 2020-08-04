@@ -34,7 +34,7 @@ export type Fills = {
   gradientStops: GradientStops[];
   position: string;
   type: string;
-  opacity: string;
+  opacity: number;
 };
 
 export type Gradients = {

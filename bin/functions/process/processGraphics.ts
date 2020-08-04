@@ -62,7 +62,7 @@ export const getFileList = (imageResponse, ids, outputFormatGraphics) => {
   Object.entries(imageResponse.images).forEach(async (image) => {
     let name = '__unnamed__';
 
-    ids.filter((z) => {
+    ids.forEach((z) => {
       if (z.id === image[0]) {
         name = z.name;
       }

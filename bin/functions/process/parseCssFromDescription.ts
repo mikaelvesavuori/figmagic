@@ -14,7 +14,7 @@ import { errorParseCssFromDescription } from '../../meta/errors';
  * @returns {object} - Returns object with CSS and metadata
  * @throws {errorParseCssFromDescription} - Throws error if missing tokens
  */
-export function parseCssFromDescription(desc: string = '', tokens: any[]): object {
+export function parseCssFromDescription(desc: string = '', tokens: any[]): object | string {
   if (!tokens) throw new Error(errorParseCssFromDescription);
 
   if (desc === '') return '';

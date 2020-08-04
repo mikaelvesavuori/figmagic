@@ -106,7 +106,7 @@ function getIntersectingValues(arrays: any[]) {
 
   let o = {};
 
-  arrays.map((a, index) => {
+  arrays.forEach((a, index) => {
     o[index] = a;
   });
 
@@ -127,11 +127,11 @@ function getUniqueValues(arrays, intersections) {
 
   let uniqueValues = [];
 
-  arrays.map((arr) => {
+  arrays.forEach((arr) => {
     // Collect properties per class, such as all for ".ButtonError"
     let classArray = [];
 
-    arr.map((i) => {
+    arr.forEach((i) => {
       if (!intersections.includes(i)) {
         classArray.push(i);
       }

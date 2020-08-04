@@ -19,7 +19,7 @@ export function createImportStringFromList(importArray: any[]): string {
 
   let importString = ``;
 
-  importArray.map((i) => {
+  importArray.forEach((i) => {
     importString += `import ${i} from 'tokens/${i}';\n`;
   });
 

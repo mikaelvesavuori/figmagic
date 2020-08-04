@@ -1,1 +1,1 @@
-export const forbiddenCharacters = ['-', '–', '—', '|', '.'];
+export const forbiddenCharacters: string[] = ['-', '–', '—', '|', '.'];

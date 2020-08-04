@@ -40,7 +40,7 @@ export function setupOpacitiesTokens(
 
       // Keep only 2 decimals of the parsed-to-float value
       if (typeof type.opacity !== 'undefined') {
-        const opacityCalc: number = Math.round((parseFloat(type.opacity) * 100) / 100);
+        const opacityCalc: number = Math.round((type.opacity * 100) / 100);
         opacity = opacityCalc.toString();
       }
 
