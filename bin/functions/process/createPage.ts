@@ -7,12 +7,12 @@ import { Page } from '../../domain/Page/Page';
  *
  * @exports
  * @function
- * @param {object} figmaPages - Object with Figma pages
+ * @param {Page[]} figmaPages - Array of Figma pages
  * @param {string} matchingPageName - String that identifies the correct page name
  * @returns {object} - Return correct page as object
  * @throws {errorCreatePage} - When no page(s) are provided
  */
-export function createPage(figmaPages: object[], matchingPageName: string): Page {
+export function createPage(figmaPages: Page[], matchingPageName: string): Page {
   if (!figmaPages || !(figmaPages.length > 0)) throw new Error(errorCreatePage);
   return figmaPages.filter((page) => page.name === matchingPageName);
 }

@@ -20,7 +20,7 @@ export function replaceMediaQuery(str: string, match: string): string {
   const QUERY_TYPE = match === '@upto' ? 'max' : 'min';
 
   // Get the right parts
-  const SLICE_START = parseInt(match.length + 1);
+  const SLICE_START = match.length + 1;
   const SLICE_LENGTH = SLICE_START + 6;
   let query = str.slice(index, index + SLICE_LENGTH);
   let size = query.slice(SLICE_START, SLICE_LENGTH);

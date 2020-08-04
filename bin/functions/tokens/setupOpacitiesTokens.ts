@@ -36,19 +36,22 @@ export function setupOpacitiesTokens(
       // Note: Figma API does not provide an opacity value if its 100%
       // We will assume it defaults to 1 if undefined.
       const name = camelize(type.name);
-      let opacity =
-        typeof type.opacity !== 'undefined'
-          ? // Keep only 2 decimals of the parsed-to-float value
-            Math.round(parseFloat(type.opacity) * 100) / 100
-          : 1;
+      let opacity: string = '1';
+
+      // Keep only 2 decimals of the parsed-to-float value
+      if (typeof type.opacity !== 'undefined') {
+        const opacityCalc: number = Math.round((parseFloat(type.opacity) * 100) / 100);
+        opacity = opacityCalc.toString();
+      }
 
       // Unit conversion
       switch (opacitiesUnit) {
         case 'float':
-          // job is already done by default
+          // Job is already done by default
           break;
         case 'percent':
-          opacity = `${opacity * 100}%`;
+          const opacityCalc: number = parseFloat(opacity) * 100;
+          opacity = `${opacityCalc}%`;
           break;
       }
 

@@ -2,6 +2,8 @@ import { replaceMediaQuery } from '../helpers/replaceMediaQuery';
 
 import { errorParseCssFromDescription } from '../../meta/errors';
 
+// TODO: Refactor
+
 /**
  * Parse CSS from Figma description block
  *

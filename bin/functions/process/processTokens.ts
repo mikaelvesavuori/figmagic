@@ -18,7 +18,7 @@ import { setupEasingTokens } from '../tokens/setupEasingTokens';
 import { errorProcessTokens, errorProcessTokensNoConfig } from '../../meta/errors';
 import { ignoreElementsKeywords } from '../../meta/ignoreElementsKeywords';
 
-import { Sheet } from '../../domain/Frame/Frame';
+import { Frame } from '../../domain/Frame/Frame';
 
 import { Config } from '../../app/contracts/config/Config';
 
@@ -29,14 +29,14 @@ import { Tokens } from '../../domain/Tokens/Tokens';
  *
  * @exports
  * @function
- * @param {Sheet} sheet - Sheet object from Figma
+ * @param {Frame} frame - Sheet/frame object from Figma
  * @param {string} name - Token name
  * @param {object} [config] - User configuration object
  * @returns {object} - returns object with design tokens
  * @throws {errorProcessTokens} - When missing sheet or name
  * @throws {errorProcessTokensNoConfig} - When missing config, required for certain processing
  */
-export function processTokens(sheet: Sheet, name: string, config: Config): Tokens {
+export function processTokens(sheet: Frame, name: string, config: Config): Tokens {
   if (!sheet || !name) throw new Error(errorProcessTokens);
 
   // Filter out elements that contain ignore keywords in their name
@@ -96,7 +96,7 @@ export function processTokens(sheet: Sheet, name: string, config: Config): Token
     }
     case 'lineheight':
     case 'lineheights': {
-      processedTokens = setupLineHeightTokens(sheet);
+      processedTokens = setupLineHeightTokens(sheet, config.remSize);
       break;
     }
     case 'mediaquery':
@@ -112,7 +112,7 @@ export function processTokens(sheet: Sheet, name: string, config: Config): Token
     }
     case 'radius':
     case 'radii': {
-      processedTokens = setupRadiusTokens(sheet);
+      processedTokens = setupRadiusTokens(sheet, config.remSize);
       break;
     }
     case 'shadow':

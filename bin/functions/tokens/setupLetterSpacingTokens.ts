@@ -50,7 +50,7 @@ export function setupLetterSpacingTokens(
           : // if no letter-spacing is defined, set it to 0 by default (no letter-spacing)
             0;
       // actual token value to set
-      let value = 0;
+      let value = '0';
 
       switch (letterSpacingUnit) {
         case 'px':
@@ -66,8 +66,8 @@ export function setupLetterSpacingTokens(
           // Figma already converted the value to a relative px value
           // Dividing the value by the current fontSize will give the %-based em value.
           // Ex: if the letterSpacing value is 1.28 and fontSize is 32, em value should be 1.28 / 32 = 0.04em.
-          value = Math.round((1000 * letterSpacingValueInPx) / fontSize) / 1000;
-          value = `${value}em`;
+          const valueCalc = Math.round((1000 * letterSpacingValueInPx) / fontSize) / 1000;
+          value = `${valueCalc}em`;
           break;
       }
 

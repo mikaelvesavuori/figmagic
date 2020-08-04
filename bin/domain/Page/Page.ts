@@ -1,3 +1,7 @@
+type PageChild = {
+  name: string;
+};
+
 export interface Page {
-  children: object[];
+  children: PageChild[];
 }

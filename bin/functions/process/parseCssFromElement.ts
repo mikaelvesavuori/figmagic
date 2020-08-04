@@ -1,12 +1,25 @@
 import * as path from 'path';
 
-import { roundColorValue } from '../helpers/roundColorValue';
-import { getTokenMatch } from './getTokenMatch';
 import { errorParseCssFromElement } from '../../meta/errors';
 
 import { Css } from '../../domain/Css/Css';
 import { Element } from '../../domain/Element/Element';
 import { TextElement } from '../../domain/Element/TextElement';
+
+import {
+  getPaddingY,
+  getPaddingX,
+  parsePadding,
+  parseHeight,
+  getBackgroundColor,
+  parseBackgroundColor,
+  parseBorderWidth,
+  getBorderColor,
+  parseBorderColor,
+  parseBorderRadius,
+  getShadow,
+  parseShadow
+} from './cssParsers/parsers';
 
 /**
  * Parse layout CSS from "element" (Figma component)
@@ -16,16 +29,14 @@ import { TextElement } from '../../domain/Element/TextElement';
  * @function
  * @param {Element} element - Figma object representation of main layout element
  * @param {TextElement} [textElement] - Figma object representation of the text field connected to the element/component
- * @param {object} image - Optional image
  * @param {number} remSize - HTML body REM size
- * @param {boolean} isTest - Check if this is test, in which case tokens need to be imported from a stable source
+ * @param {boolean} isTest - Check if this is a test, in which case tokens need to be imported from a stable source
  * @returns {object} - Returns object with CSS and imports
  * @throws {errorParseCssFromElement} - Throws error if missing element or remSize arguments
  */
 export async function parseCssFromElement(
   element: Element,
   textElement: TextElement,
-  image: object = null,
   remSize: number,
   isTest: boolean = false
 ): Promise<Css> {
@@ -48,7 +59,6 @@ export async function parseCssFromElement(
 
   const _spacing = await import(path.join(`${process.cwd()}`, `${PATH}`, `spacing.ts`));
   const spacing = _spacing.default;
-  // Not using media queries or Z indices
 
   let css: string = ``;
   let imports: any = [];
@@ -56,247 +66,47 @@ export async function parseCssFromElement(
   css += `width: 100%;\n`;
   css += `box-sizing: border-box;\n`;
 
-  /*
-  // Background image
-  const BACKGROUND_IMAGE = (() => {
-    if (image) {
-      console.log(image.fills[0]);
-      const URL = `${image.fills[0].imageRef}`;
-      return `background-image: url("${URL}")`;
-    }
-	})();
-
-	console.log('BACKGROUND_IMAGE', BACKGROUND_IMAGE);
-	*/
-
-  // Paddings for top and bottom
-  const PADDING_Y = (() => {
-    if (textElement) {
-      const PARENT_HEIGHT = element.absoluteBoundingBox.height;
-      const TEXT_HEIGHT = textElement.absoluteBoundingBox.height;
-      const PADDING_TOP = textElement.absoluteBoundingBox.y - element.absoluteBoundingBox.y;
-      const PADDING_BOTTOM = PARENT_HEIGHT - (PADDING_TOP + TEXT_HEIGHT);
-
-      return {
-        top: Math.round(PADDING_TOP),
-        bottom: Math.round(PADDING_BOTTOM)
-      };
-    }
-    return null;
-  })();
-
-  // Paddings for left and right
-  const PADDING_X = (() => {
-    if (textElement) {
-      const PARENT_WIDTH = element.absoluteBoundingBox.width;
-      const TEXT_WIDTH = textElement.absoluteBoundingBox.width;
-      const PADDING_LEFT = textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x;
-      const PADDING_RIGHT = PARENT_WIDTH - (PADDING_LEFT + TEXT_WIDTH);
-
-      return {
-        left: Math.round(PADDING_LEFT),
-        right: Math.round(PADDING_RIGHT)
-      };
-    }
-    return null;
-  })();
+  const PADDING_Y: object = getPaddingY(textElement, element);
+  const PADDING_X: object = getPaddingX(textElement, element);
 
   const PADDING = {
     ...PADDING_Y,
     ...PADDING_X
   };
 
-  if (PADDING && Object.keys(PADDING).length > 0) {
-    const PADDINGS = Object.values(PADDING).map((p) => p);
-    const IS_ZERO = PADDINGS.every((item) => item === 0);
+  parsePadding(css, imports, {
+    padding: PADDING,
+    spacing,
+    remSize
+  });
 
-    // Don't set paddings if all values are actually empty
-    if (!IS_ZERO) {
-      const { updatedCss, updatedImports } = getTokenMatch(
-        spacing,
-        'spacing',
-        'padding',
-        PADDING,
-        remSize
-      );
-      css += updatedCss;
-      updatedImports.forEach((i) => imports.push(i));
-    }
-  }
+  const HEIGHT = element.absoluteBoundingBox ? element.absoluteBoundingBox.height : null;
+  if (HEIGHT) parseHeight(css, imports, { spacing, height: HEIGHT, remSize });
 
-  const HEIGHT = (() => {
-    if (element.absoluteBoundingBox) return element.absoluteBoundingBox.height;
-    return null;
-  })();
-
-  if (HEIGHT) {
-    const { updatedCss, updatedImports } = getTokenMatch(
-      spacing,
-      'spacing',
-      'height',
-      HEIGHT,
-      remSize
-    );
-    css += updatedCss;
-    updatedImports.forEach((i) => imports.push(i));
-  }
-
-  /**
-   * Check for background color property
-   * Prioritize solid color, then linear gradient
-   * Expect only one value, and do so by only ever using the first fill match
-   */
-  const BACKGROUND_COLOR = (() => {
-    if (element.fills) {
-      // Check for solid fills
-      // A solid fill will always be #1 priority
-
-      const fills = element.fills.filter((f) => f.type === 'SOLID');
-
-      if (fills.length > 0) {
-        const R = roundColorValue(fills[0].color.r);
-        const G = roundColorValue(fills[0].color.g);
-        const B = roundColorValue(fills[0].color.b);
-        const A = roundColorValue(fills[0].color.a, 1);
-        return `rgba(${R}, ${G}, ${B}, ${A})`;
-      }
-
-      // Check for linear gradient fills
-      // We will check for this only after checking that no solid fill color exists
-      const gradients = element.fills.filter((f) => f.type === 'GRADIENT_LINEAR');
-
-      if (fills.length === 0 && gradients.length > 0) {
-        let str = `linear-gradient(`;
-
-        gradients[0].gradientStops.forEach((fill, index) => {
-          const R = roundColorValue(fill.color.r, 255);
-          const G = roundColorValue(fill.color.g, 255);
-          const B = roundColorValue(fill.color.b, 255);
-          const A = roundColorValue(fill.color.a, 255);
-          const POS = roundColorValue(fill.position, 100);
-
-          if (index > 0) str += ` `;
-          str += `rgba(${R}, ${G}, ${B}, ${A}) ${POS}%`;
-          if (index < gradients[0].gradientStops.length - 1) str += `,`;
-          if (index >= gradients[0].gradientStops.length - 1) str += `)`;
-        });
-
-        return str;
-      }
-    }
-    return null;
-  })();
-
-  if (BACKGROUND_COLOR) {
-    const PROPERTY = BACKGROUND_COLOR.includes('gradient') ? 'background' : 'background-color';
-
-    const { updatedCss, updatedImports } = getTokenMatch(
+  const BACKGROUND_COLOR = getBackgroundColor(element);
+  if (BACKGROUND_COLOR)
+    parseBackgroundColor(css, imports, {
       colors,
-      'colors',
-      PROPERTY,
-      BACKGROUND_COLOR,
+      backgroundColor: BACKGROUND_COLOR,
       remSize
-    );
-    css += updatedCss;
-    updatedImports.forEach((i) => imports.push(i));
-  }
+    });
 
   css += `border: 0;\n`;
   css += `border-style: solid;\n`;
 
-  const BORDER_WIDTH = (() => {
-    if (element.strokeWeight) return `${element.strokeWeight}px`;
-    return null;
-  })();
+  const BORDER_WIDTH = element.strokeWeight ? `${element.strokeWeight}px` : null;
+  if (BORDER_WIDTH)
+    parseBorderWidth(css, imports, { borderWidths, borderWidth: BORDER_WIDTH, remSize });
 
-  if (BORDER_WIDTH) {
-    const { updatedCss, updatedImports } = getTokenMatch(
-      borderWidths,
-      'borderWidths',
-      'border-width',
-      BORDER_WIDTH,
-      remSize
-    );
-    css += updatedCss;
-    updatedImports.forEach((i) => imports.push(i));
-  }
+  const BORDER_COLOR = getBorderColor(element);
+  if (BORDER_COLOR) parseBorderColor(css, imports, { colors, borderColor: BORDER_COLOR, remSize });
 
-  const BORDER_COLOR = (() => {
-    if (element.strokes) {
-      if (element.strokes.length > 0) {
-        if (element.strokes[0].type === 'SOLID') {
-          const R = roundColorValue(element.strokes[0].color.r);
-          const G = roundColorValue(element.strokes[0].color.g);
-          const B = roundColorValue(element.strokes[0].color.b);
-          const A = roundColorValue(element.strokes[0].color.a, 1);
-          return `rgba(${R}, ${G}, ${B}, ${A})`;
-        }
-      }
-    }
-    return null;
-  })();
+  const BORDER_RADIUS = element.cornerRadius ? `${element.cornerRadius}px` : null;
+  if (BORDER_RADIUS)
+    parseBorderRadius(css, imports, { radii, borderRadius: BORDER_RADIUS, remSize });
 
-  if (BORDER_COLOR) {
-    const { updatedCss, updatedImports } = getTokenMatch(
-      colors,
-      'colors',
-      'border-color',
-      BORDER_COLOR,
-      remSize
-    );
-    css += updatedCss;
-    updatedImports.forEach((i) => imports.push(i));
-  }
-
-  const BORDER_RADIUS = (() => {
-    if (element.cornerRadius) return `${element.cornerRadius}px`;
-    return null;
-  })();
-
-  if (BORDER_RADIUS) {
-    const { updatedCss, updatedImports } = getTokenMatch(
-      radii,
-      'radii',
-      'border-radius',
-      BORDER_RADIUS,
-      remSize
-    );
-    css += updatedCss;
-    updatedImports.forEach((i) => imports.push(i));
-  }
-
-  const SHADOW = (() => {
-    if (element.effects) {
-      if (element.effects[0]) {
-        if (element.effects[0].type === 'DROP_SHADOW') {
-          const dropShadow = element.effects[0];
-
-          const X = dropShadow.offset.x;
-          const Y = dropShadow.offset.y;
-          const RADIUS = dropShadow.radius;
-          const R = roundColorValue(dropShadow.color.r);
-          const G = roundColorValue(dropShadow.color.g);
-          const B = roundColorValue(dropShadow.color.b);
-          const A = roundColorValue(dropShadow.color.a, 1);
-
-          return `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
-        }
-      }
-    }
-    return null;
-  })();
-
-  if (SHADOW) {
-    const { updatedCss, updatedImports } = getTokenMatch(
-      shadows,
-      'shadows',
-      'box-shadow',
-      SHADOW,
-      remSize
-    );
-    css += updatedCss;
-    updatedImports.forEach((i) => imports.push(i));
-  }
+  const SHADOW = getShadow(element);
+  if (SHADOW) parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
 
   return { css, imports };
 }

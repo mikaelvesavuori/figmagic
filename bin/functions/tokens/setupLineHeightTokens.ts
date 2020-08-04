@@ -16,13 +16,14 @@ import { Frame } from '../../domain/Frame/Frame';
  * @exports
  * @function
  * @param {Frame} lineHeightFrame - The line heights frame from Figma
+ * @param {number} remSize - The body rem size
  * @returns {object} - Returns an object with all the line heights
  * @throws {errorSetupLineHeightTokensNoFrame} - When there is no provided Figma frame
  * @throws {errorSetupLineHeightTokensNoChildren} - When missing children in Figma frame
  * @throws {errorSetupLineHeightTokensMissingProps} - When missing required props on frame children
  * @throws {errorSetupLineHeightTokensMissingPercent} - When missing type.style.lineHeightPercentFontSize on children
  */
-export function setupLineHeightTokens(lineHeightFrame: Frame): object {
+export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): object {
   if (!lineHeightFrame) throw new Error(errorSetupLineHeightTokensNoFrame);
   if (!lineHeightFrame.children) throw new Error(errorSetupLineHeightTokensNoChildren);
 
@@ -34,10 +35,16 @@ export function setupLineHeightTokens(lineHeightFrame: Frame): object {
       throw new Error(errorSetupLineHeightTokensMissingPercent);
 
     const name = camelize(type.name);
-    const LINE_HEIGHT = normalizeUnits(type.style.lineHeightPercentFontSize, 'percent', 'unitless');
+    const LINE_HEIGHT: string = normalizeUnits(
+      type.style.lineHeightPercentFontSize,
+      'percent',
+      'unitless',
+      remSize
+    );
 
     // Do a tiny bit of rounding to avoid ugly numbers
-    lineHeightObject[name] = LINE_HEIGHT.toFixed(2);
+    const lineHeight = parseFloat(LINE_HEIGHT).toFixed(2);
+    lineHeightObject[name] = lineHeight;
   });
 
   return lineHeightObject;

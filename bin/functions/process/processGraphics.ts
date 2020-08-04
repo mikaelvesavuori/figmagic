@@ -12,6 +12,8 @@ import {
 
 import { Config } from '../../app/contracts/config/Config';
 
+// TODO: Refactor
+
 /**
  * Download all image assets from Figma page
  *
@@ -23,7 +25,7 @@ import { Config } from '../../app/contracts/config/Config';
  * @returns {array} - Returns file list
  * @throws {errorProcessGraphics} - Throws error if missing missingPage
  */
-export async function processGraphics(graphicsPage: object, config: Config): any[] {
+export async function processGraphics(graphicsPage: object, config: Config): Promise<any[]> {
   if (!graphicsPage) throw new Error(errorProcessGraphics);
 
   const { token, url, outputFormatGraphics, outputScaleGraphics } = config;

@@ -14,6 +14,8 @@ import {
 
 import { Config } from '../../app/contracts/config/Config';
 
+// TODO: Refactor
+
 /**
  * Process all elements from Figma page called "Elements"
  * 1. Filter out components
@@ -38,7 +40,7 @@ export async function processElements(
   elementsPage: any[],
   components: object,
   config: Config
-): any[] {
+): Promise<any[]> {
   if (!elementsPage || !components || !config) throw new Error(errorProcessElements);
 
   const IS_TEST_MODE = config.testMode;
@@ -166,7 +168,6 @@ export async function parseElement(element, remSize, isTest = false) {
           let elementStyling = await parseCssFromElement(
             MAIN_ELEMENT,
             TEXT_ELEMENT,
-            null, //IMAGE
             remSize,
             isTest
           );
@@ -265,7 +266,6 @@ async function processCssSelfnamedLayer(element, textElement, css, imports, remS
     let elementStyling = await parseCssFromElement(
       MAIN_ELEMENT[0],
       TEXT_ELEMENT[0],
-      null,
       remSize,
       isTest
     );

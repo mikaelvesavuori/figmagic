@@ -5,6 +5,8 @@ import { errorGetTokenMatch, errorGetTokenMatchNoRemSize } from '../../meta/erro
 
 import { TokenMatch } from '../../app/contracts/process/TokenMatch';
 
+// TODO: Refactor
+
 /**
  * Match and find design tokens for CSS values
  *
@@ -23,7 +25,7 @@ export function getTokenMatch(
   tokens: object,
   tokenFileName: string,
   property: string,
-  expectedValue: string | number,
+  expectedValue: string | number | object,
   remSize: number
 ): TokenMatch {
   if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error(errorGetTokenMatch);
@@ -64,9 +66,8 @@ export function getTokenMatch(
 
     Object.entries(tokens).forEach((s) => {
       const TOKEN_VALUE = (() => {
-        if (typeof s[1] === 'number') return parseFloat(s[1]); // Send any numbers back
-        //if (s[1].match(/\d+rem|\d+em/gi)) return parseFloat(s[1]); // If the value uses rem|em, send back as numbers
-        return s[1]; // Else send back as-is (string text)
+        if (typeof s[1] === 'number') return s[1]; //parseFloat(s[1])
+        return s[1];
       })();
 
       // Multiply rem|em strings through REM size argument
@@ -76,6 +77,7 @@ export function getTokenMatch(
             return parseFloat(TOKEN_VALUE) * remSize;
           }
         }
+        return null;
       })();
 
       const IS_TOKEN_MATCH = VALUE_THROUGH_REM

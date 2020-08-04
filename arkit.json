@@ -4,31 +4,27 @@
   "components": [
     {
       "type": "Main",
-      "patterns": ["index.mjs"]
+      "patterns": ["index.ts"]
     },
     {
       "type": "Config",
-      "patterns": ["bin/functions/config/*.mjs"]
+      "patterns": ["bin/functions/config/*.ts"]
     },
     {
       "type": "Filesystem",
-      "patterns": ["bin/functions/filesystem/*.mjs"]
+      "patterns": ["bin/functions/filesystem/*.ts"]
     },
     {
       "type": "Helpers",
-      "patterns": ["bin/functions/helpers/*.mjs"]
+      "patterns": ["bin/functions/helpers/*.ts"]
     },
     {
       "type": "Process",
-      "patterns": ["bin/functions/process/*.mjs"]
+      "patterns": ["bin/functions/process/*.ts"]
     },
     {
       "type": "Tokens",
-      "patterns": ["bin/functions/tokens/*.mjs"]
-    },
-    {
-      "type": "Dependency",
-      "patterns": ["node_modules/*"]
+      "patterns": ["bin/functions/tokens/*.ts"]
     }
   ],
   "output": [
@@ -59,10 +55,6 @@
         {
           "type": "Tokens",
           "components": ["Tokens"]
-        },
-        {
-          "type": "Dependencies",
-          "components": ["Dependency"]
         }
       ]
     }

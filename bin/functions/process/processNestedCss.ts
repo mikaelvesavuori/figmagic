@@ -6,6 +6,8 @@ import {
   errorGetUniqueValues
 } from '../../meta/errors';
 
+// TODO: Refactor
+
 /**
  * Process nested CSS into a format that puts shared/common intersecting CSS properties
  * at the top, while unique values get sorted under their respective CSS classes.

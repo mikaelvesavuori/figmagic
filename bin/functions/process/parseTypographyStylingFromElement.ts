@@ -74,10 +74,10 @@ export async function parseTypographyStylingFromElement(
     updatedImports.forEach((i) => imports.push(i));
   }
 
-  const FONT_SIZE = (() => {
+  const FONT_SIZE: number = (() => {
     if (element.type === 'TEXT') {
       if (element.style) {
-        return element.style.fontSize;
+        return parseFloat(element.style.fontSize);
       }
     }
     return null;
@@ -170,11 +170,11 @@ export async function parseTypographyStylingFromElement(
     return null;
   })();
 
-  const LETTER_SPACING = (() => {
+  const LETTER_SPACING: number = (() => {
     if (element.type === 'TEXT') {
       if (element.style) {
         if (element.style.letterSpacing) {
-          return element.style.letterSpacing;
+          return parseFloat(element.style.letterSpacing);
         }
       }
     }
@@ -182,12 +182,16 @@ export async function parseTypographyStylingFromElement(
   })();
 
   if (LETTER_SPACING && FONT_SIZE) {
+    // TODO: this duplicates the internal logic of the letter-spacing token processing, and makes the heavy assumption the expected unit is "em"
+    const size = LETTER_SPACING / FONT_SIZE;
+    const sizeString = `${size}em`;
+
     const { updatedCss, updatedImports } = getTokenMatch(
       letterSpacings,
       'letterSpacings',
       'letter-spacing',
-      // TODO: this duplicates the internal logic of the letter-spacing token processing, and makes the heavy assumption the expected unit is "em"
-      `${LETTER_SPACING / FONT_SIZE}em`
+      sizeString,
+      remSize
     );
     css += updatedCss;
     updatedImports.forEach((i) => imports.push(i));
@@ -208,6 +212,7 @@ export async function parseTypographyStylingFromElement(
         }
       }
     }
+    return null;
   })();
 
   if (FONT_CASE) css += `text-transform: ${FONT_CASE};\n`;

@@ -21,6 +21,7 @@ export function roundColorValue(quantity: number = 0.0, scale: number = 255): nu
   // We will assume this means the alpha channel or something similar
   if (scale <= 1.0) return parseFloat(quantity.toFixed(2));
 
-  const result = parseFloat(quantity * scale).toFixed(0);
-  return result;
+  const value = quantity * scale;
+  const fixedValue = parseFloat(value.toFixed(0));
+  return fixedValue;
 }
