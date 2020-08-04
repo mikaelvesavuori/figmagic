@@ -4,8 +4,7 @@ import { normalizeUnits } from '../helpers/normalizeUnits';
 import {
   errorSetupSpacingTokensNoFrame,
   errorSetupSpacingTokensNoChildren,
-  errorSetupSpacingTokensNoUnits,
-  errorSetupSpacingTokensMissingProps
+  errorSetupSpacingTokensNoUnits
 } from '../../meta/errors';
 
 import { Frame } from '../../domain/Frame/Frame';
@@ -25,7 +24,7 @@ import { Frame } from '../../domain/Frame/Frame';
  * @throws {errorSetupSpacingTokensMissingProps} - When missing spacing.name or spacing.absoluteBoundingBox in spacing/children
  */
 export function setupSpacingTokens(
-  spacingFrame: Frame,
+  spacingFrame: Frame[],
   spacingUnit: string,
   remSize: number
 ): object {
@@ -33,10 +32,10 @@ export function setupSpacingTokens(
   if (!spacingFrame.children) throw new Error(errorSetupSpacingTokensNoChildren);
   if (!spacingUnit || !remSize) throw new Error(errorSetupSpacingTokensNoUnits);
 
-  const SPACINGS = spacingFrame.children;
+  const { children } = spacingFrame.children;
   const SPACING_OBJECT = {};
 
-  SPACINGS.forEach((spacing) => {
+  children.forEach((spacing) => {
     const name = camelize(spacing.name);
 
     const NORMALIZED_UNIT = normalizeUnits(

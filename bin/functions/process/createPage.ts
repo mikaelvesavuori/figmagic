@@ -12,7 +12,7 @@ import { Page } from '../../domain/Page/Page';
  * @returns {object} - Return correct page as object
  * @throws {errorCreatePage} - When no page(s) are provided
  */
-export function createPage(figmaPages: Page[], matchingPageName: string): Page {
+export function createPage(figmaPages: Page[], matchingPageName: string): Page[] {
   if (!figmaPages || !(figmaPages.length > 0)) throw new Error(errorCreatePage);
   return figmaPages.filter((page) => page.name === matchingPageName);
 }
