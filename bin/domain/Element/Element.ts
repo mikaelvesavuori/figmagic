@@ -43,6 +43,7 @@ export type Gradients = {
 
 export type GradientStops = {
   color: Color;
+  position: string;
 };
 
 export type Style = {

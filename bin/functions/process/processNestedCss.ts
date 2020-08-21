@@ -53,7 +53,7 @@ export function processNestedCss(css: string): string {
  * @returns {array} - Final list of cleaned arrays
  * @throws {errorCleanArrays} - Throws error when no classNames or classContent are provided
  */
-function cleanArrays(classNames, classContent) {
+function cleanArrays(classNames: any[], classContent: any[]): any[] {
   if (!classNames || !classContent) throw new Error(errorCleanArrays);
 
   const totalClassCount = classContent.length;

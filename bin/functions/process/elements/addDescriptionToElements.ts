@@ -10,7 +10,8 @@ import { errorAddDescriptionToElements } from '../../../meta/errors';
  * @returns {any[]} - Returns array with description added
  * @throws {errorAddDescriptionToElements} - Throws error if elements or components missing
  */
-export function addDescriptionToElements(elements, components): any[] {
+// TODO: Add real types
+export function addDescriptionToElements(elements: object[], components: object[]): any[] {
   if (!elements || !components) throw new Error(errorAddDescriptionToElements);
 
   return elements.map((element: any) => {

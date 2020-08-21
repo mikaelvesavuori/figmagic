@@ -75,7 +75,7 @@ export async function parseTypographyStylingFromElement(
     updatedImports.forEach((i) => imports.push(i));
   }
 
-  const FONT_SIZE: number = (() => {
+  const FONT_SIZE: number | null = (() => {
     if (element.type === 'TEXT') {
       if (element.style) {
         return parseFloat(element.style.fontSize);
@@ -93,7 +93,7 @@ export async function parseTypographyStylingFromElement(
       remSize
     );
     css += updatedCss;
-    updatedImports.forEach((i) => imports.push(i));
+    updatedImports.forEach((i: any) => imports.push(i));
   }
 
   // BUG? Will only work correctly with Postscript name?

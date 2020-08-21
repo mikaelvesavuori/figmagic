@@ -1,14 +1,12 @@
 {
   "compilerOptions": {
-    "checkJs": true,
-    "allowJs": true,
     "module": "commonjs",
     "target": "esnext",
     "outDir": "dist",
     "sourceMap": true,
     "lib": ["esnext", "dom"],
     "esModuleInterop": true,
-    //"noImplicitAny": true,
+    "noImplicitAny": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noEmitOnError": true,
@@ -16,7 +14,7 @@
     "strictFunctionTypes": true,
     "removeComments": true,
     "importHelpers": true,
-    "strict": false
+    "strict": true
   },
   "include": ["./bin", "./index.ts"],
   "exclude": ["./templates/*"]

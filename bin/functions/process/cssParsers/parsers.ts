@@ -12,7 +12,7 @@ type PaddingVertical = {
 /**
  * @description Get vertical paddings
  */
-export function getPaddingY(textElement: TextElement, element: Element): PaddingVertical {
+export function getPaddingY(textElement: TextElement, element: Element): PaddingVertical | null {
   if (!textElement) return null;
 
   const PARENT_HEIGHT = element.absoluteBoundingBox.height;
@@ -34,7 +34,7 @@ type PaddingHorizontal = {
 /**
  * @description Get horizontal paddings
  */
-export function getPaddingX(textElement: TextElement, element: Element): PaddingHorizontal {
+export function getPaddingX(textElement: TextElement, element: Element): PaddingHorizontal | null {
   if (!textElement) return null;
 
   const PARENT_WIDTH = element.absoluteBoundingBox.width;
@@ -102,7 +102,7 @@ export function parseHeight(css: string, imports: any[], params: HeightParams) {
 /**
  * @description Check for background color property. Prioritize solid color, then linear gradient. Expect only one value, and do so by only ever using the first fill match
  */
-export function getBackgroundColor(element) {
+export function getBackgroundColor(element: Element) {
   if (!element.fills) return null;
 
   // Check for solid fills
@@ -195,7 +195,7 @@ export function parseBorderWidth(css: string, imports: any[], params: BorderWidt
 /**
  * @description Add here
  */
-export function getBorderColor(element): string {
+export function getBorderColor(element: Element): string | null {
   if (!(element.strokes && element.strokes.length > 0 && element.strokes[0].type === 'SOLID'))
     return null;
 
@@ -255,7 +255,7 @@ export function parseBorderRadius(css: string, imports: any[], params: BorderRad
 /**
  * @description Add here
  */
-export function getShadow(element): string {
+export function getShadow(element: Element): string | null {
   if (!(element.effects && element.effects[0] && element.effects[0].type === 'DROP_SHADOW'))
     return null;
 

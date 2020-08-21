@@ -56,7 +56,7 @@ export function normalizeUnits(
     throw new Error(errorNormalizeUnitsUndefined);
 
   if (newUnit === 'unitless') {
-    return unitSize;
+    return `${unitSize}`;
   } else {
     const ADJUSTED_VALUE = value * (rootSize / unitSize);
     return `${ADJUSTED_VALUE}${newUnit}`;

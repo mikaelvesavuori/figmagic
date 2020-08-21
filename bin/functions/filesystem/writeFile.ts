@@ -82,7 +82,16 @@ export async function writeFile(
  * @returns {Promise} - Returns promise from wrapped fs.writeFile
  * @throws {errorPrepareWrite} - Throws error if valid type but missing template
  */
-async function prepareWrite(type, file, path, name, format, metadata, templates) {
+// TODO: Add real types
+async function prepareWrite(
+  type: string,
+  file: string,
+  path: string,
+  name: string,
+  format: string,
+  metadata: object,
+  templates: object
+) {
   if (type === 'css' || type === 'story' || type === 'component') {
     if (!templates) throw new Error(errorPrepareWrite);
   }
@@ -217,7 +226,7 @@ async function prepareWrite(type, file, path, name, format, metadata, templates)
  * @param {string} fileContent- File contents
  * @returns {Promise} - Returns promise from wrapped fs.writeFile
  */
-async function write(filePath, fileContent) {
+async function write(filePath: string, fileContent: string) {
   return await new Promise((resolve, reject) => {
     try {
       fs.writeFile(filePath, fileContent, 'utf-8', (error) => {

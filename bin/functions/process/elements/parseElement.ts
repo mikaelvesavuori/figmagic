@@ -20,7 +20,12 @@ import { handleNonNestedElements } from './handleNonNestedElements';
  * @returns {Promise<any>} - Return new element as object
  * @throws {errorParseElement} - Throw error if not provided element or config
  */
-export async function parseElement(element, remSize, isTest = false): Promise<any> {
+// TODO: Add real types
+export async function parseElement(
+  element: object,
+  remSize: number,
+  isTest: boolean = false
+): Promise<any> {
   if (!element || !remSize) throw new Error(errorParseElement);
 
   let newElement: FigmagicElement = {
@@ -31,7 +36,7 @@ export async function parseElement(element, remSize, isTest = false): Promise<an
   let html = ``;
   let extraProps = ``;
   let text = ``;
-  let imports = [];
+  let imports: any[] = [];
 
   const elementType = getElementType(element);
   newElement.element = elementType;

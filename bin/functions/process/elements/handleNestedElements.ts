@@ -22,7 +22,7 @@ import { errorProcessElementsNoMainElement, errorHandleNestedElements } from '..
 export async function handleNestedElements(
   element: any,
   remSize: number,
-  data?: ElementAuxData
+  data: ElementAuxData
 ): Promise<string> {
   if (!element) throw new Error(errorHandleNestedElements);
 
