@@ -101,13 +101,17 @@ function cleanArrays(classNames, classContent) {
 function getIntersectingValues(arrays: any[]) {
   if (!arrays) throw new Error(errorGetIntersectingValues);
 
-  let o = {};
+  let obj = {};
 
   arrays.forEach((a, index) => {
-    o[index] = a;
+    obj[index] = a;
   });
 
-  return Object.values(o).reduce((a, b) => b.filter(Set.prototype.has, new Set(a)));
+  return Object.values(obj).reduce((previousValue, currentValue) => {
+    // TODO: Clean this
+    // @ts-ignore-line
+    return currentValue.filter(Set.prototype.has, new Set(previousValue));
+  });
 }
 
 /**

@@ -24,7 +24,7 @@ import { Frame } from '../../domain/Frame/Frame';
  * @throws {errorSetupSpacingTokensMissingProps} - When missing spacing.name or spacing.absoluteBoundingBox in spacing/children
  */
 export function setupSpacingTokens(
-  spacingFrame: Frame[],
+  spacingFrame: Frame,
   spacingUnit: string,
   remSize: number
 ): object {
@@ -32,7 +32,7 @@ export function setupSpacingTokens(
   if (!spacingFrame.children) throw new Error(errorSetupSpacingTokensNoChildren);
   if (!spacingUnit || !remSize) throw new Error(errorSetupSpacingTokensNoUnits);
 
-  const { children } = spacingFrame.children;
+  const { children } = spacingFrame;
   const SPACING_OBJECT = {};
 
   children.forEach((spacing) => {

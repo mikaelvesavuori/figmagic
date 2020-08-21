@@ -57,6 +57,8 @@ export type Style = {
 };
 
 export interface Element {
+  children: any[];
+  name: string;
   absoluteBoundingBox: AbsoluteBoundingBox;
   strokeWeight: string;
   strokes: Strokes;

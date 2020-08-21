@@ -3,8 +3,9 @@ module.exports = {
   coverageDirectory: 'jest-coverage',
   testEnvironment: 'node',
   transform: {
-    '^.+\\.mjs$': 'babel-jest'
+    '^.+\\.ts$': 'ts-jest'
   },
-  moduleFileExtensions: ['js', 'mjs'],
-  testMatch: ['**/__tests__/*.test.+(js|mjs)']
+  moduleFileExtensions: ['js', 'ts'],
+  testMatch: ['<rootDir>/__tests__/**/*.test.ts'],
+  testPathIgnorePatterns: ['/node_modules/']
 };

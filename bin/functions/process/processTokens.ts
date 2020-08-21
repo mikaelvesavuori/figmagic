@@ -36,7 +36,8 @@ import { Tokens } from '../../domain/Tokens/Tokens';
  * @throws {errorProcessTokens} - When missing sheet or name
  * @throws {errorProcessTokensNoConfig} - When missing config, required for certain processing
  */
-export function processTokens(sheet: Frame, name: string, config: Config): Tokens {
+// TODO: Return Tokens
+export function processTokens(sheet: Frame, name: string, config: Config): any {
   if (!sheet || !name) throw new Error(errorProcessTokens);
 
   // Filter out elements that contain ignore keywords in their name

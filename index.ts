@@ -112,9 +112,9 @@ async function writeBaseJson(
 async function processTokens(config: Config, data: FigmaData, outputFolder: string): Promise<void> {
   console.log(msgWriteTokens);
   try {
-    const tokensPage: Page = createPage(data.document.children, 'Design Tokens');
+    const tokensPage: Page[] = createPage(data.document.children, 'Design Tokens');
     await refresh(outputFolder);
-    await writeTokens(tokensPage.children, config);
+    await writeTokens(tokensPage, config); //tokensPage.children
   } catch (error) {
     throw new Error(error);
   }
@@ -130,7 +130,7 @@ async function doSyncElements(
   try {
     const { components } = data;
     const elementsPage = createPage(data.document.children, 'Elements');
-    const elements = await processElements(elementsPage.children, config, components);
+    const elements = await processElements(elementsPage, config, components);
     await createFolder(outputFolder);
     await writeElements(elements, config);
   } catch (error) {
@@ -147,7 +147,7 @@ async function doSyncGraphics(
   try {
     const graphicsPage = createPage(data.document.children, 'Graphics');
     await refresh(outputFolder);
-    const fileList = await processGraphics(graphicsPage.children, config);
+    const fileList = await processGraphics(graphicsPage, config);
     await writeGraphics(fileList, config);
   } catch (error) {
     throw new Error(error);

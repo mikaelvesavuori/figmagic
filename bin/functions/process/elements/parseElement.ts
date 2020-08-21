@@ -1,6 +1,8 @@
 import { FigmagicElement } from '../../../domain/FigmagicElement/FigmagicElement';
 import { errorParseElement } from '../../../meta/errors';
 
+import { ElementAuxData } from '../../../app/contracts/ElementAuxData/ElementAuxData';
+
 import { getElementType } from './getElementType';
 import { getDescription } from './getDescription';
 import { handleNestedElements } from './handleNestedElements';
@@ -42,11 +44,20 @@ export async function parseElement(element, remSize, isTest = false): Promise<an
   let css = ` `;
 
   // Nested, layered, or "stateful" elements
-  if (element.children.every((a) => a.type === 'GROUP')) css = await handleNestedElements(element);
+  if (element.children.every((a) => a.type === 'GROUP'))
+    css = await handleNestedElements(element, remSize);
   // TODO: Add relevant return logic here for nested elements
   else {
     // Handle regular non-nested elements below
-    const { updatedCss, updatedImports } = await handleNonNestedElements(element);
+    const data: ElementAuxData = {
+      css,
+      html,
+      extraProps,
+      text,
+      imports,
+      isTest
+    };
+    const { updatedCss, updatedImports } = await handleNonNestedElements(element, remSize, data);
 
     // Flatten imports and remove duplicates
     imports = [...new Set(imports)];

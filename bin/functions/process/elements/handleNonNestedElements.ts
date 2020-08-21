@@ -1,3 +1,8 @@
+import { ElementAuxData } from '../../../app/contracts/ElementAuxData/ElementAuxData';
+
+import { ProcessedSelfnamedCss } from '../../../domain/Css/Css';
+
+import { processCssSelfnamedLayer } from '../../process/elements/processCssSelfnamedLayer';
 import { parseTypographyStylingFromElement } from '../parseTypographyStylingFromElement';
 
 import { errorProcessElementsWrongTextElementCount } from '../../../meta/errors';
@@ -9,14 +14,20 @@ import { errorProcessElementsWrongTextElementCount } from '../../../meta/errors'
  * @function
  * @param {object[]} elements - String from Figma description block
  * @param {object[]} components - Matching string (regex?)
- * @returns {any[]} - Returns array with description added
+ * @returns {Promise<ProcessedSelfnamedCss>} - Returns array with description added
  * @throws {errorAddDescriptionToElements} - Throws error if elements or components missing
  */
-export async function handleNonNestedElements(element: any): Promise<object> {
+export async function handleNonNestedElements(
+  element: any,
+  remSize: number,
+  data: ElementAuxData
+): Promise<ProcessedSelfnamedCss> {
   // Check for text elements
   const TEXT_ELEMENT = element.children.filter((e) => e.type === 'TEXT' && e.name[0] !== '_');
   if (TEXT_ELEMENT.length > 1)
     throw new Error(`${errorProcessElementsWrongTextElementCount} ${element.name}!`);
+
+  let { css, html, extraProps, text, imports, isTest } = data;
 
   // Set placeholder text
   if (element.children) {

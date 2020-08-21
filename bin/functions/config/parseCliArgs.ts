@@ -10,23 +10,25 @@ import {
 
 import { defaultConfig } from '../../meta/config';
 
+import { Config } from '../../app/contracts/config/Config';
+
 /**
  * Parse CLI arguments and return config object
  *
  * @exports
  * @function
  * @param {array} argsArray - Array of string arguments
- * @returns {object} - Returns config object
+ * @returns {Config} - Returns config object
  * @throws {errorParseCliArgs} - Throws error if no arguments array is provided
  */
-export function parseCliArgs(argsArray: any[]): object {
+export function parseCliArgs(argsArray: any[]): any {
   if (!argsArray) throw new Error(errorParseCliArgs);
 
   let config = {};
 
   if (argsArray.length > 0) {
     config = argsArray.reduce(
-      // reducer: add specific keys to the accumulated config when known arguments match
+      // Reducer: Add specific keys to the accumulated config when known arguments match
       (accumulatedConfig, arg, index) => {
         switch (arg) {
           // Toggle debug mode if requested
@@ -167,13 +169,6 @@ export function parseCliArgs(argsArray: any[]): object {
           case '-elements':
             accumulatedConfig.outputFolderElements = argsArray[index + 1];
             break;
-          // Handle input: component output folder
-          /*
-          case '--outputFolderComponents':
-          case '-components':
-            accumulatedConfig.outputFolderComponents = argsArray[index + 1];
-            break;
-          */
           // Handle input: output file name
           case '--outputFileName':
           case '-file':

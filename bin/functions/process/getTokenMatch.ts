@@ -34,13 +34,22 @@ export function getTokenMatch(
   let updatedImports = [];
 
   // Padding requires both X and Y dimensions/values so requires a bit more noodling
-  if (property === 'padding') doPadding(expectedValue, remSize);
-  else doOther(expectedValue, remSize);
+  if (property === 'padding')
+    doPadding(expectedValue, remSize, tokens, tokenFileName, property, updatedCss, updatedImports);
+  else doOther(expectedValue, remSize, tokens, tokenFileName, property, updatedCss, updatedImports);
 
   return { updatedCss, updatedImports };
 }
 
-function doPadding(expectedValue, remSize) {
+function doPadding(
+  expectedValue,
+  remSize,
+  tokens,
+  tokenFileName,
+  property,
+  updatedCss,
+  updatedImports
+) {
   const keys = Object.keys(expectedValue);
 
   keys.forEach((key) => {
@@ -69,7 +78,15 @@ function doPadding(expectedValue, remSize) {
   updatedImports.push(tokenFileName);
 }
 
-function doOther(expectedValue, remSize) {
+function doOther(
+  expectedValue,
+  remSize,
+  tokens,
+  tokenFileName,
+  property,
+  updatedCss,
+  updatedImports
+) {
   let foundMatch = false;
 
   Object.entries(tokens).forEach((s) => {

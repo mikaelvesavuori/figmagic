@@ -42,10 +42,11 @@ export async function createConfiguration(
   const { outputFolderComponents, ...DEFAULT_CONFIG } = defaultConfig;
 
   // RC file configuration
-  let RC_CONFIG: Config = {}; // TODO: makeConfig(...) ???
+  let RC_CONFIG: any = {};
 
   try {
-    RC_CONFIG = await loadFile(userConfigPath);
+    const rcConfig: Config = await loadFile(userConfigPath);
+    RC_CONFIG = rcConfig;
   } catch (e) {} // eslint-disable-line no-empty
 
   // Env var configuration
@@ -55,7 +56,7 @@ export async function createConfiguration(
   };
 
   // CLI arguments configuration
-  const CLI_CONFIG: Config = parseCliArgs(cliArgs);
+  const CLI_CONFIG = parseCliArgs(cliArgs) as Config;
 
   // Merge configurations in order of prioritization
   // 1. Base required config

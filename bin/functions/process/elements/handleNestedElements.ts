@@ -1,3 +1,5 @@
+import { ElementAuxData } from '../../../app/contracts/ElementAuxData/ElementAuxData';
+
 import { parseCssFromElement } from '../parseCssFromElement';
 import { parseTypographyStylingFromElement } from '../parseTypographyStylingFromElement';
 import { processNestedCss } from '../processNestedCss';
@@ -17,17 +19,25 @@ import { errorProcessElementsNoMainElement, errorHandleNestedElements } from '..
  * @returns {Promise<string>} - Returns accumulated CSS
  * @throws {errorAddDescriptionToElements} - Throws error if elements or components missing
  */
-export async function handleNestedElements(element: any): Promise<string> {
+export async function handleNestedElements(
+  element: any,
+  remSize: number,
+  data?: ElementAuxData
+): Promise<string> {
   if (!element) throw new Error(errorHandleNestedElements);
 
   const { children } = element;
 
+  let { css, html, extraProps, text, imports, isTest } = data;
+
   await Promise.all(
     children.forEach(async (el: any) => {
       if (el.name[0] === '_') return;
+
       const MAIN_ELEMENT = el.children.filter(
         (e: any) => e.type === 'RECTANGLE' && e.name[0] !== '_'
       )[0];
+
       const TEXT_ELEMENT = el.children.filter(
         (e: any) => e.type === 'TEXT' && e.name[0] !== '_'
       )[0];
@@ -39,6 +49,7 @@ export async function handleNestedElements(element: any): Promise<string> {
             (child.type === 'GROUP' && child.name.toLowerCase() === 'placeholder') ||
             (child.type === 'GROUP' && child.name.toLowerCase() === ':placeholder')
           ) {
+            /*
             child.children.forEach((c) => {
               if (
                 (c.type === 'TEXT' && c.name.toLowerCase() === 'placeholder') ||
@@ -48,6 +59,7 @@ export async function handleNestedElements(element: any): Promise<string> {
                   extraProps += `placeholder="${c.characters}" `;
               }
             });
+            */
           }
         });
       }
@@ -55,7 +67,7 @@ export async function handleNestedElements(element: any): Promise<string> {
       // Set "type", for example for input element
       if (element.description.match(/type=(.*)/)) {
         const TYPE = element.description.match(/type=(.*)/)[1];
-        if (!extraProps.includes(`type="${TYPE}`)) extraProps += `type="${TYPE}" `;
+        //if (!extraProps.includes(`type="${TYPE}`)) extraProps += `type="${TYPE}" `;
       }
 
       // Check and set correct selector type: class or pseudo-element

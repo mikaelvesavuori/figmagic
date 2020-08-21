@@ -10,6 +10,8 @@ import {
   errorGetIdString
 } from '../../meta/errors';
 
+import { ImageResponse } from '../../app/contracts/image/ImageResponse';
+
 import { Config } from '../../app/contracts/config/Config';
 
 // TODO: Refactor
@@ -35,7 +37,7 @@ export async function processGraphics(graphicsPage: object, config: Config): Pro
   const SETTINGS = `&scale=${outputScaleGraphics}&format=${outputFormatGraphics}`;
   const URL = `${url}?ids=${ID_STRING}${SETTINGS}`;
 
-  const IMAGE_RESPONSE = await getFromApi(token, URL, 'images');
+  const IMAGE_RESPONSE: ImageResponse = await getFromApi(token, URL, 'images');
 
   if (IMAGE_RESPONSE.err) throw new Error(errorProcessGraphicsImageError);
   if (!IMAGE_RESPONSE.images) throw new Error(errorProcessGraphicsNoImages);

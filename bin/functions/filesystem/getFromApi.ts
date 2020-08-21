@@ -2,6 +2,8 @@ import fetch from 'node-fetch';
 
 import { errorGetFromApi } from '../../meta/errors';
 
+import { ImageResponse } from '../../app/contracts/image/ImageResponse';
+
 /**
  * Get data from API
  *
@@ -18,7 +20,7 @@ export async function getFromApi(
   figmaToken: string,
   figmaUrl: string,
   type: string = 'files'
-): Promise<object> {
+): Promise<ImageResponse> {
   if (!figmaToken || !figmaUrl) throw new Error(errorGetFromApi);
 
   return await fetch(`https://api.figma.com/v1/${type}/${figmaUrl}`, {

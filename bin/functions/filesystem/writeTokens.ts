@@ -25,7 +25,7 @@ export async function writeTokens(tokens: any[], config: Config): Promise<boolea
   if (!(tokens.length > 0)) throw new Error(errorWriteTokens);
   if (!config) throw new Error(errorWriteTokensNoSettings);
 
-  const tokensToProcess = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     try {
       tokens.forEach(async (token) => {
         const tokenName = camelize(token.name);
@@ -51,6 +51,4 @@ export async function writeTokens(tokens: any[], config: Config): Promise<boolea
       reject(error);
     }
   });
-
-  return tokensToProcess.catch((error) => console.error(error));
 }

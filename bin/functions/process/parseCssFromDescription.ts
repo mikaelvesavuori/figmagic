@@ -47,7 +47,7 @@ export function parseCssFromDescription(desc: string = '', tokens: any[]): objec
     tokens.forEach((frame) => {
       const FRAME_NAME = Object.keys(frame);
 
-      const MATCH = Object.entries(frame[FRAME_NAME]).find((item) => {
+      const MATCH = (Object.entries(frame[`${FRAME_NAME}`]) as [string, unknown]).find((item) => {
         if (item[0] === _TOKEN) {
           return item[1];
         }

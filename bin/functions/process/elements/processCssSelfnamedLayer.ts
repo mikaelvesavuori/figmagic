@@ -1,5 +1,10 @@
 import { parseCssFromElement } from '../parseCssFromElement';
 
+import { ProcessedSelfnamedCss } from '../../../domain/Css/Css';
+
+import { Element } from '../../../domain/Element/Element';
+import { TextElement } from '../../../domain/Element/TextElement';
+
 import { msgProcessElementsCreatingElement } from '../../../meta/messages';
 
 import { errorProcessElementsWrongElementCount } from '../../../meta/errors';
@@ -15,17 +20,17 @@ import { errorProcessElementsWrongElementCount } from '../../../meta/errors';
  * @param {any[]} imports - Imports array
  * @param {number} remSize - Rem size
  * @param {boolean} isTest - A boolean for if this is a test or not
- * @returns {Promise<object>} - Returns object with updated CSS and imports
+ * @returns {Promise<ProcessedSelfnamedCss>} - Returns object with updated CSS and imports
  * @throws {errorProcessElementsWrongElementCount} - Throws error if no main element exists
  */
 export async function processCssSelfnamedLayer(
-  element: any,
-  textElement: string,
+  element: Element,
+  textElement: TextElement,
   css: string,
   imports: any[],
   remSize: number,
   isTest: boolean
-): Promise<object> {
+): Promise<ProcessedSelfnamedCss> {
   let updatedCss = css;
   let updatedImports = imports;
 

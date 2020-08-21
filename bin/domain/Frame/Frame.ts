@@ -1,6 +1,7 @@
 import { AbsoluteBoundingBox, Effects, Fills, Style } from '../Element/Element';
 
 type FrameChild = {
+  children: FrameChild[];
   absoluteBoundingBox: AbsoluteBoundingBox;
   characters: string;
   cornerRadius: string;
