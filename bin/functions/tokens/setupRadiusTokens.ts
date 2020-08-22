@@ -12,16 +12,10 @@ import { Frame } from '../../domain/Frame/Frame';
 /**
  * Places all Figma radii into a clean object
  *
- * @exports
- * @function
- * @param {Frame} radiusFrame - The radii frame from Figma
- * @param {number} remSize - The body rem size
- * @returns {object} - Returns an object with all the radii
- * @throws {errorSetupRadiusTokensNoFrame} - When there is no provided Figma frame
- * @throws {errorSetupRadiusTokensNoChildren} - When missing children in Figma frame
- * @throws {errorSetupRadiusTokensMissingProps} - When missing required props in frame children
+ * @param radiusFrame The radii frame from Figma
+ * @param remSize The body rem size
  */
-export function setupRadiusTokens(radiusFrame: Frame, remSize: number): object {
+export function setupRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTokens {
   if (!radiusFrame) throw new Error(errorSetupRadiusTokensNoFrame);
   if (!radiusFrame.children) throw new Error(errorSetupRadiusTokensNoChildren);
 

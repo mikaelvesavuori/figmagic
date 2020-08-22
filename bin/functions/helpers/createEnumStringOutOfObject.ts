@@ -3,11 +3,7 @@ import { errorCreateEnumStringOutOfObject } from '../../meta/errors';
 /**
  * Create enum string from object function
  *
- * @exports
- * @function
- * @param {object} obj - The initial object with data
- * @returns {string} - The final string(enum)
- * @throws {errorCreateEnumStringOutOfObject} - Throws error if no importArray is provided
+ * @param obj The initial object with data
  */
 
 export function createEnumStringOutOfObject(obj: object): string {

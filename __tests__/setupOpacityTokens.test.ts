@@ -1,13 +1,13 @@
-import { setupOpacitiesTokens } from '../bin/functions/tokens/setupOpacitiesTokens';
+import { setupOpacityTokens } from '../bin/functions/tokens/setupOpacityTokens';
 
 import { opacitiesFrame } from '../testdata/opacitiesFrame';
 
 /*
 test('It should return a complete object with specific unit when passing in valid input', () => {
-  expect(setupOpacitiesTokens(opacitiesFrame, 'float')).toEqual(
+  expect(setupOpacityTokens(opacitiesFrame, 'float')).toEqual(
     expect.objectContaining({ opaque: 1, disabled: 0.65, semiOpaque: 0.5, transparent: 0 })
   );
-  expect(setupOpacitiesTokens(opacitiesFrame, 'percent')).toEqual(
+  expect(setupOpacityTokens(opacitiesFrame, 'percent')).toEqual(
     expect.objectContaining({
       opaque: '100%',
       disabled: '65%',
@@ -19,19 +19,19 @@ test('It should return a complete object with specific unit when passing in vali
 
 test('It should throw an error if no parameter is provided', () => {
   expect(() => {
-    setupOpacitiesTokens();
+    setupOpacityTokens();
   }).toThrow();
 });
 
 test('It should throw an error if children are missing', () => {
   expect(() => {
-    setupOpacitiesTokens({});
+    setupOpacityTokens({});
   }).toThrow();
 });
 
 test('It should throw an error if children are missing "name" property', () => {
   expect(() => {
-    setupOpacitiesTokens({
+    setupOpacityTokens({
       children: [
         {
           nameMismatch: 'Something',

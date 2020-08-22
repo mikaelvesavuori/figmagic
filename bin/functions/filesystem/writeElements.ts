@@ -10,13 +10,8 @@ import { Config } from '../../app/contracts/config/Config';
 /**
  * Funnel function to write all the wanted files per element
  *
- * @exports
- * @async
- * @function
- * @param {array} elements - Array of cleaned elements to write out to files
- * @param {object} config - User configuration object
- * @returns {null} - Returns nothing
- * @throws {errorWriteElements} - Throws error if no elements or config is provided
+ * @param elements Array of cleaned elements to write out to files
+ * @param config User configuration object
  */
 export async function writeElements(elements: any[], config: Config): Promise<void> {
   if (!elements || !config) throw new Error(errorWriteElements);

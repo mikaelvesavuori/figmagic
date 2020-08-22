@@ -24,15 +24,10 @@ import {
 /**
  * Parse layout CSS from "element" (Figma component)
  *
- * @exports
- * @async
- * @function
- * @param {Element} element - Figma object representation of main layout element
- * @param {TextElement} [textElement] - Figma object representation of the text field connected to the element/component
- * @param {number} remSize - HTML body REM size
- * @param {boolean} isTest - Check if this is a test, in which case tokens need to be imported from a stable source
- * @returns {object} - Returns object with CSS and imports
- * @throws {errorParseCssFromElement} - Throws error if missing element or remSize arguments
+ * @param element Figma object representation of main layout element
+ * @param textElement Figma object representation of the text field connected to the element/component
+ * @param remSize HTML body REM size
+ * @param isTest Check if this is a test, in which case tokens need to be imported from a stable source
  */
 export async function parseCssFromElement(
   element: Element,

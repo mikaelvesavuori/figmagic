@@ -11,18 +11,13 @@ import { handleNonNestedElements } from './handleNonNestedElements';
 /**
  * Do the actual parsing and processing of an "element"-type component from Figma
  *
- * @export
- * @async
- * @function
- * @param {object} element - Object representation of item
- * @param {number} remSize - HTML body REM size
- * @param {boolean} isTest - Check if this is test
- * @returns {Promise<any>} - Return new element as object
- * @throws {errorParseElement} - Throw error if not provided element or config
+ * @param element Object representation of item
+ * @param remSize The body rem size
+ * @param data Element auxiliary data
  */
 // TODO: Add real types
 export async function parseElement(
-  element: object,
+  element: Element,
   remSize: number,
   isTest: boolean = false
 ): Promise<any> {

@@ -3,11 +3,7 @@ import { errorCamelize } from '../../meta/errors';
 /**
  * Camel-case transform a string
  *
- * @exports
- * @function
- * @param {string} str - The string which is to be camelcased
- * @returns {string} - The final string
- * @throws {errorCamelize} - When no string is provided
+ * @param str The string which is to be camelcased
  */
 export function camelize(str: string): string {
   if (!str) throw new Error(errorCamelize);

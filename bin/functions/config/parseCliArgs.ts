@@ -10,16 +10,10 @@ import {
 
 import { defaultConfig } from '../../meta/config';
 
-import { Config } from '../../app/contracts/config/Config';
-
 /**
  * Parse CLI arguments and return config object
  *
- * @exports
- * @function
- * @param {array} argsArray - Array of string arguments
- * @returns {Config} - Returns config object
- * @throws {errorParseCliArgs} - Throws error if no arguments array is provided
+ * @param argsArray Array of string arguments
  */
 export function parseCliArgs(argsArray: any[]): any {
   if (!argsArray) throw new Error(errorParseCliArgs);

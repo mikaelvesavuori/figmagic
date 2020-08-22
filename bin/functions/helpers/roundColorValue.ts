@@ -3,11 +3,8 @@ import { errorRoundColorValue } from '../../meta/errors';
 /**
  * Round color values so they are whole integers
  *
- * @exports
- * @function
- * @param {number} quantity - Incoming quantity value, as float
- * @param {number} scale - Maximum value, as int (?)
- * @returns {number} - The final number
+ * @param quantity Incoming quantity value, as float
+ * @param scale Maximum value, as int (?)
  */
 export function roundColorValue(quantity: number = 0.0, scale: number = 255): number {
   if (scale < 0 || scale > 255) throw new Error(errorRoundColorValue);

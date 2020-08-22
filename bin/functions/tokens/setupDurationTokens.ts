@@ -11,15 +11,9 @@ import { Frame } from '../../domain/Frame/Frame';
 /**
  * Places all Figma durations into a clean object
  *
- * @exports
- * @function
- * @param {Frame} durationFrame - The durations frame from Figma
- * @returns {object} - Returns an object with all the animation duration values
- * @throws {errorSetupDurationTokensNoFrame} - When there is no provided Figma frame
- * @throws {errorSetupDurationTokensNoChildren} - When no children in Figma frame
- * @throws {errorSetupDurationTokensMissingProps} - When missing required props in children
+ * @param durationFrame The durations frame from Figma
  */
-export function setupDurationTokens(durationFrame: Frame): object {
+export function setupDurationTokens(durationFrame: Frame): DurationTokens {
   if (!durationFrame) throw new Error(errorSetupDurationTokensNoFrame);
   if (!durationFrame.children) throw new Error(errorSetupDurationTokensNoChildren);
 

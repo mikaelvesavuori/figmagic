@@ -7,12 +7,8 @@ import { errorParseCssFromDescription } from '../../meta/errors';
 /**
  * Parse CSS from Figma description block
  *
- * @exports
- * @function
- * @param {string} [desc=""] - String with description
- * @param {array} tokens - Array of design tokens
- * @returns {object} - Returns object with CSS and metadata
- * @throws {errorParseCssFromDescription} - Throws error if missing tokens
+ * @param desc String with description
+ * @param tokens Array of design tokens
  */
 export function parseCssFromDescription(desc: string = '', tokens: any[]): object | string {
   if (!tokens) throw new Error(errorParseCssFromDescription);

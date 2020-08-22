@@ -3,11 +3,7 @@ import { errorGetDescription, errorExtractDescription } from '../../../meta/erro
 /**
  * Get element description
  *
- * @exports
- * @function
- * @param {any} element - String from Figma description block
- * @returns {string} - Returns description string
- * @throws {errorAddDescriptionToElements} - Throws error if element is missing
+ * @param element String from Figma description block
  */
 export function getDescription(element: any): string {
   if (!element) throw new Error(errorGetDescription);
@@ -20,9 +16,7 @@ export function getDescription(element: any): string {
 /**
  * Extract element description
  *
- * @param {string} description - String of description
- * @returns {string} - Returns extractged description string
- * @throws {errorAddDescriptionToElements} - Throws error if description is missing
+ * @param description String of description
  */
 const extractDescription = (description: string): string => {
   if (!description) throw new Error(errorExtractDescription);

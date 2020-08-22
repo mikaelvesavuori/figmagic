@@ -5,6 +5,9 @@ import { loadFile } from './loadFile';
 import { createImportStringFromList } from '../helpers/createImportStringFromList';
 import { createEnumStringOutOfObject } from '../helpers/createEnumStringOutOfObject';
 
+import { Metadata } from '../../app/contracts/filesystem/Metadata';
+import { Templates } from '../../app/contracts/filesystem/Templates';
+
 import { msgGeneratedFileWarning } from '../../meta/messages';
 import {
   errorWriteFile,
@@ -16,17 +19,13 @@ import {
 /**
  * Exposed function that handles writing files to disk
  *
- * @exports
- * @async
- * @function
- * @param {string} file - File contents
- * @param {string} path - File path minus file name
- * @param {string} name - File name
- * @param {string} type - What type of file is going to be written
- * @param {string} [format=mjs] - File format
- * @param {object} [metadata] - Any metadata needed for writing
- * @param {object} [templates] - Object of templates
- * @throws {errorWriteFile} - Throws error if missing file, path, name or type arguments
+ * @param file File contents
+ * @param path File path minus file name
+ * @param name File name
+ * @param type What type of file is going to be written
+ * @param format File format
+ * @param metadata Any metadata needed for writing
+ * @param templates Object of templates
  */
 export async function writeFile(
   file: string,
@@ -34,8 +33,8 @@ export async function writeFile(
   name: string,
   type: string,
   format: string = 'mjs',
-  metadata?: object,
-  templates?: object
+  metadata?: Metadata,
+  templates?: Templates
 ): Promise<void> {
   if (!file || !path || !name || !type) throw new Error(errorWriteFile);
 
@@ -70,17 +69,13 @@ export async function writeFile(
 /**
  * Local helper that does most of the actual formatting of the file
  *
- * @async
- * @function
- * @param {string} type - What type of file is going to be written
- * @param {string} file - File contents
- * @param {string} path - File path minus file name
- * @param {string} name - File name
- * @param {string} format - File format
- * @param {object} metadata - Any metadata needed for writing
- * @param {object} templates - Object of templates
- * @returns {Promise} - Returns promise from wrapped fs.writeFile
- * @throws {errorPrepareWrite} - Throws error if valid type but missing template
+ * @param type What type of file is going to be written
+ * @param file File contents
+ * @param path File path minus file name
+ * @param name File name
+ * @param format File format
+ * @param metadata Any metadata needed for writing
+ * @param templates Object of templates
  */
 // TODO: Add real types
 async function prepareWrite(
@@ -89,8 +84,8 @@ async function prepareWrite(
   path: string,
   name: string,
   format: string,
-  metadata: object,
-  templates: object
+  metadata: Metadata | undefined | null,
+  templates: Templates
 ) {
   if (type === 'css' || type === 'story' || type === 'component') {
     if (!templates) throw new Error(errorPrepareWrite);
@@ -108,16 +103,6 @@ async function prepareWrite(
       } else return 'div';
     } else return 'div';
   })();
-
-  /*
-  const MARKUP = (() => {
-    if (metadata) {
-      if (metadata.html) {
-        return metadata.html;
-      } else return '';
-    } else return '';
-	})();
-	*/
 
   const TEXT = (() => {
     if (metadata) {
@@ -220,13 +205,11 @@ async function prepareWrite(
 /**
  * Local helper that does the actual writing of the file
  *
- * @async
- * @function
- * @param {string} filePath - File path minus file name
- * @param {string} fileContent- File contents
- * @returns {Promise} - Returns promise from wrapped fs.writeFile
+ * @param filePath File path minus file name
+ * @param fileContent File contents
+ * @returns Returns promise from wrapped fs.writeFile
  */
-async function write(filePath: string, fileContent: string) {
+async function write(filePath: string, fileContent: string): Promise<boolean> {
   return await new Promise((resolve, reject) => {
     try {
       fs.writeFile(filePath, fileContent, 'utf-8', (error) => {

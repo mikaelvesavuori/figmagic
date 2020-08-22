@@ -5,14 +5,10 @@ import { errorConvertHexToRgba } from '../../meta/errors';
 /**
  * Convert hex color to RGBA
  *
- * @exports
- * @function
- * @param {number} r - Color value, red
- * @param {number} g - Color value, green
- * @param {number} b - Color value, blue
- * @param {number} a - Color value, alpha
- * @returns {string} - Returns cleaned string literal with RGBA-formatted color for CSS
- * @throws {errorConvertHexToRgba} - Throws error if no R/G/B/A values provided
+ * @param r Color value, red
+ * @param g Color value, green
+ * @param b Color value, blue
+ * @param a Color value, alpha
  */
 export function convertHexToRgba(r: number, g: number, b: number, a: number): string {
   if (!r || !g || !b || !a) throw new Error(errorConvertHexToRgba);

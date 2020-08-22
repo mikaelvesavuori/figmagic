@@ -7,14 +7,9 @@ import { ImageResponse } from '../../app/contracts/image/ImageResponse';
 /**
  * Get data from API
  *
- * @exports
- * @async
- * @function
- * @param {string} figmaToken - User's Figma API token
- * @param {string} figmaUrl - String representing user's Figma document ID
- * @param {string} [type] - String representing Figma API type ("images" or "files")
- * @returns {object} - The fetched data inside of an object
- * @throws {errorGetFromApi} - Throws error if missing arguments
+ * @param figmaToken User's Figma API token
+ * @param figmaUrl String representing user's Figma document ID
+ * @param type String representing Figma API type ("images" or "files")
  */
 export async function getFromApi(
   figmaToken: string,

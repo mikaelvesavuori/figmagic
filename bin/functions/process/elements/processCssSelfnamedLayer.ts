@@ -12,16 +12,12 @@ import { errorProcessElementsWrongElementCount } from '../../../meta/errors';
 /**
  * Process CSS for layer with same name as self
  *
- * @exports
- * @function
- * @param {any} element - Element
- * @param {string} textElement - Text element
- * @param {string} css - CSS string
- * @param {any[]} imports - Imports array
- * @param {number} remSize - Rem size
- * @param {boolean} isTest - A boolean for if this is a test or not
- * @returns {Promise<ProcessedSelfnamedCss>} - Returns object with updated CSS and imports
- * @throws {errorProcessElementsWrongElementCount} - Throws error if no main element exists
+ * @param element Element
+ * @param textElement Text element
+ * @param css CSS string
+ * @param imports Imports array
+ * @param remSize Rem size
+ * @param isTest A boolean for if this is a test or not
  */
 export async function processCssSelfnamedLayer(
   element: Element,

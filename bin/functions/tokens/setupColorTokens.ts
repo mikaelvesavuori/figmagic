@@ -12,14 +12,9 @@ import { Frame } from '../../domain/Frame/Frame';
 /**
  * Places all Figma color frames into a clean object
  *
- * @exports
- * @function
- * @param {Frame} colorFrame - The color frame from Figma
- * @returns {object} - Returns an object with all the colors
- * @throws {errorSetupColorTokensNoFrame} - When there is no provided Figma frame
- * @throws {errorSetupColorTokensNoChildren} - When Figma frame is missing children
+ * @param colorFrame The color frame from Figma
  */
-export function setupColorTokens(colorFrame: Frame): object {
+export function setupColorTokens(colorFrame: Frame): ColorTokens {
   if (!colorFrame) throw new Error(errorSetupColorTokensNoFrame);
   if (!colorFrame.children) throw new Error(errorSetupColorTokensNoChildren);
 
@@ -27,13 +22,6 @@ export function setupColorTokens(colorFrame: Frame): object {
 
   colorFrame.children.forEach((color) => {
     if (!color.fills) throw new Error(errorSetupColorTokensNoFills);
-    /*
-    if (!color.fills[0]) throw new Error(errorSetupColorTokensNoFills);
-    if (!color.fills[0].color) throw new Error(errorSetupColorTokensNoFills);
-    if (!color.fills[0].color.r) throw new Error(errorSetupColorTokensNoFills);
-    if (!color.fills[0].color.g) throw new Error(errorSetupColorTokensNoFills);
-		if (!color.fills[0].color.b) throw new Error(errorSetupColorTokensNoFills);
-		*/
 
     // It seems RGBA alpha is actually not coming from "color.a", so the below fixes that
     const ALPHA = color.fills[0].opacity ? color.fills[0].opacity : color.fills[0].color.a;

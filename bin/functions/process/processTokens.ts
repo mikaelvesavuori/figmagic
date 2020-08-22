@@ -10,7 +10,7 @@ import { setupRadiusTokens } from '../tokens/setupRadiusTokens';
 import { setupZindexTokens } from '../tokens/setupZindexTokens';
 import { setupLetterSpacingTokens } from '../tokens/setupLetterSpacingTokens';
 import { setupMediaQueryTokens } from '../tokens/setupMediaQueryTokens';
-import { setupOpacitiesTokens } from '../tokens/setupOpacitiesTokens';
+import { setupOpacityTokens } from '../tokens/setupOpacityTokens';
 import { setupDurationTokens } from '../tokens/setupDurationTokens';
 import { setupDelayTokens } from '../tokens/setupDelayTokens';
 import { setupEasingTokens } from '../tokens/setupEasingTokens';
@@ -22,19 +22,12 @@ import { Frame } from '../../domain/Frame/Frame';
 
 import { Config } from '../../app/contracts/config/Config';
 
-import { Tokens } from '../../domain/Tokens/Tokens';
-
 /**
  * Process tokens
  *
- * @exports
- * @function
- * @param {Frame} frame - Sheet/frame object from Figma
- * @param {string} name - Token name
- * @param {object} [config] - User configuration object
- * @returns {object} - returns object with design tokens
- * @throws {errorProcessTokens} - When missing sheet or name
- * @throws {errorProcessTokensNoConfig} - When missing config, required for certain processing
+ * @param frame Sheet/frame object from Figma
+ * @param name Token name
+ * @param config User configuration object
  */
 // TODO: Return Tokens
 export function processTokens(sheet: Frame, name: string, config: Config): any {
@@ -108,7 +101,7 @@ export function processTokens(sheet: Frame, name: string, config: Config): any {
     case 'opacity':
     case 'opacities': {
       if (!config) throw new Error(errorProcessTokensNoConfig);
-      processedTokens = setupOpacitiesTokens(sheet, config.opacitiesUnit);
+      processedTokens = setupOpacityTokens(sheet, config.opacitiesUnit);
       break;
     }
     case 'radius':

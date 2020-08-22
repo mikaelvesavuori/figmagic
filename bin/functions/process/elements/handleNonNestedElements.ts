@@ -10,12 +10,9 @@ import { errorProcessElementsWrongTextElementCount } from '../../../meta/errors'
 /**
  * Add description to list of elements
  *
- * @exports
- * @function
- * @param {object[]} elements - String from Figma description block
- * @param {object[]} components - Matching string (regex?)
- * @returns {Promise<ProcessedSelfnamedCss>} - Returns array with description added
- * @throws {errorAddDescriptionToElements} - Throws error if elements or components missing
+ * @param elements String from Figma description block
+ * @param remSize The body rem size
+ * @param data Element auxiliary data
  */
 export async function handleNonNestedElements(
   element: any,

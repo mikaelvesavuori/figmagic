@@ -11,15 +11,9 @@ import { Frame } from '../../domain/Frame/Frame';
 /**
  * Places all Figma Z indices into a clean object
  *
- * @exports
- * @function
- * @param {object} zIndexFrame - The Z index frame from Figma
- * @returns {object} - Returns an object with all the Z indices
- * @throws {errorSetupZindexTokensNoFrame} - When there is no provided Figma frame
- * @throws {errorSetupZindexTokensNoChildren} - When no children in Figma frame
- * @throws {errorSetupZindexTokensMissingProps} - When missing required props in children
+ * @param zIndexFrame The Z index frame from Figma
  */
-export function setupZindexTokens(zIndexFrame: Frame): object {
+export function setupZindexTokens(zIndexFrame: Frame): ZIndexTokens {
   if (!zIndexFrame) throw new Error(errorSetupZindexTokensNoFrame);
   if (!zIndexFrame.children) throw new Error(errorSetupZindexTokensNoChildren);
 

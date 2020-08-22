@@ -11,14 +11,9 @@ import { FigmagicTypography } from '../../domain/FigmagicTypography/FigmagicTypo
 /**
  * Parse typography CSS from "element" (Figma component)
  *
- * @exports
- * @async
- * @function
- * @param {object} element - Figma object representation of element/component
- * @param {number} remSize - HTML body REM size
- * @param {boolean} isTest - Check if this is test, in which case tokens need to be imported from a stable source
- * @returns {object} - Return object with CSS and imports
- * @throws {errorParseTypographyStylingFromElement} - Throws error if no element or remSize is provided
+ * @param element Figma object representation of element/component
+ * @param remSize HTML body REM size
+ * @param isTest Check if this is test, in which case tokens need to be imported from a stable source
  */
 export async function parseTypographyStylingFromElement(
   element: Element,

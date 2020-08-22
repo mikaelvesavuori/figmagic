@@ -17,19 +17,13 @@ import { Frame } from '../../domain/Frame/Frame';
  * In CSS however, the letter-spacing length allows either "px" or "em" units (or even "rem" even though it hardly make any sense for letter-spacing in practice):
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing
  *
- * @exports
- * @function
- * @param {Frame} letterSpacingFrame - The letter spacings frame from Figma
- * @param {string} letterSpacingUnit - The letter spacing unit as a string
- * @returns {object} - Returns an object with all the letter spacings
- * @throws {errorSetupLetterSpacingTokensNoFrame} - When there is no provided Figma frame
- * @throws {errorSetupLetterSpacingTokensNoChildren} - When missing children on Figma frame
- * @throws {errorSetupLetterSpacingTokensMissingProps} - When missing required props on frame children
+ * @param letterSpacingFrame The letter spacings frame from Figma
+ * @param letterSpacingUnit The letter spacing unit as a string
  */
 export function setupLetterSpacingTokens(
   letterSpacingFrame: Frame,
   letterSpacingUnit: string
-): object {
+): LetterSpacingTokens {
   if (!letterSpacingFrame) throw new Error(errorSetupLetterSpacingTokensNoFrame);
   if (!letterSpacingFrame.children) throw new Error(errorSetupLetterSpacingTokensNoChildren);
 

@@ -21,14 +21,9 @@ import { Config } from '../../app/contracts/config/Config';
  * 3. Environment variables from `.env`
  * Non-provided values should fall back to defaults outlined in `meta/config.ts`
  *
- * @exports
- * @async
- * @function
- * @param {Config} defaultConfig - Default configuration object
- * @param {string} userConfigPath - Path to user configuration file, based out of user's current working directory
- * @param {array} cliArgs - Array of any user-provided command line arguments and flags
- * @returns {object} - The final, validated and collated configuration object
- * @throws {errorCreateConfiguration} - Throws error when missing configuration
+ * @param defaultConfig Default configuration object
+ * @param userConfigPath Path to user configuration file, based out of user's current working directory
+ * @param cliArgs Array of any user-provided command line arguments and flags
  */
 export async function createConfiguration(
   defaultConfig: Config,

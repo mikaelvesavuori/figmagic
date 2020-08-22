@@ -11,15 +11,9 @@ import { Frame } from '../../domain/Frame/Frame';
 /**
  * Places all Figma delays into a clean object
  *
- * @exports
- * @function
- * @param {Frame} delayFrame - The delays frame from Figma
- * @returns {object} - Returns an object with all the animation delay timings
- * @throws {errorSetupDelayTokensNoFrame} - When there is no provided Figma frame
- * @throws {errorSetupDelayTokensNoChildren} - When no children in Figma frame
- * @throws {errorSetupDelayTokensMissingProps} - When missing required props in children
+ * @param delayFrame The delays frame from Figma
  */
-export function setupDelayTokens(delayFrame: Frame): object {
+export function setupDelayTokens(delayFrame: Frame): DelayTokens {
   if (!delayFrame) throw new Error(errorSetupDelayTokensNoFrame);
   if (!delayFrame.children) throw new Error(errorSetupDelayTokensNoChildren);
 

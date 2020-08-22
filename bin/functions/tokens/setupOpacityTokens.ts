@@ -1,9 +1,9 @@
 import { camelize } from '../helpers/camelize';
 
 import {
-  errorSetupOpacitiesTokensNoFrame,
-  errorSetupOpacitiesTokensNoChildren,
-  errorSetupOpacitiesTokensMissingProps
+  errorsetupOpacityTokensNoFrame,
+  errorsetupOpacityTokensNoChildren,
+  errorsetupOpacityTokensMissingProps
 } from '../../meta/errors';
 
 import { Frame } from '../../domain/Frame/Frame';
@@ -11,27 +11,21 @@ import { Frame } from '../../domain/Frame/Frame';
 /**
  * Places all Figma opacities scale into a clean object
  *
- * @exports
- * @function
- * @param {Frame} opacitiesFrame - The opacities frame from Figma
- * @param {string} opacitiesUnit - The opacity unit as a string
- * @returns {object} - Returns an object with all the opacities
- * @throws {errorSetupRadiusTokensNoFrame} - When there is no provided Figma frame
- * @throws {errorSetupRadiusTokensNoChildren} - When missing children in Figma frame
- * @throws {errorSetupRadiusTokensMissingProps} - When missing required props in frame children
+ * @param opacitiesFrame The opacities frame from Figma
+ * @param opacitiesUnit The opacity unit as a string
  */
-export function setupOpacitiesTokens(
+export function setupOpacityTokens(
   opacitiesFrame: Frame,
   opacitiesUnit: 'float' | 'percent'
-): object {
-  if (!opacitiesFrame) throw new Error(errorSetupOpacitiesTokensNoFrame);
-  if (!opacitiesFrame.children) throw new Error(errorSetupOpacitiesTokensNoChildren);
+): OpacityTokens {
+  if (!opacitiesFrame) throw new Error(errorsetupOpacityTokensNoFrame);
+  if (!opacitiesFrame.children) throw new Error(errorsetupOpacityTokensNoChildren);
 
   // Reduce the children array to a tokens object
   const opacityTokensObject = opacitiesFrame.children.reduce(
     // Reducer function: will add a new key to the current "opacitiesObject" at each iteration
     (tokens, type) => {
-      if (!type.name) throw new Error(errorSetupOpacitiesTokensMissingProps);
+      if (!type.name) throw new Error(errorsetupOpacityTokensMissingProps);
 
       // Note: Figma API does not provide an opacity value if its 100%
       // We will assume it defaults to 1 if undefined.

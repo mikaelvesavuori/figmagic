@@ -3,12 +3,8 @@ import { errorReplaceMediaQuery } from '../../meta/errors';
 /**
  * Replace media query sugar syntax from Figma description block
  *
- * @exports
- * @function
- * @param {string} str - String from Figma description block
- * @param {string} match - Matching string (regex?)
- * @returns {string} - String with valid CSS
- * @throws {errorReplaceMediaQuery} - Throws error if missing str or match arguments
+ * @param str String from Figma description block
+ * @param match Matching string (regex?)
  */
 export function replaceMediaQuery(str: string, match: string): string {
   if (!str || !match) throw new Error(errorReplaceMediaQuery);

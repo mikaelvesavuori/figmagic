@@ -19,15 +19,11 @@ import { Config } from '../../app/contracts/config/Config';
 /**
  * Download all image assets from Figma page
  *
- * @exports
- * @async
- * @function
- * @param {object} graphicsPage - Children of the Figma 'Graphics' page
- * @param {object} config - Configuration object
- * @returns {array} - Returns file list
- * @throws {errorProcessGraphics} - Throws error if missing missingPage
+ * @param graphicsPage Children of the Figma 'Graphics' page
+ * @param config Configuration object
  */
-export async function processGraphics(graphicsPage: object, config: Config): Promise<any[]> {
+// TODO: Add real types
+export async function processGraphics(graphicsPage: object, config: Config): Promise<Graphics[]> {
   if (!graphicsPage) throw new Error(errorProcessGraphics);
 
   const { token, url, outputFormatGraphics, outputScaleGraphics } = config;
@@ -48,15 +44,15 @@ export async function processGraphics(graphicsPage: object, config: Config): Pro
 /**
  * Get cleaned list of files
  *
- * @export
- * @function
- * @param {object} imageResponse - Figma API response
- * @param {array} ids - Array of asset IDs
- * @param {string} outputFormatGraphics - String representing expected output format
- * @returns {array} - Array of files with properties
- * @throws {errorGetFileList} - Throws error if missing required arguments
+ * @param imageResponse Figma API response
+ * @param ids Array of asset IDs
+ * @param outputFormatGraphics String representing expected output format
  */
-export const getFileList = (imageResponse, ids, outputFormatGraphics) => {
+export const getFileList = (
+  imageResponse: object,
+  ids: any[],
+  outputFormatGraphics: string
+): any[] => {
   if (!imageResponse || !ids || !outputFormatGraphics) throw new Error(errorGetFileList);
 
   let fileList = [];
@@ -84,14 +80,9 @@ export const getFileList = (imageResponse, ids, outputFormatGraphics) => {
 /**
  * Get IDs from graphics page
  *
- * @export
- * @function
- * @param {object} graphicsPage - Figma 'Graphics' page
- * @returns {array} - Array of graphics items
- * @throws {errorGetIds} - Throws error if no graphics page is provided
- * @throws {errorGetIds} - Throws error if no graphics page is zero-length
+ * @param graphicsPage Figma 'Graphics' page
  */
-export const getIds = (graphicsPage) => {
+export const getIds = (graphicsPage: GraphicsPage): any[] => {
   if (!graphicsPage) throw new Error(errorGetIds);
   if (!(graphicsPage.length > 0)) throw new Error(errorGetIds);
 
@@ -110,13 +101,9 @@ export const getIds = (graphicsPage) => {
 /**
  * Collate valid string of IDs
  *
- * @export
- * @function
- * @param {array} ids - Figma 'Graphics' page
- * @returns {string} - Return ID string
- * @throws {errorGetIdString} - Throws error when no required arguments are provided
+ * @param ids Figma 'Graphics' page
  */
-export const getIdString = (ids) => {
+export const getIdString = (ids: any[]): string => {
   if (!ids) throw new Error(errorGetIdString);
 
   let idString = '';

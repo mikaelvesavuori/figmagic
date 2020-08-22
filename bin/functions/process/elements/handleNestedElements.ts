@@ -13,14 +13,10 @@ import { errorProcessElementsNoMainElement, errorHandleNestedElements } from '..
 /**
  * Handle CSS for all elements that are nested
  *
- * @exports
- * @function
- * @param {any} element - Element
- * @returns {Promise<string>} - Returns accumulated CSS
- * @throws {errorAddDescriptionToElements} - Throws error if elements or components missing
+ * @param element Element
  */
 export async function handleNestedElements(
-  element: any,
+  element: Element,
   remSize: number,
   data: ElementAuxData
 ): Promise<string> {

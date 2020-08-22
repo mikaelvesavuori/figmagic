@@ -13,17 +13,10 @@ import { Frame } from '../../domain/Frame/Frame';
 /**
  * Places all Figma line heights into a clean object
  *
- * @exports
- * @function
- * @param {Frame} lineHeightFrame - The line heights frame from Figma
- * @param {number} remSize - The body rem size
- * @returns {object} - Returns an object with all the line heights
- * @throws {errorSetupLineHeightTokensNoFrame} - When there is no provided Figma frame
- * @throws {errorSetupLineHeightTokensNoChildren} - When missing children in Figma frame
- * @throws {errorSetupLineHeightTokensMissingProps} - When missing required props on frame children
- * @throws {errorSetupLineHeightTokensMissingPercent} - When missing type.style.lineHeightPercentFontSize on children
+ * @param lineHeightFrame The line heights frame from Figma
+ * @param remSize The body rem size
  */
-export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): object {
+export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): LineHeightTokens {
   if (!lineHeightFrame) throw new Error(errorSetupLineHeightTokensNoFrame);
   if (!lineHeightFrame.children) throw new Error(errorSetupLineHeightTokensNoChildren);
 

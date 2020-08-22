@@ -3,6 +3,7 @@ import { roundColorValue } from '../../helpers/roundColorValue';
 
 import { Element } from '../../../domain/Element/Element';
 import { TextElement } from '../../../domain/Element/TextElement';
+import { ParsedElementData } from '../../../app/contracts/ParsedElementData/ParsedElementData';
 
 type PaddingVertical = {
   top: number;
@@ -11,6 +12,9 @@ type PaddingVertical = {
 
 /**
  * @description Get vertical paddings
+ *
+ * @param textElement The Text element
+ * @param element The element
  */
 export function getPaddingY(textElement: TextElement, element: Element): PaddingVertical | null {
   if (!textElement) return null;
@@ -33,6 +37,9 @@ type PaddingHorizontal = {
 
 /**
  * @description Get horizontal paddings
+ *
+ * @param textElement The Text element
+ * @param element The element
  */
 export function getPaddingX(textElement: TextElement, element: Element): PaddingHorizontal | null {
   if (!textElement) return null;
@@ -56,8 +63,15 @@ type PaddingParams = {
 
 /**
  * @description Add here
+ *
+ * @param css CSS as string
+ * @param imports Array of imports
  */
-export function parsePadding(css: string, imports: any[], params: PaddingParams) {
+export function parsePadding(
+  css: string,
+  imports: any[],
+  params: PaddingParams
+): ParsedElementData {
   const { padding, spacing, remSize } = params;
 
   if (!(padding && Object.keys(padding).length > 0)) return { css, imports };
@@ -84,8 +98,11 @@ type HeightParams = {
 
 /**
  * @description Add here
+ *
+ * @param css CSS as string
+ * @param imports Array of imports
  */
-export function parseHeight(css: string, imports: any[], params: HeightParams) {
+export function parseHeight(css: string, imports: any[], params: HeightParams): ParsedElementData {
   const { spacing, height, remSize } = params;
 
   const { updatedCss, updatedImports } = getTokenMatch(
@@ -102,7 +119,8 @@ export function parseHeight(css: string, imports: any[], params: HeightParams) {
 /**
  * @description Check for background color property. Prioritize solid color, then linear gradient. Expect only one value, and do so by only ever using the first fill match
  */
-export function getBackgroundColor(element: Element) {
+// TODO: Fix this
+export function getBackgroundColor(element: Element): any {
   if (!element.fills) return null;
 
   // Check for solid fills
@@ -153,7 +171,11 @@ type BackgroundColorParams = {
 /**
  * @description Add here
  */
-export function parseBackgroundColor(css: string, imports: any[], params: BackgroundColorParams) {
+export function parseBackgroundColor(
+  css: string,
+  imports: any[],
+  params: BackgroundColorParams
+): ParsedElementData {
   const { colors, backgroundColor, remSize } = params;
 
   const PROPERTY = backgroundColor.includes('gradient') ? 'background' : 'background-color';
@@ -178,7 +200,11 @@ type BorderWidthParams = {
 /**
  * @description Add here
  */
-export function parseBorderWidth(css: string, imports: any[], params: BorderWidthParams) {
+export function parseBorderWidth(
+  css: string,
+  imports: any[],
+  params: BorderWidthParams
+): ParsedElementData {
   const { borderWidths, borderWidth, remSize } = params;
 
   const { updatedCss, updatedImports } = getTokenMatch(
@@ -238,7 +264,11 @@ type BorderRadiusParams = {
 /**
  * @description Add here
  */
-export function parseBorderRadius(css: string, imports: any[], params: BorderRadiusParams) {
+export function parseBorderRadius(
+  css: string,
+  imports: any[],
+  params: BorderRadiusParams
+): ParsedElementData {
   const { radii, borderRadius, remSize } = params;
 
   const { updatedCss, updatedImports } = getTokenMatch(
@@ -281,7 +311,7 @@ type ShadowParams = {
 /**
  * @description Add here
  */
-export function parseShadow(css: string, imports: any[], params: ShadowParams) {
+export function parseShadow(css: string, imports: any[], params: ShadowParams): ParsedElementData {
   const { shadows, shadow, remSize } = params;
 
   const { updatedCss, updatedImports } = getTokenMatch(
@@ -303,9 +333,10 @@ function updateParsing(
   updatedCss: string | null,
   imports: any[],
   updatedImports: any[] | null
-) {
+): ParsedElementData {
   const CSS = updatedCss ? (css += updatedCss) : css;
   const IMPORTS = updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports;
 
+  // TODO: makeParsedElementData(CSS, IMPORTS)
   return { css: CSS, imports: IMPORTS };
 }

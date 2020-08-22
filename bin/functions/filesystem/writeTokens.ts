@@ -10,15 +10,8 @@ import { Config } from '../../app/contracts/config/Config';
 /**
  * Write tokens to file
  *
- * @exports
- * @async
- * @function
- * @param {array} tokens - The final array of design tokens
- * @param {object} config - User configuration object
- * @returns {boolean} - Returns true when finished
- * @throws {errorWriteTokens} - Throws error when no tokens are provided
- * @throws {errorWriteTokens} - Throws error when tokens are zero-length
- * @throws {errorWriteTokensNoSettings} - Throws error when missing config
+ * @param tokens The final array of design tokens
+ * @param config User configuration object
  */
 export async function writeTokens(tokens: any[], config: Config): Promise<boolean> {
   if (!tokens) throw new Error(errorWriteTokens);

@@ -13,18 +13,9 @@ import { addDescriptionToElements } from './elements/addDescriptionToElements';
  * 3. Parse elements (typography and styling)
  * 4. Return list of cleaned items
  *
- * @exports
- * @async
- * @function
- * @param {array} elementsPage - Figma page for Elements
- * @param {object} components - Figma components
- * @param {object} config - User configuration
- * @returns {array} - List of parsed components with CSS and all
- * @throws {errorProcessElements} - When missing required arguments
- * @throws {errorProcessElementsNoMainElement} - When no main element is found
- * @throws {errorProcessElementsWrongElementCount} - When wrong element count
- * @throws {errorProcessElementsWrongTextElementCount} - When wrong text element count
- *
+ * @param elementsPage Figma page for Elements
+ * @param components Figma components
+ * @param config User configuration
  */
 export async function processElements(
   elementsPage: any[],

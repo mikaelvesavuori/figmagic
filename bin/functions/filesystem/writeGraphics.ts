@@ -7,13 +7,8 @@ import { Config } from '../../app/contracts/config/Config';
 /**
  * Write image assets from Figma page to disk
  *
- * @exports
- * @async
- * @function
- * @param {array} fileList - List of objects with file information
- * @param {object} config - Configuration object
- * @returns {boolean} - Return true if finished
- * @throws {errorWriteGraphics} - Throws error if missing fileList or config
+ * @param fileList List of objects with file information
+ * @param config Configuration object
  */
 export async function writeGraphics(fileList: any[], config: Config): Promise<boolean> {
   if (!fileList || !config) throw new Error(errorWriteGraphics);

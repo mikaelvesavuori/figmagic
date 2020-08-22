@@ -13,23 +13,15 @@ import { Frame } from '../../domain/Frame/Frame';
 /**
  * Places all Figma font sizes into a clean object
  *
- * @exports
- * @function
- * @param {Frame} fontSizeFrame - The font size frame from Figma
- * @param {string} fontUnit - The font unit type
- * @param {number} remSize - The body rem size
- * @returns {object} - Returns an object with all the font sizes
- * @throws {errorSetupFontSizeTokensNoFrame} - When there is no provided Figma frame
- * @throws {errorSetupFontSizeTokensNoChildren} - When Figma frame is missing children
- * @throws {errorSetupFontSizeTokensNoSizing} - When missing fontUnit or remSize
- * @throws {errorSetupFontSizeTokensMissingProps} - When frame child is missing type.name or type.style
- * @throws {errorSetupFontSizeTokensMissingSize} - When frame child is missing type.style.fontSize
+ * @param fontSizeFrame The font size frame from Figma
+ * @param fontUnit The font unit type
+ * @param remSize The body rem size
  */
 export function setupFontSizeTokens(
   fontSizeFrame: Frame,
   fontUnit: string,
   remSize: number
-): object {
+): FontSizeTokens {
   if (!fontSizeFrame) throw new Error(errorSetupFontSizeTokensNoFrame);
   if (!fontSizeFrame.children) throw new Error(errorSetupFontSizeTokensNoChildren);
   if (!fontUnit || !remSize) throw new Error(errorSetupFontSizeTokensNoSizing);

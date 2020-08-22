@@ -10,16 +10,11 @@ import { TokenMatch } from '../../app/contracts/process/TokenMatch';
 /**
  * Match and find design tokens for CSS values
  *
- * @exports
- * @function
- * @param {object} tokens - Design tokens
- * @param {string} tokenFileName - String representing file name from which the token is exported
- * @param {string} property - CSS property to be assigned
- * @param {string|number} expectedValue - Expected value to match for
- * @param {number} [remSize] - HTML body REM size, required for padding and anything to do with rem/em
- * @returns {object} - Returns object with updated CSS and imports
- * @throws {errorGetTokenMatch} - Throws error if missing required arguments
- * @throws {errorGetTokenMatchNoRemSize} - Throws error if remSize argument is not provided when user needs to convert units (rem, em...)
+ * @param tokens Design tokens
+ * @param tokenFileName String representing file name from which the token is exported
+ * @param property CSS property to be assigned
+ * @param expectedValue Expected value to match for
+ * @param remSize HTML body REM size, required for padding and anything to do with rem/em
  */
 export function getTokenMatch(
   tokens: object,

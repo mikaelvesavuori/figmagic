@@ -11,15 +11,9 @@ import { Frame } from '../../domain/Frame/Frame';
 /**
  * Places all Figma media queries into a clean object
  *
- * @exports
- * @function
- * @param {Frame} mediaQueryFrame - The media queries frame from Figma
- * @returns {object} - Returns an object with all the media queries
- * @throws {errorSetupMediaQueryTokensNoFrame} - When there is no provided Figma frame
- * @throws {errorSetupMediaQueryTokensNoChildren} - When no children in Figma frame
- * @throws {errorSetupMediaQueryTokensMissingProps} - When missing required props in frame children
+ * @param mediaQueryFrame The media queries frame from Figma
  */
-export function setupMediaQueryTokens(mediaQueryFrame: Frame): object {
+export function setupMediaQueryTokens(mediaQueryFrame: Frame): MediaQueryTokens {
   if (!mediaQueryFrame) throw new Error(errorSetupMediaQueryTokensNoFrame);
   if (!mediaQueryFrame.children) throw new Error(errorSetupMediaQueryTokensNoChildren);
 

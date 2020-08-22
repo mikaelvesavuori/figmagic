@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "esnext",
-    "outDir": "dist",
-    "sourceMap": true,
-    "lib": ["esnext", "dom"],
     "esModuleInterop": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noEmitOnError": true,
     "forceConsistentCasingInFileNames": true,
-    "strictFunctionTypes": true,
-    "removeComments": true,
     "importHelpers": true,
-    "strict": true
+    "lib": ["esnext", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmit": true, // Build through microbundle
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "dist",
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictFunctionTypes": true,
+    "target": "esnext"
   },
   "include": ["./bin", "./index.ts"],
   "exclude": ["./templates/*"]
