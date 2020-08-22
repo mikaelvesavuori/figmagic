@@ -2,9 +2,9 @@ import * as path from 'path';
 
 import { FigmaData } from '../../entities/FigmaData/FigmaData';
 
-import { loadFile } from '../../frameworks/filesystem/loadFile';
+import { loadFile } from '../filesystem/loadFile';
 
-import { msgSetDataFromLocal } from '../../frameworks/messages/messages';
+import { msgSetDataFromLocal } from '../messages/messages';
 
 /**
  * @description TODO

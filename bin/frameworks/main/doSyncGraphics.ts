@@ -1,13 +1,13 @@
-import { Config } from '../contracts/config/Config';
+import { Config } from '../../app/contracts/config/Config';
 import { FigmaData } from '../../entities/FigmaData/FigmaData';
 
-import { refresh } from '../../frameworks/filesystem/refresh';
+import { refresh } from '../filesystem/refresh';
 
 import { createPage } from '../../functions/process/createPage';
 import { processGraphics } from '../../functions/process/processGraphics';
-import { writeGraphics } from '../../frameworks/filesystem/writeGraphics';
+import { writeGraphics } from '../filesystem/writeGraphics';
 
-import { msgSyncGraphics } from '../../frameworks/messages/messages';
+import { msgSyncGraphics } from '../messages/messages';
 
 /**
  * @description TODO

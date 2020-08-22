@@ -1,10 +1,10 @@
 import { FigmaData } from '../../entities/FigmaData/FigmaData';
 
-import { getFromApi } from '../../frameworks/filesystem/getFromApi';
+import { getFromApi } from '../filesystem/getFromApi';
 
-import { errorGetData } from '../../frameworks/errors/errors';
+import { errorGetData } from '../errors/errors';
 
-import { msgSetDataFromApi } from '../../frameworks/messages/messages';
+import { msgSetDataFromApi } from '../messages/messages';
 
 /**
  * @description TODO

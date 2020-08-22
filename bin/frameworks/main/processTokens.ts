@@ -1,12 +1,12 @@
-import { Config } from '../contracts/config/Config';
+import { Config } from '../../app/contracts/config/Config';
 import { FigmaData } from '../../entities/FigmaData/FigmaData';
 import { Page } from '../../entities/Page/Page';
 
-import { refresh } from '../../frameworks/filesystem/refresh';
-import { writeTokens } from '../../frameworks/filesystem/writeTokens';
+import { refresh } from '../filesystem/refresh';
+import { writeTokens } from '../filesystem/writeTokens';
 import { createPage } from '../../functions/process/createPage';
 
-import { msgWriteTokens } from '../../frameworks/messages/messages';
+import { msgWriteTokens } from '../messages/messages';
 
 /**
  * @description TODO
