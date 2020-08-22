@@ -2,10 +2,10 @@ import {
   errorNormalizeUnits,
   errorNormalizeUnitsNoRemSize,
   errorNormalizeUnitsUndefined
-} from '../../meta/errors';
+} from '../../frameworks/errors/errors';
 
 /**
- * Normalize and convert units
+ * @description Normalize and convert units
  *
  * @param value Value to normalize
  * @param currentUnit The current unit to of the incoming value

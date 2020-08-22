@@ -4,14 +4,17 @@ import { parseCssFromElement } from '../parseCssFromElement';
 import { parseTypographyStylingFromElement } from '../parseTypographyStylingFromElement';
 import { processNestedCss } from '../processNestedCss';
 
-import { msgProcessElementsCreatingElement } from '../../../meta/messages';
+import { msgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
 
-import { errorProcessElementsNoMainElement, errorHandleNestedElements } from '../../../meta/errors';
+import {
+  errorProcessElementsNoMainElement,
+  errorHandleNestedElements
+} from '../../../frameworks/errors/errors';
 
 // TODO: Add to "usecases" (?)
 
 /**
- * Handle CSS for all elements that are nested
+ * @description Handle CSS for all elements that are nested
  *
  * @param element Element
  */

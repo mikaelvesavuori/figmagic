@@ -2,13 +2,13 @@ import { camelize } from '../helpers/camelize';
 import { processTokens } from '../process/processTokens';
 import { writeFile } from './writeFile';
 
-import { errorWriteTokens, errorWriteTokensNoSettings } from '../../meta/errors';
-import { acceptedTokenTypes } from '../../meta/acceptedTokenTypes';
+import { errorWriteTokens, errorWriteTokensNoSettings } from '../../frameworks/errors/errors';
+import { acceptedTokenTypes } from '../../frameworks/system/acceptedTokenTypes';
 
 import { Config } from '../../app/contracts/config/Config';
 
 /**
- * Write tokens to file
+ * @description Write tokens to file
  *
  * @param tokens The final array of design tokens
  * @param config User configuration object

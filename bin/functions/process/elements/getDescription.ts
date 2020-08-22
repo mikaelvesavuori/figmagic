@@ -1,7 +1,7 @@
-import { errorGetDescription, errorExtractDescription } from '../../../meta/errors';
+import { errorGetDescription, errorExtractDescription } from '../../../frameworks/errors/errors';
 
 /**
- * Get element description
+ * @description Get element description
  *
  * @param element String from Figma description block
  */

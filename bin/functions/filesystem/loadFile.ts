@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 
-import { errorLoadFile } from '../../meta/errors';
+import { errorLoadFile } from '../../frameworks/errors/errors';
 
 /**
- * Load file from local path
+ * @description Load file from local path
  *
  * @param path Path to local file
  * @param isRaw Bool to set if data should be parsed or not

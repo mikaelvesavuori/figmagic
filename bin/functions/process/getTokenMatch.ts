@@ -1,14 +1,14 @@
 import { normalizeUnits } from '../helpers/normalizeUnits';
 
-import { msgGetTokenMatchNoMatch } from '../../meta/messages';
-import { errorGetTokenMatch, errorGetTokenMatchNoRemSize } from '../../meta/errors';
+import { msgGetTokenMatchNoMatch } from '../../frameworks/messages/messages';
+import { errorGetTokenMatch, errorGetTokenMatchNoRemSize } from '../../frameworks/errors/errors';
 
 import { TokenMatch } from '../../app/contracts/process/TokenMatch';
 
 // TODO: Refactor
 
 /**
- * Match and find design tokens for CSS values
+ * @description Match and find design tokens for CSS values
  *
  * @param tokens Design tokens
  * @param tokenFileName String representing file name from which the token is exported

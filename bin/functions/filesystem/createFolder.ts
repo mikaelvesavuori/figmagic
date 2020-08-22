@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 
-import { errorCreateFolder } from '../../meta/errors';
+import { errorCreateFolder } from '../../frameworks/errors/errors';
 
 /**
- * Create folder, checking also if it already exists
+ * @description Create folder, checking also if it already exists
  *
  * @param dir The name of the directory that the user wants to create
  */

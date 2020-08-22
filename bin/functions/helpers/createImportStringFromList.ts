@@ -1,10 +1,10 @@
 import {
   errorCreateImportStringFromList,
   errorCreateImportStringFromListZeroLength
-} from '../../meta/errors';
+} from '../../frameworks/errors/errors';
 
 /**
- * Convert list of imports to string literal for CSS file production
+ * @description Convert list of imports to string literal for CSS file production
  *
  * @param importArray List of imports
  */

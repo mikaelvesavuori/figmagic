@@ -1,5 +1,5 @@
 import { FigmagicElement } from '../../../domain/FigmagicElement/FigmagicElement';
-import { errorParseElement } from '../../../meta/errors';
+import { errorParseElement } from '../../../frameworks/errors/errors';
 
 import { ElementAuxData } from '../../../app/contracts/ElementAuxData/ElementAuxData';
 
@@ -9,7 +9,7 @@ import { handleNestedElements } from './handleNestedElements';
 import { handleNonNestedElements } from './handleNonNestedElements';
 
 /**
- * Do the actual parsing and processing of an "element"-type component from Figma
+ * @description Do the actual parsing and processing of an "element"-type component from Figma
  *
  * @param element Object representation of item
  * @param remSize The body rem size

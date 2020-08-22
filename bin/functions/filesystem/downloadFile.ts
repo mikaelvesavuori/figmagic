@@ -1,11 +1,11 @@
 import fetch from 'node-fetch';
 import * as fs from 'fs';
 
-import { msgDownloadFileWritingFile } from '../../meta/messages';
-import { errorDownloadFile } from '../../meta/errors';
+import { msgDownloadFileWritingFile } from '../../frameworks/messages/messages';
+import { errorDownloadFile } from '../../frameworks/errors/errors';
 
 /**
- * Get data from API
+ * @description Get data from API
  *
  * @param url URL path
  * @param folder Folder path

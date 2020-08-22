@@ -3,12 +3,12 @@ import * as fs from 'fs';
 import { toPascalCase } from '../helpers/toPascalCase';
 import { writeFile } from './writeFile';
 
-import { errorWriteElements } from '../../meta/errors';
+import { errorWriteElements } from '../../frameworks/errors/errors';
 
 import { Config } from '../../app/contracts/config/Config';
 
 /**
- * Funnel function to write all the wanted files per element
+ * @description Funnel function to write all the wanted files per element
  *
  * @param elements Array of cleaned elements to write out to files
  * @param config User configuration object

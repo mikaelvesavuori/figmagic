@@ -1,11 +1,11 @@
 import { downloadFile } from '../filesystem/downloadFile';
 
-import { errorWriteGraphics } from '../../meta/errors';
+import { errorWriteGraphics } from '../../frameworks/errors/errors';
 
 import { Config } from '../../app/contracts/config/Config';
 
 /**
- * Write image assets from Figma page to disk
+ * @description Write image assets from Figma page to disk
  *
  * @param fileList List of objects with file information
  * @param config Configuration object

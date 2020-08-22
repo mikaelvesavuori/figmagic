@@ -5,7 +5,7 @@ import {
   errorSetupColorTokensNoFrame,
   errorSetupColorTokensNoChildren,
   errorSetupColorTokensNoFills
-} from '../../meta/errors';
+} from '../../frameworks/errors/errors';
 
 import { Frame } from '../../domain/Frame/Frame';
 

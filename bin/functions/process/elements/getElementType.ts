@@ -1,7 +1,7 @@
-import { errorGetElementType } from '../../../meta/errors';
+import { errorGetElementType } from '../../../frameworks/errors/errors';
 
 /**
- * Get the type of HTML element this represents
+ * @description Get the type of HTML element this represents
  *
  * @param element Element
  */

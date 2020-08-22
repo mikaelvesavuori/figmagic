@@ -15,15 +15,15 @@ import { setupDurationTokens } from '../tokens/setupDurationTokens';
 import { setupDelayTokens } from '../tokens/setupDelayTokens';
 import { setupEasingTokens } from '../tokens/setupEasingTokens';
 
-import { errorProcessTokens, errorProcessTokensNoConfig } from '../../meta/errors';
-import { ignoreElementsKeywords } from '../../meta/ignoreElementsKeywords';
+import { errorProcessTokens, errorProcessTokensNoConfig } from '../../frameworks/errors/errors';
+import { ignoreElementsKeywords } from '../../frameworks/system/ignoreElementsKeywords';
 
 import { Frame } from '../../domain/Frame/Frame';
 
 import { Config } from '../../app/contracts/config/Config';
 
 /**
- * Process tokens
+ * @description Process tokens
  *
  * @param frame Sheet/frame object from Figma
  * @param name Token name

@@ -5,12 +5,12 @@ import { ProcessedSelfnamedCss } from '../../../domain/Css/Css';
 import { Element } from '../../../domain/Element/Element';
 import { TextElement } from '../../../domain/Element/TextElement';
 
-import { msgProcessElementsCreatingElement } from '../../../meta/messages';
+import { msgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
 
-import { errorProcessElementsWrongElementCount } from '../../../meta/errors';
+import { errorProcessElementsWrongElementCount } from '../../../frameworks/errors/errors';
 
 /**
- * Process CSS for layer with same name as self
+ * @description Process CSS for layer with same name as self
  *
  * @param element Element
  * @param textElement Text element

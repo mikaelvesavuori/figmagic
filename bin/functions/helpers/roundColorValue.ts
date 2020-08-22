@@ -1,7 +1,7 @@
-import { errorRoundColorValue } from '../../meta/errors';
+import { errorRoundColorValue } from '../../frameworks/errors/errors';
 
 /**
- * Round color values so they are whole integers
+ * @description Round color values so they are whole integers
  *
  * @param quantity Incoming quantity value, as float
  * @param scale Maximum value, as int (?)

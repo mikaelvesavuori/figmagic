@@ -1,7 +1,7 @@
-import { errorReplaceMediaQuery } from '../../meta/errors';
+import { errorReplaceMediaQuery } from '../../frameworks/errors/errors';
 
 /**
- * Replace media query sugar syntax from Figma description block
+ * @description Replace media query sugar syntax from Figma description block
  *
  * @param str String from Figma description block
  * @param match Matching string (regex?)

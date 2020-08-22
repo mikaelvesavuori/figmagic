@@ -169,7 +169,11 @@ type BackgroundColorParams = {
 };
 
 /**
- * @description Add here
+ * @description TODO
+ *
+ * @param css
+ * @param imports
+ * @param params
  */
 export function parseBackgroundColor(
   css: string,
@@ -198,7 +202,11 @@ type BorderWidthParams = {
 };
 
 /**
- * @description Add here
+ * @description TODO
+ *
+ * @param css
+ * @param imports
+ * @param params
  */
 export function parseBorderWidth(
   css: string,
@@ -219,7 +227,9 @@ export function parseBorderWidth(
 }
 
 /**
- * @description Add here
+ * @description TODO
+ *
+ * @param element
  */
 export function getBorderColor(element: Element): string | null {
   if (!(element.strokes && element.strokes.length > 0 && element.strokes[0].type === 'SOLID'))
@@ -239,7 +249,11 @@ type BorderColorParams = {
 };
 
 /**
- * @description Add here
+ * @description TODO
+ *
+ * @param css
+ * @param imports
+ * @param params
  */
 export function parseBorderColor(css: string, imports: any[], params: BorderColorParams) {
   const { colors, borderColor, remSize } = params;
@@ -283,7 +297,9 @@ export function parseBorderRadius(
 }
 
 /**
- * @description Add here
+ * @description TODO
+ *
+ * @param element
  */
 export function getShadow(element: Element): string | null {
   if (!(element.effects && element.effects[0] && element.effects[0].type === 'DROP_SHADOW'))
@@ -309,7 +325,11 @@ type ShadowParams = {
 };
 
 /**
- * @description Add here
+ * @description TODO
+ *
+ * @param css
+ * @param imports
+ * @param params
  */
 export function parseShadow(css: string, imports: any[], params: ShadowParams): ParsedElementData {
   const { shadows, shadow, remSize } = params;
@@ -326,7 +346,12 @@ export function parseShadow(css: string, imports: any[], params: ShadowParams): 
 }
 
 /**
- * @description Add here
+ * @description TODO
+ *
+ * @param css
+ * @param updatedCss
+ * @param imports
+ * @param updatedImports
  */
 function updateParsing(
   css: string,

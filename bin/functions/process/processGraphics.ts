@@ -8,7 +8,7 @@ import {
   errorGetIds,
   errorGetFileList,
   errorGetIdString
-} from '../../meta/errors';
+} from '../../frameworks/errors/errors';
 
 import { ImageResponse } from '../../app/contracts/image/ImageResponse';
 
@@ -17,7 +17,7 @@ import { Config } from '../../app/contracts/config/Config';
 // TODO: Refactor
 
 /**
- * Download all image assets from Figma page
+ * @description Download all image assets from Figma page
  *
  * @param graphicsPage Children of the Figma 'Graphics' page
  * @param config Configuration object
@@ -42,7 +42,7 @@ export async function processGraphics(graphicsPage: object, config: Config): Pro
 }
 
 /**
- * Get cleaned list of files
+ * @description Get cleaned list of files
  *
  * @param imageResponse Figma API response
  * @param ids Array of asset IDs
@@ -78,7 +78,7 @@ export const getFileList = (
 };
 
 /**
- * Get IDs from graphics page
+ * @description Get IDs from graphics page
  *
  * @param graphicsPage Figma 'Graphics' page
  */
@@ -99,7 +99,7 @@ export const getIds = (graphicsPage: GraphicsPage): any[] => {
 };
 
 /**
- * Collate valid string of IDs
+ * @description Collate valid string of IDs
  *
  * @param ids Figma 'Graphics' page
  */

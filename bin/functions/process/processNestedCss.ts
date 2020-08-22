@@ -4,12 +4,12 @@ import {
   errorCleanArrays,
   errorGetIntersectingValues,
   errorGetUniqueValues
-} from '../../meta/errors';
+} from '../../frameworks/errors/errors';
 
 // TODO: Refactor
 
 /**
- * Process nested CSS into a format that puts shared/common intersecting CSS properties
+ * @description Process nested CSS into a format that puts shared/common intersecting CSS properties
  * at the top, while unique values get sorted under their respective CSS classes.
  *
  * @param css Incoming CSS (from processElements.ts)
@@ -41,7 +41,7 @@ export function processNestedCss(css: string): string {
 }
 
 /**
- * Clean, process, and sort arrays for later
+ * @description Clean, process, and sort arrays for later
  *
  * @param classNames List of class names
  * @param classContent CSS properties
@@ -84,7 +84,7 @@ function cleanArrays(classNames: any[], classContent: any[]): any[] {
 }
 
 /**
- * Get any shared/common/intersecting values that will need to float to the top of the CSS document
+ * @description Get any shared/common/intersecting values that will need to float to the top of the CSS document
  *
  * @param arrays Arrays to check
  */
@@ -105,7 +105,7 @@ function getIntersectingValues(arrays: any[]): any[] {
 }
 
 /**
- * Get any unique values and collect them in arrays per class
+ * @description Get any unique values and collect them in arrays per class
  *
  * @param arrays The cleaned set of arrays
  * @param intersections The intersecting areas and values
@@ -136,7 +136,7 @@ function getUniqueValues(arrays: any[], intersections: any[]): any[] {
 }
 
 /**
- * Create CSS string literal
+ * @description Create CSS string literal
  *
  * @param intersections List of intersecting values
  * @param uniqueValues List of unique values

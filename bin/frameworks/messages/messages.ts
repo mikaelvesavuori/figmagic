@@ -1,4 +1,4 @@
-import { colors } from './colors';
+import { colors } from '../system/colors';
 
 export const msgConfigDebugCli: string = `USER: Command-Line configuration (Medium priority)`;
 export const msgConfigDebugEnv: string = `USER: Environment configuration (Low priority)`;

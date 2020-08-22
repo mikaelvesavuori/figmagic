@@ -1,7 +1,7 @@
-import { errorToPascalCase } from '../../meta/errors';
+import { errorToPascalCase } from '../../frameworks/errors/errors';
 
 /**
- * Pascal-case transform a string
+ * @description Pascal-case transform a string
  *
  * @param str The string to Pascal case
  */

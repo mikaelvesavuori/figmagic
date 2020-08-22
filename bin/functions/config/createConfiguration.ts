@@ -7,13 +7,16 @@ import {
   msgConfigDebugCli,
   msgConfigDebugRc,
   msgConfigDebugFinal
-} from '../../meta/messages';
-import { errorCreateConfiguration, errorCreateConfigurationNoDefault } from '../../meta/errors';
+} from '../../frameworks/messages/messages';
+import {
+  errorCreateConfiguration,
+  errorCreateConfigurationNoDefault
+} from '../../frameworks/errors/errors';
 
 import { Config } from '../../app/contracts/config/Config';
 
 /**
- * Create configuration object
+ * @description Create configuration object
  *
  * Prioritization:
  * 1. User-provided configuration through `.figmagicrc`
@@ -84,6 +87,14 @@ export async function createConfiguration(
   return CONFIG;
 }
 
+/**
+ * @description TODO
+ *
+ * @param envConfig
+ * @param cliConfig
+ * @param rcConfig
+ * @param config
+ */
 function printConfigs(
   envConfig: object,
   cliConfig: object,

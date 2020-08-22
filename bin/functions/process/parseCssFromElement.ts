@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import { errorParseCssFromElement } from '../../meta/errors';
+import { errorParseCssFromElement } from '../../frameworks/errors/errors';
 
 import { Css } from '../../domain/Css/Css';
 import { Element } from '../../domain/Element/Element';
@@ -22,7 +22,7 @@ import {
 } from './cssParsers/parsers';
 
 /**
- * Parse layout CSS from "element" (Figma component)
+ * @description Parse layout CSS from "element" (Figma component)
  *
  * @param element Figma object representation of main layout element
  * @param textElement Figma object representation of the text field connected to the element/component

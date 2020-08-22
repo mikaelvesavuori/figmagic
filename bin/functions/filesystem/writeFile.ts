@@ -8,16 +8,16 @@ import { createEnumStringOutOfObject } from '../helpers/createEnumStringOutOfObj
 import { Metadata } from '../../app/contracts/filesystem/Metadata';
 import { Templates } from '../../app/contracts/filesystem/Templates';
 
-import { msgGeneratedFileWarning } from '../../meta/messages';
+import { msgGeneratedFileWarning } from '../../frameworks/messages/messages';
 import {
   errorWriteFile,
   errorWriteFileWrongType,
   errorWrite,
   errorPrepareWrite
-} from '../../meta/errors';
+} from '../../frameworks/errors/errors';
 
 /**
- * Exposed function that handles writing files to disk
+ * @description Exposed function that handles writing files to disk
  *
  * @param file File contents
  * @param path File path minus file name
@@ -67,7 +67,7 @@ export async function writeFile(
 }
 
 /**
- * Local helper that does most of the actual formatting of the file
+ * @description Local helper that does most of the actual formatting of the file
  *
  * @param type What type of file is going to be written
  * @param file File contents
@@ -203,7 +203,7 @@ async function prepareWrite(
 }
 
 /**
- * Local helper that does the actual writing of the file
+ * @description Local helper that does the actual writing of the file
  *
  * @param filePath File path minus file name
  * @param fileContent File contents

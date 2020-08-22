@@ -1,7 +1,7 @@
-import { errorCreateEnumStringOutOfObject } from '../../meta/errors';
+import { errorCreateEnumStringOutOfObject } from '../../frameworks/errors/errors';
 
 /**
- * Create enum string from object function
+ * @description Create enum string from object function
  *
  * @param obj The initial object with data
  */

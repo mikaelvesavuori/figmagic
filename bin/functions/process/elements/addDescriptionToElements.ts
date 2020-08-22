@@ -1,7 +1,7 @@
-import { errorAddDescriptionToElements } from '../../../meta/errors';
+import { errorAddDescriptionToElements } from '../../../frameworks/errors/errors';
 
 /**
- * Add description to list of elements
+ * @description Add description to list of elements
  *
  * @param elements String from Figma description block
  * @param components Matching string (regex?)

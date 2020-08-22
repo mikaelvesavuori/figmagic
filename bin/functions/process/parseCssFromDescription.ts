@@ -1,11 +1,11 @@
 import { replaceMediaQuery } from '../helpers/replaceMediaQuery';
 
-import { errorParseCssFromDescription } from '../../meta/errors';
+import { errorParseCssFromDescription } from '../../frameworks/errors/errors';
 
 // TODO: Refactor
 
 /**
- * Parse CSS from Figma description block
+ * @description Parse CSS from Figma description block
  *
  * @param desc String with description
  * @param tokens Array of design tokens

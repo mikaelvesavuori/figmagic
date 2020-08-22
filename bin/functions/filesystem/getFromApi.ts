@@ -1,11 +1,11 @@
 import fetch from 'node-fetch';
 
-import { errorGetFromApi } from '../../meta/errors';
+import { errorGetFromApi } from '../../frameworks/errors/errors';
 
 import { ImageResponse } from '../../app/contracts/image/ImageResponse';
 
 /**
- * Get data from API
+ * @description Get data from API
  *
  * @param figmaToken User's Figma API token
  * @param figmaUrl String representing user's Figma document ID

@@ -3,13 +3,13 @@ import * as path from 'path';
 import { roundColorValue } from '../helpers/roundColorValue';
 import { getTokenMatch } from './getTokenMatch';
 
-import { errorParseTypographyStylingFromElement } from '../../meta/errors';
+import { errorParseTypographyStylingFromElement } from '../../frameworks/errors/errors';
 
 import { Element } from '../../domain/Element/Element';
 import { FigmagicTypography } from '../../domain/FigmagicTypography/FigmagicTypography';
 
 /**
- * Parse typography CSS from "element" (Figma component)
+ * @description Parse typography CSS from "element" (Figma component)
  *
  * @param element Figma object representation of element/component
  * @param remSize HTML body REM size

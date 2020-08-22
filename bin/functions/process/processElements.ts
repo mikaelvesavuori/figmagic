@@ -1,5 +1,5 @@
 import { Config } from '../../app/contracts/config/Config';
-import { errorProcessElements } from '../../meta/errors';
+import { errorProcessElements } from '../../frameworks/errors/errors';
 
 import { parseElement } from './elements/parseElement';
 import { addDescriptionToElements } from './elements/addDescriptionToElements';
@@ -7,7 +7,7 @@ import { addDescriptionToElements } from './elements/addDescriptionToElements';
 // TODO: Move this to "app/controllers" (?)
 
 /**
- * Process all elements from Figma page called "Elements"
+ * @description Process all elements from Figma page called "Elements"
  * 1. Filter out components
  * 2. Add description from Figma
  * 3. Parse elements (typography and styling)

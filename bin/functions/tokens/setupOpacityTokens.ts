@@ -4,7 +4,7 @@ import {
   errorsetupOpacityTokensNoFrame,
   errorsetupOpacityTokensNoChildren,
   errorsetupOpacityTokensMissingProps
-} from '../../meta/errors';
+} from '../../frameworks/errors/errors';
 
 import { Frame } from '../../domain/Frame/Frame';
 

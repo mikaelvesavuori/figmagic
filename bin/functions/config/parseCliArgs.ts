@@ -1,4 +1,4 @@
-import { errorParseCliArgs } from '../../meta/errors';
+import { errorParseCliArgs } from '../../frameworks/errors/errors';
 
 import {
   warnParseCliArgsOutputFormat,
@@ -6,12 +6,12 @@ import {
   warnParseCliArgsOpacitiesUnit,
   warnParseCliArgsLetterSpacingUnit,
   warnParseCliArgsSpacingUnit
-} from '../../meta/warnings';
+} from '../../frameworks/warnings/warnings';
 
-import { defaultConfig } from '../../meta/config';
+import { defaultConfig } from '../../frameworks/config/config';
 
 /**
- * Parse CLI arguments and return config object
+ * @description Parse CLI arguments and return config object
  *
  * @param argsArray Array of string arguments
  */

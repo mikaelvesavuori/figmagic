@@ -1,4 +1,4 @@
-import { colors } from './colors';
+import { colors } from '../system/colors';
 
 export const warnNormalizeUnits: string = `${colors.FgYellow}normalizeUnits(): rootSize and/or unitSize variables are either undefined or not incoming as px values.`;
 export const warnParseCliArgsFontUnit: string = `${colors.FgYellow}Received unrecognized "fontUnit" argument, it must be "rem" (default) or "em". Setting to default value...`;

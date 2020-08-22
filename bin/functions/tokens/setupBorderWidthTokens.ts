@@ -4,9 +4,10 @@ import {
   errorSetupBorderWidthTokensNoFrame,
   errorSetupBorderWidthTokensNoChildren,
   errorSetupBorderWidthTokensMissingProps
-} from '../../meta/errors';
+} from '../../frameworks/errors/errors';
 
 import { Frame } from '../../domain/Frame/Frame';
+import { BorderWidthTokens } from '../../app/contracts/tokens/BorderWidthTokens';
 
 /**
  * Places all Figma border widths into a clean object

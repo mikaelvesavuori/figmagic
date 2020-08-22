@@ -5,10 +5,10 @@ import { ProcessedSelfnamedCss } from '../../../domain/Css/Css';
 import { processCssSelfnamedLayer } from '../../process/elements/processCssSelfnamedLayer';
 import { parseTypographyStylingFromElement } from '../parseTypographyStylingFromElement';
 
-import { errorProcessElementsWrongTextElementCount } from '../../../meta/errors';
+import { errorProcessElementsWrongTextElementCount } from '../../../frameworks/errors/errors';
 
 /**
- * Add description to list of elements
+ * @description Add description to list of elements
  *
  * @param elements String from Figma description block
  * @param remSize The body rem size

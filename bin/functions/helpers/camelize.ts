@@ -1,7 +1,7 @@
-import { errorCamelize } from '../../meta/errors';
+import { errorCamelize } from '../../frameworks/errors/errors';
 
 /**
- * Camel-case transform a string
+ * @description Camel-case transform a string
  *
  * @param str The string which is to be camelcased
  */

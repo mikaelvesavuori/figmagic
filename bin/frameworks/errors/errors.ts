@@ -1,4 +1,4 @@
-import { colors } from './colors';
+import { colors } from '../system/colors';
 
 export const errorGetDescription: string = `${colors.FgRed}Missing element in getDescription()!`;
 export const errorExtractDescription: string = `${colors.FgRed}Missing description in extractDescription()!`;

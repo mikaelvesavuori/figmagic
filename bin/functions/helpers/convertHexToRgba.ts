@@ -1,9 +1,9 @@
 import { roundColorValue } from './roundColorValue';
 
-import { errorConvertHexToRgba } from '../../meta/errors';
+import { errorConvertHexToRgba } from '../../frameworks/errors/errors';
 
 /**
- * Convert hex color to RGBA
+ * @description Convert hex color to RGBA
  *
  * @param r Color value, red
  * @param g Color value, green

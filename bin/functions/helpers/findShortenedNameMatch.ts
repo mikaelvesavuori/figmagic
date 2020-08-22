@@ -2,10 +2,10 @@ import {
   errorFindShortenedNameMatchString,
   errorFindShortenedNameMatchOriginal,
   errorFindShortenedNameMatchWrongType
-} from '../../meta/errors';
+} from '../../frameworks/errors/errors';
 
 /**
- * Find short name match
+ * @description Find short name match
  *
  * @param originalString The original string
  * @param matchString String to match with
