@@ -1,8 +1,8 @@
 import * as path from 'path';
 
-import { FigmaData } from '../../domain/FigmaData/FigmaData';
+import { FigmaData } from '../../entities/FigmaData/FigmaData';
 
-import { loadFile } from '../../functions/filesystem/loadFile';
+import { loadFile } from '../../frameworks/filesystem/loadFile';
 
 import { msgSetDataFromLocal } from '../../frameworks/messages/messages';
 

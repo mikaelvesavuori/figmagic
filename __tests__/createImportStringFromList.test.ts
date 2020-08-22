@@ -1,4 +1,4 @@
-import { createImportStringFromList } from '../bin/functions/helpers/createImportStringFromList';
+import { createImportStringFromList } from '../bin/frameworks/helpers/createImportStringFromList';
 
 /*
 test('It should throw an error if no parameter is provided', () => {

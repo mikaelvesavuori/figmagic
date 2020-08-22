@@ -1,4 +1,4 @@
-import { createEnumStringOutOfObject } from '../bin/functions/helpers/createEnumStringOutOfObject';
+import { createEnumStringOutOfObject } from '../bin/frameworks/helpers/createEnumStringOutOfObject';
 
 import { enumDataTestObject, enumDataExpectedResponse } from '../testdata/enumData';
 

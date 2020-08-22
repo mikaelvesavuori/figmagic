@@ -1,5 +1,5 @@
-import { Css } from '../../../domain/Css/Css';
-import { Imports } from '../../../domain/Imports/Imports';
+import { Css } from '../../../entities/Css/Css';
+import { Imports } from '../../../entities/Imports/Imports';
 
 export interface ParsedElementData {
   css: Css;

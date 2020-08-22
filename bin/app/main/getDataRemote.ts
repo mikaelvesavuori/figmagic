@@ -1,6 +1,6 @@
-import { FigmaData } from '../../domain/FigmaData/FigmaData';
+import { FigmaData } from '../../entities/FigmaData/FigmaData';
 
-import { getFromApi } from '../../functions/filesystem/getFromApi';
+import { getFromApi } from '../../frameworks/filesystem/getFromApi';
 
 import { errorGetData } from '../../frameworks/errors/errors';
 

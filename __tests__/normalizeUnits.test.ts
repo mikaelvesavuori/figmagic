@@ -1,4 +1,4 @@
-import { normalizeUnits } from '../bin/functions/helpers/normalizeUnits';
+import { normalizeUnits } from '../bin/frameworks/helpers/normalizeUnits';
 
 /*
 test('It should throw an error if no parameter is provided', () => {

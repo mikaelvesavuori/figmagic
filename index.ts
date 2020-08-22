@@ -4,15 +4,15 @@
 import * as path from 'path';
 import dotenv from 'dotenv';
 
-import { FigmagicController } from './bin/controllers/FigmagicController';
+import { FigmagicController } from './bin/app/controllers/FigmagicController';
 
-import { createConfiguration } from './bin/functions/config/createConfiguration';
+import { createConfiguration } from './bin/entities/Config/createConfiguration';
 
 import { colors } from './bin/frameworks/system/colors';
-import { defaultConfig } from './bin/frameworks/config/config';
+import { defaultConfig } from './bin/entities/Config/config';
 
 /**
- * @description asdf
+ * @description TODO
  */
 async function main(): Promise<void> {
   try {

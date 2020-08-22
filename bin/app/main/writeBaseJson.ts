@@ -1,5 +1,5 @@
 import { refresh } from '../../frameworks/filesystem/refresh';
-import { writeFile } from '../../functions/filesystem/writeFile';
+import { writeFile } from '../../frameworks/filesystem/writeFile';
 
 import { msgWriteBaseFile } from '../../frameworks/messages/messages';
 

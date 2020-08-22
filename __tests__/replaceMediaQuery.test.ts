@@ -1,4 +1,4 @@
-import { replaceMediaQuery } from '../bin/functions/helpers/replaceMediaQuery';
+import { replaceMediaQuery } from '../bin/frameworks/helpers/replaceMediaQuery';
 
 /*
 test('It should throw an error if no parameter is provided', () => {

@@ -1,11 +1,11 @@
 import { Config } from '../contracts/config/Config';
-import { FigmaData } from '../../domain/FigmaData/FigmaData';
+import { FigmaData } from '../../entities/FigmaData/FigmaData';
 
 import { refresh } from '../../frameworks/filesystem/refresh';
 
 import { createPage } from '../../functions/process/createPage';
 import { processGraphics } from '../../functions/process/processGraphics';
-import { writeGraphics } from '../../functions/filesystem/writeGraphics';
+import { writeGraphics } from '../../frameworks/filesystem/writeGraphics';
 
 import { msgSyncGraphics } from '../../frameworks/messages/messages';
 

@@ -1,9 +1,9 @@
 import { Config } from '../contracts/config/Config';
-import { FigmaData } from '../../domain/FigmaData/FigmaData';
-import { Page } from '../../domain/Page/Page';
+import { FigmaData } from '../../entities/FigmaData/FigmaData';
+import { Page } from '../../entities/Page/Page';
 
 import { refresh } from '../../frameworks/filesystem/refresh';
-import { writeTokens } from '../../functions/filesystem/writeTokens';
+import { writeTokens } from '../../frameworks/filesystem/writeTokens';
 import { createPage } from '../../functions/process/createPage';
 
 import { msgWriteTokens } from '../../frameworks/messages/messages';
