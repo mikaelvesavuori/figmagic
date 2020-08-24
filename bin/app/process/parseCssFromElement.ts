@@ -19,7 +19,7 @@ import {
   parseShadow
 } from './cssParsers/parsers';
 
-import { ErrorParseCssFromElement } from '../errors/errors';
+import { ErrorParseCssFromElement } from '../../frameworks/errors/errors';
 
 /**
  * @description Parse layout CSS from "element" (Figma component)

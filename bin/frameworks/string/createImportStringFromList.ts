@@ -1,7 +1,7 @@
 import {
   ErrorCreateImportStringFromList,
   ErrorCreateImportStringFromListZeroLength
-} from '../../app/errors/errors';
+} from '../errors/errors';
 
 /**
  * @description Convert list of imports to string literal for CSS file production

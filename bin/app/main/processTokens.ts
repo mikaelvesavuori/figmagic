@@ -7,7 +7,7 @@ import { createPage } from '../process/createPage';
 import { refresh } from '../../frameworks/filesystem/refresh';
 import { writeTokens } from '../../frameworks/filesystem/writeTokens';
 
-import { MsgWriteTokens } from '../messages/messages';
+import { MsgWriteTokens } from '../../frameworks/messages/messages';
 
 /**
  * @description TODO

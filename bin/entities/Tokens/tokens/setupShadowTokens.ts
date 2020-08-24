@@ -7,7 +7,7 @@ import {
   ErrorSetupShadowTokensNoFrame,
   ErrorSetupShadowTokensNoChildren,
   ErrorSetupShadowTokensMissingProps
-} from '../../../app/errors/errors';
+} from '../../../frameworks/errors/errors';
 
 /**
  * @description Places all Figma shadows into a clean object

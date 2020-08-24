@@ -2,7 +2,7 @@ import { Config } from '../../entities/Config/Config';
 
 import { downloadFile } from '../network/downloadFile';
 
-import { ErrorWriteGraphics } from '../../app/errors/errors';
+import { ErrorWriteGraphics } from '../errors/errors';
 
 /**
  * @description Write image assets from Figma page to disk

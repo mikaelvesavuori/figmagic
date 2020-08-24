@@ -4,13 +4,13 @@ import { createTokens } from '../../usecases/createTokens';
 import { createElements } from '../../usecases/createElements';
 import { createGraphics } from '../../usecases/createGraphics';
 
-import { MsgJobComplete } from '../messages/messages';
+import { MsgJobComplete } from '../../frameworks/messages/messages';
 
 /**
  * @description TODO
  *
- * @param config asdf
- * @param data asdf
+ * @param config TODO
+ * @param data TODO
  */
 // TODO: Fix real type
 export async function FigmagicController(config: Config, data: any): Promise<void> {

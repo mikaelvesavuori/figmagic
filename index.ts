@@ -12,7 +12,7 @@ import { createConfiguration } from './bin/entities/Config/createConfiguration';
 
 import { getData } from './bin/frameworks/network/getData';
 import { writeBaseJson } from './bin/frameworks/filesystem/writeBaseJson';
-import { colors } from './bin/app/system/colors';
+import { colors } from './bin/frameworks/system/colors';
 
 /**
  * @description Initialize and setup Figmagic (environment; configuration; data) before handing over to the controller

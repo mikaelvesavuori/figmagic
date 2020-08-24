@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
 
-import { ImageResponse } from '../../app/contracts/image/ImageResponse';
+import { ImageResponse } from '../../app/contracts/ImageResponse';
 
-import { ErrorGetFromApi } from '../../app/errors/errors';
+import { ErrorGetFromApi } from '../errors/errors';
 
 /**
  * @description Get data from API

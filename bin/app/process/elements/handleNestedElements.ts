@@ -1,15 +1,15 @@
-import { ElementAuxData } from '../../../app/contracts/ElementAuxData/ElementAuxData';
+import { ElementAuxData } from '../../contracts/ElementAuxData';
 
 import { parseCssFromElement } from '../parseCssFromElement';
 import { parseTypographyStylingFromElement } from '../parseTypographyStylingFromElement';
 import { processNestedCss } from '../processNestedCss';
 
-import { MsgProcessElementsCreatingElement } from '../../../app/messages/messages';
+import { MsgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
 
 import {
   ErrorProcessElementsNoMainElement,
   ErrorHandleNestedElements
-} from '../../../app/errors/errors';
+} from '../../../frameworks/errors/errors';
 
 // TODO: Add to "usecases" (?)
 

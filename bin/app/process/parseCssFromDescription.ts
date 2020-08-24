@@ -1,6 +1,6 @@
 import { replaceMediaQuery } from '../../frameworks/string/replaceMediaQuery';
 
-import { ErrorParseCssFromDescription } from '../errors/errors';
+import { ErrorParseCssFromDescription } from '../../frameworks/errors/errors';
 
 // TODO: Refactor
 

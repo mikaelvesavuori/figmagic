@@ -1,7 +1,7 @@
 import { refresh } from './refresh';
 import { writeFile } from './writeFile';
 
-import { MsgWriteBaseFile } from '../../app/messages/messages';
+import { MsgWriteBaseFile } from '../messages/messages';
 
 /**
  * @description TODO

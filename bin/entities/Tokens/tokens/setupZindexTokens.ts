@@ -4,7 +4,7 @@ import {
   ErrorSetupZindexTokensNoFrame,
   ErrorSetupZindexTokensNoChildren,
   ErrorSetupZindexTokensMissingProps
-} from '../../../app/errors/errors';
+} from '../../../frameworks/errors/errors';
 
 import { Frame } from '../../../entities/Frame/Frame';
 

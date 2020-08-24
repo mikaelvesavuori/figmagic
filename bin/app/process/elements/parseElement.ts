@@ -1,7 +1,7 @@
 import { FigmagicElement } from '../../../entities/FigmagicElement/FigmagicElement';
-import { ErrorParseElement } from '../../../app/errors/errors';
+import { ErrorParseElement } from '../../../frameworks/errors/errors';
 
-import { ElementAuxData } from '../../../app/contracts/ElementAuxData/ElementAuxData';
+import { ElementAuxData } from '../../contracts/ElementAuxData';
 
 import { getElementType } from './getElementType';
 import { getDescription } from './getDescription';

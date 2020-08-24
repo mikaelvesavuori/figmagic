@@ -1,6 +1,6 @@
 import { Element } from '../../../entities/Element/Element';
 import { TextElement } from '../../../entities/Element/TextElement';
-import { ParsedElementData } from '../../../app/contracts/ParsedElementData/ParsedElementData';
+import { ParsedElementData } from '../../contracts/ParsedElementData';
 
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 

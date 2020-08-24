@@ -1,9 +1,9 @@
-import { TokenMatch } from '../contracts/process/TokenMatch';
+import { TokenMatch } from '../contracts/TokenMatch';
 
 import { normalizeUnits } from '../../frameworks/string/normalizeUnits';
 
-import { MsgGetTokenMatchNoMatch } from '../messages/messages';
-import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../errors/errors';
+import { MsgGetTokenMatchNoMatch } from '../../frameworks/messages/messages';
+import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../frameworks/errors/errors';
 
 // TODO: Refactor
 

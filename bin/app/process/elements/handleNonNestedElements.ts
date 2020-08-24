@@ -1,11 +1,11 @@
-import { ElementAuxData } from '../../../app/contracts/ElementAuxData/ElementAuxData';
+import { ElementAuxData } from '../../contracts/ElementAuxData';
 
 import { ProcessedSelfnamedCss } from '../../../entities/Css/Css';
 
 import { processCssSelfnamedLayer } from '../../process/elements/processCssSelfnamedLayer';
 import { parseTypographyStylingFromElement } from '../parseTypographyStylingFromElement';
 
-import { ErrorProcessElementsWrongTextElementCount } from '../../../app/errors/errors';
+import { ErrorProcessElementsWrongTextElementCount } from '../../../frameworks/errors/errors';
 
 /**
  * @description Add description to list of elements

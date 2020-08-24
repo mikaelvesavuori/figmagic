@@ -4,7 +4,7 @@ import {
   ErrorSetupEasingTokensNoFrame,
   ErrorSetupEasingTokensNoChildren,
   ErrorSetupEasingTokensMissingProps
-} from '../../../app/errors/errors';
+} from '../../../frameworks/errors/errors';
 
 import { Frame } from '../../../entities/Frame/Frame';
 

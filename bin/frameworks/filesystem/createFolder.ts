@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-import { ErrorCreateFolder } from '../../app/errors/errors';
+import { ErrorCreateFolder } from '../errors/errors';
 
 /**
  * @description Create folder, checking also if it already exists

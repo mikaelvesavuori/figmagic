@@ -4,8 +4,8 @@ import { camelize } from '../string/camelize';
 import { processTokens } from '../../app/process/processTokens';
 import { writeFile } from './writeFile';
 
-import { ErrorWriteTokens, ErrorWriteTokensNoSettings } from '../../app/errors/errors';
-import { acceptedTokenTypes } from '../../app/system/acceptedTokenTypes';
+import { ErrorWriteTokens, ErrorWriteTokensNoSettings } from '../errors/errors';
+import { acceptedTokenTypes } from '../system/acceptedTokenTypes';
 
 /**
  * @description Write tokens to file

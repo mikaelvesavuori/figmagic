@@ -5,7 +5,7 @@ import { Config } from '../../entities/Config/Config';
 import { toPascalCase } from '../string/toPascalCase';
 import { writeFile } from './writeFile';
 
-import { ErrorWriteElements } from '../../app/errors/errors';
+import { ErrorWriteElements } from '../errors/errors';
 
 /**
  * @description Funnel function to write all the wanted files per element

@@ -1,4 +1,4 @@
-import { ErrorAddDescriptionToElements } from '../../../app/errors/errors';
+import { ErrorAddDescriptionToElements } from '../../../frameworks/errors/errors';
 
 /**
  * @description Add description to list of elements

@@ -17,8 +17,8 @@ import { setupDurationTokens } from '../../entities/Tokens/tokens/setupDurationT
 import { setupDelayTokens } from '../../entities/Tokens/tokens/setupDelayTokens';
 import { setupEasingTokens } from '../../entities/Tokens/tokens/setupEasingTokens';
 
-import { ignoreElementsKeywords } from '../system/ignoreElementsKeywords';
-import { ErrorProcessTokens, ErrorProcessTokensNoConfig } from '../errors/errors';
+import { ignoreElementsKeywords } from '../../frameworks/system/ignoreElementsKeywords';
+import { ErrorProcessTokens, ErrorProcessTokensNoConfig } from '../../frameworks/errors/errors';
 
 /**
  * @description Process tokens

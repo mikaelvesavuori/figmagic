@@ -7,7 +7,7 @@ import { getTokenMatch } from './getTokenMatch';
 
 import { roundColorValue } from '../../frameworks/string/roundColorValue';
 
-import { ErrorParseTypographyStylingFromElement } from '../errors/errors';
+import { ErrorParseTypographyStylingFromElement } from '../../frameworks/errors/errors';
 
 /**
  * @description Parse typography CSS from "element" (Figma component)

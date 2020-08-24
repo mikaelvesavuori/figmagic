@@ -3,7 +3,7 @@ import { Config } from '../../entities/Config/Config';
 import { parseElement } from './elements/parseElement';
 import { addDescriptionToElements } from './elements/addDescriptionToElements';
 
-import { ErrorProcessElements } from '../errors/errors';
+import { ErrorProcessElements } from '../../frameworks/errors/errors';
 
 // TODO: Move this to "app/controllers" (?)
 

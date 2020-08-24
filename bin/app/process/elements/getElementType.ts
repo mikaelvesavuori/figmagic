@@ -1,4 +1,4 @@
-import { ErrorGetElementType } from '../../../app/errors/errors';
+import { ErrorGetElementType } from '../../../frameworks/errors/errors';
 
 /**
  * @description Get the type of HTML element this represents

@@ -1,6 +1,6 @@
 import { defaultConfig } from './defaultConfig';
 
-import { ErrorParseCliArgs } from '../../app/errors/errors';
+import { ErrorParseCliArgs } from '../../frameworks/errors/errors';
 
 import {
   WarnParseCliArgsOutputFormat,
@@ -8,7 +8,7 @@ import {
   WarnParseCliArgsOpacitiesUnit,
   WarnParseCliArgsLetterSpacingUnit,
   WarnParseCliArgsSpacingUnit
-} from '../../app/warnings/warnings';
+} from '../../frameworks/warnings/warnings';
 
 /**
  * @description Parse CLI arguments and return config object

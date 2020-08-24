@@ -1,4 +1,4 @@
-import { ErrorCreateEnumStringOutOfObject } from '../../app/errors/errors';
+import { ErrorCreateEnumStringOutOfObject } from '../errors/errors';
 
 /**
  * @description Create enum string from object function

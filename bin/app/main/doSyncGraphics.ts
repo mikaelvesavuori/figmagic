@@ -7,7 +7,7 @@ import { processGraphics } from '../process/processGraphics';
 import { refresh } from '../../frameworks/filesystem/refresh';
 import { writeGraphics } from '../../frameworks/filesystem/writeGraphics';
 
-import { MsgSyncGraphics } from '../messages/messages';
+import { MsgSyncGraphics } from '../../frameworks/messages/messages';
 
 /**
  * @description TODO

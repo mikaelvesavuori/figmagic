@@ -2,7 +2,7 @@ import {
   ErrorNormalizeUnits,
   ErrorNormalizeUnitsNoRemSize,
   ErrorNormalizeUnitsUndefined
-} from '../../app/errors/errors';
+} from '../errors/errors';
 
 /**
  * @description Normalize and convert units

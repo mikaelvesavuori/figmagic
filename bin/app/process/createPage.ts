@@ -1,6 +1,6 @@
 import { Page } from '../../entities/Page/Page';
 
-import { ErrorCreatePage } from '../errors/errors';
+import { ErrorCreatePage } from '../../frameworks/errors/errors';
 
 /**
  * @description Creates cleaned pages from the raw Figma data, for further processing

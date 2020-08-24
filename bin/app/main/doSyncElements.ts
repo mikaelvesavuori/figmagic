@@ -7,7 +7,7 @@ import { processElements } from '../process/processElements';
 import { createFolder } from '../../frameworks/filesystem/createFolder';
 import { writeElements } from '../../frameworks/filesystem/writeElements';
 
-import { MsgSyncElements } from '../messages/messages';
+import { MsgSyncElements } from '../../frameworks/messages/messages';
 
 /**
  * @description TODO

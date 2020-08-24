@@ -5,14 +5,14 @@ import { loadFile } from '../../frameworks/filesystem/loadFile';
 import {
   ErrorCreateConfiguration,
   ErrorCreateConfigurationNoDefault
-} from '../../app/errors/errors';
+} from '../../frameworks/errors/errors';
 
 import {
   MsgConfigDebugEnv,
   MsgConfigDebugCli,
   MsgConfigDebugRc,
   MsgConfigDebugFinal
-} from '../../app/messages/messages';
+} from '../../frameworks/messages/messages';
 
 import { Config } from './Config';
 

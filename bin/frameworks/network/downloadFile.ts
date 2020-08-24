@@ -3,8 +3,8 @@ import * as fs from 'fs';
 
 import { createFolder } from '../filesystem/createFolder';
 
-import { MsgDownloadFileWritingFile } from '../../app/messages/messages';
-import { ErrorDownloadFile } from '../../app/errors/errors';
+import { MsgDownloadFileWritingFile } from '../messages/messages';
+import { ErrorDownloadFile } from '../errors/errors';
 
 /**
  * @description Get data from API

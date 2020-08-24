@@ -1,6 +1,6 @@
 import { Config } from '../../entities/Config/Config';
 
-import { ImageResponse } from '../contracts/image/ImageResponse';
+import { ImageResponse } from '../contracts/ImageResponse';
 
 import { camelize } from '../../frameworks/string/camelize';
 import { getFromApi } from '../../frameworks/network/getFromApi';
@@ -12,7 +12,7 @@ import {
   ErrorGetIds,
   ErrorGetFileList,
   ErrorGetIdstring
-} from '../errors/errors';
+} from '../../frameworks/errors/errors';
 // TODO: Refactor
 
 /**

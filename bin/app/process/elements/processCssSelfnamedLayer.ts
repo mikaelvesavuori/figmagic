@@ -5,9 +5,9 @@ import { ProcessedSelfnamedCss } from '../../../entities/Css/Css';
 import { Element } from '../../../entities/Element/Element';
 import { TextElement } from '../../../entities/Element/TextElement';
 
-import { MsgProcessElementsCreatingElement } from '../../../app/messages/messages';
+import { MsgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
 
-import { ErrorProcessElementsWrongElementCount } from '../../../app/errors/errors';
+import { ErrorProcessElementsWrongElementCount } from '../../../frameworks/errors/errors';
 
 /**
  * @description Process CSS for layer with same name as self
