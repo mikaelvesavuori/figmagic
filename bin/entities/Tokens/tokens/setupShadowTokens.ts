@@ -1,4 +1,4 @@
-import { Frame } from '../../Frame/Frame';
+import { Frame } from '../../../app/contracts/Frame';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';

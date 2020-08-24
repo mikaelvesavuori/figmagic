@@ -1,5 +1,5 @@
-export type ImageResponse = {
+export interface ImageResponse {
   err: string;
   images: object[];
   status: number;
-};
+}

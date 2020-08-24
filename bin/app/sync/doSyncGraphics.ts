@@ -1,20 +1,19 @@
 import { Config } from '../../entities/Config/Config';
-import { FigmaData } from '../../entities/FigmaData/FigmaData';
+import { FigmaData } from '../contracts/FigmaData';
 
 import { createPage } from '../process/createPage';
 import { processGraphics } from '../process/processGraphics';
 
 import { refresh } from '../../frameworks/filesystem/refresh';
 import { writeGraphics } from '../../frameworks/filesystem/writeGraphics';
-
 import { MsgSyncGraphics } from '../../frameworks/messages/messages';
 
 /**
  * @description TODO
  *
- * @param config
- * @param data
- * @param outputFolder
+ * @param config TODO
+ * @param data TODO
+ * @param outputFolder TODO
  */
 export async function doSyncGraphics(
   config: Config,

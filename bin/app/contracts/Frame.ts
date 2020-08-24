@@ -1,4 +1,8 @@
-import { AbsoluteBoundingBox, Effects, Fills, Style } from '../Element/Element';
+import { AbsoluteBoundingBox, Effects, Fills, Style } from './Element';
+
+export interface Frame {
+  children: FrameChild[];
+}
 
 type FrameChild = {
   children: FrameChild[];
@@ -12,7 +16,3 @@ type FrameChild = {
   strokeWeight: string;
   style: Style;
 };
-
-export interface Frame {
-  children: FrameChild[];
-}

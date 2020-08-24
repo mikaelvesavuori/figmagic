@@ -1,6 +1,6 @@
 import { ElementAuxData } from '../../contracts/ElementAuxData';
 
-import { ProcessedSelfnamedCss } from '../../../entities/Css/Css';
+import { ProcessedSelfnamedCss } from '../../contracts/Css';
 
 import { processCssSelfnamedLayer } from '../../process/elements/processCssSelfnamedLayer';
 import { parseTypographyStylingFromElement } from '../parseTypographyStylingFromElement';

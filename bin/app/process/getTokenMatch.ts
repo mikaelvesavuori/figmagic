@@ -1,3 +1,6 @@
+import { Tokens } from '../../entities/Tokens/Tokens';
+import { Imports } from '../contracts/Imports';
+
 import { TokenMatch } from '../contracts/TokenMatch';
 
 import { normalizeUnits } from '../../frameworks/string/normalizeUnits';
@@ -38,12 +41,12 @@ export function getTokenMatch(
 
 function doPadding(
   expectedValue: string | number | object,
-  remSize: string,
-  tokens: string,
+  remSize: number,
+  tokens: Tokens,
   tokenFileName: string,
   property: string,
   updatedCss: string,
-  updatedImports: string
+  updatedImports: Imports
 ) {
   const keys = Object.keys(expectedValue);
 
@@ -75,12 +78,12 @@ function doPadding(
 
 function doOther(
   expectedValue: string,
-  remSize: string,
-  tokens: string,
+  remSize: number,
+  tokens: Tokens,
   tokenFileName: string,
   property: string,
   updatedCss: string,
-  updatedImports: string
+  updatedImports: Imports
 ) {
   let foundMatch = false;
 

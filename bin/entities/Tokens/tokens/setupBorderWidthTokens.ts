@@ -6,8 +6,8 @@ import {
   ErrorSetupBorderWidthTokensMissingProps
 } from '../../../frameworks/errors/errors';
 
-import { Frame } from '../../../entities/Frame/Frame';
-import { BorderWidthTokens } from '../../../app/contracts/Tokens';
+import { Frame } from '../../../app/contracts/Frame';
+import { BorderWidthTokens } from '../Tokens';
 
 /**
  * @description Places all Figma border widths into a clean object

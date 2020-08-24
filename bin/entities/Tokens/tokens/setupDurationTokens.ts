@@ -6,7 +6,7 @@ import {
   ErrorSetupDurationTokensMissingProps
 } from '../../../frameworks/errors/errors';
 
-import { Frame } from '../../../entities/Frame/Frame';
+import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma durations into a clean object

@@ -1,4 +1,4 @@
-import { Page } from '../../entities/Page/Page';
+import { Page } from '../contracts/Page';
 
 import { ErrorCreatePage } from '../../frameworks/errors/errors';
 

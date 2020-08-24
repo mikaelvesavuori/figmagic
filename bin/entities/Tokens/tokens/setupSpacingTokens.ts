@@ -7,7 +7,7 @@ import {
   ErrorSetupSpacingTokensNoUnits
 } from '../../../frameworks/errors/errors';
 
-import { Frame } from '../../../entities/Frame/Frame';
+import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma spacings into a clean object

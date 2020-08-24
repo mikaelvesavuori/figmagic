@@ -1,8 +1,8 @@
 import * as path from 'path';
 
-import { Css } from '../../entities/Css/Css';
-import { Element } from '../../entities/Element/Element';
-import { TextElement } from '../../entities/Element/TextElement';
+import { Css } from '../contracts/Css';
+import { Element } from '../contracts/Element';
+import { TextElement } from '../contracts/TextElement';
 
 import {
   getPaddingY,

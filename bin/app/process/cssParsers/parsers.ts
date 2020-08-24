@@ -1,5 +1,5 @@
-import { Element } from '../../../entities/Element/Element';
-import { TextElement } from '../../../entities/Element/TextElement';
+import { Element } from '../../contracts/Element';
+import { TextElement } from '../../contracts/TextElement';
 import { ParsedElementData } from '../../contracts/ParsedElementData';
 
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';

@@ -1,7 +1,7 @@
 import * as path from 'path';
 
-import { Element } from '../../entities/Element/Element';
-import { FigmagicTypography } from '../../entities/FigmagicTypography/FigmagicTypography';
+import { Element } from '../contracts/Element';
+import { FigmagicTypography } from '../contracts/FigmagicTypography';
 
 import { getTokenMatch } from './getTokenMatch';
 

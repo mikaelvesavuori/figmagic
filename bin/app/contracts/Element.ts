@@ -1,3 +1,17 @@
+export interface Element {
+  children: any[];
+  name: string;
+  absoluteBoundingBox: AbsoluteBoundingBox;
+  strokeWeight: string;
+  strokes: Strokes;
+  cornerRadius: string;
+  effects: Effects[];
+  fills: Fills[];
+  gradients: Gradients[];
+  type: string;
+  style: Style;
+}
+
 export type AbsoluteBoundingBox = {
   width: number;
   height: number;
@@ -56,17 +70,3 @@ export type Style = {
   textAlignHorizontal: string;
   textCase: 'LOWER' | 'UPPER' | 'TITLE';
 };
-
-export interface Element {
-  children: any[];
-  name: string;
-  absoluteBoundingBox: AbsoluteBoundingBox;
-  strokeWeight: string;
-  strokes: Strokes;
-  cornerRadius: string;
-  effects: Effects[];
-  fills: Fills[];
-  gradients: Gradients[];
-  type: string;
-  style: Style;
-}

@@ -1,6 +1,6 @@
-import { FigmaData } from '../entities/FigmaData/FigmaData';
+import { FigmaData } from '../app/contracts/FigmaData';
 import { Config } from '../entities/Config/Config';
-import { Page } from '../entities/Page/Page';
+import { Page } from '../app/contracts/Page';
 
 import { createPage } from '../app/process/createPage';
 
@@ -9,18 +9,17 @@ import { writeTokens } from '../frameworks/filesystem/writeTokens';
 import { MsgWriteTokens } from '../frameworks/messages/messages';
 
 /**
- * @description TODO
+ * @description Use case for creating token files from Figma
  *
- * @param config TODO
- * @param data TODO
- * @param outputFolder TODO
+ * @param config User configuration
+ * @param data Data from Figma
+ * @param outputFolder Folder where tokens should be generated
  */
 export async function createTokens(
   config: Config,
   data: FigmaData,
   outputFolder: string
 ): Promise<void> {
-  //return await processTokens(config, data, outputFolderTokens);
   console.log(MsgWriteTokens);
 
   try {

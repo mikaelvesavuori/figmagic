@@ -1,4 +1,4 @@
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../contracts/Frame';
 import { Config } from '../../entities/Config/Config';
 import { setupColorTokens } from '../../entities/Tokens/tokens/setupColorTokens';
 import { setupSpacingTokens } from '../../entities/Tokens/tokens/setupSpacingTokens';

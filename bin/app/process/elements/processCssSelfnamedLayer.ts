@@ -1,9 +1,9 @@
 import { parseCssFromElement } from '../parseCssFromElement';
 
-import { ProcessedSelfnamedCss } from '../../../entities/Css/Css';
+import { ProcessedSelfnamedCss } from '../../contracts/Css';
 
-import { Element } from '../../../entities/Element/Element';
-import { TextElement } from '../../../entities/Element/TextElement';
+import { Element } from '../../contracts/Element';
+import { TextElement } from '../../contracts/TextElement';
 
 import { MsgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
 

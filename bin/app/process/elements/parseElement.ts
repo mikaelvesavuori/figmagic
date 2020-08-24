@@ -1,4 +1,4 @@
-import { FigmagicElement } from '../../../entities/FigmagicElement/FigmagicElement';
+import { FigmagicElement } from '../../contracts/FigmagicElement';
 import { ErrorParseElement } from '../../../frameworks/errors/errors';
 
 import { ElementAuxData } from '../../contracts/ElementAuxData';

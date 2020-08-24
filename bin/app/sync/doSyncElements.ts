@@ -1,20 +1,19 @@
 import { Config } from '../../entities/Config/Config';
-import { FigmaData } from '../../entities/FigmaData/FigmaData';
+import { FigmaData } from '../contracts/FigmaData';
 
 import { createPage } from '../process/createPage';
 import { processElements } from '../process/processElements';
 
 import { createFolder } from '../../frameworks/filesystem/createFolder';
 import { writeElements } from '../../frameworks/filesystem/writeElements';
-
 import { MsgSyncElements } from '../../frameworks/messages/messages';
 
 /**
  * @description TODO
  *
- * @param config
- * @param data
- * @param outputFolder
+ * @param config TODO
+ * @param data TODO
+ * @param outputFolder TODO
  */
 export async function doSyncElements(
   config: Config,

@@ -1,4 +1,4 @@
-import { Element } from '../../entities/Element/Element';
+import { Element } from './Element';
 
 export interface Metadata {
   text: string;

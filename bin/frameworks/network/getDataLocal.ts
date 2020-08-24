@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import { FigmaData } from '../../entities/FigmaData/FigmaData';
+import { FigmaData } from '../../app/contracts/FigmaData';
 
 import { loadFile } from '../filesystem/loadFile';
 

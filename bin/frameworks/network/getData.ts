@@ -1,4 +1,4 @@
-import { FigmaData } from '../../entities/FigmaData/FigmaData';
+import { FigmaData } from '../../app/contracts/FigmaData';
 
 import { getDataLocal } from './getDataLocal';
 import { getDataRemote } from './getDataRemote';
