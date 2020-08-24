@@ -1,4 +1,4 @@
-import { Config } from '../../app/contracts/config/Config';
+import { Config } from '../../entities/Config/Config';
 
 export const defaultConfig: Config = {
   debugMode: false,

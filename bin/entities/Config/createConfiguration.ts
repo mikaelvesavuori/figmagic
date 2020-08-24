@@ -1,5 +1,11 @@
-import { loadFile } from '../../frameworks/filesystem/loadFile';
 import { parseCliArgs } from './parseCliArgs';
+
+import { loadFile } from '../../frameworks/filesystem/loadFile';
+
+import {
+  ErrorCreateConfiguration,
+  ErrorCreateConfigurationNoDefault
+} from '../../app/errors/errors';
 
 import {
   MsgConfigDebugEnv,
@@ -7,10 +13,6 @@ import {
   MsgConfigDebugRc,
   MsgConfigDebugFinal
 } from '../../app/messages/messages';
-import {
-  ErrorCreateConfiguration,
-  ErrorCreateConfigurationNoDefault
-} from '../../../app/errors/errors';
 
 import { Config } from './Config';
 

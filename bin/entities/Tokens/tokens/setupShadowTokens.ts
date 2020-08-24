@@ -1,3 +1,5 @@
+import { Frame } from '../../Frame/Frame';
+
 import { camelize } from '../../../frameworks/string/camelize';
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
@@ -6,8 +8,6 @@ import {
   ErrorSetupShadowTokensNoChildren,
   ErrorSetupShadowTokensMissingProps
 } from '../../../app/errors/errors';
-
-import { Frame } from '../../../entities/Frame/Frame';
 
 /**
  * @description Places all Figma shadows into a clean object
