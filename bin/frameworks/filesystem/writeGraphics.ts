@@ -1,4 +1,4 @@
-import { downloadFile } from './downloadFile';
+import { downloadFile } from '../network/downloadFile';
 
 import { ErrorWriteGraphics } from '../errors/errors';
 

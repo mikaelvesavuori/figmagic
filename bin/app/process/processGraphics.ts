@@ -1,5 +1,5 @@
 import { camelize } from '../helpers/camelize';
-import { getFromApi } from '../../frameworks/filesystem/getFromApi';
+import { getFromApi } from '../../frameworks/network/getFromApi';
 
 import {
   ErrorProcessGraphics,

@@ -1,9 +1,9 @@
 import fetch from 'node-fetch';
 import * as fs from 'fs';
 
-import { msgDownloadFileWritingFile } from '../messages/messages';
+import { MsgDownloadFileWritingFile } from '../messages/messages';
 import { ErrorDownloadFile } from '../errors/errors';
-import { createFolder } from './createFolder';
+import { createFolder } from '../filesystem/createFolder';
 
 /**
  * @description Get data from API
@@ -22,7 +22,7 @@ export async function downloadFile(url: string, folder: string, file: string): P
 
   return new Promise((resolve, reject) => {
     const PATH = `${folder}/${file}`;
-    console.log(msgDownloadFileWritingFile(PATH));
+    console.log(MsgDownloadFileWritingFile(PATH));
     const _file = fs.createWriteStream(PATH);
     response.body.pipe(_file);
     _file.on('error', () => reject('Error when downloading file!'));

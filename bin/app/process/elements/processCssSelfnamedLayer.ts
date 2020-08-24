@@ -5,7 +5,7 @@ import { ProcessedSelfnamedCss } from '../../../entities/Css/Css';
 import { Element } from '../../../entities/Element/Element';
 import { TextElement } from '../../../entities/Element/TextElement';
 
-import { msgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
+import { MsgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
 
 import { ErrorProcessElementsWrongElementCount } from '../../../frameworks/errors/errors';
 
@@ -38,7 +38,7 @@ export async function processCssSelfnamedLayer(
       throw new Error(`${ErrorProcessElementsWrongElementCount} ${element.name}!`);
 
     const FIXED_NAME = MAIN_ELEMENT[0].name.replace(/\s/gi, '');
-    console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT[0].name, FIXED_NAME));
+    console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT[0].name, FIXED_NAME));
 
     let elementStyling = await parseCssFromElement(
       MAIN_ELEMENT[0],

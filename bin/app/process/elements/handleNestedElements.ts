@@ -4,7 +4,7 @@ import { parseCssFromElement } from '../parseCssFromElement';
 import { parseTypographyStylingFromElement } from '../parseTypographyStylingFromElement';
 import { processNestedCss } from '../processNestedCss';
 
-import { msgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
+import { MsgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
 
 import {
   ErrorProcessElementsNoMainElement,
@@ -78,7 +78,7 @@ export async function handleNestedElements(
       const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
 
       // Parse layout CSS from element
-      console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
+      console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
       let elementStyling = await parseCssFromElement(MAIN_ELEMENT, TEXT_ELEMENT, remSize, isTest);
       imports = imports.concat(elementStyling.imports);
