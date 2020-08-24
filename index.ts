@@ -7,13 +7,12 @@ import dotenv from 'dotenv';
 import { FigmagicController } from './bin/app/controllers/FigmagicController';
 
 import { Config } from './bin/entities/Config/Config';
-
-import { defaultConfig } from './bin/entities/Config/config';
+import { defaultConfig } from './bin/entities/Config/defaultConfig';
 import { createConfiguration } from './bin/entities/Config/createConfiguration';
 
 import { getData } from './bin/frameworks/network/getData';
-import { writeBaseJson } from './bin/frameworks/main/writeBaseJson';
-import { colors } from './bin/frameworks/system/colors';
+import { writeBaseJson } from './bin/frameworks/filesystem/writeBaseJson';
+import { colors } from './bin/app/system/colors';
 
 /**
  * @description Initialize and setup Figmagic (environment; configuration; data) before handing over to the controller

@@ -1,9 +1,10 @@
-import { getTokenMatch } from '../getTokenMatch';
-import { roundColorValue } from '../../helpers/roundColorValue';
-
 import { Element } from '../../../entities/Element/Element';
 import { TextElement } from '../../../entities/Element/TextElement';
 import { ParsedElementData } from '../../../app/contracts/ParsedElementData/ParsedElementData';
+
+import { roundColorValue } from '../../../frameworks/string/roundColorValue';
+
+import { getTokenMatch } from '../getTokenMatch';
 
 type PaddingVertical = {
   top: number;

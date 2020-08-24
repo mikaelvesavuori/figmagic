@@ -1,5 +1,6 @@
 import { Config } from '../../entities/Config/Config';
-import { ErrorProcessElements } from '../../frameworks/errors/errors';
+
+import { ErrorProcessElements } from '../../app/errors/errors';
 
 import { parseElement } from './elements/parseElement';
 import { addDescriptionToElements } from './elements/addDescriptionToElements';

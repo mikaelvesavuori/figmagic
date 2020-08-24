@@ -4,12 +4,12 @@ import { parseCssFromElement } from '../parseCssFromElement';
 import { parseTypographyStylingFromElement } from '../parseTypographyStylingFromElement';
 import { processNestedCss } from '../processNestedCss';
 
-import { MsgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
+import { MsgProcessElementsCreatingElement } from '../../../app/messages/messages';
 
 import {
   ErrorProcessElementsNoMainElement,
   ErrorHandleNestedElements
-} from '../../../frameworks/errors/errors';
+} from '../../../app/errors/errors';
 
 // TODO: Add to "usecases" (?)
 

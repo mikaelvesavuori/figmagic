@@ -2,9 +2,10 @@ import { Config } from '../../entities/Config/Config';
 import { FigmaData } from '../../entities/FigmaData/FigmaData';
 import { Page } from '../../entities/Page/Page';
 
+import { createPage } from '../process/createPage';
+
 import { refresh } from '../../frameworks/filesystem/refresh';
 import { writeTokens } from '../../frameworks/filesystem/writeTokens';
-import { createPage } from '../process/createPage';
 
 import { MsgWriteTokens } from '../messages/messages';
 

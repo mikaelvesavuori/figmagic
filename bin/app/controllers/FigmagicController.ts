@@ -4,7 +4,7 @@ import { createTokens } from '../../usecases/createTokens';
 import { createElements } from '../../usecases/createElements';
 import { createGraphics } from '../../usecases/createGraphics';
 
-import { MsgJobComplete } from '../../frameworks/messages/messages';
+import { MsgJobComplete } from '../messages/messages';
 
 /**
  * @description TODO

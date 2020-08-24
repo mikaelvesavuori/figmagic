@@ -5,7 +5,7 @@ import {
   ErrorSetupRadiusTokensNoFrame,
   ErrorSetupRadiusTokensNoChildren,
   ErrorSetupRadiusTokensMissingProps
-} from '../../frameworks/errors/errors';
+} from '../../app/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
 

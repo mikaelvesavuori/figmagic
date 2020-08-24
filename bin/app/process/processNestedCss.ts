@@ -4,7 +4,7 @@ import {
   ErrorCleanArrays,
   ErrorGetIntersectingValues,
   ErrorGetUniqueValues
-} from '../../frameworks/errors/errors';
+} from '../../app/errors/errors';
 
 // TODO: Refactor
 

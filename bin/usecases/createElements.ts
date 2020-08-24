@@ -1,7 +1,7 @@
-import { FigmaData } from '../../entities/FigmaData/FigmaData';
-import { Config } from '../contracts/config/Config';
+import { FigmaData } from '../entities/FigmaData/FigmaData';
+import { Config } from '../entities/Config/Config';
 
-import { doSyncElements } from '../main/doSyncElements';
+import { doSyncElements } from '../app/main/doSyncElements';
 
 export async function createElements(
   config: Config,

@@ -1,4 +1,8 @@
-import { camelize } from '../helpers/camelize';
+import { Config } from '../../entities/Config/Config';
+
+import { ImageResponse } from '../../app/contracts/image/ImageResponse';
+
+import { camelize } from '../../frameworks/string/camelize';
 import { getFromApi } from '../../frameworks/network/getFromApi';
 
 import {
@@ -8,12 +12,7 @@ import {
   ErrorGetIds,
   ErrorGetFileList,
   ErrorGetIdstring
-} from '../../frameworks/errors/errors';
-
-import { ImageResponse } from '../../app/contracts/image/ImageResponse';
-
-import { Config } from '../../entities/Config/Config';
-
+} from '../../app/errors/errors';
 // TODO: Refactor
 
 /**

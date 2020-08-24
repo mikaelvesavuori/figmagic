@@ -1,26 +1,25 @@
-import { setupColorTokens } from '../tokens/setupColorTokens';
-import { setupSpacingTokens } from '../tokens/setupSpacingTokens';
-import { setupFontTokens } from '../tokens/setupFontTokens';
-import { setupFontSizeTokens } from '../tokens/setupFontSizeTokens';
-import { setupFontWeightTokens } from '../tokens/setupFontWeightTokens';
-import { setupLineHeightTokens } from '../tokens/setupLineHeightTokens';
-import { setupShadowTokens } from '../tokens/setupShadowTokens';
-import { setupBorderWidthTokens } from '../tokens/setupBorderWidthTokens';
-import { setupRadiusTokens } from '../tokens/setupRadiusTokens';
-import { setupZindexTokens } from '../tokens/setupZindexTokens';
-import { setupLetterSpacingTokens } from '../tokens/setupLetterSpacingTokens';
-import { setupMediaQueryTokens } from '../tokens/setupMediaQueryTokens';
-import { setupOpacityTokens } from '../tokens/setupOpacityTokens';
-import { setupDurationTokens } from '../tokens/setupDurationTokens';
-import { setupDelayTokens } from '../tokens/setupDelayTokens';
-import { setupEasingTokens } from '../tokens/setupEasingTokens';
-
-import { ErrorProcessTokens, ErrorProcessTokensNoConfig } from '../../frameworks/errors/errors';
-import { ignoreElementsKeywords } from '../../frameworks/system/ignoreElementsKeywords';
-
 import { Frame } from '../../entities/Frame/Frame';
-
 import { Config } from '../../entities/Config/Config';
+
+import { setupColorTokens } from '../../entities/Tokens/setupColorTokens';
+import { setupSpacingTokens } from '../../entities/Tokens/setupSpacingTokens';
+import { setupFontTokens } from '../../entities/Tokens/setupFontTokens';
+import { setupFontSizeTokens } from '../../entities/Tokens/setupFontSizeTokens';
+import { setupFontWeightTokens } from '../../entities/Tokens/setupFontWeightTokens';
+import { setupLineHeightTokens } from '../../entities/Tokens/setupLineHeightTokens';
+import { setupShadowTokens } from '../../entities/Tokens/setupShadowTokens';
+import { setupBorderWidthTokens } from '../../entities/Tokens/setupBorderWidthTokens';
+import { setupRadiusTokens } from '../../entities/Tokens/setupRadiusTokens';
+import { setupZindexTokens } from '../../entities/Tokens/setupZindexTokens';
+import { setupLetterSpacingTokens } from '../../entities/Tokens/setupLetterSpacingTokens';
+import { setupMediaQueryTokens } from '../../entities/Tokens/setupMediaQueryTokens';
+import { setupOpacityTokens } from '../../entities/Tokens/setupOpacityTokens';
+import { setupDurationTokens } from '../../entities/Tokens/setupDurationTokens';
+import { setupDelayTokens } from '../../entities/Tokens/setupDelayTokens';
+import { setupEasingTokens } from '../../entities/Tokens/setupEasingTokens';
+
+import { ignoreElementsKeywords } from '../../app/system/ignoreElementsKeywords';
+import { ErrorProcessTokens, ErrorProcessTokensNoConfig } from '../../app/errors/errors';
 
 /**
  * @description Process tokens

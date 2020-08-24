@@ -1,7 +1,5 @@
 import * as path from 'path';
 
-import { ErrorParseCssFromElement } from '../../frameworks/errors/errors';
-
 import { Css } from '../../entities/Css/Css';
 import { Element } from '../../entities/Element/Element';
 import { TextElement } from '../../entities/Element/TextElement';
@@ -20,6 +18,8 @@ import {
   getShadow,
   parseShadow
 } from './cssParsers/parsers';
+
+import { ErrorParseCssFromElement } from '../../app/errors/errors';
 
 /**
  * @description Parse layout CSS from "element" (Figma component)

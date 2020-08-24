@@ -1,5 +1,5 @@
 import { FigmagicElement } from '../../../entities/FigmagicElement/FigmagicElement';
-import { ErrorParseElement } from '../../../frameworks/errors/errors';
+import { ErrorParseElement } from '../../../app/errors/errors';
 
 import { ElementAuxData } from '../../../app/contracts/ElementAuxData/ElementAuxData';
 

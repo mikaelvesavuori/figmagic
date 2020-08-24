@@ -6,7 +6,7 @@ import {
   ErrorSetupLineHeightTokensNoChildren,
   ErrorSetupLineHeightTokensMissingProps,
   ErrorSetupLineHeightTokensMissingPercent
-} from '../../frameworks/errors/errors';
+} from '../../app/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
 

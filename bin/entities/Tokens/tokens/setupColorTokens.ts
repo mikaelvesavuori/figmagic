@@ -5,7 +5,7 @@ import {
   ErrorSetupColorTokensNoFrame,
   ErrorSetupColorTokensNoChildren,
   ErrorSetupColorTokensNoFills
-} from '../../frameworks/errors/errors';
+} from '../../app/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
 

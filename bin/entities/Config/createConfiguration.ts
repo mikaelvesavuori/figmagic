@@ -6,11 +6,11 @@ import {
   MsgConfigDebugCli,
   MsgConfigDebugRc,
   MsgConfigDebugFinal
-} from '../../frameworks/messages/messages';
+} from '../../app/messages/messages';
 import {
   ErrorCreateConfiguration,
   ErrorCreateConfigurationNoDefault
-} from '../../frameworks/errors/errors';
+} from '../../app/errors/errors';
 
 import { Config } from './Config';
 

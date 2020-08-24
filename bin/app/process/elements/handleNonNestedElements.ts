@@ -5,7 +5,7 @@ import { ProcessedSelfnamedCss } from '../../../entities/Css/Css';
 import { processCssSelfnamedLayer } from '../../process/elements/processCssSelfnamedLayer';
 import { parseTypographyStylingFromElement } from '../parseTypographyStylingFromElement';
 
-import { ErrorProcessElementsWrongTextElementCount } from '../../../frameworks/errors/errors';
+import { ErrorProcessElementsWrongTextElementCount } from '../../../app/errors/errors';
 
 /**
  * @description Add description to list of elements

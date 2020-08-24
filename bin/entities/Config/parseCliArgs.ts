@@ -1,4 +1,4 @@
-import { ErrorParseCliArgs } from '../../frameworks/errors/errors';
+import { ErrorParseCliArgs } from '../../app/errors/errors';
 
 import {
   WarnParseCliArgsOutputFormat,
