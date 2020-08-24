@@ -3,40 +3,44 @@ import { setupSpacingTokens } from '../bin/entities/Tokens/tokens/setupSpacingTo
 import { spacingFrame } from '../testdata/spacingFrame';
 
 /*
-test('It should return valid JSON for spacing elements, using "rem" spacing conversion and standard 16 size', () => {
-  expect(setupSpacingTokens(spacingFrame, 'rem', 16)).toEqual(
-    expect.objectContaining({
-      huge: '5rem',
-      large: '4.375rem',
-      medium: '3.125rem',
-      small: '1.5rem',
-      tiny: '0.75rem'
-    })
-  );
+describe('Failure cases', () => {
+  test('It should throw an error if no parameter is provided', () => {
+    expect(() => {
+      setupSpacingTokens();
+    }).toThrow();
+  });
+
+  test('It should throw an error if frame is empty', () => {
+    expect(() => {
+      setupSpacingTokens({});
+    }).toThrow();
+  });
+
+  test('It should throw an error if children are missing "name" and "absoluteBoundingBox" properties', () => {
+    expect(() => {
+      setupSpacingTokens({
+        children: [
+          {
+            nameMismatch: 'Something',
+            absoluteBoundingBoxMismatch: 100
+          }
+        ]
+      });
+    }).toThrow();
+  });
 });
 
-test('It should throw an error if no parameter is provided', () => {
-  expect(() => {
-    setupSpacingTokens();
-  }).toThrow();
-});
-
-test('It should throw an error if frame is empty', () => {
-  expect(() => {
-    setupSpacingTokens({});
-  }).toThrow();
-});
-
-test('It should throw an error if children are missing "name" and "absoluteBoundingBox" properties', () => {
-  expect(() => {
-    setupSpacingTokens({
-      children: [
-        {
-          nameMismatch: 'Something',
-          absoluteBoundingBoxMismatch: 100
-        }
-      ]
-    });
-  }).toThrow();
+describe('Success cases', () => {
+  test('It should return valid JSON for spacing elements, using "rem" spacing conversion and standard 16 size', () => {
+    expect(setupSpacingTokens(spacingFrame, 'rem', 16)).toEqual(
+      expect.objectContaining({
+        huge: '5rem',
+        large: '4.375rem',
+        medium: '3.125rem',
+        small: '1.5rem',
+        tiny: '0.75rem'
+      })
+    );
+  });
 });
 */

@@ -29,13 +29,17 @@ const elements = [
 ];
 
 /*
-test('It should throw an error if no parameter is provided', async () => {
-  await expect(writeElements()).rejects.toThrow();
+describe('Failure cases', () => {
+  test('It should throw an error if no parameter is provided', async () => {
+    await expect(writeElements()).rejects.toThrow();
+  });
 });
 
-test('It should return true when finished', async () => {
-  console.log('!!!', defaultConfig.asdf);
-  await expect(writeElements(elements, defaultConfig)).resolves.toBe(true);
-  await trash(TEMP_FOLDER);
+describe('Success cases', () => {
+  test('It should return true when finished', async () => {
+    console.log('!!!', defaultConfig.asdf);
+    await expect(writeElements(elements, defaultConfig)).resolves.toBe(true);
+    await trash(TEMP_FOLDER);
+  });
 });
 */

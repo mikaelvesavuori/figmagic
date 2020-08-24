@@ -2,10 +2,56 @@ import { setupLetterSpacingTokens } from '../bin/entities/Tokens/tokens/setupLet
 
 import { letterSpacingsFrame } from '../testdata/letterSpacingsFrame';
 
-test('It should return a complete object when passing in valid input', () => {
-  expect(setupLetterSpacingTokens(letterSpacingsFrame)).toEqual(
-    expect.objectContaining({ regular: '0em', tight: '-0.045em', wide: '0.05em' })
-  );
+/*
+describe('Failure cases', () => {
+  test('It should throw an error if frame is missing "children" array', () => {
+    expect(() => {
+      setupLetterSpacingTokens({});
+    }).toThrow();
+  });
+
+  test('It should throw an error if frame does not have "style" property', () => {
+    expect(() => {
+      setupLetterSpacingTokens({
+        children: [
+          {
+            somethingElse: 123
+          }
+        ]
+      });
+    }).toThrow();
+  });
+
+  test('It should throw an error if frame does not have "style.fontSize" allowing to convert to em', () => {
+    expect(() => {
+      setupLetterSpacingTokens({
+        name: 'test',
+        children: [
+          {
+            name: 'foo',
+            style: {
+              letterSpacing: 0
+            }
+          }
+        ]
+      });
+    }).toThrow();
+  });
+
+  test('It should throw an error if no parameter is provided', () => {
+    expect(() => {
+      setupLetterSpacingTokens();
+    }).toThrow();
+  });
+});
+*/
+
+describe('Success cases', () => {
+  test('It should return a complete object when passing in valid input', () => {
+    expect(setupLetterSpacingTokens(letterSpacingsFrame)).toEqual(
+      expect.objectContaining({ regular: '0em', tight: '-0.045em', wide: '0.05em' })
+    );
+  });
 });
 
 test('It should handle a conversion between px and em units', () => {
@@ -44,7 +90,6 @@ test('It should handle a conversion between px and em units', () => {
   );
 });
 
-/*
 test('It should return 0 if letterSpacing is undefined', () => {
   expect(
     setupLetterSpacingTokens({
@@ -64,44 +109,3 @@ test('It should return 0 if letterSpacing is undefined', () => {
     })
   );
 });
-
-test('It should throw an error if frame is missing "children" array', () => {
-  expect(() => {
-    setupLetterSpacingTokens({});
-  }).toThrow();
-});
-
-test('It should throw an error if frame does not have "style" property', () => {
-  expect(() => {
-    setupLetterSpacingTokens({
-      children: [
-        {
-          somethingElse: 123
-        }
-      ]
-    });
-  }).toThrow();
-});
-
-test('It should throw an error if frame does not have "style.fontSize" allowing to convert to em', () => {
-  expect(() => {
-    setupLetterSpacingTokens({
-      name: 'test',
-      children: [
-        {
-          name: 'foo',
-          style: {
-            letterSpacing: 0
-          }
-        }
-      ]
-    });
-  }).toThrow();
-});
-
-test('It should throw an error if no parameter is provided', () => {
-  expect(() => {
-    setupLetterSpacingTokens();
-  }).toThrow();
-});
-*/

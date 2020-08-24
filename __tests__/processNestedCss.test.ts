@@ -93,13 +93,17 @@ text-transform: uppercase;
 `;
 
 /*
-test('It should throw an error if no parameter is provided', () => {
-  expect(() => {
-    processNestedCss();
-  }).toThrow();
+describe('Failure cases', () => {
+  test('It should throw an error if no parameter is provided', () => {
+    expect(() => {
+      processNestedCss();
+    }).toThrow();
+  });
 });
 */
 
-test('It should correctly process CSS that has valid input', () => {
-  expect(processNestedCss(css)).toBe(expected);
+describe('Success cases', () => {
+  test('It should correctly process CSS that has valid input', () => {
+    expect(processNestedCss(css)).toBe(expected);
+  });
 });
