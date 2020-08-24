@@ -2,7 +2,7 @@ import { processElements } from '../bin/app/process/processElements';
 
 import { elementsPage, elementsPageDoubleTexts } from '../testdata/elementsPage';
 import { components } from '../testdata/components';
-import { defaultConfig } from '../testdata/defaultConfig';
+import { defaultConfig } from '../bin/entities/Config/defaultConfig';
 
 /*
 test('It should throw an error if no parameter is provided', async () => {

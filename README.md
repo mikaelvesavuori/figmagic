@@ -303,7 +303,6 @@ Below is a complete set of what you can configure, together with the defaults.
   opacitiesUnit: 'float',
   outputFileName: 'figma.json',
   outputFolderBaseFile: '.figmagic',
-  outputFolderComponents: '',
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
   outputFolderTokens: 'tokens',
@@ -463,14 +462,6 @@ Default is `tokens`.
 `figmagic --outputFolderElements [folder]` or `figmagic -elements [folder]`
 
 Default is `elements`.
-
-<!--
-#### Set components output folder
-
-`figmagic --outputFolderComponents [folder]` or `figmagic -components [folder]`
-
-Default is `components`.
--->
 
 #### Set output file name
 

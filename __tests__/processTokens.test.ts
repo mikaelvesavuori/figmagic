@@ -1,6 +1,6 @@
 import { processTokens } from '../bin/app/process/processTokens';
 
-import { defaultConfig } from '../testdata/defaultConfig';
+import { defaultConfig } from '../bin/entities/Config/defaultConfig';
 import { colorFrame } from '../testdata/colorFrame';
 import { spacingFrame } from '../testdata/spacingFrame';
 import { fontFrame } from '../testdata/fontFrame';

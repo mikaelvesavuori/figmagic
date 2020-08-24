@@ -7,7 +7,6 @@ export const defaultConfig: Config = {
   opacitiesUnit: 'float',
   outputFileName: 'figma.json',
   outputFolderBaseFile: '.figmagic',
-  outputFolderComponents: '',
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
   outputFolderTokens: 'tokens',

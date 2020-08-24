@@ -2,7 +2,7 @@ import trash from 'trash';
 
 import { writeElements } from '../bin/frameworks/filesystem/writeElements';
 
-import { defaultConfig } from '../testdata/defaultConfig';
+import { defaultConfig } from '../bin/entities/Config/defaultConfig';
 
 // Set temp folder
 const TEMP_FOLDER = `__elements__`;

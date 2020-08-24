@@ -3,7 +3,7 @@ import trash from 'trash';
 import { writeGraphics } from '../bin/frameworks/filesystem/writeGraphics';
 
 import { fileList } from '../testdata/fileList';
-import { defaultConfig } from '../testdata/defaultConfig';
+import { defaultConfig } from '../bin/entities/Config/defaultConfig';
 
 // Set temp folder
 const TEMP_FOLDER = `__graphics__`;

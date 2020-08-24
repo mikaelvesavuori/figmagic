@@ -37,9 +37,6 @@ export async function createConfiguration(
   if (!defaultConfig) throw new Error(ErrorCreateConfigurationNoDefault);
   if (!userConfigPath) throw new Error(ErrorCreateConfiguration);
 
-  // Set default values first
-  const { outputFolderComponents, ...DEFAULT_CONFIG } = defaultConfig;
-
   // RC file configuration
   let RC_CONFIG: any = {};
 

@@ -1,11 +1,10 @@
 import { Config } from '../../entities/Config/Config';
+import { Element } from '../contracts/Element';
 
 import { parseElement } from './elements/parseElement';
 import { addDescriptionToElements } from './elements/addDescriptionToElements';
 
 import { ErrorProcessElements } from '../../frameworks/errors/errors';
-
-// TODO: Move this to "app/controllers" (?)
 
 /**
  * @description Process all elements from Figma page called "Elements"
@@ -25,10 +24,12 @@ export async function processElements(
 ): Promise<any[]> {
   if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
 
-  const _elements = elementsPage.filter((element) => element.type === 'COMPONENT');
-  const elements = addDescriptionToElements(_elements, components);
+  const filteredElements = elementsPage.filter((element) => element.type === 'COMPONENT');
+  const elements = addDescriptionToElements(filteredElements, components);
   const parsedElements = await Promise.all(
-    elements.map(async (el) => await parseElement(el, config.remSize, config.testMode))
+    elements.map(
+      async (element: Element) => await parseElement(element, config.remSize, config.testMode)
+    )
   );
 
   return parsedElements;

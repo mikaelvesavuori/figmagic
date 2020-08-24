@@ -2,19 +2,18 @@
 
 export type Config = {
   debugMode: boolean;
-  fontUnit: 'rem' | 'em'; // ???
-  letterSpacingUnit: 'em' | 'rem'; // ???
+  fontUnit: 'rem' | 'em';
+  letterSpacingUnit: 'em' | 'px';
   opacitiesUnit: 'float' | 'percent';
   outputFileName: string;
   outputFolderBaseFile: string;
-  outputFolderComponents?: string; // ???
   outputFolderElements: string;
   outputFolderGraphics: string;
   outputFolderTokens: string;
-  outputFormatGraphics: 'svg'; // ???
+  outputFormatGraphics: 'svg' | 'png';
   outputScaleGraphics: number;
-  outputTokenDataType: null; // ???
-  outputTokenFormat: 'mjs'; // ???
+  outputTokenDataType: null | 'enum';
+  outputTokenFormat: 'mjs' | 'js';
   recompileLocal: boolean;
   remSize: number;
   skipFileGeneration: {
