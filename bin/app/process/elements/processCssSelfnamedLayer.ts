@@ -7,7 +7,7 @@ import { TextElement } from '../../../entities/Element/TextElement';
 
 import { msgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
 
-import { errorProcessElementsWrongElementCount } from '../../../frameworks/errors/errors';
+import { ErrorProcessElementsWrongElementCount } from '../../../frameworks/errors/errors';
 
 /**
  * @description Process CSS for layer with same name as self
@@ -35,7 +35,7 @@ export async function processCssSelfnamedLayer(
 
   if (MAIN_ELEMENT[0]) {
     if (MAIN_ELEMENT.length !== 1)
-      throw new Error(`${errorProcessElementsWrongElementCount} ${element.name}!`);
+      throw new Error(`${ErrorProcessElementsWrongElementCount} ${element.name}!`);
 
     const FIXED_NAME = MAIN_ELEMENT[0].name.replace(/\s/gi, '');
     console.log(msgProcessElementsCreatingElement(MAIN_ELEMENT[0].name, FIXED_NAME));

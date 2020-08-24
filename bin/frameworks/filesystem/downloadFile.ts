@@ -2,7 +2,8 @@ import fetch from 'node-fetch';
 import * as fs from 'fs';
 
 import { msgDownloadFileWritingFile } from '../messages/messages';
-import { errorDownloadFile } from '../errors/errors';
+import { ErrorDownloadFile } from '../errors/errors';
+import { createFolder } from './createFolder';
 
 /**
  * @description Get data from API
@@ -12,12 +13,12 @@ import { errorDownloadFile } from '../errors/errors';
  * @param file File path
  */
 export async function downloadFile(url: string, folder: string, file: string): Promise<any> {
-  if (!url || !folder || !file) throw new Error(errorDownloadFile);
+  if (!url || !folder || !file) throw new Error(ErrorDownloadFile);
 
   const response = await fetch(url);
   if (response.status !== 200) return;
 
-  if (!fs.existsSync(folder)) fs.mkdirSync(folder);
+  await createFolder(folder);
 
   return new Promise((resolve, reject) => {
     const PATH = `${folder}/${file}`;

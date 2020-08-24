@@ -1,4 +1,4 @@
-import { errorCreatePage } from '../../frameworks/errors/errors';
+import { ErrorCreatePage } from '../../frameworks/errors/errors';
 
 import { Page } from '../../entities/Page/Page';
 
@@ -9,6 +9,6 @@ import { Page } from '../../entities/Page/Page';
  * @param matchingPageName String that identifies the correct page name
  */
 export function createPage(figmaPages: Page[], matchingPageName: string): Page[] {
-  if (!figmaPages || !(figmaPages.length > 0)) throw new Error(errorCreatePage);
+  if (!figmaPages || !(figmaPages.length > 0)) throw new Error(ErrorCreatePage);
   return figmaPages.filter((page) => page.name === matchingPageName);
 }

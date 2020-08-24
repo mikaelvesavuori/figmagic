@@ -15,7 +15,7 @@ import { setupDurationTokens } from '../tokens/setupDurationTokens';
 import { setupDelayTokens } from '../tokens/setupDelayTokens';
 import { setupEasingTokens } from '../tokens/setupEasingTokens';
 
-import { errorProcessTokens, errorProcessTokensNoConfig } from '../../frameworks/errors/errors';
+import { ErrorProcessTokens, ErrorProcessTokensNoConfig } from '../../frameworks/errors/errors';
 import { ignoreElementsKeywords } from '../../frameworks/system/ignoreElementsKeywords';
 
 import { Frame } from '../../entities/Frame/Frame';
@@ -31,7 +31,7 @@ import { Config } from '../../entities/Config/Config';
  */
 // TODO: Return Tokens
 export function processTokens(sheet: Frame, name: string, config: Config): any {
-  if (!sheet || !name) throw new Error(errorProcessTokens);
+  if (!sheet || !name) throw new Error(ErrorProcessTokens);
 
   // Filter out elements that contain ignore keywords in their name
   sheet.children = sheet.children.filter((item) => {
@@ -67,13 +67,13 @@ export function processTokens(sheet: Frame, name: string, config: Config): any {
     }
     case 'fontfamily':
     case 'fontfamilies': {
-      if (!config) throw new Error(errorProcessTokensNoConfig);
+      if (!config) throw new Error(ErrorProcessTokensNoConfig);
       processedTokens = setupFontTokens(sheet, config.usePostscriptFontNames);
       break;
     }
     case 'fontsize':
     case 'fontsizes': {
-      if (!config) throw new Error(errorProcessTokensNoConfig);
+      if (!config) throw new Error(ErrorProcessTokensNoConfig);
       processedTokens = setupFontSizeTokens(sheet, config.fontUnit, config.remSize);
       break;
     }
@@ -84,7 +84,7 @@ export function processTokens(sheet: Frame, name: string, config: Config): any {
     }
     case 'letterspacing':
     case 'letterspacings': {
-      if (!config) throw new Error(errorProcessTokensNoConfig);
+      if (!config) throw new Error(ErrorProcessTokensNoConfig);
       processedTokens = setupLetterSpacingTokens(sheet, config.letterSpacingUnit);
       break;
     }
@@ -100,7 +100,7 @@ export function processTokens(sheet: Frame, name: string, config: Config): any {
     }
     case 'opacity':
     case 'opacities': {
-      if (!config) throw new Error(errorProcessTokensNoConfig);
+      if (!config) throw new Error(ErrorProcessTokensNoConfig);
       processedTokens = setupOpacityTokens(sheet, config.opacitiesUnit);
       break;
     }
@@ -118,7 +118,7 @@ export function processTokens(sheet: Frame, name: string, config: Config): any {
     case 'spaces':
     case 'spacing':
     case 'spacings': {
-      if (!config) throw new Error(errorProcessTokensNoConfig);
+      if (!config) throw new Error(ErrorProcessTokensNoConfig);
       processedTokens = setupSpacingTokens(sheet, config.spacingUnit, config.remSize);
       break;
     }

@@ -1,4 +1,4 @@
-import { errorCreateEnumStringOutOfObject } from '../errors/errors';
+import { ErrorCreateEnumStringOutOfObject } from '../errors/errors';
 
 /**
  * @description Create enum string from object function
@@ -7,7 +7,7 @@ import { errorCreateEnumStringOutOfObject } from '../errors/errors';
  */
 
 export function createEnumStringOutOfObject(obj: object): string {
-  if (!obj) throw new Error(errorCreateEnumStringOutOfObject);
+  if (!obj) throw new Error(ErrorCreateEnumStringOutOfObject);
 
   return Object.entries(obj).reduce((acc, [key, value]) => {
     return `${acc}\n  '${key}' = '${value}',`;

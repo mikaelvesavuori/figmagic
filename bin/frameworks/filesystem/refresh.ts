@@ -1,6 +1,6 @@
 import trash from 'trash';
 
-import { createFolder } from '../../functions/filesystem/createFolder';
+import { createFolder } from '../../frameworks/filesystem/createFolder';
 
 /**
  * @description TODO

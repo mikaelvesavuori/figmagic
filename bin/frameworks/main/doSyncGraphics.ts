@@ -7,7 +7,7 @@ import { createPage } from '../../functions/process/createPage';
 import { processGraphics } from '../../functions/process/processGraphics';
 import { writeGraphics } from '../filesystem/writeGraphics';
 
-import { msgSyncGraphics } from '../messages/messages';
+import { MsgSyncGraphics } from '../messages/messages';
 
 /**
  * @description TODO
@@ -21,7 +21,7 @@ export async function doSyncGraphics(
   data: FigmaData,
   outputFolder: string
 ): Promise<void> {
-  console.log(msgSyncGraphics);
+  console.log(MsgSyncGraphics);
   try {
     const graphicsPage = createPage(data.document.children, 'Graphics');
     await refresh(outputFolder);

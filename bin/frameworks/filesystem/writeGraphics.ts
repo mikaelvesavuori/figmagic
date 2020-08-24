@@ -1,6 +1,6 @@
 import { downloadFile } from './downloadFile';
 
-import { errorWriteGraphics } from '../errors/errors';
+import { ErrorWriteGraphics } from '../errors/errors';
 
 import { Config } from '../../entities/Config/Config';
 
@@ -11,7 +11,7 @@ import { Config } from '../../entities/Config/Config';
  * @param config Configuration object
  */
 export async function writeGraphics(fileList: any[], config: Config): Promise<boolean> {
-  if (!fileList || !config) throw new Error(errorWriteGraphics);
+  if (!fileList || !config) throw new Error(ErrorWriteGraphics);
 
   console.log('fileList', fileList);
 

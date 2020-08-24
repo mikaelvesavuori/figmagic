@@ -1,6 +1,6 @@
 import { roundColorValue } from './roundColorValue';
 
-import { errorConvertHexToRgba } from '../errors/errors';
+import { ErrorConvertHexToRgba } from '../errors/errors';
 
 /**
  * @description Convert hex color to RGBA
@@ -11,7 +11,7 @@ import { errorConvertHexToRgba } from '../errors/errors';
  * @param a Color value, alpha
  */
 export function convertHexToRgba(r: number, g: number, b: number, a: number): string {
-  if (!r || !g || !b || !a) throw new Error(errorConvertHexToRgba);
+  if (!r || !g || !b || !a) throw new Error(ErrorConvertHexToRgba);
 
   const R = roundColorValue(r, 255);
   const G = roundColorValue(g, 255);

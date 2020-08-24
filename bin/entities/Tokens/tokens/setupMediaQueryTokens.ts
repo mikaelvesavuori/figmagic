@@ -1,9 +1,9 @@
 import { camelize } from '../helpers/camelize';
 
 import {
-  errorSetupMediaQueryTokensNoFrame,
-  errorSetupMediaQueryTokensNoChildren,
-  errorSetupMediaQueryTokensMissingProps
+  ErrorSetupMediaQueryTokensNoFrame,
+  ErrorSetupMediaQueryTokensNoChildren,
+  ErrorSetupMediaQueryTokensMissingProps
 } from '../../frameworks/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
@@ -14,14 +14,14 @@ import { Frame } from '../../entities/Frame/Frame';
  * @param mediaQueryFrame The media queries frame from Figma
  */
 export function setupMediaQueryTokens(mediaQueryFrame: Frame): MediaQueryTokens {
-  if (!mediaQueryFrame) throw new Error(errorSetupMediaQueryTokensNoFrame);
-  if (!mediaQueryFrame.children) throw new Error(errorSetupMediaQueryTokensNoChildren);
+  if (!mediaQueryFrame) throw new Error(ErrorSetupMediaQueryTokensNoFrame);
+  if (!mediaQueryFrame.children) throw new Error(ErrorSetupMediaQueryTokensNoChildren);
 
   let mediaQueryObject = {};
 
   mediaQueryFrame.children.forEach((type) => {
     if (!type.name || !type.absoluteBoundingBox)
-      throw new Error(errorSetupMediaQueryTokensMissingProps);
+      throw new Error(ErrorSetupMediaQueryTokensMissingProps);
 
     const name = camelize(type.name);
 

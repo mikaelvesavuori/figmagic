@@ -5,7 +5,7 @@ import { ProcessedSelfnamedCss } from '../../../entities/Css/Css';
 import { processCssSelfnamedLayer } from '../../process/elements/processCssSelfnamedLayer';
 import { parseTypographyStylingFromElement } from '../parseTypographyStylingFromElement';
 
-import { errorProcessElementsWrongTextElementCount } from '../../../frameworks/errors/errors';
+import { ErrorProcessElementsWrongTextElementCount } from '../../../frameworks/errors/errors';
 
 /**
  * @description Add description to list of elements
@@ -22,7 +22,7 @@ export async function handleNonNestedElements(
   // Check for text elements
   const TEXT_ELEMENT = element.children.filter((e) => e.type === 'TEXT' && e.name[0] !== '_');
   if (TEXT_ELEMENT.length > 1)
-    throw new Error(`${errorProcessElementsWrongTextElementCount} ${element.name}!`);
+    throw new Error(`${ErrorProcessElementsWrongTextElementCount} ${element.name}!`);
 
   let { css, html, extraProps, text, imports, isTest } = data;
 

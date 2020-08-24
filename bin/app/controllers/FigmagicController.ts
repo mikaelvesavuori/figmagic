@@ -4,7 +4,7 @@ import { createTokens } from '../../usecases/createTokens';
 import { createElements } from '../../usecases/createElements';
 import { createGraphics } from '../../usecases/createGraphics';
 
-import { msgJobComplete } from '../../frameworks/messages/messages';
+import { MsgJobComplete } from '../../frameworks/messages/messages';
 
 /**
  * @description TODO
@@ -27,5 +27,5 @@ export async function FigmagicController(config: Config, data: any): Promise<voi
   if (syncElements) await createElements(config, data, outputFolderElements);
   if (syncGraphics) await createGraphics(config, data, outputFolderGraphics);
 
-  console.log(msgJobComplete);
+  console.log(MsgJobComplete);
 }

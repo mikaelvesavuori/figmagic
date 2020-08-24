@@ -1,9 +1,9 @@
 import { camelize } from '../helpers/camelize';
 
 import {
-  errorSetupDelayTokensNoFrame,
-  errorSetupDelayTokensNoChildren,
-  errorSetupDelayTokensMissingProps
+  ErrorSetupDelayTokensNoFrame,
+  ErrorSetupDelayTokensNoChildren,
+  ErrorSetupDelayTokensMissingProps
 } from '../../frameworks/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
@@ -14,13 +14,13 @@ import { Frame } from '../../entities/Frame/Frame';
  * @param delayFrame The delays frame from Figma
  */
 export function setupDelayTokens(delayFrame: Frame): DelayTokens {
-  if (!delayFrame) throw new Error(errorSetupDelayTokensNoFrame);
-  if (!delayFrame.children) throw new Error(errorSetupDelayTokensNoChildren);
+  if (!delayFrame) throw new Error(ErrorSetupDelayTokensNoFrame);
+  if (!delayFrame.children) throw new Error(ErrorSetupDelayTokensNoChildren);
 
   let delayObject = {};
 
   delayFrame.children.forEach((type) => {
-    if (!type.name || !type.characters) throw new Error(errorSetupDelayTokensMissingProps);
+    if (!type.name || !type.characters) throw new Error(ErrorSetupDelayTokensMissingProps);
 
     const name = camelize(type.name);
 

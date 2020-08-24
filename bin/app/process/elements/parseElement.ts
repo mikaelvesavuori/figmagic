@@ -1,5 +1,5 @@
 import { FigmagicElement } from '../../../entities/FigmagicElement/FigmagicElement';
-import { errorParseElement } from '../../../frameworks/errors/errors';
+import { ErrorParseElement } from '../../../frameworks/errors/errors';
 
 import { ElementAuxData } from '../../../app/contracts/ElementAuxData/ElementAuxData';
 
@@ -21,7 +21,7 @@ export async function parseElement(
   remSize: number,
   isTest: boolean = false
 ): Promise<any> {
-  if (!element || !remSize) throw new Error(errorParseElement);
+  if (!element || !remSize) throw new Error(ErrorParseElement);
 
   let newElement: FigmagicElement = {
     id: element.id,

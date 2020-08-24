@@ -1,4 +1,4 @@
-import { errorAddDescriptionToElements } from '../../../frameworks/errors/errors';
+import { ErrorAddDescriptionToElements } from '../../../frameworks/errors/errors';
 
 /**
  * @description Add description to list of elements
@@ -8,7 +8,7 @@ import { errorAddDescriptionToElements } from '../../../frameworks/errors/errors
  */
 // TODO: Add real types
 export function addDescriptionToElements(elements: object[], components: object[]): any[] {
-  if (!elements || !components) throw new Error(errorAddDescriptionToElements);
+  if (!elements || !components) throw new Error(ErrorAddDescriptionToElements);
 
   return elements.map((element: any) => {
     const _element = element;

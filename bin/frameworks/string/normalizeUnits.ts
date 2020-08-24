@@ -1,7 +1,7 @@
 import {
-  errorNormalizeUnits,
-  errorNormalizeUnitsNoRemSize,
-  errorNormalizeUnitsUndefined
+  ErrorNormalizeUnits,
+  ErrorNormalizeUnitsNoRemSize,
+  ErrorNormalizeUnitsUndefined
 } from '../errors/errors';
 
 /**
@@ -18,7 +18,7 @@ export function normalizeUnits(
   newUnit: string,
   remSize?: number
 ): string {
-  if (!value || !currentUnit || !newUnit) throw new Error(errorNormalizeUnits);
+  if (!value || !currentUnit || !newUnit) throw new Error(ErrorNormalizeUnits);
 
   let rootSize = undefined;
   let unitSize = undefined;
@@ -35,7 +35,7 @@ export function normalizeUnits(
 
   // Set new unit
   if (newUnit === 'rem' || newUnit === 'em') {
-    if (!remSize) throw new Error(errorNormalizeUnitsNoRemSize);
+    if (!remSize) throw new Error(ErrorNormalizeUnitsNoRemSize);
     unitSize = remSize;
   }
 
@@ -49,7 +49,7 @@ export function normalizeUnits(
   }
 
   if (rootSize === undefined || unitSize === undefined)
-    throw new Error(errorNormalizeUnitsUndefined);
+    throw new Error(ErrorNormalizeUnitsUndefined);
 
   if (newUnit === 'unitless') {
     return `${unitSize}`;

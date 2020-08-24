@@ -1,11 +1,11 @@
-import { errorParseCliArgs } from '../../frameworks/errors/errors';
+import { ErrorParseCliArgs } from '../../frameworks/errors/errors';
 
 import {
-  warnParseCliArgsOutputFormat,
-  warnParseCliArgsFontUnit,
-  warnParseCliArgsOpacitiesUnit,
-  warnParseCliArgsLetterSpacingUnit,
-  warnParseCliArgsSpacingUnit
+  WarnParseCliArgsOutputFormat,
+  WarnParseCliArgsFontUnit,
+  WarnParseCliArgsOpacitiesUnit,
+  WarnParseCliArgsLetterSpacingUnit,
+  WarnParseCliArgsSpacingUnit
 } from '../../frameworks/warnings/warnings';
 
 import { defaultConfig } from './config';
@@ -16,7 +16,7 @@ import { defaultConfig } from './config';
  * @param argsArray Array of string arguments
  */
 export function parseCliArgs(argsArray: any[]): any {
-  if (!argsArray) throw new Error(errorParseCliArgs);
+  if (!argsArray) throw new Error(ErrorParseCliArgs);
 
   let config = {};
 
@@ -88,7 +88,7 @@ export function parseCliArgs(argsArray: any[]): any {
           case '-tf': {
             let outputTokenFormat = argsArray[index + 1].toLowerCase();
             if (!['mjs', 'js'].includes(outputTokenFormat)) {
-              console.warn(warnParseCliArgsOutputFormat);
+              console.warn(WarnParseCliArgsOutputFormat);
               outputTokenFormat = defaultConfig.outputTokenFormat;
             }
             accumulatedConfig.outputTokenFormat = outputTokenFormat;
@@ -99,7 +99,7 @@ export function parseCliArgs(argsArray: any[]): any {
           case '-f': {
             let fontUnit = argsArray[index + 1].toLowerCase();
             if (!['rem', 'em'].includes(fontUnit)) {
-              console.warn(warnParseCliArgsFontUnit);
+              console.warn(WarnParseCliArgsFontUnit);
               fontUnit = defaultConfig.fontUnit;
             }
             accumulatedConfig.fontUnit = fontUnit;
@@ -110,7 +110,7 @@ export function parseCliArgs(argsArray: any[]): any {
           case '-lsu': {
             let letterSpacingUnit = argsArray[index + 1].toLowerCase();
             if (!['em', 'px'].includes(letterSpacingUnit)) {
-              console.warn(warnParseCliArgsLetterSpacingUnit);
+              console.warn(WarnParseCliArgsLetterSpacingUnit);
               letterSpacingUnit = defaultConfig.letterSpacingUnit;
             }
             accumulatedConfig.letterSpacingUnit = letterSpacingUnit;
@@ -121,7 +121,7 @@ export function parseCliArgs(argsArray: any[]): any {
           case '-ou': {
             let opacitiesUnit = argsArray[index + 1].toLowerCase();
             if (!['float', 'percent'].includes(opacitiesUnit)) {
-              console.warn(warnParseCliArgsOpacitiesUnit);
+              console.warn(WarnParseCliArgsOpacitiesUnit);
               opacitiesUnit = defaultConfig.opacitiesUnit;
             }
             accumulatedConfig.opacitiesUnit = opacitiesUnit;
@@ -132,7 +132,7 @@ export function parseCliArgs(argsArray: any[]): any {
           case '-s': {
             let spacingUnit = argsArray[index + 1].toLowerCase();
             if (!['rem', 'em'].includes(spacingUnit)) {
-              console.warn(warnParseCliArgsSpacingUnit);
+              console.warn(WarnParseCliArgsSpacingUnit);
               spacingUnit = defaultConfig.spacingUnit;
             }
             accumulatedConfig.spacingUnit = spacingUnit;

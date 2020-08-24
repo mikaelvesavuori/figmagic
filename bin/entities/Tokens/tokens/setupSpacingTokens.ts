@@ -2,9 +2,9 @@ import { camelize } from '../helpers/camelize';
 import { normalizeUnits } from '../helpers/normalizeUnits';
 
 import {
-  errorSetupSpacingTokensNoFrame,
-  errorSetupSpacingTokensNoChildren,
-  errorSetupSpacingTokensNoUnits
+  ErrorSetupSpacingTokensNoFrame,
+  ErrorSetupSpacingTokensNoChildren,
+  ErrorSetupSpacingTokensNoUnits
 } from '../../frameworks/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
@@ -21,9 +21,9 @@ export function setupSpacingTokens(
   spacingUnit: string,
   remSize: number
 ): SpacingTokens {
-  if (!spacingFrame) throw new Error(errorSetupSpacingTokensNoFrame);
-  if (!spacingFrame.children) throw new Error(errorSetupSpacingTokensNoChildren);
-  if (!spacingUnit || !remSize) throw new Error(errorSetupSpacingTokensNoUnits);
+  if (!spacingFrame) throw new Error(ErrorSetupSpacingTokensNoFrame);
+  if (!spacingFrame.children) throw new Error(ErrorSetupSpacingTokensNoChildren);
+  if (!spacingUnit || !remSize) throw new Error(ErrorSetupSpacingTokensNoUnits);
 
   const { children } = spacingFrame;
   const SPACING_OBJECT = {};

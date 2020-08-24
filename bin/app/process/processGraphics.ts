@@ -2,12 +2,12 @@ import { camelize } from '../helpers/camelize';
 import { getFromApi } from '../../frameworks/filesystem/getFromApi';
 
 import {
-  errorProcessGraphics,
-  errorProcessGraphicsImageError,
-  errorProcessGraphicsNoImages,
-  errorGetIds,
-  errorGetFileList,
-  errorGetIdString
+  ErrorProcessGraphics,
+  ErrorProcessGraphicsImageError,
+  ErrorProcessGraphicsNoImages,
+  ErrorGetIds,
+  ErrorGetFileList,
+  ErrorGetIdstring
 } from '../../frameworks/errors/errors';
 
 import { ImageResponse } from '../../app/contracts/image/ImageResponse';
@@ -24,7 +24,7 @@ import { Config } from '../../entities/Config/Config';
  */
 // TODO: Add real types
 export async function processGraphics(graphicsPage: object, config: Config): Promise<Graphics[]> {
-  if (!graphicsPage) throw new Error(errorProcessGraphics);
+  if (!graphicsPage) throw new Error(ErrorProcessGraphics);
 
   const { token, url, outputFormatGraphics, outputScaleGraphics } = config;
 
@@ -35,8 +35,8 @@ export async function processGraphics(graphicsPage: object, config: Config): Pro
 
   const IMAGE_RESPONSE: ImageResponse = await getFromApi(token, URL, 'images');
 
-  if (IMAGE_RESPONSE.err) throw new Error(errorProcessGraphicsImageError);
-  if (!IMAGE_RESPONSE.images) throw new Error(errorProcessGraphicsNoImages);
+  if (IMAGE_RESPONSE.err) throw new Error(ErrorProcessGraphicsImageError);
+  if (!IMAGE_RESPONSE.images) throw new Error(ErrorProcessGraphicsNoImages);
 
   return getFileList(IMAGE_RESPONSE, IDS, outputFormatGraphics);
 }
@@ -53,7 +53,7 @@ export const getFileList = (
   ids: any[],
   outputFormatGraphics: string
 ): any[] => {
-  if (!imageResponse || !ids || !outputFormatGraphics) throw new Error(errorGetFileList);
+  if (!imageResponse || !ids || !outputFormatGraphics) throw new Error(ErrorGetFileList);
 
   let fileList = [];
 
@@ -83,8 +83,8 @@ export const getFileList = (
  * @param graphicsPage Figma 'Graphics' page
  */
 export const getIds = (graphicsPage: GraphicsPage): any[] => {
-  if (!graphicsPage) throw new Error(errorGetIds);
-  if (!(graphicsPage.length > 0)) throw new Error(errorGetIds);
+  if (!graphicsPage) throw new Error(ErrorGetIds);
+  if (!(graphicsPage.length > 0)) throw new Error(ErrorGetIds);
 
   let items = [];
 
@@ -104,7 +104,7 @@ export const getIds = (graphicsPage: GraphicsPage): any[] => {
  * @param ids Figma 'Graphics' page
  */
 export const getIdString = (ids: any[]): string => {
-  if (!ids) throw new Error(errorGetIdString);
+  if (!ids) throw new Error(ErrorGetIdstring);
 
   let idString = '';
 

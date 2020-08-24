@@ -1,6 +1,6 @@
 import { replaceMediaQuery } from '../helpers/replaceMediaQuery';
 
-import { errorParseCssFromDescription } from '../../frameworks/errors/errors';
+import { ErrorParseCssFromDescription } from '../../frameworks/errors/errors';
 
 // TODO: Refactor
 
@@ -11,7 +11,7 @@ import { errorParseCssFromDescription } from '../../frameworks/errors/errors';
  * @param tokens Array of design tokens
  */
 export function parseCssFromDescription(desc: string = '', tokens: any[]): object | string {
-  if (!tokens) throw new Error(errorParseCssFromDescription);
+  if (!tokens) throw new Error(ErrorParseCssFromDescription);
 
   if (desc === '') return '';
 

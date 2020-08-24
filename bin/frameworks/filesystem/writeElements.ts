@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import { toPascalCase } from '../string/toPascalCase';
 import { writeFile } from './writeFile';
 
-import { errorWriteElements } from '../errors/errors';
+import { ErrorWriteElements } from '../errors/errors';
 
 import { Config } from '../../entities/Config/Config';
 
@@ -14,7 +14,7 @@ import { Config } from '../../entities/Config/Config';
  * @param config User configuration object
  */
 export async function writeElements(elements: any[], config: Config): Promise<void> {
-  if (!elements || !config) throw new Error(errorWriteElements);
+  if (!elements || !config) throw new Error(ErrorWriteElements);
 
   await elements.forEach((comp) => {
     const HTML = comp.html;

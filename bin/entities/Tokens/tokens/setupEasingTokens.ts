@@ -1,9 +1,9 @@
 import { camelize } from '../helpers/camelize';
 
 import {
-  errorSetupEasingTokensNoFrame,
-  errorSetupEasingTokensNoChildren,
-  errorSetupEasingTokensMissingProps
+  ErrorSetupEasingTokensNoFrame,
+  ErrorSetupEasingTokensNoChildren,
+  ErrorSetupEasingTokensMissingProps
 } from '../../frameworks/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
@@ -14,13 +14,13 @@ import { Frame } from '../../entities/Frame/Frame';
  * @param easingFrame The easings frame from Figma
  */
 export function setupEasingTokens(easingFrame: Frame): EasingTokens {
-  if (!easingFrame) throw new Error(errorSetupEasingTokensNoFrame);
-  if (!easingFrame.children) throw new Error(errorSetupEasingTokensNoChildren);
+  if (!easingFrame) throw new Error(ErrorSetupEasingTokensNoFrame);
+  if (!easingFrame.children) throw new Error(ErrorSetupEasingTokensNoChildren);
 
   let easingObject = {};
 
   easingFrame.children.forEach((type) => {
-    if (!type.name || !type.characters) throw new Error(errorSetupEasingTokensMissingProps);
+    if (!type.name || !type.characters) throw new Error(ErrorSetupEasingTokensMissingProps);
 
     const name = camelize(type.name);
 

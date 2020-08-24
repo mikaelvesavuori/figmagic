@@ -1,9 +1,9 @@
 import { camelize } from '../helpers/camelize';
 
 import {
-  errorSetupFontTokensNoFrame,
-  errorSetupFontTokensNoChildren,
-  errorSetupFontTokensMissingProps
+  ErrorSetupFontTokensNoFrame,
+  ErrorSetupFontTokensNoChildren,
+  ErrorSetupFontTokensMissingProps
 } from '../../frameworks/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
@@ -15,13 +15,13 @@ import { Frame } from '../../entities/Frame/Frame';
  * @param usePostscriptFontNames Boolean to decide if to use Postscript font names or the default font family names (without spaces)
  */
 export function setupFontTokens(fontFrame: Frame, usePostscriptFontNames: boolean): FontTokens {
-  if (!fontFrame) throw new Error(errorSetupFontTokensNoFrame);
-  if (!fontFrame.children) throw new Error(errorSetupFontTokensNoChildren);
+  if (!fontFrame) throw new Error(ErrorSetupFontTokensNoFrame);
+  if (!fontFrame.children) throw new Error(ErrorSetupFontTokensNoChildren);
 
   let fontObject = {};
 
   fontFrame.children.forEach((type) => {
-    if (!type.name || !type.style) throw new Error(errorSetupFontTokensMissingProps);
+    if (!type.name || !type.style) throw new Error(ErrorSetupFontTokensMissingProps);
 
     const name = camelize(type.name);
 

@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import { errorParseCssFromElement } from '../../frameworks/errors/errors';
+import { ErrorParseCssFromElement } from '../../frameworks/errors/errors';
 
 import { Css } from '../../entities/Css/Css';
 import { Element } from '../../entities/Element/Element';
@@ -35,7 +35,7 @@ export async function parseCssFromElement(
   remSize: number,
   isTest: boolean = false
 ): Promise<Css> {
-  if (!element || !remSize) throw new Error(errorParseCssFromElement);
+  if (!element || !remSize) throw new Error(ErrorParseCssFromElement);
 
   // Dynamic imports
   const PATH = isTest ? path.join(`testdata`, `tokens`) : `tokens`;

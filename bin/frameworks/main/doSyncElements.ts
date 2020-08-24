@@ -6,7 +6,7 @@ import { createPage } from '../../functions/process/createPage';
 import { processElements } from '../../functions/process/processElements';
 import { writeElements } from '../filesystem/writeElements';
 
-import { msgSyncElements } from '../messages/messages';
+import { MsgSyncElements } from '../messages/messages';
 
 /**
  * @description TODO
@@ -20,7 +20,7 @@ export async function doSyncElements(
   data: FigmaData,
   outputFolder: string
 ): Promise<void> {
-  console.log(msgSyncElements);
+  console.log(MsgSyncElements);
 
   try {
     const { components } = data;

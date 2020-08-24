@@ -2,9 +2,9 @@ import { FigmaData } from '../../entities/FigmaData/FigmaData';
 
 import { getFromApi } from '../filesystem/getFromApi';
 
-import { errorGetData } from '../errors/errors';
+import { ErrorGetData } from '../errors/errors';
 
-import { msgSetDataFromApi } from '../messages/messages';
+import { MsgSetDataFromApi } from '../messages/messages';
 
 /**
  * @description TODO
@@ -13,13 +13,13 @@ import { msgSetDataFromApi } from '../messages/messages';
  * @param url
  */
 export async function getDataRemote(token: string, url: string): Promise<FigmaData> {
-  console.log(msgSetDataFromApi);
+  console.log(MsgSetDataFromApi);
 
   let data = null;
 
   try {
     data = await getFromApi(token, url);
-    if (!data || data.status === 403) throw new Error(errorGetData);
+    if (!data || data.status === 403) throw new Error(ErrorGetData);
   } catch (error) {
     throw new Error(error);
   }

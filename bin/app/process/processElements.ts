@@ -1,5 +1,5 @@
 import { Config } from '../../entities/Config/Config';
-import { errorProcessElements } from '../../frameworks/errors/errors';
+import { ErrorProcessElements } from '../../frameworks/errors/errors';
 
 import { parseElement } from './elements/parseElement';
 import { addDescriptionToElements } from './elements/addDescriptionToElements';
@@ -22,7 +22,7 @@ export async function processElements(
   components: object,
   config: Config
 ): Promise<any[]> {
-  if (!elementsPage || !components || !config) throw new Error(errorProcessElements);
+  if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
 
   const _elements = elementsPage.filter((element) => element.type === 'COMPONENT');
   const elements = addDescriptionToElements(_elements, components);

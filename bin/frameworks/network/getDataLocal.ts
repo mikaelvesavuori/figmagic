@@ -4,7 +4,7 @@ import { FigmaData } from '../../entities/FigmaData/FigmaData';
 
 import { loadFile } from '../filesystem/loadFile';
 
-import { msgSetDataFromLocal } from '../messages/messages';
+import { MsgSetDataFromLocal } from '../messages/messages';
 
 /**
  * @description TODO
@@ -16,7 +16,7 @@ export async function getDataLocal(
   outputFolderBaseFile: string,
   outputFileName: string
 ): Promise<FigmaData> {
-  console.log(msgSetDataFromLocal);
+  console.log(MsgSetDataFromLocal);
 
   try {
     return await loadFile(path.join(`${outputFolderBaseFile}`, `${outputFileName}`));

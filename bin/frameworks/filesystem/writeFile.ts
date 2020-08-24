@@ -8,12 +8,12 @@ import { createEnumStringOutOfObject } from '../helpers/createEnumStringOutOfObj
 import { Metadata } from '../../app/contracts/filesystem/Metadata';
 import { Templates } from '../../app/contracts/filesystem/Templates';
 
-import { msgGeneratedFileWarning } from '../messages/messages';
+import { MsgGeneratedFileWarning } from '../messages/messages';
 import {
-  errorWriteFile,
-  errorWriteFileWrongType,
-  errorWrite,
-  errorPrepareWrite
+  ErrorWriteFile,
+  ErrorWriteFileWrongType,
+  ErrorWrite,
+  ErrorPrepareWrite
 } from '../errors/errors';
 
 /**
@@ -36,7 +36,7 @@ export async function writeFile(
   metadata?: Metadata,
   templates?: Templates
 ): Promise<void> {
-  if (!file || !path || !name || !type) throw new Error(errorWriteFile);
+  if (!file || !path || !name || !type) throw new Error(ErrorWriteFile);
 
   const _TYPE = type.toLowerCase();
 
@@ -49,7 +49,7 @@ export async function writeFile(
     _TYPE !== 'story' &&
     _TYPE !== 'description'
   )
-    throw new Error(errorWriteFileWrongType);
+    throw new Error(ErrorWriteFileWrongType);
 
   createFolder(path);
 
@@ -88,7 +88,7 @@ async function prepareWrite(
   templates: Templates
 ) {
   if (type === 'css' || type === 'story' || type === 'component') {
-    if (!templates) throw new Error(errorPrepareWrite);
+    if (!templates) throw new Error(ErrorPrepareWrite);
   }
 
   let fileContent = ``;
@@ -139,11 +139,11 @@ async function prepareWrite(
   // Design token
   else if (type === 'token') {
     if (metadata && metadata.dataType === 'enum') {
-      fileContent = `// ${msgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
+      fileContent = `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
         file
       )}\n}\n\nexport default ${name};`;
     } else {
-      fileContent = `// ${msgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
+      fileContent = `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
         file,
         null,
         ' '
@@ -179,7 +179,7 @@ async function prepareWrite(
   // CSS
   else if (type === 'css') {
     const SUFFIX = 'Css';
-    fileContent = `// ${msgGeneratedFileWarning}\n\n${IMPORTS}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
+    fileContent = `// ${MsgGeneratedFileWarning}\n\n${IMPORTS}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
     filePath += `${SUFFIX}.${format}`;
   }
   // Storybook
@@ -195,7 +195,7 @@ async function prepareWrite(
   }
   // Markdown description
   else if (type === 'description') {
-    fileContent = `<!--${msgGeneratedFileWarning}-->\n${file}`;
+    fileContent = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
     filePath += `.description.${format}`;
   }
 
@@ -213,7 +213,7 @@ async function write(filePath: string, fileContent: string): Promise<boolean> {
   return await new Promise((resolve, reject) => {
     try {
       fs.writeFile(filePath, fileContent, 'utf-8', (error) => {
-        if (error) throw new Error(`${errorWrite}: ${error}`);
+        if (error) throw new Error(`${ErrorWrite}: ${error}`);
         resolve(true);
       });
     } catch (error) {

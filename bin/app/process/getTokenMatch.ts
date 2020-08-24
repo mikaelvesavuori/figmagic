@@ -1,7 +1,7 @@
 import { normalizeUnits } from '../helpers/normalizeUnits';
 
-import { msgGetTokenMatchNoMatch } from '../../frameworks/messages/messages';
-import { errorGetTokenMatch, errorGetTokenMatchNoRemSize } from '../../frameworks/errors/errors';
+import { MsgGetTokenMatchNoMatch } from '../../frameworks/messages/messages';
+import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../frameworks/errors/errors';
 
 import { TokenMatch } from '../../app/contracts/process/TokenMatch';
 
@@ -23,7 +23,7 @@ export function getTokenMatch(
   expectedValue: string | number | object,
   remSize: number
 ): TokenMatch {
-  if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error(errorGetTokenMatch);
+  if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error(ErrorGetTokenMatch);
 
   let updatedCss: string = ``;
   let updatedImports: any[] = [];
@@ -51,7 +51,7 @@ function doPadding(
     let foundMatch = false;
 
     if (expectedValue[key] && expectedValue[key] > 0) {
-      if (!remSize) throw new Error(errorGetTokenMatchNoRemSize);
+      if (!remSize) throw new Error(ErrorGetTokenMatchNoRemSize);
       const value = normalizeUnits(expectedValue[key], 'px', 'rem', remSize);
 
       // Check if we can match value with a token and its value
@@ -64,7 +64,7 @@ function doPadding(
 
       // Write expected value as-is, since we couldn't match it to a token
       if (!foundMatch) {
-        console.warn(`${msgGetTokenMatchNoMatch} ${property}: ${value}`);
+        console.warn(`${MsgGetTokenMatchNoMatch} ${property}: ${value}`);
         updatedCss += `${property}-${key}: ${value};\n`;
       }
     }
@@ -113,7 +113,7 @@ function doOther(
 
   // Write expected value as-is, since we couldn't match it to a token
   if (!foundMatch) {
-    console.warn(`${msgGetTokenMatchNoMatch} ${property}: ${expectedValue}`);
+    console.warn(`${MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`);
     updatedCss += `${property}: ${expectedValue};\n`;
   }
 }

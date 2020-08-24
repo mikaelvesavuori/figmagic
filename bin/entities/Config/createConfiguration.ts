@@ -2,14 +2,14 @@ import { loadFile } from '../../frameworks/filesystem/loadFile';
 import { parseCliArgs } from './parseCliArgs';
 
 import {
-  msgConfigDebugEnv,
-  msgConfigDebugCli,
-  msgConfigDebugRc,
-  msgConfigDebugFinal
+  MsgConfigDebugEnv,
+  MsgConfigDebugCli,
+  MsgConfigDebugRc,
+  MsgConfigDebugFinal
 } from '../../frameworks/messages/messages';
 import {
-  errorCreateConfiguration,
-  errorCreateConfigurationNoDefault
+  ErrorCreateConfiguration,
+  ErrorCreateConfigurationNoDefault
 } from '../../frameworks/errors/errors';
 
 import { Config } from './Config';
@@ -32,8 +32,8 @@ export async function createConfiguration(
   userConfigPath: string,
   ...cliArgs: any[]
 ): Promise<Config> {
-  if (!defaultConfig) throw new Error(errorCreateConfigurationNoDefault);
-  if (!userConfigPath) throw new Error(errorCreateConfiguration);
+  if (!defaultConfig) throw new Error(ErrorCreateConfigurationNoDefault);
+  if (!userConfigPath) throw new Error(ErrorCreateConfiguration);
 
   // Set default values first
   const { outputFolderComponents, ...DEFAULT_CONFIG } = defaultConfig;
@@ -100,12 +100,12 @@ function printConfigs(
   rcConfig: object,
   config: object
 ): void {
-  console.log(msgConfigDebugEnv);
+  console.log(MsgConfigDebugEnv);
   console.log(envConfig);
-  console.log(msgConfigDebugCli);
+  console.log(MsgConfigDebugCli);
   console.log(cliConfig);
-  console.log(msgConfigDebugRc);
+  console.log(MsgConfigDebugRc);
   console.log(rcConfig);
-  console.log(msgConfigDebugFinal);
+  console.log(MsgConfigDebugFinal);
   console.log(config);
 }

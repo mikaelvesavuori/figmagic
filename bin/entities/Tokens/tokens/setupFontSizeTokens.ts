@@ -1,11 +1,11 @@
 import { camelize } from '../helpers/camelize';
 
 import {
-  errorSetupFontSizeTokensNoFrame,
-  errorSetupFontSizeTokensNoChildren,
-  errorSetupFontSizeTokensNoSizing,
-  errorSetupFontSizeTokensMissingProps,
-  errorSetupFontSizeTokensMissingSize
+  ErrorSetupFontSizeTokensNoFrame,
+  ErrorSetupFontSizeTokensNoChildren,
+  ErrorSetupFontSizeTokensNoSizing,
+  ErrorSetupFontSizeTokensMissingProps,
+  ErrorSetupFontSizeTokensMissingSize
 } from '../../frameworks/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
@@ -22,15 +22,15 @@ export function setupFontSizeTokens(
   fontUnit: string,
   remSize: number
 ): FontSizeTokens {
-  if (!fontSizeFrame) throw new Error(errorSetupFontSizeTokensNoFrame);
-  if (!fontSizeFrame.children) throw new Error(errorSetupFontSizeTokensNoChildren);
-  if (!fontUnit || !remSize) throw new Error(errorSetupFontSizeTokensNoSizing);
+  if (!fontSizeFrame) throw new Error(ErrorSetupFontSizeTokensNoFrame);
+  if (!fontSizeFrame.children) throw new Error(ErrorSetupFontSizeTokensNoChildren);
+  if (!fontUnit || !remSize) throw new Error(ErrorSetupFontSizeTokensNoSizing);
 
   let fontSizeObject = {};
 
   fontSizeFrame.children.forEach((type) => {
-    if (!type.name || !type.style) throw new Error(errorSetupFontSizeTokensMissingProps);
-    if (!type.style.fontSize) throw new Error(errorSetupFontSizeTokensMissingSize);
+    if (!type.name || !type.style) throw new Error(ErrorSetupFontSizeTokensMissingProps);
+    if (!type.style.fontSize) throw new Error(ErrorSetupFontSizeTokensMissingSize);
 
     const name = camelize(type.name);
     const FONT_SIZE = ((type.style.fontSize as unknown) as number) / remSize + fontUnit;

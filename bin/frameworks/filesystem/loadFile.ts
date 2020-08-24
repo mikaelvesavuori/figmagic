@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-import { errorLoadFile } from '../errors/errors';
+import { ErrorLoadFile } from '../errors/errors';
 
 /**
  * @description Load file from local path
@@ -9,8 +9,8 @@ import { errorLoadFile } from '../errors/errors';
  * @param isRaw Bool to set if data should be parsed or not
  */
 export async function loadFile(path: string, isRaw: boolean = false): Promise<any> {
-  if (!path) throw new Error(errorLoadFile(path));
-  if (!fs.existsSync(path)) throw new Error(errorLoadFile(path));
+  if (!path) throw new Error(ErrorLoadFile(path));
+  if (!fs.existsSync(path)) throw new Error(ErrorLoadFile(path));
 
   try {
     return await new Promise((resolve, reject) =>

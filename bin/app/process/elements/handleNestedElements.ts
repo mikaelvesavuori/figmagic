@@ -7,8 +7,8 @@ import { processNestedCss } from '../processNestedCss';
 import { msgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
 
 import {
-  errorProcessElementsNoMainElement,
-  errorHandleNestedElements
+  ErrorProcessElementsNoMainElement,
+  ErrorHandleNestedElements
 } from '../../../frameworks/errors/errors';
 
 // TODO: Add to "usecases" (?)
@@ -23,7 +23,7 @@ export async function handleNestedElements(
   remSize: number,
   data: ElementAuxData
 ): Promise<string> {
-  if (!element) throw new Error(errorHandleNestedElements);
+  if (!element) throw new Error(ErrorHandleNestedElements);
 
   const { children } = element;
 
@@ -72,7 +72,7 @@ export async function handleNestedElements(
       // Check and set correct selector type: class or pseudo-element
       const SELECTOR_TYPE = '.';
 
-      if (!MAIN_ELEMENT) throw new Error(errorProcessElementsNoMainElement);
+      if (!MAIN_ELEMENT) throw new Error(ErrorProcessElementsNoMainElement);
 
       // Clean names from any spaces
       const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');

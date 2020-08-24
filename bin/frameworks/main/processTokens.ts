@@ -6,7 +6,7 @@ import { refresh } from '../filesystem/refresh';
 import { writeTokens } from '../filesystem/writeTokens';
 import { createPage } from '../../functions/process/createPage';
 
-import { msgWriteTokens } from '../messages/messages';
+import { MsgWriteTokens } from '../messages/messages';
 
 /**
  * @description TODO
@@ -20,7 +20,7 @@ export async function processTokens(
   data: FigmaData,
   outputFolder: string
 ): Promise<void> {
-  console.log(msgWriteTokens);
+  console.log(MsgWriteTokens);
   try {
     const tokensPage: Page[] = createPage(data.document.children, 'Design Tokens');
     await refresh(outputFolder);

@@ -1,4 +1,4 @@
-import { errorRoundColorValue } from '../errors/errors';
+import { ErrorRoundColorValue } from '../errors/errors';
 
 /**
  * @description Round color values so they are whole integers
@@ -7,7 +7,7 @@ import { errorRoundColorValue } from '../errors/errors';
  * @param scale Maximum value, as int (?)
  */
 export function roundColorValue(quantity: number = 0.0, scale: number = 255): number {
-  if (scale < 0 || scale > 255) throw new Error(errorRoundColorValue);
+  if (scale < 0 || scale > 255) throw new Error(ErrorRoundColorValue);
 
   // Set bounds
   const MIN_VALUE = 0.0;

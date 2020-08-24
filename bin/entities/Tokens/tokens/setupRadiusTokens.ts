@@ -2,9 +2,9 @@ import { camelize } from '../helpers/camelize';
 import { normalizeUnits } from '../helpers/normalizeUnits';
 
 import {
-  errorSetupRadiusTokensNoFrame,
-  errorSetupRadiusTokensNoChildren,
-  errorSetupRadiusTokensMissingProps
+  ErrorSetupRadiusTokensNoFrame,
+  ErrorSetupRadiusTokensNoChildren,
+  ErrorSetupRadiusTokensMissingProps
 } from '../../frameworks/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
@@ -16,13 +16,13 @@ import { Frame } from '../../entities/Frame/Frame';
  * @param remSize The body rem size
  */
 export function setupRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTokens {
-  if (!radiusFrame) throw new Error(errorSetupRadiusTokensNoFrame);
-  if (!radiusFrame.children) throw new Error(errorSetupRadiusTokensNoChildren);
+  if (!radiusFrame) throw new Error(ErrorSetupRadiusTokensNoFrame);
+  if (!radiusFrame.children) throw new Error(ErrorSetupRadiusTokensNoChildren);
 
   let cornerRadiusObject = {};
 
   radiusFrame.children.forEach((type) => {
-    if (!type.name) throw new Error(errorSetupRadiusTokensMissingProps);
+    if (!type.name) throw new Error(ErrorSetupRadiusTokensMissingProps);
     const name: string = camelize(type.name);
     const cornerRadius: string = type.cornerRadius
       ? normalizeUnits(parseFloat(type.cornerRadius), 'cornerRadius', 'adjustedRadius', remSize)

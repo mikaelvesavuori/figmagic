@@ -1,6 +1,6 @@
 import {
-  errorCreateImportStringFromList,
-  errorCreateImportStringFromListZeroLength
+  ErrorCreateImportStringFromList,
+  ErrorCreateImportStringFromListZeroLength
 } from '../errors/errors';
 
 /**
@@ -9,8 +9,8 @@ import {
  * @param importArray List of imports
  */
 export function createImportStringFromList(importArray: any[]): string {
-  if (!importArray) throw new Error(errorCreateImportStringFromList);
-  if (!(importArray.length > 0)) throw new Error(errorCreateImportStringFromListZeroLength);
+  if (!importArray) throw new Error(ErrorCreateImportStringFromList);
+  if (!(importArray.length > 0)) throw new Error(ErrorCreateImportStringFromListZeroLength);
 
   let importString = ``;
 

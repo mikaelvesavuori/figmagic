@@ -1,4 +1,4 @@
-import { errorGetDescription, errorExtractDescription } from '../../../frameworks/errors/errors';
+import { ErrorGetDescription, ErrorExtractDescription } from '../../../frameworks/errors/errors';
 
 /**
  * @description Get element description
@@ -6,7 +6,7 @@ import { errorGetDescription, errorExtractDescription } from '../../../framework
  * @param element String from Figma description block
  */
 export function getDescription(element: any): string {
-  if (!element) throw new Error(errorGetDescription);
+  if (!element) throw new Error(ErrorGetDescription);
 
   return element.description.match(/description=(.*)/)
     ? extractDescription(element.description)
@@ -19,7 +19,7 @@ export function getDescription(element: any): string {
  * @param description String of description
  */
 const extractDescription = (description: string): string => {
-  if (!description) throw new Error(errorExtractDescription);
+  if (!description) throw new Error(ErrorExtractDescription);
 
   return description
     .slice(description.indexOf('description=') + 12, description.length)

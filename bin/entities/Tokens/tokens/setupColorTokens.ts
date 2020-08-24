@@ -2,9 +2,9 @@ import { camelize } from '../helpers/camelize';
 import { roundColorValue } from '../helpers/roundColorValue';
 
 import {
-  errorSetupColorTokensNoFrame,
-  errorSetupColorTokensNoChildren,
-  errorSetupColorTokensNoFills
+  ErrorSetupColorTokensNoFrame,
+  ErrorSetupColorTokensNoChildren,
+  ErrorSetupColorTokensNoFills
 } from '../../frameworks/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
@@ -15,13 +15,13 @@ import { Frame } from '../../entities/Frame/Frame';
  * @param colorFrame The color frame from Figma
  */
 export function setupColorTokens(colorFrame: Frame): ColorTokens {
-  if (!colorFrame) throw new Error(errorSetupColorTokensNoFrame);
-  if (!colorFrame.children) throw new Error(errorSetupColorTokensNoChildren);
+  if (!colorFrame) throw new Error(ErrorSetupColorTokensNoFrame);
+  if (!colorFrame.children) throw new Error(ErrorSetupColorTokensNoChildren);
 
   let colors = {};
 
   colorFrame.children.forEach((color) => {
-    if (!color.fills) throw new Error(errorSetupColorTokensNoFills);
+    if (!color.fills) throw new Error(ErrorSetupColorTokensNoFills);
 
     // It seems RGBA alpha is actually not coming from "color.a", so the below fixes that
     const ALPHA = color.fills[0].opacity ? color.fills[0].opacity : color.fills[0].color.a;

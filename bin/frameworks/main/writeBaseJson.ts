@@ -1,7 +1,7 @@
 import { refresh } from '../filesystem/refresh';
 import { writeFile } from '../filesystem/writeFile';
 
-import { msgWriteBaseFile } from '../messages/messages';
+import { MsgWriteBaseFile } from '../messages/messages';
 
 /**
  * @description TODO
@@ -16,7 +16,7 @@ export async function writeBaseJson(
   outputFileName: string,
   data: object
 ): Promise<object> {
-  console.log(msgWriteBaseFile);
+  console.log(MsgWriteBaseFile);
   try {
     await refresh(outputFolderBaseFile);
     await writeFile(JSON.stringify(data), outputFolderBaseFile, outputFileName, 'raw');

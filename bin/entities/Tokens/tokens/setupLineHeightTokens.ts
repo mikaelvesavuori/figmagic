@@ -2,10 +2,10 @@ import { camelize } from '../helpers/camelize';
 import { normalizeUnits } from '../helpers/normalizeUnits';
 
 import {
-  errorSetupLineHeightTokensNoFrame,
-  errorSetupLineHeightTokensNoChildren,
-  errorSetupLineHeightTokensMissingProps,
-  errorSetupLineHeightTokensMissingPercent
+  ErrorSetupLineHeightTokensNoFrame,
+  ErrorSetupLineHeightTokensNoChildren,
+  ErrorSetupLineHeightTokensMissingProps,
+  ErrorSetupLineHeightTokensMissingPercent
 } from '../../frameworks/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
@@ -17,15 +17,15 @@ import { Frame } from '../../entities/Frame/Frame';
  * @param remSize The body rem size
  */
 export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): LineHeightTokens {
-  if (!lineHeightFrame) throw new Error(errorSetupLineHeightTokensNoFrame);
-  if (!lineHeightFrame.children) throw new Error(errorSetupLineHeightTokensNoChildren);
+  if (!lineHeightFrame) throw new Error(ErrorSetupLineHeightTokensNoFrame);
+  if (!lineHeightFrame.children) throw new Error(ErrorSetupLineHeightTokensNoChildren);
 
   let lineHeightObject = {};
 
   lineHeightFrame.children.forEach((type) => {
-    if (!type.name || !type.style) throw new Error(errorSetupLineHeightTokensMissingProps);
+    if (!type.name || !type.style) throw new Error(ErrorSetupLineHeightTokensMissingProps);
     if (!type.style.lineHeightPercentFontSize)
-      throw new Error(errorSetupLineHeightTokensMissingPercent);
+      throw new Error(ErrorSetupLineHeightTokensMissingPercent);
 
     const name = camelize(type.name);
     const LINE_HEIGHT: string = normalizeUnits(

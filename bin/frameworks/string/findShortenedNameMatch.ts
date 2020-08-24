@@ -1,7 +1,7 @@
 import {
-  errorFindShortenedNameMatchString,
-  errorFindShortenedNameMatchOriginal,
-  errorFindShortenedNameMatchWrongType
+  ErrorFindShortenedNameMatchString,
+  ErrorFindShortenedNameMatchOriginal,
+  ErrorFindShortenedNameMatchWrongType
 } from '../errors/errors';
 
 /**
@@ -11,10 +11,10 @@ import {
  * @param matchString String to match with
  */
 export function findShortenedNameMatch(originalString: string, matchString: string): boolean {
-  if (!originalString) throw new Error(errorFindShortenedNameMatchOriginal);
-  if (!matchString) throw new Error(errorFindShortenedNameMatchString);
+  if (!originalString) throw new Error(ErrorFindShortenedNameMatchOriginal);
+  if (!matchString) throw new Error(ErrorFindShortenedNameMatchString);
   if (typeof originalString !== 'string' && typeof matchString !== 'string')
-    throw new Error(errorFindShortenedNameMatchWrongType);
+    throw new Error(ErrorFindShortenedNameMatchWrongType);
 
   return originalString.toLowerCase().replace(' /g', '') === matchString;
 }

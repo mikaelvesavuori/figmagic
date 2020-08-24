@@ -1,9 +1,9 @@
 import {
-  errorProcessNestedCss,
-  errorCreateCssString,
-  errorCleanArrays,
-  errorGetIntersectingValues,
-  errorGetUniqueValues
+  ErrorProcessNestedCss,
+  ErrorCreateCssString,
+  ErrorCleanArrays,
+  ErrorGetIntersectingValues,
+  ErrorGetUniqueValues
 } from '../../frameworks/errors/errors';
 
 // TODO: Refactor
@@ -15,7 +15,7 @@ import {
  * @param css Incoming CSS (from processElements.ts)
  */
 export function processNestedCss(css: string): string {
-  if (!css) throw new Error(errorProcessNestedCss);
+  if (!css) throw new Error(ErrorProcessNestedCss);
 
   // Match or split by CSS class name, like ".ButtonWarning {"
   // css.match(/\..* {|:.* {/gi);
@@ -47,7 +47,7 @@ export function processNestedCss(css: string): string {
  * @param classContent CSS properties
  */
 function cleanArrays(classNames: any[], classContent: any[]): any[] {
-  if (!classNames || !classContent) throw new Error(errorCleanArrays);
+  if (!classNames || !classContent) throw new Error(ErrorCleanArrays);
 
   const totalClassCount = classContent.length;
 
@@ -89,7 +89,7 @@ function cleanArrays(classNames: any[], classContent: any[]): any[] {
  * @param arrays Arrays to check
  */
 function getIntersectingValues(arrays: any[]): any[] {
-  if (!arrays) throw new Error(errorGetIntersectingValues);
+  if (!arrays) throw new Error(ErrorGetIntersectingValues);
 
   let obj = {};
 
@@ -111,7 +111,7 @@ function getIntersectingValues(arrays: any[]): any[] {
  * @param intersections The intersecting areas and values
  */
 function getUniqueValues(arrays: any[], intersections: any[]): any[] {
-  if (!arrays || !intersections) throw new Error(errorGetUniqueValues);
+  if (!arrays || !intersections) throw new Error(ErrorGetUniqueValues);
 
   let uniqueValues = [];
 
@@ -142,7 +142,7 @@ function getUniqueValues(arrays: any[], intersections: any[]): any[] {
  * @param uniqueValues List of unique values
  */
 function createCssString(intersections: any[], uniqueValues: any[]): string {
-  if (!intersections || !uniqueValues) throw new Error(errorCreateCssString);
+  if (!intersections || !uniqueValues) throw new Error(ErrorCreateCssString);
 
   let str = ``;
 

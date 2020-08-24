@@ -1,4 +1,4 @@
-import { errorReplaceMediaQuery } from '../errors/errors';
+import { ErrorReplaceMediaQuery } from '../errors/errors';
 
 /**
  * @description Replace media query sugar syntax from Figma description block
@@ -7,7 +7,7 @@ import { errorReplaceMediaQuery } from '../errors/errors';
  * @param match Matching string (regex?)
  */
 export function replaceMediaQuery(str: string, match: string): string {
-  if (!str || !match) throw new Error(errorReplaceMediaQuery);
+  if (!str || !match) throw new Error(ErrorReplaceMediaQuery);
 
   const index = str.indexOf(match);
   if (index === -1) return str;

@@ -1,9 +1,9 @@
 import { camelize } from '../helpers/camelize';
 
 import {
-  errorSetupZindexTokensNoFrame,
-  errorSetupZindexTokensNoChildren,
-  errorSetupZindexTokensMissingProps
+  ErrorSetupZindexTokensNoFrame,
+  ErrorSetupZindexTokensNoChildren,
+  ErrorSetupZindexTokensMissingProps
 } from '../../frameworks/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
@@ -14,13 +14,13 @@ import { Frame } from '../../entities/Frame/Frame';
  * @param zIndexFrame The Z index frame from Figma
  */
 export function setupZindexTokens(zIndexFrame: Frame): ZIndexTokens {
-  if (!zIndexFrame) throw new Error(errorSetupZindexTokensNoFrame);
-  if (!zIndexFrame.children) throw new Error(errorSetupZindexTokensNoChildren);
+  if (!zIndexFrame) throw new Error(ErrorSetupZindexTokensNoFrame);
+  if (!zIndexFrame.children) throw new Error(ErrorSetupZindexTokensNoChildren);
 
   let zindexObject = {};
 
   zIndexFrame.children.forEach((type) => {
-    if (!type.name || !type.characters) throw new Error(errorSetupZindexTokensMissingProps);
+    if (!type.name || !type.characters) throw new Error(ErrorSetupZindexTokensMissingProps);
 
     const name = camelize(type.name);
 

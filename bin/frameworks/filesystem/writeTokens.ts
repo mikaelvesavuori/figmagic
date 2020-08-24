@@ -2,7 +2,7 @@ import { camelize } from '../string/camelize';
 import { processTokens } from '../../functions/process/processTokens';
 import { writeFile } from './writeFile';
 
-import { errorWriteTokens, errorWriteTokensNoSettings } from '../errors/errors';
+import { ErrorWriteTokens, ErrorWriteTokensNoSettings } from '../errors/errors';
 import { acceptedTokenTypes } from '../system/acceptedTokenTypes';
 
 import { Config } from '../../entities/Config/Config';
@@ -14,9 +14,9 @@ import { Config } from '../../entities/Config/Config';
  * @param config User configuration object
  */
 export async function writeTokens(tokens: any[], config: Config): Promise<boolean> {
-  if (!tokens) throw new Error(errorWriteTokens);
-  if (!(tokens.length > 0)) throw new Error(errorWriteTokens);
-  if (!config) throw new Error(errorWriteTokensNoSettings);
+  if (!tokens) throw new Error(ErrorWriteTokens);
+  if (!(tokens.length > 0)) throw new Error(ErrorWriteTokens);
+  if (!config) throw new Error(ErrorWriteTokensNoSettings);
 
   return new Promise((resolve, reject) => {
     try {

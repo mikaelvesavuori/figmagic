@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-import { errorCreateFolder } from '../../frameworks/errors/errors';
+import { ErrorCreateFolder } from '../../frameworks/errors/errors';
 
 /**
  * @description Create folder, checking also if it already exists
@@ -8,7 +8,7 @@ import { errorCreateFolder } from '../../frameworks/errors/errors';
  * @param dir The name of the directory that the user wants to create
  */
 export async function createFolder(dir: string): Promise<boolean> {
-  if (!dir) throw new Error(errorCreateFolder);
+  if (!dir) throw new Error(ErrorCreateFolder);
 
   return new Promise((resolve, reject) => {
     try {

@@ -3,7 +3,7 @@ import * as path from 'path';
 import { roundColorValue } from '../helpers/roundColorValue';
 import { getTokenMatch } from './getTokenMatch';
 
-import { errorParseTypographyStylingFromElement } from '../../frameworks/errors/errors';
+import { ErrorParseTypographyStylingFromElement } from '../../frameworks/errors/errors';
 
 import { Element } from '../../entities/Element/Element';
 import { FigmagicTypography } from '../../entities/FigmagicTypography/FigmagicTypography';
@@ -20,7 +20,7 @@ export async function parseTypographyStylingFromElement(
   remSize: number,
   isTest: boolean = false
 ): Promise<FigmagicTypography> {
-  if (!element || !remSize) throw new Error(errorParseTypographyStylingFromElement);
+  if (!element || !remSize) throw new Error(ErrorParseTypographyStylingFromElement);
 
   // Dynamic imports
   const PATH = isTest ? path.join('testdata', 'tokens') : `tokens`;

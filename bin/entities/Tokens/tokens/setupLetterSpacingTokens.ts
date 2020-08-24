@@ -1,9 +1,9 @@
 import { camelize } from '../helpers/camelize';
 
 import {
-  errorSetupLetterSpacingTokensNoFrame,
-  errorSetupLetterSpacingTokensNoChildren,
-  errorSetupLetterSpacingTokensMissingProps
+  ErrorSetupLetterSpacingTokensNoFrame,
+  ErrorSetupLetterSpacingTokensNoChildren,
+  ErrorSetupLetterSpacingTokensMissingProps
 } from '../../frameworks/errors/errors';
 
 import { Frame } from '../../entities/Frame/Frame';
@@ -24,13 +24,13 @@ export function setupLetterSpacingTokens(
   letterSpacingFrame: Frame,
   letterSpacingUnit: string
 ): LetterSpacingTokens {
-  if (!letterSpacingFrame) throw new Error(errorSetupLetterSpacingTokensNoFrame);
-  if (!letterSpacingFrame.children) throw new Error(errorSetupLetterSpacingTokensNoChildren);
+  if (!letterSpacingFrame) throw new Error(ErrorSetupLetterSpacingTokensNoFrame);
+  if (!letterSpacingFrame.children) throw new Error(ErrorSetupLetterSpacingTokensNoChildren);
 
   // Reduce the children array to a tokens object
   const letterSpacingObject = letterSpacingFrame.children.reduce(
     (tokens, type) => {
-      if (!type.name || !type.style) throw new Error(errorSetupLetterSpacingTokensMissingProps);
+      if (!type.name || !type.style) throw new Error(ErrorSetupLetterSpacingTokensMissingProps);
 
       const name = camelize(type.name);
 
@@ -55,7 +55,7 @@ export function setupLetterSpacingTokens(
         default:
           // em conversion: rebase on the current font-size
           if (!fontSize) {
-            throw new Error(errorSetupLetterSpacingTokensMissingProps);
+            throw new Error(ErrorSetupLetterSpacingTokensMissingProps);
           }
           // Figma already converted the value to a relative px value
           // Dividing the value by the current fontSize will give the %-based em value.
