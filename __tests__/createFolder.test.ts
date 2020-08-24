@@ -1,8 +1,6 @@
 import trash from 'trash';
 
-import { createFolder } from '../bin/functions/filesystem/createFolder';
-
-import { ErrorCreateFolder } from '../bin/meta/errors';
+import { createFolder } from '../bin/frameworks/filesystem/createFolder';
 
 /*
 test('It should throw an error if no parameter is provided', async () => {

@@ -1,7 +1,7 @@
 import {
   MsgProcessElementsCreatingElement,
   MsgDownloadFileWritingFile
-} from '../bin/meta/messages';
+} from '../bin/frameworks/messages/messages';
 
 test('It should show new and old values with separating marks', () => {
   expect(MsgProcessElementsCreatingElement('something', 'something')).toBe(

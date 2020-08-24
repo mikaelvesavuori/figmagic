@@ -1,6 +1,6 @@
 import trash from 'trash';
 
-import { downloadFile } from '../bin/functions/filesystem/downloadFile';
+import { downloadFile } from '../bin/frameworks/network/downloadFile';
 
 /*
 test('It should throw an error if no parameter is provided', async () => {

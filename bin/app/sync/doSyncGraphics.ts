@@ -9,11 +9,11 @@ import { writeGraphics } from '../../frameworks/filesystem/writeGraphics';
 import { MsgSyncGraphics } from '../../frameworks/messages/messages';
 
 /**
- * @description TODO
+ * @description Sync graphics
  *
- * @param config TODO
- * @param data TODO
- * @param outputFolder TODO
+ * @param config User configuration
+ * @param data Data from Figma
+ * @param outputFolder Folder where elements should be generated
  */
 export async function doSyncGraphics(
   config: Config,

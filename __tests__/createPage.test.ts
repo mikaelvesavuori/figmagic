@@ -1,4 +1,4 @@
-import { createPage } from '../bin/functions/process/createPage';
+import { createPage } from '../bin/app/process/createPage';
 
 /*
 test('It should throw an error if no parameter is provided', () => {

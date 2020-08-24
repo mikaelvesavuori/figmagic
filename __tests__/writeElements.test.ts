@@ -1,6 +1,6 @@
 import trash from 'trash';
 
-import { writeElements } from '../bin/functions/filesystem/writeElements';
+import { writeElements } from '../bin/frameworks/filesystem/writeElements';
 
 import { defaultConfig } from '../testdata/defaultConfig';
 

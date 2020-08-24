@@ -1,4 +1,4 @@
-import { parseCssFromElement } from '../bin/functions/process/parseCssFromElement';
+import { parseCssFromElement } from '../bin/app/process/parseCssFromElement';
 
 import { cssLayoutElement } from '../testdata/cssLayoutElement';
 import { cssLayoutElementGradient } from '../testdata/cssLayoutElementGradient';

@@ -1,4 +1,4 @@
-import { getTokenMatch } from '../bin/functions/process/getTokenMatch';
+import { getTokenMatch } from '../bin/app/process/getTokenMatch';
 
 /*
 test('It should throw an error if no parameter is provided', () => {

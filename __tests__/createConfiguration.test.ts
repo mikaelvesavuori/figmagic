@@ -1,13 +1,14 @@
 import * as path from 'path';
-import { createConfiguration } from '../bin/functions/config/createConfiguration';
 
-import { Config } from '../bin/app/contracts/config/Config';
+import { createConfiguration } from '../bin/entities/Config/createConfiguration';
+import { defaultConfig } from '../bin/entities/Config/defaultConfig';
+import { Config } from '../bin/entities/Config/Config';
 
 test('It should return a valid merged configuration if given a path to an RC file and a set of CLI arguments', async () => {
   const USER_CONFIG_PATH = path.join(process.cwd(), 'testdata', 'figmagicrc');
   const CLI_ARGS = ['-t', 'asdf1234'];
 
-  expect(await createConfiguration(USER_CONFIG_PATH, ...CLI_ARGS)).toEqual(
+  expect(await createConfiguration(defaultConfig, USER_CONFIG_PATH, ...CLI_ARGS)).toEqual(
     expect.objectContaining({
       debugMode: false,
       fontUnit: 'rem',

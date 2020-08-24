@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 
-import { getFromApi } from '../bin/functions/filesystem/getFromApi';
+import { getFromApi } from '../bin/frameworks/network/getFromApi';
 
 dotenv.config();
 

@@ -9,11 +9,11 @@ import { writeElements } from '../../frameworks/filesystem/writeElements';
 import { MsgSyncElements } from '../../frameworks/messages/messages';
 
 /**
- * @description TODO
+ * @description Sync elements
  *
- * @param config TODO
- * @param data TODO
- * @param outputFolder TODO
+ * @param config User configuration
+ * @param data Data from Figma
+ * @param outputFolder Folder where elements should be generated
  */
 export async function doSyncElements(
   config: Config,

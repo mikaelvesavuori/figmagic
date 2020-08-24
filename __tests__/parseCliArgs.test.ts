@@ -1,6 +1,5 @@
-import { parseCliArgs } from '../bin/functions/config/parseCliArgs';
-
-import { defaultConfig } from '../bin/meta/config';
+import { parseCliArgs } from '../bin/entities/Config/parseCliArgs';
+import { defaultConfig } from '../bin/entities/Config/defaultConfig';
 
 /*
 test('It should throw an error if no arguments array is passed', () => {

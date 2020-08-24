@@ -1,4 +1,4 @@
-import { parseTypographyStylingFromElement } from '../bin/functions/process/parseTypographyStylingFromElement';
+import { parseTypographyStylingFromElement } from '../bin/app/process/parseTypographyStylingFromElement';
 
 import { cssTypographyElement } from '../testdata/cssTypographyElement';
 

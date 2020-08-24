@@ -1,4 +1,4 @@
-import { processTokens } from '../bin/functions/process/processTokens';
+import { processTokens } from '../bin/app/process/processTokens';
 
 import { defaultConfig } from '../testdata/defaultConfig';
 import { colorFrame } from '../testdata/colorFrame';

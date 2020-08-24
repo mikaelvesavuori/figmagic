@@ -1,6 +1,6 @@
 import trash from 'trash';
 
-import { writeGraphics } from '../bin/functions/filesystem/writeGraphics';
+import { writeGraphics } from '../bin/frameworks/filesystem/writeGraphics';
 
 import { fileList } from '../testdata/fileList';
 import { defaultConfig } from '../testdata/defaultConfig';

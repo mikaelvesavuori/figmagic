@@ -1,4 +1,4 @@
-import { processElements } from '../bin/functions/process/processElements';
+import { processElements } from '../bin/app/process/processElements';
 
 import { elementsPage, elementsPageDoubleTexts } from '../testdata/elementsPage';
 import { components } from '../testdata/components';

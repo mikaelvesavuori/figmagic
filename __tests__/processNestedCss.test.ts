@@ -1,4 +1,4 @@
-import { processNestedCss } from '../bin/functions/process/processNestedCss';
+import { processNestedCss } from '../bin/app/process/processNestedCss';
 
 const css = `
 .ButtonError {

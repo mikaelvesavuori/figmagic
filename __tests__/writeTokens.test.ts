@@ -1,6 +1,6 @@
 import trash from 'trash';
 
-import { writeTokens } from '../bin/functions/filesystem/writeTokens';
+import { writeTokens } from '../bin/frameworks/filesystem/writeTokens';
 
 import { defaultConfig } from '../testdata/defaultConfig';
 import { colorFrame } from '../testdata/colorFrame';

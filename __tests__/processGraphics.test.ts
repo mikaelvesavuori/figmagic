@@ -5,7 +5,7 @@ import {
   getFileList,
   getIds,
   getIdString
-} from '../bin/functions/process/processGraphics';
+} from '../bin/app/process/processGraphics';
 
 //import { graphicsFrame } from '../testdata/graphicsFrame';
 
