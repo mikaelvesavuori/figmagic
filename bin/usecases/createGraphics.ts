@@ -1,7 +1,7 @@
 import { FigmaData } from '../entities/FigmaData/FigmaData';
 import { Config } from '../entities/Config/Config';
 
-import { doSyncGraphics } from '../app/main/doSyncGraphics';
+import { doSyncGraphics } from '../app/sync/doSyncGraphics';
 
 /**
  * @description TODO

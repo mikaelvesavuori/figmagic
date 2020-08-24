@@ -22,6 +22,7 @@ export async function doSyncGraphics(
   outputFolder: string
 ): Promise<void> {
   console.log(MsgSyncGraphics);
+
   try {
     const graphicsPage = createPage(data.document.children, 'Graphics');
     await refresh(outputFolder);
