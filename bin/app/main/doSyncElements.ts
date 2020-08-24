@@ -1,10 +1,10 @@
 import { Config } from '../../entities/Config/Config';
 import { FigmaData } from '../../entities/FigmaData/FigmaData';
 
-import { createFolder } from '../../functions/filesystem/createFolder';
-import { createPage } from '../../functions/process/createPage';
-import { processElements } from '../../functions/process/processElements';
-import { writeElements } from '../filesystem/writeElements';
+import { createPage } from '../process/createPage';
+import { processElements } from '../process/processElements';
+import { createFolder } from '../../frameworks/filesystem/createFolder';
+import { writeElements } from '../../frameworks/filesystem/writeElements';
 
 import { MsgSyncElements } from '../messages/messages';
 
