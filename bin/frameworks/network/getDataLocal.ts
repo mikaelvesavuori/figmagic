@@ -4,7 +4,7 @@ import { FigmaData } from '../../entities/FigmaData/FigmaData';
 
 import { loadFile } from '../filesystem/loadFile';
 
-import { MsgSetDataFromLocal } from '../messages/messages';
+import { MsgSetDataFromLocal } from '../../app/messages/messages';
 
 /**
  * @description TODO

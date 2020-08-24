@@ -1,20 +1,20 @@
 import * as fs from 'fs';
 
-import { createFolder } from './createFolder';
-import { loadFile } from './loadFile';
-import { createImportStringFromList } from '../string/createImportStringFromList';
-import { createEnumStringOutOfObject } from '../helpers/createEnumStringOutOfObject';
-
 import { Metadata } from '../../app/contracts/filesystem/Metadata';
 import { Templates } from '../../app/contracts/filesystem/Templates';
 
-import { MsgGeneratedFileWarning } from '../messages/messages';
+import { createFolder } from './createFolder';
+import { loadFile } from './loadFile';
+import { createImportStringFromList } from '../string/createImportStringFromList';
+import { createEnumStringOutOfObject } from '../string/createEnumStringOutOfObject';
+
+import { MsgGeneratedFileWarning } from '../../app/messages/messages';
 import {
   ErrorWriteFile,
   ErrorWriteFileWrongType,
   ErrorWrite,
   ErrorPrepareWrite
-} from '../errors/errors';
+} from '../../app/errors/errors';
 
 /**
  * @description Exposed function that handles writing files to disk

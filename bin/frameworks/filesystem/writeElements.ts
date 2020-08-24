@@ -1,11 +1,11 @@
 import * as fs from 'fs';
 
+import { Config } from '../../entities/Config/Config';
+
 import { toPascalCase } from '../string/toPascalCase';
 import { writeFile } from './writeFile';
 
-import { ErrorWriteElements } from '../errors/errors';
-
-import { Config } from '../../entities/Config/Config';
+import { ErrorWriteElements } from '../../app/errors/errors';
 
 /**
  * @description Funnel function to write all the wanted files per element

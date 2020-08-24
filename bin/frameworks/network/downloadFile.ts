@@ -1,9 +1,10 @@
 import fetch from 'node-fetch';
 import * as fs from 'fs';
 
-import { MsgDownloadFileWritingFile } from '../messages/messages';
-import { ErrorDownloadFile } from '../errors/errors';
 import { createFolder } from '../filesystem/createFolder';
+
+import { MsgDownloadFileWritingFile } from '../../app/messages/messages';
+import { ErrorDownloadFile } from '../../app/errors/errors';
 
 /**
  * @description Get data from API
@@ -12,6 +13,7 @@ import { createFolder } from '../filesystem/createFolder';
  * @param folder Folder path
  * @param file File path
  */
+// TODO: Add real return type
 export async function downloadFile(url: string, folder: string, file: string): Promise<any> {
   if (!url || !folder || !file) throw new Error(ErrorDownloadFile);
 

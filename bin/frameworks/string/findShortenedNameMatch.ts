@@ -2,7 +2,7 @@ import {
   ErrorFindShortenedNameMatchString,
   ErrorFindShortenedNameMatchOriginal,
   ErrorFindShortenedNameMatchWrongType
-} from '../errors/errors';
+} from '../../app/errors/errors';
 
 /**
  * @description Find short name match

@@ -1,9 +1,9 @@
 import { Config } from '../../entities/Config/Config';
 
-import { ErrorProcessElements } from '../../../app/errors/errors';
-
 import { parseElement } from './elements/parseElement';
 import { addDescriptionToElements } from './elements/addDescriptionToElements';
+
+import { ErrorProcessElements } from '../errors/errors';
 
 // TODO: Move this to "app/controllers" (?)
 

@@ -3,6 +3,12 @@ import { Config } from '../entities/Config/Config';
 
 import { doSyncElements } from '../app/main/doSyncElements';
 
+/**
+ * @description TODO
+ * @param config TODO
+ * @param data TODO
+ * @param outputFolderElements TODO
+ */
 export async function createElements(
   config: Config,
   data: FigmaData,

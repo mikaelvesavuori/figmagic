@@ -1,4 +1,4 @@
-import { ErrorToPascalCase } from '../errors/errors';
+import { ErrorToPascalCase } from '../../app/errors/errors';
 
 /**
  * @description Pascal-case transform a string

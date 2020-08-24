@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 import { ImageResponse } from '../../app/contracts/image/ImageResponse';
 
-import { ErrorGetFromApi } from '../errors/errors';
+import { ErrorGetFromApi } from '../../app/errors/errors';
 
 /**
  * @description Get data from API

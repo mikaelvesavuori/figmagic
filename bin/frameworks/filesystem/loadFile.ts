@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-import { ErrorLoadFile } from '../errors/errors';
+import { ErrorLoadFile } from '../../app/errors/errors';
 
 /**
  * @description Load file from local path

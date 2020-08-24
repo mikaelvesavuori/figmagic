@@ -1,6 +1,6 @@
 import { roundColorValue } from './roundColorValue';
 
-import { ErrorConvertHexToRgba } from '../errors/errors';
+import { ErrorConvertHexToRgba } from '../../app/errors/errors';
 
 /**
  * @description Convert hex color to RGBA

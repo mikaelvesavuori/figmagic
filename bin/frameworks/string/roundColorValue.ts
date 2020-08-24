@@ -1,4 +1,4 @@
-import { ErrorRoundColorValue } from '../errors/errors';
+import { ErrorRoundColorValue } from '../../app/errors/errors';
 
 /**
  * @description Round color values so they are whole integers

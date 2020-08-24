@@ -1,7 +1,7 @@
-import { FigmaData } from '../../entities/FigmaData/FigmaData';
-import { Config } from '../contracts/config/Config';
+import { FigmaData } from '../entities/FigmaData/FigmaData';
+import { Config } from '../entities/Config/Config';
 
-import { processTokens } from '../main/processTokens';
+import { processTokens } from '../app/main/processTokens';
 
 /**
  * @description TODO

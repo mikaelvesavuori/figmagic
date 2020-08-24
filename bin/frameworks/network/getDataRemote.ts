@@ -2,9 +2,8 @@ import { FigmaData } from '../../entities/FigmaData/FigmaData';
 
 import { getFromApi } from './getFromApi';
 
-import { ErrorGetData } from '../errors/errors';
-
-import { MsgSetDataFromApi } from '../messages/messages';
+import { ErrorGetData } from '../../app/errors/errors';
+import { MsgSetDataFromApi } from '../../app/messages/messages';
 
 /**
  * @description TODO

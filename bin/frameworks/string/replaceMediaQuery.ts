@@ -1,4 +1,4 @@
-import { ErrorReplaceMediaQuery } from '../errors/errors';
+import { ErrorReplaceMediaQuery } from '../../app/errors/errors';
 
 /**
  * @description Replace media query sugar syntax from Figma description block

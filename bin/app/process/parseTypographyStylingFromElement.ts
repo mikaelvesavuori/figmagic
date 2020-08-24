@@ -3,9 +3,9 @@ import * as path from 'path';
 import { Element } from '../../entities/Element/Element';
 import { FigmagicTypography } from '../../entities/FigmagicTypography/FigmagicTypography';
 
-import { roundColorValue } from '../../frameworks/string/roundColorValue';
-
 import { getTokenMatch } from './getTokenMatch';
+
+import { roundColorValue } from '../../frameworks/string/roundColorValue';
 
 import { ErrorParseTypographyStylingFromElement } from '../errors/errors';
 

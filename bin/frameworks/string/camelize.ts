@@ -1,4 +1,4 @@
-import { ErrorCamelize } from '../errors/errors';
+import { ErrorCamelize } from '../../app/errors/errors';
 
 /**
  * @description Camel-case transform a string
