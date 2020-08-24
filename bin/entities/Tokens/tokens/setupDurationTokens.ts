@@ -1,15 +1,15 @@
-import { camelize } from '../helpers/camelize';
+import { camelize } from '../../../frameworks/string/camelize';
 
 import {
   ErrorSetupDurationTokensNoFrame,
   ErrorSetupDurationTokensNoChildren,
   ErrorSetupDurationTokensMissingProps
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma durations into a clean object
+ * @description Places all Figma durations into a clean object
  *
  * @param durationFrame The durations frame from Figma
  */

@@ -24,7 +24,7 @@
     },
     {
       "type": "Tokens",
-      "patterns": ["bin/functions/tokens/*.ts"]
+      "patterns": ["bin/entities/Tokens/tokens/*.ts"]
     }
   ],
   "output": [

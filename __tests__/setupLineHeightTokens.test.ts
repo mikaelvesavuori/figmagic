@@ -1,4 +1,4 @@
-import { setupLineHeightTokens } from '../bin/functions/tokens/setupLineHeightTokens';
+import { setupLineHeightTokens } from '../bin/entities/Tokens/tokens/setupLineHeightTokens';
 
 import { lineHeightFrame } from '../testdata/lineHeightFrame';
 

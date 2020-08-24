@@ -1,4 +1,4 @@
-import { setupShadowTokens } from '../bin/functions/tokens/setupShadowTokens';
+import { setupShadowTokens } from '../bin/entities/Tokens/tokens/setupShadowTokens';
 
 import { shadowsFrame, shadowsFrameMultipleShadows } from '../testdata/shadowsFrame';
 

@@ -1,15 +1,15 @@
-import { camelize } from '../helpers/camelize';
+import { camelize } from '../../../frameworks/string/camelize';
 
 import {
   ErrorSetupEasingTokensNoFrame,
   ErrorSetupEasingTokensNoChildren,
   ErrorSetupEasingTokensMissingProps
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma easings into a clean object
+ * @description Places all Figma easings into a clean object
  *
  * @param easingFrame The easings frame from Figma
  */

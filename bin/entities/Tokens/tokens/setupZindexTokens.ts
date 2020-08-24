@@ -1,15 +1,15 @@
-import { camelize } from '../helpers/camelize';
+import { camelize } from '../../../frameworks/string/camelize';
 
 import {
   ErrorSetupZindexTokensNoFrame,
   ErrorSetupZindexTokensNoChildren,
   ErrorSetupZindexTokensMissingProps
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma Z indices into a clean object
+ * @description Places all Figma Z indices into a clean object
  *
  * @param zIndexFrame The Z index frame from Figma
  */

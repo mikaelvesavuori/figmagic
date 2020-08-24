@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import { loadFile } from '../bin/functions/filesystem/loadFile';
+import { loadFile } from '../bin/frameworks/filesystem/loadFile';
 
 /*
 test('It should throw an error if no parameter is provided', async () => {

@@ -1,17 +1,17 @@
-import { camelize } from '../helpers/camelize';
-import { normalizeUnits } from '../helpers/normalizeUnits';
+import { camelize } from '../../../frameworks/string/camelize';
+import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 
 import {
   ErrorSetupLineHeightTokensNoFrame,
   ErrorSetupLineHeightTokensNoChildren,
   ErrorSetupLineHeightTokensMissingProps,
   ErrorSetupLineHeightTokensMissingPercent
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma line heights into a clean object
+ * @description Places all Figma line heights into a clean object
  *
  * @param lineHeightFrame The line heights frame from Figma
  * @param remSize The body rem size

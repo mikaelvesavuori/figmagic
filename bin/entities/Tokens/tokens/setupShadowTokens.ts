@@ -1,16 +1,16 @@
-import { camelize } from '../helpers/camelize';
-import { roundColorValue } from '../helpers/roundColorValue';
+import { camelize } from '../../../frameworks/string/camelize';
+import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
 import {
   ErrorSetupShadowTokensNoFrame,
   ErrorSetupShadowTokensNoChildren,
   ErrorSetupShadowTokensMissingProps
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma shadows into a clean object
+ * @description Places all Figma shadows into a clean object
  *
  * @param shadowFrame The shadows frame from Figma
  */

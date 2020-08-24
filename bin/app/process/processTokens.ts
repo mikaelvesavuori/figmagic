@@ -19,7 +19,7 @@ import { setupDelayTokens } from '../../entities/Tokens/setupDelayTokens';
 import { setupEasingTokens } from '../../entities/Tokens/setupEasingTokens';
 
 import { ignoreElementsKeywords } from '../../app/system/ignoreElementsKeywords';
-import { ErrorProcessTokens, ErrorProcessTokensNoConfig } from '../../app/errors/errors';
+import { ErrorProcessTokens, ErrorProcessTokensNoConfig } from '../../../app/errors/errors';
 
 /**
  * @description Process tokens

@@ -1,4 +1,4 @@
-import { setupBorderWidthTokens } from '../bin/functions/tokens/setupBorderWidthTokens';
+import { setupBorderWidthTokens } from '../bin/entities/Tokens/tokens/setupBorderWidthTokens';
 
 import { borderWidthsFrame } from '../testdata/borderWidthsFrame';
 

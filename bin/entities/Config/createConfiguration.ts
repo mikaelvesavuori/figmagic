@@ -10,7 +10,7 @@ import {
 import {
   ErrorCreateConfiguration,
   ErrorCreateConfigurationNoDefault
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
 import { Config } from './Config';
 

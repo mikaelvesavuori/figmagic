@@ -1,16 +1,16 @@
-import { camelize } from '../helpers/camelize';
-import { normalizeUnits } from '../helpers/normalizeUnits';
+import { camelize } from '../../../frameworks/string/camelize';
+import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 
 import {
   ErrorSetupSpacingTokensNoFrame,
   ErrorSetupSpacingTokensNoChildren,
   ErrorSetupSpacingTokensNoUnits
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma spacings into a clean object
+ * @description Places all Figma spacings into a clean object
  *
  * @param spacingFrame The spacing frame from Figma
  * @param spacingUnit The spacing unit

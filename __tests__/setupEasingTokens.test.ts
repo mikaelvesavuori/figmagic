@@ -1,4 +1,4 @@
-import { setupEasingTokens } from '../bin/functions/tokens/setupEasingTokens';
+import { setupEasingTokens } from '../bin/entities/Tokens/tokens/setupEasingTokens';
 
 import { easingFrame } from '../testdata/easingFrame';
 

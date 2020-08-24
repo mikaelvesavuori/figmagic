@@ -1,4 +1,4 @@
-import { setupDelayTokens } from '../bin/functions/tokens/setupDelayTokens';
+import { setupDelayTokens } from '../bin/entities/Tokens/tokens/setupDelayTokens';
 
 import { durationsFrame } from '../testdata/delaysFrame';
 

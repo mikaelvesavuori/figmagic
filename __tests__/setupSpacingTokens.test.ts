@@ -1,4 +1,4 @@
-import { setupSpacingTokens } from '../bin/functions/tokens/setupSpacingTokens';
+import { setupSpacingTokens } from '../bin/entities/Tokens/tokens/setupSpacingTokens';
 
 import { spacingFrame } from '../testdata/spacingFrame';
 

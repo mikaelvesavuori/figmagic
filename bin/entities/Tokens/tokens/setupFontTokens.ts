@@ -1,15 +1,15 @@
-import { camelize } from '../helpers/camelize';
+import { camelize } from '../../../frameworks/string/camelize';
 
 import {
   ErrorSetupFontTokensNoFrame,
   ErrorSetupFontTokensNoChildren,
   ErrorSetupFontTokensMissingProps
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma fonts into a clean object
+ * @description Places all Figma fonts into a clean object
  *
  * @param fontFrame The font frame from Figma
  * @param usePostscriptFontNames Boolean to decide if to use Postscript font names or the default font family names (without spaces)

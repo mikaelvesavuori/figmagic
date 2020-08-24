@@ -1,15 +1,15 @@
-import { camelize } from '../helpers/camelize';
+import { camelize } from '../../../frameworks/string/camelize';
 
 import {
   ErrorSetupOpacityTokensNoFrame,
   ErrorSetupOpacityTokensNoChildren,
   ErrorSetupOpacityTokensMissingProps
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma opacities scale into a clean object
+ * @description Places all Figma opacities scale into a clean object
  *
  * @param opacitiesFrame The opacities frame from Figma
  * @param opacitiesUnit The opacity unit as a string

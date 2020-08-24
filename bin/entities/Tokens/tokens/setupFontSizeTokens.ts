@@ -1,4 +1,4 @@
-import { camelize } from '../helpers/camelize';
+import { camelize } from '../../../frameworks/string/camelize';
 
 import {
   ErrorSetupFontSizeTokensNoFrame,
@@ -6,12 +6,12 @@ import {
   ErrorSetupFontSizeTokensNoSizing,
   ErrorSetupFontSizeTokensMissingProps,
   ErrorSetupFontSizeTokensMissingSize
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma font sizes into a clean object
+ * @description Places all Figma font sizes into a clean object
  *
  * @param fontSizeFrame The font size frame from Figma
  * @param fontUnit The font unit type

@@ -1,15 +1,15 @@
-import { camelize } from '../helpers/camelize';
+import { camelize } from '../../../frameworks/string/camelize';
 
 import {
   ErrorSetupDelayTokensNoFrame,
   ErrorSetupDelayTokensNoChildren,
   ErrorSetupDelayTokensMissingProps
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma delays into a clean object
+ * @description Places all Figma delays into a clean object
  *
  * @param delayFrame The delays frame from Figma
  */

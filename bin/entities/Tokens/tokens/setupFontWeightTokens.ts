@@ -1,16 +1,16 @@
-import { camelize } from '../helpers/camelize';
+import { camelize } from '../../../frameworks/string/camelize';
 
 import {
   ErrorSetupFontWeightTokensNoFrame,
   ErrorSetupFontWeightTokensNoChildren,
   ErrorSetupFontWeightTokensMissingProps,
   ErrorSetupFontWeightTokensMissingWeight
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma font weights into a clean object
+ * @description Places all Figma font weights into a clean object
  *
  * @param fontWeightFrame The font weight frame from Figma
  */

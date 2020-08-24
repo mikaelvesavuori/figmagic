@@ -1,16 +1,16 @@
-import { camelize } from '../helpers/camelize';
-import { normalizeUnits } from '../helpers/normalizeUnits';
+import { camelize } from '../../../frameworks/string/camelize';
+import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 
 import {
   ErrorSetupRadiusTokensNoFrame,
   ErrorSetupRadiusTokensNoChildren,
   ErrorSetupRadiusTokensMissingProps
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma radii into a clean object
+ * @description Places all Figma radii into a clean object
  *
  * @param radiusFrame The radii frame from Figma
  * @param remSize The body rem size

@@ -1,16 +1,16 @@
-import { camelize } from '../helpers/camelize';
+import { camelize } from '../../../frameworks/string/camelize';
 
 import {
   ErrorSetupBorderWidthTokensNoFrame,
   ErrorSetupBorderWidthTokensNoChildren,
   ErrorSetupBorderWidthTokensMissingProps
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
-import { BorderWidthTokens } from '../../app/contracts/tokens/BorderWidthTokens';
+import { Frame } from '../../../entities/Frame/Frame';
+import { BorderWidthTokens } from '../../../app/contracts/Tokens/Tokens';
 
 /**
- * Places all Figma border widths into a clean object
+ * @description Places all Figma border widths into a clean object
  *
  * @param borderWidthFrame The border widths frame from Figma
  */

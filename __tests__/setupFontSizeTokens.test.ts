@@ -1,4 +1,4 @@
-import { setupFontSizeTokens } from '../bin/functions/tokens/setupFontSizeTokens';
+import { setupFontSizeTokens } from '../bin/entities/Tokens/tokens/setupFontSizeTokens';
 
 import { fontSizeFrame } from '../testdata/fontSizeFrame';
 

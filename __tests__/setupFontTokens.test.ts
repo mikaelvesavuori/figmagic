@@ -1,4 +1,4 @@
-import { setupFontTokens } from '../bin/functions/tokens/setupFontTokens';
+import { setupFontTokens } from '../bin/entities/Tokens/tokens/setupFontTokens';
 
 import { fontFrame } from '../testdata/fontFrame';
 

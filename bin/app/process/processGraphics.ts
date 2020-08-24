@@ -12,7 +12,7 @@ import {
   ErrorGetIds,
   ErrorGetFileList,
   ErrorGetIdstring
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 // TODO: Refactor
 
 /**

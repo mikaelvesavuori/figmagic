@@ -1,15 +1,15 @@
-import { camelize } from '../helpers/camelize';
+import { camelize } from '../../../frameworks/string/camelize';
 
 import {
   ErrorSetupLetterSpacingTokensNoFrame,
   ErrorSetupLetterSpacingTokensNoChildren,
   ErrorSetupLetterSpacingTokensMissingProps
-} from '../../app/errors/errors';
+} from '../../../app/errors/errors';
 
-import { Frame } from '../../entities/Frame/Frame';
+import { Frame } from '../../../entities/Frame/Frame';
 
 /**
- * Places all Figma letter spacings into a clean object
+ * @description Places all Figma letter spacings into a clean object
  *
  * Figma allows to provide (in the Figma document itself) letterSpacing in either "%" or "px".
  * The API internally converts the provided value in a number, which is the calculated value based on the font-size (no unit is provided, but the value corresponds to px)

@@ -1,4 +1,4 @@
-import { setupFontWeightTokens } from '../bin/functions/tokens/setupFontWeightTokens';
+import { setupFontWeightTokens } from '../bin/entities/Tokens/tokens/setupFontWeightTokens';
 
 import { fontWeightFrame } from '../testdata/fontWeightFrame';
 

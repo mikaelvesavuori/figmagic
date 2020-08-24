@@ -1,4 +1,4 @@
-import { setupRadiusTokens } from '../bin/functions/tokens/setupRadiusTokens';
+import { setupRadiusTokens } from '../bin/entities/Tokens/tokens/setupRadiusTokens';
 
 import { radiiFrame } from '../testdata/radiiFrame';
 

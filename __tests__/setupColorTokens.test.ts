@@ -1,4 +1,4 @@
-import { setupColorTokens } from '../bin/functions/tokens/setupColorTokens';
+import { setupColorTokens } from '../bin/entities/Tokens/tokens/setupColorTokens';
 
 import { colorFrame } from '../testdata/colorFrame';
 

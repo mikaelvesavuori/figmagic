@@ -1,4 +1,4 @@
-import { setupMediaQueryTokens } from '../bin/functions/tokens/setupMediaQueryTokens';
+import { setupMediaQueryTokens } from '../bin/entities/Tokens/tokens/setupMediaQueryTokens';
 
 import { mediaQueriesFrame } from '../testdata/mediaQueriesFrame';
 
