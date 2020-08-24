@@ -12,7 +12,7 @@ import {
 
 import { ImageResponse } from '../../app/contracts/image/ImageResponse';
 
-import { Config } from '../../app/contracts/config/Config';
+import { Config } from '../../entities/Config/Config';
 
 // TODO: Refactor
 

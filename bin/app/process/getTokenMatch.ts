@@ -37,13 +37,13 @@ export function getTokenMatch(
 }
 
 function doPadding(
-  expectedValue,
-  remSize,
-  tokens,
-  tokenFileName,
-  property,
-  updatedCss,
-  updatedImports
+  expectedValue: string | number | object,
+  remSize: string,
+  tokens: string,
+  tokenFileName: string,
+  property: string,
+  updatedCss: string,
+  updatedImports: string
 ) {
   const keys = Object.keys(expectedValue);
 
@@ -74,13 +74,13 @@ function doPadding(
 }
 
 function doOther(
-  expectedValue,
-  remSize,
-  tokens,
-  tokenFileName,
-  property,
-  updatedCss,
-  updatedImports
+  expectedValue: string,
+  remSize: string,
+  tokens: string,
+  tokenFileName: string,
+  property: string,
+  updatedCss: string,
+  updatedImports: string
 ) {
   let foundMatch = false;
 

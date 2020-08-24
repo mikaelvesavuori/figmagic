@@ -1,4 +1,4 @@
-import { convertHexToRgba } from '../bin/frameworks/helpers/convertHexToRgba';
+import { convertHexToRgba } from '../bin/frameworks/string/convertHexToRgba';
 
 /*
 test('It should throw an error if no parameter is provided', () => {

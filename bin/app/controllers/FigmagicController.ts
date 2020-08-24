@@ -1,4 +1,4 @@
-import { Config } from '../contracts/config/Config';
+import { Config } from '../../entities/Config/Config';
 
 import { createTokens } from '../../usecases/createTokens';
 import { createElements } from '../../usecases/createElements';
@@ -9,7 +9,8 @@ import { msgJobComplete } from '../../frameworks/messages/messages';
 /**
  * @description TODO
  *
- * @param config
+ * @param config asdf
+ * @param data asdf
  */
 // TODO: Fix real type
 export async function FigmagicController(config: Config, data: any): Promise<void> {

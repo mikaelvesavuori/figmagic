@@ -8,10 +8,7 @@ import { errorToPascalCase } from '../errors/errors';
 export function toPascalCase(str: string): string {
   if (!str) throw new Error(errorToPascalCase);
 
-  let recasedString = str.replace(/\w+/g, (w) => w[0].toUpperCase() + w.slice(1).toLowerCase());
-
-  // TODO: Chain this...?
-  recasedString = recasedString.replace(/\s+/g, '');
-
-  return recasedString;
+  return str
+    .replace(/\w+/g, (w) => w[0].toUpperCase() + w.slice(1).toLowerCase())
+    .replace(/\s+/g, '');
 }

@@ -6,18 +6,19 @@ import dotenv from 'dotenv';
 
 import { FigmagicController } from './bin/app/controllers/FigmagicController';
 
+import { Config } from './bin/entities/Config/Config';
+
+import { defaultConfig } from './bin/entities/Config/config';
 import { createConfiguration } from './bin/entities/Config/createConfiguration';
 
 import { getData } from './bin/frameworks/network/getData';
 import { writeBaseJson } from './bin/frameworks/main/writeBaseJson';
-
 import { colors } from './bin/frameworks/system/colors';
-import { defaultConfig } from './bin/entities/Config/config';
 
 /**
- * @description TODO
+ * @description Initialize and setup Figmagic (environment; configuration; data) before handing over to the controller
  */
-async function main(): Promise<void> {
+async function main(baseConfiguration: Config): Promise<void> {
   try {
     // Setup environment
     dotenv.config();
@@ -25,7 +26,7 @@ async function main(): Promise<void> {
     const userConfigPath = path.join(`${process.cwd()}`, `.figmagicrc`);
 
     // Get user configuration
-    const config = await createConfiguration(defaultConfig, userConfigPath, ...CLI_ARGS);
+    const config = await createConfiguration(baseConfiguration, userConfigPath, ...CLI_ARGS);
 
     // Get data
     const { recompileLocal, outputFolderBaseFile, outputFileName, token, url } = config;
@@ -41,4 +42,5 @@ async function main(): Promise<void> {
   }
 }
 
-main();
+// Initialize with default configuration
+main(defaultConfig);

@@ -20,19 +20,12 @@ export function replaceMediaQuery(str: string, match: string): string {
   const SLICE_LENGTH = SLICE_START + 6;
   let query = str.slice(index, index + SLICE_LENGTH);
   let size = query.slice(SLICE_START, SLICE_LENGTH);
+  const REMAINDER = query.replace(match, '');
 
   // If match was too greedy
-  size.replace(/![0-9]/gi, '');
+  size.replace(/![0-9]/gi, '').trim();
 
-  // Remove any spaces
-  size = size.trim();
-
-  // Will this work globally across string?
-  str = str.replace(match, `@media query and (${QUERY_TYPE}-width: ${size}px) {`);
-
-  // Clean up the remainder
-  const REMAINDER = query.replace(match, '');
-  str = str.replace(REMAINDER, '');
-
-  return str;
+  return str
+    .replace(match, `@media query and (${QUERY_TYPE}-width: ${size}px) {`)
+    .replace(REMAINDER, '');
 }

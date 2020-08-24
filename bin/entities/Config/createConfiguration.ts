@@ -12,7 +12,7 @@ import {
   errorCreateConfigurationNoDefault
 } from '../../frameworks/errors/errors';
 
-import { Config } from '../../app/contracts/config/Config';
+import { Config } from './Config';
 
 /**
  * @description Create configuration object

@@ -20,7 +20,7 @@ import { ignoreElementsKeywords } from '../../frameworks/system/ignoreElementsKe
 
 import { Frame } from '../../entities/Frame/Frame';
 
-import { Config } from '../../app/contracts/config/Config';
+import { Config } from '../../entities/Config/Config';
 
 /**
  * @description Process tokens

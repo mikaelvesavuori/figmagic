@@ -5,7 +5,7 @@ import { writeFile } from './writeFile';
 
 import { errorWriteElements } from '../errors/errors';
 
-import { Config } from '../../app/contracts/config/Config';
+import { Config } from '../../entities/Config/Config';
 
 /**
  * @description Funnel function to write all the wanted files per element

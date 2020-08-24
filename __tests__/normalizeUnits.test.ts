@@ -1,4 +1,4 @@
-import { normalizeUnits } from '../bin/frameworks/helpers/normalizeUnits';
+import { normalizeUnits } from '../bin/frameworks/string/normalizeUnits';
 
 /*
 test('It should throw an error if no parameter is provided', () => {
@@ -6,6 +6,7 @@ test('It should throw an error if no parameter is provided', () => {
     normalizeUnits();
   }).toThrow();
 });
+*/
 
 test('It should throw an error if trying to convert to rem but having no remSize provided', () => {
   expect(() => {
@@ -20,7 +21,7 @@ test('It should throw an error if being passed an invalid asdf, since it cannot 
 });
 
 test('It should normalize a percent unit to unitless, when given a width value, current unit string, and a conversion type as float', () => {
-  expect(normalizeUnits(146.484375, 'percent', 'unitless')).toBe(1.46484375);
+  expect(normalizeUnits(146.484375, 'percent', 'unitless')).toBe('1.46484375');
 });
 
 test('It should normalize a letter-spacing unit to a converted pixel value, when given a width value, current unit string, and a conversion type as string', () => {
@@ -28,6 +29,5 @@ test('It should normalize a letter-spacing unit to a converted pixel value, when
 });
 
 test('It should normalize a px value to base rem size, when given a width value, current unit string, and a conversion type as string', () => {
-  expect(normalizeUnits('48', 'px', 'rem', 16)).toBe('3rem');
+  expect(normalizeUnits(48, 'px', 'rem', 16)).toBe('3rem');
 });
-*/

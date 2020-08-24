@@ -1,4 +1,4 @@
-import { Config } from '../../app/contracts/config/Config';
+import { Config } from '../../entities/Config/Config';
 import { FigmaData } from '../../entities/FigmaData/FigmaData';
 
 import { createFolder } from '../../functions/filesystem/createFolder';

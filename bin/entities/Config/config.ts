@@ -1,40 +1,40 @@
-import { Config } from '../../app/contracts/config/Config';
+// TODO: Check this
 
-export const defaultConfig: Config = {
-  debugMode: false,
-  fontUnit: 'rem',
-  letterSpacingUnit: 'em',
-  opacitiesUnit: 'float',
-  outputFileName: 'figma.json',
-  outputFolderBaseFile: '.figmagic',
-  outputFolderComponents: '',
-  outputFolderElements: 'elements',
-  outputFolderGraphics: 'graphics',
-  outputFolderTokens: 'tokens',
-  outputFormatGraphics: 'svg',
-  outputScaleGraphics: 1,
-  outputTokenDataType: null,
-  outputTokenFormat: 'mjs',
-  recompileLocal: false,
-  remSize: 16,
+export type Config = {
+  debugMode: boolean;
+  fontUnit: 'rem' | 'em'; // ???
+  letterSpacingUnit: 'em' | 'rem'; // ???
+  opacitiesUnit: 'float' | 'percent';
+  outputFileName: string;
+  outputFolderBaseFile: string;
+  outputFolderComponents?: string; // ???
+  outputFolderElements: string;
+  outputFolderGraphics: string;
+  outputFolderTokens: string;
+  outputFormatGraphics: 'svg'; // ???
+  outputScaleGraphics: number;
+  outputTokenDataType: null; // ???
+  outputTokenFormat: 'mjs'; // ???
+  recompileLocal: boolean;
+  remSize: number;
   skipFileGeneration: {
-    forceUpdate: true,
-    skipCss: false,
-    skipDescription: false,
-    skipReact: false,
-    skipStorybook: false,
-    skipStyled: false
-  },
-  spacingUnit: 'rem',
-  syncElements: false,
-  syncGraphics: false,
+    forceUpdate: boolean;
+    skipCss: boolean;
+    skipDescription: boolean;
+    skipReact: boolean;
+    skipStorybook: boolean;
+    skipStyled: boolean;
+  };
+  spacingUnit: 'rem' | 'em';
+  syncElements: boolean;
+  syncGraphics: boolean;
   templates: {
-    templatePathReact: 'templates/react.jsx',
-    templatePathStorybook: 'templates/story.js',
-    templatePathStyled: 'templates/styled.jsx'
-  },
-  testMode: false,
-  token: '',
-  url: '',
-  usePostscriptFontNames: false
+    templatePathReact: string;
+    templatePathStorybook: string;
+    templatePathStyled: string;
+  };
+  testMode: boolean;
+  token: string | null;
+  url: string | null;
+  usePostscriptFontNames: boolean;
 };

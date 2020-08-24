@@ -1,4 +1,4 @@
-import { toPascalCase } from '../bin/frameworks/helpers/toPascalCase';
+import { toPascalCase } from '../bin/frameworks/string/toPascalCase';
 
 /*
 test('It should throw an error if no parameter is provided', () => {

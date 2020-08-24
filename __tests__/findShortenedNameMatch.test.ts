@@ -1,4 +1,4 @@
-import { findShortenedNameMatch } from '../bin/frameworks/helpers/findShortenedNameMatch';
+import { findShortenedNameMatch } from '../bin/frameworks/string/findShortenedNameMatch';
 
 /*
 test('It should throw error when running without arguments', () => {

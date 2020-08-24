@@ -5,7 +5,7 @@ import { writeFile } from './writeFile';
 import { errorWriteTokens, errorWriteTokensNoSettings } from '../errors/errors';
 import { acceptedTokenTypes } from '../system/acceptedTokenTypes';
 
-import { Config } from '../../app/contracts/config/Config';
+import { Config } from '../../entities/Config/Config';
 
 /**
  * @description Write tokens to file

@@ -16,7 +16,7 @@ export function normalizeUnits(
   value: number,
   currentUnit: string,
   newUnit: string,
-  remSize: number
+  remSize?: number
 ): string {
   if (!value || !currentUnit || !newUnit) throw new Error(errorNormalizeUnits);
 

@@ -1,4 +1,4 @@
-import { Config } from '../../app/contracts/config/Config';
+import { Config } from '../../entities/Config/Config';
 import { errorProcessElements } from '../../frameworks/errors/errors';
 
 import { parseElement } from './elements/parseElement';

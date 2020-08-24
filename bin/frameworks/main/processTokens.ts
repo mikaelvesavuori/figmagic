@@ -1,4 +1,4 @@
-import { Config } from '../../app/contracts/config/Config';
+import { Config } from '../../entities/Config/Config';
 import { FigmaData } from '../../entities/FigmaData/FigmaData';
 import { Page } from '../../entities/Page/Page';
 
