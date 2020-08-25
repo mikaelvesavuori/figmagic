@@ -1,13 +1,13 @@
 import * as path from 'path';
 
-import { Element } from '../contracts/Element';
-import { FigmagicTypography } from '../contracts/FigmagicTypography';
+import { Element } from '../../contracts/Element';
+import { FigmagicTypography } from '../../contracts/FigmagicTypography';
 
-import { getTokenMatch } from './getTokenMatch';
+import { getTokenMatch } from '../tokens/getTokenMatch';
 
-import { roundColorValue } from '../../frameworks/string/roundColorValue';
+import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
-import { ErrorParseTypographyStylingFromElement } from '../../frameworks/errors/errors';
+import { ErrorParseTypographyStylingFromElement } from '../../../frameworks/errors/errors';
 
 /**
  * @description Parse typography CSS from "element" (Figma component)

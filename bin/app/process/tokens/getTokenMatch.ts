@@ -1,12 +1,12 @@
-import { Tokens } from '../../entities/Tokens/Tokens';
-import { Imports } from '../contracts/Imports';
+import { Tokens } from '../../../entities/Tokens/Tokens';
+import { Imports } from '../../contracts/Imports';
 
-import { TokenMatch } from '../contracts/TokenMatch';
+import { TokenMatch } from '../../contracts/TokenMatch';
 
-import { normalizeUnits } from '../../frameworks/string/normalizeUnits';
+import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 
-import { MsgGetTokenMatchNoMatch } from '../../frameworks/messages/messages';
-import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../frameworks/errors/errors';
+import { MsgGetTokenMatchNoMatch } from '../../../frameworks/messages/messages';
+import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../../frameworks/errors/errors';
 
 // TODO: Refactor
 
@@ -23,7 +23,7 @@ export function getTokenMatch(
   tokens: object,
   tokenFileName: string,
   property: string,
-  expectedValue: string,
+  expectedValue: string | number | object,
   remSize: number
 ): TokenMatch {
   if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error(ErrorGetTokenMatch);
@@ -49,7 +49,7 @@ export function getTokenMatch(
 }
 
 function matchPadding(
-  expectedValue: string,
+  expectedValue: string | number | object,
   remSize: number,
   tokens: Tokens,
   tokenFileName: string,

@@ -18,6 +18,7 @@ export const ErrorFindShortenedNameMatchOriginal: string = `${colors.FgRed}No "o
 export const ErrorFindShortenedNameMatchString: string = `${colors.FgRed}No "matchString" was provided to findShortenedNameMatch()!`;
 export const ErrorFindShortenedNameMatchWrongType: string = `${colors.FgRed}Arguments are not of string type!`;
 export const ErrorGetData: string = `${colors.FgRed}Could not retrieve any data. Are you missing a valid API key?`;
+export const ErrorGetDataNoTokenOrUrl: string = `${colors.FgRed}Missing token and/or URL when attempting to get remote data!`;
 export const ErrorGetDescription: string = `${colors.FgRed}Missing element in getDescription()!`;
 export const ErrorGetElementType: string = `${colors.FgRed}Missing element in getElementType()!`;
 export const ErrorGetFileList: string = `${colors.FgRed}Missing one or more of required arguments: "imageResponse", "ids" and/or "outputFormatGraphics" when calling getFileList()!`;

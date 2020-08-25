@@ -1,7 +1,7 @@
 import { Config } from '../../entities/Config/Config';
 import { FigmaData } from '../contracts/FigmaData';
 
-import { createPage } from '../process/createPage';
+import { createPage } from '../process/tokens/createPage';
 import { processGraphics } from '../process/processGraphics';
 
 import { refresh } from '../../frameworks/filesystem/refresh';

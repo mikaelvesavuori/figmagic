@@ -2,7 +2,7 @@ import { FigmaData } from '../app/contracts/FigmaData';
 import { Config } from '../entities/Config/Config';
 import { Frame } from '../app/contracts/Frame';
 
-import { createPage } from '../app/process/createPage';
+import { createPage } from '../app/process/tokens/createPage';
 
 import { refresh } from '../frameworks/filesystem/refresh';
 import { writeTokens } from '../frameworks/filesystem/writeTokens';

@@ -2,16 +2,16 @@ import { Config } from '../../entities/Config/Config';
 
 import { ImageResponse } from '../contracts/ImageResponse';
 
-import { camelize } from '../../frameworks/string/camelize';
+import { getIds } from './graphics/getIds';
+import { getIdString } from './graphics/getIdString';
+import { getFileList } from './graphics/getFileList';
+
 import { getFromApi } from '../../frameworks/network/getFromApi';
 
 import {
   ErrorProcessGraphics,
   ErrorProcessGraphicsImageError,
-  ErrorProcessGraphicsNoImages,
-  ErrorGetIds,
-  ErrorGetFileList,
-  ErrorGetIdstring
+  ErrorProcessGraphicsNoImages
 } from '../../frameworks/errors/errors';
 // TODO: Refactor
 
@@ -39,80 +39,3 @@ export async function processGraphics(graphicsPage: object, config: Config): Pro
 
   return getFileList(IMAGE_RESPONSE, IDS, outputFormatGraphics);
 }
-
-/**
- * @description Get cleaned list of files
- *
- * @param imageResponse Figma API response
- * @param ids Array of asset IDs
- * @param outputFormatGraphics String representing expected output format
- */
-export const getFileList = (
-  imageResponse: object,
-  ids: any[],
-  outputFormatGraphics: string
-): any[] => {
-  if (!imageResponse || !ids || !outputFormatGraphics) throw new Error(ErrorGetFileList);
-
-  let fileList = [];
-
-  Object.entries(imageResponse.images).forEach(async (image) => {
-    let name = '__unnamed__';
-
-    ids.forEach((z) => {
-      if (z.id === image[0]) {
-        name = z.name;
-      }
-    });
-
-    name = camelize(name);
-
-    const URL = image[1];
-    const FILE = `${name}.${outputFormatGraphics}`;
-
-    fileList.push({ url: URL, file: FILE });
-  });
-
-  return fileList;
-};
-
-/**
- * @description Get IDs from graphics page
- *
- * @param graphicsPage Figma 'Graphics' page
- */
-export const getIds = (graphicsPage: GraphicsPage): any[] => {
-  if (!graphicsPage) throw new Error(ErrorGetIds);
-  if (!(graphicsPage.length > 0)) throw new Error(ErrorGetIds);
-
-  let items = [];
-
-  // Filter out anything that is not a component
-  graphicsPage
-    .filter((item) => item.type === 'COMPONENT')
-    .forEach((item) => {
-      items.push({ id: item.id, name: item.name });
-    });
-
-  return items;
-};
-
-/**
- * @description Collate valid string of IDs
- *
- * @param ids Figma 'Graphics' page
- */
-export const getIdString = (ids: any[]): string => {
-  if (!ids) throw new Error(ErrorGetIdstring);
-
-  let idString = '';
-
-  ids.forEach((item) => {
-    idString += `${item.id},`;
-  });
-
-  // Remove last comma
-  idString = idString.slice(0, idString.length - 1);
-
-  return idString;
-};

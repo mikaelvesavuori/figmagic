@@ -1,4 +1,4 @@
-import { parseCssFromElement } from '../parseCssFromElement';
+import { parseCssFromElement } from './parseCssFromElement';
 
 import { ProcessedSelfnamedCss } from '../../contracts/Css';
 

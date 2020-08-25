@@ -4,7 +4,7 @@ import { ParsedElementData } from '../../contracts/ParsedElementData';
 
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
-import { getTokenMatch } from '../getTokenMatch';
+import { getTokenMatch } from '../tokens/getTokenMatch';
 
 type PaddingVertical = {
   top: number;

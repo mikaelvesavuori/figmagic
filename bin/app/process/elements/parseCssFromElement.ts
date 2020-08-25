@@ -1,8 +1,8 @@
 import * as path from 'path';
 
-import { Css } from '../contracts/Css';
-import { Element } from '../contracts/Element';
-import { TextElement } from '../contracts/TextElement';
+import { Css } from '../../contracts/Css';
+import { Element } from '../../contracts/Element';
+import { TextElement } from '../../contracts/TextElement';
 
 import {
   getPaddingY,
@@ -17,9 +17,9 @@ import {
   parseBorderRadius,
   getShadow,
   parseShadow
-} from './cssParsers/parsers';
+} from './parsers';
 
-import { ErrorParseCssFromElement } from '../../frameworks/errors/errors';
+import { ErrorParseCssFromElement } from '../../../frameworks/errors/errors';
 
 /**
  * @description Parse layout CSS from "element" (Figma component)

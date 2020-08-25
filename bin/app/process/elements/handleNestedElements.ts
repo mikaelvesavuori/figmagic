@@ -1,8 +1,8 @@
 import { ElementAuxData } from '../../contracts/ElementAuxData';
 
-import { parseCssFromElement } from '../parseCssFromElement';
-import { parseTypographyStylingFromElement } from '../parseTypographyStylingFromElement';
-import { processNestedCss } from '../processNestedCss';
+import { parseCssFromElement } from './parseCssFromElement';
+import { parseTypographyStylingFromElement } from './parseTypographyStylingFromElement';
+import { processNestedCss } from './processNestedCss';
 
 import { MsgProcessElementsCreatingElement } from '../../../frameworks/messages/messages';
 

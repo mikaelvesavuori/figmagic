@@ -1,6 +1,6 @@
-import { Frame } from '../contracts/Frame';
+import { Frame } from '../../contracts/Frame';
 
-import { ErrorCreatePage } from '../../frameworks/errors/errors';
+import { ErrorCreatePage } from '../../../frameworks/errors/errors';
 
 /**
  * @description Creates cleaned pages from the raw Figma data, for further processing
