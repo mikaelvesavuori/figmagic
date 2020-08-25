@@ -1,4 +1,5 @@
 import { Config } from '../../entities/Config/Config';
+import { Page } from '../../app/contracts/Page';
 
 import { camelize } from '../string/camelize';
 import { processTokens } from '../../app/process/processTokens';
@@ -13,7 +14,7 @@ import { acceptedTokenTypes } from '../system/acceptedTokenTypes';
  * @param tokens The final array of design tokens
  * @param config User configuration object
  */
-export async function writeTokens(tokens: any[], config: Config): Promise<boolean> {
+export async function writeTokens(tokens: Page[], config: Config): Promise<boolean> {
   if (!tokens) throw new Error(ErrorWriteTokens);
   if (!(tokens.length > 0)) throw new Error(ErrorWriteTokens);
   if (!config) throw new Error(ErrorWriteTokensNoSettings);
