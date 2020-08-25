@@ -23,7 +23,7 @@ export function getTokenMatch(
   tokens: object,
   tokenFileName: string,
   property: string,
-  expectedValue: string | number | object,
+  expectedValue: string,
   remSize: number
 ): TokenMatch {
   if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error(ErrorGetTokenMatch);
@@ -33,14 +33,23 @@ export function getTokenMatch(
 
   // Padding requires both X and Y dimensions/values so requires a bit more noodling
   if (property === 'padding')
-    doPadding(expectedValue, remSize, tokens, tokenFileName, property, updatedCss, updatedImports);
-  else doOther(expectedValue, remSize, tokens, tokenFileName, property, updatedCss, updatedImports);
+    matchPadding(
+      expectedValue,
+      remSize,
+      tokens,
+      tokenFileName,
+      property,
+      updatedCss,
+      updatedImports
+    );
+  else
+    matchOther(expectedValue, remSize, tokens, tokenFileName, property, updatedCss, updatedImports);
 
   return { updatedCss, updatedImports };
 }
 
-function doPadding(
-  expectedValue: string | number | object,
+function matchPadding(
+  expectedValue: string,
   remSize: number,
   tokens: Tokens,
   tokenFileName: string,
@@ -50,12 +59,15 @@ function doPadding(
 ) {
   const keys = Object.keys(expectedValue);
 
-  keys.forEach((key) => {
+  // TODO: Fix "any"
+  keys.forEach((key: any) => {
     let foundMatch = false;
 
-    if (expectedValue[key] && expectedValue[key] > 0) {
+    //  && expectedValue[key] > 0
+    if (expectedValue[key]) {
       if (!remSize) throw new Error(ErrorGetTokenMatchNoRemSize);
-      const value = normalizeUnits(expectedValue[key], 'px', 'rem', remSize);
+      const parsedValue = parseFloat(expectedValue[key]);
+      const value = normalizeUnits(parsedValue, 'px', 'rem', remSize);
 
       // Check if we can match value with a token and its value
       Object.entries(tokens).forEach((s) => {
@@ -76,8 +88,8 @@ function doPadding(
   updatedImports.push(tokenFileName);
 }
 
-function doOther(
-  expectedValue: string,
+function matchOther(
+  expectedValue: string | number | object,
   remSize: number,
   tokens: Tokens,
   tokenFileName: string,
@@ -86,6 +98,7 @@ function doOther(
   updatedImports: Imports
 ) {
   let foundMatch = false;
+  let imports: [] = updatedImports;
 
   Object.entries(tokens).forEach((s) => {
     const TOKEN_VALUE = (() => {

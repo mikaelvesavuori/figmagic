@@ -1,6 +1,6 @@
 import { FigmaData } from '../app/contracts/FigmaData';
 import { Config } from '../entities/Config/Config';
-import { Page } from '../app/contracts/Page';
+import { Frame } from '../app/contracts/Frame';
 
 import { createPage } from '../app/process/createPage';
 
@@ -23,7 +23,7 @@ export async function createTokens(
   console.log(MsgWriteTokens);
 
   try {
-    const tokensPage: Page[] = createPage(data.document.children, 'Design Tokens');
+    const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
     await refresh(outputFolder);
     await writeTokens(tokensPage, config);
   } catch (error) {

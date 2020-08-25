@@ -1,54 +1,56 @@
 export interface Element {
-  children: any[];
-  name: string;
   absoluteBoundingBox: AbsoluteBoundingBox;
-  strokeWeight: string;
-  strokes: Strokes;
+  children: any[];
   cornerRadius: string;
+  description: string;
   effects: Effects[];
   fills: Fills[];
   gradients: Gradients[];
-  type: string;
+  id: string;
+  name: string;
+  strokeWeight: string;
+  strokes: Strokes;
   style: Style;
+  type: string;
 }
 
 export type AbsoluteBoundingBox = {
-  width: number;
   height: number;
+  width: number;
   x: number;
   y: number;
 };
 
 export type Strokes = {
-  type: string;
-  length: number;
   color: Color;
+  length: number;
+  type: string;
 };
 
 export type Color = {
-  r: number;
-  g: number;
-  b: number;
   a: number;
+  b: number;
+  g: number;
+  r: number;
 };
 
 export type Effects = {
-  type: string;
+  x: string;
+  y: string;
   color: Color;
   offset: {
-    x: string;
-    y: string;
+    radius: string;
+    type: string;
   };
-  radius: string;
 };
 
 export type Fills = {
   color: Color;
-  gradients: Gradients[];
   gradientStops: GradientStops[];
+  gradients: Gradients[];
+  opacity: number;
   position: string;
   type: string;
-  opacity: number;
 };
 
 export type Gradients = {
@@ -61,12 +63,12 @@ export type GradientStops = {
 };
 
 export type Style = {
+  fontFamily: string;
+  fontPostScriptName: string;
   fontSize: string;
   fontWeight: number;
   letterSpacing: string;
   lineHeightPercentFontSize: number;
-  fontFamily: string;
-  fontPostScriptName: string;
   textAlignHorizontal: string;
   textCase: 'LOWER' | 'UPPER' | 'TITLE';
 };

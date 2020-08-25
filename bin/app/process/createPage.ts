@@ -1,4 +1,4 @@
-import { Page } from '../contracts/Page';
+import { Frame } from '../contracts/Frame';
 
 import { ErrorCreatePage } from '../../frameworks/errors/errors';
 
@@ -8,7 +8,7 @@ import { ErrorCreatePage } from '../../frameworks/errors/errors';
  * @param figmaPages Array of Figma pages
  * @param matchingPageName String that identifies the correct page name
  */
-export function createPage(figmaPages: Page[], matchingPageName: string): Page[] {
+export function createPage(figmaPages: Frame[], matchingPageName: string): Frame[] {
   if (!figmaPages || !(figmaPages.length > 0)) throw new Error(ErrorCreatePage);
   return figmaPages.filter((page) => page.name === matchingPageName);
 }

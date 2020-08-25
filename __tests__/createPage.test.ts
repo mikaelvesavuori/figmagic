@@ -1,12 +1,12 @@
 import { createPage } from '../bin/app/process/createPage';
 
-import { Page } from '../bin/app/contracts/Page';
+import { Frame } from '../bin/app/contracts/Frame';
 
 const matchingPageName = 'designtokens';
 
 describe('Failure cases', () => {
   test('It should throw an error if array is empty', () => {
-    const FIGMA_PAGES: Page[] = [];
+    const FIGMA_PAGES: Frame[] = [];
     expect(() => {
       createPage(FIGMA_PAGES, matchingPageName);
     }).toThrow();
@@ -15,7 +15,7 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should return an empty object if array has non-matching values', () => {
-    const FIGMA_PAGES: Page[] = [{ name: 'asdf', children: [] }];
+    const FIGMA_PAGES: Frame[] = [{ name: 'asdf', children: [] }];
     expect(createPage(FIGMA_PAGES, matchingPageName)).toEqual(expect.objectContaining({}));
   });
 

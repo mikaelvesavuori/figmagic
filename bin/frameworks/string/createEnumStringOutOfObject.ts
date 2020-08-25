@@ -5,8 +5,8 @@ import { ErrorCreateEnumStringOutOfObject } from '../errors/errors';
  *
  * @param obj The initial object with data
  */
-
-export function createEnumStringOutOfObject(obj: object): string {
+// TODO: Verify that the string type does not break anything; used to make writeFile implementation work
+export function createEnumStringOutOfObject(obj: object | string): string {
   if (!obj) throw new Error(ErrorCreateEnumStringOutOfObject);
 
   return Object.entries(obj).reduce((acc, [key, value]) => {

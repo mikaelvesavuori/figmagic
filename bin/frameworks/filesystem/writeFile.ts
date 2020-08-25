@@ -17,7 +17,7 @@ import {
 } from '../errors/errors';
 
 /**
- * @description Exposed function that handles writing files to disk
+ * @description Handles writing files to disk
  *
  * @param file File contents
  * @param path File path minus file name
@@ -51,7 +51,7 @@ export async function writeFile(
   )
     throw new Error(ErrorWriteFileWrongType);
 
-  createFolder(path);
+  await createFolder(path);
 
   const { filePath, fileContent } = await prepareWrite(
     _TYPE,
@@ -84,8 +84,8 @@ async function prepareWrite(
   path: string,
   name: string,
   format: string,
-  metadata: Metadata | undefined | null,
-  templates: Templates
+  metadata?: Metadata,
+  templates?: Templates
 ) {
   if (type === 'css' || type === 'story' || type === 'component') {
     if (!templates) throw new Error(ErrorPrepareWrite);
@@ -98,34 +98,29 @@ async function prepareWrite(
 
   const ELEMENT = (() => {
     if (metadata) {
-      if (metadata.element) {
-        return metadata.element;
-      } else return 'div';
+      if (metadata.element) return metadata.element;
+      else return 'div';
     } else return 'div';
   })();
 
   const TEXT = (() => {
     if (metadata) {
-      if (metadata.text) {
-        return metadata.text;
-      } else return '';
+      if (metadata.text) return metadata.text;
+      else return '';
     } else return '';
   })();
 
   const EXTRA_PROPS = (() => {
     if (metadata) {
-      if (metadata.extraProps) {
-        return metadata.extraProps;
-      } else return '';
+      if (metadata.extraProps) return metadata.extraProps;
+      else return '';
     } else return '';
   })();
 
   const IMPORTS = (() => {
     if (metadata) {
       if (metadata.imports) {
-        if (metadata.imports.length > 0) {
-          return createImportStringFromList(metadata.imports);
-        }
+        if (metadata.imports.length > 0) return createImportStringFromList(metadata.imports);
       } else return '';
     } else return '';
     return null;
@@ -133,9 +128,8 @@ async function prepareWrite(
 
   let filePath = `${path}/${name}`;
 
-  if (type === 'raw') {
-    fileContent = `${JSON.stringify(file, null, ' ')}`;
-  }
+  // Raw file output
+  if (type === 'raw') fileContent = `${JSON.stringify(file, null, ' ')}`;
   // Design token
   else if (type === 'token') {
     if (metadata && metadata.dataType === 'enum') {
@@ -152,7 +146,7 @@ async function prepareWrite(
     filePath += `.${format}`;
   }
   // Component
-  else if (type === 'component') {
+  else if (type === 'component' && templates) {
     const SUFFIX = 'Styled';
     const PATH = templates.templatePathReact;
     let template = await loadFile(PATH, true);
@@ -166,7 +160,7 @@ async function prepareWrite(
     filePath += `.${format}`;
   }
   // Styled Components
-  else if (type === 'style') {
+  else if (type === 'style' && templates) {
     const SUFFIX = 'Styled';
     const PATH = templates.templatePathStyled;
     let template = await loadFile(PATH, true);
@@ -183,7 +177,7 @@ async function prepareWrite(
     filePath += `${SUFFIX}.${format}`;
   }
   // Storybook
-  else if (type === 'story') {
+  else if (type === 'story' && templates) {
     const SUFFIX = '.stories';
     const PATH = templates.templatePathStorybook;
     let template = await loadFile(PATH, true);
@@ -207,7 +201,6 @@ async function prepareWrite(
  *
  * @param filePath File path minus file name
  * @param fileContent File contents
- * @returns Returns promise from wrapped fs.writeFile
  */
 async function write(filePath: string, fileContent: string): Promise<boolean> {
   return await new Promise((resolve, reject) => {

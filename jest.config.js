@@ -8,5 +8,5 @@ module.exports = {
   moduleFileExtensions: ['js', 'ts'],
   testMatch: ['<rootDir>/__tests__/**/*.test.ts'],
   testPathIgnorePatterns: ['/node_modules/'],
-  setTimeout: 30000
+  testTimeout: 30000
 };

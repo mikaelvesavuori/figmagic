@@ -1,12 +1,13 @@
 import { FigmagicElement } from '../../contracts/FigmagicElement';
-import { ErrorParseElement } from '../../../frameworks/errors/errors';
-
+import { Element } from '../../contracts/Element';
 import { ElementAuxData } from '../../contracts/ElementAuxData';
 
 import { getElementType } from './getElementType';
 import { getDescription } from './getDescription';
 import { handleNestedElements } from './handleNestedElements';
 import { handleNonNestedElements } from './handleNonNestedElements';
+
+import { ErrorParseElement } from '../../../frameworks/errors/errors';
 
 /**
  * @description Do the actual parsing and processing of an "element"-type component from Figma
@@ -33,11 +34,11 @@ export async function parseElement(
   let text = ``;
   let imports: any[] = [];
 
-  const elementType = getElementType(element);
+  const elementType: string = getElementType(element);
   newElement.element = elementType;
 
-  const description = getDescription(element);
-  newElement.element = elementType;
+  const description: string = getDescription(element);
+  newElement.description = description;
 
   html += `<${elementType}>{{TEXT}}</${elementType}>`;
 

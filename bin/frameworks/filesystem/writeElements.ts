@@ -23,6 +23,7 @@ export async function writeElements(elements: any[], config: Config): Promise<vo
     const NAME = toPascalCase(comp.name);
     const FOLDER = `${config.outputFolderElements}/${NAME}`;
     const METADATA = {
+      dataType: null, // TODO: Verify this
       html: comp.html,
       element: comp.element,
       extraProps: comp.extraProps,
