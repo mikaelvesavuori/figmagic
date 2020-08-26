@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeDelayTokens } from '../index';
+import { DelayTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -5,8 +9,6 @@ import {
   ErrorSetupDelayTokensNoChildren,
   ErrorSetupDelayTokensMissingProps
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma delays into a clean object
@@ -17,15 +19,14 @@ export function setupDelayTokens(delayFrame: Frame): DelayTokens {
   if (!delayFrame) throw new Error(ErrorSetupDelayTokensNoFrame);
   if (!delayFrame.children) throw new Error(ErrorSetupDelayTokensNoChildren);
 
-  let delayObject = {};
+  let delays = {};
 
   delayFrame.children.forEach((type) => {
     if (!type.name || !type.characters) throw new Error(ErrorSetupDelayTokensMissingProps);
-
     const name = camelize(type.name);
-
-    delayObject[name] = parseFloat(type.characters);
+    delays[name] = parseFloat(type.characters);
   });
 
-  return delayObject;
+  const delayTokens = makeDelayTokens(delays);
+  return delayTokens;
 }

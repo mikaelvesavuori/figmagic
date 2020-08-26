@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeEasingTokens } from '../index';
+import { EasingTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -5,8 +9,6 @@ import {
   ErrorSetupEasingTokensNoChildren,
   ErrorSetupEasingTokensMissingProps
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma easings into a clean object
@@ -17,15 +19,14 @@ export function setupEasingTokens(easingFrame: Frame): EasingTokens {
   if (!easingFrame) throw new Error(ErrorSetupEasingTokensNoFrame);
   if (!easingFrame.children) throw new Error(ErrorSetupEasingTokensNoChildren);
 
-  let easingObject = {};
+  let easings = {};
 
   easingFrame.children.forEach((type) => {
     if (!type.name || !type.characters) throw new Error(ErrorSetupEasingTokensMissingProps);
-
     const name = camelize(type.name);
-
-    easingObject[name] = type.characters.trim();
+    easings[name] = type.characters.trim();
   });
 
-  return easingObject;
+  const easingTokens = makeEasingTokens(easings);
+  return easingTokens;
 }

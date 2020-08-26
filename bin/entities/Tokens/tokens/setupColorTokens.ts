@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeColorTokens } from '../index';
+import { ColorTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
@@ -6,8 +10,6 @@ import {
   ErrorSetupColorTokensNoChildren,
   ErrorSetupColorTokensNoFills
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma color frames into a clean object
@@ -32,9 +34,9 @@ export function setupColorTokens(colorFrame: Frame): ColorTokens {
     )}, ${roundColorValue(color.fills[0].color.b, 255)}, ${roundColorValue(ALPHA, 1)})`;
 
     const name = camelize(color.name);
-
     colors[name] = COLOR_STRING;
   });
 
-  return colors;
+  const colorTokens = makeColorTokens(colors);
+  return colorTokens;
 }

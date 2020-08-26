@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeBorderWidthTokens } from '../index';
+import { BorderWidthTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -5,9 +9,6 @@ import {
   ErrorSetupBorderWidthTokensNoChildren,
   ErrorSetupBorderWidthTokensMissingProps
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
-import { BorderWidthTokens } from '../Tokens';
 
 /**
  * @description Places all Figma border widths into a clean object
@@ -18,16 +19,15 @@ export function setupBorderWidthTokens(borderWidthFrame: Frame): BorderWidthToke
   if (!borderWidthFrame) throw new Error(ErrorSetupBorderWidthTokensNoFrame);
   if (!borderWidthFrame.children) throw new Error(ErrorSetupBorderWidthTokensNoChildren);
 
-  let borderWidthObject = {};
+  let borderWidths: object = {};
 
   borderWidthFrame.children.forEach((type) => {
     if (!type.name || typeof type.strokeWeight === 'undefined')
       throw new Error(ErrorSetupBorderWidthTokensMissingProps);
-
     const name = camelize(type.name);
-
-    borderWidthObject[name] = `${parseInt(type.strokeWeight, 10)}px`;
+    borderWidths[name] = `${type.strokeWeight}px`;
   });
 
-  return borderWidthObject;
+  const borderWidthTokens = makeBorderWidthTokens(borderWidths);
+  return borderWidthTokens;
 }

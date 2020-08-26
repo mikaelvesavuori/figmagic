@@ -37,6 +37,8 @@ export async function createConfiguration(
   if (!defaultConfig) throw new Error(ErrorCreateConfigurationNoDefault);
   if (!userConfigPath) throw new Error(ErrorCreateConfiguration);
 
+  const DEFAULT_CONFIG: any = defaultConfig;
+
   // RC file configuration
   let RC_CONFIG: any = {};
 
@@ -46,17 +48,20 @@ export async function createConfiguration(
   } catch (e) {} // eslint-disable-line no-empty
 
   // Env var configuration
+  // BUG/TODO: Env config will negate/remove token+url and others from RC file
   const ENV_CONFIG = {
     token: process.env.FIGMA_TOKEN || null,
     url: process.env.FIGMA_URL || null
   };
+
+  console.log('RC_CONFIG', RC_CONFIG);
 
   // CLI arguments configuration
   const CLI_CONFIG = parseCliArgs(cliArgs) as Config;
 
   // Merge configurations in order of prioritization
   // 1. Base required config
-  // 2. Config file: lowest priority
+  // 2. Config file: next highest priority
   // Versioned, "main" local config
   // NOTE: config is not deep-merged
   // 3. Environment config: medium priority
@@ -66,7 +71,7 @@ export async function createConfiguration(
   const CONFIG = {
     ...DEFAULT_CONFIG,
     ...RC_CONFIG,
-    ...ENV_CONFIG,
+    //...ENV_CONFIG,
     ...CLI_CONFIG,
     templates: {
       ...DEFAULT_CONFIG.templates,

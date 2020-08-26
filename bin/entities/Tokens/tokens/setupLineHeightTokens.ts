@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeLineHeightTokens } from '../index';
+import { LineHeightTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 
@@ -7,8 +11,6 @@ import {
   ErrorSetupLineHeightTokensMissingProps,
   ErrorSetupLineHeightTokensMissingPercent
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma line heights into a clean object
@@ -20,7 +22,7 @@ export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): 
   if (!lineHeightFrame) throw new Error(ErrorSetupLineHeightTokensNoFrame);
   if (!lineHeightFrame.children) throw new Error(ErrorSetupLineHeightTokensNoChildren);
 
-  let lineHeightObject = {};
+  let lineHeights = {};
 
   lineHeightFrame.children.forEach((type) => {
     if (!type.name || !type.style) throw new Error(ErrorSetupLineHeightTokensMissingProps);
@@ -37,8 +39,9 @@ export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): 
 
     // Do a tiny bit of rounding to avoid ugly numbers
     const lineHeight = parseFloat(LINE_HEIGHT).toFixed(2);
-    lineHeightObject[name] = lineHeight;
+    lineHeights[name] = lineHeight;
   });
 
-  return lineHeightObject;
+  const lineHeightTokens = makeLineHeightTokens(lineHeights);
+  return lineHeightTokens;
 }

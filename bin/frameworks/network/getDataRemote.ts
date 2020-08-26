@@ -1,4 +1,4 @@
-import { FigmaData } from '../../app/contracts/FigmaData';
+//import { FigmaData } from '../../app/contracts/FigmaData';
 
 import { getFromApi } from './getFromApi';
 
@@ -11,7 +11,8 @@ import { MsgSetDataFromApi } from '../messages/messages';
  * @param token TODO
  * @param url TODO
  */
-export async function getDataRemote(token: string | null, url: string | null): Promise<FigmaData> {
+// TODO: Return FigmaData?
+export async function getDataRemote(token: string | null, url: string | null): Promise<any> {
   if (!token || !url) throw new Error(ErrorGetDataNoTokenOrUrl);
   console.log(MsgSetDataFromApi);
 

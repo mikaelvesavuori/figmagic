@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeFontSizeTokens } from '../index';
+import { FontSizeTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -7,8 +11,6 @@ import {
   ErrorSetupFontSizeTokensMissingProps,
   ErrorSetupFontSizeTokensMissingSize
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma font sizes into a clean object
@@ -26,7 +28,7 @@ export function setupFontSizeTokens(
   if (!fontSizeFrame.children) throw new Error(ErrorSetupFontSizeTokensNoChildren);
   if (!fontUnit || !remSize) throw new Error(ErrorSetupFontSizeTokensNoSizing);
 
-  let fontSizeObject = {};
+  let fontSizes = {};
 
   fontSizeFrame.children.forEach((type) => {
     if (!type.name || !type.style) throw new Error(ErrorSetupFontSizeTokensMissingProps);
@@ -34,9 +36,9 @@ export function setupFontSizeTokens(
 
     const name = camelize(type.name);
     const FONT_SIZE = ((type.style.fontSize as unknown) as number) / remSize + fontUnit;
-
-    fontSizeObject[name] = FONT_SIZE;
+    fontSizes[name] = FONT_SIZE;
   });
 
-  return fontSizeObject;
+  const fontSizeTokens = makeFontSizeTokens(fontSizes);
+  return fontSizeTokens;
 }

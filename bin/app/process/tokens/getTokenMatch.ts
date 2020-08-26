@@ -20,7 +20,7 @@ import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../../framew
  * @param remSize HTML body REM size, required for padding and anything to do with rem/em
  */
 export function getTokenMatch(
-  tokens: object,
+  tokens: Tokens,
   tokenFileName: string,
   property: string,
   expectedValue: string | number | object,
@@ -55,10 +55,12 @@ function matchPadding(
   tokenFileName: string,
   property: string,
   updatedCss: string,
-  updatedImports: Imports
+  updatedImports: Imports[]
 ) {
-  const keys = Object.keys(expectedValue);
+  // TODO: Ugly fix to get rid of error, 'updatedCss' is declared but its value is never read.ts(6133)
+  console.log(updatedCss);
 
+  const keys = Object.keys(expectedValue);
   // TODO: Fix "any"
   keys.forEach((key: any) => {
     let foundMatch = false;
@@ -95,10 +97,12 @@ function matchOther(
   tokenFileName: string,
   property: string,
   updatedCss: string,
-  updatedImports: Imports
+  updatedImports: Imports[]
 ) {
+  // TODO: Ugly fix to get rid of error, 'updatedCss' is declared but its value is never read.ts(6133)
+  console.log(updatedCss);
+
   let foundMatch = false;
-  let imports: [] = updatedImports;
 
   Object.entries(tokens).forEach((s) => {
     const TOKEN_VALUE = (() => {

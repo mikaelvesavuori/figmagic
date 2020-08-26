@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeRadiusTokens } from '../index';
+import { RadiusTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 
@@ -6,8 +10,6 @@ import {
   ErrorSetupRadiusTokensNoChildren,
   ErrorSetupRadiusTokensMissingProps
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma radii into a clean object
@@ -19,7 +21,7 @@ export function setupRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTo
   if (!radiusFrame) throw new Error(ErrorSetupRadiusTokensNoFrame);
   if (!radiusFrame.children) throw new Error(ErrorSetupRadiusTokensNoChildren);
 
-  let cornerRadiusObject = {};
+  let cornerRadii = {};
 
   radiusFrame.children.forEach((type) => {
     if (!type.name) throw new Error(ErrorSetupRadiusTokensMissingProps);
@@ -27,8 +29,9 @@ export function setupRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTo
     const cornerRadius: string = type.cornerRadius
       ? normalizeUnits(parseFloat(type.cornerRadius), 'cornerRadius', 'adjustedRadius', remSize)
       : '0px';
-    cornerRadiusObject[name] = cornerRadius;
+    cornerRadii[name] = cornerRadius;
   });
 
-  return cornerRadiusObject;
+  const radiusTokens = makeRadiusTokens(cornerRadii);
+  return radiusTokens;
 }

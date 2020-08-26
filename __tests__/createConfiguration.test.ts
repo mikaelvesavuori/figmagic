@@ -13,6 +13,8 @@ describe('Success cases', () => {
       expect.objectContaining({
         debugMode: false,
         fontUnit: 'rem',
+        letterSpacingUnit: 'em',
+        opacitiesUnit: 'float',
         outputFileName: 'figma.json',
         outputFolderBaseFile: '.figmagic',
         outputFolderElements: 'elements',
@@ -20,17 +22,17 @@ describe('Success cases', () => {
         outputFolderTokens: 'tokens',
         outputFormatGraphics: 'svg',
         outputScaleGraphics: 1,
-        outputTokenFormat: 'mjs',
         outputTokenDataType: null,
+        outputTokenFormat: 'mjs',
         recompileLocal: false,
         remSize: 16,
         skipFileGeneration: {
-          skipReact: false,
-          skipStyled: false,
+          forceUpdate: true,
           skipCss: false,
-          skipStorybook: false,
           skipDescription: false,
-          forceUpdate: true
+          skipReact: false,
+          skipStorybook: false,
+          skipStyled: false
         },
         spacingUnit: 'rem',
         syncElements: false,
@@ -40,6 +42,9 @@ describe('Success cases', () => {
           templatePathStorybook: 'templates/story.js',
           templatePathStyled: 'templates/styled.jsx'
         },
+        testMode: false,
+        token: 'asdf1234',
+        url: '',
         usePostscriptFontNames: false
       })
     );
@@ -52,10 +57,11 @@ describe('Success cases', () => {
   */
 
   test('It logs the configuration when debug mode is enabled', async () => {
+    const USER_CONFIG_PATH = path.join(process.cwd(), 'testdata', 'figmagicrc');
     // mock console.log to reduce the noise in the terminal
     const mocks = [jest.spyOn(global.console, 'log').mockImplementation()];
 
-    const configuration = await createConfiguration({} as Config, null, ...['--debug']);
+    const configuration = await createConfiguration({} as Config, USER_CONFIG_PATH, ...['--debug']);
 
     expect(global.console.log).toHaveBeenCalledWith(configuration);
 

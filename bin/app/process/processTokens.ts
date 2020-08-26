@@ -28,7 +28,7 @@ import { ErrorProcessTokens, ErrorProcessTokensNoConfig } from '../../frameworks
  * @param config User configuration object
  */
 // TODO: Return Tokens
-export function processTokens(sheet: Frame, name: string, config: Config): object {
+export function processTokens(sheet: Frame, name: string, config: Config): any {
   if (!sheet || !name) throw new Error(ErrorProcessTokens);
 
   // Filter out elements that contain ignore keywords in their name

@@ -14,6 +14,6 @@ type FrameChild = {
   fills: Fills;
   name: string;
   opacity: number;
-  strokeWeight: string;
+  strokeWeight: number;
   style: Style;
 };

@@ -30,7 +30,7 @@ export async function writeTokens(tokens: Frame[], config: Config): Promise<bool
           if (config.debugMode) console.log(processedToken);
 
           await writeFile(
-            processedToken,
+            JSON.stringify(processedToken),
             config.outputFolderTokens,
             tokenName,
             'token',

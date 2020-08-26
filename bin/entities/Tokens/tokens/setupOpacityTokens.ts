@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeOpacityTokens } from '../index';
+import { OpacityTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -5,8 +9,6 @@ import {
   ErrorSetupOpacityTokensNoChildren,
   ErrorSetupOpacityTokensMissingProps
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma opacities scale into a clean object
@@ -22,7 +24,7 @@ export function setupOpacityTokens(
   if (!opacitiesFrame.children) throw new Error(ErrorSetupOpacityTokensNoChildren);
 
   // Reduce the children array to a tokens object
-  const opacityTokensObject = opacitiesFrame.children.reduce(
+  const _opacityTokens = opacitiesFrame.children.reduce(
     // Reducer function: will add a new key to the current "opacitiesObject" at each iteration
     (tokens, type) => {
       if (!type.name) throw new Error(ErrorSetupOpacityTokensMissingProps);
@@ -58,5 +60,6 @@ export function setupOpacityTokens(
     {}
   );
 
-  return opacityTokensObject;
+  const opacityTokens = makeOpacityTokens(_opacityTokens);
+  return opacityTokens;
 }

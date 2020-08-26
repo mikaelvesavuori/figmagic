@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeDurationTokens } from '../index';
+import { DurationTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -5,8 +9,6 @@ import {
   ErrorSetupDurationTokensNoChildren,
   ErrorSetupDurationTokensMissingProps
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma durations into a clean object
@@ -17,15 +19,14 @@ export function setupDurationTokens(durationFrame: Frame): DurationTokens {
   if (!durationFrame) throw new Error(ErrorSetupDurationTokensNoFrame);
   if (!durationFrame.children) throw new Error(ErrorSetupDurationTokensNoChildren);
 
-  let durationObject = {};
+  let durations = {};
 
   durationFrame.children.forEach((type) => {
     if (!type.name || !type.characters) throw new Error(ErrorSetupDurationTokensMissingProps);
-
     const name = camelize(type.name);
-
-    durationObject[name] = parseFloat(type.characters);
+    durations[name] = parseFloat(type.characters);
   });
 
-  return durationObject;
+  const durationTokens = makeDurationTokens(durations);
+  return durationTokens;
 }

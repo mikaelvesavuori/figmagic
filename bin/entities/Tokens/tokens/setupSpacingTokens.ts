@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeSpacingTokens } from '../index';
+import { SpacingTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 
@@ -6,8 +10,6 @@ import {
   ErrorSetupSpacingTokensNoChildren,
   ErrorSetupSpacingTokensNoUnits
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma spacings into a clean object
@@ -26,19 +28,19 @@ export function setupSpacingTokens(
   if (!spacingUnit || !remSize) throw new Error(ErrorSetupSpacingTokensNoUnits);
 
   const { children } = spacingFrame;
-  const SPACING_OBJECT = {};
+  let spacings = {};
 
   children.forEach((spacing) => {
     const name = camelize(spacing.name);
-
-    const NORMALIZED_UNIT = normalizeUnits(
+    const normalizedUnit = normalizeUnits(
       spacing.absoluteBoundingBox.width,
       'px',
       spacingUnit,
       remSize
     );
-    SPACING_OBJECT[name] = NORMALIZED_UNIT;
+    spacings[name] = normalizedUnit;
   });
 
-  return SPACING_OBJECT;
+  const spacingTokens = makeSpacingTokens(spacings);
+  return spacingTokens;
 }

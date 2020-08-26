@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeLetterSpacingTokens } from '../index';
+import { LetterSpacingTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -5,8 +9,6 @@ import {
   ErrorSetupLetterSpacingTokensNoChildren,
   ErrorSetupLetterSpacingTokensMissingProps
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma letter spacings into a clean object
@@ -28,7 +30,7 @@ export function setupLetterSpacingTokens(
   if (!letterSpacingFrame.children) throw new Error(ErrorSetupLetterSpacingTokensNoChildren);
 
   // Reduce the children array to a tokens object
-  const letterSpacingObject = letterSpacingFrame.children.reduce(
+  const letterSpacings = letterSpacingFrame.children.reduce(
     (tokens, type) => {
       if (!type.name || !type.style) throw new Error(ErrorSetupLetterSpacingTokensMissingProps);
 
@@ -73,5 +75,6 @@ export function setupLetterSpacingTokens(
     {}
   );
 
-  return letterSpacingObject;
+  const letterSpacingTokens = makeLetterSpacingTokens(letterSpacings);
+  return letterSpacingTokens;
 }

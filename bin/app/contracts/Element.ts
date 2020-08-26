@@ -35,22 +35,24 @@ export type Color = {
 };
 
 export type Effects = {
-  x: string;
-  y: string;
   color: Color;
+  radius: string;
+  type: string;
   offset: {
+    x: string;
+    y: string;
     radius: string;
     type: string;
   };
 };
 
 export type Fills = {
-  color: Color;
-  gradientStops: GradientStops[];
-  gradients: Gradients[];
-  opacity: number;
-  position: string;
-  type: string;
+  color?: Color;
+  gradientStops?: GradientStops[];
+  gradients?: Gradients[];
+  opacity?: number;
+  position?: string;
+  type?: string;
 };
 
 export type Gradients = {

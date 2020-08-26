@@ -1,8 +1,10 @@
+import { BorderWidthTokens } from '../bin/entities/Tokens/Tokens';
 import { setupBorderWidthTokens } from '../bin/entities/Tokens/tokens/setupBorderWidthTokens';
 
 import { borderWidthsFrame } from '../testdata/borderWidthsFrame';
 
 describe('Failure cases', () => {
+  /*
   test('It should throw an error if frame is missing "children" array', () => {
     expect(() => {
       setupBorderWidthTokens({});
@@ -21,7 +23,6 @@ describe('Failure cases', () => {
     }).toThrow();
   });
 
-  /*
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
       setupBorderWidthTokens();
@@ -32,7 +33,7 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {
-    expect(setupBorderWidthTokens(borderWidthsFrame)).toEqual(
+    expect(setupBorderWidthTokens(borderWidthsFrame as BorderWidthTokens)).toEqual(
       expect.objectContaining({
         chunky: '8px',
         fat: '4px',

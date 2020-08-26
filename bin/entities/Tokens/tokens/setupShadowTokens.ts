@@ -1,4 +1,6 @@
 import { Frame } from '../../../app/contracts/Frame';
+import { makeShadowTokens } from '../index';
+import { ShadowTokens } from '../Tokens';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
@@ -14,11 +16,11 @@ import {
  *
  * @param shadowFrame The shadows frame from Figma
  */
-export function setupShadowTokens(shadowFrame: Frame): ShadowFrame {
+export function setupShadowTokens(shadowFrame: Frame): ShadowTokens {
   if (!shadowFrame) throw new Error(ErrorSetupShadowTokensNoFrame);
   if (!shadowFrame.children) throw new Error(ErrorSetupShadowTokensNoChildren);
 
-  let shadowObject = {};
+  let shadows = {};
 
   shadowFrame.children.forEach((type) => {
     if (!type.name || !type.effects) throw new Error(ErrorSetupShadowTokensMissingProps);
@@ -30,23 +32,27 @@ export function setupShadowTokens(shadowFrame: Frame): ShadowFrame {
       return null;
     });
 
-    shadowObject[name] = ``;
+    shadows[name] = ``;
 
     if (effects.length > 0) {
       effects.forEach((e, index) => {
-        const X = e.offset.x;
-        const Y = e.offset.y;
-        const RADIUS = e.radius;
-        const R = roundColorValue(e.color.r);
-        const G = roundColorValue(e.color.g);
-        const B = roundColorValue(e.color.b);
-        const A = roundColorValue(e.color.a, 1);
+        // Get rid of Typescript (strict) error
+        if (e) {
+          const X = e.offset.x;
+          const Y = e.offset.y;
+          const RADIUS = e.radius;
+          const R = roundColorValue(e.color.r);
+          const G = roundColorValue(e.color.g);
+          const B = roundColorValue(e.color.b);
+          const A = roundColorValue(e.color.a, 1);
 
-        shadowObject[name] += `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
-        if (index !== effects.length - 1) shadowObject[name] += `, `;
+          shadows[name] += `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
+          if (index !== effects.length - 1) shadows[name] += `, `;
+        }
       });
     }
   });
 
-  return shadowObject;
+  const shadowTokens = makeShadowTokens(shadows);
+  return shadowTokens;
 }

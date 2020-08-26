@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeFontTokens } from '../index';
+import { FontTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -5,8 +9,6 @@ import {
   ErrorSetupFontTokensNoChildren,
   ErrorSetupFontTokensMissingProps
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma fonts into a clean object
@@ -18,7 +20,7 @@ export function setupFontTokens(fontFrame: Frame, usePostscriptFontNames: boolea
   if (!fontFrame) throw new Error(ErrorSetupFontTokensNoFrame);
   if (!fontFrame.children) throw new Error(ErrorSetupFontTokensNoChildren);
 
-  let fontObject = {};
+  let fonts = {};
 
   fontFrame.children.forEach((type) => {
     if (!type.name || !type.style) throw new Error(ErrorSetupFontTokensMissingProps);
@@ -26,12 +28,13 @@ export function setupFontTokens(fontFrame: Frame, usePostscriptFontNames: boolea
     const name = camelize(type.name);
 
     // Use Postscript font names or the default font family names (without spaces)
-    const FONT = usePostscriptFontNames
+    const font = usePostscriptFontNames
       ? type.style.fontPostScriptName
       : type.style.fontFamily.replace(' /g', '');
 
-    fontObject[name] = FONT;
+    fonts[name] = font;
   });
 
-  return fontObject;
+  const fontTokens = makeFontTokens(fonts);
+  return fontTokens;
 }

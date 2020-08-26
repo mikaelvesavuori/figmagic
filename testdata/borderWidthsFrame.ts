@@ -1,4 +1,6 @@
-export const borderWidthsFrame = {
+import { Frame } from '../bin/app/contracts/Frame';
+
+export const borderWidthsFrame: Frame = {
   id: '2657:116',
   name: 'Border Widths',
   type: 'FRAME',
@@ -9,10 +11,21 @@ export const borderWidthsFrame = {
       name: 'Chunky',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
+      absoluteBoundingBox: { x: 563, y: -278, width: 80, height: 80 },
       preserveRatio: true,
-      constraints: [Object],
-      fills: [],
+      constraints: {},
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0.7686274647712708,
+            g: 0.7686274647712708,
+            b: 0.7686274647712708,
+            a: 1
+          }
+        }
+      ],
       strokes: [Array],
       strokeWeight: 8,
       strokeAlign: 'INSIDE',
@@ -23,9 +36,9 @@ export const borderWidthsFrame = {
       name: 'Fat',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
+      absoluteBoundingBox: {},
       preserveRatio: true,
-      constraints: [Object],
+      constraints: {},
       fills: [],
       strokes: [Array],
       strokeWeight: 4,
@@ -37,9 +50,9 @@ export const borderWidthsFrame = {
       name: 'Regular',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
+      absoluteBoundingBox: {},
       preserveRatio: true,
-      constraints: [Object],
+      constraints: {},
       fills: [],
       strokes: [Array],
       strokeWeight: 2,
@@ -51,9 +64,9 @@ export const borderWidthsFrame = {
       name: 'Hairline',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
+      absoluteBoundingBox: {},
       preserveRatio: true,
-      constraints: [Object],
+      constraints: {},
       fills: [],
       strokes: [Array],
       strokeWeight: 1,
@@ -78,8 +91,8 @@ export const borderWidthsFrame = {
   absoluteBoundingBox: { x: 290, y: 891, width: 331, height: 93 },
   constraints: { vertical: 'TOP', horizontal: 'LEFT' },
   clipsContent: true,
-  background: [{ blendMode: 'NORMAL', type: 'SOLID', color: [Object] }],
-  fills: [{ blendMode: 'NORMAL', type: 'SOLID', color: [Object] }],
+  background: [{ blendMode: 'NORMAL', type: 'SOLID', color: {} }],
+  fills: [{ blendMode: 'NORMAL', type: 'SOLID', color: {} }],
   strokes: [],
   strokeWeight: 1,
   strokeAlign: 'INSIDE',

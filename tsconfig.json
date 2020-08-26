@@ -6,7 +6,7 @@
     "lib": ["esnext", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "noEmit": true, // Build through microbundle
+    "noEmit": false,
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
@@ -14,7 +14,7 @@
     "outDir": "dist",
     "removeComments": true,
     "sourceMap": true,
-    "strict": true,
+    "strict": false,
     "strictFunctionTypes": true,
     "target": "esnext"
   },

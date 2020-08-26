@@ -1,4 +1,4 @@
-import { createPage } from '../bin/app/process/createPage';
+import { createPage } from '../bin/app/process/tokens/createPage';
 
 import { Frame } from '../bin/app/contracts/Frame';
 

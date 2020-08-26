@@ -1,4 +1,4 @@
-import { getTokenMatch } from '../bin/app/process/getTokenMatch';
+import { getTokenMatch } from '../bin/app/process/tokens/getTokenMatch';
 
 /*
 describe('Failure cases', () => {

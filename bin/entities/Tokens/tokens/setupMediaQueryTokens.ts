@@ -1,3 +1,7 @@
+import { Frame } from '../../../app/contracts/Frame';
+import { makeMediaQueryTokens } from '../index';
+import { MediaQueryTokens } from '../Tokens';
+
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -5,8 +9,6 @@ import {
   ErrorSetupMediaQueryTokensNoChildren,
   ErrorSetupMediaQueryTokensMissingProps
 } from '../../../frameworks/errors/errors';
-
-import { Frame } from '../../../app/contracts/Frame';
 
 /**
  * @description Places all Figma media queries into a clean object
@@ -17,7 +19,7 @@ export function setupMediaQueryTokens(mediaQueryFrame: Frame): MediaQueryTokens 
   if (!mediaQueryFrame) throw new Error(ErrorSetupMediaQueryTokensNoFrame);
   if (!mediaQueryFrame.children) throw new Error(ErrorSetupMediaQueryTokensNoChildren);
 
-  let mediaQueryObject = {};
+  let mediaQueries = {};
 
   mediaQueryFrame.children.forEach((type) => {
     if (!type.name || !type.absoluteBoundingBox)
@@ -25,8 +27,9 @@ export function setupMediaQueryTokens(mediaQueryFrame: Frame): MediaQueryTokens 
 
     const name = camelize(type.name);
 
-    mediaQueryObject[name] = `${type.absoluteBoundingBox.width}px`;
+    mediaQueries[name] = `${type.absoluteBoundingBox.width}px`;
   });
 
-  return mediaQueryObject;
+  const mediaQueryTokens = makeMediaQueryTokens(mediaQueries);
+  return mediaQueryTokens;
 }
