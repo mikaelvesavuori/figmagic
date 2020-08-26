@@ -1,3 +1,4 @@
+import { Frame } from '../../contracts/Frame';
 import { ErrorGetIds } from '../../../frameworks/errors/errors';
 
 /**
@@ -5,7 +6,7 @@ import { ErrorGetIds } from '../../../frameworks/errors/errors';
  *
  * @param graphicsPage Figma 'Graphics' page
  */
-export const getIds = (graphicsPage: GraphicsPage): any[] => {
+export const getIds = (graphicsPage: Frame[]): any[] => {
   if (!graphicsPage) throw new Error(ErrorGetIds);
   if (!(graphicsPage.length > 0)) throw new Error(ErrorGetIds);
 

@@ -1,5 +1,6 @@
-import { camelize } from '../../../frameworks/string/camelize';
+import { ImageResponse } from '../../contracts/ImageResponse';
 
+import { camelize } from '../../../frameworks/string/camelize';
 import { ErrorGetFileList } from '../../../frameworks/errors/errors';
 
 /**
@@ -10,13 +11,13 @@ import { ErrorGetFileList } from '../../../frameworks/errors/errors';
  * @param outputFormatGraphics String representing expected output format
  */
 export const getFileList = (
-  imageResponse: object,
+  imageResponse: ImageResponse,
   ids: any[],
   outputFormatGraphics: string
 ): any[] => {
   if (!imageResponse || !ids || !outputFormatGraphics) throw new Error(ErrorGetFileList);
 
-  let fileList = [];
+  let fileList: any[] = [];
 
   Object.entries(imageResponse.images).forEach(async (image) => {
     let name = '__unnamed__';

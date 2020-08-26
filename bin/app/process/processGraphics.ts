@@ -1,5 +1,6 @@
 import { Config } from '../../entities/Config/Config';
 
+import { Frame } from '../contracts/Frame';
 import { ImageResponse } from '../contracts/ImageResponse';
 
 import { getIds } from './graphics/getIds';
@@ -22,12 +23,13 @@ import {
  * @param config Configuration object
  */
 // TODO: Add real types
-export async function processGraphics(graphicsPage: object, config: Config): Promise<Graphics[]> {
+export async function processGraphics(graphicsPage: Frame, config: Config): Promise<any[]> {
   if (!graphicsPage) throw new Error(ErrorProcessGraphics);
 
   const { token, url, outputFormatGraphics, outputScaleGraphics } = config;
+  if (!token) throw new Error(ErrorProcessGraphics);
 
-  const IDS = getIds(graphicsPage);
+  const IDS = getIds([graphicsPage]);
   const ID_STRING = getIdString(IDS);
   const SETTINGS = `&scale=${outputScaleGraphics}&format=${outputFormatGraphics}`;
   const URL = `${url}?ids=${ID_STRING}${SETTINGS}`;
