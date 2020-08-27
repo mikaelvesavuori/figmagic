@@ -1,6 +1,6 @@
 import { FigmaData } from '../app/contracts/FigmaData';
 import { Config } from '../entities/Config/Config';
-import { Frame } from '../app/contracts/Frame';
+import { FRAME as Frame } from '../app/contracts/Figma';
 
 import { createPage } from '../app/process/tokens/createPage';
 

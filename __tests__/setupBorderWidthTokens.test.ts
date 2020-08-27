@@ -1,5 +1,7 @@
-import { BorderWidthTokens } from '../bin/entities/Tokens/Tokens';
+//import { BorderWidthTokens } from '../bin/entities/Tokens/Tokens';
 import { setupBorderWidthTokens } from '../bin/entities/Tokens/tokens/setupBorderWidthTokens';
+
+import { FRAME as Frame } from '../bin/app/contracts/Figma';
 
 import { borderWidthsFrame } from '../testdata/borderWidthsFrame';
 
@@ -33,7 +35,7 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {
-    expect(setupBorderWidthTokens(borderWidthsFrame as BorderWidthTokens)).toEqual(
+    expect(setupBorderWidthTokens(borderWidthsFrame as Frame)).toEqual(
       expect.objectContaining({
         chunky: '8px',
         fat: '4px',

@@ -46,6 +46,8 @@
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-typescript": "^7.10.4",
     "@types/node-fetch": "^2.5.7",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
     "babel-eslint": "^10.1.0",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "commitizen": "^4.1.2",
@@ -81,7 +83,8 @@
     "build": "microbundle",
     "dev": "microbundle watch",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "prepare": "npm run snyk-protect",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
   "config": {
     "commitizen": {

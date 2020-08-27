@@ -1,5 +1,5 @@
 import { Config } from '../../entities/Config/Config';
-import { Frame } from '../../app/contracts/Frame';
+import { FRAME as Frame } from '../../app/contracts/Figma';
 
 import { camelize } from '../string/camelize';
 import { processTokens } from '../../app/process/processTokens';

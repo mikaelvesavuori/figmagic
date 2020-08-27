@@ -1,4 +1,4 @@
-import { Frame } from '../../../app/contracts/Frame';
+import { FRAME as Frame } from '../../../app/contracts/Figma';
 import { makeBorderWidthTokens } from '../index';
 import { BorderWidthTokens } from '../Tokens';
 

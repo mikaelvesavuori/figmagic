@@ -1,6 +1,6 @@
 import { createPage } from '../bin/app/process/tokens/createPage';
 
-import { Frame } from '../bin/app/contracts/Frame';
+import { FRAME as Frame } from '../bin/app/contracts/Figma';
 
 const matchingPageName = 'designtokens';
 

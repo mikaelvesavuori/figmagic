@@ -1,6 +1,6 @@
 import { Config } from '../../entities/Config/Config';
 
-import { Frame } from '../contracts/Frame';
+import { FRAME as Frame } from '../contracts/Frame';
 import { ImageResponse } from '../contracts/ImageResponse';
 
 import { getIds } from './graphics/getIds';

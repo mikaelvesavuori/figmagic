@@ -1,4 +1,5 @@
-import { Frame } from '../bin/app/contracts/Frame';
+import { FRAME as Frame } from '../bin/app/contracts/Figma';
+import { BlendMode } from '../bin/app/contracts/Figma';
 
 export const borderWidthsFrame: Frame = {
   id: '2657:116',
@@ -26,7 +27,7 @@ export const borderWidthsFrame: Frame = {
           }
         }
       ],
-      strokes: [Array],
+      strokes: [],
       strokeWeight: 8,
       strokeAlign: 'INSIDE',
       effects: []
@@ -40,7 +41,7 @@ export const borderWidthsFrame: Frame = {
       preserveRatio: true,
       constraints: {},
       fills: [],
-      strokes: [Array],
+      strokes: [],
       strokeWeight: 4,
       strokeAlign: 'INSIDE',
       effects: []
@@ -54,7 +55,7 @@ export const borderWidthsFrame: Frame = {
       preserveRatio: true,
       constraints: {},
       fills: [],
-      strokes: [Array],
+      strokes: [],
       strokeWeight: 2,
       strokeAlign: 'INSIDE',
       effects: []
@@ -68,10 +69,10 @@ export const borderWidthsFrame: Frame = {
       preserveRatio: true,
       constraints: {},
       fills: [],
-      strokes: [Array],
+      strokes: [],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
-      effects: [Array]
+      effects: []
     },
     {
       id: '2657:121',

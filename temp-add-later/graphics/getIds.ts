@@ -1,4 +1,4 @@
-import { Frame } from '../../contracts/Frame';
+import { FRAME as Frame } from '../../contracts/Frame';
 import { ErrorGetIds } from '../../../frameworks/errors/errors';
 
 /**

@@ -1,4 +1,4 @@
-import { Element } from './Element';
+import { Element } from './Figma';
 
 export interface Metadata {
   text: string;
