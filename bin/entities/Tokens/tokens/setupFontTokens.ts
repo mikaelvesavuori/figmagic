@@ -20,17 +20,17 @@ export function setupFontTokens(fontFrame: Frame, usePostscriptFontNames: boolea
   if (!fontFrame) throw new Error(ErrorSetupFontTokensNoFrame);
   if (!fontFrame.children) throw new Error(ErrorSetupFontTokensNoChildren);
 
-  let fonts = {};
+  const fonts: Record<string, unknown> = {};
 
-  fontFrame.children.forEach((type) => {
-    if (!type.name || !type.style) throw new Error(ErrorSetupFontTokensMissingProps);
+  fontFrame.children.forEach((item: Frame) => {
+    if (!item.name || !item.style) throw new Error(ErrorSetupFontTokensMissingProps);
 
-    const name = camelize(type.name);
+    const name = camelize(item.name);
 
     // Use Postscript font names or the default font family names (without spaces)
     const font = usePostscriptFontNames
-      ? type.style.fontPostScriptName
-      : type.style.fontFamily.replace(' /g', '');
+      ? item.style.fontPostScriptName
+      : item.style.fontFamily.replace(' /g', '');
 
     fonts[name] = font;
   });

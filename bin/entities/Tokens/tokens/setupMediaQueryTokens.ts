@@ -19,15 +19,15 @@ export function setupMediaQueryTokens(mediaQueryFrame: Frame): MediaQueryTokens 
   if (!mediaQueryFrame) throw new Error(ErrorSetupMediaQueryTokensNoFrame);
   if (!mediaQueryFrame.children) throw new Error(ErrorSetupMediaQueryTokensNoChildren);
 
-  let mediaQueries = {};
+  const mediaQueries: Record<string, unknown> = {};
 
-  mediaQueryFrame.children.forEach((type) => {
-    if (!type.name || !type.absoluteBoundingBox)
+  mediaQueryFrame.children.forEach((item: Frame) => {
+    if (!item.name || !item.absoluteBoundingBox)
       throw new Error(ErrorSetupMediaQueryTokensMissingProps);
 
-    const name = camelize(type.name);
+    const name = camelize(item.name);
 
-    mediaQueries[name] = `${type.absoluteBoundingBox.width}px`;
+    mediaQueries[name] = `${item.absoluteBoundingBox.width}px`;
   });
 
   const mediaQueryTokens = makeMediaQueryTokens(mediaQueries);

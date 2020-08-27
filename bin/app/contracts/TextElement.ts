@@ -1,5 +1,5 @@
-import { AbsoluteBoundingBox } from './Figma';
+import { RECTANGLE as Rectangle } from './Figma';
 
 export interface TextElement {
-  absoluteBoundingBox: AbsoluteBoundingBox;
+  absoluteBoundingBox: Rectangle;
 }

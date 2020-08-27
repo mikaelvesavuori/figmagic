@@ -1,4 +1,4 @@
-import { FRAME as Frame } from '../../contracts/Frame';
+import { FRAME as Frame } from '../../contracts/Figma';
 
 import { ErrorCreatePage } from '../../../frameworks/errors/errors';
 

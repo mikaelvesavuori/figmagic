@@ -22,16 +22,16 @@ export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): 
   if (!lineHeightFrame) throw new Error(ErrorSetupLineHeightTokensNoFrame);
   if (!lineHeightFrame.children) throw new Error(ErrorSetupLineHeightTokensNoChildren);
 
-  let lineHeights = {};
+  const lineHeights: Record<string, unknown> = {};
 
-  lineHeightFrame.children.forEach((type) => {
-    if (!type.name || !type.style) throw new Error(ErrorSetupLineHeightTokensMissingProps);
-    if (!type.style.lineHeightPercentFontSize)
+  lineHeightFrame.children.forEach((item: Frame) => {
+    if (!item.name || !item.style) throw new Error(ErrorSetupLineHeightTokensMissingProps);
+    if (!item.style.lineHeightPercentFontSize)
       throw new Error(ErrorSetupLineHeightTokensMissingPercent);
 
-    const name = camelize(type.name);
+    const name = camelize(item.name);
     const LINE_HEIGHT: string = normalizeUnits(
-      type.style.lineHeightPercentFontSize,
+      item.style.lineHeightPercentFontSize,
       'percent',
       'unitless',
       remSize

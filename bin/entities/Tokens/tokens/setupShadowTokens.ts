@@ -20,14 +20,14 @@ export function setupShadowTokens(shadowFrame: Frame): ShadowTokens {
   if (!shadowFrame) throw new Error(ErrorSetupShadowTokensNoFrame);
   if (!shadowFrame.children) throw new Error(ErrorSetupShadowTokensNoChildren);
 
-  let shadows = {};
+  const shadows: Record<string, unknown> = {};
 
-  shadowFrame.children.forEach((type) => {
-    if (!type.name || !type.effects) throw new Error(ErrorSetupShadowTokensMissingProps);
+  shadowFrame.children.forEach((item: Frame) => {
+    if (!item.name || !item.effects) throw new Error(ErrorSetupShadowTokensMissingProps);
 
-    const name = camelize(type.name);
+    const name = camelize(item.name);
 
-    const effects = type.effects.map((effect) => {
+    const effects = item.effects.map((effect) => {
       if (effect.type === 'DROP_SHADOW') return effect;
       return null;
     });

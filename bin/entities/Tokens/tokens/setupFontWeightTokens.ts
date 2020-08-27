@@ -20,14 +20,14 @@ export function setupFontWeightTokens(fontWeightFrame: Frame): FontWeightTokens 
   if (!fontWeightFrame) throw new Error(ErrorSetupFontWeightTokensNoFrame);
   if (!fontWeightFrame.children) throw new Error(ErrorSetupFontWeightTokensNoChildren);
 
-  let fontWeights = {};
+  const fontWeights: Record<string, unknown> = {};
 
-  fontWeightFrame.children.forEach((type) => {
-    if (!type.name || !type.style) throw new Error(ErrorSetupFontWeightTokensMissingProps);
-    if (!type.style.fontWeight) throw new Error(ErrorSetupFontWeightTokensMissingWeight);
+  fontWeightFrame.children.forEach((item: Frame) => {
+    if (!item.name || !item.style) throw new Error(ErrorSetupFontWeightTokensMissingProps);
+    if (!item.style.fontWeight) throw new Error(ErrorSetupFontWeightTokensMissingWeight);
 
-    const name = camelize(type.name);
-    const fontWeight = type.style.fontWeight;
+    const name = camelize(item.name);
+    const fontWeight = item.style.fontWeight;
     fontWeights[name] = fontWeight;
   });
 

@@ -26,17 +26,17 @@ export function setupOpacityTokens(
   // Reduce the children array to a tokens object
   const _opacityTokens = opacitiesFrame.children.reduce(
     // Reducer function: will add a new key to the current "opacitiesObject" at each iteration
-    (tokens, type) => {
-      if (!type.name) throw new Error(ErrorSetupOpacityTokensMissingProps);
+    (tokens, item: Frame) => {
+      if (!item.name) throw new Error(ErrorSetupOpacityTokensMissingProps);
 
       // Note: Figma API does not provide an opacity value if its 100%
       // We will assume it defaults to 1 if undefined.
-      const name = camelize(type.name);
-      let opacity: string = '1';
+      const name = camelize(item.name);
+      let opacity = '1';
 
       // Keep only 2 decimals of the parsed-to-float value
-      if (typeof type.opacity !== 'undefined') {
-        const opacityCalc: number = Math.round((type.opacity * 100) / 100);
+      if (typeof item.opacity !== 'undefined') {
+        const opacityCalc: number = Math.round((item.opacity * 100) / 100);
         opacity = opacityCalc.toString();
       }
 

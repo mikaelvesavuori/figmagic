@@ -19,12 +19,12 @@ export function setupDelayTokens(delayFrame: Frame): DelayTokens {
   if (!delayFrame) throw new Error(ErrorSetupDelayTokensNoFrame);
   if (!delayFrame.children) throw new Error(ErrorSetupDelayTokensNoChildren);
 
-  let delays = {};
+  const delays: Record<string, unknown> = {};
 
-  delayFrame.children.forEach((type) => {
-    if (!type.name || !type.characters) throw new Error(ErrorSetupDelayTokensMissingProps);
-    const name = camelize(type.name);
-    delays[name] = parseFloat(type.characters);
+  delayFrame.children.forEach((item: Frame) => {
+    if (!item.name || !item.characters) throw new Error(ErrorSetupDelayTokensMissingProps);
+    const name = camelize(item.name);
+    delays[name] = parseFloat(item.characters);
   });
 
   const delayTokens = makeDelayTokens(delays);

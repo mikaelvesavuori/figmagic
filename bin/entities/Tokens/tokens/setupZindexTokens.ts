@@ -19,12 +19,12 @@ export function setupZindexTokens(zIndexFrame: Frame): ZindexTokens {
   if (!zIndexFrame) throw new Error(ErrorSetupZindexTokensNoFrame);
   if (!zIndexFrame.children) throw new Error(ErrorSetupZindexTokensNoChildren);
 
-  let zIndex = {};
+  const zIndex: Record<string, unknown> = {};
 
-  zIndexFrame.children.forEach((type) => {
-    if (!type.name || !type.characters) throw new Error(ErrorSetupZindexTokensMissingProps);
-    const name = camelize(type.name);
-    zIndex[name] = parseInt(type.characters);
+  zIndexFrame.children.forEach((item: Frame) => {
+    if (!item.name || !item.characters) throw new Error(ErrorSetupZindexTokensMissingProps);
+    const name = camelize(item.name);
+    zIndex[name] = parseInt(item.characters);
   });
 
   const zIndexTokens = makeZindexTokens(zIndex);

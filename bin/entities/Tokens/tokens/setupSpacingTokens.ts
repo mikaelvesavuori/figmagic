@@ -28,12 +28,12 @@ export function setupSpacingTokens(
   if (!spacingUnit || !remSize) throw new Error(ErrorSetupSpacingTokensNoUnits);
 
   const { children } = spacingFrame;
-  let spacings = {};
+  const spacings: Record<string, unknown> = {};
 
-  children.forEach((spacing) => {
-    const name = camelize(spacing.name);
+  children.forEach((item: Frame) => {
+    const name = camelize(item.name);
     const normalizedUnit = normalizeUnits(
-      spacing.absoluteBoundingBox.width,
+      item.absoluteBoundingBox.width,
       'px',
       spacingUnit,
       remSize

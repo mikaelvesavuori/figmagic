@@ -58,7 +58,7 @@
     "husky": "^4.2.5",
     "jest": "^26.4.1",
     "microbundle": "^0.12.3",
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.1",
     "pretty-quick": "^3.0.0",
     "snyk": "^1.381.1",
     "ts-jest": "^26.2.0",

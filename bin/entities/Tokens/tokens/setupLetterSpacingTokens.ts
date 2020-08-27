@@ -31,18 +31,18 @@ export function setupLetterSpacingTokens(
 
   // Reduce the children array to a tokens object
   const letterSpacings = letterSpacingFrame.children.reduce(
-    (tokens, type) => {
-      if (!type.name || !type.style) throw new Error(ErrorSetupLetterSpacingTokensMissingProps);
+    (tokens, item: Frame) => {
+      if (!item.name || !item.style) throw new Error(ErrorSetupLetterSpacingTokensMissingProps);
 
-      const name = camelize(type.name);
+      const name = camelize(item.name);
 
       // Assuming Figma API always export the node font-size as an integer in our case
       // https://www.figma.com/plugin-docs/api/TextNode/#fontsize
-      const fontSize = parseInt(type.style.fontSize, 10);
+      const fontSize = item.style.fontSize;
       const letterSpacingValueInPx =
-        typeof type.style.letterSpacing !== 'undefined'
+        typeof item.style.letterSpacing !== 'undefined'
           ? // Round the value to 2 decimals
-            Math.round(parseFloat(type.style.letterSpacing) * 1000) / 1000
+            Math.round(item.style.letterSpacing * 1000) / 1000
           : // if no letter-spacing is defined, set it to 0 by default (no letter-spacing)
             0;
       // actual token value to set

@@ -19,13 +19,13 @@ export function setupBorderWidthTokens(borderWidthFrame: Frame): BorderWidthToke
   if (!borderWidthFrame) throw new Error(ErrorSetupBorderWidthTokensNoFrame);
   if (!borderWidthFrame.children) throw new Error(ErrorSetupBorderWidthTokensNoChildren);
 
-  let borderWidths: object = {};
+  const borderWidths: Record<string, unknown> = {};
 
-  borderWidthFrame.children.forEach((type) => {
-    if (!type.name || typeof type.strokeWeight === 'undefined')
+  borderWidthFrame.children.forEach((item: Frame) => {
+    if (!item.name || typeof item.strokeWeight === 'undefined')
       throw new Error(ErrorSetupBorderWidthTokensMissingProps);
-    const name = camelize(type.name);
-    borderWidths[name] = `${type.strokeWeight}px`;
+    const name = camelize(item.name);
+    borderWidths[name] = `${item.strokeWeight}px`;
   });
 
   const borderWidthTokens = makeBorderWidthTokens(borderWidths);

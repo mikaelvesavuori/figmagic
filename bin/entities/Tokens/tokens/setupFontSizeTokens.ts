@@ -16,7 +16,7 @@ import {
  * @description Places all Figma font sizes into a clean object
  *
  * @param fontSizeFrame The font size frame from Figma
- * @param fontUnit The font unit type
+ * @param fontUnit The font unit item
  * @param remSize The body rem size
  */
 export function setupFontSizeTokens(
@@ -28,14 +28,14 @@ export function setupFontSizeTokens(
   if (!fontSizeFrame.children) throw new Error(ErrorSetupFontSizeTokensNoChildren);
   if (!fontUnit || !remSize) throw new Error(ErrorSetupFontSizeTokensNoSizing);
 
-  let fontSizes = {};
+  const fontSizes: Record<string, unknown> = {};
 
-  fontSizeFrame.children.forEach((type) => {
-    if (!type.name || !type.style) throw new Error(ErrorSetupFontSizeTokensMissingProps);
-    if (!type.style.fontSize) throw new Error(ErrorSetupFontSizeTokensMissingSize);
+  fontSizeFrame.children.forEach((item: Frame) => {
+    if (!item.name || !item.style) throw new Error(ErrorSetupFontSizeTokensMissingProps);
+    if (!item.style.fontSize) throw new Error(ErrorSetupFontSizeTokensMissingSize);
 
-    const name = camelize(type.name);
-    const FONT_SIZE = ((type.style.fontSize as unknown) as number) / remSize + fontUnit;
+    const name = camelize(item.name);
+    const FONT_SIZE = ((item.style.fontSize as unknown) as number) / remSize + fontUnit;
     fontSizes[name] = FONT_SIZE;
   });
 

@@ -1,5 +1,3 @@
-/* eslint-ignore */
-
 /***********************************************************/
 /* Global properties                                       */
 /* https://www.figma.com/developers/api#global-properties  */
@@ -19,12 +17,11 @@ type FigmaNode = {
 /* https://www.figma.com/developers/api#node-types  */
 /****************************************************/
 
-// eslint-disable-line
-type DOCUMENT = {
+export type DOCUMENT = {
   children: FigmaNode[];
 };
 
-type CANVAS = {
+export type CANVAS = {
   children: FigmaNode[];
   backgroundColor: Color;
   prototypeStartNodeID: string;
@@ -32,49 +29,48 @@ type CANVAS = {
 };
 
 export interface FRAME {
-  absoluteBoundingBox: Rectangle;
-  blendMode: BlendMode;
-  characters: string;
-  children: FigmaNode[];
-  clipsContent: boolean;
-  constraints: LayoutConstraint;
-  cornerRadius: number;
-  effects: Effect[];
-  exportSettings: ExportSetting[];
-  fills: Paint[];
+  absoluteBoundingBox?: Rectangle;
+  blendMode?: BlendMode;
+  characters?: string;
+  children?: FigmaNode[];
+  clipsContent?: boolean;
+  constraints?: LayoutConstraint;
+  cornerRadius?: number;
+  counterAxisSizingMode?: 'FIXED' | 'AUTO';
+  effects?: Effect[];
+  exportSettings?: ExportSetting[];
+  fills?: Paint[];
+  horizontalPadding?: number;
   id: string;
-  layoutAlign: 'MIN' | 'CENTER' | 'MAX' | 'STRETCH';
-  layoutMode: 'NONE' | 'HORIZONTAL' | 'VERTICAL';
-  locked: boolean;
+  isMask?: boolean;
+  isMaskOutline?: boolean;
+  itemSpacing?: number;
+  layoutAlign?: 'MIN' | 'CENTER' | 'MAX' | 'STRETCH';
+  layoutGrids?: LayoutGrid[];
+  layoutMode?: 'NONE' | 'HORIZONTAL' | 'VERTICAL';
+  locked?: boolean;
   name: string;
-  opacity: number;
-  preserveRatio: boolean;
-  rectangleCornerRadii: number;
-  relativeTransform: Transform;
-  size: Vector;
-  strokeAlign: 'INSIDE' | 'OUTSIDE' | 'CENTER';
-  strokeWeight: number;
-  strokes: Paint[];
-  style: TypeStyle;
-  transitionDuration: number;
-  transitionEasing: EasingType;
-  transitionNodeID: string;
-  type: string;
-
-  counterAxisSizingMode: 'FIXED' | 'AUTO';
-  horizontalPadding: number;
-  verticalPadding: number;
-  itemSpacing: number;
-  layoutGrids: LayoutGrid[];
-  overflowDirection:
+  opacity?: number;
+  overflowDirection?:
     | 'HORIZONTAL_SCROLLING'
     | 'VERTICAL_SCROLLING'
     | 'HORIZONTAL_AND_VERTICAL_SCROLLING';
-  isMask: boolean;
-  isMaskOutline: boolean;
+  preserveRatio?: boolean;
+  rectangleCornerRadii?: number;
+  relativeTransform?: Transform;
+  size?: Vector;
+  strokeAlign?: 'INSIDE' | 'OUTSIDE' | 'CENTER';
+  strokeWeight?: number;
+  strokes?: Paint[];
+  style?: TypeStyle;
+  transitionDuration?: number;
+  transitionEasing?: EasingType;
+  transitionNodeID?: string;
+  type: string;
+  verticalPadding?: number;
 }
 
-type GROUP = FRAME;
+export type GROUP = FRAME;
 
 type VECTOR = {
   absoluteBoundingBox: Rectangle;
@@ -105,41 +101,41 @@ type VECTOR = {
   transitionNodeID: string;
 };
 
-interface BOOLEAN_OPERATION extends VECTOR {
+export interface BOOLEAN_OPERATION extends VECTOR {
   booleanOperation: 'UNION' | 'INTERSECT' | 'SUBTRACT' | 'EXCLUDE';
   children: FigmaNode[];
 }
 
-type STAR = VECTOR;
+export type STAR = VECTOR;
 
-type LINE = VECTOR;
+export type LINE = VECTOR;
 
-type ELLIPSE = VECTOR;
+export type ELLIPSE = VECTOR;
 
-type REGULAR_POLYGON = VECTOR;
+export type REGULAR_POLYGON = VECTOR;
 
-interface RECTANGLE extends VECTOR {
+export interface RECTANGLE extends VECTOR {
   cornerRadius: number;
   rectangleCornerRadii: number[];
 }
 
-interface TEXT extends VECTOR {
+export interface TEXT extends VECTOR {
   characterStyleOverridesNumber: number[];
   characters: string;
   style: TypeStyle;
   styleOverrideTable: Map<number, TypeStyle>;
 }
 
-type SLICE = {
+export type SLICE = {
   absoluteBoundingBox: Rectangle;
   exportSettings: ExportSetting;
   relativeTransform: Transform;
   size: Vector;
 };
 
-type COMPONENT = VECTOR;
+export type COMPONENT = VECTOR;
 
-interface INSTANCE extends FRAME {
+export interface INSTANCE extends FRAME {
   componentId: string;
 }
 
@@ -272,7 +268,7 @@ type Vector = {
   y: number;
 };
 
-type Size = {
+export type Size = {
   height: number;
   width: number;
 };
@@ -281,7 +277,7 @@ type Size = {
 type Transform = any;
 type Path = any;
 
-type FrameOffset = {
+export type FrameOffset = {
   node_id: string;
   node_offset: Vector;
 };
@@ -297,7 +293,7 @@ type ColorStop = {
   position: string;
 };
 
-type Strokes = {
+export type Strokes = {
   color: Color;
   length: number;
   type: string;
@@ -326,13 +322,13 @@ type TypeStyle = {
   textAutoResize: 'HEIGHT' | 'WIDTH_AND_HEIGHT';
 };
 
-type Component = {
+export type Component = {
   key: string;
   name: string;
   description: string;
 };
 
-type Style = {
+export type Style = {
   key: string;
   name: string;
   description: string;

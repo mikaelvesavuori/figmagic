@@ -19,12 +19,12 @@ export function setupDurationTokens(durationFrame: Frame): DurationTokens {
   if (!durationFrame) throw new Error(ErrorSetupDurationTokensNoFrame);
   if (!durationFrame.children) throw new Error(ErrorSetupDurationTokensNoChildren);
 
-  let durations = {};
+  const durations: Record<string, unknown> = {};
 
-  durationFrame.children.forEach((type) => {
-    if (!type.name || !type.characters) throw new Error(ErrorSetupDurationTokensMissingProps);
-    const name = camelize(type.name);
-    durations[name] = parseFloat(type.characters);
+  durationFrame.children.forEach((item: Frame) => {
+    if (!item.name || !item.characters) throw new Error(ErrorSetupDurationTokensMissingProps);
+    const name = camelize(item.name);
+    durations[name] = parseFloat(item.characters);
   });
 
   const durationTokens = makeDurationTokens(durations);
