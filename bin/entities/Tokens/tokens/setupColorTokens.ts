@@ -25,13 +25,17 @@ export function setupColorTokens(colorFrame: Frame): ColorTokens {
   colorFrame.children.forEach((item: Frame) => {
     if (!item.fills) throw new Error(ErrorSetupColorTokensNoFills);
 
-    // It seems RGBA alpha is actually not coming from "color.a", so the below fixes that
-    const ALPHA = item.fills[0].opacity ? item.fills[0].opacity : item.fills[0].color.a;
+    const _OPACITY = item.fills[0].opacity ? item.fills[0].opacity : undefined;
+    const _ALPHA = item.fills[0].color ? item.fills[0].color.a : undefined;
+    const ALPHA = _OPACITY ? _OPACITY : _ALPHA;
 
-    const COLOR_STRING = `rgba(${roundColorValue(item.fills[0].color.r, 255)}, ${roundColorValue(
-      item.fills[0].color.g,
+    const _R = item.fills[0].color ? item.fills[0].color.r : undefined;
+    const _G = item.fills[0].color ? item.fills[0].color.g : undefined;
+    const _B = item.fills[0].color ? item.fills[0].color.b : undefined;
+    const COLOR_STRING = `rgba(${roundColorValue(_R, 255)}, ${roundColorValue(
+      _G,
       255
-    )}, ${roundColorValue(item.fills[0].color.b, 255)}, ${roundColorValue(ALPHA, 1)})`;
+    )}, ${roundColorValue(_B, 255)}, ${roundColorValue(ALPHA, 1)})`;
 
     const name = camelize(item.name);
     colors[name] = COLOR_STRING;

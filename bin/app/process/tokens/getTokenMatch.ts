@@ -28,8 +28,8 @@ export function getTokenMatch(
 ): TokenMatch {
   if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error(ErrorGetTokenMatch);
 
-  let updatedCss: string = ``;
-  let updatedImports: any[] = [];
+  const updatedCss = ``;
+  const updatedImports: any[] = [];
 
   // Padding requires both X and Y dimensions/values so requires a bit more noodling
   if (property === 'padding')

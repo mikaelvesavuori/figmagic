@@ -32,20 +32,26 @@ export function processTokens(sheet: Frame, name: string, config: Config): any {
   if (!sheet || !name) throw new Error(ErrorProcessTokens);
 
   // Filter out elements that contain ignore keywords in their name
-  sheet.children = sheet.children.filter((item) => {
-    let shouldInclude = true;
+  const children = (() => {
+    if (sheet.children && sheet.children.length > 0) {
+      return sheet.children.filter((item: Frame) => {
+        let shouldInclude = true;
 
-    for (let i = 0; i < ignoreElementsKeywords.length; i++) {
-      const keywordToIgnore = ignoreElementsKeywords[i];
+        for (let i = 0; i < ignoreElementsKeywords.length; i++) {
+          const keywordToIgnore = ignoreElementsKeywords[i];
 
-      if (item.name.toLowerCase().indexOf(keywordToIgnore) >= 0) {
-        shouldInclude = false;
-        break;
-      }
+          if (item.name.toLowerCase().indexOf(keywordToIgnore) >= 0) {
+            shouldInclude = false;
+            break;
+          }
+        }
+
+        return shouldInclude;
+      });
     }
+  })();
 
-    return shouldInclude;
-  });
+  sheet.children = children;
 
   const _NAME = name.toLowerCase();
   let processedTokens = undefined;

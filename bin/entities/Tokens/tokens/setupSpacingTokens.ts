@@ -31,13 +31,12 @@ export function setupSpacingTokens(
   const spacings: Record<string, unknown> = {};
 
   children.forEach((item: Frame) => {
-    const name = camelize(item.name);
-    const normalizedUnit = normalizeUnits(
-      item.absoluteBoundingBox.width,
-      'px',
-      spacingUnit,
-      remSize
-    );
+    const name: string = camelize(item.name);
+    const width: number =
+      item.absoluteBoundingBox && item.absoluteBoundingBox.width
+        ? item.absoluteBoundingBox.width
+        : 0;
+    const normalizedUnit = normalizeUnits(width, 'px', spacingUnit, remSize);
     spacings[name] = normalizedUnit;
   });
 
