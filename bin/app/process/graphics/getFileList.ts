@@ -17,7 +17,7 @@ export const getFileList = (
 ): any[] => {
   if (!imageResponse || !ids || !outputFormatGraphics) throw new Error(ErrorGetFileList);
 
-  let fileList: any[] = [];
+  const fileList: any[] = [];
 
   Object.entries(imageResponse.images).forEach(async (image) => {
     let name = '__unnamed__';

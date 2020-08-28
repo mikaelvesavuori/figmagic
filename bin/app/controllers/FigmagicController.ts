@@ -2,7 +2,7 @@ import { Config } from '../../entities/Config/Config';
 
 import { createTokens } from '../../usecases/createTokens';
 //import { createElements } from '../../usecases/createElements';
-//import { createGraphics } from '../../usecases/createGraphics';
+import { createGraphics } from '../../usecases/createGraphics';
 
 import { MsgJobComplete } from '../../frameworks/messages/messages';
 
@@ -16,16 +16,16 @@ import { MsgJobComplete } from '../../frameworks/messages/messages';
 export async function FigmagicController(config: Config, data: any): Promise<void> {
   const {
     //outputFolderElements,
-    //outputFolderGraphics,
-    outputFolderTokens
+    outputFolderGraphics,
+    outputFolderTokens,
     //syncElements,
-    //syncGraphics
+    syncGraphics
   } = config;
 
   await createTokens(config, data, outputFolderTokens);
 
   //if (syncElements) await createElements(config, data, outputFolderElements);
-  //if (syncGraphics) await createGraphics(config, data, outputFolderGraphics);
+  if (syncGraphics) await createGraphics(config, data, outputFolderGraphics);
 
   console.log(MsgJobComplete);
 }

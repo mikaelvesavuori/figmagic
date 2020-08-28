@@ -14,8 +14,8 @@ import { MsgWriteBaseFile } from '../messages/messages';
 export async function writeBaseJson(
   outputFolderBaseFile: string,
   outputFileName: string,
-  data: object
-): Promise<object> {
+  data: any
+): Promise<any> {
   console.log(MsgWriteBaseFile);
   try {
     await refresh(outputFolderBaseFile);

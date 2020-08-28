@@ -6,18 +6,13 @@ import { ErrorGetIds } from '../../../frameworks/errors/errors';
  *
  * @param graphicsPage Figma 'Graphics' page
  */
-export const getIds = (graphicsPage: Frame[]): any[] => {
+export const getIds = (graphicsPage: Frame[]): Record<string, unknown>[] => {
   if (!graphicsPage) throw new Error(ErrorGetIds);
   if (!(graphicsPage.length > 0)) throw new Error(ErrorGetIds);
 
-  let items: any[] = [];
-
-  // Filter out anything that is not a component
-  graphicsPage
+  return graphicsPage
     .filter((item: any) => item.type === 'COMPONENT')
-    .forEach((item: any) => {
-      items.push({ id: item.id, name: item.name });
+    .map((item: any) => {
+      return { id: item.id, name: item.name };
     });
-
-  return items;
 };

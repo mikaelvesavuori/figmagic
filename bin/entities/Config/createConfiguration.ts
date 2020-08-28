@@ -54,8 +54,6 @@ export async function createConfiguration(
     url: process.env.FIGMA_URL || null
   };
 
-  console.log('RC_CONFIG', RC_CONFIG);
-
   // CLI arguments configuration
   const CLI_CONFIG = parseCliArgs(cliArgs) as Config;
 

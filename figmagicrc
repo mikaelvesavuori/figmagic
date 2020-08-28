@@ -4,9 +4,9 @@
   "opacitiesUnit": "float",
   "outputFileName": "figma.json",
   "outputFolderBaseFile": ".figmagic",
+  "outputFolderElements": "elements",
   "outputFolderTokens": "tokens",
   "outputTokenFormat": "mjs",
-  "outputFolderElements": "elements",
   "spacingUnit": "rem",
   "usePostscriptFontNames": true
 }

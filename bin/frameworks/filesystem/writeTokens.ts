@@ -19,30 +19,15 @@ export async function writeTokens(tokens: Frame[], config: Config): Promise<bool
   if (!(tokens.length > 0)) throw new Error(ErrorWriteTokens);
   if (!config) throw new Error(ErrorWriteTokensNoSettings);
 
-  console.log('tokens.length', tokens.length);
-
   return new Promise((resolve, reject) => {
     try {
       //tokens.forEach(async (token) => {
       tokens[0].children.forEach(async (token) => {
-        console.log('TOKEN');
-        console.log(token);
-
         const tokenName = camelize(token.name).toLowerCase();
-
-        console.log('acceptedTokenTypes', acceptedTokenTypes);
-        console.log('tokenName', tokenName);
-        console.log(
-          'acceptedTokenTypes.includes(tokenName)',
-          acceptedTokenTypes.includes(tokenName)
-        );
 
         if (acceptedTokenTypes.includes(tokenName)) {
           const processedToken = processTokens(token, tokenName, config);
-
           if (config.debugMode) console.log(processedToken);
-
-          console.log('processedToken', processedToken);
 
           await writeFile(
             processedToken,

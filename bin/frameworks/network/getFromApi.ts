@@ -14,7 +14,7 @@ import { ErrorGetFromApi } from '../errors/errors';
 export async function getFromApi(
   figmaToken: string,
   figmaUrl: string,
-  type: string = 'files'
+  type = 'files'
 ): Promise<ImageResponse> {
   if (!figmaToken || !figmaUrl) throw new Error(ErrorGetFromApi);
 

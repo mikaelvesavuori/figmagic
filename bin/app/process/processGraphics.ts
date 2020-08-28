@@ -23,13 +23,13 @@ import {
  * @param config Configuration object
  */
 // TODO: Add real types
-export async function processGraphics(graphicsPage: Frame, config: Config): Promise<any[]> {
+export async function processGraphics(graphicsPage: Frame[], config: Config): Promise<any[]> {
   if (!graphicsPage) throw new Error(ErrorProcessGraphics);
-
   const { token, url, outputFormatGraphics, outputScaleGraphics } = config;
   if (!token) throw new Error(ErrorProcessGraphics);
+  if (graphicsPage.length === 0 || !graphicsPage[0].children) throw new Error(ErrorProcessGraphics);
 
-  const IDS = getIds([graphicsPage]);
+  const IDS = getIds(graphicsPage[0].children);
   const ID_STRING = getIdString(IDS);
   const SETTINGS = `&scale=${outputScaleGraphics}&format=${outputFormatGraphics}`;
   const URL = `${url}?ids=${ID_STRING}${SETTINGS}`;
