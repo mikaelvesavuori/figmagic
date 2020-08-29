@@ -33,7 +33,7 @@ export async function parseCssFromElement(
   element: Element,
   textElement: TextElement,
   remSize: number,
-  isTest: boolean = false
+  isTest = false
 ): Promise<Css> {
   if (!element || !remSize) throw new Error(ErrorParseCssFromElement);
 
@@ -55,14 +55,14 @@ export async function parseCssFromElement(
   const _spacing = await import(path.join(`${process.cwd()}`, `${PATH}`, `spacing.ts`));
   const spacing = _spacing.default;
 
-  let css: string = ``;
-  let imports: any = [];
+  let css = ``;
+  const imports: any = [];
 
   css += `width: 100%;\n`;
   css += `box-sizing: border-box;\n`;
 
-  const PADDING_Y: object = getPaddingY(textElement, element);
-  const PADDING_X: object = getPaddingX(textElement, element);
+  const PADDING_Y: Record<string, unknown> = getPaddingY(textElement, element);
+  const PADDING_X: Record<string, unknown> = getPaddingX(textElement, element);
 
   const PADDING = {
     ...PADDING_Y,

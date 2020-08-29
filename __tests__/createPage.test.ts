@@ -15,7 +15,7 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should return an empty object if array has non-matching values', () => {
-    const FIGMA_PAGES: Frame[] = [{ name: 'asdf', children: [] }];
+    const FIGMA_PAGES: Frame[] = [{ id: '0:0', type: 'DOCUMENT', name: 'asdf', children: [] }];
     expect(createPage(FIGMA_PAGES, matchingPageName)).toEqual(expect.objectContaining({}));
   });
 

@@ -3,7 +3,7 @@ import { setupBorderWidthTokens } from '../bin/entities/Tokens/tokens/setupBorde
 
 import { FRAME as Frame } from '../bin/app/contracts/Figma';
 
-import { borderWidthsFrame } from '../testdata/borderWidthsFrame';
+import { borderWidthsFrame } from '../testdata/frames/borderWidthsFrame';
 
 describe('Failure cases', () => {
   /*
@@ -36,13 +36,7 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {
     expect(setupBorderWidthTokens(borderWidthsFrame as Frame)).toEqual(
-      expect.objectContaining({
-        chunky: '8px',
-        fat: '4px',
-        hairline: '1px',
-        regular: '2px',
-        borderless: '0px'
-      })
+      expect.objectContaining({ chunky: '8px', fat: '4px', hairline: '1px', regular: '2px' })
     );
   });
 });

@@ -57,8 +57,8 @@ export function getPaddingX(textElement: TextElement, element: Element): Padding
 }
 
 type PaddingParams = {
-  padding: object;
-  spacing: object;
+  padding: Record<string, unknown>;
+  spacing: Record<string, unknown>;
   remSize: number;
 };
 
@@ -92,7 +92,7 @@ export function parsePadding(
 }
 
 type HeightParams = {
-  spacing: object;
+  spacing: Record<string, unknown>;
   height: number;
   remSize: number;
 };
@@ -164,7 +164,7 @@ export function getBackgroundColor(element: Element): any {
 }
 
 type BackgroundColorParams = {
-  colors: object;
+  colors: Record<string, unknown>;
   backgroundColor: string;
   remSize: number;
 };
@@ -197,7 +197,7 @@ export function parseBackgroundColor(
 }
 
 type BorderWidthParams = {
-  borderWidths: object;
+  borderWidths: Record<string, unknown>;
   borderWidth: string;
   remSize: number;
 };
@@ -244,7 +244,7 @@ export function getBorderColor(element: Element): string | null {
 }
 
 type BorderColorParams = {
-  colors: object;
+  colors: Record<string, unknown>;
   borderColor: string;
   remSize: number;
 };
@@ -271,7 +271,7 @@ export function parseBorderColor(css: string, imports: any[], params: BorderColo
 }
 
 type BorderRadiusParams = {
-  radii: object;
+  radii: Record<string, unknown>;
   borderRadius: string;
   remSize: number;
 };
@@ -320,7 +320,7 @@ export function getShadow(element: Element): string | null {
 }
 
 type ShadowParams = {
-  shadows: object;
+  shadows: Record<string, unknown>;
   shadow: string;
   remSize: number;
 };

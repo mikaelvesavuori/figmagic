@@ -1,5 +1,6 @@
 export interface ImageResponse {
   err: string;
-  images: object[];
+  images: Record<string, unknown>[];
   status: number;
+  document: any;
 }

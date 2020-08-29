@@ -4,7 +4,7 @@
 import * as path from 'path';
 import dotenv from 'dotenv';
 
-import { FigmagicController } from './bin/app/controllers/FigmagicController';
+//import { FigmagicController } from './bin/app/controllers/FigmagicController';
 
 import { Config } from './bin/entities/Config/Config';
 import { defaultConfig } from './bin/entities/Config/defaultConfig';
@@ -35,7 +35,7 @@ async function main(baseConfiguration: Config): Promise<void> {
     if (!recompileLocal) await writeBaseJson(outputFolderBaseFile, outputFileName, data);
 
     // Run the controller
-    await FigmagicController(config, data);
+    //await FigmagicController(config, data);
   } catch (error) {
     console.error(`${colors.FgRed}${error}`);
   }

@@ -5,7 +5,7 @@ export const cssTypographyElement = {
   blendMode: 'PASS_THROUGH',
   absoluteBoundingBox: { x: 400, y: 541, width: 320, height: 48 },
   constraints: { vertical: 'SCALE', horizontal: 'SCALE' },
-  fills: [{ blendMode: 'NORMAL', type: 'SOLID', color: [Object] }],
+  fills: [{ blendMode: 'NORMAL', type: 'SOLID', color: {} }],
   strokes: [],
   strokeWeight: 1,
   strokeAlign: 'OUTSIDE',

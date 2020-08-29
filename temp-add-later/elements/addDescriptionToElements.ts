@@ -7,7 +7,10 @@ import { ErrorAddDescriptionToElements } from '../../../frameworks/errors/errors
  * @param components Matching string (regex?)
  */
 // TODO: Add real types
-export function addDescriptionToElements(elements: object[], components: object): any[] {
+export function addDescriptionToElements(
+  elements: Record<string, unknown>[],
+  components: Record<string, unknown>
+): any[] {
   if (!elements || !components) throw new Error(ErrorAddDescriptionToElements);
 
   return elements.map((element: any) => {

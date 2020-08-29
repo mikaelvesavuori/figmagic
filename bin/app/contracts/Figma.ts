@@ -3,7 +3,7 @@
 /* https://www.figma.com/developers/api#global-properties  */
 /***********************************************************/
 
-type FigmaNode = {
+export type FigmaNode = {
   id: string;
   name: string;
   visible: boolean;
@@ -31,8 +31,12 @@ export type CANVAS = {
 export interface FRAME {
   absoluteBoundingBox?: Rectangle;
   blendMode?: BlendMode;
+  //[DEPRECATED] Background of the node. This is deprecated, as backgrounds for frames are now in the fills field.
+  background?: Paint[];
+  //[DEPRECATED] Background color of the node. This is deprecated, as frames now support more than a solid color as a background. Please use the fills field instead.
+  backgroundColor?: Color;
   characters?: string;
-  children?: FigmaNode[];
+  children?: FRAME[]; //FigmaNode[];
   clipsContent?: boolean;
   constraints?: LayoutConstraint;
   cornerRadius?: number;
@@ -56,23 +60,29 @@ export interface FRAME {
     | 'VERTICAL_SCROLLING'
     | 'HORIZONTAL_AND_VERTICAL_SCROLLING';
   preserveRatio?: boolean;
-  rectangleCornerRadii?: number;
+  rectangleCornerRadii?: number[];
   relativeTransform?: Transform;
   size?: Vector;
   strokeAlign?: 'INSIDE' | 'OUTSIDE' | 'CENTER';
   strokeWeight?: number;
   strokes?: Paint[];
-  style?: TypeStyle;
+  // [BUG/CHANGE FROM FIGMA? Not listed but my older test data includes this field...?]
+  style?: any; //TypeStyle;
+  styles?: any; // TypeStyle;
   transitionDuration?: number;
   transitionEasing?: EasingType;
   transitionNodeID?: string;
   type: string;
   verticalPadding?: number;
+  // [FIX ERROR] These come on the Frame, despite not being documented
+  characterStyleOverrides?: number[];
+  styleOverrideTable?: any; //Map<number, TypeStyle>;
+  layoutVersion?: number;
 }
 
 export type GROUP = FRAME;
 
-type VECTOR = {
+export type VECTOR = {
   absoluteBoundingBox: Rectangle;
   blendMode: BlendMode;
   constraintsLayout: Constraint;
@@ -120,7 +130,7 @@ export interface RECTANGLE extends VECTOR {
 }
 
 export interface TEXT extends VECTOR {
-  characterStyleOverridesNumber: number[];
+  characterStyleOverrides: number[];
   characters: string;
   style: TypeStyle;
   styleOverrideTable: Map<number, TypeStyle>;
@@ -144,32 +154,32 @@ export interface INSTANCE extends FRAME {
 /* https://www.figma.com/developers/api#files-types  */
 /*****************************************************/
 
-type Color = {
+export type Color = {
   a: number;
   b: number;
   g: number;
   r: number;
 };
 
-type ExportSetting = {
+export type ExportSetting = {
   constraint: Constraint;
   format: 'JPG' | 'PNG' | 'SVG';
   suffix: string;
 };
 
-type Constraint = {
+export type Constraint = {
   type: 'SCALE' | 'WIDTH' | 'HEIGHT';
   value: number;
 };
 
-type Rectangle = {
+export type Rectangle = {
   height?: number;
   width?: number;
   x?: number;
   y?: number;
 };
 
-type BlendMode =
+export type BlendMode =
   // Normal blends
   | 'PASS_THROUGH'
   | 'NORMAL'
@@ -196,14 +206,14 @@ type BlendMode =
   | 'COLOR'
   | 'LUMINOSITY';
 
-type EasingType = 'EASE_IN' | 'EASE_OUT' | 'EASE_IN_AND_OUT' | 'LINEAR';
+export type EasingType = 'EASE_IN' | 'EASE_OUT' | 'EASE_IN_AND_OUT' | 'LINEAR';
 
-type LayoutConstraint = {
-  vertical: 'TOP' | 'BOTTOM' | 'CENTER' | 'TOP_BOTTOM' | 'SCALE';
-  horizontal: 'LEFT' | 'RIGHT' | 'CENTER' | 'LEFT_RIGHT' | 'SCALE';
+export type LayoutConstraint = {
+  vertical?: 'TOP' | 'BOTTOM' | 'CENTER' | 'TOP_BOTTOM' | 'SCALE';
+  horizontal?: 'LEFT' | 'RIGHT' | 'CENTER' | 'LEFT_RIGHT' | 'SCALE';
 };
 
-type LayoutGrid = {
+export type LayoutGrid = {
   color: Color;
   pattern: 'COLUMNS' | 'ROWS' | 'GRID';
   sectionSize: number;
@@ -216,7 +226,7 @@ type LayoutGrid = {
   offset: number;
 };
 
-type Effect = {
+export type Effect = {
   radius: number;
   type: 'INNER_SHADOW' | 'DROP_SHADOW' | 'LAYER_BLUR' | 'BACKGROUND_BLUR';
   visible: boolean;
@@ -227,13 +237,13 @@ type Effect = {
   offset: Vector;
 };
 
-type Hyperlink = {
+export type Hyperlink = {
   type: 'URL' | 'NODE';
   url: string;
   nodeID: string;
 };
 
-type Paint = {
+export type Paint = {
   //gradients?: Gradients[];
   opacity?: number;
   position?: string;
@@ -251,19 +261,22 @@ type Paint = {
 
   // For gradient paints
   blendMode?: BlendMode;
-  gradientHandlePositions: Vector;
+  gradientHandlePositions?: Vector;
   ColorStop?: ColorStop[];
 
   // For image paints
-  gifRef: string;
-  imageRef: string;
-  imageTransform: Transform;
-  rotation: number;
-  scaleMode: 'FILL' | 'FIT' | 'TILE' | 'STRETCH';
-  scalingFactor: number;
+  gifRef?: string;
+  imageRef?: string;
+  imageTransform?: Transform;
+  rotation?: number;
+  scaleMode?: 'FILL' | 'FIT' | 'TILE' | 'STRETCH';
+  scalingFactor?: number;
+
+  // [FIX] This is added by Figma, but not documented
+  visible?: boolean;
 };
 
-type Vector = {
+export type Vector = {
   x: number;
   y: number;
 };
@@ -274,8 +287,8 @@ export type Size = {
 };
 
 // TODO: Fix these two...?
-type Transform = any;
-type Path = any;
+export type Transform = any;
+export type Path = any;
 
 export type FrameOffset = {
   node_id: string;
@@ -288,7 +301,7 @@ type Gradients = {
 };
 */
 
-type ColorStop = {
+export type ColorStop = {
   color: Color;
   position: string;
 };
@@ -299,27 +312,27 @@ export type Strokes = {
   type: string;
 };
 
-type TypeStyle = {
-  fontFamily: string;
-  fontPostScriptName: string;
-  paragraphSpacing: number;
-  paragraphIndent: number;
-  italic: boolean;
-  fills: Paint[];
-  hyperlink: Hyperlink;
-  opentypeFlags: Map<string, number>;
-  fontSize: number;
-  fontWeight: number;
-  letterSpacing: number;
-  lineHeightPx: number;
-  lineHeightPercent: number;
-  lineHeightPercentFontSize: number;
-  lineHeightUnit: 'PIXELS' | 'FONT_SIZE_%' | 'INTRINSIC_%';
-  textAlignHorizontal: 'LEFT' | 'RIGHT' | 'CENTER' | 'JUSTIFIED';
-  textAlignVertical: 'TOP' | 'CENTER' | 'BOTTOM';
-  textCase: 'LOWER' | 'UPPER' | 'TITLE' | 'SMALL_CAPS' | 'SMALL_CAPS_FORCED';
-  textDecoration: 'STRIKETHROUGH' | 'UNDERLINE';
-  textAutoResize: 'HEIGHT' | 'WIDTH_AND_HEIGHT';
+export type TypeStyle = {
+  fontFamily?: string;
+  fontPostScriptName?: string;
+  paragraphSpacing?: number;
+  paragraphIndent?: number;
+  italic?: boolean;
+  fills?: Paint[];
+  hyperlink?: Hyperlink;
+  opentypeFlags?: Map<string, number>;
+  fontSize?: number;
+  fontWeight?: number;
+  letterSpacing?: number;
+  lineHeightPx?: number;
+  lineHeightPercent?: number;
+  lineHeightPercentFontSize?: number;
+  lineHeightUnit?: 'PIXELS' | 'FONT_SIZE_%' | 'INTRINSIC_%';
+  textAlignHorizontal?: 'LEFT' | 'RIGHT' | 'CENTER' | 'JUSTIFIED';
+  textAlignVertical?: 'TOP' | 'CENTER' | 'BOTTOM';
+  textCase?: 'LOWER' | 'UPPER' | 'TITLE' | 'SMALL_CAPS' | 'SMALL_CAPS_FORCED';
+  textDecoration?: 'STRIKETHROUGH' | 'UNDERLINE';
+  textAutoResize?: 'HEIGHT' | 'WIDTH_AND_HEIGHT';
 };
 
 export type Component = {
@@ -335,4 +348,4 @@ export type Style = {
   style_type: StyleType;
 };
 
-type StyleType = 'FILL' | 'TEXT' | 'EFFECT' | 'GRID';
+export type StyleType = 'FILL' | 'TEXT' | 'EFFECT' | 'GRID';

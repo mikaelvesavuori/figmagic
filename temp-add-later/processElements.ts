@@ -19,7 +19,7 @@ import { ErrorProcessElements } from '../../frameworks/errors/errors';
  */
 export async function processElements(
   elementsPage: any[],
-  components: object,
+  components: Record<string, unknown>,
   config: Config
 ): Promise<any[]> {
   if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);

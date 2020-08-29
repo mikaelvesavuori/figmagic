@@ -50,7 +50,6 @@ export const elementsPage = [
           lineHeightPercent: 100,
           lineHeightUnit: 'INTRINSIC_%'
         },
-        layoutVersion: 1,
         characterStyleOverrides: [],
         styleOverrideTable: {},
         styles: {
@@ -160,7 +159,6 @@ export const elementsPageDoubleTexts = [
           lineHeightPercent: 100,
           lineHeightUnit: 'INTRINSIC_%'
         },
-        layoutVersion: 1,
         characterStyleOverrides: [],
         styleOverrideTable: {},
         styles: {
@@ -212,7 +210,6 @@ export const elementsPageDoubleTexts = [
           lineHeightPercent: 100,
           lineHeightUnit: 'INTRINSIC_%'
         },
-        layoutVersion: 1,
         characterStyleOverrides: [],
         styleOverrideTable: {},
         styles: {
@@ -281,19 +278,18 @@ export const elementToProcessWithDescription = {
       name: 'Text',
       type: 'TEXT',
       blendMode: 'PASS_THROUGH',
-      absoluteBoundingBox: [Object],
-      constraints: [Object],
-      fills: [Array],
+      absoluteBoundingBox: {},
+      constraints: {},
+      fills: [],
       strokes: [],
       strokeWeight: 0,
       strokeAlign: 'OUTSIDE',
       effects: [],
       characters: 'Microcopy',
-      style: [Object],
-      layoutVersion: 1,
+      style: {},
       characterStyleOverrides: [],
       styleOverrideTable: {},
-      styles: [Object]
+      styles: {}
     }
   ],
   absoluteBoundingBox: { x: 1024, y: 508, width: 57, height: 14 },
@@ -304,7 +300,7 @@ export const elementToProcessWithDescription = {
       blendMode: 'NORMAL',
       visible: false,
       type: 'SOLID',
-      color: [Object]
+      color: {}
     }
   ],
   fills: [
@@ -312,7 +308,7 @@ export const elementToProcessWithDescription = {
       blendMode: 'NORMAL',
       visible: false,
       type: 'SOLID',
-      color: [Object]
+      color: {}
     }
   ],
   strokes: [],
@@ -337,8 +333,8 @@ export const elementWithGroupType = {
       absoluteBoundingBox: { x: 284, y: 581, width: 32, height: 32 },
       preserveRatio: true,
       constraints: { vertical: 'CENTER', horizontal: 'CENTER' },
-      fills: [{ blendMode: 'NORMAL', type: 'SOLID', color: [Object] }],
-      strokes: [{ blendMode: 'NORMAL', type: 'SOLID', color: [Object] }],
+      fills: [{ blendMode: 'NORMAL', type: 'SOLID', color: {} }],
+      strokes: [{ blendMode: 'NORMAL', type: 'SOLID', color: {} }],
       strokeWeight: 1,
       strokeAlign: 'INSIDE',
       effects: [],
@@ -354,7 +350,7 @@ export const elementWithGroupType = {
       blendMode: 'NORMAL',
       visible: false,
       type: 'SOLID',
-      color: [Object]
+      color: {}
     }
   ],
   fills: [
@@ -362,7 +358,7 @@ export const elementWithGroupType = {
       blendMode: 'NORMAL',
       visible: false,
       type: 'SOLID',
-      color: [Object]
+      color: {}
     }
   ],
   strokes: [],

@@ -19,7 +19,7 @@ export async function writeBaseJson(
   console.log(MsgWriteBaseFile);
   try {
     await refresh(outputFolderBaseFile);
-    await writeFile(JSON.stringify(data), outputFolderBaseFile, outputFileName, 'raw');
+    await writeFile(data, outputFolderBaseFile, outputFileName, 'raw');
 
     return data;
   } catch (error) {

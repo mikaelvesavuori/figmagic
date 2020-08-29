@@ -97,10 +97,10 @@ export async function createConfiguration(
  * @param config
  */
 function printConfigs(
-  envConfig: object,
-  cliConfig: object,
-  rcConfig: object,
-  config: object
+  envConfig: Record<string, unknown>,
+  cliConfig: Record<string, unknown>,
+  rcConfig: Record<string, unknown>,
+  config: Record<string, unknown>
 ): void {
   console.log(MsgConfigDebugEnv);
   console.log(envConfig);

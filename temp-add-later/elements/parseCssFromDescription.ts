@@ -10,7 +10,10 @@ import { ErrorParseCssFromDescription } from '../../../frameworks/errors/errors'
  * @param desc String with description
  * @param tokens Array of design tokens
  */
-export function parseCssFromDescription(desc: string = '', tokens: any[]): object | string {
+export function parseCssFromDescription(
+  desc: string = '',
+  tokens: any[]
+): Record<string, unknown> | string {
   if (!tokens) throw new Error(ErrorParseCssFromDescription);
 
   if (desc === '') return '';

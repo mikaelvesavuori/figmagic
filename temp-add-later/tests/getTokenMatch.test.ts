@@ -1,3 +1,5 @@
+import { Tokens } from '../bin/entities/Tokens/Tokens';
+
 import { getTokenMatch } from '../bin/app/process/tokens/getTokenMatch';
 
 /*
@@ -38,7 +40,7 @@ describe('Success cases', () => {
           medium: '2rem',
           small: '1rem',
           tiny: '0.5rem'
-        },
+        } as Tokens,
         'spacing',
         'padding',
         `{ top: 16, bottom: 16, left: 16, right: 16 }`,
