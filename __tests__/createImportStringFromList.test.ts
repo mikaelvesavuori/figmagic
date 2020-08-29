@@ -1,20 +1,13 @@
 import { createImportStringFromList } from '../bin/frameworks/string/createImportStringFromList';
 
-/*
 describe('Failure cases', () => {
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
-      createImportStringFromList();
-    }).toThrow();
-  });
-
-  test('It should throw an error if getting a zero-length array', () => {
-    expect(() => {
+      // @ts-ignore
       createImportStringFromList();
     }).toThrow();
   });
 });
-*/
 
 describe('Success cases', () => {
   test('It should correctly return a CSS standard RGBA string', () => {

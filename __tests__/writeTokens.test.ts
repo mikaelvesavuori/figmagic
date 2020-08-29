@@ -20,23 +20,24 @@ import { zIndicesFrame } from '../testdata/frames/zIndicesFrame';
 const TEMP_FOLDER = `__tokens__`;
 defaultConfig.outputFolderTokens = TEMP_FOLDER;
 
-/*
 describe('Failure cases', () => {
   test('It should throw an error if no parameter is provided', async () => {
+    // @ts-ignore
     await expect(writeTokens()).rejects.toThrow();
   });
 
   test('It should pass the zero-length token check', async () => {
     const TOKENS = [{}, {}];
+    // @ts-ignore
     await expect(writeTokens(TOKENS)).rejects.toThrow();
   });
 
   test('It should fail the zero-length token check', async () => {
     const TOKENS = [];
+    // @ts-ignore
     await expect(writeTokens(TOKENS)).rejects.toThrow();
   });
 });
-*/
 
 describe('Success cases', () => {
   test('It should return tokens if passed a valid set of frame and settings', async () => {
@@ -59,17 +60,17 @@ describe('Success cases', () => {
     await trash(TEMP_FOLDER);
   });
 
-  /*
   test('It can write to a file if provided input', () => {
     const FILE = '__test-writefile1.txt';
+    // @ts-ignore
     writeTokens(JSON.stringify({ something: 1234 }), './', FILE);
     trash('./somefile.txt');
   });
 
   test('It can write a token to a file if provided input', () => {
     const FILE = '__test-writefile2.txt';
+    // @ts-ignore
     writeTokens(JSON.stringify({ something: 1234 }), './', FILE, true);
     trash('./somefile.txt');
   });
-  */
 });

@@ -9,34 +9,37 @@ import { getFromApi } from '../bin/frameworks/network/getFromApi';
 
 import { graphicsFrame } from '../testdata/frames/graphicsFrame';
 
-//import { getIds } from '../bin/app/process/graphics/getIds';
-//import { getIdString } from '../bin/app/process/graphics/getIdString';
-//import { getFileList } from '../bin/app/process/graphics/getFileList';
+import { getIds } from '../bin/app/process/graphics/getIds';
+import { getIdString } from '../bin/app/process/graphics/getIdString';
+import { getFileList } from '../bin/app/process/graphics/getFileList';
 
 dotenv.config();
 
 describe('Failure cases', () => {
-  /*
   test('It should throw an error if no parameter is provided', async () => {
+    // @ts-ignore
     await expect(processGraphics()).rejects.toThrow();
   });
 
   test('It should throw when missing arguments', () => {
+    // @ts-ignore
     expect(() => getFileList()).toThrow();
   });
 
   test('It should throw when missing argument', () => {
+    // @ts-ignore
     expect(() => getIds()).toThrow();
   });
 
   test('It should throw when missing items in argument', () => {
+    // @ts-ignore
     expect(() => getIds({})).toThrow();
   });
 
   test('It should throw when missing ids', () => {
+    // @ts-ignore
     expect(() => getIdString()).toThrow();
   });
-  */
 
   test('It should throw an error when receiving invalid token and/or URL', async () => {
     expect(await getFromApi('asdf', 'asdf')).toEqual(

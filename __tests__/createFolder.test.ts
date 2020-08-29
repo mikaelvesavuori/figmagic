@@ -2,13 +2,12 @@ import trash from 'trash';
 
 import { createFolder } from '../bin/frameworks/filesystem/createFolder';
 
-/*
 describe('Failure cases', () => {
   test('It should throw an error if no parameter is provided', async () => {
+    // @ts-ignore
     await expect(createFolder()).rejects.toThrow(ErrorCreateFolder);
   });
 });
-*/
 
 describe('Success cases', () => {
   test('It should be able to successfully create a new folder if it does not exist', async () => {

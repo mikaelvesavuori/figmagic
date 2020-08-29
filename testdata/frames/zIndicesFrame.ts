@@ -353,3 +353,11 @@ export const zIndicesFrame: Frame = {
   },
   effects: []
 };
+
+export const zIndicesFrameNoCharacters = {
+  children: [
+    {
+      somethingElse: 123
+    }
+  ]
+};

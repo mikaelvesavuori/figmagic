@@ -19,15 +19,15 @@ describe('Success cases', () => {
     expect(createPage(FIGMA_PAGES, matchingPageName)).toEqual(expect.objectContaining({}));
   });
 
-  /*
   test('It should return an empty object if array has non-matching values, even with a "name" property', () => {
     const FIGMA_PAGES = [{ name: 'demovalue', something: 123 }];
+    // @ts-ignore
     expect(createPage(FIGMA_PAGES, matchingPageName)).toEqual(expect.objectContaining({}));
   });
 
   test('It should find a match when passing in a "design tokens" page', () => {
     const FIGMA_PAGES = [{ name: 'Design tokens' }];
+    // @ts-ignore
     expect(createPage(FIGMA_PAGES, matchingPageName)).toEqual(expect.objectContaining({}));
   });
-  */
 });

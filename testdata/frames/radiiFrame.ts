@@ -191,3 +191,11 @@ export const radiiFrame: Frame = {
   },
   effects: []
 };
+
+export const radiiFrameNoCornerRadius = {
+  children: [
+    {
+      somethingElse: 123
+    }
+  ]
+};

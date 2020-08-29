@@ -15,15 +15,14 @@ import { radiiFrame } from '../testdata/frames/radiiFrame';
 import { shadowsFrame } from '../testdata/frames/shadowsFrame';
 import { zIndicesFrame } from '../testdata/frames/zIndicesFrame';
 
-/*
 describe('Failure cases', () => {
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
+      // @ts-ignore
       processTokens();
     }).toThrow();
   });
 });
-*/
 
 describe('Success cases', () => {
   test('It should return data when passed valid color frame and valid settings', () => {

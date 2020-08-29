@@ -32,10 +32,7 @@ export function setupSpacingTokens(
 
   children.forEach((item: Frame) => {
     const name: string = camelize(item.name);
-    const width: number =
-      item.absoluteBoundingBox && item.absoluteBoundingBox.width
-        ? item.absoluteBoundingBox.width
-        : 0;
+    const width: number = item.absoluteBoundingBox.width;
     const normalizedUnit = normalizeUnits(width, 'px', spacingUnit, remSize);
     spacings[name] = normalizedUnit;
   });

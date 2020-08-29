@@ -1,6 +1,10 @@
 import { setupLineHeightTokens } from '../bin/entities/Tokens/tokens/setupLineHeightTokens';
 
-import { lineHeightFrame } from '../testdata/frames/lineHeightFrame';
+import {
+  lineHeightFrame,
+  lineHeightFrameNoNameStyle,
+  lineHeightFrameNoLineHeightPercentFontSize
+} from '../testdata/frames/lineHeightFrame';
 
 describe('Failure cases', () => {
   test('It should throw an error if no parameter is provided', () => {
@@ -20,30 +24,14 @@ describe('Failure cases', () => {
   test('It should throw an error if children are missing "name" and "style" properties', () => {
     expect(() => {
       // @ts-ignore
-      setupLineHeightTokens({
-        children: [
-          {
-            nameMismatch: 'Something',
-            styleMismatch: {}
-          }
-        ]
-      });
+      setupLineHeightTokens(lineHeightFrameNoNameStyle);
     }).toThrow();
   });
 
   test('It should throw an error if children has "style" property but not "lineHeightPercentFontSize"', () => {
     expect(() => {
       // @ts-ignore
-      setupLineHeightTokens({
-        children: [
-          {
-            name: 'Something',
-            style: {
-              lineHeightPercentFontSizeMismatch: 100
-            }
-          }
-        ]
-      });
+      setupLineHeightTokens(lineHeightFrameNoLineHeightPercentFontSize);
     }).toThrow();
   });
 });

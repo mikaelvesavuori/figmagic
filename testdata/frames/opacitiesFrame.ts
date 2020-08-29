@@ -211,3 +211,12 @@ export const opacitiesFrame: Frame = {
   },
   effects: []
 };
+
+export const opacitiesFrameNoName = {
+  children: [
+    {
+      nameMismatch: 'Something',
+      styleMismatch: {}
+    }
+  ]
+};

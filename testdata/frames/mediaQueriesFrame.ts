@@ -341,3 +341,11 @@ export const mediaQueriesFrame: Frame = {
   },
   effects: []
 };
+
+export const mediaQueriesFrameNoAbsoluteBoundingBox = {
+  children: [
+    {
+      somethingElse: 123
+    }
+  ]
+};

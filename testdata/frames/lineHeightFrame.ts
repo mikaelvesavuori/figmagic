@@ -257,3 +257,23 @@ export const lineHeightFrame: Frame = {
   },
   effects: []
 };
+
+export const lineHeightFrameNoNameStyle = {
+  children: [
+    {
+      nameMismatch: 'Something',
+      styleMismatch: {}
+    }
+  ]
+};
+
+export const lineHeightFrameNoLineHeightPercentFontSize = {
+  children: [
+    {
+      name: 'Something',
+      style: {
+        lineHeightPercentFontSizeMismatch: 100
+      }
+    }
+  ]
+};

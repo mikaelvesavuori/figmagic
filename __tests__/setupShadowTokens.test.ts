@@ -1,6 +1,10 @@
 import { setupShadowTokens } from '../bin/entities/Tokens/tokens/setupShadowTokens';
 
-import { shadowsFrame, shadowsFrameMultipleShadows } from '../testdata/frames/shadowsFrame';
+import {
+  shadowsFrame,
+  shadowsFrameMultipleShadows,
+  shadowsFrameNoEffects
+} from '../testdata/frames/shadowsFrame';
 
 describe('Failure cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
@@ -13,13 +17,7 @@ describe('Failure cases', () => {
   test('It should throw an error if frame does not have "effects" array', () => {
     expect(() => {
       // @ts-ignore
-      setupShadowTokens({
-        children: [
-          {
-            somethingElse: 123
-          }
-        ]
-      });
+      setupShadowTokens(shadowsFrameNoEffects);
     }).toThrow();
   });
 

@@ -50,11 +50,10 @@ describe('Success cases', () => {
     );
   });
 
-  /*
   test('It should throw an error when missing user configuration path', async () => {
+    // @ts-ignore
     await expect(createConfiguration()).rejects.toThrow();
   });
-  */
 
   test('It logs the configuration when debug mode is enabled', async () => {
     const USER_CONFIG_PATH = path.join(process.cwd(), 'testdata', 'figmagicrc');

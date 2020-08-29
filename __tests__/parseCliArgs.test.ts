@@ -1,15 +1,14 @@
 import { parseCliArgs } from '../bin/entities/Config/parseCliArgs';
 import { defaultConfig } from '../bin/entities/Config/defaultConfig';
 
-/*
 describe('Failure cases', () => {
   test('It should throw an error if no arguments array is passed', () => {
     expect(() => {
+      // @ts-ignore
       parseCliArgs();
     }).toThrow();
   });
 });
-*/
 
 describe('Success cases', () => {
   test('Should return an empty object if an empty array of args is passed', () => {

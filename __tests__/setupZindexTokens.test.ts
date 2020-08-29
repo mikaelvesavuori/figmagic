@@ -1,6 +1,6 @@
 import { setupZindexTokens } from '../bin/entities/Tokens/tokens/setupZindexTokens';
 
-import { zIndicesFrame } from '../testdata/frames/zIndicesFrame';
+import { zIndicesFrame, zIndicesFrameNoCharacters } from '../testdata/frames/zIndicesFrame';
 
 describe('Failure cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
@@ -13,13 +13,7 @@ describe('Failure cases', () => {
   test('It should throw an error if frame does not have "characters" property', () => {
     expect(() => {
       // @ts-ignore
-      setupZindexTokens({
-        children: [
-          {
-            somethingElse: 123
-          }
-        ]
-      });
+      setupZindexTokens(zIndicesFrameNoCharacters);
     }).toThrow();
   });
 

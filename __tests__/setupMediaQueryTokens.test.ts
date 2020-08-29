@@ -1,6 +1,9 @@
 import { setupMediaQueryTokens } from '../bin/entities/Tokens/tokens/setupMediaQueryTokens';
 
-import { mediaQueriesFrame } from '../testdata/frames/mediaQueriesFrame';
+import {
+  mediaQueriesFrame,
+  mediaQueriesFrameNoAbsoluteBoundingBox
+} from '../testdata/frames/mediaQueriesFrame';
 
 describe('Success cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
@@ -13,13 +16,7 @@ describe('Success cases', () => {
   test('It should throw an error if frame does not have "absoluteBoundingBox" property', () => {
     expect(() => {
       // @ts-ignore
-      setupMediaQueryTokens({
-        children: [
-          {
-            somethingElse: 123
-          }
-        ]
-      });
+      setupMediaQueryTokens(mediaQueriesFrameNoAbsoluteBoundingBox);
     }).toThrow();
   });
 

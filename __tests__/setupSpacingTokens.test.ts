@@ -1,6 +1,6 @@
 import { setupSpacingTokens } from '../bin/entities/Tokens/tokens/setupSpacingTokens';
 
-import { spacingFrame } from '../testdata/frames/spacingFrame';
+import { spacingFrame, spacingFrameNoName } from '../testdata/frames/spacingFrame';
 
 describe('Failure cases', () => {
   test('It should throw an error if no parameter is provided', () => {
@@ -20,14 +20,7 @@ describe('Failure cases', () => {
   test('It should throw an error if children are missing "name" and "absoluteBoundingBox" properties', () => {
     expect(() => {
       // @ts-ignore
-      setupSpacingTokens({
-        children: [
-          {
-            nameMismatch: 'Something',
-            absoluteBoundingBoxMismatch: 100
-          }
-        ]
-      });
+      setupSpacingTokens(spacingFrameNoName);
     }).toThrow();
   });
 });

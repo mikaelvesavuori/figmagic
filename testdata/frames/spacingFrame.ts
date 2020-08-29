@@ -261,3 +261,12 @@ export const spacingFrame: Frame = {
   },
   effects: []
 };
+
+export const spacingFrameNoName = {
+  children: [
+    {
+      nameMismatch: 'Something',
+      absoluteBoundingBoxMismatch: 100
+    }
+  ]
+};

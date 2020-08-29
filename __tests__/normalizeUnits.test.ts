@@ -1,13 +1,12 @@
 import { normalizeUnits } from '../bin/frameworks/string/normalizeUnits';
 
 describe('Failure cases', () => {
-  /*
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
+      // @ts-ignore
       normalizeUnits();
     }).toThrow();
   });
-  */
 
   test('It should throw an error if trying to convert to rem but having no remSize provided', () => {
     expect(() => {

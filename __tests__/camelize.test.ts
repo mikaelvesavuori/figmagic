@@ -1,14 +1,13 @@
 import { camelize } from '../bin/frameworks/string/camelize';
 
-/*
 describe('Failure cases', () => {
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
+      // @ts-ignore
       camelize();
     }).toThrow();
   });
 });
-*/
 
 describe('Success cases', () => {
   test('It should remove spaces and capitalize first letter of the word coming after the removed space', () => {
