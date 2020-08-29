@@ -53,7 +53,7 @@ describe('Success cases', () => {
 
   test('It should successfully write a token to a file if provided valid input', async () => {
     const NAME = '__test-writefile2.txt';
-    await writeFile(JSON.stringify({ something: 1234 }), './', NAME, 'token', true);
+    await writeFile(JSON.stringify({ something: 1234 }), './', NAME, 'token');
     await trash(`__test-writefile*`);
   });
 });

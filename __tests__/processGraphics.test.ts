@@ -1,17 +1,15 @@
 import dotenv from 'dotenv';
 
 import { Config } from '../bin/entities/Config/Config';
-import { FRAME as Frame } from '../bin/app/contracts/Figma';
 
 import { processGraphics } from '../bin/app/process/processGraphics';
+import { getIds } from '../bin/app/process/graphics/getIds';
+import { getIdString } from '../bin/app/process/graphics/getIdString';
+import { getFileList } from '../bin/app/process/graphics/getFileList';
 
 import { getFromApi } from '../bin/frameworks/network/getFromApi';
 
 import { graphicsFrame } from '../testdata/frames/graphicsFrame';
-
-import { getIds } from '../bin/app/process/graphics/getIds';
-import { getIdString } from '../bin/app/process/graphics/getIdString';
-import { getFileList } from '../bin/app/process/graphics/getFileList';
 
 dotenv.config();
 
@@ -51,19 +49,16 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should exit correctly after having processed valid input', async () => {
     await expect(
-      processGraphics(
-        (graphicsFrame as unknown) as Frame[],
-        {
-          outputFileName: 'figma.json',
-          outputFolderBaseFile: '.figmagic',
-          outputFolderTokens: 'tokens',
-          outputFolderGraphics: 'graphics',
-          outputFormatGraphics: 'svg',
-          outputScaleGraphics: 1,
-          token: process.env.FIGMA_TOKEN,
-          url: process.env.FIGMA_URL
-        } as Config
-      )
+      processGraphics([graphicsFrame], {
+        outputFileName: 'figma.json',
+        outputFolderBaseFile: '.figmagic',
+        outputFolderTokens: 'tokens',
+        outputFolderGraphics: 'graphics',
+        outputFormatGraphics: 'svg',
+        outputScaleGraphics: 1,
+        token: process.env.FIGMA_TOKEN,
+        url: process.env.FIGMA_URL
+      } as Config)
     ).resolves.toEqual(expect.objectContaining({}));
   });
 

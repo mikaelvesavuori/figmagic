@@ -99,8 +99,6 @@ describe('Success cases', () => {
     );
   });
 
-  //
-
   test('It should return data when passed valid border width frame and valid settings', () => {
     expect(processTokens(borderWidthsFrame, 'borderwidths', defaultConfig)).toEqual(
       expect.objectContaining({ chunky: '8px', fat: '4px', hairline: '1px', regular: '2px' })
@@ -115,7 +113,7 @@ describe('Success cases', () => {
 
   test('It should return data when passed valid media queries frame and valid settings', () => {
     expect(processTokens(opacitiesFrame, 'opacities', defaultConfig)).toEqual(
-      expect.objectContaining({ disabled: '1', opaque: '1', semiOpaque: '1', transparent: '0' })
+      expect.objectContaining({ disabled: 0.65, opaque: 1, semiOpaque: 0.5, transparent: 0 })
     );
   });
 

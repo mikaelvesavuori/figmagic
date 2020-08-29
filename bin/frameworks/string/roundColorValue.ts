@@ -6,7 +6,7 @@ import { ErrorRoundColorValue } from '../errors/errors';
  * @param quantity Incoming quantity value, as float
  * @param scale Maximum value, as int (?)
  */
-export function roundColorValue(quantity: number = 0.0, scale: number = 255): number {
+export function roundColorValue(quantity = 0.0, scale = 255): number {
   if (scale < 0 || scale > 255) throw new Error(ErrorRoundColorValue);
 
   // Set bounds

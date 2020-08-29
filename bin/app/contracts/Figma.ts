@@ -78,6 +78,8 @@ export interface FRAME {
   characterStyleOverrides?: number[];
   styleOverrideTable?: any; //Map<number, TypeStyle>;
   layoutVersion?: number;
+  prototypeStartNodeID?: any;
+  prototypeDevice?: any;
 }
 
 export type GROUP = FRAME;
