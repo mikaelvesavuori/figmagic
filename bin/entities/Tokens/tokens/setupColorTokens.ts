@@ -25,13 +25,10 @@ export function setupColorTokens(colorFrame: Frame): ColorTokens {
   colorFrame.children.forEach((item: Frame) => {
     if (!item.fills) throw new Error(ErrorSetupColorTokensNoFills);
 
-    const _OPACITY = item.fills[0].opacity ? item.fills[0].opacity : undefined;
-    const _ALPHA = item.fills[0].color ? item.fills[0].color.a : undefined;
-    const ALPHA = _OPACITY ? _OPACITY : _ALPHA;
-
-    const _R = item.fills[0].color ? item.fills[0].color.r : undefined;
-    const _G = item.fills[0].color ? item.fills[0].color.g : undefined;
-    const _B = item.fills[0].color ? item.fills[0].color.b : undefined;
+    const ALPHA = item.opacity ? item.opacity : item.fills[0].color.a;
+    const _R = item.fills[0].color.r;
+    const _G = item.fills[0].color.g;
+    const _B = item.fills[0].color.b;
     const COLOR_STRING = `rgba(${roundColorValue(_R, 255)}, ${roundColorValue(
       _G,
       255

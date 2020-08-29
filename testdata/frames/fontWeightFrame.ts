@@ -253,3 +253,23 @@ export const fontWeightFrame: Frame = {
   },
   effects: []
 };
+
+export const fontWeightFrameInvalid = {
+  children: [
+    {
+      nameMismatch: 'Something',
+      styleMismatch: {}
+    }
+  ]
+};
+
+export const fontWeightFrameFontWeightMismatch = {
+  children: [
+    {
+      name: 'Something',
+      style: {
+        fontWeightMismatch: 100
+      }
+    }
+  ]
+};

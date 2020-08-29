@@ -2,22 +2,24 @@ import { setupSpacingTokens } from '../bin/entities/Tokens/tokens/setupSpacingTo
 
 import { spacingFrame } from '../testdata/frames/spacingFrame';
 
-/*
 describe('Failure cases', () => {
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
+      // @ts-ignore
       setupSpacingTokens();
     }).toThrow();
   });
 
   test('It should throw an error if frame is empty', () => {
     expect(() => {
+      // @ts-ignore
       setupSpacingTokens({});
     }).toThrow();
   });
 
   test('It should throw an error if children are missing "name" and "absoluteBoundingBox" properties', () => {
     expect(() => {
+      // @ts-ignore
       setupSpacingTokens({
         children: [
           {
@@ -29,7 +31,6 @@ describe('Failure cases', () => {
     }).toThrow();
   });
 });
-*/
 
 describe('Success cases', () => {
   test('It should return valid JSON for spacing elements, using "rem" spacing conversion and standard 16 size', () => {

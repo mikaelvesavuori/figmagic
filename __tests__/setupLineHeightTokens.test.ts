@@ -2,22 +2,24 @@ import { setupLineHeightTokens } from '../bin/entities/Tokens/tokens/setupLineHe
 
 import { lineHeightFrame } from '../testdata/frames/lineHeightFrame';
 
-/*
 describe('Failure cases', () => {
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
+      // @ts-ignore
       setupLineHeightTokens();
     }).toThrow();
   });
 
   test('It should throw an error if children are missing', () => {
     expect(() => {
+      // @ts-ignore
       setupLineHeightTokens({});
     }).toThrow();
   });
 
   test('It should throw an error if children are missing "name" and "style" properties', () => {
     expect(() => {
+      // @ts-ignore
       setupLineHeightTokens({
         children: [
           {
@@ -31,6 +33,7 @@ describe('Failure cases', () => {
 
   test('It should throw an error if children has "style" property but not "lineHeightPercentFontSize"', () => {
     expect(() => {
+      // @ts-ignore
       setupLineHeightTokens({
         children: [
           {
@@ -44,7 +47,6 @@ describe('Failure cases', () => {
     }).toThrow();
   });
 });
-*/
 
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {

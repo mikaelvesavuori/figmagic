@@ -2,16 +2,17 @@ import { setupShadowTokens } from '../bin/entities/Tokens/tokens/setupShadowToke
 
 import { shadowsFrame, shadowsFrameMultipleShadows } from '../testdata/frames/shadowsFrame';
 
-/*
 describe('Failure cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
     expect(() => {
+      // @ts-ignore
       setupShadowTokens({});
     }).toThrow();
   });
 
   test('It should throw an error if frame does not have "effects" array', () => {
     expect(() => {
+      // @ts-ignore
       setupShadowTokens({
         children: [
           {
@@ -24,11 +25,11 @@ describe('Failure cases', () => {
 
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
+      // @ts-ignore
       setupShadowTokens();
     }).toThrow();
   });
 });
-*/
 
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {

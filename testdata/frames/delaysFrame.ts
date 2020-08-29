@@ -1,6 +1,6 @@
 import { FRAME as Frame } from '../../bin/app/contracts/Figma';
 
-export const durationsFrame: Frame = {
+export const delayFrame: Frame = {
   id: '2657:97',
   name: 'Delays',
   type: 'FRAME',
@@ -107,4 +107,12 @@ export const durationsFrame: Frame = {
   strokeAlign: 'INSIDE',
   backgroundColor: { r: 1, g: 1, b: 1, a: 1 },
   effects: []
+};
+
+export const delayFrameInvalid = {
+  children: [
+    {
+      somethingElse: 123
+    }
+  ]
 };

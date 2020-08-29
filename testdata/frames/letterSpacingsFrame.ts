@@ -213,3 +213,55 @@ export const letterSpacingsFrame: Frame = {
   },
   effects: []
 };
+
+export const letterSpacingsFrameNoStyle = {
+  children: [
+    {
+      somethingElse: 123
+    }
+  ]
+};
+
+export const letterSpacingsFrameNoLetterSpacing = {
+  name: 'test',
+  children: [
+    {
+      name: 'foo',
+      style: {
+        letterSpacing: 0
+      }
+    }
+  ]
+};
+
+export const letterSpacingUndefined = {
+  name: 'test',
+  children: [
+    {
+      name: 'foo',
+      style: {
+        fontSize: 16
+      }
+    }
+  ]
+};
+
+export const mockedLetterSpacingFrame = {
+  name: 'test',
+  children: [
+    {
+      name: 'style1',
+      style: {
+        fontSize: 16,
+        letterSpacing: 2
+      }
+    },
+    {
+      name: 'style2',
+      style: {
+        fontSize: 24,
+        letterSpacing: 8
+      }
+    }
+  ]
+};

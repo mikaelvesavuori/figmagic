@@ -3,34 +3,36 @@ import { setupBorderWidthTokens } from '../bin/entities/Tokens/tokens/setupBorde
 
 import { FRAME as Frame } from '../bin/app/contracts/Figma';
 
-import { borderWidthsFrame } from '../testdata/frames/borderWidthsFrame';
+import {
+  borderWidthsFrame,
+  borderWidthsInvalidMissingName,
+  borderWidthsInvalidMissingStrokeWeight
+} from '../testdata/frames/borderWidthsFrame';
 
 describe('Failure cases', () => {
-  /*
   test('It should throw an error if frame is missing "children" array', () => {
     expect(() => {
-      setupBorderWidthTokens({});
-    }).toThrow();
-  });
-
-  test('It should throw an error if frame does not have "strokeWidth" property', () => {
-    expect(() => {
-      setupBorderWidthTokens({
-        children: [
-          {
-            somethingElse: 123
-          }
-        ]
-      });
+      // @ts-ignore
+      setupBorderWidthTokens();
     }).toThrow();
   });
 
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
-      setupBorderWidthTokens();
+      // @ts-ignore
+      setupBorderWidthTokens({});
     }).toThrow();
   });
-  */
+
+  test('It should throw an error if missing item name', () => {
+    expect(() => setupBorderWidthTokens(borderWidthsInvalidMissingName as Frame)).toThrowError();
+  });
+
+  test('It should throw an error if missing item strokeWeight', () => {
+    expect(() =>
+      setupBorderWidthTokens(borderWidthsInvalidMissingStrokeWeight as Frame)
+    ).toThrowError();
+  });
 });
 
 describe('Success cases', () => {

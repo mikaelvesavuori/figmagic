@@ -22,7 +22,7 @@ export function setupBorderWidthTokens(borderWidthFrame: Frame): BorderWidthToke
   const borderWidths: Record<string, unknown> = {};
 
   borderWidthFrame.children.forEach((item: Frame) => {
-    if (!item.name || typeof item.strokeWeight === 'undefined')
+    if (!item.name || item.strokeWeight === undefined)
       throw new Error(ErrorSetupBorderWidthTokensMissingProps);
     const name = camelize(item.name);
     borderWidths[name] = `${item.strokeWeight}px`;

@@ -445,3 +445,30 @@ export const fontSizeFrame: Frame = {
   },
   effects: []
 };
+
+export const fontSizeFrameInvalidNoName = {
+  children: [
+    {
+      somethingElse: 123
+    }
+  ]
+};
+
+export const fontSizeFrameInvalidNoFontSize = {
+  children: [
+    {
+      name: 'Something',
+      style: {
+        fontSizeMismatch: 10
+      }
+    }
+  ]
+};
+
+export const fontSizeFrameInvalidNoStyle = {
+  children: [
+    {
+      name: 'Something'
+    }
+  ]
+};

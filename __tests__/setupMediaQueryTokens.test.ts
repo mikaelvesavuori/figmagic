@@ -2,16 +2,17 @@ import { setupMediaQueryTokens } from '../bin/entities/Tokens/tokens/setupMediaQ
 
 import { mediaQueriesFrame } from '../testdata/frames/mediaQueriesFrame';
 
-/*
 describe('Success cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
     expect(() => {
+      // @ts-ignore
       setupMediaQueryTokens({});
     }).toThrow();
   });
 
   test('It should throw an error if frame does not have "absoluteBoundingBox" property', () => {
     expect(() => {
+      // @ts-ignore
       setupMediaQueryTokens({
         children: [
           {
@@ -24,11 +25,11 @@ describe('Success cases', () => {
 
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
+      // @ts-ignore
       setupMediaQueryTokens();
     }).toThrow();
   });
 });
-*/
 
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {

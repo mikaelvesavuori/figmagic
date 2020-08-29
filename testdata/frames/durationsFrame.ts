@@ -293,3 +293,11 @@ export const durationsFrame: Frame = {
   },
   effects: []
 };
+
+export const durationsFrameInvalid = {
+  children: [
+    {
+      somethingElse: 123
+    }
+  ]
+};

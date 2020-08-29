@@ -138,3 +138,15 @@ export const fontFrame: Frame = {
   backgroundColor: { r: 1, g: 1, b: 1, a: 1 },
   effects: []
 };
+
+export const fontFrameInvalid = {
+  children: [
+    {
+      name: 'Something',
+      style: {
+        fontPostScriptNameMismatch: false,
+        fontFamilyMismatch: 'Something'
+      }
+    }
+  ]
+};

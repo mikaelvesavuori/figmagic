@@ -1,34 +1,29 @@
 import { setupEasingTokens } from '../bin/entities/Tokens/tokens/setupEasingTokens';
 
-import { easingFrame } from '../testdata/frames/easingFrame';
+import { easingFrame, easingFrameInvalid } from '../testdata/frames/easingFrame';
 
-/*
 describe('Failure cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
     expect(() => {
+      // @ts-ignore
       setupEasingTokens({});
     }).toThrow();
   });
 
   test('It should throw an error if frame does not have "characters" property', () => {
     expect(() => {
-      setupEasingTokens({
-        children: [
-          {
-            somethingElse: 123
-          }
-        ]
-      });
+      // @ts-ignore
+      setupEasingTokens(easingFrameInvalid);
     }).toThrow();
   });
 
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
+      // @ts-ignore
       setupEasingTokens();
     }).toThrow();
   });
-})
-*/
+});
 
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {

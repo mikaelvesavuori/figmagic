@@ -90,3 +90,11 @@ export const easingFrame: Frame = {
   backgroundColor: { r: 1, g: 1, b: 1, a: 1 },
   effects: []
 };
+
+export const easingFrameInvalid = {
+  children: [
+    {
+      somethingElse: 123
+    }
+  ]
+};

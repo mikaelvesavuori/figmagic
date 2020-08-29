@@ -2,16 +2,17 @@ import { setupRadiusTokens } from '../bin/entities/Tokens/tokens/setupRadiusToke
 
 import { radiiFrame } from '../testdata/frames/radiiFrame';
 
-/*
 describe('Failure cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
     expect(() => {
+      // @ts-ignore
       setupRadiusTokens({});
     }).toThrow();
   });
 
   test('It should throw an error if frame does not have "cornerRadius" property', () => {
     expect(() => {
+      // @ts-ignore
       setupRadiusTokens({
         children: [
           {
@@ -24,11 +25,11 @@ describe('Failure cases', () => {
 
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
+      // @ts-ignore
       setupRadiusTokens();
     }).toThrow();
   });
 });
-*/
 
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {

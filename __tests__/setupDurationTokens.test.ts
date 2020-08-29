@@ -1,34 +1,29 @@
 import { setupDurationTokens } from '../bin/entities/Tokens/tokens/setupDurationTokens';
 
-import { durationsFrame } from '../testdata/frames/durationsFrame';
+import { durationsFrame, durationsFrameInvalid } from '../testdata/frames/durationsFrame';
 
-/*
 describe('Failure cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
     expect(() => {
+      // @ts-ignore
       setupDurationTokens({});
     }).toThrow();
   });
 
   test('It should throw an error if frame does not have "characters" property', () => {
     expect(() => {
-      setupDurationTokens({
-        children: [
-          {
-            somethingElse: 123
-          }
-        ]
-      });
+      // @ts-ignore
+      setupDurationTokens(durationsFrameInvalid);
     }).toThrow();
   });
 
   test('It should throw an error if no parameter is provided', () => {
     expect(() => {
+      // @ts-ignore
       setupDurationTokens();
     }).toThrow();
   });
 });
-*/
 
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {
