@@ -107,6 +107,7 @@ export const ErrorSetupZindexTokensNoChildren = `${colors.FgRed}Z Index frame ha
 export const ErrorSetupZindexTokensNoFrame = `${colors.FgRed}No frame for setupZindexTokens()!`;
 export const ErrorToPascalCase = `${colors.FgRed}Missing "str" argument when calling toPascalCase()!`;
 export const ErrorWrite = `${colors.FgRed}Error while attempting to write file!`;
+export const ErrorWriteBaseJson = `${colors.FgRed}Error while attempting to write Figma JSON!`;
 export const ErrorWriteElements = `${colors.FgRed}Missing "elements" and/or "config" properties when calling writeElements()!`;
 export const ErrorWriteFile = `${colors.FgRed}Missing required parameters to correctly run writeFile()!`;
 export const ErrorWriteFileWrongType = `${colors.FgRed}Provided invalid file type to writeFile()!`;

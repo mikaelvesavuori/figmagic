@@ -12,7 +12,7 @@ import { MsgSetDataFromApi } from '../messages/messages';
  * @param url TODO
  */
 // TODO: Return FigmaData?
-export async function getDataRemote(token: string | null, url: string | null): Promise<any> {
+export async function getDataRemote(token: string, url: string): Promise<any> {
   if (!token || !url) throw new Error(ErrorGetDataNoTokenOrUrl);
   console.log(MsgSetDataFromApi);
 

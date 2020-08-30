@@ -17,3 +17,8 @@ export const processGraphicsTestDataWithError = {
       'https://s3-us-west-2.amazonaws.com/figma-alpha-api/img/0882/9cc7/c4731c8d0df07592cd6f7dc0519bb3bb'
   }
 };
+
+export const graphicsIds = [
+  { id: '2710:7', name: 'More' },
+  { id: '2710:5', name: 'Close' }
+];

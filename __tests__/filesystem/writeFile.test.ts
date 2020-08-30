@@ -38,6 +38,7 @@ describe('Failure cases', () => {
     };
 
     await expect(writeFile(writeOp)).rejects.toThrowError();
+    trash(`${__dirname}/${name}`);
   });
 
   test('It should fail', async () => {
@@ -59,6 +60,7 @@ describe('Failure cases', () => {
     };
 
     await expect(writeFile(writeOp)).rejects.toThrowError();
+    trash(`${__dirname}/${name}`);
   });
 });
 

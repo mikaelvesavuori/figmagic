@@ -1,3 +1,4 @@
+import { FileList } from '../../contracts/FileList';
 import { ImageResponse } from '../../contracts/ImageResponse';
 
 import { camelize } from '../../../frameworks/string/camelize';
@@ -14,27 +15,14 @@ export const getFileList = (
   imageResponse: ImageResponse,
   ids: any[],
   outputFormatGraphics: string
-): any[] => {
+): FileList[] => {
   if (!imageResponse || !ids || !outputFormatGraphics) throw new Error(ErrorGetFileList);
 
-  const fileList: any[] = [];
-
-  Object.entries(imageResponse.images).forEach(async (image) => {
-    let name = '__unnamed__';
-
-    ids.forEach((z) => {
-      if (z.id === image[0]) {
-        name = z.name;
-      }
-    });
-
-    name = camelize(name);
-
-    const URL = image[1];
-    const FILE = `${name}.${outputFormatGraphics}`;
-
-    fileList.push({ url: URL, file: FILE });
+  return Object.entries(imageResponse.images).map((image) => {
+    const match = ids.filter((id) => id.id === image[0]);
+    return {
+      url: image[1],
+      file: `${camelize(match[0].name)}.${outputFormatGraphics}`
+    } as FileList;
   });
-
-  return fileList;
 };

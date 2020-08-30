@@ -13,8 +13,6 @@ import { ErrorWriteGraphics } from '../errors/errors';
 export async function writeGraphics(fileList: any[], config: Config): Promise<boolean> {
   if (!fileList || !config) throw new Error(ErrorWriteGraphics);
 
-  console.log('fileList', fileList);
-
   const { outputFolderGraphics } = config;
 
   await Promise.all(
