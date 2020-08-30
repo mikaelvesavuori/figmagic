@@ -1,5 +1,6 @@
 import { Config } from '../../entities/Config/Config';
 import { FRAME as Frame } from '../../app/contracts/Figma';
+import { WriteOperation } from '../../app/contracts/Write';
 
 import { camelize } from '../string/camelize';
 import { processTokens } from '../../app/process/processTokens';
@@ -21,7 +22,7 @@ export async function writeTokens(tokens: Frame[], config: Config): Promise<bool
 
   return new Promise((resolve, reject) => {
     try {
-      //tokens.forEach(async (token) => {
+      // TODO: Improve syntax, "[0]"?
       tokens[0].children.forEach(async (token) => {
         const tokenName = camelize(token.name).toLowerCase();
 
@@ -29,14 +30,15 @@ export async function writeTokens(tokens: Frame[], config: Config): Promise<bool
           const processedToken = processTokens(token, tokenName, config);
           if (config.debugMode) console.log(processedToken);
 
-          await writeFile(
-            processedToken,
-            config.outputFolderTokens,
-            tokenName,
-            'token',
-            config.outputTokenFormat
-            //{ dataType: config.outputTokenDataType } // TODO: Fix this, do corrections on Templates contract?
-          );
+          const writeOperation: WriteOperation = {
+            type: 'token',
+            file: processedToken,
+            path: config.outputFolderTokens,
+            name: tokenName,
+            format: config.outputTokenFormat
+          };
+
+          await writeFile(writeOperation);
         }
       });
 

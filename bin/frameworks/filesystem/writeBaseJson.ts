@@ -1,5 +1,6 @@
 import { refresh } from './refresh';
-import { writeFile } from './writeFile';
+//import { writeFile } from './writeFile';
+import { write } from './write';
 
 import { MsgWriteBaseFile } from '../messages/messages';
 
@@ -19,7 +20,23 @@ export async function writeBaseJson(
   console.log(MsgWriteBaseFile);
   try {
     await refresh(outputFolderBaseFile);
-    await writeFile(data, outputFolderBaseFile, outputFileName, 'raw');
+
+    const path = `${outputFolderBaseFile}/${outputFileName}`;
+
+    await write(path, outputFolderBaseFile);
+
+    /*
+    const op = {
+      type: 'raw',
+      file: outputFolderBaseFile,
+      path: string,
+      name: outputFileName
+    };
+
+    // data, outputFolderBaseFile, outputFileName, 'raw'
+
+    //await writeFile(op);
+    */
 
     return data;
   } catch (error) {

@@ -81,8 +81,10 @@ describe('Success cases', () => {
       }
     };
 
-    await writeFile(writeOp);
-    await trash(`__test-writefile*`);
+    await expect(async () => {
+      await writeFile(writeOp);
+      await trash(`__test-writefile*`);
+    }).resolves.toBeTruthy();
   });
 
   test('It should successfully write a token to a file if provided valid input', async () => {
@@ -103,7 +105,7 @@ describe('Success cases', () => {
       }
     };
 
-    await writeFile(writeOp);
+    await expect(writeFile(writeOp)).resolves.toBeTruthy();
     await trash(`__test-writefile*`);
   });
 });

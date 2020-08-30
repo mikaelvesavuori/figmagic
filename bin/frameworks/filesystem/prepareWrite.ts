@@ -18,7 +18,7 @@ export async function prepareWrite(writeOperation: WriteOperation): Promise<any>
       if ((type === 'css' || type === 'story' || type === 'component') && !templates)
         throw new Error(ErrorPrepareWrite);
 
-      const getFileContentAndPathOperation: GetFileDataOperation = {
+      const getFileDataOperation: GetFileDataOperation = {
         type,
         file,
         path,
@@ -32,7 +32,7 @@ export async function prepareWrite(writeOperation: WriteOperation): Promise<any>
         templates
       };
 
-      resolve(getFileContentAndPath(getFileContentAndPathOperation));
+      resolve(getFileContentAndPath(getFileDataOperation));
     } catch (error) {
       reject(error);
     }
