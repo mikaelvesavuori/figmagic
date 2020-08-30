@@ -4,11 +4,12 @@
 import * as path from 'path';
 import dotenv from 'dotenv';
 
-import { FigmagicController } from './bin/app/controllers/FigmagicController';
-
+import { FigmaData } from './bin/app/contracts/FigmaData';
 import { Config } from './bin/entities/Config/Config';
 import { defaultConfig } from './bin/entities/Config/defaultConfig';
 import { createConfiguration } from './bin/entities/Config/createConfiguration';
+
+import { FigmagicController } from './bin/app/controllers/FigmagicController';
 
 import { getData } from './bin/frameworks/network/getData';
 import { writeBaseJson } from './bin/frameworks/filesystem/writeBaseJson';
@@ -25,11 +26,15 @@ async function main(baseConfiguration: Config): Promise<void> {
     const userConfigPath = path.join(`${process.cwd()}`, `.figmagicrc`);
 
     // Get user configuration
-    const config = await createConfiguration(baseConfiguration, userConfigPath, ...CLI_ARGS);
+    const config: Config = await createConfiguration(
+      baseConfiguration,
+      userConfigPath,
+      ...CLI_ARGS
+    );
 
     // Get data
     const { recompileLocal, outputFolderBaseFile, outputFileName, token, url } = config;
-    const data: object = await getData(
+    const data: FigmaData = await getData(
       recompileLocal,
       outputFolderBaseFile,
       outputFileName,

@@ -13,7 +13,6 @@ import {
   ErrorProcessGraphicsImageError,
   ErrorProcessGraphicsNoImages
 } from '../../frameworks/errors/errors';
-// TODO: Refactor
 
 /**
  * @description Download all image assets from Figma page
@@ -28,15 +27,14 @@ export async function processGraphics(graphicsPage: Frame[], config: Config): Pr
   if (!token) throw new Error(ErrorProcessGraphics);
   if (graphicsPage.length === 0 || !graphicsPage[0].children) throw new Error(ErrorProcessGraphics);
 
-  const IDS = getIds(graphicsPage[0].children);
-  const ID_STRING = getIdString(IDS);
-  const SETTINGS = `&scale=${outputScaleGraphics}&format=${outputFormatGraphics}`;
-  const URL = `${url}?ids=${ID_STRING}${SETTINGS}`;
+  const ids = getIds(graphicsPage);
+  const idString = getIdString(ids);
+  const settings = `&scale=${outputScaleGraphics}&format=${outputFormatGraphics}`;
+  const _url = `${url}?ids=${idString}${settings}`;
+  const imageResponse: ImageResponse = await getFromApi(token, _url, 'images');
 
-  const IMAGE_RESPONSE: ImageResponse = await getFromApi(token, URL, 'images');
+  if (imageResponse.err) throw new Error(ErrorProcessGraphicsImageError);
+  if (!imageResponse.images) throw new Error(ErrorProcessGraphicsNoImages);
 
-  if (IMAGE_RESPONSE.err) throw new Error(ErrorProcessGraphicsImageError);
-  if (!IMAGE_RESPONSE.images) throw new Error(ErrorProcessGraphicsNoImages);
-
-  return getFileList(IMAGE_RESPONSE, IDS, outputFormatGraphics);
+  return getFileList(imageResponse, ids, outputFormatGraphics);
 }

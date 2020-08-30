@@ -1,3 +1,4 @@
+import { FigmaData } from '../../app/contracts/FigmaData';
 import { Config } from '../../entities/Config/Config';
 
 import { createTokens } from '../../usecases/createTokens';
@@ -12,7 +13,7 @@ import { MsgJobComplete } from '../../frameworks/messages/messages';
  * @param config User configuration object
  * @param data Data should be processed and output to file(s)
  */
-export async function FigmagicController(config: Config, data: any): Promise<boolean> {
+export async function FigmagicController(config: Config, data: FigmaData): Promise<boolean> {
   try {
     const {
       //outputFolderElements,
