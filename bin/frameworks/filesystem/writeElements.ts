@@ -13,16 +13,16 @@ import { ErrorWriteElements } from '../errors/errors';
  * @param elements Array of cleaned elements to write out to files
  * @param config User configuration object
  */
-export async function writeElements(elements: any[], config: Config): Promise<void> {
+export async function writeElements(elements: any[], config: Config): Promise<any> {
   if (!elements || !config) throw new Error(ErrorWriteElements);
 
-  await elements.forEach((comp) => {
-    const HTML = comp.html;
-    const CSS = comp.css;
-    const DESCRIPTION = comp.description || ' ';
-    const NAME = toPascalCase(comp.name);
-    const FOLDER = `${config.outputFolderElements}/${NAME}`;
-    const METADATA = {
+  return await elements.forEach((comp) => {
+    const html = comp.html;
+    const css = comp.css;
+    const description = comp.description || ' ';
+    const name = toPascalCase(comp.name);
+    const folder = `${config.outputFolderElements}/${name}`;
+    const metadata = {
       dataType: null, // TODO: Verify this
       html: comp.html,
       element: comp.element,
@@ -30,50 +30,45 @@ export async function writeElements(elements: any[], config: Config): Promise<vo
       text: comp.text,
       imports: comp.imports
     };
-    const FORMAT = config.outputTokenFormat;
-    const TEMPLATES = config.templates;
+    const format = config.outputTokenFormat;
+    const templates = config.templates;
 
     // Setup for skipping files, if user wants to do so
-    const SKIP_REACT = config.skipFileGeneration.skipReact;
-    const SKIP_STYLED = config.skipFileGeneration.skipStyled;
-    const SKIP_CSS = config.skipFileGeneration.skipCss;
-    const SKIP_STORYBOOK = config.skipFileGeneration.skipStorybook;
-    const SKIP_DESCRIPTION = config.skipFileGeneration.skipDescription;
-    const FORCE_UPDATE = config.skipFileGeneration.forceUpdate;
+    const skipReact = config.skipFileGeneration.skipReact;
+    const skipStyled = config.skipFileGeneration.skipStyled;
+    const skipCss = config.skipFileGeneration.skipCss;
+    const skipStorybook = config.skipFileGeneration.skipStorybook;
+    const skipDescription = config.skipFileGeneration.skipDescription;
+    const forceUpdate = config.skipFileGeneration.forceUpdate;
 
     // Ensure that name is processed like the "write()" function(s) do, so filename matching is same
-    const _NAME = NAME.replace('//g', '');
+    const _NAME = name.replace('//g', '');
 
     // Write React component - is skipped by default if file already exists
-    if (!SKIP_REACT) {
-      const FILE_EXISTS = fs.existsSync(`${FOLDER}/${_NAME}.jsx`);
-      if (!FILE_EXISTS || FORCE_UPDATE) {
-        writeFile(HTML, FOLDER, NAME, 'component', 'jsx', METADATA, TEMPLATES);
-      }
+    if (!skipReact) {
+      const fileExists = fs.existsSync(`${folder}/${_NAME}.jsx`);
+      if (!fileExists || forceUpdate)
+        writeFile(html, folder, name, 'component', 'jsx', metadata, templates);
     }
 
     // Write Styled component - is skipped by default if file already exists
-    if (!SKIP_STYLED) {
-      const FILE_EXISTS = fs.existsSync(`${FOLDER}/${_NAME}Styled.jsx`);
-      if (!FILE_EXISTS || FORCE_UPDATE) {
-        writeFile(CSS, FOLDER, NAME, 'style', 'jsx', METADATA, TEMPLATES);
-      }
+    if (!skipStyled) {
+      const fileExists = fs.existsSync(`${folder}/${_NAME}Styled.jsx`);
+      if (!fileExists || forceUpdate)
+        writeFile(css, folder, name, 'style', 'jsx', metadata, templates);
     }
 
     // Write CSS - is always overwritten
-    if (!SKIP_CSS) writeFile(CSS, FOLDER, NAME, 'css', FORMAT, METADATA, TEMPLATES);
+    if (!skipCss) writeFile(css, folder, name, 'css', format, metadata, templates);
 
     // Write Storybook component - is skipped by default if file already exists
-    if (!SKIP_STORYBOOK) {
-      const FILE_EXISTS = fs.existsSync(`${FOLDER}/${_NAME}.stories.js`);
-      if (!FILE_EXISTS || FORCE_UPDATE) {
-        writeFile(CSS, FOLDER, NAME, 'story', 'js', METADATA, TEMPLATES);
-      }
+    if (!skipStorybook) {
+      const fileExists = fs.existsSync(`${folder}/${_NAME}.stories.js`);
+      if (!fileExists || forceUpdate)
+        writeFile(css, folder, name, 'story', 'js', metadata, templates);
     }
 
     // Write description markdown file - is always overwritten
-    if (!SKIP_DESCRIPTION) writeFile(DESCRIPTION, FOLDER, NAME, 'description', 'md');
+    if (!skipDescription) writeFile(description, folder, name, 'description', 'md');
   });
-
-  return;
 }

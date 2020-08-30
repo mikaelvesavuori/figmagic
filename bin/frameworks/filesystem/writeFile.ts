@@ -1,214 +1,45 @@
-import * as fs from 'fs';
-
-import { Metadata } from '../../app/contracts/Metadata';
-import { Templates } from '../../app/contracts/Templates';
+import { WriteOperation } from '../../app/contracts/Write';
 
 import { createFolder } from './createFolder';
-import { loadFile } from './loadFile';
-import { createImportStringFromList } from '../string/createImportStringFromList';
-import { createEnumStringOutOfObject } from '../string/createEnumStringOutOfObject';
+import { prepareWrite } from './prepareWrite';
+import { write } from './write';
 
-import { MsgGeneratedFileWarning } from '../messages/messages';
-import {
-  ErrorWriteFile,
-  ErrorWriteFileWrongType,
-  ErrorWrite,
-  ErrorPrepareWrite
-} from '../errors/errors';
+import { acceptedFileTypes } from '../system/acceptedFileTypes';
+
+import { ErrorWriteFile, ErrorWriteFileWrongType } from '../errors/errors';
 
 /**
- * @description Handles writing files to disk
+ * @description Handles writing files to disk, complete with pre-processing.
  *
- * @param file File contents
- * @param path File path minus file name
- * @param name File name
- * @param type What type of file is going to be written
- * @param format File format
- * @param metadata Any metadata needed for writing
- * @param templates Object of templates
+ * @param writeOperation Object type with all arguments needed to write the file
  */
-export async function writeFile(
-  file: string,
-  path: string,
-  name: string,
-  type: string,
-  format: string = 'mjs',
-  metadata?: Metadata,
-  templates?: Templates
-): Promise<void> {
-  if (!file || !path || !name || !type) throw new Error(ErrorWriteFile);
+export async function writeFile(writeOperation: WriteOperation): Promise<boolean> {
+  return new Promise(async (resolve, reject) => {
+    if (!writeOperation) reject(ErrorWriteFile);
 
-  const _TYPE = type.toLowerCase();
+    const { type, file, path, name, format, metadata, templates } = writeOperation;
+    if (!file || !path || !name || !type) reject(ErrorWriteFile);
 
-  if (
-    _TYPE !== 'raw' &&
-    _TYPE !== 'token' &&
-    _TYPE !== 'component' &&
-    _TYPE !== 'style' &&
-    _TYPE !== 'css' &&
-    _TYPE !== 'story' &&
-    _TYPE !== 'description'
-  )
-    throw new Error(ErrorWriteFileWrongType);
+    const _type = type.toLowerCase();
 
-  await createFolder(path);
+    if (!acceptedFileTypes.includes(_type)) reject(ErrorWriteFileWrongType);
 
-  const { filePath, fileContent } = await prepareWrite(
-    _TYPE,
-    file,
-    path,
-    name,
-    format,
-    metadata,
-    templates
-  );
+    await createFolder(path);
 
-  await write(filePath, fileContent);
-}
+    const prepareWriteOperation: WriteOperation = {
+      type: _type,
+      file,
+      path,
+      name,
+      format,
+      metadata,
+      templates
+    };
 
-/**
- * @description Local helper that does most of the actual formatting of the file
- *
- * @param type What type of file is going to be written
- * @param file File contents
- * @param path File path minus file name
- * @param name File name
- * @param format File format
- * @param metadata Any metadata needed for writing
- * @param templates Object of templates
- */
-// TODO: Add real types
-async function prepareWrite(
-  type: string,
-  file: string,
-  path: string,
-  name: string,
-  format: string,
-  metadata?: Metadata,
-  templates?: Templates
-) {
-  if (type === 'css' || type === 'story' || type === 'component') {
-    if (!templates) throw new Error(ErrorPrepareWrite);
-  }
-
-  let fileContent = ``;
-
-  // Clean name from any slashes
-  name = name.replace('//g', '');
-
-  const ELEMENT = (() => {
-    if (metadata) {
-      if (metadata.element) return metadata.element;
-      else return 'div';
-    } else return 'div';
-  })();
-
-  const TEXT = (() => {
-    if (metadata) {
-      if (metadata.text) return metadata.text;
-      else return '';
-    } else return '';
-  })();
-
-  const EXTRA_PROPS = (() => {
-    if (metadata) {
-      if (metadata.extraProps) return metadata.extraProps;
-      else return '';
-    } else return '';
-  })();
-
-  const IMPORTS = (() => {
-    if (metadata) {
-      if (metadata.imports) {
-        if (metadata.imports.length > 0) return createImportStringFromList(metadata.imports);
-      } else return '';
-    } else return '';
-    return null;
-  })();
-
-  let filePath = `${path}/${name}`;
-
-  // Raw file output
-  if (type === 'raw') fileContent = `${JSON.stringify(file, null, ' ')}`;
-  // Design token
-  else if (type === 'token') {
-    if (metadata && metadata.dataType === 'enum') {
-      fileContent = `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
-        file
-      )}\n}\n\nexport default ${name};`;
-    } else {
-      fileContent = `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
-        file,
-        null,
-        ' '
-      )}\n\nexport default ${name};`;
-    }
-    filePath += `.${format}`;
-  }
-  // Component
-  else if (type === 'component' && templates) {
-    const SUFFIX = 'Styled';
-    const PATH = templates.templatePathReact;
-    let template = await loadFile(PATH, true);
-    template = template.replace(/{{NAME}}/gi, name);
-    template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
-    template = template.replace(/{{EXTRA_PROPS}}/gi, EXTRA_PROPS);
-    template = template.replace(/\s>/gi, '>'); // Remove any ugly spaces before ending ">"
-    template = template.replace(/{{TEXT}}/gi, TEXT);
-    //template = template.replace(/{{MARKUP}}/gi, MARKUP);
-    fileContent = `${template}`;
-    filePath += `.${format}`;
-  }
-  // Styled Components
-  else if (type === 'style' && templates) {
-    const SUFFIX = 'Styled';
-    const PATH = templates.templatePathStyled;
-    let template = await loadFile(PATH, true);
-    template = template.replace(/{{ELEMENT}}/gi, ELEMENT);
-    template = template.replace(/{{NAME_CSS}}/gi, `${name}Css`);
-    template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
-    fileContent = `${template}`;
-    filePath += `${SUFFIX}.${format}`;
-  }
-  // CSS
-  else if (type === 'css') {
-    const SUFFIX = 'Css';
-    fileContent = `// ${MsgGeneratedFileWarning}\n\n${IMPORTS}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
-    filePath += `${SUFFIX}.${format}`;
-  }
-  // Storybook
-  else if (type === 'story' && templates) {
-    const SUFFIX = '.stories';
-    const PATH = templates.templatePathStorybook;
-    let template = await loadFile(PATH, true);
-    template = template.replace(/{{NAME}}/gi, name);
-    template = template.replace(/{{TEXT}}/gi, TEXT);
-    //template = template.replace(/{{MARKUP}}/gi, MARKUP);
-    fileContent = `${template};`;
-    filePath += `${SUFFIX}.${format}`;
-  }
-  // Markdown description
-  else if (type === 'description') {
-    fileContent = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
-    filePath += `.description.${format}`;
-  }
-
-  return { fileContent, filePath };
-}
-
-/**
- * @description Local helper that does the actual writing of the file
- *
- * @param filePath File path minus file name
- * @param fileContent File contents
- */
-async function write(filePath: string, fileContent: string): Promise<boolean> {
-  return await new Promise((resolve, reject) => {
     try {
-      fs.writeFile(filePath, fileContent, 'utf-8', (error) => {
-        if (error) throw new Error(`${ErrorWrite}: ${error}`);
-        resolve(true);
-      });
+      const { filePath, fileContent } = await prepareWrite(prepareWriteOperation);
+      await write(filePath, fileContent);
+      resolve(true);
     } catch (error) {
       reject(error);
     }

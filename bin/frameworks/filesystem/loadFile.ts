@@ -8,7 +8,7 @@ import { ErrorLoadFile } from '../errors/errors';
  * @param path Path to local file
  * @param isRaw Bool to set if data should be parsed or not
  */
-export async function loadFile(path: string, isRaw: boolean = false): Promise<any> {
+export async function loadFile(path: string, isRaw = false): Promise<any> {
   if (!path) throw new Error(ErrorLoadFile(path));
   if (!fs.existsSync(path)) throw new Error(ErrorLoadFile(path));
 
