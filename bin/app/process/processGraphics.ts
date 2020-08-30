@@ -1,6 +1,5 @@
-import { Config } from '../../entities/Config/Config';
-
 import { FRAME as Frame } from '../contracts/Figma';
+import { Config } from '../../entities/Config/Config';
 import { ImageResponse } from '../contracts/ImageResponse';
 
 import { getIds } from './graphics/getIds';

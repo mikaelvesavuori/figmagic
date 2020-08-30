@@ -7,25 +7,29 @@ import { createGraphics } from '../../usecases/createGraphics';
 import { MsgJobComplete } from '../../frameworks/messages/messages';
 
 /**
- * @description TODO
+ * @description The main orchestration/controller point for Figmagic
  *
- * @param config TODO
- * @param data TODO
+ * @param config User configuration object
+ * @param data Data should be processed and output to file(s)
  */
-// TODO: Fix real type
-export async function FigmagicController(config: Config, data: any): Promise<void> {
-  const {
-    //outputFolderElements,
-    outputFolderGraphics,
-    outputFolderTokens,
-    //syncElements,
-    syncGraphics
-  } = config;
+export async function FigmagicController(config: Config, data: any): Promise<boolean> {
+  try {
+    const {
+      //outputFolderElements,
+      outputFolderGraphics,
+      outputFolderTokens,
+      //syncElements,
+      syncGraphics
+    } = config;
 
-  await createTokens(config, data, outputFolderTokens);
+    await createTokens(config, data, outputFolderTokens);
 
-  //if (syncElements) await createElements(config, data, outputFolderElements);
-  if (syncGraphics) await createGraphics(config, data, outputFolderGraphics);
+    //if (syncElements) await createElements(config, data, outputFolderElements);
+    if (syncGraphics) await createGraphics(config, data, outputFolderGraphics);
 
-  console.log(MsgJobComplete);
+    console.log(MsgJobComplete);
+    return true;
+  } catch (error) {
+    throw new Error(error);
+  }
 }

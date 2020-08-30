@@ -1,8 +1,10 @@
-import { createPage } from '../../bin/app/process/tokens/createPage';
-
 import { FRAME as Frame } from '../../bin/app/contracts/Figma';
 
-const matchingPageName = 'designtokens';
+import { createPage } from '../../bin/app/process/tokens/createPage';
+
+import { designTokensPage, designTokensChildren } from '../../testdata/designTokensPage';
+
+const matchingPageName = 'Design tokens';
 
 describe('Failure cases', () => {
   test('It should throw an error if array is empty', () => {
@@ -14,20 +16,21 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should return an empty object if array has non-matching values', () => {
+  test('It should return an empty array if array has non-matching values', () => {
     const FIGMA_PAGES: Frame[] = [{ id: '0:0', type: 'DOCUMENT', name: 'asdf', children: [] }];
-    expect(createPage(FIGMA_PAGES, matchingPageName)).toEqual(expect.objectContaining({}));
+    expect(createPage(FIGMA_PAGES, matchingPageName)).toEqual(expect.arrayContaining([]));
   });
 
-  test('It should return an empty object if array has non-matching values, even with a "name" property', () => {
+  test('It should return an empty array if array has non-matching values, even with a "name" property', () => {
     const FIGMA_PAGES = [{ name: 'demovalue', something: 123 }];
     // @ts-ignore
-    expect(createPage(FIGMA_PAGES, matchingPageName)).toEqual(expect.objectContaining({}));
+    expect(createPage(FIGMA_PAGES, matchingPageName)).toEqual(expect.arrayContaining([]));
   });
 
-  test('It should find a match when passing in a "design tokens" page', () => {
-    const FIGMA_PAGES = [{ name: 'Design tokens' }];
+  test('It should receive the children of its matching page ("design tokens")', () => {
     // @ts-ignore
-    expect(createPage(FIGMA_PAGES, matchingPageName)).toEqual(expect.objectContaining({}));
+    expect(createPage(designTokensPage, matchingPageName)).toEqual(
+      expect.arrayContaining(designTokensChildren)
+    );
   });
 });

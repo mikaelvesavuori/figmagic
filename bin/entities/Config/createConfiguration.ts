@@ -104,10 +104,13 @@ function printConfigs(
 ): void {
   console.log(MsgConfigDebugEnv);
   console.log(envConfig);
+
   console.log(MsgConfigDebugCli);
   console.log(cliConfig);
+
   console.log(MsgConfigDebugRc);
   console.log(rcConfig);
+
   console.log(MsgConfigDebugFinal);
   console.log(config);
 }

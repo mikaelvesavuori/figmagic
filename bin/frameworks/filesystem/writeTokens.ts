@@ -6,8 +6,8 @@ import { camelize } from '../string/camelize';
 import { processTokens } from '../../app/process/processTokens';
 import { writeFile } from './writeFile';
 
-import { ErrorWriteTokens, ErrorWriteTokensNoSettings } from '../errors/errors';
 import { acceptedTokenTypes } from '../system/acceptedTokenTypes';
+import { ErrorWriteTokens, ErrorWriteTokensNoSettings } from '../errors/errors';
 
 /**
  * @description Write tokens to file
@@ -22,8 +22,7 @@ export async function writeTokens(tokens: Frame[], config: Config): Promise<bool
 
   return new Promise((resolve, reject) => {
     try {
-      // TODO: Improve syntax, "[0]"?
-      tokens[0].children.forEach(async (token) => {
+      tokens.forEach(async (token) => {
         const tokenName = camelize(token.name).toLowerCase();
 
         if (acceptedTokenTypes.includes(tokenName)) {

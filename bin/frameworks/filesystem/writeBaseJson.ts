@@ -15,30 +15,13 @@ import { MsgWriteBaseFile } from '../messages/messages';
 export async function writeBaseJson(
   outputFolderBaseFile: string,
   outputFileName: string,
-  data: any
-): Promise<any> {
+  data: object
+): Promise<void> {
   console.log(MsgWriteBaseFile);
   try {
     await refresh(outputFolderBaseFile);
-
-    const path = `${outputFolderBaseFile}/${outputFileName}`;
-
-    await write(path, outputFolderBaseFile);
-
-    /*
-    const op = {
-      type: 'raw',
-      file: outputFolderBaseFile,
-      path: string,
-      name: outputFileName
-    };
-
-    // data, outputFolderBaseFile, outputFileName, 'raw'
-
-    //await writeFile(op);
-    */
-
-    return data;
+    const filePath = `${outputFolderBaseFile}/${outputFileName}`;
+    await write(filePath, JSON.stringify(data));
   } catch (error) {
     throw new Error(error);
   }

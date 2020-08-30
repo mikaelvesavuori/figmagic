@@ -29,7 +29,13 @@ async function main(baseConfiguration: Config): Promise<void> {
 
     // Get data
     const { recompileLocal, outputFolderBaseFile, outputFileName, token, url } = config;
-    const data = await getData(recompileLocal, outputFolderBaseFile, outputFileName, token, url);
+    const data: object = await getData(
+      recompileLocal,
+      outputFolderBaseFile,
+      outputFileName,
+      token,
+      url
+    );
 
     // Write new JSON base data, unless user explicitly opts out
     if (!recompileLocal) await writeBaseJson(outputFolderBaseFile, outputFileName, data);

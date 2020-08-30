@@ -1,8 +1,11 @@
 export interface FigmaData {
   document: Document;
-  components?: any;
+  components?: object;
 }
 
 type Document = {
+  id: string;
+  name: string;
+  type: string;
   children: any[];
 };
