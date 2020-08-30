@@ -55,7 +55,7 @@
     "jest": "^26.1.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "snyk": "^1.366.2",
+    "snyk": "^1.370.1",
     "validate-commit-msg": "^2.14.0"
   },
   "dependencies": {
