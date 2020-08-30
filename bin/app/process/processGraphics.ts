@@ -36,5 +36,9 @@ export async function processGraphics(graphicsPage: Frame[], config: Config): Pr
   if (imageResponse.err) throw new Error(ErrorProcessGraphicsImageError);
   if (!imageResponse.images) throw new Error(ErrorProcessGraphicsNoImages);
 
-  return getFileList(imageResponse, ids, outputFormatGraphics);
+  const asdf = getFileList(imageResponse, ids, outputFormatGraphics);
+
+  console.log(typeof asdf, asdf);
+
+  return asdf;
 }
