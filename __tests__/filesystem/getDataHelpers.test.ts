@@ -1,40 +1,72 @@
-import { replaceMediaQuery } from '../../bin/frameworks/string/replaceMediaQuery';
+import {
+  getElement,
+  getText,
+  getExtraProps,
+  getImports
+} from '../../bin/frameworks/filesystem/getDataHelpers';
 
-describe('Failure cases', () => {
-  test('It should throw an error if no parameter is provided', () => {
-    expect(() => {
-      // @ts-ignore
-      replaceMediaQuery();
-    }).toThrow();
-  });
-
-  /*
-  test('It should throw an error if trying to convert to rem but having no remSize provided', () => {
-    expect(() => {
-      replaceMediaQuery(400, 'px', 'rem');
-    }).toThrow();
-  });
-
-  test('It should throw an error if being passed an invalid asdf, since it cannot set rootSize', () => {
-    expect(() => {
-      replaceMediaQuery(400, 'px', 'asdf');
-    }).toThrow();
-  });
-  */
-});
+//describe('Failure cases', () => { });
 
 describe('Success cases', () => {
-  /*
-  test('It should normalize a percent unit to unitless, when given a width value, current unit string, and a conversion type as float', () => {
-    expect(replaceMediaQuery(146.484375, 'percent', 'unitless')).toBe('1.46484375');
+  describe('No input', () => {
+    test('getElement should return "div" if provided no input', () => {
+      // @ts-ignore
+      expect(getElement()).toBe('div');
+    });
+
+    test('getText should return empty string if provided no input', () => {
+      // @ts-ignore
+      expect(getText()).toBe('');
+    });
+
+    test('getExtraProps should return empty string if provided no input', () => {
+      // @ts-ignore
+      expect(getExtraProps()).toBe('');
+    });
+
+    test('getImports should return empty string if provided no input', () => {
+      // @ts-ignore
+      expect(getImports()).toBe('');
+    });
   });
 
-  test('It should normalize a letter-spacing unit to a converted pixel value, when given a width value, current unit string, and a conversion type as string', () => {
-    expect(replaceMediaQuery(100, 'cornerRadius', 'adjustedRadius')).toBe('100px');
+  describe('Empty metadata', () => {
+    test('getElement should return "div" if provided metadata without "element" field', () => {
+      expect(getElement({})).toBe('div');
+    });
+
+    test('getText should return "div" if provided metadata without "text" field', () => {
+      expect(getText({})).toBe('');
+    });
+
+    test('getExtraProps should return "div" if provided metadata without "extraProps" field', () => {
+      expect(getExtraProps({})).toBe('');
+    });
+
+    test('getImports should return "div" if provided metadata without "element" field', () => {
+      expect(getImports({})).toBe('');
+    });
+
+    test('getImports should return "div" element if provided metadata with zero-length "imports" field', () => {
+      expect(getImports({ imports: [] })).toBe('');
+    });
   });
 
-  test('It should normalize a px value to base rem size, when given a width value, current unit string, and a conversion type as string', () => {
-    expect(replaceMediaQuery(48, 'px', 'rem', 16)).toBe('3rem');
+  describe('Valid metadata', () => {
+    test('getElement should return metadata element if provided metadata with "imports" field', () => {
+      expect(getElement({ element: 'h1' })).toBe('h1');
+    });
+
+    test('getText should return metadata element if provided metadata with "imports" field', () => {
+      expect(getText({ text: 'h1' })).toBe('h1');
+    });
+
+    test('getExtraProps should return metadata element if provided metadata with "imports" field', () => {
+      expect(getExtraProps({ extraProps: 'h1' })).toBe('h1');
+    });
+
+    test('getImports should return metadata element if provided metadata with "imports" field', () => {
+      expect(getImports({ imports: [{}] })).toBeTruthy();
+    });
   });
-  */
 });

@@ -30,7 +30,7 @@ export const getImports = (metadata: undefined | null | Record<string, any>): st
   if (metadata) {
     if (metadata.imports) {
       if (metadata.imports.length > 0) return createImportStringFromList(metadata.imports);
+      else return '';
     } else return '';
   } else return '';
-  return null;
 };
