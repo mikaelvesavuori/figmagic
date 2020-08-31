@@ -1,107 +1,132 @@
-import { Templates } from '../../app/contracts/Templates';
 import { FileContentWithPath } from '../../app/contracts/Write';
+import {
+  PrepComponent,
+  PrepStyledComponents,
+  PrepCss,
+  PrepStorybook,
+  PrepDescription
+} from '../../app/contracts/PrepFile';
 
 import { loadFile } from './loadFile';
 
 import { MsgGeneratedFileWarning } from '../messages/messages';
+import {
+  ErrorPrepFileComponent,
+  ErrorPrepFileStyledComponents,
+  ErrorPrepFileCss,
+  ErrorPrepFileStorybook,
+  ErrorPrepFileDescription
+} from '../errors/errors';
 
 /**
- * Component prep steps
+ * Prepare component (element) to be written to file
  *
- * @param templates TODO
+ * @param data Object with required data
  */
-export const prepComponent = async (
-  fileContent: string,
-  name: string,
-  filePath: string,
-  format: string,
-  templates: Templates,
-  text: string,
-  extraProps: string
-): Promise<FileContentWithPath> => {
+export const prepComponent = async (data: PrepComponent): Promise<FileContentWithPath> => {
+  if (!data) throw new Error(ErrorPrepFileComponent);
+  if (
+    !data.name ||
+    !data.filePath ||
+    !data.format ||
+    !data.templates ||
+    !data.text ||
+    !data.extraProps
+  )
+    throw new Error(ErrorPrepFileComponent);
+  const { name, filePath, format, templates, text, extraProps } = data;
+
   const suffix = 'Styled';
   const path = templates.templatePathReact;
 
-  let template = await loadFile(path, true);
-  template = template.replace(/{{NAME}}/gi, name);
-  template = template.replace(/{{NAME_STYLED}}/gi, `${name}${suffix}`);
-  template = template.replace(/{{EXTRA_PROPS}}/gi, extraProps);
-  template = template.replace(/\s>/gi, '>'); // Remove any ugly spaces before ending ">"
-  template = template.replace(/{{TEXT}}/gi, text);
+  const template = await loadFile(path, true);
+  template
+    .replace(/{{NAME}}/gi, name)
+    .replace(/{{NAME_STYLED}}/gi, `${name}${suffix}`)
+    .replace(/{{EXTRA_PROPS}}/gi, extraProps)
+    .replace(/\s>/gi, '>')
+    .replace(/{{TEXT}}/gi, text);
 
-  fileContent = `${template}`;
-  filePath += `.${format}`;
-
-  return { fileContent, filePath };
+  return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
 };
 
+/**
+ * Prepare Styled Components-formatted React element to be written to file
+ *
+ * @param data Object with required data
+ */
 export const prepStyledComponents = async (
-  fileContent: string,
-  name: string,
-  filePath: string,
-  format: string,
-  templates: Templates,
-  element: string
+  data: PrepStyledComponents
 ): Promise<FileContentWithPath> => {
+  if (!data) throw new Error(ErrorPrepFileStyledComponents);
+  if (!data.name || !data.filePath || !data.format || !data.templates || !data.element)
+    throw new Error(ErrorPrepFileStyledComponents);
+
+  const { name, filePath, format, templates, element } = data;
+
   const suffix = 'Styled';
   const path = templates.templatePathStyled;
 
-  let template = await loadFile(path, true);
-  template = template.replace(/{{ELEMENT}}/gi, element);
-  template = template.replace(/{{NAME_CSS}}/gi, `${name}Css`);
-  template = template.replace(/{{NAME_STYLED}}/gi, `${name}${suffix}`);
+  const template = await loadFile(path, true);
+  template
+    .replace(/{{ELEMENT}}/gi, element)
+    .replace(/{{NAME_CSS}}/gi, `${name}Css`)
+    .replace(/{{NAME_STYLED}}/gi, `${name}${suffix}`);
 
-  fileContent = `${template}`;
-  filePath += `${suffix}.${format}`;
-
-  return { fileContent, filePath };
+  return { fileContent: `${template}`, filePath: `${filePath}${suffix}.${format}` };
 };
 
-export const prepCss = (
-  fileContent: string,
-  name: string,
-  filePath: string,
-  format: string,
-  imports: string, //Imports[],
-  file: string
-): FileContentWithPath => {
+/**
+ * Prepare CSS to be written to file
+ *
+ * @param data Object with required data
+ */
+export const prepCss = (data: PrepCss): FileContentWithPath => {
+  if (!data) throw new Error(ErrorPrepFileCss);
+  if (!data.name || !data.filePath || !data.format || !data.imports || !data.file)
+    throw new Error(ErrorPrepFileCss);
+
+  const { name, filePath, format, imports, file } = data;
+
   const suffix = 'Css';
+  const fileContent = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${suffix} = \`${file}\`;\n\nexport default ${name}${suffix};`;
 
-  fileContent = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${suffix} = \`${file}\`;\n\nexport default ${name}${suffix};`;
-  filePath += `${suffix}.${format}`;
-
-  return { fileContent, filePath };
+  return { fileContent, filePath: `${filePath}${suffix}.${format}` };
 };
 
-export const prepStorybook = async (
-  fileContent: string,
-  name: string,
-  filePath: string,
-  format: string,
-  templates: Templates,
-  text: string
-): Promise<FileContentWithPath> => {
+/**
+ * Prepare Storybook data to be written to file
+ *
+ * @param data Object with required data
+ */
+export const prepStorybook = async (data: PrepStorybook): Promise<FileContentWithPath> => {
+  if (!data) throw new Error(ErrorPrepFileStorybook);
+  if (!data.name || !data.filePath || !data.format || !data.templates || !data.text)
+    throw new Error(ErrorPrepFileStorybook);
+
+  const { name, filePath, format, templates, text } = data;
+
   const suffix = '.stories';
   const path = templates.templatePathStorybook;
 
-  let template = await loadFile(path, true);
-  template = template.replace(/{{NAME}}/gi, name);
-  template = template.replace(/{{TEXT}}/gi, text);
-  //template = template.replace(/{{MARKUP}}/gi, MARKUP);
-  fileContent = `${template};`;
-  filePath += `${suffix}.${format}`;
+  const template = await loadFile(path, true);
+  template.replace(/{{NAME}}/gi, name).replace(/{{TEXT}}/gi, text);
 
-  return { fileContent, filePath };
+  return { fileContent: `${template};`, filePath: `${filePath}${suffix}.${format}` };
 };
 
-export const prepDescription = (
-  fileContent: string,
-  filePath: string,
-  file: string,
-  format: string
-): FileContentWithPath => {
-  fileContent = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
-  filePath += `.description.${format}`;
+/**
+ * Prepare Markdown description to be written to file
+ *
+ * @param data Object with required data
+ */
+export const prepDescription = (data: PrepDescription): FileContentWithPath => {
+  if (!data) throw new Error(ErrorPrepFileDescription);
+  if (!data.filePath || !data.file || !data.format) throw new Error(ErrorPrepFileDescription);
 
-  return { fileContent, filePath };
+  const { filePath, file, format } = data;
+
+  const fileContent = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
+
+  return { fileContent, filePath: `${filePath}.description.${format}` };
 };

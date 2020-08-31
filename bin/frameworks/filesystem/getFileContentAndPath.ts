@@ -1,5 +1,11 @@
-import { GetFileDataOperation } from '../../app/contracts/Write';
-import { FileContentWithPath } from '../../app/contracts/Write';
+import { GetFileDataOperation, FileContentWithPath } from '../../app/contracts/Write';
+import {
+  PrepComponent,
+  PrepCss,
+  PrepDescription,
+  PrepStorybook,
+  PrepStyledComponents
+} from '../../app/contracts/PrepFile';
 
 import {
   prepComponent,
@@ -65,17 +71,31 @@ export async function getFileContentAndPath(
   }
   // Component
   else if (type === 'component' && templates)
-    return await prepComponent('', name, filePath, format, templates, text, extraProps);
+    return await prepComponent({
+      name,
+      filePath,
+      format,
+      templates,
+      text,
+      extraProps
+    } as PrepComponent);
   // Styled Components
   else if (type === 'style' && templates)
-    return await prepStyledComponents('', name, filePath, format, templates, element);
+    return await prepStyledComponents({
+      name,
+      filePath,
+      format,
+      templates,
+      element
+    } as PrepStyledComponents);
   // CSS
-  else if (type === 'css') return prepCss('', name, filePath, format, imports, file);
+  else if (type === 'css') return prepCss({ name, filePath, format, imports, file } as PrepCss);
   // Storybook
   else if (type === 'story' && templates)
-    return await prepStorybook('', name, filePath, format, templates, text);
+    return await prepStorybook({ name, filePath, format, templates, text } as PrepStorybook);
   // Markdown description
-  else if (type === 'description') return prepDescription('', filePath, file, format);
+  else if (type === 'description')
+    return prepDescription({ filePath, file, format } as PrepDescription);
 }
 
 const getTokenEnumString = (file: string, name: string) =>

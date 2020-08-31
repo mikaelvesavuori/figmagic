@@ -1,42 +1,73 @@
-// TODO: TEST
+import { PrepComponent } from '../../bin/app/contracts/PrepFile';
 
 import { prepComponent } from '../../bin/frameworks/filesystem/prepFile';
 
 describe('Failure cases', () => {
-  test('It should throw an error if no parameter is provided', () => {
-    expect(() => {
+  describe('No input', () => {
+    test('prepComponent should throw an error if no argument is provided', async () => {
       // @ts-ignore
-      prepComponent();
-    }).toThrow();
+      await expect(() => prepComponent()).rejects.toThrow();
+    });
+
+    test('prepStyledComponents should throw an error if no argument is provided', async () => {
+      // @ts-ignore
+      await expect(() => prepComponent()).rejects.toThrow();
+    });
+
+    test('prepCss should throw an error if no argument is provided', async () => {
+      // @ts-ignore
+      await expect(() => prepComponent()).rejects.toThrow();
+    });
+
+    test('prepStorybook should throw an error if no argument is provided', async () => {
+      // @ts-ignore
+      await expect(() => prepComponent()).rejects.toThrow();
+    });
+
+    test('prepDescription should throw an error if no argument is provided', async () => {
+      // @ts-ignore
+      await expect(() => prepComponent()).rejects.toThrow();
+    });
   });
 
-  /*
-  test('It should throw an error if trying to convert to rem but having no remSize provided', () => {
-    expect(() => {
-      prepFile(400, 'px', 'rem');
-    }).toThrow();
-  });
+  describe('Incorrect input', () => {
+    test('prepComponent should throw an error if incorrect (empty) input is provided', async () => {
+      // @ts-ignore
+      await expect(() => prepComponent({})).rejects.toThrow();
+    });
 
-  test('It should throw an error if being passed an invalid asdf, since it cannot set rootSize', () => {
-    expect(() => {
-      prepFile(400, 'px', 'asdf');
-    }).toThrow();
+    test('prepStyledComponents should throw an error if incorrect (empty) input is provided', async () => {
+      // @ts-ignore
+      await expect(() => prepComponent({})).rejects.toThrow();
+    });
+
+    test('prepCss should throw an error if incorrect (empty) input is provided', async () => {
+      // @ts-ignore
+      await expect(() => prepComponent({})).rejects.toThrow();
+    });
+
+    test('prepStorybook should throw an error if incorrect (empty) input is provided', async () => {
+      // @ts-ignore
+      await expect(() => prepComponent({})).rejects.toThrow();
+    });
+
+    test('prepDescription should throw an error if incorrect (empty) input is provided', async () => {
+      // @ts-ignore
+      await expect(() => prepComponent({})).rejects.toThrow();
+    });
   });
-  */
 });
 
 describe('Success cases', () => {
-  /*
-  test('It should normalize a percent unit to unitless, when given a width value, current unit string, and a conversion type as float', () => {
-    expect(prepFile(146.484375, 'percent', 'unitless')).toBe('1.46484375');
+  test.only('It should asdasd', async () => {
+    const data = {
+      name: 'aaa',
+      filePath: 'sss',
+      format: 'ddd',
+      templates: {},
+      text: 'fff',
+      extraProps: 'qqq'
+    };
+    await expect(prepComponent(data as PrepComponent)).resolves.toMatchObject({});
   });
-
-  test('It should normalize a letter-spacing unit to a converted pixel value, when given a width value, current unit string, and a conversion type as string', () => {
-    expect(prepFile(100, 'cornerRadius', 'adjustedRadius')).toBe('100px');
-  });
-
-  test('It should normalize a px value to base rem size, when given a width value, current unit string, and a conversion type as string', () => {
-    expect(prepFile(48, 'px', 'rem', 16)).toBe('3rem');
-  });
-  */
 });
