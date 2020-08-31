@@ -51,9 +51,6 @@ export async function getFileContentAndPath(
     templates
   } = getFileContentAndPathOperation;
 
-  console.log('||||||||');
-  console.log(getFileContentAndPathOperation);
-
   let filePath = `${path}/${name}`;
 
   // Raw file output

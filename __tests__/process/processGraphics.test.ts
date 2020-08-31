@@ -1,3 +1,5 @@
+// TODO: TEST
+
 import dotenv from 'dotenv';
 
 import { Config } from '../../bin/entities/Config/Config';

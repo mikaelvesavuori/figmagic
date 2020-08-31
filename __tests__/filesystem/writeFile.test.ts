@@ -1,3 +1,5 @@
+// TODO: TEST
+
 import trash from 'trash';
 
 import { WriteOperation } from '../../bin/app/contracts/Write';

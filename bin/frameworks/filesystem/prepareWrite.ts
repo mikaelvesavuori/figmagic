@@ -4,6 +4,7 @@ import { getElement, getText, getExtraProps, getImports } from './getDataHelpers
 import { getFileContentAndPath } from '../filesystem/getFileContentAndPath';
 
 import { ErrorPrepareWrite, ErrorWriteFile } from '../errors/errors';
+
 /**
  * @description Controller that starts the prepping/formatting of the file(s)
  *
