@@ -1,5 +1,6 @@
 import { Templates } from '../../app/contracts/Templates';
 import { FileContentWithPath } from '../../app/contracts/Write';
+import { Imports } from '../../app/contracts/Imports';
 
 import { loadFile } from './loadFile';
 
@@ -62,7 +63,7 @@ export const prepCss = (
   name: string,
   filePath: string,
   format: string,
-  imports: any,
+  imports: Imports[],
   file: string
 ): FileContentWithPath => {
   const suffix = 'Css';

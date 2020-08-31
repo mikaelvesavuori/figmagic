@@ -1,4 +1,5 @@
 import { GetFileDataOperation } from '../../app/contracts/Write';
+import { FileContentWithPath } from '../../app/contracts/Write';
 
 import {
   prepComponent,
@@ -11,6 +12,10 @@ import {
 import { createEnumStringOutOfObject } from '../../frameworks/string/createEnumStringOutOfObject';
 
 import { MsgGeneratedFileWarning } from '../messages/messages';
+import {
+  ErrorGetFileContentAndPath,
+  ErrorGetFileContentAndPathMissingFields
+} from '../errors/errors';
 
 /**
  * Orchestrator to get file content and path, before writing files
@@ -19,7 +24,19 @@ import { MsgGeneratedFileWarning } from '../messages/messages';
  */
 export async function getFileContentAndPath(
   getFileContentAndPathOperation: GetFileDataOperation
-): Promise<any> {
+): Promise<FileContentWithPath | Record<string, string>> {
+  if (!getFileContentAndPathOperation) throw new Error(ErrorGetFileContentAndPath);
+
+  if (
+    !getFileContentAndPathOperation.type ||
+    !getFileContentAndPathOperation.file ||
+    !getFileContentAndPathOperation.path ||
+    !getFileContentAndPathOperation.name ||
+    !getFileContentAndPathOperation.format ||
+    !getFileContentAndPathOperation.element
+  )
+    throw new Error(ErrorGetFileContentAndPathMissingFields);
+
   const {
     type,
     file,
@@ -33,6 +50,9 @@ export async function getFileContentAndPath(
     metadata,
     templates
   } = getFileContentAndPathOperation;
+
+  console.log('||||||||');
+  console.log(getFileContentAndPathOperation);
 
   let filePath = `${path}/${name}`;
 

@@ -17,12 +17,12 @@ export type GetFileDataOperation = {
   path: string;
   name: string;
   format: string;
-  text: string;
+  text?: string;
   element: string;
-  imports: string;
-  extraProps: string;
-  metadata: Metadata;
-  templates: Templates;
+  imports?: string;
+  extraProps?: string;
+  metadata?: Metadata;
+  templates?: Templates;
 };
 
 export type FileContentWithPath = {
