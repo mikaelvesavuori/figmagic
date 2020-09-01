@@ -1,0 +1,13 @@
+{
+  "document": {
+    "id": "0:0",
+    "name": "Document",
+    "type": "DOCUMENT",
+    "children": [
+      {
+        "id": "2605:12",
+        "name": "Design Tokens"
+      }
+    ]
+  }
+}

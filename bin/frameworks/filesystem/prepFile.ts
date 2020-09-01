@@ -83,8 +83,7 @@ export const prepStyledComponents = async (
  */
 export const prepCss = (data: PrepCss): FileContentWithPath => {
   if (!data) throw new Error(ErrorPrepFileCss);
-  if (!data.name || !data.filePath || !data.format || !data.imports || !data.file)
-    throw new Error(ErrorPrepFileCss);
+  if (!data.name || !data.filePath || !data.format || !data.file) throw new Error(ErrorPrepFileCss);
 
   const { name, filePath, format, imports, file } = data;
 

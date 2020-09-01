@@ -16,9 +16,9 @@ export async function loadFile(path: string, isRaw = false): Promise<any> {
     return await new Promise((resolve, reject) =>
       fs.readFile(path, 'utf8', (error, data) => {
         if (error) reject(error);
-        if (isRaw) resolve(data);
+        if (isRaw) resolve(data); // Won't do anything...
 
-        const DATA = JSON.parse(data);
+        const DATA = isJsonString(data) ? JSON.parse(data) : data; //typeof data === 'string' ? data : JSON.parse(data);
         resolve(DATA);
       })
     );
@@ -26,3 +26,13 @@ export async function loadFile(path: string, isRaw = false): Promise<any> {
     console.error(error);
   }
 }
+
+// Reference: https://stackoverflow.com/questions/3710204/how-to-check-if-a-string-is-a-valid-json-string-in-javascript-without-using-try
+const isJsonString = (str: string) => {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+};

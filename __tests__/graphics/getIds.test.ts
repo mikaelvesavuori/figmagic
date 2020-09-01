@@ -14,7 +14,7 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should asdf', () => {
+  test('It should successfully create an array of objects with id and name', () => {
     // @ts-ignore
     expect(getIds(graphicsPage)).toMatchObject([
       { id: '2710:7', name: 'More' },

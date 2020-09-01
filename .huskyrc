@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "pre-commit": "echo Running pre-commit linting... && pretty-quick --staged",
+    "pre-commit": "echo Running pre-commit linting...",
     "commitmsg": "validate-commit-msg"
   }
 }
