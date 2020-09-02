@@ -31,131 +31,83 @@ import { ErrorProcessTokens, ErrorProcessTokensNoConfig } from '../../frameworks
 export function processTokens(sheet: Frame, name: string, config: Config): any {
   if (!sheet || !name) throw new Error(ErrorProcessTokens);
 
-  // Filter out elements that contain ignore keywords in their name
-  const children = (() => {
-    if (sheet.children && sheet.children.length > 0) {
-      return sheet.children.filter((item: Frame) => {
-        let shouldInclude = true;
+  sheet.children = getChildren(sheet);
+  console.log('||||| sheet.children |||||');
+  console.log(sheet.children.length > 0);
+  //return getTokens(sheet, name.toLowerCase(), config);
+  const tokens = getTokens(sheet, name.toLowerCase(), config);
+  console.log('||||| tokens |||||');
+  console.log(typeof tokens, tokens);
+  return tokens;
+}
 
-        for (let i = 0; i < ignoreElementsKeywords.length; i++) {
-          const keywordToIgnore = ignoreElementsKeywords[i];
+const getChildren = (sheet: Frame) => {
+  if (sheet.children && sheet.children.length > 0) {
+    return sheet.children.filter((item: Frame) => {
+      let shouldInclude = true;
 
-          if (item.name.toLowerCase().indexOf(keywordToIgnore) >= 0) {
-            shouldInclude = false;
-            break;
-          }
+      // Filter out elements that contain ignore keywords in their name
+      for (let i = 0; i < ignoreElementsKeywords.length; i++) {
+        const keywordToIgnore = ignoreElementsKeywords[i];
+
+        if (item.name.toLowerCase().indexOf(keywordToIgnore) >= 0) {
+          shouldInclude = false;
+          break;
         }
+      }
 
-        return shouldInclude;
-      });
-    }
-  })();
+      return shouldInclude;
+    });
+  }
+};
 
-  sheet.children = children;
-
-  const _NAME = name.toLowerCase();
-  let processedTokens = undefined;
-
-  switch (_NAME) {
-    case 'borderwidth':
-    case 'borderwidths': {
-      processedTokens = setupBorderWidthTokens(sheet);
-      break;
-    }
+const getTokens = (sheet: Frame, name: string, config: Config) => {
+  console.log('getTokens name', name);
+  switch (name) {
+    case 'borderwidths':
+      return setupBorderWidthTokens(sheet);
     case 'color':
-    case 'colors':
-    case 'colour':
-    case 'colours': {
-      processedTokens = setupColorTokens(sheet);
-      break;
+    case 'colors': {
+      return setupColorTokens(sheet);
     }
-    case 'fontfamily':
     case 'fontfamilies': {
       if (!config) throw new Error(ErrorProcessTokensNoConfig);
-      processedTokens = setupFontTokens(sheet, config.usePostscriptFontNames);
-      break;
+      return setupFontTokens(sheet, config.usePostscriptFontNames);
     }
-    case 'fontsize':
     case 'fontsizes': {
       if (!config) throw new Error(ErrorProcessTokensNoConfig);
-      processedTokens = setupFontSizeTokens(sheet, config.fontUnit, config.remSize);
-      break;
+      return setupFontSizeTokens(sheet, config.fontUnit, config.remSize);
     }
-    case 'fontweight':
-    case 'fontweights': {
-      processedTokens = setupFontWeightTokens(sheet);
-      break;
-    }
-    case 'letterspacing':
+    case 'fontweights':
+      return setupFontWeightTokens(sheet);
     case 'letterspacings': {
       if (!config) throw new Error(ErrorProcessTokensNoConfig);
-      processedTokens = setupLetterSpacingTokens(sheet, config.letterSpacingUnit);
-      break;
+      return setupLetterSpacingTokens(sheet, config.letterSpacingUnit);
     }
-    case 'lineheight':
-    case 'lineheights': {
-      processedTokens = setupLineHeightTokens(sheet, config.remSize);
-      break;
-    }
-    case 'mediaquery':
-    case 'mediaqueries': {
-      processedTokens = setupMediaQueryTokens(sheet);
-      break;
-    }
-    case 'opacity':
+    case 'lineheights':
+      return setupLineHeightTokens(sheet, config.remSize);
+    case 'mediaqueries':
+      return setupMediaQueryTokens(sheet);
     case 'opacities': {
       if (!config) throw new Error(ErrorProcessTokensNoConfig);
-      processedTokens = setupOpacityTokens(sheet, config.opacitiesUnit);
-      break;
+      return setupOpacityTokens(sheet, config.opacitiesUnit);
     }
-    case 'radius':
-    case 'radii': {
-      processedTokens = setupRadiusTokens(sheet, config.remSize);
-      break;
-    }
-    case 'shadow':
-    case 'shadows': {
-      processedTokens = setupShadowTokens(sheet);
-      break;
-    }
-    case 'space':
-    case 'spaces':
+    case 'radii':
+      return setupRadiusTokens(sheet, config.remSize);
+    case 'shadows':
+      return setupShadowTokens(sheet);
     case 'spacing':
     case 'spacings': {
       if (!config) throw new Error(ErrorProcessTokensNoConfig);
-      processedTokens = setupSpacingTokens(sheet, config.spacingUnit, config.remSize);
-      break;
+      return setupSpacingTokens(sheet, config.spacingUnit, config.remSize);
     }
-    case 'zindex':
-    case 'zindices': {
-      processedTokens = setupZindexTokens(sheet);
-      break;
-    }
-    case 'duration':
+    case 'zindices':
+      return setupZindexTokens(sheet);
     case 'durations':
-    case 'animation duration':
-    case 'animation durations':
-    case 'motion duration':
-    case 'motion durations': {
-      processedTokens = setupDurationTokens(sheet);
-      break;
-    }
-    case 'delay':
+      return setupDurationTokens(sheet);
     case 'delays':
-    case 'animation delay':
-    case 'animation delays':
-    case 'motion delay':
-    case 'motion delays': {
-      processedTokens = setupDelayTokens(sheet);
-      break;
-    }
-    case 'easing':
-    case 'animation easing':
-    case 'motion easing': {
-      processedTokens = setupEasingTokens(sheet);
-      break;
-    }
+      return setupDelayTokens(sheet);
+    case 'easings':
+      return setupEasingTokens(sheet);
   }
-
-  return processedTokens;
-}
+};
