@@ -3,7 +3,7 @@ import { setupFontTokens } from '../../bin/entities/Tokens/tokens/setupFontToken
 import { fontFrame, fontFrameInvalid } from '../../testdata/frames/fontFrame';
 
 describe('Failure cases', () => {
-  test('It should throw an error if no parameter is provided', () => {
+  test('It should throw an error if no argument is provided', () => {
     expect(() => {
       // @ts-ignore
       setupFontTokens();

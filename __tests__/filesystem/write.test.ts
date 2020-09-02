@@ -1,18 +1,24 @@
-// TODO: TEST
+import trash from 'trash';
+import * as fs from 'fs';
 
 import { write } from '../../bin/frameworks/filesystem/write';
 
 describe('Failure cases', () => {
-  test('It should throw an error if no parameter is provided', async () => {
+  test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
-    await expect(write()).rejects.toThrow();
+    await expect(write()).rejects.toThrowError();
   });
 });
 
 describe('Success cases', () => {
-  /*
-  test('It should normalize a percent unit to unitless, when given a width value, current unit string, and a conversion type as float', () => {
-    expect(replaceMediaQuery(146.484375, 'percent', 'unitless')).toBe('1.46484375');
+  test('It should successfully create a file on disk', async () => {
+    const filePath = `./__asdf__.txt`;
+    const fileContent = 'Something here';
+
+    await write(filePath, fileContent);
+    const _fileContent = fs.readFileSync(filePath, { encoding: 'utf-8' });
+    expect(_fileContent).toBe(fileContent);
+
+    trash(filePath);
   });
-  */
 });

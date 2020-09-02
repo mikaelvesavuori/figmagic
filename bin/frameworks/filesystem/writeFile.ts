@@ -20,7 +20,7 @@ export async function writeFile(writeOperation: WriteOperation): Promise<boolean
     const { type, file, path, name, format, metadata, templates } = writeOperation;
     if (!file || !path || !name || !type) reject(ErrorWriteFile);
 
-    const _type = type.toLowerCase();
+    const _type: any = type.toLowerCase();
 
     if (!acceptedFileTypes.includes(_type)) reject(ErrorWriteFileWrongType);
 

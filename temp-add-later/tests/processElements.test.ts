@@ -6,7 +6,7 @@ import { defaultConfig } from '../bin/entities/Config/defaultConfig';
 
 describe('Failure cases', () => {
   /*
-  test('It should throw an error if no parameter is provided', async () => {
+  test('It should throw an error if no argument is provided', async () => {
     await expect(processElements()).rejects.toThrow();
   });
   */

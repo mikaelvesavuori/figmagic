@@ -3,7 +3,7 @@ import { createEnumStringOutOfObject } from '../../bin/frameworks/string/createE
 import { enumDataTestObject, enumDataExpectedResponse } from '../../testdata/enumData';
 
 describe('Failure cases', () => {
-  test('It should throw an error if no parameter is provided', () => {
+  test('It should throw an error if no argument is provided', () => {
     expect(() => {
       // @ts-ignore
       createEnumStringOutOfObject();

@@ -3,7 +3,7 @@ import { getIdString } from '../../bin/app/process/graphics/getIdString';
 import { graphicsIds } from '../../testdata/graphics/getGraphics';
 
 describe('Failure cases', () => {
-  test('It should throw an error if no parameter is provided', () => {
+  test('It should throw an error if no argument is provided', () => {
     // @ts-ignore
     expect(() => getIdString()).toThrow();
   });

@@ -8,7 +8,7 @@ import {
 } from '../../testdata/getFileDataOperation';
 
 describe('Failure cases', () => {
-  test('It should throw an error if no parameter is provided', async () => {
+  test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
     await expect(() => prepareWrite()).rejects.toBeTruthy();
   });

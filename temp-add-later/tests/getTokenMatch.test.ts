@@ -4,7 +4,7 @@ import { getTokenMatch } from '../bin/app/process/tokens/getTokenMatch';
 
 /*
 describe('Failure cases', () => {
-  test('It should throw an error if no parameter is provided', () => {
+  test('It should throw an error if no argument is provided', () => {
     expect(() => {
       getTokenMatch();
     }).toThrow();

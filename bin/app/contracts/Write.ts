@@ -2,7 +2,7 @@ import { Metadata } from './Metadata';
 import { Templates } from './Templates';
 
 export type WriteOperation = {
-  type: string;
+  type: 'raw' | 'token' | 'component' | 'style' | 'css' | 'story' | 'description';
   file: string;
   path: string;
   name: string;
@@ -12,7 +12,7 @@ export type WriteOperation = {
 };
 
 export type GetFileDataOperation = {
-  type: string;
+  type: 'raw' | 'token' | 'component' | 'style' | 'css' | 'story' | 'description';
   file: string;
   path: string;
   name: string;

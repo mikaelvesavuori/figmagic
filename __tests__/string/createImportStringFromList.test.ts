@@ -1,7 +1,7 @@
 import { createImportStringFromList } from '../../bin/frameworks/string/createImportStringFromList';
 
 describe('Failure cases', () => {
-  test('It should throw an error if no parameter is provided', () => {
+  test('It should throw an error if no argument is provided', () => {
     expect(() => {
       // @ts-ignore
       createImportStringFromList();

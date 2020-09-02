@@ -1,7 +1,7 @@
 import { toPascalCase } from '../../bin/frameworks/string/toPascalCase';
 
 describe('Failure cases', () => {
-  test('It should throw an error if no parameter is provided', () => {
+  test('It should throw an error if no argument is provided', () => {
     expect(() => {
       // @ts-ignore
       toPascalCase();

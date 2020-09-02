@@ -11,7 +11,7 @@ import { ErrorWrite } from '../errors/errors';
  */
 export async function write(filePath: string, fileContent: string): Promise<boolean> {
   return await new Promise((resolve, reject) => {
-    if (!filePath || !fileContent) reject('asdf');
+    if (!filePath || !fileContent) throw new Error(ErrorWrite);
     try {
       fs.writeFile(filePath, fileContent, 'utf-8', (error) => {
         if (error) throw new Error(`${ErrorWrite}: ${error}`);

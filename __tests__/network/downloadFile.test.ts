@@ -3,7 +3,7 @@ import trash from 'trash';
 import { downloadFile } from '../../bin/frameworks/network/downloadFile';
 
 describe('Failure cases', () => {
-  test('It should throw an error if no parameter is provided', async () => {
+  test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
     await expect(downloadFile()).rejects.toThrow();
   });

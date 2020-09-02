@@ -16,7 +16,7 @@ import { shadowsFrame } from '../../testdata/frames/shadowsFrame';
 import { zIndicesFrame } from '../../testdata/frames/zIndicesFrame';
 
 describe('Failure cases', () => {
-  test('It should throw an error if no parameter is provided', () => {
+  test('It should throw an error if no argument is provided', () => {
     expect(() => {
       // @ts-ignore
       processTokens();
