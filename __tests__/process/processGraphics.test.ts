@@ -11,7 +11,8 @@ import { getFileList } from '../../bin/app/process/graphics/getFileList';
 
 import { getFromApi } from '../../bin/frameworks/network/getFromApi';
 
-import { graphicsFrame } from '../../testdata/frames/graphicsFrame';
+//import { graphicsFrame } from '../../testdata/frames/graphicsFrame';
+import { graphicsPage } from '../../testdata/graphicsPage';
 
 dotenv.config();
 
@@ -51,7 +52,8 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should exit correctly after having processed valid input', async () => {
     await expect(
-      processGraphics([graphicsFrame], {
+      // @ts-ignore
+      processGraphics(graphicsPage, {
         outputFileName: 'figma.json',
         outputFolderBaseFile: '.figmagic',
         outputFolderTokens: 'tokens',

@@ -6,7 +6,9 @@ import { createPage } from '../app/process/tokens/createPage';
 
 import { refresh } from '../frameworks/filesystem/refresh';
 import { writeTokens } from '../frameworks/filesystem/writeTokens';
+
 import { MsgWriteTokens } from '../frameworks/messages/messages';
+import { ErrorCreateTokens } from '../frameworks/errors/errors';
 
 /**
  * @description Use case for creating token files from Figma
@@ -20,6 +22,8 @@ export async function createTokens(
   data: FigmaData,
   outputFolder: string
 ): Promise<boolean> {
+  if (!config || !data || !outputFolder) throw new Error(ErrorCreateTokens);
+
   return new Promise(async (resolve, reject) => {
     console.log(MsgWriteTokens);
     try {

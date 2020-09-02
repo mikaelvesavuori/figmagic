@@ -30,6 +30,7 @@ export async function processGraphics(graphicsPage: Frame[], config: Config): Pr
   const ids = getIds(graphicsPage);
   const settings = `&scale=${outputScaleGraphics}&format=${outputFormatGraphics}`;
   const _url = `${url}?ids=${getIdString(ids)}${settings}`;
+
   const imageResponse: ImageResponse = await getFromApi(token, _url, 'images');
 
   if (imageResponse.err) throw new Error(ErrorProcessGraphicsImageError);

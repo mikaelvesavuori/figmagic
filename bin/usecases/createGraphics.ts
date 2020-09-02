@@ -3,6 +3,8 @@ import { Config } from '../entities/Config/Config';
 
 import { doSyncGraphics } from '../app/sync/doSyncGraphics';
 
+import { ErrorCreateGraphics } from '../frameworks/errors/errors';
+
 /**
  * @description Use case for syncing (creating) graphics from Figma file
  *
@@ -15,5 +17,6 @@ export async function createGraphics(
   data: FigmaData,
   outputFolderGraphics: string
 ): Promise<any> {
+  if (!config || !data || !outputFolderGraphics) throw new Error(ErrorCreateGraphics);
   return await doSyncGraphics(config, data, outputFolderGraphics);
 }

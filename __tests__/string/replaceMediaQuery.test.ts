@@ -8,11 +8,11 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should asd', () => {
-    expect(replaceMediaQuery('@upto 500px', 'xxx')).toBe('asdf');
+  test('It should return the string if function could not find a match', () => {
+    expect(replaceMediaQuery(' ', '@upto')).toBe(' ');
   });
 
-  test('It should asd', () => {
-    expect(replaceMediaQuery('@upto', '500px')).toBe('asdf');
+  test('It should return a valid media query', () => {
+    expect(replaceMediaQuery('@upto 768', '@upto')).toBe('@media query and (max-width:px) { 768');
   });
 });
