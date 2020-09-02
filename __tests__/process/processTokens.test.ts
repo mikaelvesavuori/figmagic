@@ -15,6 +15,8 @@ import { radiiFrame } from '../../testdata/frames/radiiFrame';
 import { shadowsFrame } from '../../testdata/frames/shadowsFrame';
 import { zIndicesFrame } from '../../testdata/frames/zIndicesFrame';
 
+// TODO: Test loc 48-49,100-104
+
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
     expect(() => {

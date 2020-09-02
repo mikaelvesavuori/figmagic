@@ -56,7 +56,6 @@ const getChildren = (sheet: Frame) => {
 };
 
 const getTokens = (sheet: Frame, name: string, config: Config) => {
-  console.log('getTokens name', name);
   switch (name) {
     case 'borderwidths':
       return setupBorderWidthTokens(sheet);

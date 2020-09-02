@@ -3,6 +3,8 @@ import * as fs from 'fs';
 
 import { write } from '../../bin/frameworks/filesystem/write';
 
+// TODO: Test loc 21
+
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore

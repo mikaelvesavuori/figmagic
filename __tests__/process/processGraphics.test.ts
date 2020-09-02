@@ -1,5 +1,3 @@
-// TODO: TEST
-
 import dotenv from 'dotenv';
 
 import { Config } from '../../bin/entities/Config/Config';
@@ -15,6 +13,8 @@ import { getFromApi } from '../../bin/frameworks/network/getFromApi';
 import { graphicsPage } from '../../testdata/graphicsPage';
 
 dotenv.config();
+
+// TODO: Test loc 27-37
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {

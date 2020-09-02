@@ -5,6 +5,8 @@ import { createGraphics } from '../../bin/usecases/createGraphics';
 //import { testConfig } from '../../testdata/testConfig';
 //import { figmaTestResponse } from '../../testdata/figmaTestResponse';
 
+// TODO: Test loc 21
+
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore

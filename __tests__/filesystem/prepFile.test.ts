@@ -14,6 +14,8 @@ import {
   prepDescription
 } from '../../bin/frameworks/filesystem/prepFile';
 
+// TODO: Test loc 63,104
+
 describe('Failure cases', () => {
   describe('No input', () => {
     test('prepComponent should throw an error if no argument is provided', async () => {

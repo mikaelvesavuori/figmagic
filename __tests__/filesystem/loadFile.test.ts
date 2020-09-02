@@ -2,6 +2,8 @@ import * as path from 'path';
 
 import { loadFile } from '../../bin/frameworks/filesystem/loadFile';
 
+// TODO: Test loc 26
+
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore

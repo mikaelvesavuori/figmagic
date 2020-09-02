@@ -2,6 +2,8 @@ import trash from 'trash';
 
 import { downloadFile } from '../../bin/frameworks/network/downloadFile';
 
+// TODO: Test loc 23-31
+
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore

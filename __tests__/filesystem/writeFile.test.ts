@@ -5,6 +5,8 @@ import { WriteOperation } from '../../bin/app/contracts/Write';
 
 import { writeFile } from '../../bin/frameworks/filesystem/writeFile';
 
+// TODO: Test loc 18-25
+
 describe('Failure cases', () => {
   /*
   // TODO: FIX since this destroys correct execution of Success cases?
