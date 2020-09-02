@@ -32,13 +32,7 @@ export function processTokens(sheet: Frame, name: string, config: Config): any {
   if (!sheet || !name) throw new Error(ErrorProcessTokens);
 
   sheet.children = getChildren(sheet);
-  console.log('||||| sheet.children |||||');
-  console.log(sheet.children.length > 0);
-  //return getTokens(sheet, name.toLowerCase(), config);
-  const tokens = getTokens(sheet, name.toLowerCase(), config);
-  console.log('||||| tokens |||||');
-  console.log(typeof tokens, tokens);
-  return tokens;
+  return getTokens(sheet, name.toLowerCase(), config);
 }
 
 const getChildren = (sheet: Frame) => {
