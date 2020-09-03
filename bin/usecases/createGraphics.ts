@@ -1,9 +1,14 @@
 import { FigmaData } from '../app/contracts/FigmaData';
 import { Config } from '../entities/Config/Config';
 
-import { doSyncGraphics } from '../app/sync/doSyncGraphics';
-
 import { ErrorCreateGraphics } from '../frameworks/errors/errors';
+
+import { createPage } from '../app/process/tokens/createPage';
+import { processGraphics } from '../app/process/processGraphics';
+
+import { refresh } from '../frameworks/filesystem/refresh';
+import { writeGraphics } from '../frameworks/filesystem/writeGraphics';
+import { MsgSyncGraphics } from '../frameworks/messages/messages';
 
 /**
  * @description Use case for syncing (creating) graphics from Figma file
@@ -16,7 +21,17 @@ export async function createGraphics(
   config: Config,
   data: FigmaData,
   outputFolderGraphics: string
-): Promise<any> {
+): Promise<void> {
   if (!config || !data || !outputFolderGraphics) throw new Error(ErrorCreateGraphics);
-  return await doSyncGraphics(config, data, outputFolderGraphics);
+
+  console.log(MsgSyncGraphics);
+
+  try {
+    await refresh(outputFolderGraphics);
+    const graphicsPage = createPage(data.document.children, 'Graphics');
+    const fileList = await processGraphics(graphicsPage, config);
+    await writeGraphics(fileList, config);
+  } catch (error) {
+    throw new Error(error);
+  }
 }

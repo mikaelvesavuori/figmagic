@@ -23,9 +23,9 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should download a file if given valid arguments', async () => {
     await downloadFile(
-      'https://s3-us-west-2.amazonaws.com/figma-alpha-api/img/0882/9cc7/c4731c8d0df07592cd6f7dc0519bb3bb',
+      'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
       '__testing',
-      'testfile.svg'
+      'testfile.png'
     );
     trash(`./__testing`);
   });

@@ -13,9 +13,11 @@ import { mediaQueriesFrame } from '../../testdata/frames/mediaQueriesFrame';
 import { opacitiesFrame } from '../../testdata/frames/opacitiesFrame';
 import { radiiFrame } from '../../testdata/frames/radiiFrame';
 import { shadowsFrame } from '../../testdata/frames/shadowsFrame';
-import { zIndicesFrame } from '../../testdata/frames/zIndicesFrame';
-
-// TODO: Test loc 48-49,100-104
+import { zIndicesFrame, zIndicesFrameWithIgnoreKeyword } from '../../testdata/frames/zIndicesFrame';
+import { durationsFrame } from '../../testdata/frames/durationsFrame';
+import { delayFrame } from '../../testdata/frames/delaysFrame';
+import { easingFrame } from '../../testdata/frames/easingFrame';
+// TODO: Test loc 100-104
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
@@ -154,6 +156,34 @@ describe('Success cases', () => {
   test('It should return data when passed valid Z index frame and valid settings', () => {
     expect(processTokens(zIndicesFrame, 'zindices', defaultConfig)).toEqual(
       expect.objectContaining({ focus: 10, high: 1, higher: 2, regular: 0, top: 100 })
+    );
+  });
+
+  test('It should return data when passed valid Z index frame and valid settings, ignoring an element including an "ignored" keyword', () => {
+    expect(processTokens(zIndicesFrameWithIgnoreKeyword, 'zindices', defaultConfig)).toEqual(
+      expect.objectContaining({ regular: 0 })
+    );
+  });
+
+  test('It should return data when passed valid durations frame and valid settings', () => {
+    expect(processTokens(durationsFrame, 'durations', defaultConfig)).toEqual(
+      expect.objectContaining({ long: 0.6, medium: 0.25, short: 0.15, veryLong: 1 })
+    );
+  });
+
+  test('It should return data when passed valid delays frame and valid settings', () => {
+    expect(processTokens(delayFrame, 'delays', defaultConfig)).toEqual(
+      expect.objectContaining({ decimal: 0.5, fast: 200, medium: 400, slow: 750 })
+    );
+  });
+
+  test('It should return data when passed valid easings frame and valid settings', () => {
+    expect(processTokens(easingFrame, 'easings', defaultConfig)).toEqual(
+      expect.objectContaining({
+        easeIn: 'cubic-bezier(0.50, 0, 1, 1)',
+        easeInout: 'cubic-bezier(0.45, 0, 0.40, 1)',
+        easeOut: 'cubic-bezier(0, 0, 0.40, 1)'
+      })
     );
   });
 });

@@ -25,22 +25,22 @@ describe('Failure cases', () => {
 
     test('prepStyledComponents should throw an error if no argument is provided', async () => {
       // @ts-ignore
-      await expect(() => prepComponent()).rejects.toThrow();
+      await expect(() => prepStyledComponents()).rejects.toThrow();
     });
 
-    test('prepCss should throw an error if no argument is provided', async () => {
+    test('prepCss should throw an error if no argument is provided', () => {
       // @ts-ignore
-      await expect(() => prepComponent()).rejects.toThrow();
+      expect(() => prepCss()).toThrow();
     });
 
     test('prepStorybook should throw an error if no argument is provided', async () => {
       // @ts-ignore
-      await expect(() => prepComponent()).rejects.toThrow();
+      await expect(() => prepStorybook()).rejects.toThrow();
     });
 
-    test('prepDescription should throw an error if no argument is provided', async () => {
+    test('prepDescription should throw an error if no argument is provided', () => {
       // @ts-ignore
-      await expect(() => prepComponent()).rejects.toThrow();
+      expect(() => prepDescription()).toThrow();
     });
   });
 
@@ -50,24 +50,24 @@ describe('Failure cases', () => {
       await expect(() => prepComponent({})).rejects.toThrow();
     });
 
-    test('prepStyledComponents should throw an error if incorrect (empty) input is provided', async () => {
+    test('prepStyledComponents should throw an error if incomplete input is provided', async () => {
       // @ts-ignore
-      await expect(() => prepComponent({})).rejects.toThrow();
+      await expect(() => prepStyledComponents({})).rejects.toThrow();
     });
 
-    test('prepCss should throw an error if incorrect (empty) input is provided', async () => {
+    test('prepCss should throw an error if incorrect (empty) input is provided', () => {
       // @ts-ignore
-      await expect(() => prepComponent({})).rejects.toThrow();
+      expect(() => prepCss({})).toThrow();
     });
 
     test('prepStorybook should throw an error if incorrect (empty) input is provided', async () => {
       // @ts-ignore
-      await expect(() => prepComponent({})).rejects.toThrow();
+      await expect(() => prepStorybook({})).rejects.toThrow();
     });
 
-    test('prepDescription should throw an error if incorrect (empty) input is provided', async () => {
+    test('prepDescription should throw an error if incorrect (empty) input is provided', () => {
       // @ts-ignore
-      await expect(() => prepComponent({})).rejects.toThrow();
+      expect(() => prepDescription({})).toThrow();
     });
   });
 });

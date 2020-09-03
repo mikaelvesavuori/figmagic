@@ -27,8 +27,8 @@ export async function createTokens(
   return new Promise(async (resolve, reject) => {
     console.log(MsgWriteTokens);
     try {
-      const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
       await refresh(outputFolder);
+      const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
       await writeTokens(tokensPage, config);
       resolve(true);
     } catch (error) {

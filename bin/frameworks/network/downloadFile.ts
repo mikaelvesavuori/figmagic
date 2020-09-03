@@ -23,11 +23,11 @@ export async function downloadFile(url: string, folder: string, file: string): P
   await createFolder(folder);
 
   return new Promise((resolve, reject) => {
-    const PATH = `${folder}/${file}`;
-    console.log(MsgDownloadFileWritingFile(PATH));
-    const _file = fs.createWriteStream(PATH);
+    const path = `${folder}/${file}`;
+    console.log(MsgDownloadFileWritingFile(path));
+    const _file = fs.createWriteStream(path);
     response.body.pipe(_file);
     _file.on('error', () => reject('Error when downloading file!'));
-    _file.on('finish', () => resolve(PATH));
+    _file.on('finish', () => resolve(path));
   });
 }
