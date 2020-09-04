@@ -1,4 +1,4 @@
-import { processNestedCss } from '../../bin/usecases/usecaseInteractors/elements/processNestedCss';
+import { processNestedCss } from '../../bin/usecases/interactors/elements/processNestedCss';
 
 const css = `
 .ButtonError {

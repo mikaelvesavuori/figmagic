@@ -1,4 +1,4 @@
-import { parseElement } from '../../bin/usecases/usecaseInteractors/elements/parseElement';
+import { parseElement } from '../../bin/usecases/interactors/elements/parseElement';
 
 import { elementsPage } from '../../testdata/elements/elementsPage';
 

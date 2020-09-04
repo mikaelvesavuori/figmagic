@@ -25,7 +25,7 @@ async function main(): Promise<void> {
     const [, , ...CLI_ARGS] = process.argv;
     const userConfigPath = path.join(`${process.cwd()}`, `.figmagicrc`);
     const configuration = new Configuration(userConfigPath, ...CLI_ARGS);
-    const config: Config = configuration.getConfig();
+    const config: Config = await configuration.createConfig();
 
     // Get data
     const { recompileLocal, outputFolderBaseFile, outputFileName, token, url } = config;

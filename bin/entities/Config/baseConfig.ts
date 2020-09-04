@@ -32,7 +32,6 @@ export const baseConfig: Config = {
     templatePathStorybook: 'templates/story.js',
     templatePathStyled: 'templates/styled.jsx'
   },
-  testMode: false,
   token: '',
   url: '',
   usePostscriptFontNames: false

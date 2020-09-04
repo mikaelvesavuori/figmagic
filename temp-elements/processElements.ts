@@ -26,11 +26,9 @@ export async function processElements(
 
   const filteredElements = elementsPage.filter((element) => element.type === 'COMPONENT');
   const elements = addDescriptionToElements(filteredElements, components);
-  // TODO: Fix "any"; expect element (object) with dddddd
+  // TODO: Fix "any"; expect element (object)
   const parsedElements = await Promise.all(
-    elements.map(
-      async (element: any) => await parseElement(element, config.remSize, config.testMode)
-    )
+    elements.map(async (element: any) => await parseElement(element, config.remSize))
   );
 
   return parsedElements;

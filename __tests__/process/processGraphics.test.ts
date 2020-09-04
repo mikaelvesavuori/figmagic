@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 import { Config } from '../../bin/contracts/Config';
 
-import { processGraphics } from '../../bin/usecases/usecaseInteractors/graphics/processGraphics';
+import { processGraphics } from '../../bin/usecases/interactors/graphics/processGraphics';
 
 import { graphicsPage } from '../../testdata/graphicsPage';
 

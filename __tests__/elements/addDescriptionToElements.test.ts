@@ -1,4 +1,4 @@
-import { addDescriptionToElements } from '../../bin/usecases/usecaseInteractors/elements/addDescriptionToElements';
+import { addDescriptionToElements } from '../../bin/usecases/interactors/elements/addDescriptionToElements';
 
 import { filteredElements } from '../../testdata/elements/filteredElements';
 import { components } from '../../testdata/elements/components';

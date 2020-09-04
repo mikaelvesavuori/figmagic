@@ -328,7 +328,6 @@ Below is a complete set of what you can configure, together with the defaults.
     templatePathStorybook: 'templates/story.js',
     templatePathStyled: 'templates/styled.jsx'
   },
-  testMode: false,
   token: '',
   url: '',
   usePostscriptFontNames: false

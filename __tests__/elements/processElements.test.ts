@@ -1,4 +1,4 @@
-import { processElements } from '../../bin/usecases/usecaseInteractors/elements/processElements';
+import { processElements } from '../../bin/usecases/interactors/elements/processElements';
 
 import { elementsPage, elementsPageDoubleTexts } from '../../testdata/elementsPage';
 import { components } from '../../testdata/components';

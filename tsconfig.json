@@ -19,5 +19,5 @@
     "target": "esnext"
   },
   "include": ["./bin", "./index.ts"],
-  "exclude": ["./templates/*"]
+  "exclude": ["./templates/*", "./temp-elements"]
 }

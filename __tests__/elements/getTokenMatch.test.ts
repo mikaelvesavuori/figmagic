@@ -1,6 +1,6 @@
 import { Tokens } from '../../bin/contracts/Tokens';
 
-import { getTokenMatch } from '../../bin/usecases/usecaseInteractors/elements/getTokenMatch';
+import { getTokenMatch } from '../../bin/usecases/interactors/elements/getTokenMatch';
 
 /*
 describe('Failure cases', () => {

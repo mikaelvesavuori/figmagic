@@ -2,7 +2,7 @@ import { Config } from '../../contracts/Config';
 import { FRAME as Frame } from '../../contracts/Figma';
 import { WriteOperation } from '../../contracts/Write';
 
-import { processTokens } from '../../usecases/usecaseInteractors/tokens/processTokens';
+import { processTokens } from '../../usecases/interactors/tokens/processTokens';
 
 import { writeFile } from './writeFile';
 import { camelize } from '../string/camelize';

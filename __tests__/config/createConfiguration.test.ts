@@ -42,7 +42,6 @@ describe('Success cases', () => {
           templatePathStorybook: 'templates/story.js',
           templatePathStyled: 'templates/styled.jsx'
         },
-        testMode: false,
         token: 'asdf1234',
         url: '',
         usePostscriptFontNames: false

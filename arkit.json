@@ -20,19 +20,19 @@
     },
     {
       "type": "Usecase Interactors - Common",
-      "patterns": ["bin/usecases/usecaseInteractors/common/*.ts"]
+      "patterns": ["bin/usecases/interactors/common/*.ts"]
     },
     {
       "type": "Usecase Interactors - Elements",
-      "patterns": ["bin/usecases/usecaseInteractors/elements/*.ts"]
+      "patterns": ["bin/usecases/interactors/elements/*.ts"]
     },
     {
       "type": "Usecase Interactors - Graphics",
-      "patterns": ["bin/usecases/usecaseInteractors/graphics/*.ts"]
+      "patterns": ["bin/usecases/interactors/graphics/*.ts"]
     },
     {
       "type": "Usecase Interactors - Tokens",
-      "patterns": ["bin/usecases/usecaseInteractors/tokens/*.ts"]
+      "patterns": ["bin/usecases/interactors/tokens/*.ts"]
     },
     {
       "type": "Entities",

@@ -1,8 +1,8 @@
 import { FigmaData } from '../contracts/FigmaData';
 import { Config } from '../contracts/Config';
 
-import { createPage } from './usecaseInteractors/common/createPage';
-import { processGraphics } from './usecaseInteractors/graphics/processGraphics';
+import { createPage } from './interactors/common/createPage';
+import { processGraphics } from './interactors/graphics/processGraphics';
 
 import { refresh } from '../frameworks/filesystem/refresh';
 import { writeGraphics } from '../frameworks/filesystem/writeGraphics';

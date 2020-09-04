@@ -30,7 +30,6 @@ export type Config = {
     templatePathStorybook: string;
     templatePathStyled: string;
   };
-  testMode: boolean;
   token: string | null;
   url: string | null;
   usePostscriptFontNames: boolean;

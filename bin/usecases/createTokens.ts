@@ -2,7 +2,7 @@ import { FigmaData } from '../contracts/FigmaData';
 import { Config } from '../contracts/Config';
 import { FRAME as Frame } from '../contracts/Figma';
 
-import { createPage } from './usecaseInteractors/common/createPage';
+import { createPage } from './interactors/common/createPage';
 
 import { refresh } from '../frameworks/filesystem/refresh';
 import { writeTokens } from '../frameworks/filesystem/writeTokens';
@@ -24,7 +24,7 @@ export async function createTokens(config: Config, data: FigmaData): Promise<boo
     try {
       await refresh(config.outputFolderTokens);
       const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
-      await writeTokens(tokensPage, config);
+      await writeTokens(tokensPage, config); // TODO: Reverse the naming/structure of writeTokens <--> processTokens to be in line with other usecases
       resolve(true);
     } catch (error) {
       reject(error);

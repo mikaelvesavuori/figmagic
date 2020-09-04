@@ -1,8 +1,8 @@
 import { FigmaData } from '../contracts/FigmaData';
 import { Config } from '../contracts/Config';
 
-import { createPage } from './usecaseInteractors/common/createPage';
-import { processElements } from './usecaseInteractors/elements/processElements';
+import { createPage } from './interactors/common/createPage';
+import { processElements } from './interactors/elements/processElements';
 
 import { createFolder } from '../frameworks/filesystem/createFolder';
 import { writeElements } from '../frameworks/filesystem/writeElements';
