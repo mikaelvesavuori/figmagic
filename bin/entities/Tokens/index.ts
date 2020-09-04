@@ -15,7 +15,7 @@ import {
   ShadowTokens,
   SpacingTokens,
   ZindexTokens
-} from './Tokens';
+} from '../../contracts/Tokens';
 
 export const makeBorderWidthTokens = (obj: object): BorderWidthTokens => obj as BorderWidthTokens;
 export const makeColorTokens = (obj: object): ColorTokens => obj as ColorTokens;
@@ -34,3 +34,26 @@ export const makeRadiusTokens = (obj: object): RadiusTokens => obj as RadiusToke
 export const makeShadowTokens = (obj: object): ShadowTokens => obj as ShadowTokens;
 export const makeSpacingTokens = (obj: object): SpacingTokens => obj as SpacingTokens;
 export const makeZindexTokens = (obj: object): ZindexTokens => obj as ZindexTokens;
+
+export class Token {
+  constructor() {
+    //console.log('asdf)
+  }
+
+  makeBorderWidthTokens = (obj: object): BorderWidthTokens => obj as BorderWidthTokens;
+  makeColorTokens = (obj: object): ColorTokens => obj as ColorTokens;
+  makeDelayTokens = (obj: object): DelayTokens => obj as DelayTokens;
+  makeDurationTokens = (obj: object): DurationTokens => obj as DurationTokens;
+  makeEasingTokens = (obj: object): EasingTokens => obj as EasingTokens;
+  makeFontSizeTokens = (obj: object): FontSizeTokens => obj as FontSizeTokens;
+  makeFontTokens = (obj: object): FontTokens => obj as FontTokens;
+  makeFontWeightTokens = (obj: object): FontWeightTokens => obj as FontWeightTokens;
+  makeLetterSpacingTokens = (obj: object): LetterSpacingTokens => obj as LetterSpacingTokens;
+  makeLineHeightTokens = (obj: object): LineHeightTokens => obj as LineHeightTokens;
+  makeMediaQueryTokens = (obj: object): MediaQueryTokens => obj as MediaQueryTokens;
+  makeOpacityTokens = (obj: object): OpacityTokens => obj as OpacityTokens;
+  makeRadiusTokens = (obj: object): RadiusTokens => obj as RadiusTokens;
+  makeShadowTokens = (obj: object): ShadowTokens => obj as ShadowTokens;
+  makeSpacingTokens = (obj: object): SpacingTokens => obj as SpacingTokens;
+  makeZindexTokens = (obj: object): ZindexTokens => obj as ZindexTokens;
+}

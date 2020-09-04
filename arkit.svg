@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="643px" preserveAspectRatio="none" style="width:1759px;height:643px;" version="1.1" viewBox="0 0 1759 643" width="1759px" zoomAndPan="magnify"><defs/><g><!--MD5=[e80bd461753d6c5ec111731420959425]
+cluster Main--><path d="M25,163 L55,163 A4.5,4.5 0 0 1 58,166 L65,183.4844 L106,183.4844 A3,3 0 0 1 109,186.4844 L109,235 A3,3 0 0 1 106,238 L25,238 A3,3 0 0 1 22,235 L22,166 A3,3 0 0 1 25,163 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="65" y1="183.4844" y2="183.4844"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="30" x="26" y="177.0059">Main</text><!--MD5=[ed1d20ea533a2a0e7df5ba3c35e56ced]
+cluster Controllers--><path d="M136,197 L210,197 A4.5,4.5 0 0 1 213,200 L220,217.4844 L297,217.4844 A3,3 0 0 1 300,220.4844 L300,275 A3,3 0 0 1 297,278 L136,278 A3,3 0 0 1 133,275 L133,200 A3,3 0 0 1 136,197 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="133" x2="220" y1="217.4844" y2="217.4844"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="74" x="137" y="211.0059">Controllers</text><!--MD5=[6326b81c113285a9d7424a8f38b27174]
+cluster Usecases--><path d="M327,173 L392,173 A4.5,4.5 0 0 1 395,176 L402,193.4844 L474,193.4844 A3,3 0 0 1 477,196.4844 L477,337 A3,3 0 0 1 474,340 L327,340 A3,3 0 0 1 324,337 L324,176 A3,3 0 0 1 327,173 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="324" x2="402" y1="193.4844" y2="193.4844"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="65" x="328" y="187.0059">Usecases</text><!--MD5=[ffbffd7b01f9e7601b10668c327c9f05]
+cluster Usecase Interactors - Common--><path d="M504,174 L713,174 A4.5,4.5 0 0 1 716,177 L723,194.4844 L723,194.4844 A3,3 0 0 1 726,197.4844 L726,246 A3,3 0 0 1 723,249 L504,249 A3,3 0 0 1 501,246 L501,177 A3,3 0 0 1 504,174 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="501" x2="723" y1="194.4844" y2="194.4844"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="209" x="505" y="188.0059">Usecase Interactors - Common</text><!--MD5=[5f4ea9338cfb5a43b94aef063f74a3a1]
+cluster Usecase Interactors - Elements--><path d="M536,273 L747,273 A4.5,4.5 0 0 1 750,276 L757,293.4844 L1744.5,293.4844 A3,3 0 0 1 1747.5,296.4844 L1747.5,445 A3,3 0 0 1 1744.5,448 L536,448 A3,3 0 0 1 533,445 L533,276 A3,3 0 0 1 536,273 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="533" x2="757" y1="293.4844" y2="293.4844"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="211" x="537" y="287.0059">Usecase Interactors - Elements</text><!--MD5=[c9d6d11dd58d037c4533bde0faa05891]
+cluster Usecase Interactors - Graphics--><path d="M536.5,472 L745.5,472 A4.5,4.5 0 0 1 748.5,475 L755.5,492.4844 L913.5,492.4844 A3,3 0 0 1 916.5,495.4844 L916.5,628 A3,3 0 0 1 913.5,631 L536.5,631 A3,3 0 0 1 533.5,628 L533.5,475 A3,3 0 0 1 536.5,472 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="533.5" x2="755.5" y1="492.4844" y2="492.4844"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="209" x="537.5" y="486.0059">Usecase Interactors - Graphics</text><!--MD5=[114f4823940f317c08f5bedd633c9afd]
+cluster Entities--><path d="M359,24 L409,24 A4.5,4.5 0 0 1 412,27 L419,44.4844 L919,44.4844 A3,3 0 0 1 922,47.4844 L922,146 A3,3 0 0 1 919,149 L359,149 A3,3 0 0 1 356,146 L356,27 A3,3 0 0 1 359,24 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="356" x2="419" y1="44.4844" y2="44.4844"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="360" y="38.0059">Entities</text><ellipse cx="65.7487" cy="209.242" fill="#F8F8F8" rx="27.7487" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="35" x="48.2487" y="212.9842">index</text><ellipse cx="216.6025" cy="245.9205" fill="#F8F8F8" rx="67.6025" ry="15.9205" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="107" x="163.1025" y="249.6627">FigmagicController</text><ellipse cx="400.3714" cy="263.9743" fill="#F8F8F8" rx="60.3714" ry="14.4743" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="89" x="355.8714" y="267.7165">createElements</text><ellipse cx="400.5993" cy="308.8199" fill="#F8F8F8" rx="59.5993" ry="14.3199" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="87" x="357.0993" y="312.562">createGraphics</text><ellipse cx="400.7187" cy="220.1437" fill="#F8F8F8" rx="56.2187" ry="13.6437" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="78" x="361.7187" y="223.8859">createTokens</text><ellipse cx="613.2548" cy="220.242" fill="#F8F8F8" rx="48.2548" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="64" x="581.2548" y="223.9842">createPage</text><ellipse cx="853.0423" cy="393.1085" fill="#F8F8F8" rx="88.5423" ry="20.1085" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="155" x="775.5423" y="396.8506">addDescriptionToElements</text><ellipse cx="1052.4548" cy="418.091" fill="#F8F8F8" rx="58.4548" ry="14.091" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="84" x="1010.4548" y="421.8331">getDescription</text><ellipse cx="1052.6505" cy="373.1301" fill="#F8F8F8" rx="61.1505" ry="14.6301" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="91" x="1007.1505" y="376.8723">getElementType</text><ellipse cx="1672.0993" cy="372.8199" fill="#F8F8F8" rx="59.5993" ry="14.3199" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="87" x="1628.5993" y="376.562">getTokenMatch</text><ellipse cx="1052.343" cy="323.9686" fill="#F8F8F8" rx="77.843" ry="17.9686" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="131" x="986.843" y="327.7108">handleNestedElements</text><ellipse cx="1240.4695" cy="394.7939" fill="#F8F8F8" rx="76.9695" ry="17.7939" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="129" x="1175.9695" y="398.5361">parseCssFromElement</text><ellipse cx="853.2187" cy="343.1437" fill="#F8F8F8" rx="56.2187" ry="13.6437" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="78" x="814.2187" y="346.8859">parseElement</text><ellipse cx="1464.9056" cy="400.242" fill="#F8F8F8" rx="33.4056" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="43" x="1443.4056" y="403.9842">parsers</text><ellipse cx="1465.0414" cy="344.8083" fill="#F8F8F8" rx="114.5414" ry="25.3083" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="211" x="1359.5414" y="348.5505">parseTypographyStylingFromElement</text><ellipse cx="613.7352" cy="342.847" fill="#F8F8F8" rx="64.7352" ry="15.347" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="100" x="563.7352" y="346.5892">processElements</text><ellipse cx="1240.433" cy="322.0866" fill="#F8F8F8" rx="68.433" ry="16.0866" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="109" x="1185.933" y="325.8288">processNestedCss</text><ellipse cx="852.8051" cy="602.242" fill="#F8F8F8" rx="43.3051" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="57" x="824.3051" y="605.9842">getFileList</text><ellipse cx="853.163" cy="560.242" fill="#F8F8F8" rx="29.163" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="37" x="834.663" y="563.9842">getIds</text><ellipse cx="853.0477" cy="518.242" fill="#F8F8F8" rx="47.5477" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="63" x="821.5477" y="521.9842">getIdString</text><ellipse cx="613.4281" cy="540.1856" fill="#F8F8F8" rx="63.9281" ry="15.1856" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="98" x="564.4281" y="543.9278">processGraphics</text><ellipse cx="613.4619" cy="120.242" fill="#F8F8F8" rx="48.9619" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="65" x="580.9619" y="123.9842">baseConfig</text><!--MD5=[e31d130a28686bdd2d8307a742f15c8d]
+entity _Config--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="57" x="372" y="99"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="37" x="382" y="121.0059">Config</text><ellipse cx="613.608" cy="73.9216" fill="#F8F8F8" rx="70.108" ry="16.4216" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="113" x="557.108" y="77.6638">createConfiguration</text><ellipse cx="853.2046" cy="74.242" fill="#F8F8F8" rx="53.2046" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="71" x="817.7046" y="77.9842">parseCliArgs</text><!--MD5=[8d982352403349241a11b1ba829fae58]
+link _Config to baseConfig--><path d="M429.085,116.523 C461.972,117.146 517.683,118.203 559.096,118.988 " fill="none" id="_Config-&gt;baseConfig" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="564.328,119.087,555.405,114.918,559.3289,118.9927,555.2542,122.9166,564.328,119.087" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[8b90041d4a843fe566bc7c781386d951]
+link _Config to createConfiguration--><path d="M429.085,110.509 C460.751,104.206 513.577,93.691 554.425,85.56 " fill="none" id="_Config-&gt;createConfiguration" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="559.345,84.581,549.7375,82.414,554.4411,85.5566,551.2985,90.2603,559.345,84.581" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[594ff9a34a74a2e9c01b029559b0f874]
+link createConfiguration to parseCliArgs--><path d="M683.514,74 C718.745,74 761.104,74 794.536,74 " fill="none" id="createConfiguration-&gt;parseCliArgs" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="799.823,74,790.823,70,794.823,74,790.823,78,799.823,74" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[a0158201e805ee7219892e1de70e5960]
+link createElements to createPage--><path d="M446.765,254.561 C483.121,246.98 533.828,236.405 569.555,228.955 " fill="none" id="createElements-&gt;createPage" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="574.714,227.88,565.0873,225.7998,569.8191,228.8998,566.7191,233.6316,574.714,227.88" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[125096df3920c540cd18eee64bd470c9]
+link createElements to processElements--><path d="M443.493,274.291 C456.885,277.911 471.681,282.269 485,287 C517.814,298.656 554.065,314.923 579.497,326.923 " fill="none" id="createElements-&gt;processElements" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="584.117,329.112,577.6971,321.6431,579.5987,326.9707,574.2711,328.8723,584.117,329.112" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[250af0a5938fe4302c6aaad3cd02ea95]
+link createGraphics to createPage--><path d="M445.433,299.411 C458.371,296.058 472.424,291.888 485,287 C522.739,272.331 563.746,249.414 588.789,234.552 " fill="none" id="createGraphics-&gt;createPage" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="593.275,231.874,583.497,233.0529,588.9819,234.437,587.5978,239.9219,593.275,231.874" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[22b05a1c2866d869d212575558cb2fe9]
+link createGraphics to processGraphics--><path d="M409.338,323.406 C423.795,349.243 456.534,404.449 493,444 C521.819,475.257 561.207,504.888 586.75,522.75 " fill="none" id="createGraphics-&gt;processGraphics" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="591.039,525.73,585.9292,517.3104,586.9325,522.8776,581.3653,523.8808,591.039,525.73" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[b6ca0689385c7f179de4b31f551963ed]
+link createTokens to createPage--><path d="M456.662,220 C488.405,220 528.088,220 559.465,220 " fill="none" id="createTokens-&gt;createPage" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="564.824,220,555.824,216,559.824,220,555.824,224,564.824,220" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[94080402db329286e3cb0fad82d23893]
+link FigmagicController to createElements--><path d="M279.117,252.094 C298.441,254.005 319.745,256.112 338.991,258.016 " fill="none" id="FigmagicController-&gt;createElements" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="344.361,258.547,335.7991,253.6793,339.3853,258.0541,335.0105,261.6404,344.361,258.547" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[93fb1ca76bb43e2ed089d7baa9df75d9]
+link FigmagicController to createGraphics--><path d="M248.577,260.221 C267.759,268.674 293.013,279.228 316,287 C327.557,290.907 340.203,294.553 352.079,297.71 " fill="none" id="FigmagicController-&gt;createGraphics" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="357.116,299.032,349.4256,292.8792,352.2796,297.7633,347.3956,300.6174,357.116,299.032" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[20c913071ef86b77abc11a24428abae5]
+link FigmagicController to createTokens--><path d="M274.587,237.845 C297.653,234.55 324.112,230.77 346.723,227.54 " fill="none" id="FigmagicController-&gt;createTokens" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="351.784,226.817,342.3088,224.13,346.8343,227.5241,343.4401,232.0496,351.784,226.817" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[7c8266338b5a13de217e2768addffda1]
+link handleNestedElements to parseCssFromElement--><path d="M1097.2,338.928 C1108.11,342.764 1119.76,346.953 1130.5,351 C1152.69,359.363 1177.19,369.198 1197.33,377.446 " fill="none" id="handleNestedElements-&gt;parseCssFromElement" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="1202.09,379.398,1195.2659,372.2965,1197.4599,377.5105,1192.2459,379.7046,1202.09,379.398" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[e2b5c22e06f58fae5bc1e95fbddd101b]
+link handleNestedElements to parseTypographyStylingFromElement--><path d="M1107.17,336.938 C1124.98,340.64 1144.99,344.167 1163.5,346 C1224.23,352.013 1292.19,352.323 1348.11,350.885 " fill="none" id="handleNestedElements-&gt;parseTypographyStylingFromElement" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="1353.14,350.75,1344.0294,347.0087,1348.142,350.8928,1344.2579,355.0055,1353.14,350.75" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[c772665361aeef95f6563620740804e0]
+link handleNestedElements to processNestedCss--><path d="M1130.5,323.172 C1142.56,323.042 1155,322.909 1166.97,322.78 " fill="none" id="handleNestedElements-&gt;processNestedCss" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="1172.06,322.725,1163.0149,318.8281,1167.0603,322.7821,1163.1063,326.8276,1172.06,322.725" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[8e11093db2d0b606aab86c882a9fcef0]
+link <b>index</b> to _Config--><path d="M89.6515,202.534 C147.726,186.315 299.724,143.865 366.841,125.121 " fill="none" id="&lt;b&gt;index&lt;/b&gt;-&gt;_Config" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="371.91,123.705,362.1659,122.2721,367.0941,125.0493,364.3169,129.9775,371.91,123.705" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[21c58dea4558e048381d962987728dee]
+link <b>index</b> to FigmagicController--><path d="M90.1095,214.863 C109.957,219.791 139.036,227.012 164.195,233.26 " fill="none" id="&lt;b&gt;index&lt;/b&gt;-&gt;FigmagicController" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="169.171,234.495,161.401,228.4429,164.3185,233.2894,159.4721,236.2069,169.171,234.495" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[d74d4524bca5fbc4fa2bd4aba8aaa335]
+link parseCssFromElement to parsers--><path d="M1317.45,396.707 C1354.22,397.533 1396.74,398.488 1426.47,399.157 " fill="none" id="parseCssFromElement-&gt;parsers" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="1431.5,399.27,1422.5938,395.0653,1426.5013,399.1557,1422.4109,403.0632,1431.5,399.27" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[90732aa67a5ce93b0e287ace2a92a754]
+link parseElement to getDescription--><path d="M900.604,350.116 C914.321,353.407 928.993,358.163 941.5,365 C959.157,374.652 956.999,386.067 974.5,396 C982.943,400.792 992.509,404.607 1001.957,407.621 " fill="none" id="parseElement-&gt;getDescription" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="1006.88,409.125,999.4405,402.671,1002.098,407.6648,997.1042,410.3223,1006.88,409.125" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[14549a991326d34a9edca89b96afaac4]
+link parseElement to getElementType--><path d="M900.805,350.11 C929.164,354.417 965.514,359.939 995.408,364.48 " fill="none" id="parseElement-&gt;getElementType" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="1000.529,365.257,992.2322,359.9501,995.5858,364.5057,991.0302,367.8593,1000.529,365.257" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[342bbdb5a54baed19b7ee5fb8302b190]
+link parseElement to handleNestedElements--><path d="M905.375,338.058 C926.627,336.013 951.714,333.6 975.049,331.355 " fill="none" id="parseElement-&gt;handleNestedElements" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="980.311,330.849,970.9695,327.7288,975.334,331.3276,971.7352,335.692,980.311,330.849" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[465f3f5890b2fe8ebb66085d7a2528a2]
+link parsers to getTokenMatch--><path d="M1497.14,395.899 C1528.11,391.819 1576.36,385.465 1614.18,380.484 " fill="none" id="parsers-&gt;getTokenMatch" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="1619.21,379.822,1609.7624,377.0394,1614.2534,380.4791,1610.8137,384.97,1619.21,379.822" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[6f0b64f56d47e712764fd786223e0707]
+link parseTypographyStylingFromElement to getTokenMatch--><path d="M1563.1,358.262 C1580.67,360.662 1598.46,363.091 1614.38,365.266 " fill="none" id="parseTypographyStylingFromElement-&gt;getTokenMatch" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="1619.7,365.994,1611.3334,360.7979,1614.7472,365.3085,1610.2366,368.7223,1619.7,365.994" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[c75d2c56ece3671f15462c444574bf69]
+link processElements to addDescriptionToElements--><path d="M662.562,353.118 C696.937,360.355 743.738,370.208 782.221,378.31 " fill="none" id="processElements-&gt;addDescriptionToElements" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="787.352,379.39,779.369,373.6218,782.4592,378.36,777.721,381.4502,787.352,379.39" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[d6b8b0ed6cf333c05e9205029904812d]
+link processElements to parseElement--><path d="M678.146,343 C713.374,343 756.917,343 791.613,343 " fill="none" id="processElements-&gt;parseElement" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="796.666,343,787.666,339,791.666,343,787.666,347,796.666,343" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[20a99131679788d7f4eb2ae61cf1907a]
+link processGraphics to getFileList--><path d="M655.154,551.4817 C685.277,559.8991 727.367,571.4718 764.5,581 C780.27,585.0467 797.702,589.279 812.829,592.875 " fill="none" id="processGraphics-&gt;getFileList" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="817.865,594.069,810.0298,588.1016,812.9997,592.9161,808.1852,595.886,817.865,594.069" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[b15f1e1d35a2399b09b9481442c59065]
+link processGraphics to getIds--><path d="M674.125,545.021 C719.963,548.8811 781.58,554.0699 818.956,557.2174 " fill="none" id="processGraphics-&gt;getIds" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="824.29,557.6665,815.6578,552.9247,819.3077,557.2465,814.9858,560.8964,824.29,557.6665" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[415eb3b1ebe17f3bce8d22f05754a7da]
+link processGraphics to getIdString--><path d="M673.208,534.562 C713.041,530.872 765.105,526.049 802.769,522.56 " fill="none" id="processGraphics-&gt;getIdString" style="stroke: #000000; stroke-width: 0.5; stroke-dasharray: 7.0,7.0;"/><polygon fill="#000000" points="807.752,522.099,798.4213,518.9464,802.7733,522.5603,799.1594,526.9123,807.752,522.099" style="stroke: #000000; stroke-width: 0.5;"/><script type="text/plantuml"><![CDATA[MD5=[c4cb8665a84061068a86644c8f1506d4]
+@startuml
+
+scale max 1920 width
+left to right direction
+
+skinparam nodesep 16
+skinparam ranksep 33
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam roundCorner 6
+skinparam dpi 150
+skinparam arrowColor black
+skinparam arrowThickness 0.5
+skinparam packageTitleAlignment left
+
+skinparam usecase {
+  borderThickness 0.5
+}
+
+skinparam rectangle {
+  borderThickness 0.5
+}
+
+skinparam component {
+  borderThickness 1
+}
+
+
+package "Main" {
+  (<b>index</b>)
+}
+
+
+package "Controllers" {
+  (FigmagicController)
+}
+
+package "Usecases" {
+  (createElements)
+  (createGraphics)
+  (createTokens)
+}
+
+package "Usecase Interactors -Common" {
+  (createPage)
+}
+
+package "Usecase Interactors -Elements" {
+  (addDescriptionToElements)
+  (getDescription)
+  (getElementType)
+  (getTokenMatch)
+  (handleNestedElements)
+  (parseCssFromElement)
+  (parseElement)
+  (parsers)
+  (parseTypographyStylingFromElement)
+  (processElements)
+  (processNestedCss)
+}
+
+package "Usecase Interactors -Graphics" {
+  (getFileList)
+  (getIds)
+  (getIdString)
+  (processGraphics)
+}
+
+
+package "Entities" {
+  (baseConfig)
+  rectangle "Config" as _Config
+  (createConfiguration)
+  (parseCliArgs)
+}
+
+_Config ..> (baseConfig)
+_Config ..> (createConfiguration)
+(createConfiguration) ..> (parseCliArgs)
+(createElements) --> (createPage)
+(createElements) --> (processElements)
+(createGraphics) --> (createPage)
+(createGraphics) --> (processGraphics)
+(createTokens) --> (createPage)
+(FigmagicController) --> (createElements)
+(FigmagicController) --> (createGraphics)
+(FigmagicController) --> (createTokens)
+(handleNestedElements) ..> (parseCssFromElement)
+(handleNestedElements) ..> (parseTypographyStylingFromElement)
+(handleNestedElements) ..> (processNestedCss)
+(<b>index</b>) ---[thickness=1]> _Config
+(<b>index</b>) --[thickness=1]> (FigmagicController)
+(parseCssFromElement) ..> (parsers)
+(parseElement) ..> (getDescription)
+(parseElement) ..> (getElementType)
+(parseElement) ..> (handleNestedElements)
+(parsers) ..> (getTokenMatch)
+(parseTypographyStylingFromElement) ..> (getTokenMatch)
+(processElements) ..> (addDescriptionToElements)
+(processElements) ..> (parseElement)
+(processGraphics) ..> (getFileList)
+(processGraphics) ..> (getIds)
+(processGraphics) ..> (getIdString)
+
+@enduml
+
+
+' View and edit on https://arkit.pro
+]]></script></g></svg>

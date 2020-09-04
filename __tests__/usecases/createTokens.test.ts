@@ -11,10 +11,10 @@ describe('Success cases', () => {
   test('It should write tokens given a valid configuration, valid data and an output folder', async () => {
     const config = testConfig;
     const data = figmaTestResponse;
-    const outputFolderTokens = '__test-tokens-success__';
+    config.outputFolderTokens = '__test-tokens-success__';
     // @ts-ignore
-    await expect(createTokens(config, data, outputFolderTokens)).resolves.toBe(true);
-    trash(outputFolderTokens);
+    await expect(createTokens(config, data)).resolves.toBe(true);
+    trash(config.outputFolderTokens);
   });
 });
 
@@ -28,11 +28,11 @@ describe('Failure cases', () => {
     const config = testConfig;
     const data = { ...figmaTestResponse };
     data.document.children = [];
-    const outputFolderTokens = '__test-tokens-fail__';
+    config.outputFolderTokens = '__test-tokens-fail__';
     await expect(
       // @ts-ignore
-      createTokens(config, data, outputFolderTokens)
+      createTokens(config, data)
     ).rejects.toThrowError();
-    trash(outputFolderTokens);
+    trash(config.outputFolderTokens);
   });
 });

@@ -1,4 +1,4 @@
-import { getIds } from '../../bin/app/process/graphics/getIds';
+import { getIds } from '../../bin/usecases/usecaseInteractors/graphics/getIds';
 
 import { graphicsPage } from '../../testdata/graphicsPage';
 

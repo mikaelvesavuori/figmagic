@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-import { ImageResponse } from '../../app/contracts/ImageResponse';
+import { ImageResponse } from '../../contracts/ImageResponse';
 
 import { ErrorGetFromApi } from '../errors/errors';
 

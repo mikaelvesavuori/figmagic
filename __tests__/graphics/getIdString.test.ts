@@ -1,4 +1,4 @@
-import { getIdString } from '../../bin/app/process/graphics/getIdString';
+import { getIdString } from '../../bin/usecases/usecaseInteractors/graphics/getIdString';
 
 import { graphicsIds } from '../../testdata/graphics/getGraphics';
 

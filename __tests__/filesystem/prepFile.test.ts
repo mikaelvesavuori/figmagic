@@ -4,7 +4,7 @@ import {
   PrepCss,
   PrepStorybook,
   PrepDescription
-} from '../../bin/app/contracts/PrepFile';
+} from '../../bin/contracts/PrepFile';
 
 import {
   prepComponent,

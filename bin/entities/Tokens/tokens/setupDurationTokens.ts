@@ -1,6 +1,6 @@
-import { FRAME as Frame } from '../../../app/contracts/Figma';
+import { FRAME as Frame } from '../../../contracts/Figma';
 import { makeDurationTokens } from '../index';
-import { DurationTokens } from '../Tokens';
+import { DurationTokens } from '../../../contracts/Tokens';
 
 import { camelize } from '../../../frameworks/string/camelize';
 

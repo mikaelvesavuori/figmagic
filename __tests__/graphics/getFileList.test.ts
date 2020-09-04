@@ -1,4 +1,4 @@
-import { getFileList } from '../../bin/app/process/graphics/getFileList';
+import { getFileList } from '../../bin/usecases/usecaseInteractors/graphics/getFileList';
 
 import { processGraphicsTestData, graphicsIds } from '../../testdata/graphics/getGraphics';
 

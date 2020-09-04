@@ -1,4 +1,4 @@
-import { Config } from '../../entities/Config/Config';
+import { Config } from '../../contracts/Config';
 
 import { downloadFile } from '../network/downloadFile';
 

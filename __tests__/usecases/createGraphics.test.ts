@@ -18,10 +18,10 @@ describe('Failure cases', () => {
   test('It should throw an error if misconfigured (missing token and URL)', async () => {
     const config = testConfig;
     const data = figmaTestResponse;
-    const outputFolderGraphics = '__test-graphics__';
+    config.outputFolderGraphics = '__test-graphics__';
     // @ts-ignore
-    await expect(createGraphics(config, data, outputFolderGraphics)).rejects.toThrowError();
-    trash(outputFolderGraphics);
+    await expect(createGraphics(config, data)).rejects.toThrowError();
+    trash(config.outputFolderGraphics);
   });
 });
 
@@ -31,11 +31,11 @@ describe('Success cases', () => {
     config.token = process.env.FIGMA_TOKEN;
     config.url = process.env.FIGMA_URL;
     const data = figmaTestResponse;
-    const outputFolderGraphics = '__test-graphics-success__';
+    config.outputFolderGraphics = '__test-graphics-success__';
     // @ts-ignore
-    await createGraphics(config, data, outputFolderGraphics);
-    const fileExists = fs.existsSync(outputFolderGraphics);
+    await createGraphics(config, data);
+    const fileExists = fs.existsSync(config.outputFolderGraphics);
     expect(fileExists).toBeTruthy();
-    trash(outputFolderGraphics);
+    trash(config.outputFolderGraphics);
   });
 });

@@ -1,6 +1,6 @@
-import { FRAME as Frame } from '../../../app/contracts/Figma';
+import { FRAME as Frame } from '../../../contracts/Figma';
 import { makeDelayTokens } from '../index';
-import { DelayTokens } from '../Tokens';
+import { DelayTokens } from '../../../contracts/Tokens';
 
 import { camelize } from '../../../frameworks/string/camelize';
 

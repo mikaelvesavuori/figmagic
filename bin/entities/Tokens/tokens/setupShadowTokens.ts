@@ -1,6 +1,6 @@
-import { FRAME as Frame } from '../../../app/contracts/Figma';
+import { FRAME as Frame } from '../../../contracts/Figma';
 import { makeShadowTokens } from '../index';
-import { ShadowTokens } from '../Tokens';
+import { ShadowTokens } from '../../../contracts/Tokens';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';

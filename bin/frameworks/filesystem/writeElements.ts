@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 
-import { Config } from '../../entities/Config/Config';
-import { WriteOperation } from '../../app/contracts/Write';
+import { Config } from '../../contracts/Config';
+import { WriteOperation } from '../../contracts/Write';
 
 import { toPascalCase } from '../string/toPascalCase';
 import { writeFile } from './writeFile';

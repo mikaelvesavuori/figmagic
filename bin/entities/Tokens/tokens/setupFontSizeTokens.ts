@@ -1,6 +1,6 @@
-import { FRAME as Frame } from '../../../app/contracts/Figma';
+import { FRAME as Frame } from '../../../contracts/Figma';
 import { makeFontSizeTokens } from '../index';
-import { FontSizeTokens } from '../Tokens';
+import { FontSizeTokens } from '../../../contracts/Tokens';
 
 import { camelize } from '../../../frameworks/string/camelize';
 

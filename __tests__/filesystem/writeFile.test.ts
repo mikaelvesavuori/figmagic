@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import trash from 'trash';
 
-import { WriteOperation } from '../../bin/app/contracts/Write';
+import { WriteOperation } from '../../bin/contracts/Write';
 
 import { writeFile } from '../../bin/frameworks/filesystem/writeFile';
 

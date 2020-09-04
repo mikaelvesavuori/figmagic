@@ -1,4 +1,4 @@
-import { WriteOperation } from '../../app/contracts/Write';
+import { WriteOperation } from '../../contracts/Write';
 
 import { createFolder } from './createFolder';
 import { prepareWrite } from './prepareWrite';

@@ -3,18 +3,18 @@ import { parseCliArgs } from './parseCliArgs';
 import { loadFile } from '../../frameworks/filesystem/loadFile';
 
 import {
-  ErrorCreateConfiguration,
-  ErrorCreateConfigurationNoDefault
-} from '../../frameworks/errors/errors';
-
-import {
   MsgConfigDebugEnv,
   MsgConfigDebugCli,
   MsgConfigDebugRc,
   MsgConfigDebugFinal
 } from '../../frameworks/messages/messages';
 
-import { Config } from './Config';
+import {
+  ErrorCreateConfiguration,
+  ErrorCreateConfigurationNoDefault
+} from '../../frameworks/errors/errors';
+
+import { Config } from '../../contracts/Config';
 
 /**
  * @description Create configuration object
@@ -25,19 +25,19 @@ import { Config } from './Config';
  * 3. Environment variables from `.env`
  * Non-provided values should fall back to defaults outlined in `meta/config.ts`
  *
- * @param defaultConfig Default configuration object
+ * @param baseConfig Default configuration object
  * @param userConfigPath Path to user configuration file, based out of user's current working directory
  * @param cliArgs Array of any user-provided command line arguments and flags
  */
 export async function createConfiguration(
-  defaultConfig: Config,
+  baseConfig: Config,
   userConfigPath: string,
   ...cliArgs: any[]
 ): Promise<Config> {
-  if (!defaultConfig) throw new Error(ErrorCreateConfigurationNoDefault);
+  if (!baseConfig) throw new Error(ErrorCreateConfigurationNoDefault);
   if (!userConfigPath) throw new Error(ErrorCreateConfiguration);
 
-  const DEFAULT_CONFIG: any = defaultConfig;
+  const DEFAULT_CONFIG: any = baseConfig;
 
   // RC file configuration
   let RC_CONFIG: any = {};
@@ -55,7 +55,7 @@ export async function createConfiguration(
   };
 
   // CLI arguments configuration
-  const CLI_CONFIG = parseCliArgs(cliArgs) as Config;
+  const CLI_CONFIG = parseCliArgs(baseConfig, cliArgs) as Config;
 
   // Merge configurations in order of prioritization
   // 1. Base required config

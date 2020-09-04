@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 
-import { Config } from '../../bin/entities/Config/Config';
+import { Config } from '../../bin/contracts/Config';
 
-import { processGraphics } from '../../bin/app/process/processGraphics';
+import { processGraphics } from '../../bin/usecases/usecaseInteractors/graphics/processGraphics';
 
 import { graphicsPage } from '../../testdata/graphicsPage';
 

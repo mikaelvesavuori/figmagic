@@ -1,10 +1,11 @@
-import { Config } from '../../entities/Config/Config';
-import { FRAME as Frame } from '../../app/contracts/Figma';
-import { WriteOperation } from '../../app/contracts/Write';
+import { Config } from '../../contracts/Config';
+import { FRAME as Frame } from '../../contracts/Figma';
+import { WriteOperation } from '../../contracts/Write';
 
-import { camelize } from '../string/camelize';
-import { processTokens } from '../../app/process/processTokens';
+import { processTokens } from '../../usecases/usecaseInteractors/tokens/processTokens';
+
 import { writeFile } from './writeFile';
+import { camelize } from '../string/camelize';
 
 import { acceptedTokenTypes } from '../system/acceptedTokenTypes';
 import { ErrorWriteTokens, ErrorWriteTokensNoSettings } from '../errors/errors';

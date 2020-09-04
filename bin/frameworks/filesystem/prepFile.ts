@@ -1,11 +1,11 @@
-import { FileContentWithPath } from '../../app/contracts/Write';
+import { FileContentWithPath } from '../../contracts/Write';
 import {
   PrepComponent,
   PrepStyledComponents,
   PrepCss,
   PrepStorybook,
   PrepDescription
-} from '../../app/contracts/PrepFile';
+} from '../../contracts/PrepFile';
 
 import { loadFile } from './loadFile';
 

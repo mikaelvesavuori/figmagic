@@ -1,11 +1,11 @@
-import { GetFileDataOperation, FileContentWithPath } from '../../app/contracts/Write';
+import { GetFileDataOperation, FileContentWithPath } from '../../contracts/Write';
 import {
   PrepComponent,
   PrepCss,
   PrepDescription,
   PrepStorybook,
   PrepStyledComponents
-} from '../../app/contracts/PrepFile';
+} from '../../contracts/PrepFile';
 
 import {
   prepComponent,

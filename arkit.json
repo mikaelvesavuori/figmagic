@@ -7,24 +7,36 @@
       "patterns": ["index.ts"]
     },
     {
-      "type": "Config",
-      "patterns": ["bin/functions/config/*.ts"]
+      "type": "App",
+      "patterns": ["bin/app/**/*.ts"]
     },
     {
-      "type": "Filesystem",
-      "patterns": ["bin/functions/filesystem/*.ts"]
+      "type": "Controllers",
+      "patterns": ["bin/controllers/*.ts"]
     },
     {
-      "type": "Helpers",
-      "patterns": ["bin/functions/helpers/*.ts"]
+      "type": "Usecases",
+      "patterns": ["bin/usecases/*.ts"]
     },
     {
-      "type": "Process",
-      "patterns": ["bin/functions/process/*.ts"]
+      "type": "Usecase Interactors - Common",
+      "patterns": ["bin/usecases/usecaseInteractors/common/*.ts"]
     },
     {
-      "type": "Tokens",
-      "patterns": ["bin/entities/Tokens/tokens/*.ts"]
+      "type": "Usecase Interactors - Elements",
+      "patterns": ["bin/usecases/usecaseInteractors/elements/*.ts"]
+    },
+    {
+      "type": "Usecase Interactors - Graphics",
+      "patterns": ["bin/usecases/usecaseInteractors/graphics/*.ts"]
+    },
+    {
+      "type": "Usecase Interactors - Tokens",
+      "patterns": ["bin/usecases/usecaseInteractors/tokens/*.ts"]
+    },
+    {
+      "type": "Entities",
+      "patterns": ["bin/entities/**/*.ts"]
     }
   ],
   "output": [
@@ -37,24 +49,36 @@
           "components": ["Main"]
         },
         {
-          "type": "Config",
-          "components": ["Config"]
+          "type": "App",
+          "components": ["App"]
         },
         {
-          "type": "Filesystem",
-          "components": ["Filesystem"]
+          "type": "Controllers",
+          "components": ["Controllers"]
         },
         {
-          "type": "Helpers",
-          "components": ["Helpers"]
+          "type": "Usecases",
+          "components": ["Usecases"]
         },
         {
-          "type": "Process",
-          "components": ["Process"]
+          "type": "Usecase Interactors - Common",
+          "components": ["Usecase Interactors - Common"]
         },
         {
-          "type": "Tokens",
-          "components": ["Tokens"]
+          "type": "Usecase Interactors - Elements",
+          "components": ["Usecase Interactors - Elements"]
+        },
+        {
+          "type": "Usecase Interactors - Graphics",
+          "components": ["Usecase Interactors - Graphics"]
+        },
+        {
+          "type": "Usecase Interactors - Tokens",
+          "components": ["Usecase Interactors - Tokens"]
+        },
+        {
+          "type": "Entities",
+          "components": ["Entities"]
         }
       ]
     }

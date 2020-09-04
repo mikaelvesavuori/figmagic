@@ -4,12 +4,12 @@
 import * as path from 'path';
 import dotenv from 'dotenv';
 
-import { FigmaData } from './bin/app/contracts/FigmaData';
-import { Config } from './bin/entities/Config/Config';
-import { defaultConfig } from './bin/entities/Config/defaultConfig';
-import { createConfiguration } from './bin/entities/Config/createConfiguration';
+import { Configuration } from './bin/entities/Config/index';
 
-import { FigmagicController } from './bin/app/controllers/FigmagicController';
+import { FigmaData } from './bin/contracts/FigmaData';
+import { Config } from './bin/contracts/Config';
+
+import { FigmagicController } from './bin/controllers/FigmagicController';
 
 import { getData } from './bin/frameworks/network/getData';
 import { writeBaseJson } from './bin/frameworks/filesystem/writeBaseJson';
@@ -18,19 +18,14 @@ import { colors } from './bin/frameworks/system/colors';
 /**
  * @description Initialize and setup Figmagic (environment; configuration; data) before handing over to the controller
  */
-async function main(baseConfiguration: Config): Promise<void> {
+async function main(): Promise<void> {
   try {
-    // Setup environment
+    // Setup environment and user configuration
     dotenv.config();
     const [, , ...CLI_ARGS] = process.argv;
     const userConfigPath = path.join(`${process.cwd()}`, `.figmagicrc`);
-
-    // Get user configuration
-    const config: Config = await createConfiguration(
-      baseConfiguration,
-      userConfigPath,
-      ...CLI_ARGS
-    );
+    const configuration = new Configuration(userConfigPath, ...CLI_ARGS);
+    const config: Config = configuration.getConfig();
 
     // Get data
     const { recompileLocal, outputFolderBaseFile, outputFileName, token, url } = config;
@@ -52,5 +47,4 @@ async function main(baseConfiguration: Config): Promise<void> {
   }
 }
 
-// Initialize with default configuration
-main(defaultConfig);
+main();

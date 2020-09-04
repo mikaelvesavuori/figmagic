@@ -2,7 +2,7 @@ import trash from 'trash';
 
 import { writeTokens } from '../../bin/frameworks/filesystem/writeTokens';
 
-import { defaultConfig } from '../../bin/entities/Config/defaultConfig';
+import { baseConfig } from '../../bin/entities/Config/baseConfig';
 import { colorFrame } from '../../testdata/frames/colorFrame';
 import { spacingFrame } from '../../testdata/frames/spacingFrame';
 import { fontFrame } from '../../testdata/frames/fontFrame';
@@ -18,7 +18,7 @@ import { zIndicesFrame } from '../../testdata/frames/zIndicesFrame';
 
 // Set temp folder
 const TEMP_FOLDER = `__tokens__`;
-defaultConfig.outputFolderTokens = TEMP_FOLDER;
+baseConfig.outputFolderTokens = TEMP_FOLDER;
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
@@ -56,7 +56,7 @@ describe('Success cases', () => {
       zIndicesFrame
     ];
 
-    await expect(writeTokens(TOKENS, defaultConfig)).resolves.toBe(true);
+    await expect(writeTokens(TOKENS, baseConfig)).resolves.toBe(true);
     await trash(TEMP_FOLDER);
   });
 

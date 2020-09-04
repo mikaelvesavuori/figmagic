@@ -11,6 +11,7 @@ export const ErrorCreateEnumStringOutOfObject = `${colors.FgRed}No object provid
 export const ErrorCreateFolder = `${colors.FgRed}No directory specified for createFolder()!`;
 export const ErrorCreateImportStringFromList = `${colors.FgRed}No "importArray" provided to createImportStringFromList()!`;
 export const ErrorCreateImportStringFromListZeroLength = `${colors.FgRed}Provided "importArray" is zero-length when calling createImportStringFromList()!`;
+export const ErrorCreateElements = `${colors.FgRed}Missing arguments provided to createElements()!`;
 export const ErrorCreateGraphics = `${colors.FgRed}Missing arguments provided to createGraphics()!`;
 export const ErrorCreatePage = `${colors.FgRed}No pages provided to createPage()!`;
 export const ErrorCreateTokens = `${colors.FgRed}Missing required arguments when calling createTokens()!`;

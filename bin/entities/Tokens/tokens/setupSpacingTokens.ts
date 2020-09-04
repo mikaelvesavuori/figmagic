@@ -1,6 +1,6 @@
-import { FRAME as Frame } from '../../../app/contracts/Figma';
+import { FRAME as Frame } from '../../../contracts/Figma';
 import { makeSpacingTokens } from '../index';
-import { SpacingTokens } from '../Tokens';
+import { SpacingTokens } from '../../../contracts/Tokens';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';

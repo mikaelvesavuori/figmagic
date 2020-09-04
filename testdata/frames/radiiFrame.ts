@@ -1,4 +1,4 @@
-import { FRAME as Frame } from '../../bin/app/contracts/Figma';
+import { FRAME as Frame } from '../../bin/contracts/Figma';
 
 export const radiiFrame: Frame = {
   id: '2657:106',

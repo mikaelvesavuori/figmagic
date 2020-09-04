@@ -9,8 +9,8 @@
   "outputFolderElements": "elements",
   "spacingUnit": "rem",
   "usePostscriptFontNames": true,
-	"syncElements": false,
-	"syncGraphics": true,
+	"syncElements": true,
+	"syncGraphics": false,
   "token": "35475-91f7e693-3585-464b-87d5-6d0592e0fdad",
   "url": "K39TRbltDVcWFlpzw9r7Zh"
 }

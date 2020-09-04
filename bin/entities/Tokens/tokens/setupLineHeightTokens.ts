@@ -1,6 +1,6 @@
-import { FRAME as Frame } from '../../../app/contracts/Figma';
+import { FRAME as Frame } from '../../../contracts/Figma';
 import { makeLineHeightTokens } from '../index';
-import { LineHeightTokens } from '../Tokens';
+import { LineHeightTokens } from '../../../contracts/Tokens';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';

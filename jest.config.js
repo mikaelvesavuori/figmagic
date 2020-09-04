@@ -5,6 +5,7 @@ module.exports = {
   transform: {
     '^.+\\.ts$': 'ts-jest'
   },
+  setupFiles: ['<rootDir>/jest.env.js'],
   moduleFileExtensions: ['js', 'ts'],
   testMatch: ['<rootDir>/__tests__/**/*.test.ts'],
   testPathIgnorePatterns: ['/node_modules/'],

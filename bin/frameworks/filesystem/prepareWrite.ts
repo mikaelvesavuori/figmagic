@@ -1,4 +1,4 @@
-import { WriteOperation, GetFileDataOperation } from '../../app/contracts/Write';
+import { WriteOperation, GetFileDataOperation } from '../../contracts/Write';
 
 import { getElement, getText, getExtraProps, getImports } from './getDataHelpers';
 import { getFileContentAndPath } from '../filesystem/getFileContentAndPath';

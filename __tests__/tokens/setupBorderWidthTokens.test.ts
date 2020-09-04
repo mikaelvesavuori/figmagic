@@ -1,7 +1,7 @@
 //import { BorderWidthTokens } from '../bin/entities/Tokens/Tokens';
 import { setupBorderWidthTokens } from '../../bin/entities/Tokens/tokens/setupBorderWidthTokens';
 
-import { FRAME as Frame } from '../../bin/app/contracts/Figma';
+import { FRAME as Frame } from '../../bin/contracts/Figma';
 
 import {
   borderWidthsFrame,

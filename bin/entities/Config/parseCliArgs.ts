@@ -1,6 +1,4 @@
-import { defaultConfig } from './defaultConfig';
-
-import { ErrorParseCliArgs } from '../../frameworks/errors/errors';
+import { Config } from '../../contracts/Config';
 
 import {
   WarnParseCliArgsOutputFormat,
@@ -9,6 +7,7 @@ import {
   WarnParseCliArgsLetterSpacingUnit,
   WarnParseCliArgsSpacingUnit
 } from '../../frameworks/warnings/warnings';
+import { ErrorParseCliArgs } from '../../frameworks/errors/errors';
 
 /**
  * @description Parse CLI arguments and return config object
@@ -16,7 +15,7 @@ import {
  * @param argsArray Array of string arguments
  */
 // TODO: Add real return type
-export function parseCliArgs(argsArray: any[]): any {
+export function parseCliArgs(baseConfig: Config, argsArray: any[]): any {
   if (!argsArray) throw new Error(ErrorParseCliArgs);
 
   if (argsArray.length === 0) return {};
@@ -89,7 +88,7 @@ export function parseCliArgs(argsArray: any[]): any {
           let outputTokenFormat = argsArray[index + 1].toLowerCase();
           if (!['mjs', 'js'].includes(outputTokenFormat)) {
             console.warn(WarnParseCliArgsOutputFormat);
-            outputTokenFormat = defaultConfig.outputTokenFormat;
+            outputTokenFormat = baseConfig.outputTokenFormat;
           }
           accumulatedConfig.outputTokenFormat = outputTokenFormat;
           break;
@@ -100,7 +99,7 @@ export function parseCliArgs(argsArray: any[]): any {
           let fontUnit = argsArray[index + 1].toLowerCase();
           if (!['rem', 'em'].includes(fontUnit)) {
             console.warn(WarnParseCliArgsFontUnit);
-            fontUnit = defaultConfig.fontUnit;
+            fontUnit = baseConfig.fontUnit;
           }
           accumulatedConfig.fontUnit = fontUnit;
           break;
@@ -111,7 +110,7 @@ export function parseCliArgs(argsArray: any[]): any {
           let letterSpacingUnit = argsArray[index + 1].toLowerCase();
           if (!['em', 'px'].includes(letterSpacingUnit)) {
             console.warn(WarnParseCliArgsLetterSpacingUnit);
-            letterSpacingUnit = defaultConfig.letterSpacingUnit;
+            letterSpacingUnit = baseConfig.letterSpacingUnit;
           }
           accumulatedConfig.letterSpacingUnit = letterSpacingUnit;
           break;
@@ -122,7 +121,7 @@ export function parseCliArgs(argsArray: any[]): any {
           let opacitiesUnit = argsArray[index + 1].toLowerCase();
           if (!['float', 'percent'].includes(opacitiesUnit)) {
             console.warn(WarnParseCliArgsOpacitiesUnit);
-            opacitiesUnit = defaultConfig.opacitiesUnit;
+            opacitiesUnit = baseConfig.opacitiesUnit;
           }
           accumulatedConfig.opacitiesUnit = opacitiesUnit;
           break;
@@ -133,7 +132,7 @@ export function parseCliArgs(argsArray: any[]): any {
           let spacingUnit = argsArray[index + 1].toLowerCase();
           if (!['rem', 'em'].includes(spacingUnit)) {
             console.warn(WarnParseCliArgsSpacingUnit);
-            spacingUnit = defaultConfig.spacingUnit;
+            spacingUnit = baseConfig.spacingUnit;
           }
           accumulatedConfig.spacingUnit = spacingUnit;
           break;

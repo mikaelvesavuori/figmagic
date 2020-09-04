@@ -1,5 +1,5 @@
 import { parseCliArgs } from '../../bin/entities/Config/parseCliArgs';
-import { defaultConfig } from '../../bin/entities/Config/defaultConfig';
+import { baseConfig } from '../../bin/entities/Config/baseConfig';
 
 describe('Failure cases', () => {
   test('It should throw an error if no arguments array is passed', () => {
@@ -184,7 +184,7 @@ describe('Success cases', () => {
   test('It should return default value for outputTokenFormat if passing invalid value (long-hand)', () => {
     expect(parseCliArgs(['--outputTokenFormat', 'asdf'])).toEqual(
       expect.objectContaining({
-        outputTokenFormat: defaultConfig.outputTokenFormat
+        outputTokenFormat: baseConfig.outputTokenFormat
       })
     );
   });
@@ -211,7 +211,7 @@ describe('Success cases', () => {
   test('It should return default value for fontUnit if passing invalid value (long-hand)', () => {
     expect(parseCliArgs(['--fontUnit', 'asdf'])).toEqual(
       expect.objectContaining({
-        fontUnit: defaultConfig.fontUnit
+        fontUnit: baseConfig.fontUnit
       })
     );
   });
@@ -240,7 +240,7 @@ describe('Success cases', () => {
   test('It should return default value for letterSpacingUnit if passing invalid value', () => {
     expect(parseCliArgs(['--letterSpacingUnit', 'asdf'])).toEqual(
       expect.objectContaining({
-        letterSpacingUnit: defaultConfig.letterSpacingUnit
+        letterSpacingUnit: baseConfig.letterSpacingUnit
       })
     );
   });
@@ -269,7 +269,7 @@ describe('Success cases', () => {
   test('It should return default value for opacitiesUnit if passing invalid value', () => {
     expect(parseCliArgs(['--opacitiesUnit', 'asdf'])).toEqual(
       expect.objectContaining({
-        opacitiesUnit: defaultConfig.opacitiesUnit
+        opacitiesUnit: baseConfig.opacitiesUnit
       })
     );
   });
@@ -296,7 +296,7 @@ describe('Success cases', () => {
   test('It should return default value for spacingUnit if passing invalid value', () => {
     expect(parseCliArgs(['--spacingUnit', 'asdf'])).toEqual(
       expect.objectContaining({
-        spacingUnit: defaultConfig.spacingUnit
+        spacingUnit: baseConfig.spacingUnit
       })
     );
   });

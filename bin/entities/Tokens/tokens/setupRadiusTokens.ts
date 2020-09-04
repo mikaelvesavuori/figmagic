@@ -1,6 +1,6 @@
-import { FRAME as Frame } from '../../../app/contracts/Figma';
+import { FRAME as Frame } from '../../../contracts/Figma';
 import { makeRadiusTokens } from '../index';
-import { RadiusTokens } from '../Tokens';
+import { RadiusTokens } from '../../../contracts/Tokens';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
