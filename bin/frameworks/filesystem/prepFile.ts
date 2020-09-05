@@ -39,13 +39,12 @@ export const prepComponent = async (data: PrepComponent): Promise<FileContentWit
   const SUFFIX = 'Styled';
   const path = templates.templatePathReact;
 
-  const template = await loadFile(path, true);
-  template
-    .replace(/{{NAME}}/gi, name)
-    .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`)
-    .replace(/{{EXTRA_PROPS}}/gi, extraProps)
-    .replace(/\s>/gi, '>')
-    .replace(/{{TEXT}}/gi, text);
+  let template = await loadFile(path, true);
+  template = template.replace(/{{NAME}}/gi, name);
+  template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
+  template = template.replace(/{{EXTRA_PROPS}}/gi, extraProps);
+  template = template.replace(/\s>/gi, '>');
+  template = template.replace(/{{TEXT}}/gi, text);
 
   return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
 };
@@ -67,11 +66,10 @@ export const prepStyledComponents = async (
   const SUFFIX = 'Styled';
   const path = templates.templatePathStyled;
 
-  const template = await loadFile(path, true);
-  template
-    .replace(/{{ELEMENT}}/gi, element)
-    .replace(/{{NAME_CSS}}/gi, `${name}Css`)
-    .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
+  let template = await loadFile(path, true);
+  template = template.replace(/{{ELEMENT}}/gi, element);
+  template = template.replace(/{{NAME_CSS}}/gi, `${name}Css`);
+  template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
 
   return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
 };
@@ -108,8 +106,9 @@ export const prepStorybook = async (data: PrepStorybook): Promise<FileContentWit
   const SUFFIX = '.stories';
   const path = templates.templatePathStorybook;
 
-  const template = await loadFile(path, true);
-  template.replace(/{{NAME}}/gi, name).replace(/{{TEXT}}/gi, text);
+  let template = await loadFile(path, true);
+  template = template.replace(/{{NAME}}/gi, name);
+  template = template.replace(/{{TEXT}}/gi, text);
 
   return { fileContent: `${template};`, filePath: `${filePath}${SUFFIX}.${format}` };
 };
