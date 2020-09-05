@@ -29,6 +29,7 @@ export class FigmagicElement {
 
   config: Config;
   description: string;
+  element: string;
   remSize: number;
   css: string;
   html: string;
@@ -46,10 +47,11 @@ export class FigmagicElement {
     // Metadata
     this.config = config;
     this.description = description;
+    this.element = ``;
     this.css = ``;
     this.html = ``;
-    this.extraProps = ``;
-    this.text = ``;
+    this.extraProps = ` `;
+    this.text = ` `;
     this.imports = [];
 
     // Setup
@@ -57,7 +59,7 @@ export class FigmagicElement {
   }
 
   async init(): Promise<void> {
-    this.setElementType();
+    this.setElement();
 
     if (this.children.every((a) => a.type === 'GROUP')) await this.handleNestedElements();
     else await this.handleNonNestedElements();
@@ -98,13 +100,14 @@ export class FigmagicElement {
    *
    * @param element Element
    */
-  private setElementType(): void {
+  private setElement(): void {
     const ELEMENT_TYPE = this.description.match(/element=(.*)/)
       ? this.description.match(/element=(.*)/)[1]
       : 'div';
 
     const HTML = `<${ELEMENT_TYPE}>{{TEXT}}</${ELEMENT_TYPE}>`;
     this.addHtml(HTML);
+    this.element = ELEMENT_TYPE;
   }
 
   /**
@@ -203,14 +206,14 @@ export class FigmagicElement {
     // Process CSS for any component that has a self-named layer
     // This pattern is how we communicate that it's a layout element, e.g. input and not a H1
     /*
-  const { updatedCss, updatedImports } = await processCssSelfnamedLayer(
-    element,
-    TEXT_ELEMENT,
-    css,
-    imports,
-    remSize
-  );
-  */
+    const { updatedCss, updatedImports } = await processCssSelfnamedLayer(
+      element,
+      TEXT_ELEMENT,
+      css,
+      imports,
+      remSize
+    );
+    */
 
     // TODO: The below will break?
     //await this.processCssSelfnamedLayer(TEXT_ELEMENT);

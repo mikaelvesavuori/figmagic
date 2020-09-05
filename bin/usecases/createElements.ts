@@ -4,8 +4,8 @@ import { Config } from '../contracts/Config';
 import { createPage } from './interactors/common/createPage';
 import { processElements } from './interactors/elements/processElements';
 
-//import { createFolder } from '../frameworks/filesystem/createFolder';
-//import { writeElements } from '../frameworks/filesystem/writeElements';
+import { createFolder } from '../frameworks/filesystem/createFolder';
+import { writeElements } from '../frameworks/filesystem/writeElements';
 
 import { MsgSyncElements } from '../frameworks/messages/messages';
 import { ErrorCreateElements } from '../frameworks/errors/errors';
@@ -24,12 +24,10 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
     try {
       const { components }: any = data;
       const elementsPage = createPage(data.document.children, 'Elements');
-      await processElements(elementsPage, config, components);
+      const elements = await processElements(elementsPage, config, components);
+      await createFolder(config.outputFolderElements);
+      await writeElements(elements, config);
       resolve();
-      //console.log('elements');
-      //console.log(elements);
-      //await createFolder(config.outputFolderElements);
-      //await writeElements(elements, config);
     } catch (error) {
       reject(error);
     }

@@ -29,9 +29,9 @@ export const prepComponent = async (data: PrepComponent): Promise<FileContentWit
     !data.name ||
     !data.filePath ||
     !data.format ||
-    !data.templates ||
-    !data.text ||
-    !data.extraProps
+    !data.templates
+    //!data.text ||
+    //!data.extraProps
   )
     throw new Error(ErrorPrepFileComponent);
   const { name, filePath, format, templates, text, extraProps } = data;

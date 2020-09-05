@@ -43,10 +43,6 @@ export async function parseCssFromElement(
       const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : path.join(`tokens`);
       const FORMAT = outputTokenFormat;
 
-      let css = ``;
-      const imports: any = [];
-
-      //setTimeout(async () => {
       const _borderWidths = await import(
         path.join(`${process.cwd()}`, `${PATH}`, `borderwidths.${FORMAT}`)
       );
@@ -63,6 +59,10 @@ export async function parseCssFromElement(
 
       const _spacing = await import(path.join(`${process.cwd()}`, `${PATH}`, `spacing.${FORMAT}`));
       const spacing = _spacing.default;
+
+      // Start parsing
+      let css = ``;
+      const imports: any = [];
 
       css += `width: 100%;\n`;
       css += `box-sizing: border-box;\n`;
@@ -113,7 +113,6 @@ export async function parseCssFromElement(
       if (SHADOW) parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
 
       resolve({ css, imports });
-      //}, 500);
     } catch (error) {
       reject(error);
     }

@@ -17,6 +17,8 @@ export async function writeFile(writeOperation: WriteOperation): Promise<boolean
   return new Promise(async (resolve, reject) => {
     if (!writeOperation) reject(ErrorWriteFile);
 
+    console.log('writeFile writeOperation', writeOperation);
+
     const { type, file, path, name, format, metadata, templates } = writeOperation;
     if (!file || !path || !name || !type) reject(ErrorWriteFile);
 
