@@ -38,6 +38,8 @@ export async function processElements(
             components[element.id].description
           );
 
+          await el.init();
+
           console.log('el name', el.name, el);
 
           return el;

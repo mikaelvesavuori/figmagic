@@ -53,10 +53,10 @@ export class FigmagicElement {
     this.imports = [];
 
     // Setup
-    this.init();
+    //this.init();
   }
 
-  private async init(): Promise<void> {
+  async init(): Promise<void> {
     this.setElementType();
 
     if (this.children.every((a) => a.type === 'GROUP')) await this.handleNestedElements();
@@ -67,9 +67,9 @@ export class FigmagicElement {
   //  this.description += description;
   //}
 
-  //private addCss(css: string): void {
-  //  this.css += css;
-  //}
+  private addCss(css: string): void {
+    this.css += css;
+  }
 
   private addHtml(html: string): void {
     this.html += html;
@@ -87,11 +87,11 @@ export class FigmagicElement {
     this.text += text;
   }
 
-  //private addImports(imports: string[]): void {
-  //  // Flatten imports and remove duplicates
-  //  this.imports = [...new Set(imports)];
-  //  //this.imports = imports.concat(imports);
-  //}
+  private addImports(imports: string[]): void {
+    // Flatten imports and remove duplicates
+    this.imports = [...new Set(imports)];
+    //this.imports = imports.concat(imports);
+  }
 
   /**
    * @description Get the type of HTML element this represents
@@ -113,43 +113,51 @@ export class FigmagicElement {
    * @param element Element
    */
   private async handleNestedElements(): Promise<any> {
-    this.children.forEach(async (el: any) => {
-      if (!el.name) return;
-      if (el.name[0] === '_') return;
+    return new Promise(async (resolve) => {
+      this.children.forEach(async (el: any) => {
+        if (!el.name) return;
+        if (el.name[0] === '_') return;
 
-      const MAIN_ELEMENT = el.children.filter(
-        (e: any) => e.type === 'RECTANGLE' && e.name[0] !== '_'
-      )[0];
+        const MAIN_ELEMENT = el.children.filter(
+          (e: any) => e.type === 'RECTANGLE' && e.name[0] !== '_'
+        )[0];
 
-      const TEXT_ELEMENT = el.children.filter(
-        (e: any) => e.type === 'TEXT' && e.name[0] !== '_'
-      )[0];
+        const TEXT_ELEMENT = el.children.filter(
+          (e: any) => e.type === 'TEXT' && e.name[0] !== '_'
+        )[0];
 
-      // Set "type", for example for input element
-      if (this.description.match(/type=(.*)/)) {
-        const TYPE = this.description.match(/type=(.*)/)[1];
-        if (el.extraProps && !el.extraProps.includes(`type="${TYPE}`))
-          el.addExtraProps(`type="${TYPE}" `);
-      }
+        // Set "type", for example for input element
+        if (this.description.match(/type=(.*)/)) {
+          const TYPE = this.description.match(/type=(.*)/)[1];
+          if (el.extraProps && !el.extraProps.includes(`type="${TYPE}`))
+            el.addExtraProps(`type="${TYPE}" `);
+        }
 
-      if (!MAIN_ELEMENT) throw new Error(ErrorProcessElementsNoMainElement);
+        if (!MAIN_ELEMENT) throw new Error(ErrorProcessElementsNoMainElement);
 
-      // Clean names from any spaces
-      const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
-      console.log('FIXED_NAME', FIXED_NAME);
+        // Clean names from any spaces
+        const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
+        console.log('FIXED_NAME', FIXED_NAME);
 
-      // Parse layout CSS from element
-      //console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
+        // Parse layout CSS from element
+        //console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
-      // TODO: The below will break
-      // (node:76823) UnhandledPromiseRejectionWarning: Error: Cannot find module '/Users/mikaelvesavuori/web/figmagic/tokens/borderwidths.mjs'
-      //const elementStyling =
-      await parseCssFromElement(
-        MAIN_ELEMENT,
-        TEXT_ELEMENT,
-        this.config.remSize,
-        this.config.outputTokenFormat
-      );
+        // TODO: The below will break
+        // (node:76823) UnhandledPromiseRejectionWarning: Error: Cannot find module '/Users/mikaelvesavuori/web/figmagic/tokens/borderwidths.mjs'
+        //const elementStyling =
+        const parsed = await parseCssFromElement(
+          MAIN_ELEMENT,
+          TEXT_ELEMENT,
+          this.config.remSize,
+          this.config.outputTokenFormat
+        );
+
+        this.addCss(parsed.css);
+        this.addImports(parsed.imports);
+
+        console.log('||| parseCssFromElement |||', parsed);
+        resolve(true);
+      });
     });
   }
 
