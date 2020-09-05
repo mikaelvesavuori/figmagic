@@ -16,31 +16,35 @@ import { ErrorWriteTokens, ErrorWriteTokensNoSettings } from '../errors/errors';
  * @param tokens The final array of design tokens
  * @param config User configuration object
  */
-export function writeTokens(tokens: Frame[], config: Config): void {
+export async function writeTokens(tokens: Frame[], config: Config): Promise<boolean> {
   if (!tokens) throw new Error(ErrorWriteTokens);
   if (!(tokens.length > 0)) throw new Error(ErrorWriteTokens);
   if (!config) throw new Error(ErrorWriteTokensNoSettings);
 
-  try {
-    tokens.forEach(async (token) => {
-      const tokenName = camelize(token.name).toLowerCase();
+  return new Promise((resolve, reject) => {
+    try {
+      tokens.forEach(async (token) => {
+        const tokenName = camelize(token.name).toLowerCase();
 
-      if (acceptedTokenTypes.includes(tokenName)) {
-        const processedToken = processTokens(token, tokenName, config);
-        if (config.debugMode) console.log(processedToken);
+        if (acceptedTokenTypes.includes(tokenName)) {
+          const processedToken = processTokens(token, tokenName, config);
+          if (config.debugMode) console.log(processedToken);
 
-        const writeOperation: WriteOperation = {
-          type: 'token',
-          file: processedToken,
-          path: config.outputFolderTokens,
-          name: tokenName,
-          format: config.outputTokenFormat
-        };
+          const writeOperation: WriteOperation = {
+            type: 'token',
+            file: processedToken,
+            path: config.outputFolderTokens,
+            name: tokenName,
+            format: config.outputTokenFormat
+          };
 
-        writeFile(writeOperation);
-      }
-    });
-  } catch (error) {
-    throw new Error(error);
-  }
+          await writeFile(writeOperation);
+        }
+      });
+
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
 }

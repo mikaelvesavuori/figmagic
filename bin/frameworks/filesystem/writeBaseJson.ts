@@ -18,16 +18,13 @@ export async function writeBaseJson(
   outputFileName: string,
   data: object
 ): Promise<void> {
-  return new Promise(async (resolve, reject) => {
-    if (!outputFolderBaseFile || !outputFileName || !data) throw new Error(ErrorWriteBaseJson);
+  if (!outputFolderBaseFile || !outputFileName || !data) throw new Error(ErrorWriteBaseJson);
 
-    console.log(MsgWriteBaseFile);
-    try {
-      await refresh(outputFolderBaseFile);
-      write(`${outputFolderBaseFile}/${outputFileName}`, JSON.stringify(data));
-      resolve();
-    } catch (error) {
-      reject(error);
-    }
-  });
+  console.log(MsgWriteBaseFile);
+  try {
+    await refresh(outputFolderBaseFile);
+    await write(`${outputFolderBaseFile}/${outputFileName}`, JSON.stringify(data));
+  } catch (error) {
+    throw new Error(error);
+  }
 }

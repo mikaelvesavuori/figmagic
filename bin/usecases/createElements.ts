@@ -19,17 +19,19 @@ import { ErrorCreateElements } from '../frameworks/errors/errors';
 export async function createElements(config: Config, data: FigmaData): Promise<void> {
   if (!config || !data) throw new Error(ErrorCreateElements);
 
-  console.log(MsgSyncElements);
-
-  try {
-    const { components }: any = data;
-    const elementsPage = createPage(data.document.children, 'Elements');
-    const elements = await processElements(elementsPage, config, components);
-    console.log('elements');
-    console.log(elements);
-    //await createFolder(config.outputFolderElements);
-    //await writeElements(elements, config);
-  } catch (error) {
-    throw new Error(error);
-  }
+  return new Promise(async (resolve, reject) => {
+    console.log(MsgSyncElements);
+    try {
+      const { components }: any = data;
+      const elementsPage = createPage(data.document.children, 'Elements');
+      await processElements(elementsPage, config, components);
+      resolve();
+      //console.log('elements');
+      //console.log(elements);
+      //await createFolder(config.outputFolderElements);
+      //await writeElements(elements, config);
+    } catch (error) {
+      reject(error);
+    }
+  });
 }

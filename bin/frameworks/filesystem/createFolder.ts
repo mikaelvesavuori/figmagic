@@ -7,11 +7,14 @@ import { ErrorCreateFolder } from '../errors/errors';
  *
  * @param dir The name of the directory that the user wants to create
  */
-export function createFolder(dir: string): void {
-  if (!dir) throw new Error(ErrorCreateFolder);
-  try {
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  } catch (error) {
-    throw new Error(error);
-  }
+export async function createFolder(dir: string): Promise<boolean> {
+  return new Promise((resolve, reject) => {
+    if (!dir) reject(ErrorCreateFolder);
+    try {
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
 }

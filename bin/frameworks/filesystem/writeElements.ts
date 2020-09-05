@@ -40,7 +40,7 @@ export async function writeElements(elements: any[], config: Config): Promise<an
     if (!config.skipFileGeneration.skipReact) {
       const fileExists = fs.existsSync(`${folder}/${_name}.jsx`);
       if (!fileExists || forceUpdate)
-        writeFile({
+        await writeFile({
           type: 'component',
           file: html,
           path: folder,
@@ -55,7 +55,7 @@ export async function writeElements(elements: any[], config: Config): Promise<an
     if (!config.skipFileGeneration.skipStyled) {
       const fileExists = fs.existsSync(`${folder}/${_name}Styled.jsx`);
       if (!fileExists || forceUpdate)
-        writeFile({
+        await writeFile({
           type: 'style',
           file: css,
           path: folder,
@@ -68,7 +68,7 @@ export async function writeElements(elements: any[], config: Config): Promise<an
 
     // Write CSS - is always overwritten
     if (!config.skipFileGeneration.skipCss)
-      writeFile({
+      await writeFile({
         type: 'css',
         file: css,
         path: folder,
@@ -82,7 +82,7 @@ export async function writeElements(elements: any[], config: Config): Promise<an
     if (!config.skipFileGeneration.skipStorybook) {
       const fileExists = fs.existsSync(`${folder}/${_name}.stories.js`);
       if (!fileExists || forceUpdate)
-        writeFile({
+        await writeFile({
           type: 'story',
           file: css,
           path: folder,
@@ -95,7 +95,7 @@ export async function writeElements(elements: any[], config: Config): Promise<an
 
     // Write description markdown file - is always overwritten
     if (!config.skipFileGeneration.skipDescription)
-      writeFile({
+      await writeFile({
         type: 'description',
         file: description,
         path: folder,

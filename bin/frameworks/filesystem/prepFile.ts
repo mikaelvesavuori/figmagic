@@ -88,7 +88,8 @@ export const prepCss = (data: PrepCss): FileContentWithPath => {
   const { name, filePath, format, imports, file } = data;
 
   const SUFFIX = 'Css';
-  const FILE_CONTENT = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
+  const EXPORT = format === 'mjs' ? `export default ${name}${SUFFIX}` : `module.exports = ${name}`;
+  const FILE_CONTENT = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${SUFFIX} = \`${file}\`;\n\n${EXPORT};`;
 
   return { fileContent: FILE_CONTENT, filePath: `${filePath}${SUFFIX}.${format}` };
 };

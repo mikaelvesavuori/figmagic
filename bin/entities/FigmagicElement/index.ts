@@ -113,29 +113,23 @@ export class FigmagicElement {
    * @param element Element
    */
   private async handleNestedElements(): Promise<any> {
-    console.log('BEFORE handleNestedElements');
-
     this.children.forEach(async (el: any) => {
       if (!el.name) return;
-      console.log('handleNestedElements: el.name', el.name);
       if (el.name[0] === '_') return;
 
       const MAIN_ELEMENT = el.children.filter(
         (e: any) => e.type === 'RECTANGLE' && e.name[0] !== '_'
       )[0];
-      console.log('MAIN_ELEMENT', MAIN_ELEMENT);
 
       const TEXT_ELEMENT = el.children.filter(
         (e: any) => e.type === 'TEXT' && e.name[0] !== '_'
       )[0];
-      console.log('TEXT_ELEMENT', TEXT_ELEMENT);
 
       // Set "type", for example for input element
       if (this.description.match(/type=(.*)/)) {
         const TYPE = this.description.match(/type=(.*)/)[1];
         if (el.extraProps && !el.extraProps.includes(`type="${TYPE}`))
           el.addExtraProps(`type="${TYPE}" `);
-        console.log('TYPE', this.type);
       }
 
       if (!MAIN_ELEMENT) throw new Error(ErrorProcessElementsNoMainElement);
@@ -149,16 +143,14 @@ export class FigmagicElement {
 
       // TODO: The below will break
       // (node:76823) UnhandledPromiseRejectionWarning: Error: Cannot find module '/Users/mikaelvesavuori/web/figmagic/tokens/borderwidths.mjs'
-      const elementStyling = await parseCssFromElement(
+      //const elementStyling =
+      await parseCssFromElement(
         MAIN_ELEMENT,
         TEXT_ELEMENT,
         this.config.remSize,
         this.config.outputTokenFormat
       );
-      console.log('elementStyling', elementStyling);
     });
-
-    console.log('AFTER');
   }
 
   /**

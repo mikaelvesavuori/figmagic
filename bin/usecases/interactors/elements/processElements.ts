@@ -25,23 +25,29 @@ export async function processElements(
 ): Promise<FigmagicElement[]> {
   if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
 
-  const filteredElements = elementsPage.filter((element) => element.type === 'COMPONENT');
-  const parsedElements = await Promise.all(
-    filteredElements.map(async (element: FigmaElement) => {
-      // TODO: Verify that "async" usage within class constructor/setup does not mess this up...
-      const el = makeFigmagicElement(
-        element,
-        config,
-        // @ts-ignore
-        components[element.id].description
+  return new Promise(async (resolve, reject) => {
+    try {
+      const filteredElements = elementsPage.filter((element) => element.type === 'COMPONENT');
+      const parsedElements = await Promise.all(
+        filteredElements.map(async (element: FigmaElement) => {
+          // TODO: Verify that "async" usage within class constructor/setup does not mess this up...
+          const el = makeFigmagicElement(
+            element,
+            config,
+            // @ts-ignore
+            components[element.id].description
+          );
+
+          console.log('el name', el.name, el);
+
+          return el;
+        })
       );
-
-      console.log('el name', el.name);
-
-      return el;
-    })
-  );
-  console.log('|||| parsedElements ||||');
-  //console.log(parsedElements);
-  return parsedElements;
+      console.log('|||| parsedElements ||||');
+      //console.log(parsedElements);
+      resolve(parsedElements);
+    } catch (error) {
+      reject(error);
+    }
+  });
 }
