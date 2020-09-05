@@ -95,8 +95,6 @@ export async function parseCssFromElement(
       css += `border: 0;\n`;
       css += `border-style: solid;\n`;
 
-      console.log('MMMMM', css);
-
       const BORDER_WIDTH = element.strokeWeight ? `${element.strokeWeight}px` : null;
       if (BORDER_WIDTH)
         parseBorderWidth(css, imports, { borderWidths, borderWidth: BORDER_WIDTH, remSize });

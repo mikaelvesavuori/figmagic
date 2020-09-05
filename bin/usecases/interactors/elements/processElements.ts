@@ -39,14 +39,9 @@ export async function processElements(
           );
 
           await el.init();
-
-          console.log('el name', el.name, el);
-
           return el;
         })
       );
-      console.log('|||| parsedElements ||||');
-      //console.log(parsedElements);
       resolve(parsedElements);
     } catch (error) {
       reject(error);

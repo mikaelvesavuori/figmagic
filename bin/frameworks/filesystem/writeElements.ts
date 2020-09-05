@@ -17,9 +17,6 @@ import { ErrorWriteElements } from '../errors/errors';
 export async function writeElements(elements: any[], config: Config): Promise<any> {
   if (!elements || !config) throw new Error(ErrorWriteElements);
 
-  console.log('!!!!!!!!!!');
-  console.log(elements);
-
   return elements.forEach(async (comp) => {
     const html = comp.html;
     const css = comp.css;

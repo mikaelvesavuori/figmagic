@@ -158,7 +158,6 @@ export class FigmagicElement {
         this.addCss(parsed.css);
         this.addImports(parsed.imports);
 
-        console.log('||| parseCssFromElement |||', parsed);
         resolve(true);
       });
     });
