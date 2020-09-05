@@ -18,6 +18,13 @@
     "strictFunctionTypes": true,
     "target": "esnext"
   },
-  "include": ["./bin", "./index.ts"],
+  "include": [
+    "./bin",
+    "./index.ts",
+    "temp-elements/removed/handleNonNestedElements.ts",
+    "temp-elements/removed/handleNestedElements.ts",
+    "temp-elements/removed/getElementType.ts",
+    "temp-elements/removed/getDescription.ts"
+  ],
   "exclude": ["./templates/*", "./temp-elements"]
 }

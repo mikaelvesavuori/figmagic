@@ -129,6 +129,11 @@ export type REGULAR_POLYGON = VECTOR;
 export interface RECTANGLE extends VECTOR {
   cornerRadius: number;
   rectangleCornerRadii: number[];
+  // Added
+  height?: number;
+  width?: number;
+  x?: number;
+  y?: number;
 }
 
 export interface TEXT extends VECTOR {
@@ -257,6 +262,9 @@ export type Paint = {
     | 'GRADIENT_DIAMOND'
     | 'IMAGE'
     | 'EMOJI';
+
+  // Added
+  gradientStops?: any[];
 
   // For solid paints
   color?: Color;

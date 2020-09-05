@@ -1,7 +1,7 @@
-export interface ElementAuxData {
+export interface ElementMetadataInterface {
   css: string;
   html: string;
   extraProps: string;
   text: string;
-  imports: any[];
+  imports: string[];
 }

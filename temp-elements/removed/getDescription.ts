@@ -1,4 +1,4 @@
-import { ErrorGetDescription, ErrorExtractDescription } from '../../../frameworks/errors/errors';
+import { ErrorGetDescription, ErrorExtractDescription } from '../../bin/frameworks/errors/errors';
 
 /**
  * @description Get element description

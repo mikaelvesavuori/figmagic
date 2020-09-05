@@ -1,6 +1,6 @@
-//import { Element } from '../../contracts/Element';
+import { FRAME as Frame } from '../../../contracts/Figma';
 import { TextElement } from '../../../contracts/TextElement';
-import { ParsedElementData } from '../../../contracts/ParsedElementData';
+import { ParsedElementMetadataInterface } from '../../../contracts/ParsedElementMetadataInterface';
 
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
@@ -17,7 +17,7 @@ type PaddingVertical = {
  * @param textElement The Text element
  * @param element The element
  */
-export function getPaddingY(textElement: TextElement, element: any): PaddingVertical | null {
+export function getPaddingY(textElement: TextElement, element: Frame): PaddingVertical | null {
   if (!textElement) return null;
 
   const PARENT_HEIGHT = element.absoluteBoundingBox.height;
@@ -42,7 +42,7 @@ type PaddingHorizontal = {
  * @param textElement The Text element
  * @param element The element
  */
-export function getPaddingX(textElement: TextElement, element: any): PaddingHorizontal | null {
+export function getPaddingX(textElement: TextElement, element: Frame): PaddingHorizontal | null {
   if (!textElement) return null;
 
   const PARENT_WIDTH = element.absoluteBoundingBox.width;
@@ -72,7 +72,7 @@ export function parsePadding(
   css: string,
   imports: any[],
   params: PaddingParams
-): ParsedElementData {
+): ParsedElementMetadataInterface {
   const { padding, spacing, remSize } = params;
 
   if (!(padding && Object.keys(padding).length > 0)) return { css, imports };
@@ -103,7 +103,11 @@ type HeightParams = {
  * @param css CSS as string
  * @param imports Array of imports
  */
-export function parseHeight(css: string, imports: any[], params: HeightParams): ParsedElementData {
+export function parseHeight(
+  css: string,
+  imports: any[],
+  params: HeightParams
+): ParsedElementMetadataInterface {
   const { spacing, height, remSize } = params;
 
   const { updatedCss, updatedImports } = getTokenMatch(
@@ -121,7 +125,7 @@ export function parseHeight(css: string, imports: any[], params: HeightParams): 
  * @description Check for background color property. Prioritize solid color, then linear gradient. Expect only one value, and do so by only ever using the first fill match
  */
 // TODO: Fix this
-export function getBackgroundColor(element: Element): any {
+export function getBackgroundColor(element: Frame): any {
   if (!element.fills) return null;
 
   // Check for solid fills
@@ -180,7 +184,7 @@ export function parseBackgroundColor(
   css: string,
   imports: any[],
   params: BackgroundColorParams
-): ParsedElementData {
+): ParsedElementMetadataInterface {
   const { colors, backgroundColor, remSize } = params;
 
   const PROPERTY = backgroundColor.includes('gradient') ? 'background' : 'background-color';
@@ -213,7 +217,7 @@ export function parseBorderWidth(
   css: string,
   imports: any[],
   params: BorderWidthParams
-): ParsedElementData {
+): ParsedElementMetadataInterface {
   const { borderWidths, borderWidth, remSize } = params;
 
   const { updatedCss, updatedImports } = getTokenMatch(
@@ -232,7 +236,7 @@ export function parseBorderWidth(
  *
  * @param element
  */
-export function getBorderColor(element: Element): string | null {
+export function getBorderColor(element: Frame): string | null {
   if (!(element.strokes && element.strokes.length > 0 && element.strokes[0].type === 'SOLID'))
     return null;
 
@@ -260,7 +264,7 @@ export function parseBorderColor(
   css: string,
   imports: any[],
   params: BorderColorParams
-): ParsedElementData {
+): ParsedElementMetadataInterface {
   const { colors, borderColor, remSize } = params;
 
   const { updatedCss, updatedImports } = getTokenMatch(
@@ -287,7 +291,7 @@ export function parseBorderRadius(
   css: string,
   imports: any[],
   params: BorderRadiusParams
-): ParsedElementData {
+): ParsedElementMetadataInterface {
   const { radii, borderRadius, remSize } = params;
 
   const { updatedCss, updatedImports } = getTokenMatch(
@@ -306,7 +310,7 @@ export function parseBorderRadius(
  *
  * @param element
  */
-export function getShadow(element: Element): string | null {
+export function getShadow(element: Frame): string | null {
   if (!(element.effects && element.effects[0] && element.effects[0].type === 'DROP_SHADOW'))
     return null;
 
@@ -336,7 +340,11 @@ type ShadowParams = {
  * @param imports
  * @param params
  */
-export function parseShadow(css: string, imports: any[], params: ShadowParams): ParsedElementData {
+export function parseShadow(
+  css: string,
+  imports: any[],
+  params: ShadowParams
+): ParsedElementMetadataInterface {
   const { shadows, shadow, remSize } = params;
 
   const { updatedCss, updatedImports } = getTokenMatch(
@@ -363,10 +371,10 @@ function updateParsing(
   updatedCss: string | null,
   imports: any[],
   updatedImports: any[] | null
-): ParsedElementData {
+): ParsedElementMetadataInterface {
   const CSS = updatedCss ? (css += updatedCss) : css;
   const IMPORTS = updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports;
 
-  // TODO: makeParsedElementData(CSS, IMPORTS)
+  // TODO: makeParsedElementMetadataInterface(CSS, IMPORTS)
   return { css: CSS, imports: IMPORTS };
 }

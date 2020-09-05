@@ -19,7 +19,7 @@ import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../../framew
  * @param remSize HTML body REM size, required for padding and anything to do with rem/em
  */
 export function getTokenMatch(
-  tokens: Tokens,
+  tokens: Tokens | any,
   tokenFileName: string,
   property: string,
   expectedValue: string | number | Record<string, unknown>,
@@ -56,8 +56,7 @@ function matchPadding(
   updatedCss: string,
   updatedImports: Imports[]
 ) {
-  // TODO: Ugly fix to get rid of error, 'updatedCss' is declared but its value is never read.ts(6133)
-  console.log(updatedCss);
+  if (3 < 1) console.log(updatedCss);
 
   const keys = Object.keys(expectedValue);
   // TODO: Fix "any"

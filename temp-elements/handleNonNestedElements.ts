@@ -1,4 +1,4 @@
-import { ElementAuxData } from '../../../contracts/ElementAuxData';
+import { ElementMetadataInterface } from '../../../contracts/ElementMetadataInterface';
 import { ProcessedSelfnamedCss } from '../../../contracts/Css';
 
 import { processCssSelfnamedLayer } from './processCssSelfnamedLayer';
@@ -16,7 +16,7 @@ import { ErrorProcessElementsWrongTextElementCount } from '../../../frameworks/e
 export async function handleNonNestedElements(
   element: any,
   remSize: number,
-  data: ElementAuxData
+  data: ElementMetadataInterface
 ): Promise<ProcessedSelfnamedCss> {
   // Check for text elements
   const TEXT_ELEMENT = element.children.filter((e) => e.type === 'TEXT' && e.name[0] !== '_');

@@ -1,10 +1,9 @@
-//import * as path from 'path';
+import * as path from 'path';
 
 import { Css } from '../../../contracts/Css';
 //import { Element } from '../../contracts/Element';
 import { TextElement } from '../../../contracts/TextElement';
 
-/*
 import {
   getPaddingY,
   getPaddingX,
@@ -19,9 +18,8 @@ import {
   getShadow,
   parseShadow
 } from './parsers';
-*/
 
-//import { ErrorParseCssFromElement } from '../../../frameworks/errors/errors';
+import { ErrorParseCssFromElement } from '../../../frameworks/errors/errors';
 
 /**
  * @description Parse layout CSS from "element" (Figma component)
@@ -35,27 +33,25 @@ export async function parseCssFromElement(
   textElement: TextElement,
   remSize: number
 ): Promise<Css> {
-  console.log(element, textElement, remSize);
-  return;
-  /*
   if (!element || !remSize) throw new Error(ErrorParseCssFromElement);
 
   // Dynamic imports
+  // TODO: Verify that hardcoded file endings won't cause trouble
   const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : `tokens`;
 
-  const _borderWidths = await import(path.join(`${process.cwd()}`, `${PATH}`, `borderWidths.ts`));
+  const _borderWidths = await import(path.join(`${process.cwd()}`, `${PATH}`, `borderwidths.mjs`));
   const borderWidths = _borderWidths.default;
 
-  const _colors = await import(path.join(`${process.cwd()}`, `${PATH}`, `colors.ts`));
+  const _colors = await import(path.join(`${process.cwd()}`, `${PATH}`, `colors.mjs`));
   const colors = _colors.default;
 
-  const _radii = await import(path.join(`${process.cwd()}`, `${PATH}`, `radii.ts`));
+  const _radii = await import(path.join(`${process.cwd()}`, `${PATH}`, `radii.mjs`));
   const radii = _radii.default;
 
-  const _shadows = await import(path.join(`${process.cwd()}`, `${PATH}`, `shadows.ts`));
+  const _shadows = await import(path.join(`${process.cwd()}`, `${PATH}`, `shadows.mjs`));
   const shadows = _shadows.default;
 
-  const _spacing = await import(path.join(`${process.cwd()}`, `${PATH}`, `spacing.ts`));
+  const _spacing = await import(path.join(`${process.cwd()}`, `${PATH}`, `spacing.mjs`));
   const spacing = _spacing.default;
 
   let css = ``;
@@ -107,5 +103,4 @@ export async function parseCssFromElement(
   if (SHADOW) parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
 
   return { css, imports };
-  */
 }

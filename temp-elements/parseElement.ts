@@ -1,5 +1,5 @@
 import { FigmagicElement } from '../../../contracts/FigmagicElement';
-import { ElementAuxData } from '../../../contracts/ElementAuxData';
+import { ElementMetadataInterface } from '../../../contracts/ElementMetadataInterface';
 //import { Element } from '../../contracts/Element';
 
 import { getElementType } from './getElementType';
@@ -34,7 +34,7 @@ export async function parseElement(element: any, remSize: number): Promise<any> 
   const elementType: string = getElementType(element);
   const html = `<${elementType}>{{TEXT}}</${elementType}>`;
   // The below fields are the things needed to create a set of valid HTML and CSS
-  const data: ElementAuxData = {
+  const data: ElementMetadataInterface = {
     css: ``,
     html: html,
     extraProps: ``,

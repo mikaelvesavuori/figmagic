@@ -1,4 +1,4 @@
-import { ElementAuxData } from '../../../contracts/ElementAuxData';
+import { ElementMetadataInterface } from '../../../contracts/ElementMetadataInterface';
 
 import { parseCssFromElement } from './parseCssFromElement';
 import { parseTypographyStylingFromElement } from './parseTypographyStylingFromElement';
@@ -21,7 +21,7 @@ import {
 export async function handleNestedElements(
   element: Element,
   remSize: number,
-  data: ElementAuxData
+  data: ElementMetadataInterface
 ): Promise<string> {
   if (!element) throw new Error(ErrorHandleNestedElements);
 

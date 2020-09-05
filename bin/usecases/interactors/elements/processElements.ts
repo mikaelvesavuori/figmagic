@@ -1,10 +1,11 @@
-import { Config } from '../../../contracts/Config';
-//import { Element } from '../contracts/Element';
+import { FigmagicElement } from '../../../entities/FigmagicElement';
+import { makeFigmagicElement } from '../../../entities/FigmagicElement';
 
-import { parseElement } from './parseElement';
-import { addDescriptionToElements } from './addDescriptionToElements';
+import { Config } from '../../../contracts/Config';
+import { FigmaElement } from '../../../contracts/FigmaElement';
 
 import { ErrorProcessElements } from '../../../frameworks/errors/errors';
+//import { FigmagicElement } from '../../../contracts/FigmagicElement';
 
 /**
  * @description Process all elements from Figma page called "Elements"
@@ -21,15 +22,25 @@ export async function processElements(
   elementsPage: any[],
   config: Config,
   components: Record<string, unknown>
-): Promise<any[]> {
+): Promise<FigmagicElement[]> {
   if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
 
   const filteredElements = elementsPage.filter((element) => element.type === 'COMPONENT');
-  const elements = addDescriptionToElements(filteredElements, components);
-  // TODO: Fix "any"; expect element (object)
+  console.log('BEFORE PARSING ELEMENTS');
   const parsedElements = await Promise.all(
-    elements.map(async (element: any) => await parseElement(element, config.remSize))
-  );
+    filteredElements.map(async (element: FigmaElement) => {
+      // TODO: Verify that "async" usage within class constructor/setup does not mess this up...
+      const el = await makeFigmagicElement(
+        element,
+        // @ts-ignore
+        components[element.id].description,
+        config.remSize
+      );
 
+      return el;
+    })
+  );
+  //console.log('parsedElements');
+  //console.log(parsedElements);
   return parsedElements;
 }
