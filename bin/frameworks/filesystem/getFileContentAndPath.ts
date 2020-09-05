@@ -64,10 +64,10 @@ export async function getFileContentAndPath(
   // Design token
   else if (type === 'token') {
     if (metadata && metadata.dataType === 'enum')
-      return { fileContent: getTokenEnumString(file, name), filePath };
+      return { fileContent: getTokenEnumString(file, name, format), filePath };
 
     filePath += `.${format}`;
-    return { fileContent: getTokenString(file, name), filePath };
+    return { fileContent: getTokenString(file, name, format), filePath };
   }
   // Component
   else if (type === 'component' && templates)
@@ -98,14 +98,18 @@ export async function getFileContentAndPath(
     return prepDescription({ filePath, file, format } as PrepDescription);
 }
 
-const getTokenEnumString = (file: string, name: string) =>
-  `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
+const getTokenEnumString = (file: string, name: string, format: string) => {
+  const EXPORT = format === 'mjs' ? `export default ${name}` : `module.exports = ${name}`;
+  return `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
     file
-  )}\n}\n\nexport default ${name};`;
+  )}\n}\n\n${EXPORT};`;
+};
 
-const getTokenString = (file: string, name: string) =>
-  `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
+const getTokenString = (file: string, name: string, format: string) => {
+  const EXPORT = format === 'mjs' ? `export default ${name}` : `module.exports = ${name}`;
+  return `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
     file,
     null,
     ' '
-  )}\n\nexport default ${name};`;
+  )}\n\n${EXPORT};`;
+};

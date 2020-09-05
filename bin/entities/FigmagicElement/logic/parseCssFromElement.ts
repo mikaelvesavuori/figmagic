@@ -1,6 +1,7 @@
+//import * as fs from 'fs';
 import * as path from 'path';
 
-import { Css } from '../../../contracts/Css';
+//import { Css } from '../../../contracts/Css';
 //import { Element } from '../../contracts/Element';
 import { TextElement } from '../../../contracts/TextElement';
 
@@ -31,76 +32,94 @@ import { ErrorParseCssFromElement } from '../../../frameworks/errors/errors';
 export async function parseCssFromElement(
   element: any,
   textElement: TextElement,
-  remSize: number
-): Promise<Css> {
+  remSize: number,
+  outputTokenFormat: string
+): Promise<any> {
   if (!element || !remSize) throw new Error(ErrorParseCssFromElement);
 
-  // Dynamic imports
-  // TODO: Verify that hardcoded file endings won't cause trouble
-  const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : `tokens`;
+  return new Promise(async (resolve, reject) => {
+    try {
+      // Dynamic imports
+      const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : path.join(`tokens`);
+      const FORMAT = outputTokenFormat;
 
-  const _borderWidths = await import(path.join(`${process.cwd()}`, `${PATH}`, `borderwidths.mjs`));
-  const borderWidths = _borderWidths.default;
+      let css = ``;
+      const imports: any = [];
 
-  const _colors = await import(path.join(`${process.cwd()}`, `${PATH}`, `colors.mjs`));
-  const colors = _colors.default;
+      setTimeout(async () => {
+        const _borderWidths = await import(
+          path.join(`${process.cwd()}`, `${PATH}`, `borderwidths.${FORMAT}`)
+        );
+        const borderWidths = _borderWidths.default;
 
-  const _radii = await import(path.join(`${process.cwd()}`, `${PATH}`, `radii.mjs`));
-  const radii = _radii.default;
+        const _colors = await import(path.join(`${process.cwd()}`, `${PATH}`, `colors.${FORMAT}`));
+        const colors = _colors.default;
 
-  const _shadows = await import(path.join(`${process.cwd()}`, `${PATH}`, `shadows.mjs`));
-  const shadows = _shadows.default;
+        const _radii = await import(path.join(`${process.cwd()}`, `${PATH}`, `radii.${FORMAT}`));
+        const radii = _radii.default;
 
-  const _spacing = await import(path.join(`${process.cwd()}`, `${PATH}`, `spacing.mjs`));
-  const spacing = _spacing.default;
+        const _shadows = await import(
+          path.join(`${process.cwd()}`, `${PATH}`, `shadows.${FORMAT}`)
+        );
+        const shadows = _shadows.default;
 
-  let css = ``;
-  const imports: any = [];
+        const _spacing = await import(
+          path.join(`${process.cwd()}`, `${PATH}`, `spacing.${FORMAT}`)
+        );
+        const spacing = _spacing.default;
 
-  css += `width: 100%;\n`;
-  css += `box-sizing: border-box;\n`;
+        css += `width: 100%;\n`;
+        css += `box-sizing: border-box;\n`;
 
-  const PADDING_Y: Record<string, unknown> = getPaddingY(textElement, element);
-  const PADDING_X: Record<string, unknown> = getPaddingX(textElement, element);
+        const PADDING_Y: Record<string, unknown> = getPaddingY(textElement, element);
+        const PADDING_X: Record<string, unknown> = getPaddingX(textElement, element);
 
-  const PADDING = {
-    ...PADDING_Y,
-    ...PADDING_X
-  };
+        const PADDING = {
+          ...PADDING_Y,
+          ...PADDING_X
+        };
 
-  parsePadding(css, imports, {
-    padding: PADDING,
-    spacing,
-    remSize
+        parsePadding(css, imports, {
+          padding: PADDING,
+          spacing,
+          remSize
+        });
+
+        const HEIGHT = element.absoluteBoundingBox ? element.absoluteBoundingBox.height : null;
+        if (HEIGHT) parseHeight(css, imports, { spacing, height: HEIGHT, remSize });
+
+        const BACKGROUND_COLOR = getBackgroundColor(element);
+        if (BACKGROUND_COLOR)
+          parseBackgroundColor(css, imports, {
+            colors,
+            backgroundColor: BACKGROUND_COLOR,
+            remSize
+          });
+
+        css += `border: 0;\n`;
+        css += `border-style: solid;\n`;
+
+        console.log('MMMMM', css);
+
+        const BORDER_WIDTH = element.strokeWeight ? `${element.strokeWeight}px` : null;
+        if (BORDER_WIDTH)
+          parseBorderWidth(css, imports, { borderWidths, borderWidth: BORDER_WIDTH, remSize });
+
+        const BORDER_COLOR = getBorderColor(element);
+        if (BORDER_COLOR)
+          parseBorderColor(css, imports, { colors, borderColor: BORDER_COLOR, remSize });
+
+        const BORDER_RADIUS = element.cornerRadius ? `${element.cornerRadius}px` : null;
+        if (BORDER_RADIUS)
+          parseBorderRadius(css, imports, { radii, borderRadius: BORDER_RADIUS, remSize });
+
+        const SHADOW = getShadow(element);
+        if (SHADOW) parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
+
+        resolve({ css, imports });
+      }, 500);
+    } catch (error) {
+      reject(error);
+    }
   });
-
-  const HEIGHT = element.absoluteBoundingBox ? element.absoluteBoundingBox.height : null;
-  if (HEIGHT) parseHeight(css, imports, { spacing, height: HEIGHT, remSize });
-
-  const BACKGROUND_COLOR = getBackgroundColor(element);
-  if (BACKGROUND_COLOR)
-    parseBackgroundColor(css, imports, {
-      colors,
-      backgroundColor: BACKGROUND_COLOR,
-      remSize
-    });
-
-  css += `border: 0;\n`;
-  css += `border-style: solid;\n`;
-
-  const BORDER_WIDTH = element.strokeWeight ? `${element.strokeWeight}px` : null;
-  if (BORDER_WIDTH)
-    parseBorderWidth(css, imports, { borderWidths, borderWidth: BORDER_WIDTH, remSize });
-
-  const BORDER_COLOR = getBorderColor(element);
-  if (BORDER_COLOR) parseBorderColor(css, imports, { colors, borderColor: BORDER_COLOR, remSize });
-
-  const BORDER_RADIUS = element.cornerRadius ? `${element.cornerRadius}px` : null;
-  if (BORDER_RADIUS)
-    parseBorderRadius(css, imports, { radii, borderRadius: BORDER_RADIUS, remSize });
-
-  const SHADOW = getShadow(element);
-  if (SHADOW) parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
-
-  return { css, imports };
 }

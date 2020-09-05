@@ -26,21 +26,22 @@ export async function processElements(
   if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
 
   const filteredElements = elementsPage.filter((element) => element.type === 'COMPONENT');
-  console.log('BEFORE PARSING ELEMENTS');
   const parsedElements = await Promise.all(
     filteredElements.map(async (element: FigmaElement) => {
       // TODO: Verify that "async" usage within class constructor/setup does not mess this up...
-      const el = await makeFigmagicElement(
+      const el = makeFigmagicElement(
         element,
+        config,
         // @ts-ignore
-        components[element.id].description,
-        config.remSize
+        components[element.id].description
       );
+
+      console.log('el name', el.name);
 
       return el;
     })
   );
-  //console.log('parsedElements');
+  console.log('|||| parsedElements ||||');
   //console.log(parsedElements);
   return parsedElements;
 }

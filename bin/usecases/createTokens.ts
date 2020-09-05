@@ -4,7 +4,7 @@ import { FRAME as Frame } from '../contracts/Figma';
 
 import { createPage } from './interactors/common/createPage';
 
-import { refresh } from '../frameworks/filesystem/refresh';
+//import { refresh } from '../frameworks/filesystem/refresh';
 import { writeTokens } from '../frameworks/filesystem/writeTokens';
 
 import { MsgWriteTokens } from '../frameworks/messages/messages';
@@ -16,18 +16,20 @@ import { ErrorCreateTokens } from '../frameworks/errors/errors';
  * @param config User configuration
  * @param data Data from Figma
  */
-export async function createTokens(config: Config, data: FigmaData): Promise<boolean> {
+export function createTokens(config: Config, data: FigmaData): void {
+  //Promise<boolean>
   if (!config || !data) throw new Error(ErrorCreateTokens);
 
-  return new Promise(async (resolve, reject) => {
-    console.log(MsgWriteTokens);
-    try {
-      await refresh(config.outputFolderTokens);
-      const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
-      await writeTokens(tokensPage, config); // TODO: Reverse the naming/structure of writeTokens <--> processTokens to be in line with other usecases
-      resolve(true);
-    } catch (error) {
-      reject(error);
-    }
-  });
+  //return new Promise(async (resolve, reject) => {
+  console.log(MsgWriteTokens);
+  try {
+    //await refresh(config.outputFolderTokens);
+    const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
+    writeTokens(tokensPage, config); // TODO: Reverse the naming/structure of writeTokens <--> processTokens to be in line with other usecases
+    //resolve(true);
+  } catch (error) {
+    //reject(error);
+    throw new Error(`ASDF ||| ${error}`);
+  }
+  //});
 }

@@ -36,13 +36,13 @@ export const prepComponent = async (data: PrepComponent): Promise<FileContentWit
     throw new Error(ErrorPrepFileComponent);
   const { name, filePath, format, templates, text, extraProps } = data;
 
-  const suffix = 'Styled';
+  const SUFFIX = 'Styled';
   const path = templates.templatePathReact;
 
   const template = await loadFile(path, true);
   template
     .replace(/{{NAME}}/gi, name)
-    .replace(/{{NAME_STYLED}}/gi, `${name}${suffix}`)
+    .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`)
     .replace(/{{EXTRA_PROPS}}/gi, extraProps)
     .replace(/\s>/gi, '>')
     .replace(/{{TEXT}}/gi, text);
@@ -64,16 +64,16 @@ export const prepStyledComponents = async (
 
   const { name, filePath, format, templates, element } = data;
 
-  const suffix = 'Styled';
+  const SUFFIX = 'Styled';
   const path = templates.templatePathStyled;
 
   const template = await loadFile(path, true);
   template
     .replace(/{{ELEMENT}}/gi, element)
     .replace(/{{NAME_CSS}}/gi, `${name}Css`)
-    .replace(/{{NAME_STYLED}}/gi, `${name}${suffix}`);
+    .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
 
-  return { fileContent: `${template}`, filePath: `${filePath}${suffix}.${format}` };
+  return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
 };
 
 /**
@@ -87,10 +87,10 @@ export const prepCss = (data: PrepCss): FileContentWithPath => {
 
   const { name, filePath, format, imports, file } = data;
 
-  const suffix = 'Css';
-  const fileContent = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${suffix} = \`${file}\`;\n\nexport default ${name}${suffix};`;
+  const SUFFIX = 'Css';
+  const FILE_CONTENT = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
 
-  return { fileContent, filePath: `${filePath}${suffix}.${format}` };
+  return { fileContent: FILE_CONTENT, filePath: `${filePath}${SUFFIX}.${format}` };
 };
 
 /**
@@ -105,13 +105,13 @@ export const prepStorybook = async (data: PrepStorybook): Promise<FileContentWit
 
   const { name, filePath, format, templates, text } = data;
 
-  const suffix = '.stories';
+  const SUFFIX = '.stories';
   const path = templates.templatePathStorybook;
 
   const template = await loadFile(path, true);
   template.replace(/{{NAME}}/gi, name).replace(/{{TEXT}}/gi, text);
 
-  return { fileContent: `${template};`, filePath: `${filePath}${suffix}.${format}` };
+  return { fileContent: `${template};`, filePath: `${filePath}${SUFFIX}.${format}` };
 };
 
 /**
@@ -125,7 +125,7 @@ export const prepDescription = (data: PrepDescription): FileContentWithPath => {
 
   const { filePath, file, format } = data;
 
-  const fileContent = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
+  const FILE_CONTENT = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
 
-  return { fileContent, filePath: `${filePath}.description.${format}` };
+  return { fileContent: FILE_CONTENT, filePath: `${filePath}.description.${format}` };
 };

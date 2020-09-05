@@ -69,7 +69,7 @@ describe('Success cases', () => {
 
       const file = `${writeOp.name}`;
 
-      await writeFile(writeOp);
+      writeFile(writeOp);
 
       const fileContent = fs.readFileSync(file, { encoding: 'utf-8' });
       expect(fileContent).toBe(`"{\\"something\\":1234}"`);
@@ -97,7 +97,7 @@ describe('Success cases', () => {
 
       const file = `${writeOp.name}.${writeOp.format}`;
 
-      await writeFile(writeOp);
+      writeFile(writeOp);
 
       const fileContent = fs.readFileSync(file, { encoding: 'utf-8' });
       const includesContent = fileContent.includes(

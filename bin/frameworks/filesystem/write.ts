@@ -9,6 +9,21 @@ import { ErrorWrite } from '../errors/errors';
  * @param filePath File path minus file name
  * @param fileContent File contents
  */
+export function write(filePath: string, fileContent: string): void {
+  if (!filePath || !fileContent) throw new Error(ErrorWrite);
+  try {
+    fs.writeFileSync(filePath, fileContent); //, 'utf-8'
+    /*
+    (error) => {
+      if (error) throw new Error(`${ErrorWrite}: ${error}`);
+    });
+    */
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+/*
 export async function write(filePath: string, fileContent: string): Promise<boolean> {
   return await new Promise((resolve, reject) => {
     if (!filePath || !fileContent) throw new Error(ErrorWrite);
@@ -22,3 +37,4 @@ export async function write(filePath: string, fileContent: string): Promise<bool
     }
   });
 }
+*/

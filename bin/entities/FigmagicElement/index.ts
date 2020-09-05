@@ -1,23 +1,24 @@
 import { FigmaElement } from '../../contracts/FigmaElement';
 import { FRAME as Frame } from '../../contracts/Figma';
+import { Config } from '../../contracts/Config';
 
 import { parseCssFromElement } from './logic/parseCssFromElement';
 
-import { MsgProcessElementsCreatingElement } from '../../frameworks/messages/messages';
+//import { MsgProcessElementsCreatingElement } from '../../frameworks/messages/messages';
 
 import {
   ErrorProcessElementsNoMainElement,
-  ErrorProcessElementsWrongElementCount,
+  //ErrorProcessElementsWrongElementCount,
   ErrorProcessElementsWrongTextElementCount
   //ErrorGetElementType
 } from '../../frameworks/errors/errors';
 
 export const makeFigmagicElement = (
   element: FigmaElement,
-  description = '',
-  remSize = 16
+  config: Config,
+  description = ''
 ): FigmagicElement => {
-  return new FigmagicElement(element, description, remSize);
+  return new FigmagicElement(element, config, description);
 };
 
 export class FigmagicElement {
@@ -26,6 +27,7 @@ export class FigmagicElement {
   children?: Frame[];
   type: string;
 
+  config: Config;
   description: string;
   remSize: number;
   css: string;
@@ -34,7 +36,7 @@ export class FigmagicElement {
   text: string;
   imports: string[];
 
-  constructor(element: FigmaElement, description = '', remSize = 16) {
+  constructor(element: FigmaElement, config: Config, description = '') {
     // Element
     this.id = element.id;
     this.name = element.name;
@@ -42,8 +44,8 @@ export class FigmagicElement {
     this.type = element.type;
 
     // Metadata
+    this.config = config;
     this.description = description;
-    this.remSize = remSize;
     this.css = ``;
     this.html = ``;
     this.extraProps = ``;
@@ -65,9 +67,9 @@ export class FigmagicElement {
   //  this.description += description;
   //}
 
-  private addCss(css: string): void {
-    this.css += css;
-  }
+  //private addCss(css: string): void {
+  //  this.css += css;
+  //}
 
   private addHtml(html: string): void {
     this.html += html;
@@ -85,11 +87,11 @@ export class FigmagicElement {
     this.text += text;
   }
 
-  private addImports(imports: string[]): void {
-    // Flatten imports and remove duplicates
-    this.imports = [...new Set(imports)];
-    //this.imports = imports.concat(imports);
-  }
+  //private addImports(imports: string[]): void {
+  //  // Flatten imports and remove duplicates
+  //  this.imports = [...new Set(imports)];
+  //  //this.imports = imports.concat(imports);
+  //}
 
   /**
    * @description Get the type of HTML element this represents
@@ -111,11 +113,11 @@ export class FigmagicElement {
    * @param element Element
    */
   private async handleNestedElements(): Promise<any> {
-    console.log('BEFORE');
+    console.log('BEFORE handleNestedElements');
 
     this.children.forEach(async (el: any) => {
       if (!el.name) return;
-      console.log('el.name', el.name);
+      console.log('handleNestedElements: el.name', el.name);
       if (el.name[0] === '_') return;
 
       const MAIN_ELEMENT = el.children.filter(
@@ -143,9 +145,16 @@ export class FigmagicElement {
       console.log('FIXED_NAME', FIXED_NAME);
 
       // Parse layout CSS from element
-      console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
+      //console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
-      const elementStyling = await parseCssFromElement(MAIN_ELEMENT, TEXT_ELEMENT, this.remSize);
+      // TODO: The below will break
+      // (node:76823) UnhandledPromiseRejectionWarning: Error: Cannot find module '/Users/mikaelvesavuori/web/figmagic/tokens/borderwidths.mjs'
+      const elementStyling = await parseCssFromElement(
+        MAIN_ELEMENT,
+        TEXT_ELEMENT,
+        this.config.remSize,
+        this.config.outputTokenFormat
+      );
       console.log('elementStyling', elementStyling);
     });
 
@@ -203,7 +212,8 @@ export class FigmagicElement {
   );
   */
 
-    await this.processCssSelfnamedLayer(TEXT_ELEMENT);
+    // TODO: The below will break?
+    //await this.processCssSelfnamedLayer(TEXT_ELEMENT);
   }
 
   /**
@@ -212,6 +222,7 @@ export class FigmagicElement {
    * @param element Element
    * @param textElement Text element
    */
+  /*
   private async processCssSelfnamedLayer(textElement) {
     const MAIN_ELEMENT = this.children.filter((e) => e.name === this.name);
     const TEXT_ELEMENT = textElement;
@@ -235,4 +246,5 @@ export class FigmagicElement {
       //updatedCss += elementStyling.css;
     }
   }
+*/
 }
