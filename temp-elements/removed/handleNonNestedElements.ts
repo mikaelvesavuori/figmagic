@@ -58,9 +58,6 @@ export async function handleNonNestedElements(element: FigmagicElement): Promise
   */
 
   await processCssSelfnamedLayer(element, TEXT_ELEMENT);
-  console.log('////', element);
-
-  // Set the above to element
 
   return element;
 }

@@ -15,11 +15,12 @@ import { ErrorWriteFile, ErrorWriteFileWrongType } from '../errors/errors';
  */
 export async function writeFile(writeOperation: WriteOperation): Promise<boolean> {
   return new Promise(async (resolve, reject) => {
-    console.log('||| writeOperation |||', writeOperation);
+    //console.log('||| writeOperation |||', writeOperation);
     if (!writeOperation) reject(ErrorWriteFile);
 
     const { type, file, path, name, format, metadata, templates } = writeOperation;
     if (!file || !path || !name || !type) {
+      console.log(`MISSING STUFF: file: ${file}, path: ${path}, name: ${name}, type: ${type}`);
       reject(ErrorWriteFile);
       throw new Error(ErrorWriteFile);
     }

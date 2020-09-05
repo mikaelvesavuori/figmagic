@@ -48,11 +48,13 @@ export class FigmagicElement {
     this.config = config;
     this.description = description;
     this.element = ``;
-    this.css = ``;
-    this.html = ``;
+    this.css = ` `;
+    this.html = ` `;
     this.extraProps = ` `;
     this.text = ` `;
     this.imports = [];
+
+    if (!this.name) console.warn('MISSING NAME!', element);
 
     // Setup
     //this.init();
@@ -116,8 +118,8 @@ export class FigmagicElement {
    * @param element Element
    */
   private async handleNestedElements(): Promise<any> {
-    return new Promise(async (resolve) => {
-      this.children.forEach(async (el: any) => {
+    return await Promise.all(
+      this.children.map(async (el: any) => {
         if (!el.name) return;
         if (el.name[0] === '_') return;
 
@@ -139,28 +141,22 @@ export class FigmagicElement {
         if (!MAIN_ELEMENT) throw new Error(ErrorProcessElementsNoMainElement);
 
         // Clean names from any spaces
-        const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
-        console.log('FIXED_NAME', FIXED_NAME);
+        //const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
 
         // Parse layout CSS from element
         //console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
-        // TODO: The below will break
-        // (node:76823) UnhandledPromiseRejectionWarning: Error: Cannot find module '/Users/mikaelvesavuori/web/figmagic/tokens/borderwidths.mjs'
-        //const elementStyling =
-        const parsed = await parseCssFromElement(
+        const elementStyling = await parseCssFromElement(
           MAIN_ELEMENT,
           TEXT_ELEMENT,
           this.config.remSize,
           this.config.outputTokenFormat
         );
 
-        this.addCss(parsed.css);
-        this.addImports(parsed.imports);
-
-        resolve(true);
-      });
-    });
+        this.addCss(elementStyling.css);
+        this.addImports(elementStyling.imports);
+      })
+    );
   }
 
   /**
