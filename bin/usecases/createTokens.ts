@@ -16,7 +16,7 @@ import { ErrorCreateTokens } from '../frameworks/errors/errors';
  * @param config User configuration
  * @param data Data from Figma
  */
-export async function createTokens(config: Config, data: FigmaData): Promise<boolean> {
+export async function createTokens(config: Config, data: FigmaData): Promise<boolean | unknown> {
   if (!config || !data) throw new Error(ErrorCreateTokens);
 
   return new Promise(async (resolve) => {
@@ -29,5 +29,7 @@ export async function createTokens(config: Config, data: FigmaData): Promise<boo
     } catch (error) {
       throw new Error(error);
     }
+  }).catch((error) => {
+    throw new Error(error);
   });
 }

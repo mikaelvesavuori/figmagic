@@ -30,6 +30,7 @@ import { ErrorParseCssFromElement } from '../../../frameworks/errors/errors';
  * @param textElement Figma object representation of the text field connected to the element/component
  * @param remSize HTML body REM size
  */
+// TODO: Refactor
 export async function parseCssFromElement(
   element: any,
   textElement: TextElement,
@@ -64,8 +65,8 @@ export async function parseCssFromElement(
       let css = ``;
       const imports: any = [];
 
-      css += `width: 100%;\n`;
-      css += `box-sizing: border-box;\n`;
+      // Add defaults
+      css += `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
 
       const PADDING_Y: Record<string, unknown> = getPaddingY(textElement, element);
       const PADDING_X: Record<string, unknown> = getPaddingX(textElement, element);
@@ -82,33 +83,55 @@ export async function parseCssFromElement(
       });
 
       const HEIGHT = element.absoluteBoundingBox ? element.absoluteBoundingBox.height : null;
-      if (HEIGHT) parseHeight(css, imports, { spacing, height: HEIGHT, remSize });
+      if (HEIGHT) {
+        const a = parseHeight(css, imports, { spacing, height: HEIGHT, remSize });
+        css += a.css;
+        imports.concat(a.imports);
+      }
 
       const BACKGROUND_COLOR = getBackgroundColor(element);
-      if (BACKGROUND_COLOR)
-        parseBackgroundColor(css, imports, {
+      console.log('BACKGROUND_COLOR', BACKGROUND_COLOR);
+      if (BACKGROUND_COLOR) {
+        const a = parseBackgroundColor(css, imports, {
           colors,
           backgroundColor: BACKGROUND_COLOR,
           remSize
         });
-
-      css += `border: 0;\n`;
-      css += `border-style: solid;\n`;
+        css += a.css;
+        imports.concat(a.imports);
+      }
 
       const BORDER_WIDTH = element.strokeWeight ? `${element.strokeWeight}px` : null;
-      if (BORDER_WIDTH)
-        parseBorderWidth(css, imports, { borderWidths, borderWidth: BORDER_WIDTH, remSize });
+      if (BORDER_WIDTH) {
+        const a = parseBorderWidth(css, imports, {
+          borderWidths,
+          borderWidth: BORDER_WIDTH,
+          remSize
+        });
+        css += a.css;
+        imports.concat(a.imports);
+      }
 
       const BORDER_COLOR = getBorderColor(element);
-      if (BORDER_COLOR)
-        parseBorderColor(css, imports, { colors, borderColor: BORDER_COLOR, remSize });
+      if (BORDER_COLOR) {
+        const a = parseBorderColor(css, imports, { colors, borderColor: BORDER_COLOR, remSize });
+        css += a.css;
+        imports.concat(a.imports);
+      }
 
       const BORDER_RADIUS = element.cornerRadius ? `${element.cornerRadius}px` : null;
-      if (BORDER_RADIUS)
-        parseBorderRadius(css, imports, { radii, borderRadius: BORDER_RADIUS, remSize });
+      if (BORDER_RADIUS) {
+        const a = parseBorderRadius(css, imports, { radii, borderRadius: BORDER_RADIUS, remSize });
+        css += a.css;
+        imports.concat(a.imports);
+      }
 
       const SHADOW = getShadow(element);
-      if (SHADOW) parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
+      if (SHADOW) {
+        const a = parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
+        css += a.css;
+        imports.concat(a.imports);
+      }
 
       resolve({ css, imports });
     } catch (error) {

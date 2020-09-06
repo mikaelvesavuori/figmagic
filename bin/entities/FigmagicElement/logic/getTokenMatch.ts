@@ -18,6 +18,7 @@ import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../../framew
  * @param expectedValue Expected value to match for
  * @param remSize HTML body REM size, required for padding and anything to do with rem/em
  */
+// TODO: Refactor or at least polish
 export function getTokenMatch(
   tokens: Tokens | any,
   tokenFileName: string,
@@ -110,9 +111,6 @@ function matchOther(
   css: string,
   imports: Imports[]
 ) {
-  // TODO: Ugly fix to get rid of error, 'css' is declared but its value is never read.ts(6133)
-  console.log(css);
-
   let foundMatch = false;
 
   Object.entries(tokens).forEach((s) => {
@@ -124,6 +122,7 @@ function matchOther(
     // Multiply rem|em strings through REM size argument
     const VALUE_THROUGH_REM = (() => {
       if (TOKEN_VALUE && typeof TOKEN_VALUE === 'string') {
+        if (property === 'letter-spacing') return TOKEN_VALUE;
         if (TOKEN_VALUE.match('rem') || TOKEN_VALUE.match('em')) {
           return parseFloat(TOKEN_VALUE) * remSize;
         }

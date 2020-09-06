@@ -16,7 +16,7 @@ import { ErrorCreateElements } from '../frameworks/errors/errors';
  * @param config User configuration
  * @param data Data from Figma
  */
-export async function createElements(config: Config, data: FigmaData): Promise<void> {
+export async function createElements(config: Config, data: FigmaData): Promise<void | unknown> {
   if (!config || !data) throw new Error(ErrorCreateElements);
 
   return new Promise(async (resolve) => {
@@ -28,9 +28,11 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
       await createFolder(config.outputFolderElements);
       // @ts-ignore
       await writeElements(elements, config);
-      resolve();
+      resolve(true);
     } catch (error) {
       throw new Error(error);
     }
+  }).catch((error) => {
+    throw new Error(error);
   });
 }

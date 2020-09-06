@@ -50,8 +50,8 @@ export class FigmagicElement {
     this.description = description;
     this.element = ``;
     this.css = ` `;
-    this.html = ` `;
-    this.extraProps = ` `;
+    this.html = ``;
+    this.extraProps = ``;
     this.text = ` `;
     this.imports = [];
 
@@ -79,26 +79,14 @@ export class FigmagicElement {
     // @ts-ignore
     this.imports = [...new Set(updatedImports)];
     //this.addImports([...new Set(updatedImports)]);
-
-    console.log('this.css');
-    console.log(this.css);
-
-    console.log('this.html');
-    console.log(this.html);
-
-    console.log('this.extraProps');
-    console.log(this.extraProps);
-
-    console.log('this.text');
-    console.log(this.text);
-
-    console.log('this.imports');
-    console.log(this.imports);
   }
 
+  /**
+   * @description Both these big functions generate updated CSS and imports
+   * @param children Elements
+   */
   private async handleElements(children: any): Promise<any> {
-    // Both these big functions generate updated CSS and imports
-    if (children.every((a) => a.type === 'GROUP')) {
+    if (children.every((a: any) => a.type === 'GROUP')) {
       return await this.handleNestedElements();
     } else return await this.handleFlatElements();
   }
@@ -161,6 +149,9 @@ export class FigmagicElement {
     let css = ``;
     let imports = [];
 
+    let extraProps = ``;
+    let text = ``;
+
     await Promise.all(
       this.children.map(async (el: any) => {
         if (!el.name) return;
@@ -173,6 +164,26 @@ export class FigmagicElement {
         const TEXT_ELEMENT = el.children.filter(
           (e: any) => e.type === 'TEXT' && e.name[0] !== '_'
         )[0];
+
+        // Set placeholder text
+        if (el.children) {
+          el.children.filter((child) => {
+            if (
+              (child.type === 'GROUP' && child.name.toLowerCase() === 'placeholder') ||
+              (child.type === 'GROUP' && child.name.toLowerCase() === ':placeholder')
+            ) {
+              child.children.filter((c) => {
+                if (
+                  (c.type === 'TEXT' && c.name.toLowerCase() === 'placeholder') ||
+                  (c.type === 'TEXT' && c.name.toLowerCase() === ':placeholder')
+                ) {
+                  if (!extraProps.includes(`placeholder="${c.characters}"`))
+                    extraProps += `placeholder="${c.characters}" `;
+                }
+              });
+            }
+          });
+        }
 
         // Set "type", for example for input element
         if (this.description.match(/type=(.*)/)) {
@@ -218,7 +229,8 @@ export class FigmagicElement {
           //this.addText(TEXT_ELEMENT.characters); // Should not add; should equal/be (=)
           imports = imports.concat(typography.imports);
           css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${typography.css}}`;
-          //text = TEXT_ELEMENT.characters;
+          text = TEXT_ELEMENT.characters;
+          if (3 < 1) console.log('AAAA', text);
         }
       })
     ).catch((error) => {

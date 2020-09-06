@@ -45,7 +45,7 @@ export async function parseTypographyStylingFromElement(
       const _letterSpacings = path.join(`${process.cwd()}`, `${PATH}`, `letterspacings.${FORMAT}`);
       const letterSpacings = sliceOutObjectFromFile(_letterSpacings);
 
-      const _lineHeights = path.join(`${process.cwd()}`, `${PATH}`, `letterspacings.${FORMAT}`);
+      const _lineHeights = path.join(`${process.cwd()}`, `${PATH}`, `lineheights.${FORMAT}`);
       const lineHeights = sliceOutObjectFromFile(_lineHeights);
 
       let css = ``;
