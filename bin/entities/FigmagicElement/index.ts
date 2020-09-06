@@ -3,13 +3,15 @@ import { FRAME as Frame } from '../../contracts/Figma';
 import { Config } from '../../contracts/Config';
 
 import { parseCssFromElement } from './logic/parseCssFromElement';
+import { parseTypographyStylingFromElement } from './logic/parseTypographyStylingFromElement';
+import { processNestedCss } from './logic/processNestedCss';
 
-//import { MsgProcessElementsCreatingElement } from '../../frameworks/messages/messages';
+import { MsgProcessElementsCreatingElement } from '../../frameworks/messages/messages';
 
 import {
-  ErrorProcessElementsNoMainElement,
+  ErrorProcessElementsNoMainElement
   //ErrorProcessElementsWrongElementCount,
-  ErrorProcessElementsWrongTextElementCount
+  //ErrorProcessElementsWrongTextElementCount
   //ErrorGetElementType
 } from '../../frameworks/errors/errors';
 
@@ -30,7 +32,6 @@ export class FigmagicElement {
   config: Config;
   description: string;
   element: string;
-  remSize: number;
   css: string;
   html: string;
   extraProps: string;
@@ -63,13 +64,44 @@ export class FigmagicElement {
   async init(): Promise<void> {
     this.setElement();
 
-    if (this.children.every((a) => a.type === 'GROUP')) await this.handleNestedElements();
-    else await this.handleNonNestedElements();
+    const html = ``;
+    const extraProps = ``; // Any extra properties, like "placeholder"
+    const text = ``;
+    //const imports = [];
+
+    // @ts-ignore
+    const { updatedCss, updatedImports } = await this.handleElements(this.children);
+
+    this.addCss(updatedCss);
+    this.addHtml(html);
+    this.addExtraProps(extraProps);
+    this.addText(text);
+    // @ts-ignore
+    this.imports = [...new Set(updatedImports)];
+    //this.addImports([...new Set(updatedImports)]);
+
+    console.log('this.css');
+    console.log(this.css);
+
+    console.log('this.html');
+    console.log(this.html);
+
+    console.log('this.extraProps');
+    console.log(this.extraProps);
+
+    console.log('this.text');
+    console.log(this.text);
+
+    console.log('this.imports');
+    console.log(this.imports);
   }
 
-  //private addDescription(description: string): void {
-  //  this.description += description;
-  //}
+  private async handleElements(children: any): Promise<any> {
+    // Both these big functions generate updated CSS and imports
+    if (children.every((a) => a.type === 'GROUP')) {
+      return await this.handleNestedElements();
+    } else return await this.handleFlatElements();
+  }
 
   private addCss(css: string): void {
     this.css += css;
@@ -91,11 +123,19 @@ export class FigmagicElement {
     this.text += text;
   }
 
+  /*
   private addImports(imports: string[]): void {
     // Flatten imports and remove duplicates
     this.imports = [...new Set(imports)];
     //this.imports = imports.concat(imports);
   }
+  */
+
+  /*
+  private setImports(imports: string[]): void {
+    this.imports = this.imports.concat(imports);
+  }
+  */
 
   /**
    * @description Get the type of HTML element this represents
@@ -118,7 +158,10 @@ export class FigmagicElement {
    * @param element Element
    */
   private async handleNestedElements(): Promise<any> {
-    return await Promise.all(
+    let css = ``;
+    let imports = [];
+
+    await Promise.all(
       this.children.map(async (el: any) => {
         if (!el.name) return;
         if (el.name[0] === '_') return;
@@ -138,13 +181,16 @@ export class FigmagicElement {
             el.addExtraProps(`type="${TYPE}" `);
         }
 
+        // Check and set correct selector type: class or pseudo-element
+        const SELECTOR_TYPE = '.';
+
         if (!MAIN_ELEMENT) throw new Error(ErrorProcessElementsNoMainElement);
 
         // Clean names from any spaces
-        //const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
+        const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
 
         // Parse layout CSS from element
-        //console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
+        console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
         const elementStyling = await parseCssFromElement(
           MAIN_ELEMENT,
@@ -153,10 +199,34 @@ export class FigmagicElement {
           this.config.outputTokenFormat
         );
 
-        this.addCss(elementStyling.css);
-        this.addImports(elementStyling.imports);
+        //this.addImports(elementStyling.imports);
+        imports = imports.concat(elementStyling.imports);
+        //this.addCss(`\n${SELECTOR_TYPE}${FIXED_NAME} {\n${elementStyling.css}}`);
+        css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${elementStyling.css}}`;
+
+        // Parse typography CSS from element (requires layout element to exist)
+        if (TEXT_ELEMENT) {
+          const typography = await parseTypographyStylingFromElement(
+            // @ts-ignore
+            TEXT_ELEMENT,
+            this.config.remSize,
+            this.config.outputTokenFormat
+          );
+          //this.setImports(typography.imports);
+          //this.addImports(typography.imports); // Should not add; should equal/be (=); imports.concat(typography.imports)
+          //this.addCss(`\n${SELECTOR_TYPE}${FIXED_NAME} {\n${typography.css}}`);
+          //this.addText(TEXT_ELEMENT.characters); // Should not add; should equal/be (=)
+          imports = imports.concat(typography.imports);
+          css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${typography.css}}`;
+          //text = TEXT_ELEMENT.characters;
+        }
       })
     );
+
+    const PROCESSED_CSS = processNestedCss(css);
+    //this.addCss(PROCESSED_CSS);
+
+    return { updatedCss: PROCESSED_CSS, updatedImports: imports };
   }
 
   /**
@@ -164,11 +234,17 @@ export class FigmagicElement {
    *
    * @param elements String from Figma description block
    */
-  private async handleNonNestedElements(): Promise<void> {
+  private async handleFlatElements(): Promise<any> {
+    let css = ``;
+    let imports = [];
+
     // Check for text elements
-    const TEXT_ELEMENT = this.children.filter((el) => el.type === 'TEXT' && el.name[0] !== '_');
-    if (TEXT_ELEMENT.length > 1)
-      throw new Error(`${ErrorProcessElementsWrongTextElementCount} ${this.name}!`);
+    const TEXT_ELEMENT = this.children.filter(
+      (e: any) => e.type === 'TEXT' && e.name[0] !== '_'
+    )[0];
+
+    //if (TEXT_ELEMENT.length > 1)
+    //  throw new Error(`${ErrorProcessElementsWrongTextElementCount} ${this.name}!`);
 
     // Set placeholder text
     if (this.children) {
@@ -189,60 +265,67 @@ export class FigmagicElement {
     }
 
     // Set text styling
-    if (TEXT_ELEMENT.length === 1) {
-      //const typography = await parseTypographyStylingFromElement(TEXT_ELEMENT[0], this.remSize);
-      //this.addImports(imports.concat(typography.imports)); // Should not add; should equal/be (=)
+    if (TEXT_ELEMENT) {
+      const typography = await parseTypographyStylingFromElement(
+        // @ts-ignore
+        TEXT_ELEMENT,
+        this.config.remSize,
+        this.config.outputTokenFormat
+      );
+      //this.setImports(typography.imports);
+      //this.addImports(typography.imports); // Should not add; should equal/be (=); imports.concat(typography.imports)
       //this.addCss(typography.css);
-      this.addText(TEXT_ELEMENT[0].characters); // Should not add; should equal/be (=)
+      //this.addText(TEXT_ELEMENT.characters); // Should not add; should equal/be (=)
+      imports = imports.concat(typography.imports);
+      css += typography.css;
+      this.text = TEXT_ELEMENT.characters;
     }
 
     this.replaceHtml('{{TEXT}}', this.text);
 
     // Process CSS for any component that has a self-named layer
     // This pattern is how we communicate that it's a layout element, e.g. input and not a H1
-    /*
-    const { updatedCss, updatedImports } = await processCssSelfnamedLayer(
-      element,
-      TEXT_ELEMENT,
-      css,
-      imports,
-      remSize
-    );
-    */
+    const { updatedCss, updatedImports } = await this.processCssSelfnamedLayer(TEXT_ELEMENT);
 
-    // TODO: The below will break?
-    //await this.processCssSelfnamedLayer(TEXT_ELEMENT);
+    css = updatedCss;
+    imports = updatedImports;
+
+    return { updatedCss: css, updatedImports: imports };
   }
 
   /**
    * @description Process CSS for layer with same name as self
    *
-   * @param element Element
    * @param textElement Text element
    */
-  /*
-  private async processCssSelfnamedLayer(textElement) {
-    const MAIN_ELEMENT = this.children.filter((e) => e.name === this.name);
-    const TEXT_ELEMENT = textElement;
+  private async processCssSelfnamedLayer(textElement: any): Promise<any> {
+    const _MAIN = this.children.filter((e) => e.name === this.name);
+    const MAIN_ELEMENT = _MAIN[0];
 
-    if (MAIN_ELEMENT[0]) {
-      if (MAIN_ELEMENT.length !== 1)
-        throw new Error(`${ErrorProcessElementsWrongElementCount} ${this.name}!`);
+    let css = ``;
+    let imports = [];
 
-      const FIXED_NAME = MAIN_ELEMENT[0].name.replace(/\s/gi, '');
-      console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT[0].name, FIXED_NAME));
+    if (MAIN_ELEMENT) {
+      //if (MAIN_ELEMENT.length !== 1)
+      //  throw new Error(`${ErrorProcessElementsWrongElementCount} ${this.name}!`);
+
+      const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
+      console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
       const elementStyling = await parseCssFromElement(
-        MAIN_ELEMENT[0],
-        TEXT_ELEMENT[0],
-        this.remSize
+        MAIN_ELEMENT,
+        textElement,
+        this.config.remSize,
+        this.config.outputTokenFormat
       );
 
-      this.addImports(elementStyling.imports);
-      this.addCss(elementStyling.css);
-      //updatedImports = updatedImports.concat(elementStyling.imports);
-      //updatedCss += elementStyling.css;
+      //this.setImports(updatedImports.concat(elementStyling.imports));
+      //this.addImports(elementStyling.imports);
+      //this.addCss(elementStyling.css);
+      imports = imports.concat(elementStyling.imports);
+      css += elementStyling.css;
     }
+
+    return { updatedCss: css, updatedImports: imports };
   }
-*/
 }

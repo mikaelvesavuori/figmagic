@@ -1,12 +1,12 @@
 import * as fs from 'fs';
 
-import { Config } from '../../contracts/Config';
-import { WriteOperation } from '../../contracts/Write';
+import { Config } from '../../../contracts/Config';
+import { WriteOperation } from '../../../contracts/Write';
 
-import { toPascalCase } from '../string/toPascalCase';
-import { writeFile } from './writeFile';
+import { toPascalCase } from '../../../frameworks/string/toPascalCase';
+import { writeFile } from '../../../frameworks/filesystem/writeFile';
 
-import { ErrorWriteElements } from '../errors/errors';
+import { ErrorWriteElements } from '../../../frameworks/errors/errors';
 
 /**
  * @description Funnel function to write all the wanted files per element

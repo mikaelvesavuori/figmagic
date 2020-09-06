@@ -1,14 +1,14 @@
-import { Config } from '../../contracts/Config';
-import { FRAME as Frame } from '../../contracts/Figma';
-import { WriteOperation } from '../../contracts/Write';
+import { Config } from '../../../contracts/Config';
+import { FRAME as Frame } from '../../../contracts/Figma';
+import { WriteOperation } from '../../../contracts/Write';
 
-import { processTokens } from '../../usecases/interactors/tokens/processTokens';
+import { processTokens } from './processTokens';
 
-import { writeFile } from './writeFile';
-import { camelize } from '../string/camelize';
+import { writeFile } from '../../../frameworks/filesystem/writeFile';
+import { camelize } from '../../../frameworks/string/camelize';
+import { acceptedTokenTypes } from '../../../frameworks/system/acceptedTokenTypes';
 
-import { acceptedTokenTypes } from '../system/acceptedTokenTypes';
-import { ErrorWriteTokens, ErrorWriteTokensNoSettings } from '../errors/errors';
+import { ErrorWriteTokens, ErrorWriteTokensNoSettings } from '../../../frameworks/errors/errors';
 
 /**
  * @description Write tokens to file
@@ -21,7 +21,7 @@ export async function writeTokens(tokens: Frame[], config: Config): Promise<bool
   if (!(tokens.length > 0)) throw new Error(ErrorWriteTokens);
   if (!config) throw new Error(ErrorWriteTokensNoSettings);
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     try {
       tokens.forEach(async (token) => {
         const tokenName = camelize(token.name).toLowerCase();
@@ -44,7 +44,7 @@ export async function writeTokens(tokens: Frame[], config: Config): Promise<bool
 
       resolve(true);
     } catch (error) {
-      reject(error);
+      throw new Error(error);
     }
   });
 }

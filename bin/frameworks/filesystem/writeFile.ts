@@ -13,21 +13,20 @@ import { ErrorWriteFile, ErrorWriteFileWrongType } from '../errors/errors';
  *
  * @param writeOperation Object type with all arguments needed to write the file
  */
-export async function writeFile(writeOperation: WriteOperation): Promise<boolean> {
-  return new Promise(async (resolve, reject) => {
+export async function writeFile(writeOperation: WriteOperation): Promise<unknown> {
+  return new Promise(async (resolve) => {
     //console.log('||| writeOperation |||', writeOperation);
-    if (!writeOperation) reject(ErrorWriteFile);
+    if (!writeOperation) throw new Error(ErrorWriteFile);
 
     const { type, file, path, name, format, metadata, templates } = writeOperation;
     if (!file || !path || !name || !type) {
       console.log(`MISSING STUFF: file: ${file}, path: ${path}, name: ${name}, type: ${type}`);
-      reject(ErrorWriteFile);
       throw new Error(ErrorWriteFile);
     }
 
     const _type: any = type.toLowerCase();
 
-    if (!acceptedFileTypes.includes(_type)) reject(ErrorWriteFileWrongType);
+    if (!acceptedFileTypes.includes(_type)) throw new Error(ErrorWriteFileWrongType);
 
     await createFolder(path);
 
@@ -46,7 +45,9 @@ export async function writeFile(writeOperation: WriteOperation): Promise<boolean
       await write(filePath, fileContent);
       resolve(true);
     } catch (error) {
-      reject(error);
+      throw new Error(error);
     }
+  }).catch((error) => {
+    throw new Error(error);
   });
 }

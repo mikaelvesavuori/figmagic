@@ -1,9 +1,10 @@
 import * as path from 'path';
 
-//import { Element } from '../contracts/Element';
+import { FRAME as Frame } from '../../../contracts/Figma';
 import { FigmagicTypography } from '../../../contracts/FigmagicTypography';
 
 import { getTokenMatch } from './getTokenMatch';
+import { sliceOutObjectFromFile } from './sliceOutObjectFromFile';
 
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
@@ -16,38 +17,36 @@ import { ErrorParseTypographyStylingFromElement } from '../../../frameworks/erro
  * @param remSize HTML body REM size
  */
 export async function parseTypographyStylingFromElement(
-  element: Element,
-  remSize: number
+  element: Frame,
+  remSize: number,
+  outputTokenFormat: string
 ): Promise<FigmagicTypography> {
   if (!element || !remSize) throw new Error(ErrorParseTypographyStylingFromElement);
 
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     try {
-      // Dynamic imports
       const PATH = process.env.IS_TEST ? path.join('testdata', 'tokens') : `tokens`;
+      const FORMAT = outputTokenFormat;
 
-      // TODO: Fix hardcoded .ts file ending
-      const _colors = await import(path.join(`${process.cwd()}`, `${PATH}`, `colors.ts`));
-      const colors = _colors.default;
+      // Get data from tokens
+      // TODO: Camel-casing seems to be broken? (somewhere else; in write?)
+      const _colors = path.join(`${process.cwd()}`, `${PATH}`, `colors.${FORMAT}`);
+      const colors = sliceOutObjectFromFile(_colors);
 
-      const _fontFamilies = await import(
-        path.join(`${process.cwd()}`, `${PATH}`, `fontFamilies.ts`)
-      );
-      const fontFamilies = _fontFamilies.default;
+      const _fontFamilies = path.join(`${process.cwd()}`, `${PATH}`, `fontfamilies.${FORMAT}`);
+      const fontFamilies = sliceOutObjectFromFile(_fontFamilies);
 
-      const _fontSizes = await import(path.join(`${process.cwd()}`, `${PATH}`, `fontSizes.ts`));
-      const fontSizes = _fontSizes.default;
+      const _fontSizes = path.join(`${process.cwd()}`, `${PATH}`, `fontsizes.${FORMAT}`);
+      const fontSizes = sliceOutObjectFromFile(_fontSizes);
 
-      const _fontWeights = await import(path.join(`${process.cwd()}`, `${PATH}`, `fontWeights.ts`));
-      const fontWeights = _fontWeights.default;
+      const _fontWeights = path.join(`${process.cwd()}`, `${PATH}`, `fontweights.${FORMAT}`);
+      const fontWeights = sliceOutObjectFromFile(_fontWeights);
 
-      const _letterSpacings = await import(
-        path.join(`${process.cwd()}`, `${PATH}`, `letterSpacings.ts`)
-      );
-      const letterSpacings = _letterSpacings.default;
+      const _letterSpacings = path.join(`${process.cwd()}`, `${PATH}`, `letterspacings.${FORMAT}`);
+      const letterSpacings = sliceOutObjectFromFile(_letterSpacings);
 
-      const _lineHeights = await import(path.join(`${process.cwd()}`, `${PATH}`, `lineHeights.ts`));
-      const lineHeights = _lineHeights.default;
+      const _lineHeights = path.join(`${process.cwd()}`, `${PATH}`, `letterspacings.${FORMAT}`);
+      const lineHeights = sliceOutObjectFromFile(_lineHeights);
 
       let css = ``;
       const imports = [];
@@ -224,7 +223,7 @@ export async function parseTypographyStylingFromElement(
 
       resolve({ css, imports });
     } catch (error) {
-      reject(error);
+      throw new Error(error);
     }
   });
 }

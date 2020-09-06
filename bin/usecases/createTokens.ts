@@ -5,7 +5,7 @@ import { FRAME as Frame } from '../contracts/Figma';
 import { createPage } from './interactors/common/createPage';
 
 import { refresh } from '../frameworks/filesystem/refresh';
-import { writeTokens } from '../frameworks/filesystem/writeTokens';
+import { writeTokens } from './interactors/tokens/writeTokens';
 
 import { MsgWriteTokens } from '../frameworks/messages/messages';
 import { ErrorCreateTokens } from '../frameworks/errors/errors';
@@ -19,7 +19,7 @@ import { ErrorCreateTokens } from '../frameworks/errors/errors';
 export async function createTokens(config: Config, data: FigmaData): Promise<boolean> {
   if (!config || !data) throw new Error(ErrorCreateTokens);
 
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     console.log(MsgWriteTokens);
     try {
       await refresh(config.outputFolderTokens);
@@ -27,7 +27,7 @@ export async function createTokens(config: Config, data: FigmaData): Promise<boo
       await writeTokens(tokensPage, config); // TODO: Reverse the naming/structure of writeTokens <--> processTokens to be in line with other usecases
       resolve(true);
     } catch (error) {
-      reject(error);
+      throw new Error(error);
     }
   });
 }

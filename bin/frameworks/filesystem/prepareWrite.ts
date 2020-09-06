@@ -11,8 +11,8 @@ import { ErrorPrepareWrite, ErrorWriteFile } from '../errors/errors';
  * @param writeOperation Object type with everything required (at this stage) to write the file later
  */
 export async function prepareWrite(writeOperation: WriteOperation): Promise<any> {
-  return new Promise((resolve, reject) => {
-    if (!writeOperation) reject(ErrorWriteFile);
+  return new Promise((resolve) => {
+    if (!writeOperation) throw new Error(ErrorWriteFile);
     try {
       const { type, file, path, name, format, metadata, templates } = writeOperation;
 
@@ -35,7 +35,7 @@ export async function prepareWrite(writeOperation: WriteOperation): Promise<any>
 
       resolve(getFileContentAndPath(getFileDataOperation));
     } catch (error) {
-      reject(error);
+      throw new Error(error);
     }
   });
 }

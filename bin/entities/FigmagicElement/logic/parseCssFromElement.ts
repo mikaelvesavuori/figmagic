@@ -1,9 +1,10 @@
-import * as fs from 'fs';
 import * as path from 'path';
 
 //import { Css } from '../../../contracts/Css';
 //import { Element } from '../../contracts/Element';
 import { TextElement } from '../../../contracts/TextElement';
+
+import { sliceOutObjectFromFile } from './sliceOutObjectFromFile';
 
 import {
   getPaddingY,
@@ -37,26 +38,27 @@ export async function parseCssFromElement(
 ): Promise<any> {
   if (!element || !remSize) throw new Error(ErrorParseCssFromElement);
 
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     try {
       const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : path.join(`tokens`);
       const FORMAT = outputTokenFormat;
 
       // Get data from tokens
+      // TODO: Camel-casing seems to be broken? (somewhere else; in write?)
       const _borderWidths = path.join(`${process.cwd()}`, `${PATH}`, `borderwidths.${FORMAT}`);
-      const borderWidths = sliceOutObject(_borderWidths);
+      const borderWidths = sliceOutObjectFromFile(_borderWidths);
 
       const _colors = path.join(`${process.cwd()}`, `${PATH}`, `colors.${FORMAT}`);
-      const colors = sliceOutObject(_colors);
+      const colors = sliceOutObjectFromFile(_colors);
 
       const _radii = path.join(`${process.cwd()}`, `${PATH}`, `radii.${FORMAT}`);
-      const radii = sliceOutObject(_radii);
+      const radii = sliceOutObjectFromFile(_radii);
 
       const _shadows = path.join(`${process.cwd()}`, `${PATH}`, `shadows.${FORMAT}`);
-      const shadows = sliceOutObject(_shadows);
+      const shadows = sliceOutObjectFromFile(_shadows);
 
       const _spacing = path.join(`${process.cwd()}`, `${PATH}`, `spacing.${FORMAT}`);
-      const spacing = sliceOutObject(_spacing);
+      const spacing = sliceOutObjectFromFile(_spacing);
 
       // Start parsing
       let css = ``;
@@ -110,13 +112,7 @@ export async function parseCssFromElement(
 
       resolve({ css, imports });
     } catch (error) {
-      reject(error);
+      throw new Error(error);
     }
   });
 }
-
-const sliceOutObject = (path: string): Record<string, unknown> => {
-  const data = fs.readFileSync(path, 'utf8');
-  const DATA = data.slice(data.indexOf('{'), data.indexOf('}') + 1);
-  return JSON.parse(DATA);
-};

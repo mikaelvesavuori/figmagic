@@ -13,9 +13,10 @@ export async function loadFile(path: string, isRaw = false): Promise<any> {
   if (!fs.existsSync(path)) throw new Error(ErrorLoadFile(path));
 
   try {
-    return await new Promise((resolve, reject) =>
+    return await new Promise((resolve) =>
       fs.readFile(path, 'utf8', (error, data) => {
-        if (error) reject(error);
+        // @ts-ignore
+        if (error) throw new Error(error);
         if (isRaw) resolve(data); // Won't do anything...
 
         const DATA = isJsonString(data) ? JSON.parse(data) : data; //typeof data === 'string' ? data : JSON.parse(data);

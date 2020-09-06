@@ -27,24 +27,37 @@ export function getTokenMatch(
 ): TokenMatch {
   if (!tokens || !tokenFileName || !property || !expectedValue) throw new Error(ErrorGetTokenMatch);
 
-  const updatedCss = ``;
-  const updatedImports: any[] = [];
+  let css = ``;
+  let imports: any[] = [];
 
   // Padding requires both X and Y dimensions/values so requires a bit more noodling
-  if (property === 'padding')
-    matchPadding(
+  if (property === 'padding') {
+    const a: any = matchPadding(
       expectedValue,
       remSize,
       tokens,
       tokenFileName,
       property,
-      updatedCss,
-      updatedImports
+      css,
+      imports
     );
-  else
-    matchOther(expectedValue, remSize, tokens, tokenFileName, property, updatedCss, updatedImports);
+    css = a.css;
+    imports = a.imports;
+  } else {
+    const a: any = matchOther(
+      expectedValue,
+      remSize,
+      tokens,
+      tokenFileName,
+      property,
+      css,
+      imports
+    );
+    css = a.css;
+    imports = a.imports;
+  }
 
-  return { updatedCss, updatedImports };
+  return { updatedCss: css, updatedImports: imports };
 }
 
 function matchPadding(
@@ -53,11 +66,9 @@ function matchPadding(
   tokens: Tokens,
   tokenFileName: string,
   property: string,
-  updatedCss: string,
-  updatedImports: Imports[]
-) {
-  if (3 < 1) console.log(updatedCss);
-
+  css: string,
+  imports: Imports[]
+): any {
   const keys = Object.keys(expectedValue);
   // TODO: Fix "any"
   keys.forEach((key: any) => {
@@ -72,7 +83,7 @@ function matchPadding(
       // Check if we can match value with a token and its value
       Object.entries(tokens).forEach((s) => {
         if (s[1] === value) {
-          updatedCss += `${property}-${key}: \${${tokenFileName}.${s[0]}};\n`;
+          css += `${property}-${key}: \${${tokenFileName}.${s[0]}};\n`;
           foundMatch = true;
         }
       });
@@ -80,12 +91,14 @@ function matchPadding(
       // Write expected value as-is, since we couldn't match it to a token
       if (!foundMatch) {
         console.warn(`${MsgGetTokenMatchNoMatch} ${property}: ${value}`);
-        updatedCss += `${property}-${key}: ${value};\n`;
+        css += `${property}-${key}: ${value};\n`;
       }
     }
   });
 
-  updatedImports.push(tokenFileName);
+  imports.push(tokenFileName);
+
+  return { css, imports };
 }
 
 function matchOther(
@@ -94,11 +107,11 @@ function matchOther(
   tokens: Tokens,
   tokenFileName: string,
   property: string,
-  updatedCss: string,
-  updatedImports: Imports[]
+  css: string,
+  imports: Imports[]
 ) {
-  // TODO: Ugly fix to get rid of error, 'updatedCss' is declared but its value is never read.ts(6133)
-  console.log(updatedCss);
+  // TODO: Ugly fix to get rid of error, 'css' is declared but its value is never read.ts(6133)
+  console.log(css);
 
   let foundMatch = false;
 
@@ -123,8 +136,8 @@ function matchOther(
       : TOKEN_VALUE == expectedValue;
 
     if (IS_TOKEN_MATCH) {
-      updatedCss += `${property}: \${${tokenFileName}.${s[0]}};\n`;
-      updatedImports.push(tokenFileName);
+      css += `${property}: \${${tokenFileName}.${s[0]}};\n`;
+      imports.push(tokenFileName);
       foundMatch = true;
     }
   });
@@ -132,6 +145,8 @@ function matchOther(
   // Write expected value as-is, since we couldn't match it to a token
   if (!foundMatch) {
     console.warn(`${MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`);
-    updatedCss += `${property}: ${expectedValue};\n`;
+    css += `${property}: ${expectedValue};\n`;
   }
+
+  return { css, imports };
 }

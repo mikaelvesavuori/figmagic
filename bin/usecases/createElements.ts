@@ -5,7 +5,7 @@ import { createPage } from './interactors/common/createPage';
 import { processElements } from './interactors/elements/processElements';
 
 import { createFolder } from '../frameworks/filesystem/createFolder';
-import { writeElements } from '../frameworks/filesystem/writeElements';
+import { writeElements } from './interactors/elements/writeElements';
 
 import { MsgSyncElements } from '../frameworks/messages/messages';
 import { ErrorCreateElements } from '../frameworks/errors/errors';
@@ -19,17 +19,18 @@ import { ErrorCreateElements } from '../frameworks/errors/errors';
 export async function createElements(config: Config, data: FigmaData): Promise<void> {
   if (!config || !data) throw new Error(ErrorCreateElements);
 
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     console.log(MsgSyncElements);
     try {
       const { components }: any = data;
       const elementsPage = createPage(data.document.children, 'Elements');
       const elements = await processElements(elementsPage, config, components);
       await createFolder(config.outputFolderElements);
+      // @ts-ignore
       await writeElements(elements, config);
       resolve();
     } catch (error) {
-      reject(error);
+      throw new Error(error);
     }
   });
 }

@@ -22,10 +22,10 @@ export async function processElements(
   elementsPage: any[],
   config: Config,
   components: Record<string, unknown>
-): Promise<FigmagicElement[]> {
+): Promise<FigmagicElement[] | unknown> {
   if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
 
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     try {
       const filteredElements = elementsPage.filter((element) => element.type === 'COMPONENT');
       const parsedElements = await Promise.all(
@@ -44,7 +44,7 @@ export async function processElements(
       );
       resolve(parsedElements);
     } catch (error) {
-      reject(error);
+      throw new Error(error);
     }
   });
 }

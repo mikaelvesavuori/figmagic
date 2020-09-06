@@ -1,8 +1,8 @@
-import { Config } from '../../contracts/Config';
+import { Config } from '../../../contracts/Config';
 
-import { downloadFile } from '../network/downloadFile';
+import { downloadFile } from '../../../frameworks/network/downloadFile';
 
-import { ErrorWriteGraphics } from '../errors/errors';
+import { ErrorWriteGraphics } from '../../../frameworks/errors/errors';
 
 /**
  * @description Write image assets from Figma page to disk
