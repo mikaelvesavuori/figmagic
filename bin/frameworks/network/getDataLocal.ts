@@ -13,16 +13,13 @@ import { ErrorGetDataLocal } from '../errors/errors';
  * @param outputFolderBaseFile
  * @param outputFileName
  */
-export async function getDataLocal(
-  outputFolderBaseFile: string,
-  outputFileName: string
-): Promise<FigmaData> {
+export function getDataLocal(outputFolderBaseFile: string, outputFileName: string): FigmaData {
   if (!outputFolderBaseFile || !outputFileName) throw new Error(ErrorGetDataLocal);
 
   console.log(MsgSetDataFromLocal);
 
   try {
-    return await loadFile(path.join(`${outputFolderBaseFile}`, `${outputFileName}`));
+    return loadFile(path.join(`${outputFolderBaseFile}`, `${outputFileName}`));
   } catch (error) {
     throw new Error(error);
   }

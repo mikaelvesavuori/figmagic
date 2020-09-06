@@ -7,7 +7,7 @@ import { ErrorCreateFolder } from '../errors/errors';
  *
  * @param dir The name of the directory that the user wants to create
  */
-export async function createFolder(dir: string): Promise<void> {
+export function createFolder(dir: string): void {
   if (!dir) throw new Error(ErrorCreateFolder);
 
   try {

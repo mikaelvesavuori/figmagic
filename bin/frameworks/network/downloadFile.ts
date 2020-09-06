@@ -20,7 +20,7 @@ export async function downloadFile(url: string, folder: string, file: string): P
   const response = await fetch(url);
   if (response.status !== 200) return;
 
-  await createFolder(folder);
+  createFolder(folder);
 
   return new Promise((resolve, reject) => {
     const path = `${folder}/${file}`;

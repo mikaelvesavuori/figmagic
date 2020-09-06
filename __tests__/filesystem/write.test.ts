@@ -17,7 +17,7 @@ describe('Success cases', () => {
     const filePath = `./__asdf__.txt`;
     const fileContent = 'Something here';
 
-    await write(filePath, fileContent);
+    write(filePath, fileContent);
     const _fileContent = fs.readFileSync(filePath, { encoding: 'utf-8' });
     expect(_fileContent).toBe(fileContent);
 

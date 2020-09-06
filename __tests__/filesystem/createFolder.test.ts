@@ -17,7 +17,7 @@ describe('Success cases', () => {
     const TEST_FOLDER = '___xxx';
     const PATH = `./${TEST_FOLDER}`;
 
-    await expect(createFolder(PATH)).resolves.toBe(true);
+    expect(createFolder(PATH)).toBe(true);
     await trash([PATH]);
   });
 
@@ -26,7 +26,7 @@ describe('Success cases', () => {
     await createFolder(TEST_FOLDER);
     const PATH = `./${TEST_FOLDER}`;
 
-    await expect(createFolder(PATH)).resolves.toBe(true);
+    expect(createFolder(PATH)).toBe(true);
     await trash([PATH]);
   });
 });

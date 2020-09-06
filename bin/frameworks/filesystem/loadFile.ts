@@ -8,21 +8,24 @@ import { ErrorLoadFile } from '../errors/errors';
  * @param path Path to local file
  * @param isRaw Bool to set if data should be parsed or not
  */
-export async function loadFile(path: string, isRaw = false): Promise<any> {
+export function loadFile(path: string): any {
   if (!path) throw new Error(ErrorLoadFile(path));
   if (!fs.existsSync(path)) throw new Error(ErrorLoadFile(path));
 
   try {
-    return await new Promise((resolve) =>
-      fs.readFile(path, 'utf8', (error, data) => {
-        // @ts-ignore
-        if (error) throw new Error(error);
-        if (isRaw) resolve(data); // Won't do anything...
+    const data = fs.readFileSync(path, 'utf8');
+    const DATA = isJsonString(data) ? JSON.parse(data) : data;
+    return DATA;
+    /*
+    fs.readFile(path, 'utf8', (error, data) => {
+      // @ts-ignore
+      if (error) throw new Error(error);
+      if (isRaw) return data;
 
-        const DATA = isJsonString(data) ? JSON.parse(data) : data; //typeof data === 'string' ? data : JSON.parse(data);
-        resolve(DATA);
-      })
-    );
+      const DATA = isJsonString(data) ? JSON.parse(data) : data; //typeof data === 'string' ? data : JSON.parse(data);
+      return DATA;
+    });
+    */
   } catch (error) {
     console.error(error);
   }

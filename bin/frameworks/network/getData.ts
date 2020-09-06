@@ -10,10 +10,11 @@ export async function getData(
   token: string | null,
   url: string | null
 ): Promise<FigmaData> {
+  // TODO: Add real errors
   if (!recompileLocal && (!token || !url)) throw new Error('asdf');
   if (recompileLocal && (!outputFolderBaseFile || !outputFileName)) throw new Error('mfmfmfm');
 
   return recompileLocal
-    ? await getDataLocal(outputFolderBaseFile, outputFileName)
+    ? getDataLocal(outputFolderBaseFile, outputFileName)
     : await getDataRemote(token, url);
 }

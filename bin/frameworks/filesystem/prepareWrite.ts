@@ -11,31 +11,30 @@ import { ErrorPrepareWrite, ErrorWriteFile } from '../errors/errors';
  * @param writeOperation Object type with everything required (at this stage) to write the file later
  */
 export async function prepareWrite(writeOperation: WriteOperation): Promise<any> {
-  return new Promise((resolve) => {
-    if (!writeOperation) throw new Error(ErrorWriteFile);
-    try {
-      const { type, file, path, name, format, metadata, templates } = writeOperation;
+  if (!writeOperation) throw new Error(ErrorWriteFile);
 
-      if ((type === 'css' || type === 'story' || type === 'component') && !templates)
-        throw new Error(ErrorPrepareWrite);
+  try {
+    const { type, file, path, name, format, metadata, templates } = writeOperation;
 
-      const getFileDataOperation: GetFileDataOperation = {
-        type,
-        file,
-        path,
-        name: name.replace('//g', ''),
-        format,
-        text: getText(metadata),
-        element: getElement(metadata),
-        imports: getImports(metadata),
-        extraProps: getExtraProps(metadata),
-        metadata,
-        templates
-      };
+    if ((type === 'css' || type === 'story' || type === 'component') && !templates)
+      throw new Error(ErrorPrepareWrite);
 
-      resolve(getFileContentAndPath(getFileDataOperation));
-    } catch (error) {
-      throw new Error(error);
-    }
-  });
+    const getFileDataOperation: GetFileDataOperation = {
+      type,
+      file,
+      path,
+      name: name.replace('//g', ''),
+      format,
+      text: getText(metadata),
+      element: getElement(metadata),
+      imports: getImports(metadata),
+      extraProps: getExtraProps(metadata),
+      metadata,
+      templates
+    };
+
+    return await getFileContentAndPath(getFileDataOperation);
+  } catch (error) {
+    throw new Error(error);
+  }
 }

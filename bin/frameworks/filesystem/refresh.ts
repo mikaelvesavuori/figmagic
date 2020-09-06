@@ -13,5 +13,5 @@ export async function refresh(path: string): Promise<void> {
   if (!path) throw new Error(ErrorRefresh);
 
   await trash([`./${path}`]);
-  await createFolder(path);
+  createFolder(path);
 }

@@ -17,15 +17,15 @@ export async function FigmagicController(config: Config, data: FigmaData): Promi
   const finish = () => console.log(MsgJobComplete);
 
   try {
-    await createTokens(config, data);
+    await createTokens(config, data).catch((error) => console.error(error));
 
     // Hack to ensure there has been some time to put tokens on disk
     const { syncElements, syncGraphics } = config;
     syncElements || syncGraphics ? setTimeout(sync, 1000) : finish();
 
     async function sync() {
-      if (syncElements) await createElements(config, data);
-      if (syncGraphics) await createGraphics(config, data);
+      if (syncElements) await createElements(config, data).catch((error) => console.error(error));
+      if (syncGraphics) await createGraphics(config, data).catch((error) => console.error(error));
       finish();
     }
   } catch (error) {

@@ -13,39 +13,33 @@ import { ErrorWriteFile, ErrorWriteFileWrongType } from '../errors/errors';
  *
  * @param writeOperation Object type with all arguments needed to write the file
  */
-export async function writeFile(writeOperation: WriteOperation): Promise<unknown> {
-  return new Promise(async (resolve) => {
-    if (!writeOperation) throw new Error(ErrorWriteFile);
+// TODO: Add real type
+export async function writeFile(writeOperation: WriteOperation): Promise<any> {
+  if (!writeOperation) throw new Error(ErrorWriteFile);
 
-    const { type, file, path, name, format, metadata, templates } = writeOperation;
-    if (!file || !path || !name || !type) {
-      throw new Error(ErrorWriteFile);
-    }
+  const { type, file, path, name, format, metadata, templates } = writeOperation;
+  if (!file || !path || !name || !type) throw new Error(ErrorWriteFile);
 
-    const _type: any = type.toLowerCase();
+  const _type: any = type.toLowerCase();
 
-    if (!acceptedFileTypes.includes(_type)) throw new Error(ErrorWriteFileWrongType);
+  if (!acceptedFileTypes.includes(_type)) throw new Error(ErrorWriteFileWrongType);
 
-    await createFolder(path);
+  createFolder(path);
 
-    const prepareWriteOperation: WriteOperation = {
-      type: _type,
-      file,
-      path,
-      name,
-      format,
-      metadata,
-      templates
-    };
+  const prepareWriteOperation: WriteOperation = {
+    type: _type,
+    file,
+    path,
+    name,
+    format,
+    metadata,
+    templates
+  };
 
-    try {
-      const { filePath, fileContent } = await prepareWrite(prepareWriteOperation);
-      await write(filePath, fileContent);
-      resolve(true);
-    } catch (error) {
-      throw new Error(error);
-    }
-  }).catch((error) => {
+  try {
+    const { filePath, fileContent } = await prepareWrite(prepareWriteOperation);
+    write(filePath, fileContent);
+  } catch (error) {
     throw new Error(error);
-  });
+  }
 }
