@@ -22,7 +22,7 @@ export async function processElements(
   elementsPage: any[],
   config: Config,
   components: Record<string, unknown>
-): Promise<FigmagicElement[] | unknown> {
+): Promise<FigmagicElement[]> {
   if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
 
   return new Promise(async (resolve) => {
@@ -44,6 +44,7 @@ export async function processElements(
       ).catch((error) => {
         throw new Error(error);
       });
+
       resolve(parsedElements);
     } catch (error) {
       throw new Error(error);

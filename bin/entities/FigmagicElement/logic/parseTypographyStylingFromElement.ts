@@ -33,19 +33,19 @@ export async function parseTypographyStylingFromElement(
       const _colors = path.join(`${process.cwd()}`, `${PATH}`, `colors.${FORMAT}`);
       const colors = sliceOutObjectFromFile(_colors);
 
-      const _fontFamilies = path.join(`${process.cwd()}`, `${PATH}`, `fontfamilies.${FORMAT}`);
+      const _fontFamilies = path.join(`${process.cwd()}`, `${PATH}`, `fontFamilies.${FORMAT}`);
       const fontFamilies = sliceOutObjectFromFile(_fontFamilies);
 
-      const _fontSizes = path.join(`${process.cwd()}`, `${PATH}`, `fontsizes.${FORMAT}`);
+      const _fontSizes = path.join(`${process.cwd()}`, `${PATH}`, `fontSizes.${FORMAT}`);
       const fontSizes = sliceOutObjectFromFile(_fontSizes);
 
-      const _fontWeights = path.join(`${process.cwd()}`, `${PATH}`, `fontweights.${FORMAT}`);
+      const _fontWeights = path.join(`${process.cwd()}`, `${PATH}`, `fontWeights.${FORMAT}`);
       const fontWeights = sliceOutObjectFromFile(_fontWeights);
 
-      const _letterSpacings = path.join(`${process.cwd()}`, `${PATH}`, `letterspacings.${FORMAT}`);
+      const _letterSpacings = path.join(`${process.cwd()}`, `${PATH}`, `letterSpacings.${FORMAT}`);
       const letterSpacings = sliceOutObjectFromFile(_letterSpacings);
 
-      const _lineHeights = path.join(`${process.cwd()}`, `${PATH}`, `lineheights.${FORMAT}`);
+      const _lineHeights = path.join(`${process.cwd()}`, `${PATH}`, `lineHeights.${FORMAT}`);
       const lineHeights = sliceOutObjectFromFile(_lineHeights);
 
       let css = ``;

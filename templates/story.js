@@ -5,4 +5,4 @@ import notes from './{{NAME}}.description.md';
 
 export default { title: '{{NAME}}', parameters: { notes } };
 
-export const {{NAME}}Regular = () => <{{NAME}}>{{TEXT}}</{{NAME}}>;
+export const {{NAME}} = () => <{{NAME}}>{{TEXT}}</{{NAME}}>;

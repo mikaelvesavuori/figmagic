@@ -24,7 +24,7 @@ export async function writeTokens(tokens: Frame[], config: Config): Promise<bool
   return new Promise((resolve) => {
     try {
       tokens.forEach(async (token) => {
-        const tokenName = camelize(token.name).toLowerCase();
+        const tokenName = camelize(token.name).toLowerCase(); // TODO: Why is this here? (BUG?) Breaks if removing toLowerCase()...
 
         if (acceptedTokenTypes.includes(tokenName)) {
           const processedToken = processTokens(token, tokenName, config);

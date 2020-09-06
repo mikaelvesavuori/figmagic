@@ -26,7 +26,6 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
       const elementsPage = createPage(data.document.children, 'Elements');
       const elements = await processElements(elementsPage, config, components);
       await createFolder(config.outputFolderElements);
-      // @ts-ignore
       await writeElements(elements, config);
       resolve(true);
     } catch (error) {

@@ -14,28 +14,28 @@ import { ErrorWriteElements } from '../../../frameworks/errors/errors';
  * @param elements Array of cleaned elements to write out to files
  * @param config User configuration object
  */
-export async function writeElements(elements: any[], config: Config): Promise<any> {
+export async function writeElements(elements: any[], config: Config): Promise<void> {
   if (!elements || !config) throw new Error(ErrorWriteElements);
 
-  return elements.forEach(async (comp) => {
-    try {
-      const html = comp.html;
-      const css = comp.css;
-      const description = comp.description || ' ';
-      const name = toPascalCase(comp.name);
+  try {
+    elements.forEach(async (element) => {
+      const html = element.html;
+      const css = element.css;
+      const description = element.description || ' ';
+      const name = toPascalCase(element.name);
       const folder = `${config.outputFolderElements}/${name}`;
       const metadata = {
         dataType: null,
-        html: comp.html,
-        element: comp.element,
-        extraProps: comp.extraProps,
-        text: comp.text,
-        imports: comp.imports
+        html: element.html,
+        element: element.element,
+        extraProps: element.extraProps,
+        text: element.text,
+        imports: element.imports
       };
-      //const format = config.outputTokenFormat; // TODO: CHECK THIS
+
       const templates = config.templates;
       const forceUpdate = config.skipFileGeneration.forceUpdate;
-      const _name = name.replace('//g', '');
+      const _name = name.replace(/\//gi, '');
 
       // Write React component - is skipped by default if file already exists
       if (!config.skipFileGeneration.skipReact) {
@@ -105,8 +105,8 @@ export async function writeElements(elements: any[], config: Config): Promise<an
           metadata,
           templates
         } as WriteOperation);
-    } catch (error) {
-      throw new Error(error);
-    }
-  });
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
 }

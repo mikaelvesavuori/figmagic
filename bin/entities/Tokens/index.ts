@@ -37,7 +37,7 @@ export const makeZindexTokens = (obj: object): ZindexTokens => obj as ZindexToke
 
 export class Token {
   constructor() {
-    //console.log('asdf)
+    //
   }
 
   makeBorderWidthTokens = (obj: object): BorderWidthTokens => obj as BorderWidthTokens;

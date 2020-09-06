@@ -4,7 +4,7 @@
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "lib": ["esnext", "dom"],
-    "module": "commonjs", //esnext
+    "module": "commonjs",
     "moduleResolution": "node",
     "noEmit": false,
     "noEmitOnError": true,
@@ -18,13 +18,6 @@
     "strictFunctionTypes": true,
     "target": "esnext"
   },
-  "include": [
-    "./bin",
-    "./index.ts",
-    "temp-elements/removed/handleNonNestedElements.ts",
-    "temp-elements/removed/handleNestedElements.ts",
-    "temp-elements/removed/getElementType.ts",
-    "temp-elements/removed/getDescription.ts"
-  ],
-  "exclude": ["./templates/*", "./temp-elements"]
+  "include": ["./bin", "./index.ts"],
+  "exclude": ["./templates/*"]
 }

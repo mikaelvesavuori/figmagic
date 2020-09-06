@@ -16,9 +16,7 @@ export function camelize(str: string): string {
       .replace(/[^a-zA-Z0-9]+/g, ' ')
       // Remove leading and trailing spaces
       .trim()
-      // Find all words, and capitalize the first letter
-      // and lowercase the rest of the word.
-      // Except the first word which is fully lowercased.
+      // Find all words, and capitalize the first letter and lowercase the rest of the word. Except the first word which is fully lowercased.
       .replace(/[a-zA-Z0-9]+/g, (word, index) =>
         index === 0 ? word.toLowerCase() : word[0].toUpperCase() + word.slice(1).toLowerCase()
       )

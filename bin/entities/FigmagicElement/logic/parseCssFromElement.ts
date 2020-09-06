@@ -46,7 +46,7 @@ export async function parseCssFromElement(
 
       // Get data from tokens
       // TODO: Camel-casing seems to be broken? (somewhere else; in write?)
-      const _borderWidths = path.join(`${process.cwd()}`, `${PATH}`, `borderwidths.${FORMAT}`);
+      const _borderWidths = path.join(`${process.cwd()}`, `${PATH}`, `borderWidths.${FORMAT}`);
       const borderWidths = sliceOutObjectFromFile(_borderWidths);
 
       const _colors = path.join(`${process.cwd()}`, `${PATH}`, `colors.${FORMAT}`);
@@ -90,7 +90,6 @@ export async function parseCssFromElement(
       }
 
       const BACKGROUND_COLOR = getBackgroundColor(element);
-      console.log('BACKGROUND_COLOR', BACKGROUND_COLOR);
       if (BACKGROUND_COLOR) {
         const a = parseBackgroundColor(css, imports, {
           colors,
