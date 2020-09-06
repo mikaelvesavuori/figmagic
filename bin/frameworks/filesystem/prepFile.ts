@@ -37,12 +37,12 @@ export const prepComponent = async (data: PrepComponent): Promise<FileContentWit
   const { name, filePath, format, templates, text, extraProps } = data;
 
   const SUFFIX = 'Styled';
-  const path = templates.templatePathReact;
+  const PATH = templates.templatePathReact;
 
-  let template = await loadFile(path, true);
+  let template = await loadFile(PATH, true);
   template = template.replace(/{{NAME}}/gi, name);
   template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
-  template = template.replace(/{{EXTRA_PROPS}}/gi, extraProps);
+  template = template.replace(/{{EXTRA_PROPS}}/gi, ` ${extraProps}`);
   template = template.replace(/\s>/gi, '>');
   template = template.replace(/{{TEXT}}/gi, text);
 
@@ -64,9 +64,9 @@ export const prepStyledComponents = async (
   const { name, filePath, format, templates, element } = data;
 
   const SUFFIX = 'Styled';
-  const path = templates.templatePathStyled;
+  const PATH = templates.templatePathStyled;
 
-  let template = await loadFile(path, true);
+  let template = await loadFile(PATH, true);
   template = template.replace(/{{ELEMENT}}/gi, element);
   template = template.replace(/{{NAME_CSS}}/gi, `${name}Css`);
   template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
@@ -104,9 +104,9 @@ export const prepStorybook = async (data: PrepStorybook): Promise<FileContentWit
   const { name, filePath, format, templates, text } = data;
 
   const SUFFIX = '.stories';
-  const path = templates.templatePathStorybook;
+  const PATH = templates.templatePathStorybook;
 
-  let template = await loadFile(path, true);
+  let template = await loadFile(PATH, true);
   template = template.replace(/{{NAME}}/gi, name);
   template = template.replace(/{{TEXT}}/gi, text);
 

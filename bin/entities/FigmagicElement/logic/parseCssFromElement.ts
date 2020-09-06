@@ -1,4 +1,4 @@
-//import * as fs from 'fs';
+import * as fs from 'fs';
 import * as path from 'path';
 
 //import { Css } from '../../../contracts/Css';
@@ -39,26 +39,24 @@ export async function parseCssFromElement(
 
   return new Promise(async (resolve, reject) => {
     try {
-      // Dynamic imports
       const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : path.join(`tokens`);
       const FORMAT = outputTokenFormat;
 
-      const _borderWidths = await import(
-        path.join(`${process.cwd()}`, `${PATH}`, `borderwidths.${FORMAT}`)
-      );
-      const borderWidths = _borderWidths.default;
+      // Get data from tokens
+      const _borderWidths = path.join(`${process.cwd()}`, `${PATH}`, `borderwidths.${FORMAT}`);
+      const borderWidths = sliceOutObject(_borderWidths);
 
-      const _colors = await import(path.join(`${process.cwd()}`, `${PATH}`, `colors.${FORMAT}`));
-      const colors = _colors.default;
+      const _colors = path.join(`${process.cwd()}`, `${PATH}`, `colors.${FORMAT}`);
+      const colors = sliceOutObject(_colors);
 
-      const _radii = await import(path.join(`${process.cwd()}`, `${PATH}`, `radii.${FORMAT}`));
-      const radii = _radii.default;
+      const _radii = path.join(`${process.cwd()}`, `${PATH}`, `radii.${FORMAT}`);
+      const radii = sliceOutObject(_radii);
 
-      const _shadows = await import(path.join(`${process.cwd()}`, `${PATH}`, `shadows.${FORMAT}`));
-      const shadows = _shadows.default;
+      const _shadows = path.join(`${process.cwd()}`, `${PATH}`, `shadows.${FORMAT}`);
+      const shadows = sliceOutObject(_shadows);
 
-      const _spacing = await import(path.join(`${process.cwd()}`, `${PATH}`, `spacing.${FORMAT}`));
-      const spacing = _spacing.default;
+      const _spacing = path.join(`${process.cwd()}`, `${PATH}`, `spacing.${FORMAT}`);
+      const spacing = sliceOutObject(_spacing);
 
       // Start parsing
       let css = ``;
@@ -116,3 +114,9 @@ export async function parseCssFromElement(
     }
   });
 }
+
+const sliceOutObject = (path: string): Record<string, unknown> => {
+  const data = fs.readFileSync(path, 'utf8');
+  const DATA = data.slice(data.indexOf('{'), data.indexOf('}') + 1);
+  return JSON.parse(DATA);
+};

@@ -2,7 +2,7 @@
 ':'; //# ; exec /usr/bin/env node --experimental-modules --no-warnings "$0" "$@"
 
 import * as path from 'path';
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 
 import { Configuration } from './bin/entities/Config/index';
 

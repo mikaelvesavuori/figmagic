@@ -4,7 +4,7 @@
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "lib": ["esnext", "dom"],
-    "module": "commonjs",
+    "module": "commonjs", //esnext
     "moduleResolution": "node",
     "noEmit": false,
     "noEmitOnError": true,
