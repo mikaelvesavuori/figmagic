@@ -221,7 +221,9 @@ export class FigmagicElement {
           //text = TEXT_ELEMENT.characters;
         }
       })
-    );
+    ).catch((error) => {
+      throw new Error(error);
+    });
 
     const PROCESSED_CSS = processNestedCss(css);
     //this.addCss(PROCESSED_CSS);

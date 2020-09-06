@@ -19,7 +19,9 @@ export async function writeGraphics(fileList: any[], config: Config): Promise<bo
     fileList.map(async (file) => {
       await downloadFile(file.url, outputFolderGraphics, file.file);
     })
-  );
+  ).catch((error) => {
+    throw new Error(error);
+  });
 
   return true;
 }

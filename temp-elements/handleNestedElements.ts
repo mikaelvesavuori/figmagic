@@ -68,7 +68,9 @@ export async function handleNestedElements(
       // Parse typography CSS from element (requires layout element to exist)
       if (TEXT_ELEMENT) handleTextElement();
     })
-  );
+  ).catch((error) => {
+    throw new Error(error);
+  });
 
   return processNestedCss(css);
 }

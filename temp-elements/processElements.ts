@@ -29,7 +29,9 @@ export async function processElements(
   // TODO: Fix "any"; expect element (object)
   const parsedElements = await Promise.all(
     elements.map(async (element: any) => await parseElement(element, config.remSize))
-  );
+  ).catch((error) => {
+    throw new Error(error);
+  });
 
   return parsedElements;
 }

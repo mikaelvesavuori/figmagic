@@ -41,7 +41,9 @@ export async function processElements(
           await el.init();
           return el;
         })
-      );
+      ).catch((error) => {
+        throw new Error(error);
+      });
       resolve(parsedElements);
     } catch (error) {
       throw new Error(error);
