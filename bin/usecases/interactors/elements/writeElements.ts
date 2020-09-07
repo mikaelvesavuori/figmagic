@@ -70,7 +70,7 @@ const writeComponent = (config: WriteOperation): void => {
       type: 'component',
       file: config.html,
       path: config.folder,
-      name,
+      name: config.fixedName,
       format: 'jsx',
       metadata: config.metadata,
       templates: config.templates
@@ -84,7 +84,7 @@ const writeStyled = (config: WriteOperation): void => {
       type: 'style',
       file: config.css,
       path: config.folder,
-      name,
+      name: config.fixedName,
       format: 'jsx',
       metadata: config.metadata,
       templates: config.templates
@@ -96,7 +96,7 @@ const writeCss = (config: WriteOperation): void => {
     type: 'css',
     file: config.css,
     path: config.folder,
-    name,
+    name: config.name,
     format: 'jsx',
     metadata: config.metadata,
     templates: config.templates
@@ -110,7 +110,7 @@ const writeStorybook = (config: WriteOperation): void => {
       type: 'story',
       file: config.css,
       path: config.folder,
-      name,
+      name: config.fixedName,
       format: 'js',
       metadata: config.metadata,
       templates: config.templates
@@ -122,7 +122,7 @@ const writeDescription = (config: WriteOperation): void => {
     type: 'description',
     file: config.description,
     path: config.folder,
-    name,
+    name: config.name,
     format: 'md',
     metadata: config.metadata,
     templates: config.templates

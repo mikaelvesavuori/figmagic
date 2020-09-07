@@ -54,8 +54,6 @@ export class FigmagicElement {
     this.extraProps = ``;
     this.text = ``;
     this.imports = [];
-
-    if (!this.name) console.warn('MISSING NAME!', element);
   }
 
   init(): void {
