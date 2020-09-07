@@ -18,36 +18,28 @@ import { ErrorProcessElements } from '../../../frameworks/errors/errors';
  * @param config User configuration
  * @param components Figma components
  */
-export async function processElements(
+export function processElements(
   elementsPage: any[],
   config: Config,
   components: Record<string, unknown>
-): Promise<FigmagicElement[]> {
-  if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
+): FigmagicElement[] {
+  try {
+    if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
 
-  return new Promise(async (resolve) => {
-    try {
-      const filteredElements = elementsPage.filter((element) => element.type === 'COMPONENT');
-      const parsedElements = await Promise.all(
-        filteredElements.map(async (element: FigmaElement) => {
-          // TODO: Verify that "async" usage within class constructor/setup does not mess this up...
-          const el = makeFigmagicElement(
-            element,
-            config,
-            // @ts-ignore
-            components[element.id].description
-          );
+    const filteredElements = elementsPage.filter((element) => element.type === 'COMPONENT');
+    const parsedElements = filteredElements.map((element: FigmaElement) => {
+      const el = makeFigmagicElement(
+        element,
+        config,
+        // @ts-ignore
+        components[element.id].description
+      );
 
-          await el.init();
-          return el;
-        })
-      ).catch((error) => {
-        throw new Error(error);
-      });
-
-      resolve(parsedElements);
-    } catch (error) {
-      throw new Error(error);
-    }
-  });
+      el.init();
+      return el;
+    });
+    return parsedElements;
+  } catch (error) {
+    throw new Error(error);
+  }
 }

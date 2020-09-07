@@ -4,7 +4,7 @@ import { Config } from '../contracts/Config';
 import { createPage } from './interactors/common/createPage';
 import { processElements } from './interactors/elements/processElements';
 
-import { createFolder } from '../frameworks/filesystem/createFolder';
+import { refresh } from '../frameworks/filesystem/refresh';
 import { writeElements } from './interactors/elements/writeElements';
 
 import { MsgSyncElements } from '../frameworks/messages/messages';
@@ -16,20 +16,17 @@ import { ErrorCreateElements } from '../frameworks/errors/errors';
  * @param config User configuration
  * @param data Data from Figma
  */
-export async function createElements(config: Config, data: FigmaData): Promise<void | unknown> {
-  if (!config || !data) throw new Error(ErrorCreateElements);
-
-  console.log(MsgSyncElements);
+export async function createElements(config: Config, data: FigmaData): Promise<void> {
   try {
+    if (!config || !data) throw new Error(ErrorCreateElements);
+    console.log(MsgSyncElements);
+
+    await refresh(config.outputFolderElements);
     const { components }: any = data;
     const elementsPage = createPage(data.document.children, 'Elements');
-    const elements = await processElements(elementsPage, config, components).catch((error) =>
-      console.error(error)
-    );
-    createFolder(config.outputFolderElements);
+    const elements = processElements(elementsPage, config, components);
     // @ts-ignore
-    await writeElements(elements, config);
-    resolve(true);
+    writeElements(elements, config);
   } catch (error) {
     throw new Error(error);
   }

@@ -1,5 +1,6 @@
 import { Config } from '../../../contracts/Config';
 
+import { createFolder } from '../../../frameworks/filesystem/createFolder';
 import { downloadFile } from '../../../frameworks/network/downloadFile';
 
 import { ErrorWriteGraphics } from '../../../frameworks/errors/errors';
@@ -10,18 +11,21 @@ import { ErrorWriteGraphics } from '../../../frameworks/errors/errors';
  * @param fileList List of objects with file information
  * @param config Configuration object
  */
-export async function writeGraphics(fileList: any[], config: Config): Promise<boolean> {
-  if (!fileList || !config) throw new Error(ErrorWriteGraphics);
+export async function writeGraphics(fileList: any[], config: Config): Promise<void> {
+  try {
+    if (!fileList || !config) throw new Error(ErrorWriteGraphics);
 
-  const { outputFolderGraphics } = config;
+    const { outputFolderGraphics } = config;
 
-  await Promise.all(
-    fileList.map(async (file) => {
-      await downloadFile(file.url, outputFolderGraphics, file.file);
-    })
-  ).catch((error) => {
+    createFolder(outputFolderGraphics);
+
+    await Promise.all(
+      fileList.map(async (file) => {
+        const PATH = `${outputFolderGraphics}/${file.file}`;
+        await downloadFile(file.url, PATH);
+      })
+    );
+  } catch (error) {
     throw new Error(error);
-  });
-
-  return true;
+  }
 }

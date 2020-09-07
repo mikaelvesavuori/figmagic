@@ -16,20 +16,15 @@ import { ErrorCreateTokens } from '../frameworks/errors/errors';
  * @param config User configuration
  * @param data Data from Figma
  */
-export async function createTokens(config: Config, data: FigmaData): Promise<boolean | unknown> {
-  if (!config || !data) throw new Error(ErrorCreateTokens);
-
-  return new Promise(async (resolve) => {
+export async function createTokens(config: Config, data: FigmaData): Promise<void> {
+  try {
+    if (!config || !data) throw new Error(ErrorCreateTokens);
     console.log(MsgWriteTokens);
-    try {
-      await refresh(config.outputFolderTokens);
-      const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
-      await writeTokens(tokensPage, config); // TODO: Reverse the naming/structure of writeTokens <--> processTokens to be in line with other usecases
-      resolve(true);
-    } catch (error) {
-      throw new Error(error);
-    }
-  }).catch((error) => {
+
+    await refresh(config.outputFolderTokens);
+    const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
+    writeTokens(tokensPage, config); // TODO: Reverse the naming/structure of writeTokens <--> processTokens to be in line with other usecases
+  } catch (error) {
     throw new Error(error);
-  });
+  }
 }

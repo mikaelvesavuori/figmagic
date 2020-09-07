@@ -14,11 +14,11 @@ import { ErrorWriteElements } from '../../../frameworks/errors/errors';
  * @param elements Array of cleaned elements to write out to files
  * @param config User configuration object
  */
-export async function writeElements(elements: any[], config: Config): Promise<void> {
+export function writeElements(elements: any[], config: Config): void {
   if (!elements || !config) throw new Error(ErrorWriteElements);
 
   try {
-    elements.forEach(async (element) => {
+    elements.forEach((element) => {
       const html = element.html;
       const css = element.css;
       const description = element.description || ' ';
@@ -41,7 +41,7 @@ export async function writeElements(elements: any[], config: Config): Promise<vo
       if (!config.skipFileGeneration.skipReact) {
         const fileExists = fs.existsSync(`${folder}/${_name}.jsx`);
         if (!fileExists || forceUpdate)
-          await writeFile({
+          writeFile({
             type: 'component',
             file: html,
             path: folder,
@@ -56,7 +56,7 @@ export async function writeElements(elements: any[], config: Config): Promise<vo
       if (!config.skipFileGeneration.skipStyled) {
         const fileExists = fs.existsSync(`${folder}/${_name}Styled.jsx`);
         if (!fileExists || forceUpdate)
-          await writeFile({
+          writeFile({
             type: 'style',
             file: css,
             path: folder,
@@ -69,7 +69,7 @@ export async function writeElements(elements: any[], config: Config): Promise<vo
 
       // Write CSS - is always overwritten
       if (!config.skipFileGeneration.skipCss)
-        await writeFile({
+        writeFile({
           type: 'css',
           file: css,
           path: folder,
@@ -83,7 +83,7 @@ export async function writeElements(elements: any[], config: Config): Promise<vo
       if (!config.skipFileGeneration.skipStorybook) {
         const fileExists = fs.existsSync(`${folder}/${_name}.stories.js`);
         if (!fileExists || forceUpdate)
-          await writeFile({
+          writeFile({
             type: 'story',
             file: css,
             path: folder,
@@ -96,7 +96,7 @@ export async function writeElements(elements: any[], config: Config): Promise<vo
 
       // Write description markdown file - is always overwritten
       if (!config.skipFileGeneration.skipDescription)
-        await writeFile({
+        writeFile({
           type: 'description',
           file: description,
           path: folder,

@@ -17,11 +17,10 @@ import { ErrorCreateGraphics } from '../frameworks/errors/errors';
  * @param data Data from Figma
  */
 export async function createGraphics(config: Config, data: FigmaData): Promise<void> {
-  if (!config || !data) throw new Error(ErrorCreateGraphics);
-
-  console.log(MsgSyncGraphics);
-
   try {
+    if (!config || !data) throw new Error(ErrorCreateGraphics);
+    console.log(MsgSyncGraphics);
+
     await refresh(config.outputFolderGraphics);
     const graphicsPage = createPage(data.document.children, 'Graphics');
     const fileList = await processGraphics(graphicsPage, config);

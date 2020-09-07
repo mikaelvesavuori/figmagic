@@ -14,7 +14,7 @@ import { ErrorWriteFile, ErrorWriteFileWrongType } from '../errors/errors';
  * @param writeOperation Object type with all arguments needed to write the file
  */
 // TODO: Add real type
-export async function writeFile(writeOperation: WriteOperation): Promise<any> {
+export function writeFile(writeOperation: WriteOperation): any {
   if (!writeOperation) throw new Error(ErrorWriteFile);
 
   const { type, file, path, name, format, metadata, templates } = writeOperation;
@@ -37,7 +37,7 @@ export async function writeFile(writeOperation: WriteOperation): Promise<any> {
   };
 
   try {
-    const { filePath, fileContent } = await prepareWrite(prepareWriteOperation);
+    const { filePath, fileContent } = prepareWrite(prepareWriteOperation);
     write(filePath, fileContent);
   } catch (error) {
     throw new Error(error);

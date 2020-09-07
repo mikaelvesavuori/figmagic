@@ -21,10 +21,10 @@ export async function FigmagicController(config: Config, data: FigmaData): Promi
 
     // Hack to ensure there has been some time to put tokens on disk
     const { syncElements, syncGraphics } = config;
-    syncElements || syncGraphics ? setTimeout(sync, 1000) : finish();
+    syncElements || syncGraphics ? setTimeout(sync, 100) : finish();
 
     async function sync() {
-      if (syncElements) await createElements(config, data).catch((error) => console.error(error));
+      if (syncElements) await createElements(config, data);
       if (syncGraphics) await createGraphics(config, data).catch((error) => console.error(error));
       finish();
     }

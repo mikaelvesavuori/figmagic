@@ -23,7 +23,7 @@ import {
  *
  * @param data Object with required data
  */
-export const prepComponent = async (data: PrepComponent): Promise<FileContentWithPath> => {
+export const prepComponent = (data: PrepComponent): FileContentWithPath => {
   if (!data) throw new Error(ErrorPrepFileComponent);
   if (
     !data.name ||
@@ -54,9 +54,7 @@ export const prepComponent = async (data: PrepComponent): Promise<FileContentWit
  *
  * @param data Object with required data
  */
-export const prepStyledComponents = async (
-  data: PrepStyledComponents
-): Promise<FileContentWithPath> => {
+export const prepStyledComponents = (data: PrepStyledComponents): FileContentWithPath => {
   if (!data) throw new Error(ErrorPrepFileStyledComponents);
   if (!data.name || !data.filePath || !data.format || !data.templates || !data.element)
     throw new Error(ErrorPrepFileStyledComponents);
@@ -96,7 +94,7 @@ export const prepCss = (data: PrepCss): FileContentWithPath => {
  *
  * @param data Object with required data
  */
-export const prepStorybook = async (data: PrepStorybook): Promise<FileContentWithPath> => {
+export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
   if (!data) throw new Error(ErrorPrepFileStorybook);
   if (!data.name || !data.filePath || !data.format || !data.templates || !data.text)
     throw new Error(ErrorPrepFileStorybook);

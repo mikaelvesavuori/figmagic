@@ -10,7 +10,7 @@ import { ErrorPrepareWrite, ErrorWriteFile } from '../errors/errors';
  *
  * @param writeOperation Object type with everything required (at this stage) to write the file later
  */
-export async function prepareWrite(writeOperation: WriteOperation): Promise<any> {
+export function prepareWrite(writeOperation: WriteOperation): any {
   if (!writeOperation) throw new Error(ErrorWriteFile);
 
   try {
@@ -33,7 +33,7 @@ export async function prepareWrite(writeOperation: WriteOperation): Promise<any>
       templates
     };
 
-    return await getFileContentAndPath(getFileDataOperation);
+    return getFileContentAndPath(getFileDataOperation);
   } catch (error) {
     throw new Error(error);
   }

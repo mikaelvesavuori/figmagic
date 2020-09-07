@@ -28,9 +28,9 @@ import {
  *
  * @param getFileContentAndPathOperation Object type with everything required to start prepping the write operation
  */
-export async function getFileContentAndPath(
+export function getFileContentAndPath(
   getFileContentAndPathOperation: GetFileDataOperation
-): Promise<FileContentWithPath | Record<string, string>> {
+): FileContentWithPath | Record<string, string> {
   if (!getFileContentAndPathOperation) throw new Error(ErrorGetFileContentAndPath);
 
   if (
@@ -71,7 +71,7 @@ export async function getFileContentAndPath(
   }
   // Component
   else if (type === 'component' && templates)
-    return await prepComponent({
+    return prepComponent({
       name,
       filePath,
       format,
@@ -81,7 +81,7 @@ export async function getFileContentAndPath(
     } as PrepComponent);
   // Styled Components
   else if (type === 'style' && templates)
-    return await prepStyledComponents({
+    return prepStyledComponents({
       name,
       filePath,
       format,
@@ -92,7 +92,7 @@ export async function getFileContentAndPath(
   else if (type === 'css') return prepCss({ name, filePath, format, imports, file } as PrepCss);
   // Storybook
   else if (type === 'story' && templates)
-    return await prepStorybook({ name, filePath, format, templates, text } as PrepStorybook);
+    return prepStorybook({ name, filePath, format, templates, text } as PrepStorybook);
   // Markdown description
   else if (type === 'description')
     return prepDescription({ filePath, file, format } as PrepDescription);

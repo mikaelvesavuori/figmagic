@@ -56,12 +56,9 @@ export class FigmagicElement {
     this.imports = [];
 
     if (!this.name) console.warn('MISSING NAME!', element);
-
-    // Setup
-    //this.init();
   }
 
-  async init(): Promise<void> {
+  init(): void {
     this.setElement();
 
     const html = ``;
@@ -70,7 +67,7 @@ export class FigmagicElement {
     //const imports = [];
 
     // @ts-ignore
-    const { updatedCss, updatedImports } = await this.handleElements(this.children);
+    const { updatedCss, updatedImports } = this.handleElements(this.children); // await
 
     this.addCss(updatedCss);
     this.addHtml(html);
@@ -85,10 +82,10 @@ export class FigmagicElement {
    * @description Both these big functions generate updated CSS and imports
    * @param children Elements
    */
-  private async handleElements(children: any): Promise<any> {
+  private handleElements(children: any): any {
     if (children.every((a: any) => a.type === 'GROUP')) {
-      return await this.handleNestedElements();
-    } else return await this.handleFlatElements();
+      return this.handleNestedElements();
+    } else return this.handleFlatElements();
   }
 
   private addCss(css: string): void {
@@ -145,96 +142,92 @@ export class FigmagicElement {
    *
    * @param element Element
    */
-  private async handleNestedElements(): Promise<any> {
+  private handleNestedElements(): any {
     let css = ``;
     let imports = [];
 
     let extraProps = ``;
     let text = ``;
 
-    await Promise.all(
-      this.children.map(async (el: any) => {
-        if (!el.name) return;
-        if (el.name[0] === '_') return;
+    this.children.map((el: any) => {
+      if (!el.name) return;
+      if (el.name[0] === '_') return;
 
-        const MAIN_ELEMENT = el.children.filter(
-          (e: any) => e.type === 'RECTANGLE' && e.name[0] !== '_'
-        )[0];
+      const MAIN_ELEMENT = el.children.filter(
+        (e: any) => e.type === 'RECTANGLE' && e.name[0] !== '_'
+      )[0];
 
-        const TEXT_ELEMENT = el.children.filter(
-          (e: any) => e.type === 'TEXT' && e.name[0] !== '_'
-        )[0];
+      const TEXT_ELEMENT = el.children.filter(
+        (e: any) => e.type === 'TEXT' && e.name[0] !== '_'
+      )[0];
 
-        // Set placeholder text
-        if (el.children) {
-          el.children.filter((child) => {
-            if (
-              (child.type === 'GROUP' && child.name.toLowerCase() === 'placeholder') ||
-              (child.type === 'GROUP' && child.name.toLowerCase() === ':placeholder')
-            ) {
-              child.children.filter((c) => {
-                if (
-                  (c.type === 'TEXT' && c.name.toLowerCase() === 'placeholder') ||
-                  (c.type === 'TEXT' && c.name.toLowerCase() === ':placeholder')
-                ) {
-                  if (!extraProps.includes(`placeholder="${c.characters}"`))
-                    extraProps += `placeholder="${c.characters}" `;
-                }
-              });
-            }
-          });
-        }
+      // Set placeholder text
+      if (el.children) {
+        el.children.filter((child) => {
+          if (
+            (child.type === 'GROUP' && child.name.toLowerCase() === 'placeholder') ||
+            (child.type === 'GROUP' && child.name.toLowerCase() === ':placeholder')
+          ) {
+            child.children.filter((c) => {
+              if (
+                (c.type === 'TEXT' && c.name.toLowerCase() === 'placeholder') ||
+                (c.type === 'TEXT' && c.name.toLowerCase() === ':placeholder')
+              ) {
+                if (!extraProps.includes(`placeholder="${c.characters}"`))
+                  extraProps += `placeholder="${c.characters}" `;
+              }
+            });
+          }
+        });
+      }
 
-        // Set "type", for example for input element
-        if (this.description.match(/type=(.*)/)) {
-          const TYPE = this.description.match(/type=(.*)/)[1];
-          if (el.extraProps && !el.extraProps.includes(`type="${TYPE}`))
-            el.addExtraProps(`type="${TYPE}" `);
-        }
+      // Set "type", for example for input element
+      if (this.description.match(/type=(.*)/)) {
+        const TYPE = this.description.match(/type=(.*)/)[1];
+        if (el.extraProps && !el.extraProps.includes(`type="${TYPE}`))
+          el.addExtraProps(`type="${TYPE}" `);
+      }
 
-        // Check and set correct selector type: class or pseudo-element
-        const SELECTOR_TYPE = '.';
+      // Check and set correct selector type: class or pseudo-element
+      const SELECTOR_TYPE = '.';
 
-        if (!MAIN_ELEMENT) throw new Error(ErrorProcessElementsNoMainElement);
+      if (!MAIN_ELEMENT) throw new Error(ErrorProcessElementsNoMainElement);
 
-        // Clean names from any spaces
-        const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
+      // Clean names from any spaces
+      const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
 
-        // Parse layout CSS from element
-        console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
+      // Parse layout CSS from element
+      console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
-        const elementStyling = await parseCssFromElement(
-          MAIN_ELEMENT,
+      const elementStyling = parseCssFromElement(
+        MAIN_ELEMENT,
+        TEXT_ELEMENT,
+        this.config.remSize,
+        this.config.outputTokenFormat
+      );
+
+      //this.addImports(elementStyling.imports);
+      imports = imports.concat(elementStyling.imports);
+      //this.addCss(`\n${SELECTOR_TYPE}${FIXED_NAME} {\n${elementStyling.css}}`);
+      css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${elementStyling.css}}`;
+
+      // Parse typography CSS from element (requires layout element to exist)
+      if (TEXT_ELEMENT) {
+        const typography = parseTypographyStylingFromElement(
+          // @ts-ignore
           TEXT_ELEMENT,
           this.config.remSize,
           this.config.outputTokenFormat
         );
-
-        //this.addImports(elementStyling.imports);
-        imports = imports.concat(elementStyling.imports);
-        //this.addCss(`\n${SELECTOR_TYPE}${FIXED_NAME} {\n${elementStyling.css}}`);
-        css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${elementStyling.css}}`;
-
-        // Parse typography CSS from element (requires layout element to exist)
-        if (TEXT_ELEMENT) {
-          const typography = await parseTypographyStylingFromElement(
-            // @ts-ignore
-            TEXT_ELEMENT,
-            this.config.remSize,
-            this.config.outputTokenFormat
-          );
-          //this.setImports(typography.imports);
-          //this.addImports(typography.imports); // Should not add; should equal/be (=); imports.concat(typography.imports)
-          //this.addCss(`\n${SELECTOR_TYPE}${FIXED_NAME} {\n${typography.css}}`);
-          //this.addText(TEXT_ELEMENT.characters); // Should not add; should equal/be (=)
-          imports = imports.concat(typography.imports);
-          css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${typography.css}}`;
-          text = TEXT_ELEMENT.characters;
-          if (3 < 1) console.log('AAAA', text);
-        }
-      })
-    ).catch((error) => {
-      throw new Error(error);
+        //this.setImports(typography.imports);
+        //this.addImports(typography.imports); // Should not add; should equal/be (=); imports.concat(typography.imports)
+        //this.addCss(`\n${SELECTOR_TYPE}${FIXED_NAME} {\n${typography.css}}`);
+        //this.addText(TEXT_ELEMENT.characters); // Should not add; should equal/be (=)
+        imports = imports.concat(typography.imports);
+        css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${typography.css}}`;
+        text = TEXT_ELEMENT.characters;
+        if (3 < 1) console.log('AAAA', text);
+      }
     });
 
     const PROCESSED_CSS = processNestedCss(css);
@@ -248,7 +241,7 @@ export class FigmagicElement {
    *
    * @param elements String from Figma description block
    */
-  private async handleFlatElements(): Promise<any> {
+  private handleFlatElements(): any {
     let css = ``;
     let imports = [];
 
@@ -280,7 +273,7 @@ export class FigmagicElement {
 
     // Set text styling
     if (TEXT_ELEMENT) {
-      const typography = await parseTypographyStylingFromElement(
+      const typography = parseTypographyStylingFromElement(
         // @ts-ignore
         TEXT_ELEMENT,
         this.config.remSize,
@@ -299,7 +292,7 @@ export class FigmagicElement {
 
     // Process CSS for any component that has a self-named layer
     // This pattern is how we communicate that it's a layout element, e.g. input and not a H1
-    const { updatedCss, updatedImports } = await this.processCssSelfnamedLayer(TEXT_ELEMENT);
+    const { updatedCss, updatedImports } = this.processCssSelfnamedLayer(TEXT_ELEMENT);
 
     css = updatedCss;
     imports = updatedImports;
@@ -312,7 +305,7 @@ export class FigmagicElement {
    *
    * @param textElement Text element
    */
-  private async processCssSelfnamedLayer(textElement: any): Promise<any> {
+  private processCssSelfnamedLayer(textElement: any): any {
     const _MAIN = this.children.filter((e) => e.name === this.name);
     const MAIN_ELEMENT = _MAIN[0];
 
@@ -326,7 +319,7 @@ export class FigmagicElement {
       const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
       console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
-      const elementStyling = await parseCssFromElement(
+      const elementStyling = parseCssFromElement(
         MAIN_ELEMENT,
         textElement,
         this.config.remSize,
