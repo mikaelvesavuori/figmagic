@@ -14,7 +14,7 @@ import { ErrorWriteTokens, ErrorWriteTokensNoSettings } from '../../../framework
  * @param tokens The final array of design tokens
  * @param config User configuration object
  */
-export function processTokens(tokens: Frame[], config: Config): any[] {
+export function processTokens(tokens: Frame[], config: Config): any {
   try {
     if (!tokens) throw new Error(ErrorWriteTokens);
     if (!(tokens.length > 0)) throw new Error(ErrorWriteTokens);
