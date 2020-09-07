@@ -3,9 +3,9 @@ import { Config } from '../contracts/Config';
 
 import { createPage } from './interactors/common/createPage';
 import { processElements } from './interactors/elements/processElements';
+import { writeElements } from './interactors/elements/writeElements';
 
 import { refresh } from '../frameworks/filesystem/refresh';
-import { writeElements } from './interactors/elements/writeElements';
 
 import { MsgSyncElements } from '../frameworks/messages/messages';
 import { ErrorCreateElements } from '../frameworks/errors/errors';

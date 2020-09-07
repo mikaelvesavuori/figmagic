@@ -18,17 +18,21 @@ type PaddingVertical = {
  * @param element The element
  */
 export function getPaddingY(textElement: TextElement, element: Frame): PaddingVertical | null {
-  if (!textElement) return null;
+  try {
+    if (!textElement) return null;
 
-  const PARENT_HEIGHT = element.absoluteBoundingBox.height;
-  const TEXT_HEIGHT = textElement.absoluteBoundingBox.height;
-  const PADDING_TOP = textElement.absoluteBoundingBox.y - element.absoluteBoundingBox.y;
-  const PADDING_BOTTOM = PARENT_HEIGHT - (PADDING_TOP + TEXT_HEIGHT);
+    const PARENT_HEIGHT = element.absoluteBoundingBox.height;
+    const TEXT_HEIGHT = textElement.absoluteBoundingBox.height;
+    const PADDING_TOP = textElement.absoluteBoundingBox.y - element.absoluteBoundingBox.y;
+    const PADDING_BOTTOM = PARENT_HEIGHT - (PADDING_TOP + TEXT_HEIGHT);
 
-  return {
-    top: Math.round(PADDING_TOP),
-    bottom: Math.round(PADDING_BOTTOM)
-  };
+    return {
+      top: Math.round(PADDING_TOP),
+      bottom: Math.round(PADDING_BOTTOM)
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 type PaddingHorizontal = {
@@ -43,17 +47,21 @@ type PaddingHorizontal = {
  * @param element The element
  */
 export function getPaddingX(textElement: TextElement, element: Frame): PaddingHorizontal | null {
-  if (!textElement) return null;
+  try {
+    if (!textElement) return null;
 
-  const PARENT_WIDTH = element.absoluteBoundingBox.width;
-  const TEXT_WIDTH = textElement.absoluteBoundingBox.width;
-  const PADDING_LEFT = textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x;
-  const PADDING_RIGHT = PARENT_WIDTH - (PADDING_LEFT + TEXT_WIDTH);
+    const PARENT_WIDTH = element.absoluteBoundingBox.width;
+    const TEXT_WIDTH = textElement.absoluteBoundingBox.width;
+    const PADDING_LEFT = textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x;
+    const PADDING_RIGHT = PARENT_WIDTH - (PADDING_LEFT + TEXT_WIDTH);
 
-  return {
-    left: Math.round(PADDING_LEFT),
-    right: Math.round(PADDING_RIGHT)
-  };
+    return {
+      left: Math.round(PADDING_LEFT),
+      right: Math.round(PADDING_RIGHT)
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 type PaddingParams = {
@@ -73,22 +81,26 @@ export function parsePadding(
   imports: any[],
   params: PaddingParams
 ): ParsedElementMetadataInterface {
-  const { padding, spacing, remSize } = params;
+  try {
+    const { padding, spacing, remSize } = params;
 
-  if (!(padding && Object.keys(padding).length > 0)) return { css, imports };
+    if (!(padding && Object.keys(padding).length > 0)) return { css, imports };
 
-  const PADDINGS = Object.values(padding).map((p) => p);
-  if (PADDINGS.every((item) => item === 0)) return updateParsing(css, null, imports, null);
+    const PADDINGS = Object.values(padding).map((p) => p);
+    if (PADDINGS.every((item) => item === 0)) return updateParsing(css, null, imports, null);
 
-  const { updatedCss, updatedImports } = getTokenMatch(
-    spacing,
-    'spacing',
-    'padding',
-    padding,
-    remSize
-  );
+    const { updatedCss, updatedImports } = getTokenMatch(
+      spacing,
+      'spacing',
+      'padding',
+      padding,
+      remSize
+    );
 
-  return updateParsing(css, updatedCss, imports, updatedImports);
+    return updateParsing(css, updatedCss, imports, updatedImports);
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 type HeightParams = {
@@ -108,17 +120,21 @@ export function parseHeight(
   imports: any[],
   params: HeightParams
 ): ParsedElementMetadataInterface {
-  const { spacing, height, remSize } = params;
+  try {
+    const { spacing, height, remSize } = params;
 
-  const { updatedCss, updatedImports } = getTokenMatch(
-    spacing,
-    'spacing',
-    'height',
-    height,
-    remSize
-  );
+    const { updatedCss, updatedImports } = getTokenMatch(
+      spacing,
+      'spacing',
+      'height',
+      height,
+      remSize
+    );
 
-  return updateParsing(css, updatedCss, imports, updatedImports);
+    return updateParsing(css, updatedCss, imports, updatedImports);
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 /**
@@ -185,19 +201,23 @@ export function parseBackgroundColor(
   imports: any[],
   params: BackgroundColorParams
 ): ParsedElementMetadataInterface {
-  const { colors, backgroundColor, remSize } = params;
+  try {
+    const { colors, backgroundColor, remSize } = params;
 
-  const PROPERTY = backgroundColor.includes('gradient') ? 'background' : 'background-color';
+    const PROPERTY = backgroundColor.includes('gradient') ? 'background' : 'background-color';
 
-  const { updatedCss, updatedImports } = getTokenMatch(
-    colors,
-    'colors',
-    PROPERTY,
-    backgroundColor,
-    remSize
-  );
+    const { updatedCss, updatedImports } = getTokenMatch(
+      colors,
+      'colors',
+      PROPERTY,
+      backgroundColor,
+      remSize
+    );
 
-  return updateParsing(css, updatedCss, imports, updatedImports);
+    return updateParsing(css, updatedCss, imports, updatedImports);
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 type BorderWidthParams = {
@@ -218,17 +238,21 @@ export function parseBorderWidth(
   imports: any[],
   params: BorderWidthParams
 ): ParsedElementMetadataInterface {
-  const { borderWidths, borderWidth, remSize } = params;
+  try {
+    const { borderWidths, borderWidth, remSize } = params;
 
-  const { updatedCss, updatedImports } = getTokenMatch(
-    borderWidths,
-    'borderWidths',
-    'border-width',
-    borderWidth,
-    remSize
-  );
+    const { updatedCss, updatedImports } = getTokenMatch(
+      borderWidths,
+      'borderWidths',
+      'border-width',
+      borderWidth,
+      remSize
+    );
 
-  return updateParsing(css, updatedCss, imports, updatedImports);
+    return updateParsing(css, updatedCss, imports, updatedImports);
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 /**
@@ -265,17 +289,21 @@ export function parseBorderColor(
   imports: any[],
   params: BorderColorParams
 ): ParsedElementMetadataInterface {
-  const { colors, borderColor, remSize } = params;
+  try {
+    const { colors, borderColor, remSize } = params;
 
-  const { updatedCss, updatedImports } = getTokenMatch(
-    colors,
-    'colors',
-    'border-color',
-    borderColor,
-    remSize
-  );
+    const { updatedCss, updatedImports } = getTokenMatch(
+      colors,
+      'colors',
+      'border-color',
+      borderColor,
+      remSize
+    );
 
-  return updateParsing(css, updatedCss, imports, updatedImports);
+    return updateParsing(css, updatedCss, imports, updatedImports);
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 type BorderRadiusParams = {
@@ -292,17 +320,21 @@ export function parseBorderRadius(
   imports: any[],
   params: BorderRadiusParams
 ): ParsedElementMetadataInterface {
-  const { radii, borderRadius, remSize } = params;
+  try {
+    const { radii, borderRadius, remSize } = params;
 
-  const { updatedCss, updatedImports } = getTokenMatch(
-    radii,
-    'radii',
-    'border-radius',
-    borderRadius,
-    remSize
-  );
+    const { updatedCss, updatedImports } = getTokenMatch(
+      radii,
+      'radii',
+      'border-radius',
+      borderRadius,
+      remSize
+    );
 
-  return updateParsing(css, updatedCss, imports, updatedImports);
+    return updateParsing(css, updatedCss, imports, updatedImports);
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 /**
@@ -311,20 +343,24 @@ export function parseBorderRadius(
  * @param element
  */
 export function getShadow(element: Frame): string | null {
-  if (!(element.effects && element.effects[0] && element.effects[0].type === 'DROP_SHADOW'))
-    return null;
+  try {
+    if (!(element.effects && element.effects[0] && element.effects[0].type === 'DROP_SHADOW'))
+      return null;
 
-  const dropShadow = element.effects[0];
+    const dropShadow = element.effects[0];
 
-  const X = dropShadow.offset.x;
-  const Y = dropShadow.offset.y;
-  const RADIUS = dropShadow.radius;
-  const R = roundColorValue(dropShadow.color.r);
-  const G = roundColorValue(dropShadow.color.g);
-  const B = roundColorValue(dropShadow.color.b);
-  const A = roundColorValue(dropShadow.color.a, 1);
+    const X = dropShadow.offset.x;
+    const Y = dropShadow.offset.y;
+    const RADIUS = dropShadow.radius;
+    const R = roundColorValue(dropShadow.color.r);
+    const G = roundColorValue(dropShadow.color.g);
+    const B = roundColorValue(dropShadow.color.b);
+    const A = roundColorValue(dropShadow.color.a, 1);
 
-  return `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
+    return `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 type ShadowParams = {
@@ -345,17 +381,21 @@ export function parseShadow(
   imports: any[],
   params: ShadowParams
 ): ParsedElementMetadataInterface {
-  const { shadows, shadow, remSize } = params;
+  try {
+    const { shadows, shadow, remSize } = params;
 
-  const { updatedCss, updatedImports } = getTokenMatch(
-    shadows,
-    'shadows',
-    'box-shadow',
-    shadow,
-    remSize
-  );
+    const { updatedCss, updatedImports } = getTokenMatch(
+      shadows,
+      'shadows',
+      'box-shadow',
+      shadow,
+      remSize
+    );
 
-  return updateParsing(css, updatedCss, imports, updatedImports);
+    return updateParsing(css, updatedCss, imports, updatedImports);
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 /**
@@ -372,9 +412,13 @@ function updateParsing(
   imports: any[],
   updatedImports: any[] | null
 ): ParsedElementMetadataInterface {
-  const CSS = updatedCss ? (css += updatedCss) : css;
-  const IMPORTS = updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports;
+  try {
+    const CSS = updatedCss ? (css += updatedCss) : css;
+    const IMPORTS = updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports;
 
-  // TODO: makeParsedElementMetadataInterface(CSS, IMPORTS)
-  return { css: CSS, imports: IMPORTS };
+    // TODO: makeParsedElementMetadataInterface(CSS, IMPORTS)
+    return { css: CSS, imports: IMPORTS };
+  } catch (error) {
+    throw new Error(error);
+  }
 }

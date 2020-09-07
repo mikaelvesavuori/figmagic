@@ -8,9 +8,8 @@ import { ErrorCreateFolder } from '../errors/errors';
  * @param dir The name of the directory that the user wants to create
  */
 export function createFolder(dir: string): void {
-  if (!dir) throw new Error(ErrorCreateFolder);
-
   try {
+    if (!dir) throw new Error(ErrorCreateFolder);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   } catch (error) {
     throw new Error(error);

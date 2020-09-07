@@ -11,9 +11,9 @@ import { ErrorPrepareWrite, ErrorWriteFile } from '../errors/errors';
  * @param writeOperation Object type with everything required (at this stage) to write the file later
  */
 export function prepareWrite(writeOperation: WriteOperation): any {
-  if (!writeOperation) throw new Error(ErrorWriteFile);
-
   try {
+    if (!writeOperation) throw new Error(ErrorWriteFile);
+
     const { type, file, path, name, format, metadata, templates } = writeOperation;
 
     if ((type === 'css' || type === 'story' || type === 'component') && !templates)

@@ -41,14 +41,10 @@ async function main(): Promise<void> {
     if (!recompileLocal) await writeBaseJson(outputFolderBaseFile, outputFileName, data);
 
     // Run the controller
-    await FigmagicController(config, data).catch((error) => {
-      console.error(error);
-    });
+    await FigmagicController(config, data);
   } catch (error) {
     console.error(`${colors.FgRed}${error}`);
   }
 }
 
-main().catch((error) => {
-  console.error(error);
-});
+main();

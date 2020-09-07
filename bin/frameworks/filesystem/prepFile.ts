@@ -24,29 +24,33 @@ import {
  * @param data Object with required data
  */
 export const prepComponent = (data: PrepComponent): FileContentWithPath => {
-  if (!data) throw new Error(ErrorPrepFileComponent);
-  if (
-    !data.name ||
-    !data.filePath ||
-    !data.format ||
-    !data.templates
-    //!data.text ||
-    //!data.extraProps
-  )
-    throw new Error(ErrorPrepFileComponent);
-  const { name, filePath, format, templates, text, extraProps } = data;
+  try {
+    if (!data) throw new Error(ErrorPrepFileComponent);
+    if (
+      !data.name ||
+      !data.filePath ||
+      !data.format ||
+      !data.templates
+      //!data.text ||
+      //!data.extraProps
+    )
+      throw new Error(ErrorPrepFileComponent);
+    const { name, filePath, format, templates, text, extraProps } = data;
 
-  const SUFFIX = 'Styled';
-  const PATH = templates.templatePathReact;
+    const SUFFIX = 'Styled';
+    const PATH = templates.templatePathReact;
 
-  let template = loadFile(PATH);
-  template = template.replace(/{{NAME}}/gi, name);
-  template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
-  template = template.replace(/{{EXTRA_PROPS}}/gi, ` ${extraProps}`);
-  template = template.replace(/\s>/gi, '>');
-  template = template.replace(/{{TEXT}}/gi, text);
+    let template = loadFile(PATH);
+    template = template.replace(/{{NAME}}/gi, name);
+    template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
+    template = template.replace(/{{EXTRA_PROPS}}/gi, ` ${extraProps}`);
+    template = template.replace(/\s>/gi, '>');
+    template = template.replace(/{{TEXT}}/gi, text);
 
-  return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
+    return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 /**
@@ -55,21 +59,25 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
  * @param data Object with required data
  */
 export const prepStyledComponents = (data: PrepStyledComponents): FileContentWithPath => {
-  if (!data) throw new Error(ErrorPrepFileStyledComponents);
-  if (!data.name || !data.filePath || !data.format || !data.templates || !data.element)
-    throw new Error(ErrorPrepFileStyledComponents);
+  try {
+    if (!data) throw new Error(ErrorPrepFileStyledComponents);
+    if (!data.name || !data.filePath || !data.format || !data.templates || !data.element)
+      throw new Error(ErrorPrepFileStyledComponents);
 
-  const { name, filePath, format, templates, element } = data;
+    const { name, filePath, format, templates, element } = data;
 
-  const SUFFIX = 'Styled';
-  const PATH = templates.templatePathStyled;
+    const SUFFIX = 'Styled';
+    const PATH = templates.templatePathStyled;
 
-  let template = loadFile(PATH);
-  template = template.replace(/{{ELEMENT}}/gi, element);
-  template = template.replace(/{{NAME_CSS}}/gi, `${name}Css`);
-  template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
+    let template = loadFile(PATH);
+    template = template.replace(/{{ELEMENT}}/gi, element);
+    template = template.replace(/{{NAME_CSS}}/gi, `${name}Css`);
+    template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
 
-  return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
+    return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 /**
@@ -78,15 +86,20 @@ export const prepStyledComponents = (data: PrepStyledComponents): FileContentWit
  * @param data Object with required data
  */
 export const prepCss = (data: PrepCss): FileContentWithPath => {
-  if (!data) throw new Error(ErrorPrepFileCss);
-  if (!data.name || !data.filePath || !data.format || !data.file) throw new Error(ErrorPrepFileCss);
+  try {
+    if (!data) throw new Error(ErrorPrepFileCss);
+    if (!data.name || !data.filePath || !data.format || !data.file)
+      throw new Error(ErrorPrepFileCss);
 
-  const { name, filePath, format, imports, file } = data;
+    const { name, filePath, format, imports, file } = data;
 
-  const SUFFIX = 'Css';
-  const FILE_CONTENT = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
+    const SUFFIX = 'Css';
+    const FILE_CONTENT = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
 
-  return { fileContent: FILE_CONTENT, filePath: `${filePath}${SUFFIX}.${format}` };
+    return { fileContent: FILE_CONTENT, filePath: `${filePath}${SUFFIX}.${format}` };
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 /**
@@ -95,20 +108,24 @@ export const prepCss = (data: PrepCss): FileContentWithPath => {
  * @param data Object with required data
  */
 export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
-  if (!data) throw new Error(ErrorPrepFileStorybook);
-  if (!data.name || !data.filePath || !data.format || !data.templates || !data.text)
-    throw new Error(ErrorPrepFileStorybook);
+  try {
+    if (!data) throw new Error(ErrorPrepFileStorybook);
+    if (!data.name || !data.filePath || !data.format || !data.templates || !data.text)
+      throw new Error(ErrorPrepFileStorybook);
 
-  const { name, filePath, format, templates, text } = data;
+    const { name, filePath, format, templates, text } = data;
 
-  const SUFFIX = '.stories';
-  const PATH = templates.templatePathStorybook;
+    const SUFFIX = '.stories';
+    const PATH = templates.templatePathStorybook;
 
-  let template = loadFile(PATH);
-  template = template.replace(/{{NAME}}/gi, name);
-  template = template.replace(/{{TEXT}}/gi, text);
+    let template = loadFile(PATH);
+    template = template.replace(/{{NAME}}/gi, name);
+    template = template.replace(/{{TEXT}}/gi, text);
 
-  return { fileContent: `${template};`, filePath: `${filePath}${SUFFIX}.${format}` };
+    return { fileContent: `${template};`, filePath: `${filePath}${SUFFIX}.${format}` };
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 /**
@@ -117,12 +134,16 @@ export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
  * @param data Object with required data
  */
 export const prepDescription = (data: PrepDescription): FileContentWithPath => {
-  if (!data) throw new Error(ErrorPrepFileDescription);
-  if (!data.filePath || !data.file || !data.format) throw new Error(ErrorPrepFileDescription);
+  try {
+    if (!data) throw new Error(ErrorPrepFileDescription);
+    if (!data.filePath || !data.file || !data.format) throw new Error(ErrorPrepFileDescription);
 
-  const { filePath, file, format } = data;
+    const { filePath, file, format } = data;
 
-  const FILE_CONTENT = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
+    const FILE_CONTENT = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
 
-  return { fileContent: FILE_CONTENT, filePath: `${filePath}.description.${format}` };
+    return { fileContent: FILE_CONTENT, filePath: `${filePath}.description.${format}` };
+  } catch (error) {
+    throw new Error(error);
+  }
 };

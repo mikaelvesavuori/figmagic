@@ -10,8 +10,12 @@ import { ErrorRefresh } from '../errors/errors';
  * @param path Path to folder
  */
 export async function refresh(path: string): Promise<void> {
-  if (!path) throw new Error(ErrorRefresh);
+  try {
+    if (!path) throw new Error(ErrorRefresh);
 
-  await trash([`./${path}`]);
-  createFolder(path);
+    await trash([`./${path}`]);
+    createFolder(path);
+  } catch (error) {
+    throw new Error(error);
+  }
 }

@@ -9,14 +9,18 @@ import { ErrorCreatePage } from '../../../frameworks/errors/errors';
  * @param matchingPageName String that identifies the correct page name
  */
 export function createPage(figmaPages: Frame[], matchingPageName: string): Frame[] {
-  if (!figmaPages || !(figmaPages.length > 0)) throw new Error(ErrorCreatePage);
-  const _matchingPageName = matchingPageName.toLowerCase().replace(/ /g, '');
+  try {
+    if (!figmaPages || !(figmaPages.length > 0)) throw new Error(ErrorCreatePage);
+    const _matchingPageName = matchingPageName.toLowerCase().replace(/ /g, '');
 
-  const page = figmaPages.filter((page) => {
-    const name = page.name.toLowerCase().replace(/ /g, '');
-    if (name === _matchingPageName) return page;
-  });
+    const page = figmaPages.filter((page) => {
+      const name = page.name.toLowerCase().replace(/ /g, '');
+      if (name === _matchingPageName) return page;
+    });
 
-  if (page.length > 0 && page[0].children) return page[0].children;
-  return [];
+    if (page.length > 0 && page[0].children) return page[0].children;
+    return [];
+  } catch (error) {
+    throw new Error(error);
+  }
 }

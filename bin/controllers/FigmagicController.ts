@@ -14,20 +14,11 @@ import { MsgJobComplete } from '../frameworks/messages/messages';
  * @param data Data should be processed and output to file(s)
  */
 export async function FigmagicController(config: Config, data: FigmaData): Promise<any> {
-  const finish = () => console.log(MsgJobComplete);
-
   try {
-    await createTokens(config, data).catch((error) => console.error(error));
-
-    // Hack to ensure there has been some time to put tokens on disk
-    const { syncElements, syncGraphics } = config;
-    syncElements || syncGraphics ? setTimeout(sync, 100) : finish();
-
-    async function sync() {
-      if (syncElements) await createElements(config, data);
-      if (syncGraphics) await createGraphics(config, data).catch((error) => console.error(error));
-      finish();
-    }
+    await createTokens(config, data);
+    if (config.syncElements) await createElements(config, data);
+    if (config.syncGraphics) await createGraphics(config, data);
+    console.log(MsgJobComplete);
   } catch (error) {
     throw new Error(error);
   }

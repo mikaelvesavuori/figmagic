@@ -15,12 +15,12 @@ import { ErrorWriteElements } from '../../../frameworks/errors/errors';
  * @param config User configuration object
  */
 export function writeElements(elements: any[], config: Config): void {
-  if (!elements || !config) throw new Error(ErrorWriteElements);
-
   try {
+    if (!elements || !config) throw new Error(ErrorWriteElements);
+
     elements.forEach((element) => {
-      const html = element.html;
-      const css = element.css;
+      const html = element.html || ' ';
+      const css = element.css || ' ';
       const description = element.description || ' ';
       const name = toPascalCase(element.name);
       const folder = `${config.outputFolderElements}/${name}`;
@@ -29,7 +29,7 @@ export function writeElements(elements: any[], config: Config): void {
         html: element.html,
         element: element.element,
         extraProps: element.extraProps,
-        text: element.text,
+        text: element.text || ' ',
         imports: element.imports
       };
 

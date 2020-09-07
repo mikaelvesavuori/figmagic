@@ -3,9 +3,9 @@ import { Config } from '../contracts/Config';
 import { FRAME as Frame } from '../contracts/Figma';
 
 import { createPage } from './interactors/common/createPage';
+import { writeTokens } from './interactors/tokens/writeTokens';
 
 import { refresh } from '../frameworks/filesystem/refresh';
-import { writeTokens } from './interactors/tokens/writeTokens';
 
 import { MsgWriteTokens } from '../frameworks/messages/messages';
 import { ErrorCreateTokens } from '../frameworks/errors/errors';

@@ -29,10 +29,14 @@ import { ErrorProcessTokens, ErrorProcessTokensNoConfig } from '../../../framewo
  */
 // TODO: Return Tokens
 export function processTokens(sheet: Frame, name: string, config: Config): any {
-  if (!sheet || !name) throw new Error(ErrorProcessTokens);
+  try {
+    if (!sheet || !name) throw new Error(ErrorProcessTokens);
 
-  sheet.children = getChildren(sheet);
-  return getTokens(sheet, name.toLowerCase(), config);
+    sheet.children = getChildren(sheet);
+    return getTokens(sheet, name.toLowerCase(), config);
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 const getChildren = (sheet: Frame) => {
