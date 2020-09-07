@@ -6,6 +6,7 @@ import {
   PrepStorybook,
   PrepStyledComponents
 } from '../../contracts/PrepFile';
+import { ProcessedToken } from '../../contracts/ProcessedToken';
 
 import {
   prepComponent,
@@ -102,14 +103,14 @@ export function getFileContentAndPath(
   }
 }
 
-const getTokenEnumString = (file: string, name: string, format: string) => {
+const getTokenEnumString = (file: string | ProcessedToken, name: string, format: string) => {
   const EXPORT = format === 'mjs' ? `export default ${name}` : `module.exports = ${name}`;
   return `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
     file
   )}\n}\n\n${EXPORT};`;
 };
 
-const getTokenString = (file: string, name: string, format: string) => {
+const getTokenString = (file: string | ProcessedToken, name: string, format: string) => {
   const EXPORT = format === 'mjs' ? `export default ${name}` : `module.exports = ${name}`;
   return `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
     file,

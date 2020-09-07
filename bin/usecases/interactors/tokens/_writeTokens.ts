@@ -2,7 +2,7 @@ import { Config } from '../../../contracts/Config';
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { WriteOperation } from '../../../contracts/Write';
 
-import { processTokens } from './processTokens';
+import { processTokens } from './_processTokens';
 
 import { writeFile } from '../../../frameworks/filesystem/writeFile';
 import { camelize } from '../../../frameworks/string/camelize';
@@ -26,7 +26,9 @@ export function writeTokens(tokens: Frame[], config: Config): void {
       const tokenName = camelize(token.name).toLowerCase(); // TODO: Why is this here? (BUG?) Breaks if removing toLowerCase()...
 
       if (acceptedTokenTypes.includes(tokenName)) {
-        const processedToken = processTokens(token, tokenName, config);
+        const processedToken = processTokens(token, tokenName, config); // "extract tokens"
+        console.log('processedToken');
+        console.log(processedToken);
         if (config.debugMode) console.log(processedToken);
 
         const writeOperation: WriteOperation = {
