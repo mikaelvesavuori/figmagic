@@ -1,4 +1,4 @@
-import { setupShadowTokens } from '../../bin/entities/Tokens/tokens/setupShadowTokens';
+import { setupShadowTokens } from '../../bin/entities/Token/logic/setupShadowTokens';
 
 import {
   shadowsFrame,

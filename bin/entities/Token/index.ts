@@ -21,22 +21,22 @@ import {
   ZindexTokens
 } from '../../contracts/Tokens';
 
-import { setupColorTokens } from '../../entities/Tokens/tokens/setupColorTokens';
-import { setupSpacingTokens } from '../../entities/Tokens/tokens/setupSpacingTokens';
-import { setupFontTokens } from '../../entities/Tokens/tokens/setupFontTokens';
-import { setupFontSizeTokens } from '../../entities/Tokens/tokens/setupFontSizeTokens';
-import { setupFontWeightTokens } from '../../entities/Tokens/tokens/setupFontWeightTokens';
-import { setupLineHeightTokens } from '../../entities/Tokens/tokens/setupLineHeightTokens';
-import { setupShadowTokens } from '../../entities/Tokens/tokens/setupShadowTokens';
-import { setupBorderWidthTokens } from '../../entities/Tokens/tokens/setupBorderWidthTokens';
-import { setupRadiusTokens } from '../../entities/Tokens/tokens/setupRadiusTokens';
-import { setupZindexTokens } from '../../entities/Tokens/tokens/setupZindexTokens';
-import { setupLetterSpacingTokens } from '../../entities/Tokens/tokens/setupLetterSpacingTokens';
-import { setupMediaQueryTokens } from '../../entities/Tokens/tokens/setupMediaQueryTokens';
-import { setupOpacityTokens } from '../../entities/Tokens/tokens/setupOpacityTokens';
-import { setupDurationTokens } from '../../entities/Tokens/tokens/setupDurationTokens';
-import { setupDelayTokens } from '../../entities/Tokens/tokens/setupDelayTokens';
-import { setupEasingTokens } from '../../entities/Tokens/tokens/setupEasingTokens';
+import { setupColorTokens } from './logic/setupColorTokens';
+import { setupSpacingTokens } from './logic/setupSpacingTokens';
+import { setupFontTokens } from './logic/setupFontTokens';
+import { setupFontSizeTokens } from './logic/setupFontSizeTokens';
+import { setupFontWeightTokens } from './logic/setupFontWeightTokens';
+import { setupLineHeightTokens } from './logic/setupLineHeightTokens';
+import { setupShadowTokens } from './logic/setupShadowTokens';
+import { setupBorderWidthTokens } from './logic/setupBorderWidthTokens';
+import { setupRadiusTokens } from './logic/setupRadiusTokens';
+import { setupZindexTokens } from './logic/setupZindexTokens';
+import { setupLetterSpacingTokens } from './logic/setupLetterSpacingTokens';
+import { setupMediaQueryTokens } from './logic/setupMediaQueryTokens';
+import { setupOpacityTokens } from './logic/setupOpacityTokens';
+import { setupDurationTokens } from './logic/setupDurationTokens';
+import { setupDelayTokens } from './logic/setupDelayTokens';
+import { setupEasingTokens } from './logic/setupEasingTokens';
 
 import { ignoreElementsKeywords } from '../../frameworks/system/ignoreElementsKeywords';
 import { ErrorExtractTokens, ErrorExtractTokensNoConfig } from '../../frameworks/errors/errors';

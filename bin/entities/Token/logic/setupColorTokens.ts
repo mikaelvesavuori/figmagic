@@ -38,6 +38,5 @@ export function setupColorTokens(colorFrame: Frame): ColorTokens {
     colors[name] = COLOR_STRING;
   });
 
-  const colorTokens = makeColorTokens(colors);
-  return colorTokens;
+  return makeColorTokens(colors);
 }

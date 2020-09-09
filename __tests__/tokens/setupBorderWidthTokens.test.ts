@@ -1,5 +1,5 @@
-//import { BorderWidthTokens } from '../bin/entities/Tokens/Tokens';
-import { setupBorderWidthTokens } from '../../bin/entities/Tokens/tokens/setupBorderWidthTokens';
+//import { BorderWidthTokens } from '../bin/entities/Token/Tokens';
+import { setupBorderWidthTokens } from '../../bin/entities/Token/logic/setupBorderWidthTokens';
 
 import { FRAME as Frame } from '../../bin/contracts/Figma';
 

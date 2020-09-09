@@ -1,4 +1,4 @@
-import { setupFontWeightTokens } from '../../bin/entities/Tokens/tokens/setupFontWeightTokens';
+import { setupFontWeightTokens } from '../../bin/entities/Token/logic/setupFontWeightTokens';
 
 import {
   fontWeightFrame,

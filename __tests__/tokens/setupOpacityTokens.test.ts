@@ -1,4 +1,4 @@
-import { setupOpacityTokens } from '../../bin/entities/Tokens/tokens/setupOpacityTokens';
+import { setupOpacityTokens } from '../../bin/entities/Token/logic/setupOpacityTokens';
 
 import { opacitiesFrame, opacitiesFrameNoName } from '../../testdata/frames/opacitiesFrame';
 

@@ -27,6 +27,5 @@ export function setupZindexTokens(zIndexFrame: Frame): ZindexTokens {
     zIndex[name] = parseInt(item.characters);
   });
 
-  const zIndexTokens = makeZindexTokens(zIndex);
-  return zIndexTokens;
+  return makeZindexTokens(zIndex);
 }

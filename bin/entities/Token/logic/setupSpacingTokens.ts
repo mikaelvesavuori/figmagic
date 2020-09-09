@@ -37,6 +37,5 @@ export function setupSpacingTokens(
     spacings[name] = normalizedUnit;
   });
 
-  const spacingTokens = makeSpacingTokens(spacings);
-  return spacingTokens;
+  return makeSpacingTokens(spacings);
 }

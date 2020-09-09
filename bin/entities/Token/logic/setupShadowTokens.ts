@@ -53,6 +53,5 @@ export function setupShadowTokens(shadowFrame: Frame): ShadowTokens {
     }
   });
 
-  const shadowTokens = makeShadowTokens(shadows);
-  return shadowTokens;
+  return makeShadowTokens(shadows);
 }

@@ -75,6 +75,5 @@ export function setupLetterSpacingTokens(
     {}
   );
 
-  const letterSpacingTokens = makeLetterSpacingTokens(letterSpacings);
-  return letterSpacingTokens;
+  return makeLetterSpacingTokens(letterSpacings);
 }

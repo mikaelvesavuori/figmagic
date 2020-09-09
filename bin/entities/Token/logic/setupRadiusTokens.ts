@@ -33,6 +33,5 @@ export function setupRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTo
     cornerRadii[name] = cornerRadius;
   });
 
-  const radiusTokens = makeRadiusTokens(cornerRadii);
-  return radiusTokens;
+  return makeRadiusTokens(cornerRadii);
 }

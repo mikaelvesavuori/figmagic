@@ -1,4 +1,4 @@
-import { setupFontTokens } from '../../bin/entities/Tokens/tokens/setupFontTokens';
+import { setupFontTokens } from '../../bin/entities/Token/logic/setupFontTokens';
 
 import { fontFrame, fontFrameInvalid } from '../../testdata/frames/fontFrame';
 

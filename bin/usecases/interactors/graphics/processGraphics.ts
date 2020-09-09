@@ -27,14 +27,14 @@ export async function processGraphics(graphicsPage: Frame[], config: Config): Pr
   if (!token) throw new Error(ErrorProcessGraphics);
   if (graphicsPage.length === 0 || !graphicsPage[0].children) throw new Error(ErrorProcessGraphics);
 
-  const ids = getIds(graphicsPage);
-  const settings = `&scale=${outputScaleGraphics}&format=${outputFormatGraphics}`;
-  const _url = `${url}?ids=${getIdString(ids)}${settings}`;
+  const IDS = getIds(graphicsPage);
+  const SETTINGS = `&scale=${outputScaleGraphics}&format=${outputFormatGraphics}`;
+  const URL = `${url}?ids=${getIdString(IDS)}${SETTINGS}`;
 
-  const imageResponse: ImageResponse = await getFromApi(token, _url, 'images');
+  const imageResponse: ImageResponse = await getFromApi(token, URL, 'images');
 
   if (imageResponse.err) throw new Error(ErrorProcessGraphicsImageError);
   if (!imageResponse.images) throw new Error(ErrorProcessGraphicsNoImages);
 
-  return getFileList(imageResponse, ids, outputFormatGraphics);
+  return getFileList(imageResponse, IDS, outputFormatGraphics);
 }

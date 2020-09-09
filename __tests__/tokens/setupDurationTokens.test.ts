@@ -1,4 +1,4 @@
-import { setupDurationTokens } from '../../bin/entities/Tokens/tokens/setupDurationTokens';
+import { setupDurationTokens } from '../../bin/entities/Token/logic/setupDurationTokens';
 
 import { durationsFrame, durationsFrameInvalid } from '../../testdata/frames/durationsFrame';
 

@@ -23,8 +23,10 @@ export async function createTokens(config: Config, data: FigmaData): Promise<voi
     console.log(MsgWriteTokens);
 
     await refresh(config.outputFolderTokens);
+
     const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
     const processedTokens = processTokens(tokensPage, config);
+
     writeTokens(processedTokens);
   } catch (error) {
     throw new Error(error);

@@ -1,20 +1,20 @@
 import { parseCliArgs } from './parseCliArgs';
 
-import { loadFile } from '../../frameworks/filesystem/loadFile';
+import { loadFile } from '../../../frameworks/filesystem/loadFile';
 
 import {
   MsgConfigDebugEnv,
   MsgConfigDebugCli,
   MsgConfigDebugRc,
   MsgConfigDebugFinal
-} from '../../frameworks/messages/messages';
+} from '../../../frameworks/messages/messages';
 
 import {
   ErrorCreateConfiguration,
   ErrorCreateConfigurationNoDefault
-} from '../../frameworks/errors/errors';
+} from '../../../frameworks/errors/errors';
 
-import { Config } from '../../contracts/Config';
+import { Config } from '../../../contracts/Config';
 
 /**
  * @description Create configuration object

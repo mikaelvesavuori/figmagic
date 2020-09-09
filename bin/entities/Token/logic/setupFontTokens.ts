@@ -35,6 +35,5 @@ export function setupFontTokens(fontFrame: Frame, usePostscriptFontNames = true)
     fonts[name] = font;
   });
 
-  const fontTokens = makeFontTokens(fonts);
-  return fontTokens;
+  return makeFontTokens(fonts);
 }

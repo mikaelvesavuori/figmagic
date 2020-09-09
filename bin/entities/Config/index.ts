@@ -1,7 +1,7 @@
 import { Config } from '../../contracts/Config';
 
 import { baseConfig } from './baseConfig';
-import { createConfiguration } from './createConfiguration';
+import { createConfiguration } from './logic/createConfiguration';
 
 export class Configuration {
   baseConfiguration: Config;

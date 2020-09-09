@@ -5,7 +5,6 @@ import { Config } from '../../../contracts/Config';
 import { FigmaElement } from '../../../contracts/FigmaElement';
 
 import { ErrorProcessElements } from '../../../frameworks/errors/errors';
-//import { FigmagicElement } from '../../../contracts/FigmagicElement';
 
 /**
  * @description Process all elements from Figma page called "Elements"

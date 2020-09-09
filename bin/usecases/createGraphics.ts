@@ -22,8 +22,10 @@ export async function createGraphics(config: Config, data: FigmaData): Promise<v
     console.log(MsgSyncGraphics);
 
     await refresh(config.outputFolderGraphics);
+
     const graphicsPage = createPage(data.document.children, 'Graphics');
     const fileList = await processGraphics(graphicsPage, config);
+
     await writeGraphics(fileList, config);
   } catch (error) {
     throw new Error(error);

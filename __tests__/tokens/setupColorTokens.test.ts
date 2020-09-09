@@ -1,4 +1,4 @@
-import { setupColorTokens } from '../../bin/entities/Tokens/tokens/setupColorTokens';
+import { setupColorTokens } from '../../bin/entities/Token/logic/setupColorTokens';
 
 import { colorFrame, colorFrameOpacity, colorFrameInvalid } from '../../testdata/frames/colorFrame';
 

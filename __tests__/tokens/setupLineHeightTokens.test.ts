@@ -1,4 +1,4 @@
-import { setupLineHeightTokens } from '../../bin/entities/Tokens/tokens/setupLineHeightTokens';
+import { setupLineHeightTokens } from '../../bin/entities/Token/logic/setupLineHeightTokens';
 
 import {
   lineHeightFrame,

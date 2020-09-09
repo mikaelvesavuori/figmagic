@@ -7,13 +7,9 @@ import { parseTypographyStylingFromElement } from './logic/parseTypographyStylin
 import { processNestedCss } from './logic/processNestedCss';
 
 import { MsgProcessElementsCreatingElement } from '../../frameworks/messages/messages';
+import { ErrorProcessElementsNoMainElement } from '../../frameworks/errors/errors';
 
-import {
-  ErrorProcessElementsNoMainElement
-  //ErrorProcessElementsWrongElementCount,
-  //ErrorProcessElementsWrongTextElementCount
-  //ErrorGetElementType
-} from '../../frameworks/errors/errors';
+// TODO: Clean up and document
 
 export const makeFigmagicElement = (
   element: FigmaElement,
@@ -64,7 +60,6 @@ export class FigmagicElement {
     const text = ``;
     //const imports = [];
 
-    // @ts-ignore
     const { updatedCss, updatedImports } = this.handleElements(this.children); // await
 
     this.addCss(updatedCss);
@@ -73,7 +68,6 @@ export class FigmagicElement {
     this.addText(text);
     // @ts-ignore
     this.imports = [...new Set(updatedImports)];
-    //this.addImports([...new Set(updatedImports)]);
   }
 
   /**
@@ -217,7 +211,6 @@ export class FigmagicElement {
         // Parse typography CSS from element (requires layout element to exist)
         if (TEXT_ELEMENT) {
           const typography = parseTypographyStylingFromElement(
-            // @ts-ignore
             TEXT_ELEMENT,
             this.config.remSize,
             this.config.outputTokenFormat
@@ -257,9 +250,6 @@ export class FigmagicElement {
         (e: any) => e.type === 'TEXT' && e.name[0] !== '_'
       )[0];
 
-      //if (TEXT_ELEMENT.length > 1)
-      //  throw new Error(`${ErrorProcessElementsWrongTextElementCount} ${this.name}!`);
-
       // Set placeholder text
       if (this.children) {
         this.children.forEach((child) => {
@@ -281,7 +271,6 @@ export class FigmagicElement {
       // Set text styling
       if (TEXT_ELEMENT) {
         const typography = parseTypographyStylingFromElement(
-          // @ts-ignore
           TEXT_ELEMENT,
           this.config.remSize,
           this.config.outputTokenFormat
@@ -324,9 +313,6 @@ export class FigmagicElement {
       let imports = [];
 
       if (MAIN_ELEMENT) {
-        //if (MAIN_ELEMENT.length !== 1)
-        //  throw new Error(`${ErrorProcessElementsWrongElementCount} ${this.name}!`);
-
         const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
         console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 

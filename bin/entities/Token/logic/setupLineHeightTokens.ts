@@ -42,6 +42,5 @@ export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): 
     lineHeights[name] = lineHeight;
   });
 
-  const lineHeightTokens = makeLineHeightTokens(lineHeights);
-  return lineHeightTokens;
+  return makeLineHeightTokens(lineHeights);
 }

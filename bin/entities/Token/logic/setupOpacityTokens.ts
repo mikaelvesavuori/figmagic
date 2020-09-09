@@ -53,6 +53,5 @@ export function setupOpacityTokens(
     {}
   );
 
-  const opacityTokens = makeOpacityTokens(_opacityTokens);
-  return opacityTokens;
+  return makeOpacityTokens(_opacityTokens);
 }

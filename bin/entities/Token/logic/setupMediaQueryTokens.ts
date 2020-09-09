@@ -30,6 +30,5 @@ export function setupMediaQueryTokens(mediaQueryFrame: Frame): MediaQueryTokens 
     mediaQueries[name] = `${item.absoluteBoundingBox.width}px`;
   });
 
-  const mediaQueryTokens = makeMediaQueryTokens(mediaQueries);
-  return mediaQueryTokens;
+  return makeMediaQueryTokens(mediaQueries);
 }

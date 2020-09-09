@@ -87,12 +87,10 @@ function getIntersectingValues(arrays: any[]): any[] {
     obj[index] = a;
   });
 
-  // @ts-ignore-line
-  return Object.values(obj).reduce((previousValue, currentValue) => {
-    // TODO: Clean this
-    // @ts-ignore-line
-    return currentValue.filter(Set.prototype.has, new Set(previousValue));
-  });
+  // @ts-ignore
+  return Object.values(obj).reduce((previousValue: any, currentValue: any) =>
+    currentValue.filter(Set.prototype.has, new Set(previousValue))
+  );
 }
 
 /**

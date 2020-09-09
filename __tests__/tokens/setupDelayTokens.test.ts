@@ -1,4 +1,4 @@
-import { setupDelayTokens } from '../../bin/entities/Tokens/tokens/setupDelayTokens';
+import { setupDelayTokens } from '../../bin/entities/Token/logic/setupDelayTokens';
 
 import { delayFrame, delayFrameInvalid } from '../../testdata/frames/delaysFrame';
 

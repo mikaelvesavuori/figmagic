@@ -1,4 +1,4 @@
-import { Config } from '../../contracts/Config';
+import { Config } from '../../../contracts/Config';
 
 import {
   WarnParseCliArgsOutputFormat,
@@ -6,8 +6,8 @@ import {
   WarnParseCliArgsOpacitiesUnit,
   WarnParseCliArgsLetterSpacingUnit,
   WarnParseCliArgsSpacingUnit
-} from '../../frameworks/warnings/warnings';
-import { ErrorParseCliArgs } from '../../frameworks/errors/errors';
+} from '../../../frameworks/warnings/warnings';
+import { ErrorParseCliArgs } from '../../../frameworks/errors/errors';
 
 /**
  * @description Parse CLI arguments and return config object

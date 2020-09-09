@@ -1,4 +1,4 @@
-import { setupRadiusTokens } from '../../bin/entities/Tokens/tokens/setupRadiusTokens';
+import { setupRadiusTokens } from '../../bin/entities/Token/logic/setupRadiusTokens';
 
 import { radiiFrame, radiiFrameNoCornerRadius } from '../../testdata/frames/radiiFrame';
 

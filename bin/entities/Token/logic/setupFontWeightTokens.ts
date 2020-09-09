@@ -31,6 +31,5 @@ export function setupFontWeightTokens(fontWeightFrame: Frame): FontWeightTokens 
     fontWeights[name] = fontWeight;
   });
 
-  const fontWeightTokens = makeFontWeightTokens(fontWeights);
-  return fontWeightTokens;
+  return makeFontWeightTokens(fontWeights);
 }

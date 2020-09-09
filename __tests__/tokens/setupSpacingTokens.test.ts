@@ -1,4 +1,4 @@
-import { setupSpacingTokens } from '../../bin/entities/Tokens/tokens/setupSpacingTokens';
+import { setupSpacingTokens } from '../../bin/entities/Token/logic/setupSpacingTokens';
 
 import { spacingFrame, spacingFrameNoName } from '../../testdata/frames/spacingFrame';
 

@@ -27,6 +27,5 @@ export function setupEasingTokens(easingFrame: Frame): EasingTokens {
     easings[name] = item.characters.trim();
   });
 
-  const easingTokens = makeEasingTokens(easings);
-  return easingTokens;
+  return makeEasingTokens(easings);
 }

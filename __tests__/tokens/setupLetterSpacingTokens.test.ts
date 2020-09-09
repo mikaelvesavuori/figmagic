@@ -1,4 +1,4 @@
-import { setupLetterSpacingTokens } from '../../bin/entities/Tokens/tokens/setupLetterSpacingTokens';
+import { setupLetterSpacingTokens } from '../../bin/entities/Token/logic/setupLetterSpacingTokens';
 
 import {
   letterSpacingsFrame,

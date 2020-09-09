@@ -1,4 +1,4 @@
-import { makeToken } from '../../../entities/Tokens/index';
+import { makeToken } from '../../../entities/Token/index';
 
 import { Config } from '../../../contracts/Config';
 import { FRAME as Frame } from '../../../contracts/Figma';
@@ -23,8 +23,8 @@ export function processTokens(tokens: Frame[], config: Config): any {
     const processedTokens = [];
 
     tokens.forEach((token) => {
-      const TOKEN_NAME = camelize(token.name).toLowerCase(); // TODO: Why is this here? (BUG?) Breaks if removing toLowerCase()...
-      if (acceptedTokenTypes.includes(TOKEN_NAME)) {
+      const TOKEN_NAME = camelize(token.name);
+      if (acceptedTokenTypes.includes(TOKEN_NAME.toLowerCase())) {
         const _token = makeToken(token, TOKEN_NAME, config);
         processedTokens.push(_token.getWriteOperation());
       }

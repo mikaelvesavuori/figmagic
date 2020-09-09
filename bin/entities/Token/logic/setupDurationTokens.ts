@@ -27,6 +27,5 @@ export function setupDurationTokens(durationFrame: Frame): DurationTokens {
     durations[name] = parseFloat(item.characters);
   });
 
-  const durationTokens = makeDurationTokens(durations);
-  return durationTokens;
+  return makeDurationTokens(durations);
 }

@@ -1,4 +1,4 @@
-import { setupEasingTokens } from '../../bin/entities/Tokens/tokens/setupEasingTokens';
+import { setupEasingTokens } from '../../bin/entities/Token/logic/setupEasingTokens';
 
 import { easingFrame, easingFrameInvalid } from '../../testdata/frames/easingFrame';
 

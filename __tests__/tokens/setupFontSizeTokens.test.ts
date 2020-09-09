@@ -1,4 +1,4 @@
-import { setupFontSizeTokens } from '../../bin/entities/Tokens/tokens/setupFontSizeTokens';
+import { setupFontSizeTokens } from '../../bin/entities/Token/logic/setupFontSizeTokens';
 
 import {
   fontSizeFrame,

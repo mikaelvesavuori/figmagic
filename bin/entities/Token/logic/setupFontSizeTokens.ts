@@ -40,6 +40,5 @@ export function setupFontSizeTokens(
     fontSizes[name] = FONT_SIZE;
   });
 
-  const fontSizeTokens = makeFontSizeTokens(fontSizes);
-  return fontSizeTokens;
+  return makeFontSizeTokens(fontSizes);
 }

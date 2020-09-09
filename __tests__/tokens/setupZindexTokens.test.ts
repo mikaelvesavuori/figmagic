@@ -1,4 +1,4 @@
-import { setupZindexTokens } from '../../bin/entities/Tokens/tokens/setupZindexTokens';
+import { setupZindexTokens } from '../../bin/entities/Token/logic/setupZindexTokens';
 
 import { zIndicesFrame, zIndicesFrameNoCharacters } from '../../testdata/frames/zIndicesFrame';
 

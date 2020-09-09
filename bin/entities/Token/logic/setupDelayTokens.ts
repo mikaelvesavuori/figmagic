@@ -27,6 +27,5 @@ export function setupDelayTokens(delayFrame: Frame): DelayTokens {
     delays[name] = parseFloat(item.characters);
   });
 
-  const delayTokens = makeDelayTokens(delays);
-  return delayTokens;
+  return makeDelayTokens(delays);
 }
