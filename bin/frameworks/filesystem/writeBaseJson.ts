@@ -16,7 +16,7 @@ import { ErrorWriteBaseJson } from '../errors/errors';
 export async function writeBaseJson(
   outputFolderBaseFile: string,
   outputFileName: string,
-  data: object
+  data: Record<string, unknown>
 ): Promise<void> {
   if (!outputFolderBaseFile || !outputFileName || !data) throw new Error(ErrorWriteBaseJson);
 

@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 
-import { getFromApi } from '../../bin/frameworks/network/getFromApi';
+import { getFromApi } from '../../../bin/frameworks/network/getFromApi';
 
 dotenv.config();
 
@@ -13,7 +13,13 @@ describe('Failure cases', () => {
 
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
-    await expect(getFromApi()).rejects.toThrow();
+    await expect(getFromApi()).rejects.toThrowError();
+  });
+
+  test('It should not find data, given a token but invalid URL', async () => {
+    expect(
+      getFromApi('some-token-here', 'https://lkhjtkl34kljf-fg3kj3443.hjt3hjk.net/.kj34jkl34')
+    ).rejects.toThrowError();
   });
 
   //TODO: Mock integration test

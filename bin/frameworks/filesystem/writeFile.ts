@@ -20,7 +20,7 @@ export function writeFile(writeOperation: WriteOperation): void {
     const { type, file, path, name, format, metadata, templates } = writeOperation;
     if (!file || !path || !name || !type) throw new Error(ErrorWriteFile);
 
-    const _type: any = type.toLowerCase();
+    const _type: any = typeof type === 'string' ? type.toLowerCase() : 'null';
 
     if (!acceptedFileTypes.includes(_type)) throw new Error(ErrorWriteFileWrongType);
 

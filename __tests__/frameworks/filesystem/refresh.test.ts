@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import trash from 'trash';
 
-import { refresh } from '../../bin/frameworks/filesystem/refresh';
+import { refresh } from '../../../bin/frameworks/filesystem/refresh';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
@@ -17,8 +17,9 @@ describe('Success cases', () => {
 
     await refresh(testPath);
 
-    const fileExists = fs.existsSync(testPath);
-    expect(fileExists).toBeTruthy();
+    const FILE_EXISTS = fs.existsSync(testPath);
+    expect(FILE_EXISTS).toBeTruthy();
+
     await trash([`./${testPath}`]);
   });
 });

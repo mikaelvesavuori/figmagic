@@ -1,23 +1,23 @@
-import { getDataLocal } from '../../bin/frameworks/network/getDataLocal';
+import { getDataLocal } from '../../../bin/frameworks/network/getDataLocal';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
-    await expect(getDataLocal()).rejects.toThrow();
+    expect(getDataLocal()).toThrowError();
   });
 
-  test('It should throw an error if file does not exist', async () => {
-    const outputFolderBaseFile = 'testdata';
-    const outputFileName = 'some-file-that-does-not-exist.mp4';
-    await expect(getDataLocal(outputFolderBaseFile, outputFileName)).rejects.toThrow();
+  test('It should throw an error if file does not exist', () => {
+    const OUTPUT_FOLDER_BASE_FILE = 'testdata';
+    const OUTPUT_FILENAME = 'some-file-that-does-not-exist.mp4';
+    expect(getDataLocal(OUTPUT_FOLDER_BASE_FILE, OUTPUT_FILENAME)).toThrowError();
   });
 });
 
 describe('Success cases', () => {
-  test('It should successfully load a local file if it exists', async () => {
-    const outputFolderBaseFile = 'testdata';
-    const outputFileName = 'figma-mini.json';
-    await expect(getDataLocal(outputFolderBaseFile, outputFileName)).resolves.toMatchObject({
+  test('It should successfully load a local file if it exists', () => {
+    const OUTPUT_FOLDER_BASE_FILE = 'testdata';
+    const OUTPUT_FILENAME = 'figma-mini.json';
+    const DATA = {
       document: {
         id: '0:0',
         name: 'Document',
@@ -29,6 +29,7 @@ describe('Success cases', () => {
           }
         ]
       }
-    });
-  });
+    }
+    // @ts-ignore);
+    expect(getDataLocal(OUTPUT_FOLDER_BASE_FILE, OUTPUT_FILENAME)).toMatchObject(DATA);
 });

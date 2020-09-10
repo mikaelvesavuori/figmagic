@@ -4,7 +4,7 @@ import {
   PrepCss,
   PrepStorybook,
   PrepDescription
-} from '../../bin/contracts/PrepFile';
+} from '../../../bin/contracts/PrepFile';
 
 import {
   prepComponent,
@@ -12,20 +12,20 @@ import {
   prepCss,
   prepStorybook,
   prepDescription
-} from '../../bin/frameworks/filesystem/prepFile';
+} from '../../../bin/frameworks/filesystem/prepFile';
 
 // TODO: Test loc 63,104
 
 describe('Failure cases', () => {
   describe('No input', () => {
-    test('prepComponent should throw an error if no argument is provided', async () => {
+    test('prepComponent should throw an error if no argument is provided', () => {
       // @ts-ignore
-      await expect(() => prepComponent()).rejects.toThrow();
+      expect(() => prepComponent()).toThrow();
     });
 
-    test('prepStyledComponents should throw an error if no argument is provided', async () => {
+    test('prepStyledComponents should throw an error if no argument is provided', () => {
       // @ts-ignore
-      await expect(() => prepStyledComponents()).rejects.toThrow();
+      expect(() => prepStyledComponents()).toThrow();
     });
 
     test('prepCss should throw an error if no argument is provided', () => {
@@ -33,9 +33,9 @@ describe('Failure cases', () => {
       expect(() => prepCss()).toThrow();
     });
 
-    test('prepStorybook should throw an error if no argument is provided', async () => {
+    test('prepStorybook should throw an error if no argument is provided', () => {
       // @ts-ignore
-      await expect(() => prepStorybook()).rejects.toThrow();
+      expect(() => prepStorybook()).toThrow();
     });
 
     test('prepDescription should throw an error if no argument is provided', () => {
@@ -45,14 +45,14 @@ describe('Failure cases', () => {
   });
 
   describe('Incorrect input', () => {
-    test('prepComponent should throw an error if incorrect (empty) input is provided', async () => {
+    test('prepComponent should throw an error if incorrect (empty) input is provided', () => {
       // @ts-ignore
-      await expect(() => prepComponent({})).rejects.toThrow();
+      expect(() => prepComponent({})).toThrow();
     });
 
-    test('prepStyledComponents should throw an error if incomplete input is provided', async () => {
+    test('prepStyledComponents should throw an error if incomplete input is provided', () => {
       // @ts-ignore
-      await expect(() => prepStyledComponents({})).rejects.toThrow();
+      expect(() => prepStyledComponents({})).toThrow();
     });
 
     test('prepCss should throw an error if incorrect (empty) input is provided', () => {
@@ -60,9 +60,9 @@ describe('Failure cases', () => {
       expect(() => prepCss({})).toThrow();
     });
 
-    test('prepStorybook should throw an error if incorrect (empty) input is provided', async () => {
+    test('prepStorybook should throw an error if incorrect (empty) input is provided', () => {
       // @ts-ignore
-      await expect(() => prepStorybook({})).rejects.toThrow();
+      expect(() => prepStorybook({})).toThrow();
     });
 
     test('prepDescription should throw an error if incorrect (empty) input is provided', () => {
@@ -73,7 +73,7 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should prepare a Component file based on the React template', async () => {
+  test('It should prepare a Component file based on the React template', () => {
     const data = {
       name: 'aaa',
       filePath: 'ComponentName',
@@ -88,21 +88,20 @@ describe('Success cases', () => {
     const fileContent = `import React from 'react';
 import PropTypes from 'prop-types';
 
-import {{NAME_STYLED}} from './{{NAME_STYLED}}';
+import aaaStyled from './aaaStyled';
 
-const {{NAME}} = props => <{{NAME_STYLED}} {{EXTRA_PROPS}}>{{TEXT}}{props.children}</{{NAME_STYLED}}>;
+const aaa = props => <aaaStyled qqq>fff{props.children}</aaaStyled>;
 
-{{NAME}}.propTypes = {};
+aaa.propTypes = {};
 
-export default {{NAME}};
-`;
+export default aaa;`;
 
     const expectedData = { fileContent: fileContent, filePath: 'ComponentName.jsx' };
 
-    await expect(prepComponent(data as PrepComponent)).resolves.toMatchObject(expectedData);
+    expect(prepComponent(data as PrepComponent)).toMatchObject(expectedData);
   });
 
-  test('It should prepare a Styled Components file based on the Styled template', async () => {
+  test('It should prepare a Styled Components file based on the Styled template', () => {
     const data = {
       name: 'aaa',
       filePath: 'ComponentName',
@@ -115,24 +114,21 @@ export default {{NAME}};
 
     const fileContent = `import styled from 'styled-components';
 
-import {{NAME_CSS}} from './{{NAME_CSS}}.ts'
+import aaaCss from './aaaCss.ts';
 
 // Do your regular imports like:
 // import fontSizes from 'tokens/fontSizes';
 
 // Extend the below as needed
-const {{NAME_STYLED}} = styled.{{ELEMENT}}\`
-  \${{{NAME_CSS}}};
+const aaaStyled = styled.div\`
+  \${aaaCss};
 \`;
 
-export default {{NAME_STYLED}};
-`;
+export default aaaStyled;`;
 
     const expectedData = { fileContent: fileContent, filePath: 'ComponentNameStyled.jsx' };
 
-    await expect(prepStyledComponents(data as PrepStyledComponents)).resolves.toMatchObject(
-      expectedData
-    );
+    expect(prepStyledComponents(data as PrepStyledComponents)).toMatchObject(expectedData);
   });
 
   test('It should prepare a CSS file based on the CSS template', () => {
@@ -158,7 +154,7 @@ export default ComponentNameCss;`;
     expect(prepCss(data as PrepCss)).toMatchObject(expectedData);
   });
 
-  test('It should prepare a Storybook file based on the Storybook template', async () => {
+  test('It should prepare a Storybook file based on the Storybook template', () => {
     const data = {
       name: 'ComponentName',
       filePath: 'ComponentName',
@@ -170,18 +166,17 @@ export default ComponentNameCss;`;
     };
 
     const fileContent = `import React from 'react';
-import {{NAME}} from './{{NAME}}';
+import ComponentName from './ComponentName';
 
-import notes from './{{NAME}}.description.md';
+import notes from './ComponentName.description.md';
 
-export default { title: '{{NAME}}', parameters: { notes } };
+export default { title: 'ComponentName', parameters: { notes } };
 
-export const {{NAME}}Regular = () => <{{NAME}}>{{TEXT}}</{{NAME}}>
-;`;
+export const ComponentName = () => <ComponentName>Something here</ComponentName>;`;
 
     const expectedData = { fileContent: fileContent, filePath: 'ComponentName.stories.mjs' };
 
-    await expect(prepStorybook(data as PrepStorybook)).resolves.toMatchObject(expectedData);
+    expect(prepStorybook(data as PrepStorybook)).toMatchObject(expectedData);
   });
 
   test('It should prepare a Markdown description file based on the Markdown template', () => {

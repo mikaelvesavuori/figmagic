@@ -1,26 +1,26 @@
 import trash from 'trash';
 import * as fs from 'fs';
 
-import { write } from '../../bin/frameworks/filesystem/write';
+import { write } from '../../../bin/frameworks/filesystem/write';
 
 // TODO: Test loc 21
 
 describe('Failure cases', () => {
-  test('It should throw an error if no argument is provided', async () => {
+  test('It should throw an error if no argument is provided', () => {
     // @ts-ignore
-    await expect(write()).rejects.toThrowError();
+    expect(() => write()).toThrowError();
   });
 });
 
 describe('Success cases', () => {
   test('It should successfully create a file on disk', async () => {
-    const filePath = `./__asdf__.txt`;
-    const fileContent = 'Something here';
+    const FILE_PATH = `./__write-success-test__.txt`;
+    const FILE_CONTENT = 'Something here';
 
-    write(filePath, fileContent);
-    const _fileContent = fs.readFileSync(filePath, { encoding: 'utf-8' });
-    expect(_fileContent).toBe(fileContent);
+    write(FILE_PATH, FILE_CONTENT);
+    const DISK_CONTENTS = fs.readFileSync(FILE_PATH, { encoding: 'utf-8' });
+    expect(DISK_CONTENTS).toBe(FILE_CONTENT);
 
-    trash(filePath);
+    trash(FILE_PATH);
   });
 });

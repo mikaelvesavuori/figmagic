@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import trash from 'trash';
 
-import { writeBaseJson } from '../../bin/frameworks/filesystem/writeBaseJson';
+import { writeBaseJson } from '../../../bin/frameworks/filesystem/writeBaseJson';
 
 // TODO: Test loc 28
 

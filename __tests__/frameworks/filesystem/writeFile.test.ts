@@ -1,22 +1,39 @@
 import * as fs from 'fs';
 import trash from 'trash';
 
-import { WriteOperation } from '../../bin/contracts/Write';
+import { WriteOperation } from '../../../bin/contracts/Write';
 
-import { writeFile } from '../../bin/frameworks/filesystem/writeFile';
+import { writeFile } from '../../../bin/frameworks/filesystem/writeFile';
 
 // TODO: Test loc 18-25
 
 describe('Failure cases', () => {
-  /*
-  // TODO: FIX since this destroys correct execution of Success cases?
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
-    await expect(() => writeFile()).rejects.toBeTruthy();
+    expect(() => writeFile()).toThrowError();
   });
-  */
 
-  test('It should throw an error if an invalid type is provided', async () => {
+  test('It should throw an error if given an empty operation', async () => {
+    // @ts-ignore
+    expect(() => writeFile({})).toThrowError();
+  });
+
+  test('It should throw an error if given an operation with invalid type', async () => {
+    // @ts-ignore
+    const invalidOperation = {
+      file: 1,
+      path: 1,
+      name: 1,
+      type: 1,
+      format: 1,
+      metadata: 1,
+      templates: 1
+    } as WriteOperation;
+    // @ts-ignore
+    expect(() => writeFile(invalidOperation)).toThrowError();
+  });
+
+  test('It should throw an error if an invalid type is provided', () => {
     const name = '__test-writefile0.txt';
     const payload = { something: 1234 };
 
@@ -28,7 +45,7 @@ describe('Failure cases', () => {
       format: 'invalid'
     };
 
-    await expect(writeFile(writeOp)).rejects.toThrowError();
+    expect(() => writeFile(writeOp)).toThrowError();
   });
 
   test('It should throw an error if missing templates when writing CSS', async () => {
@@ -43,8 +60,8 @@ describe('Failure cases', () => {
       format: 'css'
     };
 
-    await expect(writeFile(writeOp)).rejects.toThrowError();
-    trash(`${__dirname}/${name}`);
+    expect(() => writeFile(writeOp)).toThrowError();
+    await trash(`${__dirname}/${name}`);
   });
 });
 
@@ -69,7 +86,7 @@ describe('Success cases', () => {
 
       const file = `${writeOp.name}`;
 
-      await writeFile(writeOp);
+      writeFile(writeOp);
 
       const fileContent = fs.readFileSync(file, { encoding: 'utf-8' });
       expect(fileContent).toBe(`"{\\"something\\":1234}"`);
@@ -97,7 +114,7 @@ describe('Success cases', () => {
 
       const file = `${writeOp.name}.${writeOp.format}`;
 
-      await writeFile(writeOp);
+      writeFile(writeOp);
 
       const fileContent = fs.readFileSync(file, { encoding: 'utf-8' });
       const includesContent = fileContent.includes(

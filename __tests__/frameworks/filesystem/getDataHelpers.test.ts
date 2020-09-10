@@ -3,9 +3,7 @@ import {
   getText,
   getExtraProps,
   getImports
-} from '../../bin/frameworks/filesystem/getDataHelpers';
-
-//describe('Failure cases', () => { });
+} from '../../../bin/frameworks/filesystem/getDataHelpers';
 
 describe('Success cases', () => {
   describe('No input', () => {

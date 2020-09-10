@@ -26,6 +26,7 @@ export const ErrorGetDataNoTokenOrUrl = `${colors.FgRed}Missing token and/or URL
 export const ErrorGetDescription = `${colors.FgRed}Missing element in getDescription()!`;
 export const ErrorGetFileContentAndPath = `${colors.FgRed}Missing argument in getFileContentAndPath()!`;
 export const ErrorGetFileContentAndPathMissingFields = `${colors.FgRed}Missing fields in getFileContentAndPath()!`;
+export const ErrorGetFileContentAndPathNoReturn = `${colors.FgRed}Missing return in getFileContentAndPath()!`;
 export const ErrorGetFileList = `${colors.FgRed}Missing one or more of required arguments: "imageResponse", "ids" and/or "outputFormatGraphics" when calling getFileList()!`;
 export const ErrorGetFromApi = `${colors.FgRed}Missing one or more of required arguments: "figmaToken", "figmaUrl" when attempting to get data from Figma API!`;
 export const ErrorGetIds = `${colors.FgRed}No (or zero-length) array passed to getIds()!`;
@@ -35,8 +36,10 @@ export const ErrorGetTokenMatch = `${colors.FgRed}Missing one or more of require
 export const ErrorGetTokenMatchNoRemSize = `${colors.FgRed}Missing required "remSize" argument for getTokenMatch() when converting to rem/em!`;
 export const ErrorGetUniqueValues = `${colors.FgRed}Missing one or more of required arguments: "arrays", and/or "intersections" when calling getUniqueValues()!`;
 export const ErrorHandleNestedElements = `${colors.FgRed}Missing element in handleNestedElements()!`;
-export const ErrorLoadFile = (path: string): string =>
-  `${colors.FgRed}Could not find file: ${path}!`;
+export const ErrorLoadFile = (path: string): string => {
+  if (!path) throw new Error('No string passed to ErrorLoadFile!');
+  return `${colors.FgRed}Could not find file: ${path}!`;
+};
 export const ErrorNormalizeUnits = `${colors.FgRed}Missing arguments for normalizeUnits()!`;
 export const ErrorNormalizeUnitsNoRemSize = `${colors.FgRed}Missing required "remSize" argument for normalizeUnits() when converting to rem/em!`;
 export const ErrorNormalizeUnitsUndefined = `${colors.FgRed}arguments "rootSize" or "unitSize" are undefined!`;

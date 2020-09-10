@@ -122,7 +122,7 @@ export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
     template = template.replace(/{{NAME}}/gi, name);
     template = template.replace(/{{TEXT}}/gi, text);
 
-    return { fileContent: `${template};`, filePath: `${filePath}${SUFFIX}.${format}` };
+    return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
   } catch (error) {
     throw new Error(error);
   }

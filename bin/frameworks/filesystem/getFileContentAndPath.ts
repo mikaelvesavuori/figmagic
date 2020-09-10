@@ -21,7 +21,8 @@ import { createEnumStringOutOfObject } from '../../frameworks/string/createEnumS
 import { MsgGeneratedFileWarning } from '../messages/messages';
 import {
   ErrorGetFileContentAndPath,
-  ErrorGetFileContentAndPathMissingFields
+  ErrorGetFileContentAndPathMissingFields,
+  ErrorGetFileContentAndPathNoReturn
 } from '../errors/errors';
 
 /**
@@ -31,7 +32,14 @@ import {
  */
 export function getFileContentAndPath(
   getFileContentAndPathOperation: GetFileDataOperation
-): FileContentWithPath | Record<string, string> {
+):
+  | FileContentWithPath
+  | Record<string, string>
+  | PrepComponent
+  | PrepStyledComponents
+  | PrepCss
+  | PrepStorybook
+  | PrepDescription {
   try {
     if (!getFileContentAndPathOperation) throw new Error(ErrorGetFileContentAndPath);
 
@@ -98,6 +106,7 @@ export function getFileContentAndPath(
     // Markdown description
     else if (type === 'description')
       return prepDescription({ filePath, file, format } as PrepDescription);
+    else throw new Error(ErrorGetFileContentAndPathNoReturn);
   } catch (error) {
     throw new Error(error);
   }

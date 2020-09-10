@@ -1,4 +1,4 @@
-import { getData } from '../../bin/frameworks/network/getData';
+import { getData } from '../../../bin/frameworks/network/getData';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
