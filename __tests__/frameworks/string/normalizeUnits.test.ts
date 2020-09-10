@@ -1,4 +1,4 @@
-import { normalizeUnits } from '../../bin/frameworks/string/normalizeUnits';
+import { normalizeUnits } from '../../../bin/frameworks/string/normalizeUnits';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {

@@ -1,6 +1,6 @@
-import { getIds } from '../../../bin/usecases/interactors/graphics/getIds';
+import { getIds } from '../../../../bin/usecases/interactors/graphics/getIds';
 
-import { graphicsPage } from '../../../testdata/graphicsPage';
+import { graphicsPage } from '../../../../testdata/graphicsPage';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {

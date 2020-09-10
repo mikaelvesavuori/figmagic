@@ -3,13 +3,13 @@ import { getDataLocal } from '../../../bin/frameworks/network/getDataLocal';
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
-    expect(getDataLocal()).toThrowError();
+    expect(() => getDataLocal()).toThrowError();
   });
 
   test('It should throw an error if file does not exist', () => {
     const OUTPUT_FOLDER_BASE_FILE = 'testdata';
     const OUTPUT_FILENAME = 'some-file-that-does-not-exist.mp4';
-    expect(getDataLocal(OUTPUT_FOLDER_BASE_FILE, OUTPUT_FILENAME)).toThrowError();
+    expect(() => getDataLocal(OUTPUT_FOLDER_BASE_FILE, OUTPUT_FILENAME)).toThrowError();
   });
 });
 
@@ -29,7 +29,8 @@ describe('Success cases', () => {
           }
         ]
       }
-    }
+    };
     // @ts-ignore);
     expect(getDataLocal(OUTPUT_FOLDER_BASE_FILE, OUTPUT_FILENAME)).toMatchObject(DATA);
+  });
 });

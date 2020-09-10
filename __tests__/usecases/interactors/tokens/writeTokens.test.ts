@@ -1,20 +1,21 @@
 import trash from 'trash';
 
-import { writeTokens } from '../../bin/frameworks/filesystem/writeTokens';
+import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 
-import { baseConfig } from '../../bin/entities/Config/baseConfig';
-import { colorFrame } from '../../testdata/frames/colorFrame';
-import { spacingFrame } from '../../testdata/frames/spacingFrame';
-import { fontFrame } from '../../testdata/frames/fontFrame';
-import { fontSizeFrame } from '../../testdata/frames/fontSizeFrame';
-import { fontWeightFrame } from '../../testdata/frames/fontWeightFrame';
-import { lineHeightFrame } from '../../testdata/frames/lineHeightFrame';
-import { borderWidthsFrame } from '../../testdata/frames/borderWidthsFrame';
-import { letterSpacingsFrame } from '../../testdata/frames/letterSpacingsFrame';
-import { mediaQueriesFrame } from '../../testdata/frames/mediaQueriesFrame';
-import { radiiFrame } from '../../testdata/frames/radiiFrame';
-import { shadowsFrame } from '../../testdata/frames/shadowsFrame';
-import { zIndicesFrame } from '../../testdata/frames/zIndicesFrame';
+import { writeTokens } from '../../../../bin/usecases/interactors/tokens/writeTokens';
+
+import { colorFrame } from '../../../../testdata/frames/colorFrame';
+import { spacingFrame } from '../../../../testdata/frames/spacingFrame';
+import { fontFrame } from '../../../../testdata/frames/fontFrame';
+import { fontSizeFrame } from '../../../../testdata/frames/fontSizeFrame';
+import { fontWeightFrame } from '../../../../testdata/frames/fontWeightFrame';
+import { lineHeightFrame } from '../../../../testdata/frames/lineHeightFrame';
+import { borderWidthsFrame } from '../../../../testdata/frames/borderWidthsFrame';
+import { letterSpacingsFrame } from '../../../../testdata/frames/letterSpacingsFrame';
+import { mediaQueriesFrame } from '../../../../testdata/frames/mediaQueriesFrame';
+import { radiiFrame } from '../../../../testdata/frames/radiiFrame';
+import { shadowsFrame } from '../../../../testdata/frames/shadowsFrame';
+import { zIndicesFrame } from '../../../../testdata/frames/zIndicesFrame';
 
 // Set temp folder
 const TEMP_FOLDER = `__tokens__`;

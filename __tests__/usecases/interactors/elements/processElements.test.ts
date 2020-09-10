@@ -1,8 +1,9 @@
-import { processElements } from '../bin/usecases/interactors/elements/processElements';
+import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 
-import { elementsPage, elementsPageDoubleTexts } from '../../testdata/elementsPage';
-import { components } from '../testdata/components';
-import { baseConfig } from '../bin/entities/Config/baseConfig';
+import { processElements } from '../../../../bin/usecases/interactors/elements/processElements';
+
+import { elementsPage, elementsPageDoubleTexts } from '../../../../testdata/elementsPage';
+import { components } from '../../../../testdata/components';
 
 describe('Failure cases', () => {
   /*

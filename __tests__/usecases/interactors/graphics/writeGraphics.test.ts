@@ -1,9 +1,10 @@
 import trash from 'trash';
 
-import { writeGraphics } from '../../bin/frameworks/filesystem/writeGraphics';
+import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 
-import { fileList } from '../../testdata/fileList';
-import { baseConfig } from '../../bin/entities/Config/baseConfig';
+import { writeGraphics } from '../../../../bin/usecases/interactors/graphics/writeGraphics';
+
+import { fileList } from '../../../../testdata/fileList';
 
 // Set temp folder
 const TEMP_FOLDER = `__graphics__`;

@@ -1,6 +1,6 @@
 import { parseElement } from '../../bin/usecases/interactors/elements/parseElement';
 
-import { elementsPage } from '../testdata/elements/elementsPage';
+import { elementsPage } from './testdata/elements/elementsPage';
 
 //import { filteredElements } from '../../testdata/elements/filteredElements';
 //import { components } from '../../testdata/elements/components';
@@ -18,7 +18,7 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test.only('It should asdf', async () => {
+  test('It should asdf', async () => {
     const element = {
       ...elementsPage[0],
       description: 'element=sub\ndescription=\n# Sub\n\nTiny text snippets.'

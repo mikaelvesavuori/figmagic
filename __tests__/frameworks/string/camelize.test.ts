@@ -1,4 +1,4 @@
-import { camelize } from '../../bin/frameworks/string/camelize';
+import { camelize } from '../../../bin/frameworks/string/camelize';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {

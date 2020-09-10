@@ -1,4 +1,4 @@
-import { parseCliArgs } from '../../bin/entities/Config/parseCliArgs';
+import { parseCliArgs } from '../../../../bin/entities/Config/logic/parseCliArgs';
 import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 
 describe('Failure cases', () => {

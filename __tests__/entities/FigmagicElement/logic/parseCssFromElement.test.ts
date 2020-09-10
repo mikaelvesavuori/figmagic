@@ -1,9 +1,9 @@
-import { parseCssFromElement } from '../bin/app/process/parseCssFromElement';
+import { parseCssFromElement } from '../../../../bin/entities/FigmagicElement/logic/parseCssFromElement';
 
-import { cssLayoutElement } from '../../testdata/cssLayoutElement';
-import { cssLayoutElementGradient } from '../../testdata/cssLayoutElementGradient';
-import { cssLayoutElementShadow } from '../../testdata/cssLayoutElementShadow';
-import { cssTypographyElement } from '../../testdata/cssTypographyElement';
+import { cssLayoutElement } from '../../../../testdata/elements/cssLayoutElement';
+import { cssLayoutElementGradient } from '../../../../testdata/elements/cssLayoutElementGradient';
+import { cssLayoutElementShadow } from '../../../../testdata/elements/cssLayoutElementShadow';
+import { cssTypographyElement } from '../../../../testdata/elements/cssTypographyElement';
 
 /*
 describe('Failure cases', () => {

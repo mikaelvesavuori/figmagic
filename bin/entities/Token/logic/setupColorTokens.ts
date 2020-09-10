@@ -24,6 +24,7 @@ export function setupColorTokens(colorFrame: Frame): ColorTokens {
 
   colorFrame.children.forEach((item: Frame) => {
     if (!item.fills) throw new Error(ErrorSetupColorTokensNoFills);
+    if (!item.fills[0].color) throw new Error('asdf'); // TODO: add real error
 
     const ALPHA = item.opacity ? item.opacity : item.fills[0].color.a;
     const _R = item.fills[0].color.r;

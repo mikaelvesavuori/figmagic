@@ -13,7 +13,10 @@ import { ErrorGetDataLocal } from '../errors/errors';
  * @param outputFolderBaseFile
  * @param outputFileName
  */
-export function getDataLocal(outputFolderBaseFile: string, outputFileName: string): FigmaData {
+export function getDataLocal(
+  outputFolderBaseFile: string,
+  outputFileName: string
+): Record<string, unknown> | string | FigmaData {
   if (!outputFolderBaseFile || !outputFileName) throw new Error(ErrorGetDataLocal);
 
   console.log(MsgSetDataFromLocal);

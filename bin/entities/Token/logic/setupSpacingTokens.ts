@@ -32,6 +32,7 @@ export function setupSpacingTokens(
 
   children.forEach((item: Frame) => {
     const name: string = camelize(item.name);
+    if (!item.absoluteBoundingBox || !item.absoluteBoundingBox.width) throw new Error('asdf'); // TODO: Add real error
     const width: number = item.absoluteBoundingBox.width;
     const normalizedUnit = normalizeUnits(width, 'px', spacingUnit, remSize);
     spacings[name] = normalizedUnit;

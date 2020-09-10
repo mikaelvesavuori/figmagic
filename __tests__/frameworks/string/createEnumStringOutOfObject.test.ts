@@ -1,6 +1,6 @@
-import { createEnumStringOutOfObject } from '../../bin/frameworks/string/createEnumStringOutOfObject';
+import { createEnumStringOutOfObject } from '../../../bin/frameworks/string/createEnumStringOutOfObject';
 
-import { enumDataTestObject, enumDataExpectedResponse } from '../../testdata/enumData';
+import { enumDataTestObject, enumDataExpectedResponse } from '../../../testdata/enumData';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {

@@ -20,6 +20,14 @@ type PaddingVertical = {
 export function getPaddingY(textElement: TextElement, element: Frame): PaddingVertical | null {
   try {
     if (!textElement) return null;
+    if (
+      !element.absoluteBoundingBox ||
+      !element.absoluteBoundingBox.height ||
+      !element.absoluteBoundingBox.y ||
+      !textElement.absoluteBoundingBox.height ||
+      !textElement.absoluteBoundingBox.y
+    )
+      throw new Error('asdf'); // TODO: add real error
 
     const PARENT_HEIGHT = element.absoluteBoundingBox.height;
     const TEXT_HEIGHT = textElement.absoluteBoundingBox.height;
@@ -49,6 +57,15 @@ type PaddingHorizontal = {
 export function getPaddingX(textElement: TextElement, element: Frame): PaddingHorizontal | null {
   try {
     if (!textElement) return null;
+
+    if (
+      !element.absoluteBoundingBox ||
+      !element.absoluteBoundingBox.width ||
+      !element.absoluteBoundingBox.x ||
+      !textElement.absoluteBoundingBox.width ||
+      !textElement.absoluteBoundingBox.x
+    )
+      throw new Error('asdf'); // TODO: add real error
 
     const PARENT_WIDTH = element.absoluteBoundingBox.width;
     const TEXT_WIDTH = textElement.absoluteBoundingBox.width;
@@ -150,6 +167,7 @@ export function getBackgroundColor(element: Frame): any {
   const fills = element.fills.filter((f) => f.type === 'SOLID');
 
   if (fills.length > 0) {
+    if (!fills[0].color) throw new Error('asdf'); // TODO: Add real error
     const R = roundColorValue(fills[0].color.r);
     const G = roundColorValue(fills[0].color.g);
     const B = roundColorValue(fills[0].color.b);
@@ -163,6 +181,8 @@ export function getBackgroundColor(element: Frame): any {
 
   if (fills.length === 0 && gradients.length > 0) {
     let str = `linear-gradient(`;
+
+    if (!gradients[0] || !gradients[0].gradientStops) throw new Error('asdf'); // TODO: add real error
 
     gradients[0].gradientStops.forEach((fill, index) => {
       const R = roundColorValue(fill.color.r, 255);
@@ -264,6 +284,7 @@ export function getBorderColor(element: Frame): string | null {
   if (!(element.strokes && element.strokes.length > 0 && element.strokes[0].type === 'SOLID'))
     return null;
 
+  if (!element.strokes[0].color) throw new Error('asdf'); // TODO: add real error
   const R = roundColorValue(element.strokes[0].color.r);
   const G = roundColorValue(element.strokes[0].color.g);
   const B = roundColorValue(element.strokes[0].color.b);

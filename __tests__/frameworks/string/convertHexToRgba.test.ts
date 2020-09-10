@@ -1,4 +1,4 @@
-import { convertHexToRgba } from '../../bin/frameworks/string/convertHexToRgba';
+import { convertHexToRgba } from '../../../bin/frameworks/string/convertHexToRgba';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {

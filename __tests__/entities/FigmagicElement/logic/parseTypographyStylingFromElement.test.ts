@@ -1,6 +1,6 @@
-import { parseTypographyStylingFromElement } from '../../bin/app/process/parseTypographyStylingFromElement';
+import { parseTypographyStylingFromElement } from '../../../../bin/entities/FigmagicElement/logic/parseTypographyStylingFromElement';
 
-import { cssTypographyElement } from '../../testdata/cssTypographyElement';
+import { cssTypographyElement } from '../../../../testdata/elements/cssTypographyElement';
 
 /*
 describe('Failure cases', () => {

@@ -1,4 +1,4 @@
-import { roundColorValue } from '../../bin/frameworks/string/roundColorValue';
+import { roundColorValue } from '../../../bin/frameworks/string/roundColorValue';
 
 describe('Failure cases', () => {
   test('It should throw an error when scale is below 0', () => {

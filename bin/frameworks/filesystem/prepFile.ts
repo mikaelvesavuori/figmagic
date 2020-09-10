@@ -40,7 +40,7 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
     const SUFFIX = 'Styled';
     const PATH = templates.templatePathReact;
 
-    let template = loadFile(PATH);
+    let template = loadFile(PATH) as string;
     template = template.replace(/{{NAME}}/gi, name);
     template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
     template = template.replace(/{{EXTRA_PROPS}}/gi, ` ${extraProps}`);
@@ -69,7 +69,7 @@ export const prepStyledComponents = (data: PrepStyledComponents): FileContentWit
     const SUFFIX = 'Styled';
     const PATH = templates.templatePathStyled;
 
-    let template = loadFile(PATH);
+    let template = loadFile(PATH) as string;
     template = template.replace(/{{ELEMENT}}/gi, element);
     template = template.replace(/{{NAME_CSS}}/gi, `${name}Css`);
     template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
@@ -118,7 +118,7 @@ export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
     const SUFFIX = '.stories';
     const PATH = templates.templatePathStorybook;
 
-    let template = loadFile(PATH);
+    let template = loadFile(PATH) as string;
     template = template.replace(/{{NAME}}/gi, name);
     template = template.replace(/{{TEXT}}/gi, text);
 

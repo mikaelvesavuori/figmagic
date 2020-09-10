@@ -7,18 +7,22 @@ describe('Failure cases', () => {
   });
 
   test('It should fail if attempting to get remote data, but missing token', async () => {
-    await expect(getData(false, null, null, null, 'url')).rejects.toThrowError('asdf');
+    // @ts-ignore
+    await expect(getData(false, null, null, null, 'url')).rejects.toThrowError();
   });
 
   test('It should fail if attempting to get remote data, but missing URL', async () => {
-    await expect(getData(false, null, null, 'token', null)).rejects.toThrowError('asdf');
+    // @ts-ignore
+    await expect(getData(false, null, null, 'token', null)).rejects.toThrowError();
   });
 
   test('It should fail if attempting to recompile locally, but missing outputFolderBaseFile', async () => {
-    await expect(getData(true, null, 'outputFileName', null, null)).rejects.toThrowError('mfmfmfm');
+    // @ts-ignore
+    await expect(getData(true, null, 'outputFileName', null, null)).rejects.toThrowError();
   });
 
   test('It should fail if attempting to recompile locally, but missing outputFileName', async () => {
+    // @ts-ignore
     await expect(getData(true, 'outputFolderBaseFile', null, null, null)).rejects.toThrowError(
       'mfmfmfm'
     );

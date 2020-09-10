@@ -1,4 +1,4 @@
-import { processTokens } from '../../bin/app/process/processTokens';
+import { processTokens } from '../../../../bin/usecases/interactors/tokens/processTokens';
 
 import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 import { colorFrame } from '../../../../testdata/frames/colorFrame';

@@ -1,6 +1,6 @@
 import { Tokens } from '../../../../bin/contracts/Tokens';
 
-import { getTokenMatch } from '../../bin/usecases/interactors/elements/getTokenMatch';
+import { getTokenMatch } from '../../../../bin/entities/FigmagicElement/logic/getTokenMatch';
 
 /*
 describe('Failure cases', () => {

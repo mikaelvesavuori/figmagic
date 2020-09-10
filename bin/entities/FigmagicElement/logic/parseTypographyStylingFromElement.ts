@@ -54,6 +54,7 @@ export function parseTypographyStylingFromElement(
       if (element.fills) {
         if (element.fills[0]) {
           if (element.fills[0].type === 'SOLID') {
+            if (!element.fills[0].color) throw new Error('asdf'); // TODO: add real error
             const R = roundColorValue(element.fills[0].color.r);
             const G = roundColorValue(element.fills[0].color.g);
             const B = roundColorValue(element.fills[0].color.b);

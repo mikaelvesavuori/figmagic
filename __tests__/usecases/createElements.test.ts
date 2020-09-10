@@ -28,7 +28,7 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test.only('It should write tokens given a valid configuration, valid data and an output folder', async () => {
+  test('It should write tokens given a valid configuration, valid data and an output folder', async () => {
     const config = testConfig;
     config.token = process.env.FIGMA_TOKEN;
     config.url = process.env.FIGMA_URL;

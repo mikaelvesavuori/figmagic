@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import { createConfiguration } from '../../bin/entities/Config/createConfiguration';
+import { createConfiguration } from '../../../../bin/entities/Config/logic/createConfiguration';
 import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 import { Config } from '../../../../bin/contracts/Config';
 

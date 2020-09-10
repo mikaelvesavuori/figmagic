@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
 
-import { Config } from '../../../bin/contracts/Config';
+import { Config } from '../../../../bin/contracts/Config';
 
-import { processGraphics } from '../../../bin/usecases/interactors/graphics/processGraphics';
+import { processGraphics } from '../../../../bin/usecases/interactors/graphics/processGraphics';
 
-import { graphicsPage } from '../../../testdata/graphicsPage';
+import { graphicsPage } from '../../../../testdata/graphicsPage';
 
 dotenv.config();
 

@@ -1,6 +1,6 @@
 import { FRAME as Frame } from '../../../../bin/contracts/Figma';
 
-import { createPage } from '../../bin/app/process/tokens/createPage';
+import { createPage } from '../../../../bin/usecases/interactors/common/createPage';
 
 import { designTokensPage, designTokensChildren } from '../../../../testdata/designTokensPage';
 

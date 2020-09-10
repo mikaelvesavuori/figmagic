@@ -1,4 +1,4 @@
-import { processNestedCss } from '../../bin/usecases/interactors/elements/processNestedCss';
+import { processNestedCss } from '../../../../bin/entities/FigmagicElement/logic/processNestedCss';
 
 const css = `
 .ButtonError {

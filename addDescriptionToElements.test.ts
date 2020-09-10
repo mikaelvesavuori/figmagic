@@ -1,7 +1,7 @@
 import { addDescriptionToElements } from '../../bin/usecases/interactors/elements/addDescriptionToElements';
 
-import { filteredElements } from '../testdata/elements/filteredElements';
-import { components } from '../testdata/elements/components';
+import { filteredElements } from './testdata/elements/filteredElements';
+import { components } from './testdata/elements/components';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {

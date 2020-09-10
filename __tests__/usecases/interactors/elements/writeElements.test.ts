@@ -1,8 +1,8 @@
 import trash from 'trash';
 
-import { writeElements } from '../../bin/frameworks/filesystem/writeElements';
+import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 
-import { baseConfig } from '../../bin/entities/Config/baseConfig';
+import { writeElements } from '../../../../bin/usecases/interactors/elements/writeElements';
 
 // Set temp folder
 const TEMP_FOLDER = `__elements__`;
