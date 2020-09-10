@@ -83,7 +83,7 @@ function getIntersectingValues(arrays: any[]): any[] {
 
   const obj = {};
 
-  arrays.forEach((a, index) => {
+  arrays.forEach((a, index: number) => {
     obj[index] = a;
   });
 
@@ -102,13 +102,13 @@ function getIntersectingValues(arrays: any[]): any[] {
 function getUniqueValues(arrays: any[], intersections: any[]): any[] {
   if (!arrays || !intersections) throw new Error(ErrorGetUniqueValues);
 
-  const uniqueValues = [];
+  const uniqueValues: Record<string, unknown>[] = [];
 
   arrays.forEach((arr) => {
     // Collect properties per class, such as all for ".ButtonError"
-    const classArray = [];
+    const classArray: Record<string, unknown>[] = [];
 
-    arr.forEach((i) => {
+    arr.forEach((i: Record<string, unknown>) => {
       if (!intersections.includes(i)) {
         classArray.push(i);
       }
@@ -142,7 +142,7 @@ function createCssString(intersections: any[], uniqueValues: any[]): string {
   str += `\n`;
 
   uniqueValues.forEach((arr) => {
-    arr.forEach((i, index) => {
+    arr.forEach((i, index: number) => {
       // Yep, you'd wish we set class names or CSS pseudo-selector before we came here,
       // but this is the easiest I've found without breaking everything above.
       // The below match removes the '.' class selector so we can use only ':' for those

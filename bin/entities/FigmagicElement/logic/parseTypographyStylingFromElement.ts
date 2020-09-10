@@ -48,7 +48,7 @@ export function parseTypographyStylingFromElement(
     const lineHeights = sliceOutObjectFromFile(_lineHeights);
 
     let css = ``;
-    const imports = [];
+    const imports: Record<string, unknown>[] = [];
 
     const FONT_COLOR = (() => {
       if (element.fills) {
@@ -74,7 +74,7 @@ export function parseTypographyStylingFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach((i) => imports.push(i));
+      updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
     }
 
     const FONT_SIZE: number | null = (() => {
@@ -117,7 +117,7 @@ export function parseTypographyStylingFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach((i) => imports.push(i));
+      updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
     }
 
     const FONT_WEIGHT = (() => {
@@ -138,7 +138,7 @@ export function parseTypographyStylingFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach((i) => imports.push(i));
+      updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
     }
 
     const FONT_LINE_HEIGHT = (() => {
@@ -161,7 +161,7 @@ export function parseTypographyStylingFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach((i) => imports.push(i));
+      updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
     }
 
     const FONT_ALIGNMENT = (() => {
@@ -197,7 +197,7 @@ export function parseTypographyStylingFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach((i) => imports.push(i));
+      updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
     }
 
     if (FONT_ALIGNMENT) {

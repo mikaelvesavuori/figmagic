@@ -296,7 +296,7 @@ An example file is provided in Figmagic—you can find it in the root of the pro
 Below is a complete set of what you can configure, together with the defaults.
 
 ```
-{
+export const baseConfig: Config = {
   debugMode: false,
   fontUnit: 'rem',
   letterSpacingUnit: 'em',
@@ -602,4 +602,6 @@ Default: numbers (whole numbers, i.e. integers).
 
 ### Want to add or rethink something in Figmagic?
 
-You are very welcome to contribute to the project! Pull requests welcome, as well as issues or plain messages.
+You are welcome to contribute to the project! Pull requests, as well as issues or plain messages, work fine.
+
+Please read the contribution documentation at `CONTRIBUTION.md` before doing any work though.

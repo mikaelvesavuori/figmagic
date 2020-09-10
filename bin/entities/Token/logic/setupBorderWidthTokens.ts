@@ -28,6 +28,5 @@ export function setupBorderWidthTokens(borderWidthFrame: Frame): BorderWidthToke
     borderWidths[name] = `${item.strokeWeight}px`;
   });
 
-  const borderWidthTokens = makeBorderWidthTokens(borderWidths);
-  return borderWidthTokens;
+  return makeBorderWidthTokens(borderWidths);
 }

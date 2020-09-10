@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 
 import { Config } from '../../../contracts/Config';
+import { FigmagicElement } from '../../../contracts/FigmagicElement';
 import { WriteOperation } from '../../../contracts/Write';
 
 import { toPascalCase } from '../../../frameworks/string/toPascalCase';
@@ -31,7 +32,7 @@ export function writeElements(elements: any[], config: Config): void {
   }
 }
 
-const makeFixedConfig = (element, config): WriteOperation => {
+const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperation => {
   const html = element.html || ' ';
   const css = element.css || ' ';
   const description = element.description || ' ';

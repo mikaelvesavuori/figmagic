@@ -7,7 +7,7 @@ export class Configuration {
   baseConfiguration: Config;
   userConfigPath: string;
   cliArgs: any[];
-  config: Config;
+  config: Config = baseConfig;
 
   constructor(userConfigPath: string, ...cliArgs: any[]) {
     this.baseConfiguration = baseConfig;

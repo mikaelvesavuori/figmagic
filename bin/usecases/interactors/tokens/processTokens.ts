@@ -1,4 +1,5 @@
 import { makeToken } from '../../../entities/Token/index';
+import { Token } from '../../../entities/Token/index';
 
 import { Config } from '../../../contracts/Config';
 import { FRAME as Frame } from '../../../contracts/Figma';
@@ -20,7 +21,7 @@ export function processTokens(tokens: Frame[], config: Config): any {
     if (!(tokens.length > 0)) throw new Error(ErrorWriteTokens);
     if (!config) throw new Error(ErrorWriteTokensNoSettings);
 
-    const processedTokens = [];
+    const processedTokens: Token[] = [];
 
     tokens.forEach((token) => {
       const TOKEN_NAME = camelize(token.name);
