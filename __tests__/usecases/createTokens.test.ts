@@ -1,4 +1,5 @@
 import trash from 'trash';
+import * as fs from 'fs';
 
 import { createTokens } from '../../bin/usecases/createTokens';
 
@@ -13,7 +14,9 @@ describe('Success cases', () => {
     const data = figmaTestResponse;
     config.outputFolderTokens = '__test-tokens-success__';
     // @ts-ignore
-    await expect(createTokens(config, data)).resolves.toBe(true);
+    await createTokens(config, data);
+    const FILE_EXISTS = fs.existsSync(config.outputFolderTokens);
+    expect(FILE_EXISTS).toBe(true);
     trash(config.outputFolderTokens);
   });
 });

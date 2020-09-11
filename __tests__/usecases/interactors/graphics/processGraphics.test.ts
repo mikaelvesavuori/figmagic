@@ -36,6 +36,7 @@ describe('Failure cases', () => {
 
   test('It should throw an error if missing token', async () => {
     const xxx = graphicsPage;
+    // @ts-ignore
     xxx[0].children = null;
 
     await expect(
@@ -55,6 +56,8 @@ describe('Failure cases', () => {
 
   test('It should throw an error if missing children in graphics page', async () => {
     const data = graphicsPage;
+
+    // @ts-ignore
     data[0].children = null;
 
     await expect(

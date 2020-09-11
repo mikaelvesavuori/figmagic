@@ -2,7 +2,7 @@ import { FRAME as Frame } from '../../bin/contracts/Figma';
 
 export const easingFrame: Frame = {
   id: '2657:97',
-  name: 'Easing',
+  name: 'Easings',
   type: 'FRAME',
   blendMode: 'PASS_THROUGH',
   children: [

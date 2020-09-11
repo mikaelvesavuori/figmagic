@@ -1,4 +1,5 @@
 import trash from 'trash';
+import * as fs from 'fs';
 
 import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 
@@ -18,8 +19,23 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should successfully write graphics if provided valid file list and config', async () => {
-    await expect(writeGraphics(fileList, baseConfig)).resolves.toBe(true);
+  test('It should successfully write graphics (PNG) if provided valid file list and config', async () => {
+    baseConfig.outputFormatGraphics = 'png';
+    await writeGraphics(fileList, baseConfig);
+    const PATH = `${TEMP_FOLDER}/${fileList[0].file}`;
+    const FILE_EXISTS = fs.existsSync(PATH);
+    expect(FILE_EXISTS).toBeTruthy();
+    await trash(TEMP_FOLDER);
+  });
+});
+
+describe('Success cases', () => {
+  test('It should successfully write graphics (SVG) if provided valid file list and config', async () => {
+    baseConfig.outputFormatGraphics = 'svg';
+    await writeGraphics(fileList, baseConfig);
+    const PATH = `${TEMP_FOLDER}/${fileList[1].file}`;
+    const FILE_EXISTS = fs.existsSync(PATH);
+    expect(FILE_EXISTS).toBeTruthy();
     await trash(TEMP_FOLDER);
   });
 });

@@ -1,12 +1,10 @@
 export const fileList = [
   {
-    url:
-      'https://s3-us-west-2.amazonaws.com/figma-alpha-api/img/1c12/7bf2/5382af0fbf2908d72167b084836854f3',
-    file: 'more.svg'
+    url: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+    file: 'example.png'
   },
   {
-    url:
-      'https://s3-us-west-2.amazonaws.com/figma-alpha-api/img/0882/9cc7/c4731c8d0df07592cd6f7dc0519bb3bb',
-    file: 'close.svg'
+    url: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg',
+    file: 'example.svg'
   }
 ];

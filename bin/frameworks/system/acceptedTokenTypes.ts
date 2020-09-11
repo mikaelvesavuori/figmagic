@@ -2,7 +2,7 @@ export const acceptedTokenTypes: string[] = [
   'borderwidths',
   'color',
   'colors',
-  'delay',
+  'delays',
   'durations',
   'easings',
   'fontfamilies',

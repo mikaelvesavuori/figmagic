@@ -22,27 +22,27 @@ const TEMP_FOLDER = `__tokens__`;
 baseConfig.outputFolderTokens = TEMP_FOLDER;
 
 describe('Failure cases', () => {
-  test('It should throw an error if no argument is provided', async () => {
+  test('It should throw an error if no argument is provided', () => {
     // @ts-ignore
-    await expect(writeTokens()).rejects.toThrow();
+    expect(writeTokens()).toThrow();
   });
 
-  test('It should pass the zero-length token check', async () => {
+  test('It should pass the zero-length token check', () => {
     const TOKENS = [{}, {}];
     // @ts-ignore
-    await expect(writeTokens(TOKENS)).rejects.toThrow();
+    expect(writeTokens(TOKENS)).toThrow();
   });
 
-  test('It should fail the zero-length token check', async () => {
-    const TOKENS = [];
+  test('It should fail the zero-length token check', () => {
+    const TOKENS: any[] = [];
     // @ts-ignore
-    await expect(writeTokens(TOKENS)).rejects.toThrow();
+    expect(writeTokens(TOKENS)).toThrow();
   });
 });
 
 describe('Success cases', () => {
   test('It should return tokens if passed a valid set of frame and settings', async () => {
-    const TOKENS = [
+    const TOKENS: any = [
       colorFrame,
       spacingFrame,
       fontFrame,
@@ -57,7 +57,7 @@ describe('Success cases', () => {
       zIndicesFrame
     ];
 
-    await expect(writeTokens(TOKENS, baseConfig)).resolves.toBe(true);
+    expect(writeTokens(TOKENS)).toBe(true);
     await trash(TEMP_FOLDER);
   });
 
