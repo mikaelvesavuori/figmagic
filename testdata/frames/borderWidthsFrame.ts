@@ -211,7 +211,7 @@ export const borderWidthsInvalidMissingName: Frame = {
   children: [
     {
       id: '2657:117',
-      name: null,
+      name: '',
       type: 'RECTANGLE',
       blendMode: 'PASS_THROUGH',
       absoluteBoundingBox: {

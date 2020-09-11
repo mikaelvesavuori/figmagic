@@ -43,8 +43,8 @@ export async function createConfiguration(
   let RC_CONFIG: any = {};
 
   try {
-    const rcConfig: Config = loadFile(userConfigPath);
-    RC_CONFIG = rcConfig;
+    const _RC_CONFIG = loadFile(userConfigPath);
+    RC_CONFIG = _RC_CONFIG as Config;
   } catch (e) {} // eslint-disable-line no-empty
 
   // Env var configuration

@@ -7,6 +7,8 @@ import { TextElement } from '../../../contracts/TextElement';
 import { sliceOutObjectFromFile } from './sliceOutObjectFromFile';
 
 import {
+  PaddingVertical,
+  PaddingHorizontal,
   getPaddingY,
   getPaddingX,
   parsePadding,
@@ -67,8 +69,9 @@ export function parseCssFromElement(
     // Add defaults
     css += `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
 
-    const PADDING_Y: Record<string, unknown> = getPaddingY(textElement, element);
-    const PADDING_X: Record<string, unknown> = getPaddingX(textElement, element);
+    const PADDING_Y: PaddingVertical | null = getPaddingY(textElement, element);
+    const PADDING_X: PaddingHorizontal | null = getPaddingX(textElement, element);
+    if (!PADDING_Y || !PADDING_X) throw new Error(); // TODO: add real error
 
     const PADDING = {
       ...PADDING_Y,

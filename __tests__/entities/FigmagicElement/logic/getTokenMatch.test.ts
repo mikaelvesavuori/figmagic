@@ -1,15 +1,17 @@
-import { Tokens } from '../../../../bin/contracts/Tokens';
-
 import { getTokenMatch } from '../../../../bin/entities/FigmagicElement/logic/getTokenMatch';
 
-/*
+// TODO: Fix this failing test ("It should match padding")
+
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
     expect(() => {
+      // @ts-ignore
       getTokenMatch();
     }).toThrow();
   });
+});
 
+describe('Success cases', () => {
   test('It should match a non-token match', () => {
     expect(
       getTokenMatch(
@@ -26,11 +28,8 @@ describe('Failure cases', () => {
       })
     );
   });
-});
-*/
 
-describe('Success cases', () => {
-  test('It should match padding', () => {
+  test.only('It should match padding', () => {
     expect(
       getTokenMatch(
         {
@@ -40,7 +39,7 @@ describe('Success cases', () => {
           medium: '2rem',
           small: '1rem',
           tiny: '0.5rem'
-        } as Tokens,
+        },
         'spacing',
         'padding',
         `{ top: 16, bottom: 16, left: 16, right: 16 }`,

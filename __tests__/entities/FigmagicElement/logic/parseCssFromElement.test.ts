@@ -14,10 +14,8 @@ describe('Failure cases', () => {
 */
 
 describe('Success cases', () => {
-  test('It should successfully return an object, if given valid input', async () => {
-    await expect(
-      parseCssFromElement(cssLayoutElement, cssTypographyElement, 16, true)
-    ).resolves.toMatchObject({
+  test('It should successfully return an object, if given valid input', () => {
+    expect(parseCssFromElement(cssLayoutElement, cssTypographyElement, 16, true)).toMatchObject({
       css: `width: 100%;
 box-sizing: border-box;
 padding-top: 33.8125rem;
@@ -34,10 +32,10 @@ border-radius: \${radii.soft};
   });
 
   // Linear gradient
-  test('It should apply linear gradient', async () => {
-    await expect(
+  test('It should apply linear gradient', () => {
+    expect(
       parseCssFromElement(cssLayoutElementGradient, cssTypographyElement, 16, true)
-    ).resolves.toMatchObject({
+    ).toMatchObject({
       css: `width: 100%;
 box-sizing: border-box;
 padding-bottom: 17.25rem;
@@ -55,10 +53,10 @@ border-radius: \${radii.soft};
   });
 
   // Shadow
-  test('It should apply shadow', async () => {
-    await expect(
+  test('It should apply shadow', () => {
+    expect(
       parseCssFromElement(cssLayoutElementShadow, cssTypographyElement, 16, true)
-    ).resolves.toMatchObject({
+    ).toMatchObject({
       css: `width: 100%;
 box-sizing: border-box;
 padding-top: 24.4375rem;

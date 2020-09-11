@@ -1,3 +1,5 @@
+import { FigmaData } from '../../contracts/FigmaData';
+
 import { refresh } from './refresh';
 //import { writeFile } from './writeFile';
 import { write } from './write';
@@ -16,7 +18,7 @@ import { ErrorWriteBaseJson } from '../errors/errors';
 export async function writeBaseJson(
   outputFolderBaseFile: string,
   outputFileName: string,
-  data: Record<string, unknown>
+  data: FigmaData | Record<string, unknown>
 ): Promise<void> {
   if (!outputFolderBaseFile || !outputFileName || !data) throw new Error(ErrorWriteBaseJson);
 

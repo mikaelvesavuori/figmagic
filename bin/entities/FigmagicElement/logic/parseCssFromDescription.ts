@@ -27,7 +27,12 @@ export function parseCssFromDescription(
     desc = desc.replace(/\n/gi, '');
 
     // Find and replace elements
-    if (desc.match(/\{\{(.*?)\}\}/)) metadata.element = desc.match(/\{\{(.*?)\}\}/)[1];
+    if (desc.match(/\{\{(.*?)\}\}/))
+      // @ts-ignore
+      metadata.element = (() => {
+        const x = desc.match(/\{\{(.*?)\}\}/);
+        if (x && x[1]) return x[1];
+      })();
 
     // Fix media queries
     if (desc.includes('@min')) desc = replaceMediaQuery(desc, '@min');
@@ -37,6 +42,7 @@ export function parseCssFromDescription(
     let matches = [];
     const replacedMatches = [];
     const regex = /(?:^|\s)(#[a-z0-9]\w*)/gi;
+    // @ts-ignore
     while ((matches = regex.exec(desc))) {
       replacedMatches.push(matches[1]);
     }
@@ -47,7 +53,7 @@ export function parseCssFromDescription(
       tokens.forEach((frame) => {
         const FRAME_NAME = Object.keys(frame);
 
-        const MATCH = (Object.entries(frame[`${FRAME_NAME}`]) as [string, unknown]).find((item) => {
+        const MATCH = (Object.entries(frame[`${FRAME_NAME}`]) as any).find((item: string) => {
           if (item[0] === _TOKEN) return item[1];
         });
 

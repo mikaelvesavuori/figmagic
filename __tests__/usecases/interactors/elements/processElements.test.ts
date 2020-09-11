@@ -12,16 +12,14 @@ describe('Failure cases', () => {
   });
   */
 
-  test('It should fail when having more than one text element', async () => {
-    await expect(
-      processElements(elementsPageDoubleTexts, components, baseConfig)
-    ).rejects.toThrow();
+  test('It should fail when having more than one text element', () => {
+    expect(processElements(elementsPageDoubleTexts, baseConfig, components)).toThrow();
   });
 });
 
 describe('Success cases', () => {
-  test('It should successfully return a valid element', async () => {
-    await expect(processElements(elementsPage, components, baseConfig)).resolves.toMatchObject([
+  test('It should successfully return a valid element', () => {
+    expect(processElements(elementsPage, baseConfig, components)).toMatchObject([
       {
         css: ` color: \${colors.black};
 font-size: \${fontSizes.sub};

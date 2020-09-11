@@ -158,8 +158,9 @@ export class Token {
     };
   };
 
-  getWriteOperation = (): WriteOperation => {
-    return this.writeOperation;
+  getWriteOperation = (): WriteOperation | null => {
+    if (this.writeOperation) return this.writeOperation;
+    return null;
   };
 }
 

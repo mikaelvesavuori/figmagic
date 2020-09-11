@@ -174,7 +174,7 @@ export function parseTypographyStylingFromElement(
       return null;
     })();
 
-    const LETTER_SPACING: number = (() => {
+    const LETTER_SPACING: number | null = (() => {
       if (element.type === 'TEXT') {
         if (element.style) {
           if (element.style.letterSpacing) {

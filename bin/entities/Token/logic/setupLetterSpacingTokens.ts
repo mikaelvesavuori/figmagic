@@ -31,7 +31,7 @@ export function setupLetterSpacingTokens(
 
   // Reduce the children array to a tokens object
   const letterSpacings = letterSpacingFrame.children.reduce(
-    (tokens, item: Frame) => {
+    (tokens: { [index: string]: any }, item: Frame) => {
       if (!item.name || !item.style) throw new Error(ErrorSetupLetterSpacingTokensMissingProps);
 
       const name = camelize(item.name);

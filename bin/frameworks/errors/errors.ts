@@ -21,6 +21,7 @@ export const ErrorExtractTokens = `${colors.FgRed}No sheet or name for processTo
 export const ErrorExtractTokensNoConfig = `${colors.FgRed}No config provided to processTokens()!`;
 export const ErrorFindShortenedNameMatchWrongType = `${colors.FgRed}Arguments are not of string type!`;
 export const ErrorGetData = `${colors.FgRed}Could not retrieve any data. Are you missing a valid API key?`;
+export const ErrorGetDataNoData = `${colors.FgRed}No data retrieved...`;
 export const ErrorGetDataFailedLocalAndRemote = `${colors.FgRed}Failed to get local and/or remote data in getData()!`;
 export const ErrorGetDataLocal = `${colors.FgRed}Missing arguments when calling getDataLocal()!`;
 export const ErrorGetDataNoTokenOrUrl = `${colors.FgRed}Missing token and/or URL when attempting to get remote data!`;

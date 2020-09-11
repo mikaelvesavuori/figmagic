@@ -1,3 +1,5 @@
+import { ImageResponse } from '../../../../bin/contracts/ImageResponse';
+
 import { getFileList } from '../../../../bin/usecases/interactors/graphics/getFileList';
 
 import { processGraphicsTestData, graphicsIds } from '../../../../testdata/graphics/getGraphics';
@@ -11,7 +13,7 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should generate file list for SVG, when given valid input', () => {
-    expect(getFileList(processGraphicsTestData, graphicsIds, 'svg')).toEqual([
+    expect(getFileList(processGraphicsTestData as ImageResponse, graphicsIds, 'svg')).toEqual([
       {
         file: 'more.svg',
         url:

@@ -23,9 +23,7 @@ describe('Failure cases', () => {
 
   test('It should fail if attempting to recompile locally, but missing outputFileName', async () => {
     // @ts-ignore
-    await expect(getData(true, 'outputFolderBaseFile', null, null, null)).rejects.toThrowError(
-      'mfmfmfm'
-    );
+    await expect(getData(true, 'outputFolderBaseFile', null, null, null)).rejects.toThrowError();
   });
 });
 

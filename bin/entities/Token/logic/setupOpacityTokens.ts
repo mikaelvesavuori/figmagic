@@ -26,7 +26,7 @@ export function setupOpacityTokens(
   // Reduce the children array to a tokens object
   const _opacityTokens = opacitiesFrame.children.reduce(
     // Reducer function: will add a new key to the current "opacitiesObject" at each iteration
-    (tokens, item: Frame) => {
+    (tokens: { [index: string]: any }, item: Frame) => {
       if (!item.name) throw new Error(ErrorSetupOpacityTokensMissingProps);
 
       // Note: Figma API does not provide an opacity value if its 100%

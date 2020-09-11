@@ -18,46 +18,46 @@ export function processNestedCss(css: string): string {
   if (!css) throw new Error(ErrorProcessNestedCss);
 
   // Match or split by CSS class name, like ".ButtonWarning {"
-  const classNames = css.match(/\..* {/gi);
-  const classContent = css.split(/\..* {/gi);
+  const CLASS_NAMES = css.match(/\..* {/gi);
+  const CLASS_CONTENT = css.split(/\..* {/gi);
 
   // Remove first to keep same lengths since it can sometimes be just a space
-  if (classContent[0] === ' \n' || classContent[0] === '\n') classContent.shift();
+  if (CLASS_CONTENT[0] === ' \n' || CLASS_CONTENT[0] === '\n') CLASS_CONTENT.shift();
 
-  const arrays = cleanArrays(classNames, classContent);
-  const intersectingValues = getIntersectingValues(arrays);
-  const uniqueValues = getUniqueValues(arrays, intersectingValues);
-  return createCssString(intersectingValues, uniqueValues);
+  const ARRAYS = cleanArrays(CLASS_NAMES, CLASS_CONTENT);
+  const INTERSECTING_VALUES = getIntersectingValues(ARRAYS);
+  const UNIQUE_VALUES = getUniqueValues(ARRAYS, INTERSECTING_VALUES);
+  return createCssString(INTERSECTING_VALUES, UNIQUE_VALUES);
 }
 
 /**
  * @description Clean, process, and sort arrays for later
  *
- * @param classNames List of class names
- * @param classContent CSS properties
+ * @param CLASS_NAMES List of class names
+ * @param CLASS_CONTENT CSS properties
  */
-function cleanArrays(classNames: any[], classContent: any[]): any[] {
+function cleanArrays(classNames: RegExpMatchArray | null, classContent: any[]): any[] {
   if (!classNames || !classContent) throw new Error(ErrorCleanArrays);
 
-  const totalClassCount = classContent.length;
+  const TOTAL_CLASS_COUNT = classContent.length;
 
-  const arrays = [];
+  const ARRAYS = [];
 
   // Loop all couples: Since all styling comes first—then typography—we need to match them together
   // TODO: This section is what needs to be updated in order to allow there to be zero (or more than 1) text or layout elements (since the below assumes pairs of layout+text)
-  for (let i = 0; i <= totalClassCount / 2 - 1; i++) {
+  for (let i = 0; i <= TOTAL_CLASS_COUNT / 2 - 1; i++) {
     // Styling
     let arrA = classContent[i].split(/\n/gi);
-    arrA = arrA.filter((item) => item); // Clean garbage
-    arrA = arrA.filter((item) => item !== '}');
+    arrA = arrA.filter((item: string) => item); // Clean garbage
+    arrA = arrA.filter((item: string) => item !== '}');
 
     // Typography
     let arrB = [];
     // Allow skipping "implicit matches" for typography
-    if (classContent[i + totalClassCount / 2]) {
-      arrB = classContent[i + totalClassCount / 2].split(/\n/gi);
-      arrB = arrB.filter((item) => item);
-      arrB = arrB.filter((item) => item !== '}');
+    if (classContent[i + TOTAL_CLASS_COUNT / 2]) {
+      arrB = classContent[i + TOTAL_CLASS_COUNT / 2].split(/\n/gi);
+      arrB = arrB.filter((item: string) => item);
+      arrB = arrB.filter((item: string) => item !== '}');
     }
 
     // Collated and reduced from duplicates
@@ -67,10 +67,10 @@ function cleanArrays(classNames: any[], classContent: any[]): any[] {
     arrC.push(`{{NAME}}${classNames[i]}`);
 
     // Push to external array
-    arrays.push(arrC);
+    ARRAYS.push(arrC);
   }
 
-  return arrays;
+  return ARRAYS;
 }
 
 /**
@@ -81,8 +81,7 @@ function cleanArrays(classNames: any[], classContent: any[]): any[] {
 function getIntersectingValues(arrays: any[]): any[] {
   if (!arrays) throw new Error(ErrorGetIntersectingValues);
 
-  const obj = {};
-
+  const obj: { [index: string]: any } = {};
   arrays.forEach((a, index: number) => {
     obj[index] = a;
   });
@@ -102,7 +101,7 @@ function getIntersectingValues(arrays: any[]): any[] {
 function getUniqueValues(arrays: any[], intersections: any[]): any[] {
   if (!arrays || !intersections) throw new Error(ErrorGetUniqueValues);
 
-  const uniqueValues: Record<string, unknown>[] = [];
+  const UNIQUE_VALUES: { [index: string]: any }[] = [];
 
   arrays.forEach((arr) => {
     // Collect properties per class, such as all for ".ButtonError"
@@ -118,20 +117,20 @@ function getUniqueValues(arrays: any[], intersections: any[]): any[] {
     classArray.reverse();
 
     // Send out values
-    uniqueValues.push(classArray);
+    UNIQUE_VALUES.push(classArray);
   });
 
-  return uniqueValues;
+  return UNIQUE_VALUES;
 }
 
 /**
  * @description Create CSS string literal
  *
  * @param intersections List of intersecting values
- * @param uniqueValues List of unique values
+ * @param UNIQUE_VALUES List of unique values
  */
-function createCssString(intersections: any[], uniqueValues: any[]): string {
-  if (!intersections || !uniqueValues) throw new Error(ErrorCreateCssString);
+function createCssString(intersections: any[], UNIQUE_VALUES: any[]): string {
+  if (!intersections || !UNIQUE_VALUES) throw new Error(ErrorCreateCssString);
 
   let str = ``;
 
@@ -141,8 +140,8 @@ function createCssString(intersections: any[], uniqueValues: any[]): string {
 
   str += `\n`;
 
-  uniqueValues.forEach((arr) => {
-    arr.forEach((i, index: number) => {
+  UNIQUE_VALUES.forEach((arr) => {
+    arr.forEach((i: string, index: number) => {
       // Yep, you'd wish we set class names or CSS pseudo-selector before we came here,
       // but this is the easiest I've found without breaking everything above.
       // The below match removes the '.' class selector so we can use only ':' for those

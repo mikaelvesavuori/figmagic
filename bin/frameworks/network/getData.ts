@@ -5,6 +5,7 @@ import { getDataRemote } from './getDataRemote';
 
 import {
   ErrorGetData,
+  ErrorGetDataNoData,
   ErrorGetDataNoTokenOrUrl,
   ErrorGetDataFailedLocalAndRemote
 } from '../errors/errors';
@@ -20,7 +21,7 @@ export async function getData(
   if (recompileLocal && (!outputFolderBaseFile || !outputFileName))
     throw new Error(ErrorGetDataNoTokenOrUrl);
 
-  const data = (async () => {
+  const DATA = (async () => {
     if (recompileLocal) return getDataLocal(outputFolderBaseFile, outputFileName);
     else {
       if (token && url) return await getDataRemote(token, url);
@@ -28,5 +29,6 @@ export async function getData(
     throw new Error(ErrorGetDataFailedLocalAndRemote);
   })();
 
-  return data;
+  if (!DATA) throw new Error(ErrorGetDataNoData);
+  return DATA;
 }
