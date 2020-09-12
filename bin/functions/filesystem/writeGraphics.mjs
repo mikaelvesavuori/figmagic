@@ -16,12 +16,10 @@ import { errorWriteGraphics } from '../../meta/errors.mjs';
 export async function writeGraphics(fileList, config) {
   if (!fileList || !config) throw new Error(errorWriteGraphics);
 
-  console.log('fileList', fileList);
-
   const { outputFolderGraphics } = config;
 
   await Promise.all(
-    fileList.map(async file => {
+    fileList.map(async (file) => {
       await downloadFile(file.url, outputFolderGraphics, file.file);
     })
   );

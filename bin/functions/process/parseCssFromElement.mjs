@@ -49,19 +49,6 @@ export async function parseCssFromElement(
   css += `width: 100%;\n`;
   css += `box-sizing: border-box;\n`;
 
-  /*
-  // Background image
-  const BACKGROUND_IMAGE = (() => {
-    if (image) {
-      console.log(image.fills[0]);
-      const URL = `${image.fills[0].imageRef}`;
-      return `background-image: url("${URL}")`;
-    }
-	})();
-
-	console.log('BACKGROUND_IMAGE', BACKGROUND_IMAGE);
-	*/
-
   // Paddings for top and bottom
   const PADDING_Y = (() => {
     if (textElement) {
