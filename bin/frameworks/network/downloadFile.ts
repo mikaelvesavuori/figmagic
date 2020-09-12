@@ -14,9 +14,6 @@ export async function downloadFile(url: string, path: string): Promise<void> {
   try {
     if (!url || !path) throw new Error(ErrorDownloadFile);
 
-    console.log(url);
-    console.log(path);
-
     const response = await fetch(url);
     if (response.status !== 200) return;
 

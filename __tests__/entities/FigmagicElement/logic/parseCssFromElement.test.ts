@@ -14,8 +14,9 @@ describe('Failure cases', () => {
 */
 
 describe('Success cases', () => {
-  test('It should successfully return an object, if given valid input', () => {
-    expect(parseCssFromElement(cssLayoutElement, cssTypographyElement, 16, true)).toMatchObject({
+  test('It should successfully return an object (MJS), if given valid input', () => {
+    // @ts-ignore
+    expect(parseCssFromElement(cssLayoutElement, cssTypographyElement, 16, 'mjs')).toMatchObject({
       css: `width: 100%;
 box-sizing: border-box;
 padding-top: 33.8125rem;
@@ -34,6 +35,7 @@ border-radius: \${radii.soft};
   // Linear gradient
   test('It should apply linear gradient', () => {
     expect(
+      // @ts-ignore
       parseCssFromElement(cssLayoutElementGradient, cssTypographyElement, 16, true)
     ).toMatchObject({
       css: `width: 100%;
@@ -55,6 +57,7 @@ border-radius: \${radii.soft};
   // Shadow
   test('It should apply shadow', () => {
     expect(
+      // @ts-ignore
       parseCssFromElement(cssLayoutElementShadow, cssTypographyElement, 16, true)
     ).toMatchObject({
       css: `width: 100%;

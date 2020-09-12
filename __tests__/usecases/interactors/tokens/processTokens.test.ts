@@ -21,8 +21,6 @@ import { durationsFrame } from '../../../../testdata/frames/durationsFrame';
 import { delayFrame } from '../../../../testdata/frames/delaysFrame';
 import { easingFrame } from '../../../../testdata/frames/easingFrame';
 
-// TODO: Test loc 39,67-94
-
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
     expect(() => {
@@ -304,7 +302,7 @@ describe('Success cases', () => {
     );
   });
 
-  test.only('It should return data when passed valid easings frame and valid settings', () => {
+  test('It should return data when passed valid easings frame and valid settings', () => {
     expect(processTokens([easingFrame], baseConfig)).toEqual(
       expect.arrayContaining([
         {

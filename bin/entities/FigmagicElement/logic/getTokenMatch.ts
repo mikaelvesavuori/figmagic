@@ -18,7 +18,6 @@ import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../../framew
  * @param expectedValue Expected value to match for
  * @param remSize HTML body REM size, required for padding and anything to do with rem/em
  */
-// TODO: Refactor or at least polish
 export function getTokenMatch(
   tokens: Tokens | any,
   tokenFileName: string,
@@ -76,15 +75,7 @@ function matchPadding(
   imports: Imports[]
 ): any {
   try {
-    /*
-    console.log('|||||||||');
-    console.log(typeof expectedValue, expectedValue);
-    const x = JSON.stringify(expectedValue);
-    const z = JSON.parse(x);
-    console.log(z);
-    */
     const keys: any = Object.keys(expectedValue);
-    console.log('keys', keys);
     if (typeof expectedValue !== 'object') return;
     keys.forEach((key: any) => {
       let foundMatch = false;
@@ -96,7 +87,6 @@ function matchPadding(
           typeof expectedValue[key] !== 'number'
             ? parseFloat(expectedValue[key] as string)
             : expectedValue[key];
-        console.log('parsedValue', parsedValue, expectedValue[key]);
         const value = normalizeUnits(parsedValue as any, 'px', 'rem', remSize);
 
         // Check if we can match value with a token and its value

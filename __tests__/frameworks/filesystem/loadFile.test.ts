@@ -40,8 +40,6 @@ describe('Success cases', () => {
 test('It should return data from local file in raw format (not JSON-parsed)', () => {
   const FILE = loadFile(path.join(`${process.cwd()}`, `testdata`, `figmagicrc`), true);
 
-  console.log('FILE', FILE);
-
   expect(FILE).toBe(`{
   \"debugMode\": false,
   \"fontUnit\": \"rem\",

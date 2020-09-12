@@ -25,7 +25,6 @@ export function processTokens(tokens: Frame[], config: Config): any {
 
     tokens.forEach((token) => {
       const TOKEN_NAME = camelize(token.name);
-      console.log('TOKEN_NAME', TOKEN_NAME, acceptedTokenTypes.includes(TOKEN_NAME.toLowerCase()));
       if (acceptedTokenTypes.includes(TOKEN_NAME.toLowerCase())) {
         const _token = makeToken(token, TOKEN_NAME, config);
         const WRITE_OP = _token.getWriteOperation();

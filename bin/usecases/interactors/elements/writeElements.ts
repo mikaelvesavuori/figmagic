@@ -98,7 +98,7 @@ const writeCss = (config: WriteOperation): void => {
     file: config.css,
     path: config.folder,
     name: config.name,
-    format: 'jsx',
+    format: 'mjs',
     metadata: config.metadata,
     templates: config.templates
   } as WriteOperation);

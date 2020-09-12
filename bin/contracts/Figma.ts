@@ -296,7 +296,6 @@ export type Size = {
   width: number;
 };
 
-// TODO: Fix these two...?
 export type Transform = any;
 export type Path = any;
 

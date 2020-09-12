@@ -17,7 +17,6 @@ import {
  * @param radiusFrame The radii frame from Figma
  * @param remSize The body rem size
  */
-// TODO: Test loc 32
 export function setupRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTokens {
   if (!radiusFrame) throw new Error(ErrorSetupRadiusTokensNoFrame);
   if (!radiusFrame.children) throw new Error(ErrorSetupRadiusTokensNoChildren);

@@ -1,7 +1,5 @@
 import { getTokenMatch } from '../../../../bin/entities/FigmagicElement/logic/getTokenMatch';
 
-// TODO: Fix this failing test ("It should match padding")
-
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
     expect(() => {
@@ -29,7 +27,7 @@ describe('Success cases', () => {
     );
   });
 
-  test.only('It should match padding', () => {
+  test('It should match padding', () => {
     expect(
       getTokenMatch(
         {

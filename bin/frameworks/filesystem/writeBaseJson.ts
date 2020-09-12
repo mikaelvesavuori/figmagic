@@ -14,7 +14,6 @@ import { ErrorWriteBaseJson } from '../errors/errors';
  * @param outputFileName TODO
  * @param data TODO
  */
-// TODO: Add proper types
 export async function writeBaseJson(
   outputFolderBaseFile: string,
   outputFileName: string,

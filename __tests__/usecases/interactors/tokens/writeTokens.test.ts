@@ -1,77 +1,101 @@
 import trash from 'trash';
+import * as fs from 'fs';
 
 import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 
 import { writeTokens } from '../../../../bin/usecases/interactors/tokens/writeTokens';
 
-import { colorFrame } from '../../../../testdata/frames/colorFrame';
-import { spacingFrame } from '../../../../testdata/frames/spacingFrame';
-import { fontFrame } from '../../../../testdata/frames/fontFrame';
-import { fontSizeFrame } from '../../../../testdata/frames/fontSizeFrame';
-import { fontWeightFrame } from '../../../../testdata/frames/fontWeightFrame';
-import { lineHeightFrame } from '../../../../testdata/frames/lineHeightFrame';
-import { borderWidthsFrame } from '../../../../testdata/frames/borderWidthsFrame';
-import { letterSpacingsFrame } from '../../../../testdata/frames/letterSpacingsFrame';
-import { mediaQueriesFrame } from '../../../../testdata/frames/mediaQueriesFrame';
-import { radiiFrame } from '../../../../testdata/frames/radiiFrame';
-import { shadowsFrame } from '../../../../testdata/frames/shadowsFrame';
-import { zIndicesFrame } from '../../../../testdata/frames/zIndicesFrame';
-
 // Set temp folder
-const TEMP_FOLDER = `__tokens__`;
+const TEMP_FOLDER = `__writeTokens-test__`;
 baseConfig.outputFolderTokens = TEMP_FOLDER;
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
     // @ts-ignore
-    expect(writeTokens()).toThrow();
+    expect(() => writeTokens()).toThrowError();
   });
 
   test('It should pass the zero-length token check', () => {
     const TOKENS = [{}, {}];
     // @ts-ignore
-    expect(writeTokens(TOKENS)).toThrow();
-  });
-
-  test('It should fail the zero-length token check', () => {
-    const TOKENS: any[] = [];
-    // @ts-ignore
-    expect(writeTokens(TOKENS)).toThrow();
+    expect(() => writeTokens(TOKENS)).toThrowError();
   });
 });
 
 describe('Success cases', () => {
-  test('It should return tokens if passed a valid set of frame and settings', async () => {
+  test('It should write tokens (MJS) if passed a valid set of write operations', async () => {
+    const TEMP_FILE = `colors_mjs`;
+    const TEMP_FOLDER_MJS = `__writeFile-tokens-mjs-success__`;
+
     const TOKENS: any = [
-      colorFrame,
-      spacingFrame,
-      fontFrame,
-      fontSizeFrame,
-      fontWeightFrame,
-      lineHeightFrame,
-      borderWidthsFrame,
-      letterSpacingsFrame,
-      mediaQueriesFrame,
-      radiiFrame,
-      shadowsFrame,
-      zIndicesFrame
+      {
+        type: 'token',
+        file: {
+          green3: 'rgba(111, 207, 151, 1)',
+          green2: 'rgba(39, 174, 96, 1)',
+          green1: 'rgba(33, 150, 83, 1)',
+          blue3: 'rgba(86, 204, 242, 1)',
+          blue2: 'rgba(45, 156, 219, 1)',
+          blue1: 'rgba(47, 128, 237, 1)',
+          yellow: 'rgba(242, 201, 76, 1)',
+          orange: 'rgba(242, 153, 74, 1)',
+          red: 'rgba(235, 87, 87, 1)',
+          neon: 'rgba(228, 255, 193, 1)',
+          gray5: 'rgba(242, 242, 242, 1)',
+          gray4: 'rgba(224, 224, 224, 1)',
+          gray3: 'rgba(189, 189, 189, 1)',
+          gray2: 'rgba(130, 130, 130, 1)',
+          gray1: 'rgba(79, 79, 79, 1)',
+          white: 'rgba(255, 255, 255, 1)',
+          black: 'rgba(51, 51, 51, 1)'
+        },
+        path: TEMP_FOLDER_MJS,
+        name: TEMP_FILE,
+        format: 'mjs'
+      }
     ];
 
-    expect(writeTokens(TOKENS)).toBe(true);
-    await trash(TEMP_FOLDER);
+    writeTokens(TOKENS);
+    const FILE_EXISTS = fs.existsSync(`${TEMP_FOLDER_MJS}/${TEMP_FILE}.mjs`);
+    expect(FILE_EXISTS).toBe(true);
+    await trash(TEMP_FOLDER_MJS);
   });
 
-  test('It can write to a file if provided input', () => {
-    const FILE = '__test-writefile1.txt';
-    // @ts-ignore
-    writeTokens(JSON.stringify({ something: 1234 }), './', FILE);
-    trash('./somefile.txt');
-  });
+  test('It should write tokens (JS) if passed a valid set of write operations', async () => {
+    const TEMP_FILE = `colors_js`;
+    const TEMP_FOLDER_JS = `__writeFile-tokens-js-success__`;
 
-  test('It can write a token to a file if provided input', () => {
-    const FILE = '__test-writefile2.txt';
-    // @ts-ignore
-    writeTokens(JSON.stringify({ something: 1234 }), './', FILE, true);
-    trash('./somefile.txt');
+    const TOKENS: any = [
+      {
+        type: 'token',
+        file: {
+          green3: 'rgba(111, 207, 151, 1)',
+          green2: 'rgba(39, 174, 96, 1)',
+          green1: 'rgba(33, 150, 83, 1)',
+          blue3: 'rgba(86, 204, 242, 1)',
+          blue2: 'rgba(45, 156, 219, 1)',
+          blue1: 'rgba(47, 128, 237, 1)',
+          yellow: 'rgba(242, 201, 76, 1)',
+          orange: 'rgba(242, 153, 74, 1)',
+          red: 'rgba(235, 87, 87, 1)',
+          neon: 'rgba(228, 255, 193, 1)',
+          gray5: 'rgba(242, 242, 242, 1)',
+          gray4: 'rgba(224, 224, 224, 1)',
+          gray3: 'rgba(189, 189, 189, 1)',
+          gray2: 'rgba(130, 130, 130, 1)',
+          gray1: 'rgba(79, 79, 79, 1)',
+          white: 'rgba(255, 255, 255, 1)',
+          black: 'rgba(51, 51, 51, 1)'
+        },
+        path: TEMP_FOLDER_JS,
+        name: TEMP_FILE,
+        format: 'js'
+      }
+    ];
+
+    writeTokens(TOKENS);
+    const FILE_EXISTS = fs.existsSync(`${TEMP_FOLDER_JS}/${TEMP_FILE}.js`);
+    expect(FILE_EXISTS).toBe(true);
+    await trash(TEMP_FOLDER_JS);
   });
 });

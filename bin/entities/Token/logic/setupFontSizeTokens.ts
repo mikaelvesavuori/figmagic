@@ -19,7 +19,6 @@ import {
  * @param fontUnit The font unit item
  * @param remSize The body rem size
  */
-// TODO: Test loc 34-35
 export function setupFontSizeTokens(
   fontSizeFrame: Frame,
   fontUnit: string,

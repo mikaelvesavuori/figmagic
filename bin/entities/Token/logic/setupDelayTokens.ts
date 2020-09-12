@@ -21,9 +21,6 @@ export function setupDelayTokens(delayFrame: Frame): DelayTokens {
 
   const delays: Record<string, unknown> = {};
 
-  console.log('|||||||');
-  console.log(delays);
-
   delayFrame.children.forEach((item: Frame) => {
     if (!item.name || !item.characters) throw new Error(ErrorSetupDelayTokensMissingProps);
     const name = camelize(item.name);

@@ -28,7 +28,9 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should write tokens given a valid configuration, valid data and an output folder', async () => {
     const CONFIG = testConfig;
+    // @ts-ignore
     CONFIG.token = process.env.FIGMA_TOKEN;
+    // @ts-ignore
     CONFIG.url = process.env.FIGMA_URL;
     const DATA = figmaTestResponse;
     CONFIG.outputFolderGraphics = '__test-graphics-success__';

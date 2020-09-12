@@ -1,4 +1,5 @@
 import trash from 'trash';
+import * as fs from 'fs';
 
 import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 
@@ -28,18 +29,18 @@ const elements = [
   }
 ];
 
-/*
 describe('Failure cases', () => {
-  test('It should throw an error if no argument is provided', async () => {
-    await expect(writeElements()).rejects.toThrow();
+  test('It should throw an error if no argument is provided', () => {
+    // @ts-ignore
+    expect(() => writeElements()).toThrowError();
   });
 });
 
 describe('Success cases', () => {
-  test('It should return true when finished', async () => {
-    console.log('!!!', baseConfig.asdf);
-    await expect(writeElements(elements, baseConfig)).resolves.toBe(true);
+  test('It should write files to disk, when given a valid configuration and set a elements', async () => {
+    writeElements(elements, baseConfig);
+    const FILE_EXISTS = fs.existsSync(TEMP_FOLDER);
+    expect(FILE_EXISTS).toBeTruthy();
     await trash(TEMP_FOLDER);
   });
 });
-*/

@@ -1,7 +1,7 @@
 import * as path from 'path';
 
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { FigmagicTypography } from '../../../contracts/FigmagicTypography';
+import { UpdatedCssAndImports } from '../../../contracts/Imports';
 
 import { getTokenMatch } from './getTokenMatch';
 import { sliceOutObjectFromFile } from './sliceOutObjectFromFile';
@@ -13,16 +13,16 @@ import { ErrorParseTypographyStylingFromElement } from '../../../frameworks/erro
 /**
  * @description Parse typography CSS from "element" (Figma component)
  *
- * @param element Figma object representation of element/component
+ * @param textElement Figma object representation of text element/component
  * @param remSize HTML body REM size
  */
 export function parseTypographyStylingFromElement(
-  element: Frame,
+  textElement: Frame,
   remSize: number,
   outputTokenFormat: string
-): FigmagicTypography {
+): UpdatedCssAndImports {
   try {
-    if (!element || !remSize) throw new Error(ErrorParseTypographyStylingFromElement);
+    if (!textElement || !remSize) throw new Error(ErrorParseTypographyStylingFromElement);
 
     const PATH = process.env.IS_TEST ? path.join('testdata', 'tokens') : `tokens`;
     const FORMAT = outputTokenFormat;
@@ -51,14 +51,14 @@ export function parseTypographyStylingFromElement(
     const imports: Record<string, unknown>[] = [];
 
     const FONT_COLOR = (() => {
-      if (element.fills) {
-        if (element.fills[0]) {
-          if (element.fills[0].type === 'SOLID') {
-            if (!element.fills[0].color) throw new Error('asdf'); // TODO: add real error
-            const R = roundColorValue(element.fills[0].color.r);
-            const G = roundColorValue(element.fills[0].color.g);
-            const B = roundColorValue(element.fills[0].color.b);
-            const A = roundColorValue(element.fills[0].color.a, 1);
+      if (textElement.fills) {
+        if (textElement.fills[0]) {
+          if (textElement.fills[0].type === 'SOLID') {
+            if (!textElement.fills[0].color) throw new Error('asdf'); // TODO: add real error
+            const R = roundColorValue(textElement.fills[0].color.r);
+            const G = roundColorValue(textElement.fills[0].color.g);
+            const B = roundColorValue(textElement.fills[0].color.b);
+            const A = roundColorValue(textElement.fills[0].color.a, 1);
             return `rgba(${R}, ${G}, ${B}, ${A})`;
           }
         }
@@ -79,9 +79,9 @@ export function parseTypographyStylingFromElement(
     }
 
     const FONT_SIZE: number | null = (() => {
-      if (element.type === 'TEXT') {
-        if (element.style) {
-          return parseFloat(element.style.fontSize);
+      if (textElement.type === 'TEXT') {
+        if (textElement.style) {
+          return parseFloat(textElement.style.fontSize);
         }
       }
       return null;
@@ -101,9 +101,9 @@ export function parseTypographyStylingFromElement(
 
     // BUG? Will only work correctly with Postscript name?
     const FONT_FAMILY = (() => {
-      if (element.type === 'TEXT') {
-        if (element.style) {
-          return element.style.fontPostScriptName; //fontFamily;
+      if (textElement.type === 'TEXT') {
+        if (textElement.style) {
+          return textElement.style.fontPostScriptName; //fontFamily;
         }
       }
       return null;
@@ -122,9 +122,9 @@ export function parseTypographyStylingFromElement(
     }
 
     const FONT_WEIGHT = (() => {
-      if (element.type === 'TEXT') {
-        if (element.style) {
-          return element.style.fontWeight;
+      if (textElement.type === 'TEXT') {
+        if (textElement.style) {
+          return textElement.style.fontWeight;
         }
       }
       return null;
@@ -143,10 +143,10 @@ export function parseTypographyStylingFromElement(
     }
 
     const FONT_LINE_HEIGHT = (() => {
-      if (element.type === 'TEXT') {
-        if (element.style) {
-          if (element.style.lineHeightPercentFontSize) {
-            return element.style.lineHeightPercentFontSize / 100;
+      if (textElement.type === 'TEXT') {
+        if (textElement.style) {
+          if (textElement.style.lineHeightPercentFontSize) {
+            return textElement.style.lineHeightPercentFontSize / 100;
           } else return 1.0;
         }
       }
@@ -166,19 +166,19 @@ export function parseTypographyStylingFromElement(
     }
 
     const FONT_ALIGNMENT = (() => {
-      if (element.type === 'TEXT') {
-        if (element.style) {
-          return element.style.textAlignHorizontal;
+      if (textElement.type === 'TEXT') {
+        if (textElement.style) {
+          return textElement.style.textAlignHorizontal;
         }
       }
       return null;
     })();
 
     const LETTER_SPACING: number | null = (() => {
-      if (element.type === 'TEXT') {
-        if (element.style) {
-          if (element.style.letterSpacing) {
-            return parseFloat(element.style.letterSpacing);
+      if (textElement.type === 'TEXT') {
+        if (textElement.style) {
+          if (textElement.style.letterSpacing) {
+            return parseFloat(textElement.style.letterSpacing);
           }
         }
       }
@@ -207,12 +207,12 @@ export function parseTypographyStylingFromElement(
     }
 
     const FONT_CASE = (() => {
-      if (element.type === 'TEXT') {
-        if (element.style) {
-          if (element.style.textCase) {
-            if (element.style.textCase === 'LOWER') return 'lowercase';
-            if (element.style.textCase === 'UPPER') return 'uppercase';
-            if (element.style.textCase === 'TITLE') return 'capitalize';
+      if (textElement.type === 'TEXT') {
+        if (textElement.style) {
+          if (textElement.style.textCase) {
+            if (textElement.style.textCase === 'LOWER') return 'lowercase';
+            if (textElement.style.textCase === 'UPPER') return 'uppercase';
+            if (textElement.style.textCase === 'TITLE') return 'capitalize';
           }
         }
       }
@@ -221,7 +221,7 @@ export function parseTypographyStylingFromElement(
 
     if (FONT_CASE) css += `text-transform: ${FONT_CASE};\n`;
 
-    return { css, imports };
+    return { updatedCss: css, updatedImports: imports };
   } catch (error) {
     throw new Error(error);
   }

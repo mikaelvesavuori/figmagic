@@ -1,10 +1,12 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { TextElement } from '../../../contracts/TextElement';
 import { ParsedElementMetadataInterface } from '../../../contracts/ParsedElementMetadataInterface';
+// TODO: ParsedElementMetadataDTO ?
+
+import { getTokenMatch } from './getTokenMatch';
 
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
-import { getTokenMatch } from './getTokenMatch';
+import { ErrorGetPaddingX, ErrorGetPaddingY } from '../../../frameworks/errors/errors';
 
 export type PaddingVertical = {
   top: number;
@@ -17,20 +19,22 @@ export type PaddingVertical = {
  * @param textElement The Text element
  * @param element The element
  */
-export function getPaddingY(textElement: TextElement, element: Frame): PaddingVertical | null {
+export function getPaddingY(textElement: Frame, element: Frame): PaddingVertical | null {
   try {
     if (!textElement) return null;
     if (
       !element.absoluteBoundingBox ||
       !element.absoluteBoundingBox.height ||
-      !element.absoluteBoundingBox.y ||
-      !textElement.absoluteBoundingBox.height ||
-      !textElement.absoluteBoundingBox.y
+      !textElement.absoluteBoundingBox ||
+      !textElement.absoluteBoundingBox.height
+      //!textElement.absoluteBoundingBox.y
     )
       throw new Error('asdf'); // TODO: add real error
 
     const PARENT_HEIGHT = element.absoluteBoundingBox.height;
     const TEXT_HEIGHT = textElement.absoluteBoundingBox.height;
+    // TODO: The below is added as it seems that it will interpret the above "if gate" as falsy if value for Y is 0
+    // @ts-ignore
     const PADDING_TOP = textElement.absoluteBoundingBox.y - element.absoluteBoundingBox.y;
     const PADDING_BOTTOM = PARENT_HEIGHT - (PADDING_TOP + TEXT_HEIGHT);
 
@@ -39,7 +43,7 @@ export function getPaddingY(textElement: TextElement, element: Frame): PaddingVe
       bottom: Math.round(PADDING_BOTTOM)
     };
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorGetPaddingY);
   }
 }
 
@@ -54,7 +58,7 @@ export type PaddingHorizontal = {
  * @param textElement The Text element
  * @param element The element
  */
-export function getPaddingX(textElement: TextElement, element: Frame): PaddingHorizontal | null {
+export function getPaddingX(textElement: Frame, element: Frame): PaddingHorizontal | null {
   try {
     if (!textElement) return null;
 
@@ -62,6 +66,7 @@ export function getPaddingX(textElement: TextElement, element: Frame): PaddingHo
       !element.absoluteBoundingBox ||
       !element.absoluteBoundingBox.width ||
       !element.absoluteBoundingBox.x ||
+      !textElement.absoluteBoundingBox ||
       !textElement.absoluteBoundingBox.width ||
       !textElement.absoluteBoundingBox.x
     )
@@ -77,7 +82,7 @@ export function getPaddingX(textElement: TextElement, element: Frame): PaddingHo
       right: Math.round(PADDING_RIGHT)
     };
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorGetPaddingX);
   }
 }
 
@@ -438,7 +443,6 @@ function updateParsing(
     const CSS = updatedCss ? (css += updatedCss) : css;
     const IMPORTS = updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports;
 
-    // TODO: makeParsedElementMetadataInterface(CSS, IMPORTS)
     return { css: CSS, imports: IMPORTS };
   } catch (error) {
     throw new Error(error);

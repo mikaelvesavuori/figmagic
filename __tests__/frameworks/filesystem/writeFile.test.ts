@@ -5,8 +5,6 @@ import { WriteOperation } from '../../../bin/contracts/Write';
 
 import { writeFile } from '../../../bin/frameworks/filesystem/writeFile';
 
-// TODO: Test loc 18-25
-
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore

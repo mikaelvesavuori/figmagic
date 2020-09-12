@@ -3,8 +3,6 @@ import trash from 'trash';
 
 import { writeBaseJson } from '../../../bin/frameworks/filesystem/writeBaseJson';
 
-// TODO: Test loc 28
-
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
