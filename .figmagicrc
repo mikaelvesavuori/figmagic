@@ -11,5 +11,5 @@
   "usePostscriptFontNames": true,
 	"syncElements": false,
   "syncGraphics": false,
-  "recompileLocal": true
+  "recompileLocal": false
 }
