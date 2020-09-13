@@ -83,6 +83,7 @@ function getIntersectingValues(arrays: any[]): any[] {
 
   const obj: { [index: string]: any } = {};
   arrays.forEach((a, index: number) => {
+    console.log('xxx', a);
     obj[index] = a;
   });
 
@@ -129,8 +130,8 @@ function getUniqueValues(arrays: any[], intersections: any[]): any[] {
  * @param intersections List of intersecting values
  * @param UNIQUE_VALUES List of unique values
  */
-function createCssString(intersections: any[], UNIQUE_VALUES: any[]): string {
-  if (!intersections || !UNIQUE_VALUES) throw new Error(ErrorCreateCssString);
+function createCssString(intersections: any[], uniqueValues: any[]): string {
+  if (!intersections || !uniqueValues) throw new Error(ErrorCreateCssString);
 
   let str = ``;
 
@@ -140,12 +141,13 @@ function createCssString(intersections: any[], UNIQUE_VALUES: any[]): string {
 
   str += `\n`;
 
-  UNIQUE_VALUES.forEach((arr) => {
+  uniqueValues.forEach((arr) => {
     arr.forEach((i: string, index: number) => {
       // Yep, you'd wish we set class names or CSS pseudo-selector before we came here,
       // but this is the easiest I've found without breaking everything above.
       // The below match removes the '.' class selector so we can use only ':' for those
       // items that have it provided in the name.
+      console.log('////', i);
       const MATCH = i.includes(':') ? '{{NAME}}.' : '{{NAME}}';
 
       if (i.includes(MATCH)) {
