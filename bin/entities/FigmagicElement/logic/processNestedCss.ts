@@ -18,13 +18,18 @@ export function processNestedCss(css: string): string {
   if (!css) throw new Error(ErrorProcessNestedCss);
 
   // Match or split by CSS class name, like ".ButtonWarning {"
-  const CLASS_NAMES = css.match(/\..* {/gi);
+  const CLASS_NAMES: any = css.match(/\..* {/gi);
   const CLASS_CONTENT = css.split(/\..* {/gi);
-
+  //const CLASS_CONTENT = css.split(/,/gi);
   // Remove first to keep same lengths since it can sometimes be just a space
   if (CLASS_CONTENT[0] === ' \n' || CLASS_CONTENT[0] === '\n') CLASS_CONTENT.shift();
 
-  const ARRAYS = cleanArrays(CLASS_NAMES, CLASS_CONTENT);
+  //CLASS_CONTENT = CLASS_CONTENT?.filter((i) => i !== '\n');
+  const classes = CLASS_NAMES.filter(
+    (item: any, index: any) => CLASS_NAMES.indexOf(item) === index
+  );
+
+  const ARRAYS = cleanArrays(classes, CLASS_CONTENT);
   const INTERSECTING_VALUES = getIntersectingValues(ARRAYS);
   const UNIQUE_VALUES = getUniqueValues(ARRAYS, INTERSECTING_VALUES);
   return createCssString(INTERSECTING_VALUES, UNIQUE_VALUES);
@@ -47,27 +52,28 @@ function cleanArrays(classNames: RegExpMatchArray | null, classContent: any[]): 
   // TODO: This section is what needs to be updated in order to allow there to be zero (or more than 1) text or layout elements (since the below assumes pairs of layout+text)
   for (let i = 0; i <= TOTAL_CLASS_COUNT / 2 - 1; i++) {
     // Styling
-    let arrA = classContent[i].split(/\n/gi);
-    arrA = arrA.filter((item: string) => item); // Clean garbage
-    arrA = arrA.filter((item: string) => item !== '}');
+    let stylingCollection = classContent[i].split(/\n/gi);
+    stylingCollection = stylingCollection.filter((item: string) => item); // Clean garbage
+    stylingCollection = stylingCollection.filter((item: string) => item !== '}');
 
     // Typography
-    let arrB = [];
+    let typographyCollection = [];
     // Allow skipping "implicit matches" for typography
     if (classContent[i + TOTAL_CLASS_COUNT / 2]) {
-      arrB = classContent[i + TOTAL_CLASS_COUNT / 2].split(/\n/gi);
-      arrB = arrB.filter((item: string) => item);
-      arrB = arrB.filter((item: string) => item !== '}');
+      typographyCollection = classContent[i + TOTAL_CLASS_COUNT / 2].split(/\n/gi);
+      typographyCollection = typographyCollection.filter((item: string) => item);
+      typographyCollection = typographyCollection.filter((item: string) => item !== '}');
     }
 
     // Collated and reduced from duplicates
-    const arrC = [...new Set([...arrA, ...arrB])];
+    const finalCollection = [...new Set([...stylingCollection, ...typographyCollection])];
 
     // Add temp name for class name
-    arrC.push(`{{NAME}}${classNames[i]}`);
+    console.log('classNames[i]', classNames[i]);
+    finalCollection.push(`{{NAME}}${classNames[i]}`);
 
-    // Push to external array
-    ARRAYS.push(arrC);
+    // Push to external stylingCollectiony
+    ARRAYS.push(finalCollection);
   }
 
   return ARRAYS;
@@ -82,15 +88,13 @@ function getIntersectingValues(arrays: any[]): any[] {
   if (!arrays) throw new Error(ErrorGetIntersectingValues);
 
   const obj: { [index: string]: any } = {};
-  arrays.forEach((a, index: number) => {
-    console.log('xxx', a);
-    obj[index] = a;
-  });
+  arrays.map((a, index: number) => (obj[index] = a));
 
   // @ts-ignore
-  return Object.values(obj).reduce((previousValue: any, currentValue: any) =>
+  const x = Object.values(obj).reduce((previousValue: any, currentValue: any) =>
     currentValue.filter(Set.prototype.has, new Set(previousValue))
   );
+  return x;
 }
 
 /**
@@ -147,7 +151,6 @@ function createCssString(intersections: any[], uniqueValues: any[]): string {
       // but this is the easiest I've found without breaking everything above.
       // The below match removes the '.' class selector so we can use only ':' for those
       // items that have it provided in the name.
-      console.log('////', i);
       const MATCH = i.includes(':') ? '{{NAME}}.' : '{{NAME}}';
 
       if (i.includes(MATCH)) {

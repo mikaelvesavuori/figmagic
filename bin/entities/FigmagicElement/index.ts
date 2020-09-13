@@ -55,6 +55,7 @@ export class FigmagicElement {
 
   init(): void {
     this.setElement();
+    this.setDescription();
 
     const html = ``;
     const extraProps = ``; // Any extra properties, like "placeholder"
@@ -63,7 +64,7 @@ export class FigmagicElement {
 
     const { updatedCss, updatedImports } = this.handleElements(this.children);
 
-    this.addCss(updatedCss);
+    this.setCss(updatedCss);
     this.addHtml(html);
     this.addExtraProps(extraProps);
     this.addText(text);
@@ -86,8 +87,8 @@ export class FigmagicElement {
     }
   }
 
-  private addCss(css: string): void {
-    this.css += css;
+  private setCss(css: string): void {
+    this.css = css;
   }
 
   private addHtml(html: string): void {
@@ -132,9 +133,72 @@ export class FigmagicElement {
       return 'div';
     })();
 
+    console.log('ELEMENT_TYPE', ELEMENT_TYPE);
+
     const HTML = `<${ELEMENT_TYPE}>{{TEXT}}</${ELEMENT_TYPE}>`;
     this.addHtml(HTML);
     this.element = ELEMENT_TYPE;
+  }
+
+  /**
+   * @description Set description
+   */
+  private setDescription(): void {
+    let description = this.description;
+    if (this.description.match(/description=(.*)/)) {
+      const INDEX = this.description.indexOf('description=');
+      const MARKER_LENGTH = 12; // "description=" is 12 characters
+      description = description.slice(INDEX + MARKER_LENGTH, description.length);
+      description.replace(/^\s*\n/gm, '');
+      this.description = description;
+    }
+  }
+
+  /**
+   * @description TODO
+   */
+  private setPlaceholderText(): void {
+    this.children?.forEach((child: Frame) => {
+      if (
+        (child.type === 'TEXT' && child.name.toLowerCase() === 'placeholder') ||
+        (child.type === 'TEXT' && child.name.toLowerCase() === ':placeholder')
+      ) {
+        this.addExtraProps(`placeholder="${child.characters}"`);
+      }
+    });
+    /*
+    el.children?.filter((child: Frame) => {
+      if (
+        (child.type === 'GROUP' && child.name.toLowerCase() === 'placeholder') ||
+        (child.type === 'GROUP' && child.name.toLowerCase() === ':placeholder')
+      ) {
+        // TODO/Improvement: This seems to be mapped to a single child depth; could be recursive to support any depth
+        if (child.children) {
+          child.children.filter((subChild: Frame) => {
+            if (
+              (subChild.type === 'TEXT' && subChild.name.toLowerCase() === 'placeholder') ||
+              (subChild.type === 'TEXT' && subChild.name.toLowerCase() === ':placeholder')
+            ) {
+              if (!this.extraProps.includes(`placeholder="${subChild.characters}"`))
+                this.addExtraProps(`placeholder="${subChild.characters}" `);
+            }
+          });
+        }
+      }
+    });
+    */
+  }
+
+  private setElementType(): void {
+    if (this.description.match(/type=(.*)/)) {
+      const TYPE = (() => {
+        const _TYPE = this.description.match(/type=(.*)/);
+        if (_TYPE && _TYPE[1]) return _TYPE[1];
+      })();
+      //this.addExtraProps(` type="${TYPE}"`);
+      if (this.extraProps && !this.extraProps.includes(`type="${TYPE}`))
+        this.addExtraProps(`type="${TYPE}" `);
+    }
   }
 
   /**
@@ -143,93 +207,56 @@ export class FigmagicElement {
    * @param element Element
    */
   private handleNestedElements(): UpdatedCssAndImports {
+    // TODO/BUG: Element like Checkbox that has a combination of "flat"/root element, and nested groups will fail and collapse in CSS?
     try {
       let css = ``;
       let imports: Record<string, unknown>[] = [];
 
-      if (this.children) {
-        this.children.forEach((el: Frame) => {
-          if (!el.name) return;
-          if (el.name[0] === '_') return;
+      this.children?.forEach((el: Frame) => {
+        if (!el.name) return;
+        if (el.name[0] === '_') return;
 
-          const MAIN_ELEMENT =
-            el.children && el.children.length > 0
-              ? el.children.filter((e: Frame) => e.type === 'RECTANGLE' && e.name[0] !== '_')[0]
-              : null;
+        const MAIN_ELEMENT = el.children?.filter(
+          (e: Frame) => e.type === 'RECTANGLE' && e.name[0] !== '_'
+        )[0];
+        if (!MAIN_ELEMENT) throw new Error(ErrorProcessElementsNoMainElement);
 
-          const TEXT_ELEMENT =
-            el.children && el.children.length > 0
-              ? el.children.filter((e: Frame) => e.type === 'TEXT' && e.name[0] !== '_')[0]
-              : null;
+        const TEXT_ELEMENT = el.children?.filter(
+          (e: Frame) => e.type === 'TEXT' && e.name[0] !== '_'
+        )[0];
 
-          // Set placeholder text
-          if (el.children) {
-            el.children.filter((child: Frame) => {
-              if (
-                (child.type === 'GROUP' && child.name.toLowerCase() === 'placeholder') ||
-                (child.type === 'GROUP' && child.name.toLowerCase() === ':placeholder')
-              ) {
-                // TODO/Improvement: This seems to be mapped to a single child depth; could be recursive to support any depth
-                if (child.children) {
-                  child.children.filter((subChild: Frame) => {
-                    if (
-                      (subChild.type === 'TEXT' && subChild.name.toLowerCase() === 'placeholder') ||
-                      (subChild.type === 'TEXT' && subChild.name.toLowerCase() === ':placeholder')
-                    ) {
-                      if (!this.extraProps.includes(`placeholder="${subChild.characters}"`))
-                        this.addExtraProps(`placeholder="${subChild.characters}" `);
-                    }
-                  });
-                }
-              }
-            });
-          }
+        this.setPlaceholderText(); // was filter loop
+        this.setElementType();
 
-          // Set "type", for example for input element
-          if (this.description.match(/type=(.*)/)) {
-            const TYPE = (() => {
-              const _TYPE = this.description.match(/type=(.*)/);
-              if (_TYPE && _TYPE[1]) return _TYPE[1];
-            })();
+        const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, ''); // Clean names from any spaces
 
-            if (this.extraProps && !this.extraProps.includes(`type="${TYPE}`))
-              this.addExtraProps(`type="${TYPE}" `);
-          }
+        // Parse layout CSS from element
+        console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
 
-          // Check and set correct selector type: class or pseudo-element
-          const SELECTOR_TYPE = '.';
+        const { updatedCss, updatedImports } = parseCssFromElement(
+          MAIN_ELEMENT,
+          TEXT_ELEMENT as any,
+          this.config.remSize,
+          this.config.outputTokenFormat
+        );
 
-          if (!MAIN_ELEMENT) throw new Error(ErrorProcessElementsNoMainElement);
+        const SELECTOR_TYPE = '.'; // Check and set correct selector type: class or pseudo-element
 
-          // Clean names from any spaces
-          const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
+        css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${updatedCss}}`;
+        imports = imports.concat(updatedImports);
 
-          // Parse layout CSS from element
-          console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
-
-          const { updatedCss, updatedImports } = parseCssFromElement(
-            MAIN_ELEMENT,
-            TEXT_ELEMENT as any,
+        // Parse typography CSS from element (requires layout element to exist)
+        if (TEXT_ELEMENT) {
+          const { updatedCss, updatedImports } = parseTypographyStylingFromElement(
+            TEXT_ELEMENT,
             this.config.remSize,
             this.config.outputTokenFormat
           );
-
           css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${updatedCss}}`;
           imports = imports.concat(updatedImports);
-
-          // Parse typography CSS from element (requires layout element to exist)
-          if (TEXT_ELEMENT) {
-            const { updatedCss, updatedImports } = parseTypographyStylingFromElement(
-              TEXT_ELEMENT,
-              this.config.remSize,
-              this.config.outputTokenFormat
-            );
-            css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${updatedCss}}`;
-            imports = imports.concat(updatedImports);
-            this.text = TEXT_ELEMENT.characters || '';
-          }
-        });
-      }
+          this.text = TEXT_ELEMENT.characters || '';
+        }
+      });
 
       const PROCESSED_CSS = processNestedCss(css);
 
@@ -249,32 +276,11 @@ export class FigmagicElement {
       let css = ``;
       let imports: Record<string, unknown>[] = [];
 
-      // Get same-named layer
       const MAIN_ELEMENT = this.children?.filter((element: Frame) => element.name === this.name)[0];
-
-      // Check for text elements
       const TEXT_ELEMENT = this.children?.filter((element: Frame) => element.type === 'TEXT')[0];
 
-      // Set placeholder text
-      if (this.children) {
-        this.children.forEach((child: Frame) => {
-          if (
-            (child.type === 'TEXT' && child.name.toLowerCase() === 'placeholder') ||
-            (child.type === 'TEXT' && child.name.toLowerCase() === ':placeholder')
-          ) {
-            this.addExtraProps(`placeholder="${child.characters}"`);
-          }
-        });
-      }
-
-      // Set "type", for example for input element
-      if (this.description.match(/type=(.*)/)) {
-        const TYPE = (() => {
-          const _TYPE = this.description.match(/type=(.*)/);
-          if (_TYPE && _TYPE[1]) return _TYPE[1];
-        })();
-        this.addExtraProps(` type="${TYPE}"`);
-      }
+      this.setPlaceholderText();
+      this.setElementType();
 
       // Set text styling
       if (TEXT_ELEMENT) {

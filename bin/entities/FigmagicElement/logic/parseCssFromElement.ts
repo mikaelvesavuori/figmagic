@@ -3,8 +3,7 @@ import * as path from 'path';
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { UpdatedCssAndImports } from '../../../contracts/Imports';
 
-import { sliceOutObjectFromFile } from './sliceOutObjectFromFile';
-
+import { getFileContents } from './getFileContents';
 import {
   PaddingVertical,
   PaddingHorizontal,
@@ -42,28 +41,20 @@ export function parseCssFromElement(
   try {
     if (!layoutElement || !remSize || !outputTokenFormat) throw new Error(ErrorParseCssFromElement);
 
+    // TODO/BUG: This hardcodes token path, which should be customizable
     const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : path.join(`tokens`);
-    const FORMAT = outputTokenFormat;
 
     // Get data from tokens
-    const _borderWidths = path.join(`${process.cwd()}`, `${PATH}`, `borderWidths.${FORMAT}`);
-    const borderWidths = sliceOutObjectFromFile(_borderWidths);
-
-    const _colors = path.join(`${process.cwd()}`, `${PATH}`, `colors.${FORMAT}`);
-    const colors = sliceOutObjectFromFile(_colors);
-
-    const _radii = path.join(`${process.cwd()}`, `${PATH}`, `radii.${FORMAT}`);
-    const radii = sliceOutObjectFromFile(_radii);
-
-    const _shadows = path.join(`${process.cwd()}`, `${PATH}`, `shadows.${FORMAT}`);
-    const shadows = sliceOutObjectFromFile(_shadows);
-
-    const _spacing = path.join(`${process.cwd()}`, `${PATH}`, `spacing.${FORMAT}`);
-    const spacing = sliceOutObjectFromFile(_spacing);
+    // TODO: Create support function for loading and slicing
+    const borderWidths = getFileContents(PATH, 'borderWidths', outputTokenFormat);
+    const colors = getFileContents(PATH, 'colors', outputTokenFormat);
+    const radii = getFileContents(PATH, 'radii', outputTokenFormat);
+    const shadows = getFileContents(PATH, 'shadows', outputTokenFormat);
+    const spacing = getFileContents(PATH, 'spacing', outputTokenFormat);
 
     // Start parsing
     let css = ``;
-    const imports: any = [];
+    let imports: any = [];
 
     // Add defaults
     css += `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
@@ -87,7 +78,7 @@ export function parseCssFromElement(
     });
 
     css += PARSED_PADDING.css;
-    imports.concat(PARSED_PADDING.imports);
+    if (PARSED_PADDING.imports) imports = imports.concat(PARSED_PADDING.imports);
 
     const HEIGHT = layoutElement.absoluteBoundingBox
       ? layoutElement.absoluteBoundingBox.height
@@ -95,9 +86,10 @@ export function parseCssFromElement(
     if (HEIGHT) {
       const parsedValue = parseHeight(css, imports, { spacing, height: HEIGHT, remSize });
       css += parsedValue.css;
-      imports.concat(parsedValue.imports);
+      if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
     }
 
+    // Seem to get dual background-color for Checkbox? One should be color
     const BACKGROUND_COLOR = getBackgroundColor(layoutElement);
     if (BACKGROUND_COLOR) {
       const parsedValue = parseBackgroundColor(css, imports, {
@@ -106,7 +98,7 @@ export function parseCssFromElement(
         remSize
       });
       css += parsedValue.css;
-      imports.concat(parsedValue.imports);
+      if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
     }
 
     const BORDER_WIDTH = layoutElement.strokeWeight ? `${layoutElement.strokeWeight}px` : null;
@@ -117,7 +109,7 @@ export function parseCssFromElement(
         remSize
       });
       css += parsedValue.css;
-      imports.concat(parsedValue.imports);
+      if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
     }
 
     const BORDER_COLOR = getBorderColor(layoutElement);
@@ -128,7 +120,7 @@ export function parseCssFromElement(
         remSize
       });
       css += parsedValue.css;
-      imports.concat(parsedValue.imports);
+      if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
     }
 
     const BORDER_RADIUS = layoutElement.cornerRadius ? `${layoutElement.cornerRadius}px` : null;
@@ -139,17 +131,23 @@ export function parseCssFromElement(
         remSize
       });
       css += parsedValue.css;
-      imports.concat(parsedValue.imports);
+      if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
     }
 
     const SHADOW = getShadow(layoutElement);
     if (SHADOW) {
       const parsedValue = parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
       css += parsedValue.css;
-      imports.concat(parsedValue.imports);
+      if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
     }
 
-    return { updatedCss: css, updatedImports: imports };
+    // Reduce all duplicates
+    const newCss = Array.from(new Set(css.split(/;/gi)))
+      .toString()
+      .replace(/,/gi, ';');
+    console.log('|||newCss |||', newCss);
+
+    return { updatedCss: newCss, updatedImports: imports };
   } catch (error) {
     throw new Error(ErrorParseCssFromElement);
   }

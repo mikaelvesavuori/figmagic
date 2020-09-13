@@ -4,7 +4,7 @@ import { FRAME as Frame } from '../../../contracts/Figma';
 import { UpdatedCssAndImports } from '../../../contracts/Imports';
 
 import { getTokenMatch } from './getTokenMatch';
-import { sliceOutObjectFromFile } from './sliceOutObjectFromFile';
+import { getFileContents } from './getFileContents';
 
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
@@ -24,28 +24,16 @@ export function parseTypographyStylingFromElement(
   try {
     if (!textElement || !remSize) throw new Error(ErrorParseTypographyStylingFromElement);
 
+    // TODO/BUG: This hardcodes token path, which should be customizable
     const PATH = process.env.IS_TEST ? path.join('testdata', 'tokens') : `tokens`;
-    const FORMAT = outputTokenFormat;
 
     // Get data from tokens
-    // TODO: Camel-casing seems to be broken? (somewhere else; in write?)
-    const _colors = path.join(`${process.cwd()}`, `${PATH}`, `colors.${FORMAT}`);
-    const colors = sliceOutObjectFromFile(_colors);
-
-    const _fontFamilies = path.join(`${process.cwd()}`, `${PATH}`, `fontFamilies.${FORMAT}`);
-    const fontFamilies = sliceOutObjectFromFile(_fontFamilies);
-
-    const _fontSizes = path.join(`${process.cwd()}`, `${PATH}`, `fontSizes.${FORMAT}`);
-    const fontSizes = sliceOutObjectFromFile(_fontSizes);
-
-    const _fontWeights = path.join(`${process.cwd()}`, `${PATH}`, `fontWeights.${FORMAT}`);
-    const fontWeights = sliceOutObjectFromFile(_fontWeights);
-
-    const _letterSpacings = path.join(`${process.cwd()}`, `${PATH}`, `letterSpacings.${FORMAT}`);
-    const letterSpacings = sliceOutObjectFromFile(_letterSpacings);
-
-    const _lineHeights = path.join(`${process.cwd()}`, `${PATH}`, `lineHeights.${FORMAT}`);
-    const lineHeights = sliceOutObjectFromFile(_lineHeights);
+    const colors = getFileContents(PATH, 'colors', outputTokenFormat);
+    const fontFamilies = getFileContents(PATH, 'fontFamilies', outputTokenFormat);
+    const fontSizes = getFileContents(PATH, 'fontSizes', outputTokenFormat);
+    const fontWeights = getFileContents(PATH, 'fontWeights', outputTokenFormat);
+    const letterSpacings = getFileContents(PATH, 'letterSpacings', outputTokenFormat);
+    const lineHeights = getFileContents(PATH, 'lineHeights', outputTokenFormat);
 
     let css = ``;
     const imports: Record<string, unknown>[] = [];
