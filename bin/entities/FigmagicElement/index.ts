@@ -304,7 +304,7 @@ export class FigmagicElement {
         processedCss = processedCss.replace(/;,/gi, ';\n ');
 
         css = processedCss;
-        imports.concat(updatedImports);
+        imports = imports.concat(updatedImports);
       }
 
       return { updatedCss: css, updatedImports: imports };
