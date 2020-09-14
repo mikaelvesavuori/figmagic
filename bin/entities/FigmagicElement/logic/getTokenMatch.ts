@@ -127,7 +127,7 @@ function matchOther(
 
     Object.entries(tokens).forEach((s) => {
       const TOKEN_VALUE = (() => {
-        if (typeof s[1] === 'number') return s[1]; //parseFloat(s[1])
+        if (typeof s[1] === 'number') return s[1];
         return s[1];
       })();
 

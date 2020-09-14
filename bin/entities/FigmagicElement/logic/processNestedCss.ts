@@ -6,8 +6,6 @@ import {
   ErrorGetUniqueValues
 } from '../../../frameworks/errors/errors';
 
-// TODO: Refactor
-
 /**
  * @description Process nested CSS into a format that puts shared/common intersecting CSS properties
  * at the top, while unique values get sorted under their respective CSS classes.
@@ -19,13 +17,9 @@ export function processNestedCss(css: string): string {
 
   // Match or split by CSS class name, like ".ButtonWarning {"
   const CLASS_NAMES: any = css.match(/\..* {/gi);
-  //const CLASS_NAMES = _CLASS_NAMES.filter(
-  //  (item: any, index: any) => _CLASS_NAMES.indexOf(item) === index
-  //);
-  const CLASS_CONTENT = css.split(/\..* {/gi); //const CLASS_CONTENT = css.split(/,/gi);
+  const CLASS_CONTENT = css.split(/\..* {/gi);
   // Remove first to keep same lengths since it can sometimes be just a space
   if (CLASS_CONTENT[0] === ' \n' || CLASS_CONTENT[0] === '\n') CLASS_CONTENT.shift();
-  //CLASS_CONTENT = CLASS_CONTENT?.filter((i) => i !== '\n');
 
   const ARRAYS = cleanArrays(CLASS_NAMES, CLASS_CONTENT);
   const INTERSECTING_VALUES = getIntersectingValues(ARRAYS);
@@ -42,12 +36,10 @@ export function processNestedCss(css: string): string {
 function cleanArrays(classNames: RegExpMatchArray | null, classContent: string[]): any {
   if (!classNames || !classContent) throw new Error(ErrorCleanArrays);
 
-  const values: any[] = [];
+  const classes: any[] = [];
 
   classContent.forEach((arrayItem, index) => {
-    //console.log('****', index, index % 2 !== 0);
-    if (index % 2 !== 0) return;
-    //if (index >= classContent.length - 1) return;
+    if (index % 2 !== 0) return; // Layout + typography comes in couples after each other; therefore do two in a go (so skip odd array indices)
 
     const layout = arrayItem
       .split(/\n/gi)
@@ -61,13 +53,13 @@ function cleanArrays(classNames: RegExpMatchArray | null, classContent: string[]
 
     const css = [...layout, ...typography];
 
-    values.push({
+    classes.push({
       className: classNames[index],
       css
     });
   });
 
-  return values;
+  return classes;
 }
 
 /**
@@ -123,12 +115,12 @@ function getUniqueValues(arrays: any[], intersections: any[]): any[] {
 function createCssString(intersections: any[], uniqueValues: any[]): string {
   if (!intersections || !uniqueValues) throw new Error(ErrorCreateCssString);
 
-  // Shared, intersecting values at top
+  // Put shared, intersecting values at top
   let cssString = `\n`;
   intersections.forEach((i) => (cssString += `  ${i}\n`));
   cssString += `\n`;
 
-  // Classes and similar
+  // Put classes and similar after shared values
   uniqueValues.forEach((arr) => {
     if (arr.className.includes('.:') || arr.className.includes('.')) {
       const FIXED_CLASS_NAME = (() => {
@@ -142,7 +134,7 @@ function createCssString(intersections: any[], uniqueValues: any[]): string {
 
     arr.css.forEach((item: any, index: number) => {
       cssString += `    ${item}\n`;
-      if (index === arr.css.length - 1) cssString += `  }\n\n`; // End
+      if (index === arr.css.length - 1) cssString += `  }\n\n`; // Close class
     });
   });
 
