@@ -209,7 +209,12 @@ export function parseTypographyStylingFromElement(
 
     if (FONT_CASE) css += `text-transform: ${FONT_CASE};\n`;
 
-    return { updatedCss: css, updatedImports: imports };
+    // Reduce all duplicates
+    const newCss = Array.from(new Set(css.split(/;/gi)))
+      .toString()
+      .replace(/,/gi, ';');
+
+    return { updatedCss: newCss, updatedImports: imports };
   } catch (error) {
     throw new Error(error);
   }

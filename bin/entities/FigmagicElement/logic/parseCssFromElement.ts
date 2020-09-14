@@ -145,7 +145,6 @@ export function parseCssFromElement(
     const newCss = Array.from(new Set(css.split(/;/gi)))
       .toString()
       .replace(/,/gi, ';');
-    console.log('|||newCss |||', newCss);
 
     return { updatedCss: newCss, updatedImports: imports };
   } catch (error) {

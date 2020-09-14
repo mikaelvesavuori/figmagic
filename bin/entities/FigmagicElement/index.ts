@@ -245,7 +245,6 @@ export class FigmagicElement {
         css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${updatedCss}}`;
         imports = imports.concat(updatedImports);
 
-        // Parse typography CSS from element (requires layout element to exist)
         if (TEXT_ELEMENT) {
           const { updatedCss, updatedImports } = parseTypographyStylingFromElement(
             TEXT_ELEMENT,
@@ -273,7 +272,7 @@ export class FigmagicElement {
    */
   private handleFlatElements(): UpdatedCssAndImports {
     try {
-      let css = ``;
+      let css = `\n`;
       let imports: Record<string, unknown>[] = [];
 
       const MAIN_ELEMENT = this.children?.filter((element: Frame) => element.name === this.name)[0];
