@@ -19,6 +19,7 @@ export const ErrorDownloadFile = `${colors.FgRed}Missing one or more of "url", "
 export const ErrorExtractDescription = `${colors.FgRed}Missing description in extractDescription()!`;
 export const ErrorExtractTokens = `${colors.FgRed}No sheet or name for processTokens()!`;
 export const ErrorExtractTokensNoConfig = `${colors.FgRed}No config provided to processTokens()!`;
+export const ErrorFigmagicController = `${colors.FgRed}Error in FigmagicController()!`;
 export const ErrorFindShortenedNameMatchWrongType = `${colors.FgRed}Arguments are not of string type!`;
 export const ErrorGetData = `${colors.FgRed}Could not retrieve any data. Are you missing a valid API key?`;
 export const ErrorGetDataNoData = `${colors.FgRed}No data retrieved...`;

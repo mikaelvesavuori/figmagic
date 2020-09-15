@@ -5,7 +5,7 @@ import { ImageResponse } from '../../contracts/ImageResponse';
 import { ErrorGetFromApi } from '../errors/errors';
 
 /**
- * @description Get data from API
+ * @description Get data from the Figma API
  *
  * @param figmaToken User's Figma API token
  * @param figmaUrl String representing user's Figma document ID
@@ -16,15 +16,19 @@ export async function getFromApi(
   figmaUrl: string | undefined | null,
   type = 'files'
 ): Promise<ImageResponse> {
-  if (!figmaToken || !figmaUrl) throw new Error(ErrorGetFromApi);
+  try {
+    if (!figmaToken || !figmaUrl) throw new Error(ErrorGetFromApi);
 
-  return await fetch(`https://api.figma.com/v1/${type}/${figmaUrl}`, {
-    headers: {
-      'X-Figma-Token': figmaToken
-    }
-  })
-    .then((res) => res.json())
-    .catch((error) => {
-      throw new Error(error);
-    });
+    return await fetch(`https://api.figma.com/v1/${type}/${figmaUrl}`, {
+      headers: {
+        'X-Figma-Token': figmaToken
+      }
+    })
+      .then((res) => res.json())
+      .catch((error) => {
+        throw new Error(error);
+      });
+  } catch (error) {
+    throw new Error(ErrorGetFromApi);
+  }
 }

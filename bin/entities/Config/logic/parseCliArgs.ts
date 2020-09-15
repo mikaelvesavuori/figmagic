@@ -14,15 +14,14 @@ import { ErrorParseCliArgs } from '../../../frameworks/errors/errors';
  *
  * @param argsArray Array of string arguments
  */
-// TODO: Add real return type
-export function parseCliArgs(baseConfig: Config, argsArray: any[]): any {
+export function parseCliArgs(baseConfig: Config, argsArray: string[]): Config {
   if (!argsArray) throw new Error(ErrorParseCliArgs);
 
-  if (argsArray.length === 0) return {};
+  if (argsArray.length === 0) return {} as Config;
 
   return argsArray.reduce(
     // Reducer: Add specific keys to the accumulated config when known arguments match
-    (accumulatedConfig, arg, index) => {
+    (accumulatedConfig: any, arg, index) => {
       switch (arg) {
         // Toggle debug mode if requested
         case '--debug':

@@ -8,11 +8,11 @@ import { MsgWriteBaseFile } from '../messages/messages';
 import { ErrorWriteBaseJson } from '../errors/errors';
 
 /**
- * @description TODO
+ * @description Write base Figma JSON document to disk
  *
- * @param outputFolderBaseFile TODO
- * @param outputFileName TODO
- * @param data TODO
+ * @param outputFolderBaseFile Folder where file should be written
+ * @param outputFileName File name for Figma JSON file
+ * @param data File contents
  */
 export async function writeBaseJson(
   outputFolderBaseFile: string,
@@ -26,6 +26,6 @@ export async function writeBaseJson(
     await refresh(outputFolderBaseFile);
     write(`${outputFolderBaseFile}/${outputFileName}`, JSON.stringify(data));
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorWriteBaseJson);
   }
 }

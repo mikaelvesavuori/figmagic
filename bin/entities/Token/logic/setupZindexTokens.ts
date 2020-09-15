@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeZindexTokens } from '../index';
 import { ZindexTokens } from '../../../contracts/Tokens';
+
+import { makeZindexTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -21,10 +22,12 @@ export function setupZindexTokens(zIndexFrame: Frame): ZindexTokens {
 
   const zIndex: Record<string, unknown> = {};
 
-  zIndexFrame.children.forEach((item: Frame) => {
+  const TOKENS = zIndexFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.name || !item.characters) throw new Error(ErrorSetupZindexTokensMissingProps);
-    const name = camelize(item.name);
-    zIndex[name] = parseInt(item.characters);
+    const NAME = camelize(item.name);
+    zIndex[NAME] = parseInt(item.characters);
   });
 
   return makeZindexTokens(zIndex);

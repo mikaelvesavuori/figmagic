@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeMediaQueryTokens } from '../index';
 import { MediaQueryTokens } from '../../../contracts/Tokens';
+
+import { makeMediaQueryTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -21,13 +22,15 @@ export function setupMediaQueryTokens(mediaQueryFrame: Frame): MediaQueryTokens 
 
   const mediaQueries: Record<string, unknown> = {};
 
-  mediaQueryFrame.children.forEach((item: Frame) => {
+  const TOKENS = mediaQueryFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.name || !item.absoluteBoundingBox)
       throw new Error(ErrorSetupMediaQueryTokensMissingProps);
 
-    const name = camelize(item.name);
+    const NAME = camelize(item.name);
 
-    mediaQueries[name] = `${item.absoluteBoundingBox.width}px`;
+    mediaQueries[NAME] = `${item.absoluteBoundingBox.width}px`;
   });
 
   return makeMediaQueryTokens(mediaQueries);

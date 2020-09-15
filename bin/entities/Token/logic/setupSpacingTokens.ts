@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeSpacingTokens } from '../index';
 import { SpacingTokens } from '../../../contracts/Tokens';
+
+import { makeSpacingTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
@@ -27,15 +28,17 @@ export function setupSpacingTokens(
   if (!spacingFrame.children) throw new Error(ErrorSetupSpacingTokensNoChildren);
   if (!spacingUnit || !remSize) throw new Error(ErrorSetupSpacingTokensNoUnits);
 
-  const { children } = spacingFrame;
   const spacings: Record<string, unknown> = {};
 
-  children.forEach((item: Frame) => {
-    const name: string = camelize(item.name);
-    if (!item.absoluteBoundingBox || !item.absoluteBoundingBox.width) throw new Error('asdf'); // TODO: Add real error
-    const width: number = item.absoluteBoundingBox.width;
-    const normalizedUnit = normalizeUnits(width, 'px', spacingUnit, remSize);
-    spacings[name] = normalizedUnit;
+  const TOKENS = spacingFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
+    const NAME: string = camelize(item.name);
+    if (!item.absoluteBoundingBox || !item.absoluteBoundingBox.width)
+      throw new Error(ErrorSetupSpacingTokensNoFrame);
+    const WIDTH: number = item.absoluteBoundingBox.width;
+    const NORMALIZED_UNIT = normalizeUnits(WIDTH, 'px', spacingUnit, remSize);
+    spacings[NAME] = NORMALIZED_UNIT;
   });
 
   return makeSpacingTokens(spacings);

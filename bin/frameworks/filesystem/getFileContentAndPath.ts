@@ -108,7 +108,7 @@ export function getFileContentAndPath(
       return prepDescription({ filePath, file, format } as PrepDescription);
     else throw new Error(ErrorGetFileContentAndPathNoReturn);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorGetFileContentAndPath);
   }
 }
 

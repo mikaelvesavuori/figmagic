@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeColorTokens } from '../index';
 import { ColorTokens } from '../../../contracts/Tokens';
+
+import { makeColorTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
@@ -22,7 +23,9 @@ export function setupColorTokens(colorFrame: Frame): ColorTokens {
 
   const colors: Record<string, unknown> = {};
 
-  colorFrame.children.forEach((item: Frame) => {
+  const TOKENS = colorFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.fills) throw new Error(ErrorSetupColorTokensNoFills);
     if (!item.fills[0].color) throw new Error('asdf'); // TODO: add real error
 
@@ -35,8 +38,8 @@ export function setupColorTokens(colorFrame: Frame): ColorTokens {
       255
     )}, ${roundColorValue(_B, 255)}, ${roundColorValue(ALPHA, 1)})`;
 
-    const name = camelize(item.name);
-    colors[name] = COLOR_STRING;
+    const NAME = camelize(item.name);
+    colors[NAME] = COLOR_STRING;
   });
 
   return makeColorTokens(colors);

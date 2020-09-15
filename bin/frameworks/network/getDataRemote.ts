@@ -6,23 +6,23 @@ import { ErrorGetData, ErrorGetDataNoTokenOrUrl } from '../errors/errors';
 import { MsgSetDataFromApi } from '../messages/messages';
 
 /**
- * @description TODO
+ * @description Helper to get Figma data from their API
  *
- * @param token TODO
- * @param url TODO
+ * @param token Your Figma token
+ * @param url Your Figma document ID
  */
 // TODO: Return FigmaData?
 export async function getDataRemote(token: string, url: string): Promise<any> {
-  if (!token || !url) throw new Error(ErrorGetDataNoTokenOrUrl);
-  console.log(MsgSetDataFromApi);
-
-  let data = null;
-
   try {
+    if (!token || !url) throw new Error(ErrorGetDataNoTokenOrUrl);
+    console.log(MsgSetDataFromApi);
+
+    let data = null;
     data = await getFromApi(token, url);
+
     if (!data || data.status === 403) throw new Error(ErrorGetData);
     return data;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorGetDataNoTokenOrUrl);
   }
 }

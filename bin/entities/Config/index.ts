@@ -3,13 +3,16 @@ import { Config } from '../../contracts/Config';
 import { baseConfig } from './baseConfig';
 import { createConfiguration } from './logic/createConfiguration';
 
+/**
+ * @description TODO
+ */
 export class Configuration {
   baseConfiguration: Config;
   userConfigPath: string;
-  cliArgs: any[];
+  cliArgs: string[];
   config: Config = baseConfig;
 
-  constructor(userConfigPath: string, ...cliArgs: any[]) {
+  constructor(userConfigPath: string, ...cliArgs: string[]) {
     this.baseConfiguration = baseConfig;
     this.userConfigPath = userConfigPath;
     this.cliArgs = cliArgs;

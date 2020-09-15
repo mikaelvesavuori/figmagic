@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeOpacityTokens } from '../index';
 import { OpacityTokens } from '../../../contracts/Tokens';
+
+import { makeOpacityTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -23,15 +24,17 @@ export function setupOpacityTokens(
   if (!opacitiesFrame) throw new Error(ErrorSetupOpacityTokensNoFrame);
   if (!opacitiesFrame.children) throw new Error(ErrorSetupOpacityTokensNoChildren);
 
+  const TOKENS = opacitiesFrame.children;
+
   // Reduce the children array to a tokens object
-  const _opacityTokens = opacitiesFrame.children.reduce(
+  const _opacityTokens = TOKENS.reduce(
     // Reducer function: will add a new key to the current "opacitiesObject" at each iteration
     (tokens: { [index: string]: any }, item: Frame) => {
       if (!item.name) throw new Error(ErrorSetupOpacityTokensMissingProps);
 
       // Note: Figma API does not provide an opacity value if its 100%
       // We will assume it defaults to 1 if undefined.
-      const name = camelize(item.name);
+      const NAME = camelize(item.name);
       const opacity = (() => {
         let _opacity: string | number = 1;
 
@@ -45,7 +48,7 @@ export function setupOpacityTokens(
       })();
 
       // Assuming name is unique (otherwise it would be overwritten)
-      tokens[name] = opacity;
+      tokens[NAME] = opacity;
 
       return tokens;
     },

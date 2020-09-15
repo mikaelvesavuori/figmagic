@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeLineHeightTokens } from '../index';
 import { LineHeightTokens } from '../../../contracts/Tokens';
+
+import { makeLineHeightTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
@@ -24,12 +25,14 @@ export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): 
 
   const lineHeights: Record<string, unknown> = {};
 
-  lineHeightFrame.children.forEach((item: Frame) => {
+  const TOKENS = lineHeightFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.name || !item.style) throw new Error(ErrorSetupLineHeightTokensMissingProps);
     if (!item.style.lineHeightPercentFontSize)
       throw new Error(ErrorSetupLineHeightTokensMissingPercent);
 
-    const name = camelize(item.name);
+    const NAME = camelize(item.name);
     const LINE_HEIGHT: string = normalizeUnits(
       item.style.lineHeightPercentFontSize,
       'percent',
@@ -39,7 +42,7 @@ export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): 
 
     // Do a tiny bit of rounding to avoid ugly numbers
     const lineHeight = parseFloat(LINE_HEIGHT).toFixed(2);
-    lineHeights[name] = lineHeight;
+    lineHeights[NAME] = lineHeight;
   });
 
   return makeLineHeightTokens(lineHeights);

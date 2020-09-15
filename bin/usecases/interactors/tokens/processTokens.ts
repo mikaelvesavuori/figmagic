@@ -21,19 +21,19 @@ export function processTokens(tokens: Frame[], config: Config): any {
     if (!(tokens.length > 0)) throw new Error(ErrorWriteTokens);
     if (!config) throw new Error(ErrorWriteTokensNoSettings);
 
-    const processedTokens: WriteOperation[] = [];
+    const PROCESSED_TOKENS: WriteOperation[] = [];
 
     tokens.forEach((token) => {
       const TOKEN_NAME = camelize(token.name);
       if (acceptedTokenTypes.includes(TOKEN_NAME.toLowerCase())) {
         const _token = makeToken(token, TOKEN_NAME, config);
         const WRITE_OP = _token.getWriteOperation();
-        if (WRITE_OP) processedTokens.push(WRITE_OP);
+        if (WRITE_OP) PROCESSED_TOKENS.push(WRITE_OP);
       }
     });
 
-    return processedTokens;
+    return PROCESSED_TOKENS;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorWriteTokens);
   }
 }

@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeBorderWidthTokens } from '../index';
 import { BorderWidthTokens } from '../../../contracts/Tokens';
+
+import { makeBorderWidthTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -21,11 +22,13 @@ export function setupBorderWidthTokens(borderWidthFrame: Frame): BorderWidthToke
 
   const borderWidths: Record<string, unknown> = {};
 
-  borderWidthFrame.children.forEach((item: Frame) => {
+  const TOKENS = borderWidthFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.name || item.strokeWeight === undefined)
       throw new Error(ErrorSetupBorderWidthTokensMissingProps);
-    const name = camelize(item.name);
-    borderWidths[name] = `${item.strokeWeight}px`;
+    const NAME = camelize(item.name);
+    borderWidths[NAME] = `${item.strokeWeight}px`;
   });
 
   return makeBorderWidthTokens(borderWidths);

@@ -15,6 +15,6 @@ export function writeTokens(processedTokens: WriteOperation[]): void {
     if (!processedTokens) throw new Error(ErrorWriteTokens);
     processedTokens.forEach((token) => writeFile(token));
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorWriteTokens);
   }
 }

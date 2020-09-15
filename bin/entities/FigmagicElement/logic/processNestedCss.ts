@@ -36,30 +36,30 @@ export function processNestedCss(css: string): string {
 function cleanArrays(classNames: RegExpMatchArray | null, classContent: string[]): any {
   if (!classNames || !classContent) throw new Error(ErrorCleanArrays);
 
-  const classes: any[] = [];
+  const CLASSES: any[] = [];
 
   classContent.forEach((arrayItem, index) => {
     if (index % 2 !== 0) return; // Layout + typography comes in couples after each other; therefore do two in a go (so skip odd array indices)
 
-    const layout = arrayItem
+    const LAYOUT = arrayItem
       .split(/\n/gi)
       .filter((item: string) => item)
       .filter((item: string) => item !== '}');
 
-    const typography = classContent[index + 1]
+    const TYPOGRAPHY = classContent[index + 1]
       .split(/\n/gi)
       .filter((item: string) => item)
       .filter((item: string) => item !== '}');
 
-    const css = [...layout, ...typography];
+    const css = [...LAYOUT, ...TYPOGRAPHY];
 
-    classes.push({
+    CLASSES.push({
       className: classNames[index],
       css
     });
   });
 
-  return classes;
+  return CLASSES;
 }
 
 /**
@@ -71,10 +71,10 @@ function getIntersectingValues(arrays: any[]): any[] {
   if (!arrays) throw new Error(ErrorGetIntersectingValues);
 
   const CSS_ARRAYS = arrays.map((a) => a.css);
-  const _INTERSECTING_VALUES = CSS_ARRAYS.reduce((prev, curr) =>
+  const REDUCED_VALUES = CSS_ARRAYS.reduce((prev, curr) =>
     prev.filter((val: any) => curr.includes(val))
   );
-  const INTERSECTING_VALUES = [...new Set(_INTERSECTING_VALUES)];
+  const INTERSECTING_VALUES = [...new Set(REDUCED_VALUES)];
 
   return INTERSECTING_VALUES;
 }

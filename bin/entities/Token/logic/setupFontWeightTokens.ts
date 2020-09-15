@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeFontWeightTokens } from '../index';
 import { FontWeightTokens } from '../../../contracts/Tokens';
+
+import { makeFontWeightTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -22,13 +23,14 @@ export function setupFontWeightTokens(fontWeightFrame: Frame): FontWeightTokens 
 
   const fontWeights: Record<string, unknown> = {};
 
-  fontWeightFrame.children.forEach((item: Frame) => {
+  const TOKENS = fontWeightFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.name || !item.style) throw new Error(ErrorSetupFontWeightTokensMissingProps);
     if (!item.style.fontWeight) throw new Error(ErrorSetupFontWeightTokensMissingWeight);
 
-    const name = camelize(item.name);
-    const fontWeight = item.style.fontWeight;
-    fontWeights[name] = fontWeight;
+    const NAME = camelize(item.name);
+    fontWeights[NAME] = item.style.fontWeight;
   });
 
   return makeFontWeightTokens(fontWeights);

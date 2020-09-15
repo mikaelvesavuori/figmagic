@@ -35,6 +35,6 @@ export function prepareWrite(writeOperation: WriteOperation): any {
 
     return getFileContentAndPath(getFileDataOperation);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorPrepareWrite);
   }
 }

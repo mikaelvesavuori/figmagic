@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeRadiusTokens } from '../index';
 import { RadiusTokens } from '../../../contracts/Tokens';
+
+import { makeRadiusTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
@@ -23,13 +24,15 @@ export function setupRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTo
 
   const cornerRadii: Record<string, unknown> = {};
 
-  radiusFrame.children.forEach((item: Frame) => {
+  const TOKENS = radiusFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.name) throw new Error(ErrorSetupRadiusTokensMissingProps);
-    const name: string = camelize(item.name);
+    const NAME: string = camelize(item.name);
     const cornerRadius: string = item.cornerRadius
       ? normalizeUnits(item.cornerRadius, 'cornerRadius', 'adjustedRadius', remSize)
       : '0px';
-    cornerRadii[name] = cornerRadius;
+    cornerRadii[NAME] = cornerRadius;
   });
 
   return makeRadiusTokens(cornerRadii);

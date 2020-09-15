@@ -28,6 +28,6 @@ export async function createGraphics(config: Config, data: FigmaData): Promise<v
 
     await writeGraphics(fileList, config);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorCreateGraphics);
   }
 }

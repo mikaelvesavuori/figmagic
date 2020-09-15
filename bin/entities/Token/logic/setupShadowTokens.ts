@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeShadowTokens } from '../index';
 import { ShadowTokens } from '../../../contracts/Tokens';
+
+import { makeShadowTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
@@ -22,17 +23,19 @@ export function setupShadowTokens(shadowFrame: Frame): ShadowTokens {
 
   const shadows: Record<string, unknown> = {};
 
-  shadowFrame.children.forEach((item: Frame) => {
+  const TOKENS = shadowFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.name || !item.effects) throw new Error(ErrorSetupShadowTokensMissingProps);
 
-    const name = camelize(item.name);
+    const NAME = camelize(item.name);
 
     const effects = item.effects.map((effect) => {
       if (effect.type === 'DROP_SHADOW') return effect;
       return null;
     });
 
-    shadows[name] = ``;
+    shadows[NAME] = ``;
 
     if (effects.length > 0) {
       effects.forEach((e, index) => {
@@ -46,8 +49,8 @@ export function setupShadowTokens(shadowFrame: Frame): ShadowTokens {
           const B = roundColorValue(e.color.b);
           const A = roundColorValue(e.color.a, 1);
 
-          shadows[name] += `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
-          if (index !== effects.length - 1) shadows[name] += `, `;
+          shadows[NAME] += `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
+          if (index !== effects.length - 1) shadows[NAME] += `, `;
         }
       });
     }

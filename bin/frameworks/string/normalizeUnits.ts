@@ -24,14 +24,10 @@ export function normalizeUnits(
   let unitSize = undefined;
 
   // Set root size
-  if (currentUnit === 'px') {
-    rootSize = 1;
-  }
+  if (currentUnit === 'px') rootSize = 1;
 
   // Set root size; Kind of a hack? Not sure if this is going to break anything. Used because of 'unitless'
-  if (currentUnit === 'percent') {
-    rootSize = 1;
-  }
+  if (currentUnit === 'percent') rootSize = 1;
 
   // Set new unit
   if (newUnit === 'rem' || newUnit === 'em') {
@@ -39,21 +35,16 @@ export function normalizeUnits(
     unitSize = remSize;
   }
 
-  if (newUnit === 'unitless') {
-    unitSize = value / 100;
-  }
+  if (newUnit === 'unitless') unitSize = value / 100;
 
   // Add px to corner radius
-  if (currentUnit === 'cornerRadius' && newUnit === 'adjustedRadius') {
-    return `${value}px`;
-  }
+  if (currentUnit === 'cornerRadius' && newUnit === 'adjustedRadius') return `${value}px`;
 
   if (rootSize === undefined || unitSize === undefined)
     throw new Error(ErrorNormalizeUnitsUndefined);
 
-  if (newUnit === 'unitless') {
-    return `${unitSize}`;
-  } else {
+  if (newUnit === 'unitless') return `${unitSize}`;
+  else {
     const ADJUSTED_VALUE = value * (rootSize / unitSize);
     return `${ADJUSTED_VALUE}${newUnit}`;
   }

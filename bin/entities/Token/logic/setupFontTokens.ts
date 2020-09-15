@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeFontTokens } from '../index';
 import { FontTokens } from '../../../contracts/Tokens';
+
+import { makeFontTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -22,17 +23,17 @@ export function setupFontTokens(fontFrame: Frame, usePostscriptFontNames = true)
 
   const fonts: Record<string, unknown> = {};
 
-  fontFrame.children.forEach((item: Frame) => {
+  const TOKENS = fontFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.name || !item.style) throw new Error(ErrorSetupFontTokensMissingProps);
 
-    const name = camelize(item.name);
+    const NAME = camelize(item.name);
 
     // Use Postscript font names or the default font family names (without spaces)
-    const font = usePostscriptFontNames
+    fonts[NAME] = usePostscriptFontNames
       ? item.style.fontPostScriptName
       : item.style.fontFamily.replace(' /g', '');
-
-    fonts[name] = font;
   });
 
   return makeFontTokens(fonts);

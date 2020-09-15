@@ -21,17 +21,23 @@ export function writeElements(elements: any[], config: Config): void {
 
     elements.forEach((element) => {
       const FIXED_CONFIG = makeFixedConfig(element, config);
-      if (!config.skipFileGeneration.skipReact) writeComponent(FIXED_CONFIG); // Write React component - is skipped by default if file already exists
-      if (!config.skipFileGeneration.skipStyled) writeStyled(FIXED_CONFIG); // Write Styled component - is skipped by default if file already exists
-      if (!config.skipFileGeneration.skipCss) writeCss(FIXED_CONFIG); // Write CSS - is always overwritten
-      if (!config.skipFileGeneration.skipStorybook) writeStorybook(FIXED_CONFIG); // Write Storybook component - is skipped by default if file already exists
-      if (!config.skipFileGeneration.skipDescription) writeDescription(FIXED_CONFIG); // Write description markdown file - is always overwritten
+      if (!config.skipFileGeneration.skipReact) writeComponent(FIXED_CONFIG);
+      if (!config.skipFileGeneration.skipStyled) writeStyled(FIXED_CONFIG);
+      if (!config.skipFileGeneration.skipCss) writeCss(FIXED_CONFIG);
+      if (!config.skipFileGeneration.skipStorybook) writeStorybook(FIXED_CONFIG);
+      if (!config.skipFileGeneration.skipDescription) writeDescription(FIXED_CONFIG);
     });
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorWriteElements);
   }
 }
 
+/**
+ * @description Create an updated user configuration that is able to drive write operations
+ *
+ * @param element Figmagic element
+ * @param config Write operation
+ */
 const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperation => {
   const html = element.html || ' ';
   const css = element.css || ' ';
@@ -64,9 +70,14 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
   } as any;
 };
 
+/**
+ * @description Helper to write component
+ *
+ * @param config Write operation
+ */
 const writeComponent = (config: WriteOperation): void => {
-  const fileExists = fs.existsSync(`${config.folder}/${config.fixedName}.jsx`);
-  if (!fileExists || config.forceUpdate)
+  const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}.jsx`);
+  if (!FILE_EXISTS || config.forceUpdate)
     writeFile({
       type: 'component',
       file: config.html,
@@ -78,9 +89,14 @@ const writeComponent = (config: WriteOperation): void => {
     } as WriteOperation);
 };
 
+/**
+ * @description Helper to write Styled Component file
+ *
+ * @param config Write operation
+ */
 const writeStyled = (config: WriteOperation): void => {
-  const fileExists = fs.existsSync(`${config.folder}/${config.fixedName}Styled.jsx`);
-  if (!fileExists || config.forceUpdate)
+  const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}Styled.jsx`);
+  if (!FILE_EXISTS || config.forceUpdate)
     writeFile({
       type: 'style',
       file: config.css,
@@ -92,6 +108,11 @@ const writeStyled = (config: WriteOperation): void => {
     } as WriteOperation);
 };
 
+/**
+ * @description Helper to write CSS file
+ *
+ * @param config Write operation
+ */
 const writeCss = (config: WriteOperation): void => {
   writeFile({
     type: 'css',
@@ -104,9 +125,14 @@ const writeCss = (config: WriteOperation): void => {
   } as WriteOperation);
 };
 
+/**
+ * @description Helper to write Storybook component
+ *
+ * @param config Write operation
+ */
 const writeStorybook = (config: WriteOperation): void => {
-  const fileExists = fs.existsSync(`${config.folder}/${config.fixedName}.stories.js`);
-  if (!fileExists || config.forceUpdate)
+  const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}.stories.js`);
+  if (!FILE_EXISTS || config.forceUpdate)
     writeFile({
       type: 'story',
       file: config.css,
@@ -118,6 +144,11 @@ const writeStorybook = (config: WriteOperation): void => {
     } as WriteOperation);
 };
 
+/**
+ * @description Helper to write Markdown description
+ *
+ * @param config Write operation
+ */
 const writeDescription = (config: WriteOperation): void => {
   writeFile({
     type: 'description',

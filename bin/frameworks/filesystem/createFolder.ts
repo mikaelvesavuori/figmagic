@@ -12,6 +12,6 @@ export function createFolder(dir: string): void {
     if (!dir) throw new Error(ErrorCreateFolder);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorCreateFolder);
   }
 }

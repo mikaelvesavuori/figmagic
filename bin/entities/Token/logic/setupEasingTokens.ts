@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeEasingTokens } from '../index';
 import { EasingTokens } from '../../../contracts/Tokens';
+
+import { makeEasingTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -21,10 +22,12 @@ export function setupEasingTokens(easingFrame: Frame): EasingTokens {
 
   const easings: Record<string, unknown> = {};
 
-  easingFrame.children.forEach((item: Frame) => {
+  const TOKENS = easingFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.name || !item.characters) throw new Error(ErrorSetupEasingTokensMissingProps);
-    const name = camelize(item.name);
-    easings[name] = item.characters.trim();
+    const NAME = camelize(item.name);
+    easings[NAME] = item.characters.trim();
   });
 
   return makeEasingTokens(easings);

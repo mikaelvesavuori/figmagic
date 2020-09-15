@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeDurationTokens } from '../index';
 import { DurationTokens } from '../../../contracts/Tokens';
+
+import { makeDurationTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -21,10 +22,12 @@ export function setupDurationTokens(durationFrame: Frame): DurationTokens {
 
   const durations: Record<string, unknown> = {};
 
-  durationFrame.children.forEach((item: Frame) => {
+  const TOKENS = durationFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.name || !item.characters) throw new Error(ErrorSetupDurationTokensMissingProps);
-    const name = camelize(item.name);
-    durations[name] = parseFloat(item.characters);
+    const NAME = camelize(item.name);
+    durations[NAME] = parseFloat(item.characters);
   });
 
   return makeDurationTokens(durations);

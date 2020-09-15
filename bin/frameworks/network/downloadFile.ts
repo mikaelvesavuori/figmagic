@@ -14,17 +14,17 @@ export async function downloadFile(url: string, path: string): Promise<void> {
   try {
     if (!url || !path) throw new Error(ErrorDownloadFile);
 
-    const response = await fetch(url);
-    if (response.status !== 200) return;
+    const RESPONSE = await fetch(url);
+    if (RESPONSE.status !== 200) return;
 
     return new Promise((resolve, reject) => {
       console.log(MsgDownloadFileWritingFile(path));
       const FILE = fs.createWriteStream(path);
-      response.body.pipe(FILE);
+      RESPONSE.body.pipe(FILE);
       FILE.on('error', () => reject('Error when downloading file!'));
       FILE.on('finish', () => resolve());
     });
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorDownloadFile);
   }
 }

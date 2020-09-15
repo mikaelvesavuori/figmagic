@@ -10,8 +10,12 @@ import { processNestedCss } from './logic/processNestedCss';
 import { MsgProcessElementsCreatingElement } from '../../frameworks/messages/messages';
 import { ErrorProcessElementsNoMainElement } from '../../frameworks/errors/errors';
 
-// TODO: Clean up and document
-
+/**
+ * @description TODO
+ * @param element TODO
+ * @param config TODO
+ * @param description TODO
+ */
 export const makeFigmagicElement = (
   element: FigmaElement,
   config: Config,
@@ -20,6 +24,9 @@ export const makeFigmagicElement = (
   return new FigmagicElement(element, config, description);
 };
 
+/**
+ * @description TODO
+ */
 export class FigmagicElement {
   id: string;
   name: string;
@@ -51,6 +58,8 @@ export class FigmagicElement {
     this.extraProps = ``;
     this.text = ``;
     this.imports = [];
+
+    this.init();
   }
 
   init(): void {
@@ -107,20 +116,6 @@ export class FigmagicElement {
     this.text += text;
   }
 
-  /*
-  private addImports(imports: string[]): void {
-    // Flatten imports and remove duplicates
-    this.imports = [...new Set(imports)];
-    //this.imports = imports.concat(imports);
-  }
-  */
-
-  /*
-  private setImports(imports: string[]): void {
-    this.imports = this.imports.concat(imports);
-  }
-  */
-
   /**
    * @description Get the type of HTML element this represents
    *
@@ -166,27 +161,6 @@ export class FigmagicElement {
         this.addExtraProps(`placeholder="${child.characters}"`);
       }
     });
-    /*
-    el.children?.filter((child: Frame) => {
-      if (
-        (child.type === 'GROUP' && child.name.toLowerCase() === 'placeholder') ||
-        (child.type === 'GROUP' && child.name.toLowerCase() === ':placeholder')
-      ) {
-        // TODO/Improvement: This seems to be mapped to a single child depth; could be recursive to support any depth
-        if (child.children) {
-          child.children.filter((subChild: Frame) => {
-            if (
-              (subChild.type === 'TEXT' && subChild.name.toLowerCase() === 'placeholder') ||
-              (subChild.type === 'TEXT' && subChild.name.toLowerCase() === ':placeholder')
-            ) {
-              if (!this.extraProps.includes(`placeholder="${subChild.characters}"`))
-                this.addExtraProps(`placeholder="${subChild.characters}" `);
-            }
-          });
-        }
-      }
-    });
-    */
   }
 
   private setElementType(): void {
@@ -195,7 +169,6 @@ export class FigmagicElement {
         const _TYPE = this.description.match(/type=(.*)/);
         if (_TYPE && _TYPE[1]) return _TYPE[1];
       })();
-      //this.addExtraProps(` type="${TYPE}"`);
       if (this.extraProps && !this.extraProps.includes(`type="${TYPE}`))
         this.addExtraProps(`type="${TYPE}" `);
     }
@@ -207,7 +180,6 @@ export class FigmagicElement {
    * @param element Element
    */
   private handleNestedElements(): UpdatedCssAndImports {
-    // TODO/BUG: Element like Checkbox that has a combination of "flat"/root element, and nested groups will fail and collapse in CSS?
     try {
       let css = ``;
       let imports: Record<string, unknown>[] = [];
@@ -240,9 +212,7 @@ export class FigmagicElement {
           this.config.outputTokenFormat
         );
 
-        const SELECTOR_TYPE = '.'; // Check and set correct selector type: class or pseudo-element
-
-        css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${updatedCss}}`;
+        css += `\n.${FIXED_NAME} {\n${updatedCss}}`; // Add 'dot' selector
         imports = imports.concat(updatedImports);
 
         if (TEXT_ELEMENT) {

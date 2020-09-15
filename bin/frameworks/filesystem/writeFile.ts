@@ -39,6 +39,6 @@ export function writeFile(writeOperation: WriteOperation): void {
     const { filePath, fileContent } = prepareWrite(prepareWriteOperation);
     write(filePath, fileContent);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorWriteFile);
   }
 }

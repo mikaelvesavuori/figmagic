@@ -19,10 +19,10 @@ export const getFileList = (
   if (!imageResponse || !ids || !outputFormatGraphics) throw new Error(ErrorGetFileList);
 
   return Object.entries(imageResponse.images).map((image) => {
-    const match = ids.filter((id) => id.id === image[0]);
+    const MATCH = ids.filter((id) => id.id === image[0]);
     return {
       url: image[1],
-      file: `${camelize(match[0].name)}.${outputFormatGraphics}`
+      file: `${camelize(MATCH[0].name)}.${outputFormatGraphics}`
     } as FileList;
   });
 };

@@ -41,9 +41,19 @@ import { setupEasingTokens } from './logic/setupEasingTokens';
 import { ignoreElementsKeywords } from '../../frameworks/system/ignoreElementsKeywords';
 import { ErrorExtractTokens, ErrorExtractTokensNoConfig } from '../../frameworks/errors/errors';
 
+/**
+ * @description TODO
+ *
+ * @param token TODO
+ * @param tokenName TODO
+ * @param config TODO
+ */
 export const makeToken = (token: Frame, tokenName: string, config: Config): Token =>
   new Token(token, tokenName, config);
 
+/**
+ * @description TODO
+ */
 export class Token {
   token: Frame;
   tokenName: string;
@@ -164,20 +174,28 @@ export class Token {
   };
 }
 
-export const makeBorderWidthTokens = (obj: object): BorderWidthTokens => obj as BorderWidthTokens;
-export const makeColorTokens = (obj: object): ColorTokens => obj as ColorTokens;
-export const makeDelayTokens = (obj: object): DelayTokens => obj as DelayTokens;
-export const makeDurationTokens = (obj: object): DurationTokens => obj as DurationTokens;
-export const makeEasingTokens = (obj: object): EasingTokens => obj as EasingTokens;
-export const makeFontSizeTokens = (obj: object): FontSizeTokens => obj as FontSizeTokens;
-export const makeFontTokens = (obj: object): FontTokens => obj as FontTokens;
-export const makeFontWeightTokens = (obj: object): FontWeightTokens => obj as FontWeightTokens;
-export const makeLetterSpacingTokens = (obj: object): LetterSpacingTokens =>
+/**
+ * @description TODO
+ * @param obj TODO
+ */
+export const makeBorderWidthTokens = (obj: Record<any, any>): BorderWidthTokens =>
+  obj as BorderWidthTokens;
+export const makeColorTokens = (obj: Record<any, any>): ColorTokens => obj as ColorTokens;
+export const makeDelayTokens = (obj: Record<any, any>): DelayTokens => obj as DelayTokens;
+export const makeDurationTokens = (obj: Record<any, any>): DurationTokens => obj as DurationTokens;
+export const makeEasingTokens = (obj: Record<any, any>): EasingTokens => obj as EasingTokens;
+export const makeFontSizeTokens = (obj: Record<any, any>): FontSizeTokens => obj as FontSizeTokens;
+export const makeFontTokens = (obj: Record<any, any>): FontTokens => obj as FontTokens;
+export const makeFontWeightTokens = (obj: Record<any, any>): FontWeightTokens =>
+  obj as FontWeightTokens;
+export const makeLetterSpacingTokens = (obj: Record<any, any>): LetterSpacingTokens =>
   obj as LetterSpacingTokens;
-export const makeLineHeightTokens = (obj: object): LineHeightTokens => obj as LineHeightTokens;
-export const makeMediaQueryTokens = (obj: object): MediaQueryTokens => obj as MediaQueryTokens;
-export const makeOpacityTokens = (obj: object): OpacityTokens => obj as OpacityTokens;
-export const makeRadiusTokens = (obj: object): RadiusTokens => obj as RadiusTokens;
-export const makeShadowTokens = (obj: object): ShadowTokens => obj as ShadowTokens;
-export const makeSpacingTokens = (obj: object): SpacingTokens => obj as SpacingTokens;
-export const makeZindexTokens = (obj: object): ZindexTokens => obj as ZindexTokens;
+export const makeLineHeightTokens = (obj: Record<any, any>): LineHeightTokens =>
+  obj as LineHeightTokens;
+export const makeMediaQueryTokens = (obj: Record<any, any>): MediaQueryTokens =>
+  obj as MediaQueryTokens;
+export const makeOpacityTokens = (obj: Record<any, any>): OpacityTokens => obj as OpacityTokens;
+export const makeRadiusTokens = (obj: Record<any, any>): RadiusTokens => obj as RadiusTokens;
+export const makeShadowTokens = (obj: Record<any, any>): ShadowTokens => obj as ShadowTokens;
+export const makeSpacingTokens = (obj: Record<any, any>): SpacingTokens => obj as SpacingTokens;
+export const makeZindexTokens = (obj: Record<any, any>): ZindexTokens => obj as ZindexTokens;

@@ -14,6 +14,6 @@ export function write(filePath: string, fileContent: string): void {
     if (!filePath || !fileContent) throw new Error(ErrorWrite);
     fs.writeFileSync(filePath, fileContent, 'utf-8');
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorWrite);
   }
 }

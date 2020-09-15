@@ -8,6 +8,29 @@ Respect the below and I will be happy to merge your work and credit you for it.
 
 - Follow the style and conventions already in place. Figmagic uses Typescript and attempts to do some sort of [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 - _As always, write clean, easy-to-read code. Prefer being slightly more verbose and semantic than being "efficient" and terse_, if such a choice is necessary. Write as if someone is going to contribute on top of your code base tomorrow without knowing you or your work.
+- Follow importing by highest-level components at top, and detail-oriented components at bottom. Example:
+
+```
+import { FRAME as Frame } from '../../../contracts/Figma';
+import { BorderWidthTokens } from '../../../contracts/Tokens';
+
+import { makeBorderWidthTokens } from '../index';
+
+import { camelize } from '../../../frameworks/string/camelize';
+
+import {
+  ErrorSetupBorderWidthTokensNoFrame,
+  ErrorSetupBorderWidthTokensNoChildren,
+  ErrorSetupBorderWidthTokensMissingProps
+} from '../../../frameworks/errors/errors';
+```
+
+1. Entities
+2. Contracts
+3. Use cases or other high-level files
+4. Same-level files
+5. Frameworks
+6. Messages, errors, warnings (separated)
 
 ### Tests
 

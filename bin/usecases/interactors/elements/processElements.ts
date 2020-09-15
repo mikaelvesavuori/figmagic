@@ -20,25 +20,17 @@ import { ErrorProcessElements } from '../../../frameworks/errors/errors';
 export function processElements(
   elementsPage: any[],
   config: Config,
-  components: Record<string, unknown>
+  components: Record<string, any>
 ): FigmagicElement[] {
   try {
     if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
 
     const filteredElements = elementsPage.filter((element) => element.type === 'COMPONENT');
     const parsedElements = filteredElements.map((element: FigmaElement) => {
-      const el = makeFigmagicElement(
-        element,
-        config,
-        // @ts-ignore
-        components[element.id].description
-      );
-
-      el.init();
-      return el;
+      return makeFigmagicElement(element, config, components[element.id].description);
     });
     return parsedElements;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorProcessElements);
   }
 }

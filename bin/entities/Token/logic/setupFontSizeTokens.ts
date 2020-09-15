@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeFontSizeTokens } from '../index';
 import { FontSizeTokens } from '../../../contracts/Tokens';
+
+import { makeFontSizeTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -30,13 +31,15 @@ export function setupFontSizeTokens(
 
   const fontSizes: Record<string, unknown> = {};
 
-  fontSizeFrame.children.forEach((item: Frame) => {
+  const TOKENS = fontSizeFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.name || !item.style) throw new Error(ErrorSetupFontSizeTokensMissingProps);
     if (!item.style.fontSize) throw new Error(ErrorSetupFontSizeTokensMissingSize);
 
-    const name = camelize(item.name);
+    const NAME = camelize(item.name);
     const FONT_SIZE = ((item.style.fontSize as unknown) as number) / remSize + fontUnit;
-    fontSizes[name] = FONT_SIZE;
+    fontSizes[NAME] = FONT_SIZE;
   });
 
   return makeFontSizeTokens(fontSizes);

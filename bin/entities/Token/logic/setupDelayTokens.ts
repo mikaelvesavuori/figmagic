@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeDelayTokens } from '../index';
 import { DelayTokens } from '../../../contracts/Tokens';
+
+import { makeDelayTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -21,10 +22,12 @@ export function setupDelayTokens(delayFrame: Frame): DelayTokens {
 
   const delays: Record<string, unknown> = {};
 
-  delayFrame.children.forEach((item: Frame) => {
+  const TOKENS = delayFrame.children;
+
+  TOKENS.forEach((item: Frame) => {
     if (!item.name || !item.characters) throw new Error(ErrorSetupDelayTokensMissingProps);
-    const name = camelize(item.name);
-    delays[name] = parseFloat(item.characters);
+    const NAME = camelize(item.name);
+    delays[NAME] = parseFloat(item.characters);
   });
 
   return makeDelayTokens(delays);

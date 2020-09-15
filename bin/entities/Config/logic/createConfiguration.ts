@@ -17,7 +17,7 @@ import {
 import { Config } from '../../../contracts/Config';
 
 /**
- * @description Create configuration object
+ * @description Create Figmagic configuration object.
  *
  * Prioritization:
  * 1. User-provided configuration through `.figmagicrc`
@@ -32,7 +32,7 @@ import { Config } from '../../../contracts/Config';
 export async function createConfiguration(
   baseConfig: Config,
   userConfigPath: string,
-  ...cliArgs: any[]
+  cliArgs: string[]
 ): Promise<Config> {
   if (!baseConfig) throw new Error(ErrorCreateConfigurationNoDefault);
   if (!userConfigPath) throw new Error(ErrorCreateConfiguration);

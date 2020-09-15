@@ -1,4 +1,5 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
+
 import { ErrorGetIds } from '../../../frameworks/errors/errors';
 
 /**

@@ -6,6 +6,7 @@ import { createElements } from '../usecases/createElements';
 import { createGraphics } from '../usecases/createGraphics';
 
 import { MsgJobComplete } from '../frameworks/messages/messages';
+import { ErrorFigmagicController } from '../frameworks/errors/errors';
 
 /**
  * @description The main orchestration/controller point for Figmagic
@@ -20,6 +21,6 @@ export async function FigmagicController(config: Config, data: FigmaData): Promi
     if (config.syncGraphics) await createGraphics(config, data);
     console.log(MsgJobComplete);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorFigmagicController);
   }
 }

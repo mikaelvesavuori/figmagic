@@ -1,6 +1,7 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { makeLetterSpacingTokens } from '../index';
 import { LetterSpacingTokens } from '../../../contracts/Tokens';
+
+import { makeLetterSpacingTokens } from '../index';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -29,12 +30,14 @@ export function setupLetterSpacingTokens(
   if (!letterSpacingFrame) throw new Error(ErrorSetupLetterSpacingTokensNoFrame);
   if (!letterSpacingFrame.children) throw new Error(ErrorSetupLetterSpacingTokensNoChildren);
 
+  const TOKENS = letterSpacingFrame.children;
+
   // Reduce the children array to a tokens object
-  const letterSpacings = letterSpacingFrame.children.reduce(
+  const letterSpacings = TOKENS.reduce(
     (tokens: { [index: string]: any }, item: Frame) => {
       if (!item.name || !item.style) throw new Error(ErrorSetupLetterSpacingTokensMissingProps);
 
-      const name = camelize(item.name);
+      const NAME = camelize(item.name);
 
       // Assuming Figma API always export the node font-size as an integer in our case
       // https://www.figma.com/plugin-docs/api/TextNode/#fontsize
@@ -67,7 +70,7 @@ export function setupLetterSpacingTokens(
           break;
       }
 
-      tokens[name] = value;
+      tokens[NAME] = value;
 
       return tokens;
     },

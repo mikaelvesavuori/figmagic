@@ -23,13 +23,13 @@ async function main(): Promise<void> {
     // Setup environment and user configuration
     dotenv.config();
     const [, , ...CLI_ARGS] = process.argv;
-    const userConfigPath = path.join(`${process.cwd()}`, `.figmagicrc`);
-    const configuration = new Configuration(userConfigPath, ...CLI_ARGS);
-    const config: Config = await configuration.createConfig();
+    const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `.figmagicrc`);
+    const CONFIGURATION = new Configuration(USER_CONFIG_PATH, ...CLI_ARGS);
+    const CONFIG: Config = await CONFIGURATION.createConfig();
 
     // Get data
-    const { recompileLocal, outputFolderBaseFile, outputFileName, token, url } = config;
-    const data: FigmaData = await getData(
+    const { recompileLocal, outputFolderBaseFile, outputFileName, token, url } = CONFIG;
+    const DATA: FigmaData = await getData(
       recompileLocal,
       outputFolderBaseFile,
       outputFileName,
@@ -38,10 +38,10 @@ async function main(): Promise<void> {
     );
 
     // Write new JSON base data, unless user explicitly opts out
-    if (!recompileLocal) await writeBaseJson(outputFolderBaseFile, outputFileName, data);
+    if (!recompileLocal) await writeBaseJson(outputFolderBaseFile, outputFileName, DATA);
 
     // Run the controller
-    await FigmagicController(config, data);
+    await FigmagicController(CONFIG, DATA);
   } catch (error) {
     console.error(`${colors.FgRed}${error}`);
   }
