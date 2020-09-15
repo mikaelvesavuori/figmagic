@@ -221,7 +221,7 @@ export class FigmagicElement {
             this.config.remSize,
             this.config.outputTokenFormat
           );
-          css += `\n${SELECTOR_TYPE}${FIXED_NAME} {\n${updatedCss}}`;
+          css += `\n.${FIXED_NAME} {\n${updatedCss}}`;
           imports = imports.concat(updatedImports);
           this.text = TEXT_ELEMENT.characters || '';
         }

@@ -27,13 +27,10 @@ export function parseTypographyStylingFromElement(
     // TODO/BUG: This hardcodes token path, which should be customizable
     const PATH = process.env.IS_TEST ? path.join('testdata', 'tokens') : `tokens`;
 
-    // Get data from tokens
-    const colors = getFileContents(PATH, 'colors', outputTokenFormat);
-    const fontFamilies = getFileContents(PATH, 'fontFamilies', outputTokenFormat);
-    const fontSizes = getFileContents(PATH, 'fontSizes', outputTokenFormat);
-    const fontWeights = getFileContents(PATH, 'fontWeights', outputTokenFormat);
-    const letterSpacings = getFileContents(PATH, 'letterSpacings', outputTokenFormat);
-    const lineHeights = getFileContents(PATH, 'lineHeights', outputTokenFormat);
+    const { colors, fontFamilies, fontSizes, fontWeights, letterSpacings, lineHeights } = getFiles(
+      PATH,
+      outputTokenFormat
+    );
 
     let css = ``;
     const imports: Record<string, unknown>[] = [];
@@ -106,7 +103,7 @@ export function parseTypographyStylingFromElement(
 
     const LETTER_SPACING: number | null = getFontLetterSpacing(textElement);
     if (LETTER_SPACING && FONT_SIZE) {
-      // TODO: this duplicates the internal logic of the letter-spacing token processing, and makes the heavy assumption the expected unit is "em"
+      // TODO/BUG: this duplicates the internal logic of the letter-spacing token processing, and makes the heavy assumption the expected unit is "em"
       const size = LETTER_SPACING / FONT_SIZE;
       const sizeString = `${size}em`;
 
@@ -130,13 +127,31 @@ export function parseTypographyStylingFromElement(
     const FONT_CASE = getFontCase(textElement);
     if (FONT_CASE) css += `text-transform: ${FONT_CASE};\n`;
 
-    const newCss = reduceCssDuplicates(css);
+    const NEW_CSS = reduceCssDuplicates(css);
 
-    return { updatedCss: newCss, updatedImports: imports };
+    return { updatedCss: NEW_CSS, updatedImports: imports };
   } catch (error) {
     throw new Error(error);
   }
 }
+
+const getFiles = (path: string, outputTokenFormat: string): any => {
+  const colors = getFileContents(path, 'colors', outputTokenFormat);
+  const fontFamilies = getFileContents(path, 'fontFamilies', outputTokenFormat);
+  const fontSizes = getFileContents(path, 'fontSizes', outputTokenFormat);
+  const fontWeights = getFileContents(path, 'fontWeights', outputTokenFormat);
+  const letterSpacings = getFileContents(path, 'letterSpacings', outputTokenFormat);
+  const lineHeights = getFileContents(path, 'lineHeights', outputTokenFormat);
+
+  return {
+    colors,
+    fontFamilies,
+    fontSizes,
+    fontWeights,
+    letterSpacings,
+    lineHeights
+  };
+};
 
 const reduceCssDuplicates = (css: string) =>
   Array.from(new Set(css.split(/;/gi)))
@@ -145,44 +160,31 @@ const reduceCssDuplicates = (css: string) =>
 
 const getFontColor = (textElement: any) => {
   if (textElement.fills) {
-    if (textElement.fills[0]) {
-      if (textElement.fills[0].type === 'SOLID') {
-        if (!textElement.fills[0].color) throw new Error('asdf'); // TODO: add real error
-        const R = roundColorValue(textElement.fills[0].color.r);
-        const G = roundColorValue(textElement.fills[0].color.g);
-        const B = roundColorValue(textElement.fills[0].color.b);
-        const A = roundColorValue(textElement.fills[0].color.a, 1);
-        return `rgba(${R}, ${G}, ${B}, ${A})`;
-      }
+    if (textElement.fills[0] && textElement.fills[0].type === 'SOLID') {
+      if (!textElement.fills[0].color) throw new Error('asdf'); // TODO: add real error
+      const R = roundColorValue(textElement.fills[0].color.r);
+      const G = roundColorValue(textElement.fills[0].color.g);
+      const B = roundColorValue(textElement.fills[0].color.b);
+      const A = roundColorValue(textElement.fills[0].color.a, 1);
+      return `rgba(${R}, ${G}, ${B}, ${A})`;
     }
   }
   return null;
 };
 
 const getFontSize = (textElement: any) => {
-  if (textElement.type === 'TEXT') {
-    if (textElement.style) {
-      return parseFloat(textElement.style.fontSize);
-    }
-  }
+  if (textElement.type === 'TEXT' && textElement.style)
+    return parseFloat(textElement.style.fontSize);
   return null;
 };
 
 const getFontFamily = (textElement: any) => {
-  if (textElement.type === 'TEXT') {
-    if (textElement.style) {
-      return textElement.style.fontPostScriptName; //fontFamily;
-    }
-  }
+  if (textElement.type === 'TEXT' && textElement.style) return textElement.style.fontPostScriptName;
   return null;
 };
 
 const getFontWeight = (textElement: any) => {
-  if (textElement.type === 'TEXT') {
-    if (textElement.style) {
-      return textElement.style.fontWeight;
-    }
-  }
+  if (textElement.type === 'TEXT' && textElement.style) textElement.style.fontWeight;
   return null;
 };
 
@@ -198,34 +200,22 @@ const getFontLineHeight = (textElement: any) => {
 };
 
 const getFontAlignment = (textElement: any) => {
-  if (textElement.type === 'TEXT') {
-    if (textElement.style) {
-      return textElement.style.textAlignHorizontal;
-    }
-  }
+  if (textElement.type === 'TEXT' && textElement.style)
+    return textElement.style.textAlignHorizontal;
   return null;
 };
 
 const getFontLetterSpacing = (textElement: any) => {
-  if (textElement.type === 'TEXT') {
-    if (textElement.style) {
-      if (textElement.style.letterSpacing) {
-        return parseFloat(textElement.style.letterSpacing);
-      }
-    }
-  }
+  if (textElement.type === 'TEXT' && textElement.style && textElement.style.letterSpacing)
+    return parseFloat(textElement.style.letterSpacing);
   return null;
 };
 
 const getFontCase = (textElement: any) => {
-  if (textElement.type === 'TEXT') {
-    if (textElement.style) {
-      if (textElement?.style.textCase) {
-        if (textElement.style.textCase === 'LOWER') return 'lowercase';
-        if (textElement.style.textCase === 'UPPER') return 'uppercase';
-        if (textElement.style.textCase === 'TITLE') return 'capitalize';
-      }
-    }
+  if (textElement.type === 'TEXT' && textElement.style && textElement.style.textCase) {
+    if (textElement.style.textCase === 'LOWER') return 'lowercase';
+    if (textElement.style.textCase === 'UPPER') return 'uppercase';
+    if (textElement.style.textCase === 'TITLE') return 'capitalize';
   }
   return null;
 };

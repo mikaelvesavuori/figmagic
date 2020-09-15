@@ -142,11 +142,11 @@ export function parseCssFromElement(
     }
 
     // Reduce all duplicates
-    const newCss = Array.from(new Set(css.split(/;/gi)))
+    const NEW_CSS = Array.from(new Set(css.split(/;/gi)))
       .toString()
       .replace(/,/gi, ';');
 
-    return { updatedCss: newCss, updatedImports: imports };
+    return { updatedCss: NEW_CSS, updatedImports: imports };
   } catch (error) {
     throw new Error(ErrorParseCssFromElement);
   }
