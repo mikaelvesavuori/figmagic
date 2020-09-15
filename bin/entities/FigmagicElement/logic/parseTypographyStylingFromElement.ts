@@ -39,7 +39,6 @@ export function parseTypographyStylingFromElement(
     const imports: Record<string, unknown>[] = [];
 
     const FONT_COLOR = getFontColor(textElement);
-
     if (FONT_COLOR) {
       const { updatedCss, updatedImports } = getTokenMatch(
         colors,
@@ -53,7 +52,6 @@ export function parseTypographyStylingFromElement(
     }
 
     const FONT_SIZE: number | null = getFontSize(textElement);
-
     if (FONT_SIZE) {
       const { updatedCss, updatedImports } = getTokenMatch(
         fontSizes,
@@ -63,12 +61,11 @@ export function parseTypographyStylingFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach((i: any) => imports.push(i));
+      updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
     }
 
     // BUG? Will only work correctly with Postscript name?
     const FONT_FAMILY = getFontFamily(textElement);
-
     if (FONT_FAMILY) {
       const { updatedCss, updatedImports } = getTokenMatch(
         fontFamilies,
@@ -82,7 +79,6 @@ export function parseTypographyStylingFromElement(
     }
 
     const FONT_WEIGHT = getFontWeight(textElement);
-
     if (FONT_WEIGHT) {
       const { updatedCss, updatedImports } = getTokenMatch(
         fontWeights,
@@ -96,7 +92,6 @@ export function parseTypographyStylingFromElement(
     }
 
     const FONT_LINE_HEIGHT = getFontLineHeight(textElement);
-
     if (FONT_LINE_HEIGHT) {
       const { updatedCss, updatedImports } = getTokenMatch(
         lineHeights,
@@ -109,10 +104,7 @@ export function parseTypographyStylingFromElement(
       updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
     }
 
-    const FONT_ALIGNMENT = getFontAlignment(textElement);
-
     const LETTER_SPACING: number | null = getFontLetterSpacing(textElement);
-
     if (LETTER_SPACING && FONT_SIZE) {
       // TODO: this duplicates the internal logic of the letter-spacing token processing, and makes the heavy assumption the expected unit is "em"
       const size = LETTER_SPACING / FONT_SIZE;
@@ -129,13 +121,13 @@ export function parseTypographyStylingFromElement(
       updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
     }
 
+    const FONT_ALIGNMENT = getFontAlignment(textElement);
     if (FONT_ALIGNMENT) {
       const ALIGNMENT = FONT_ALIGNMENT.toLowerCase();
       css += `text-align: ${ALIGNMENT};\n`;
     }
 
     const FONT_CASE = getFontCase(textElement);
-
     if (FONT_CASE) css += `text-transform: ${FONT_CASE};\n`;
 
     const newCss = reduceCssDuplicates(css);
@@ -151,22 +143,21 @@ const reduceCssDuplicates = (css: string) =>
     .toString()
     .replace(/,/gi, ';');
 
-const getFontColor = (textElement: any) =>
-  (() => {
-    if (textElement.fills) {
-      if (textElement.fills[0]) {
-        if (textElement.fills[0].type === 'SOLID') {
-          if (!textElement.fills[0].color) throw new Error('asdf'); // TODO: add real error
-          const R = roundColorValue(textElement.fills[0].color.r);
-          const G = roundColorValue(textElement.fills[0].color.g);
-          const B = roundColorValue(textElement.fills[0].color.b);
-          const A = roundColorValue(textElement.fills[0].color.a, 1);
-          return `rgba(${R}, ${G}, ${B}, ${A})`;
-        }
+const getFontColor = (textElement: any) => {
+  if (textElement.fills) {
+    if (textElement.fills[0]) {
+      if (textElement.fills[0].type === 'SOLID') {
+        if (!textElement.fills[0].color) throw new Error('asdf'); // TODO: add real error
+        const R = roundColorValue(textElement.fills[0].color.r);
+        const G = roundColorValue(textElement.fills[0].color.g);
+        const B = roundColorValue(textElement.fills[0].color.b);
+        const A = roundColorValue(textElement.fills[0].color.a, 1);
+        return `rgba(${R}, ${G}, ${B}, ${A})`;
       }
     }
-    return null;
-  })();
+  }
+  return null;
+};
 
 const getFontSize = (textElement: any) => {
   if (textElement.type === 'TEXT') {
