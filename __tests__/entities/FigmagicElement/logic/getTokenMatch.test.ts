@@ -10,6 +10,7 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
+  // TODO: Add test cases for each type
   test('It should match a non-token match', () => {
     expect(
       getTokenMatch(
@@ -40,7 +41,7 @@ describe('Success cases', () => {
         },
         'spacing',
         'padding',
-        `{ top: 16, bottom: 16, left: 16, right: 16 }`,
+        { top: 16, bottom: 16, left: 16, right: 16 },
         16
       )
     ).toEqual(expect.objectContaining({}));

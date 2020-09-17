@@ -62,33 +62,64 @@ text-align: center;
 text-transform: uppercase;
 }`;
 
-const expected = `width: 100%;
-height: \${spacing.big};
-border: 0;
-border-style: solid;
-border-width: \${borderWidths.hairline};
-border-color: \${colors.blue2};
-border-radius: \${radii.soft};
-color: \${colors.white};
-font-size: \${fontSizes.m};
-font-family: \${fontFamilies.bold};
-font-weight: \${fontWeights.bold};
-line-height: \${lineHeights.xs};
-letter-spacing: \${letterSpacings.wide};
-text-align: center;
-text-transform: uppercase;
+const expected = `
 
-&.ButtonError {
-  background-color: \${colors.red};
-}
+  &.ButtonError {
+    width: 100%;
+    height: \${spacing.big};
+    background-color: \${colors.red};
+    border: 0;
+    border-style: solid;
+    border-width: \${borderWidths.hairline};
+    border-color: \${colors.blue2};
+    border-radius: \${radii.soft};
+    width: 100%;
+    height: \${spacing.big};
+    background-color: \${colors.orange};
+    border: 0;
+    border-style: solid;
+    border-width: \${borderWidths.hairline};
+    border-color: \${colors.blue2};
+    border-radius: \${radii.soft};
+  }
 
-&.ButtonWarning {
-  background-color: \${colors.orange};
-}
+  &.ButtonRegular {
+    width: 100%;
+    height: \${spacing.big};
+    background-color: \${colors.blue1};
+    border: 0;
+    border-style: solid;
+    border-width: \${borderWidths.hairline};
+    border-color: \${colors.blue2};
+    border-radius: \${radii.soft};
+    color: \${colors.white};
+    font-size: \${fontSizes.m};
+    font-family: \${fontFamilies.bold};
+    font-weight: \${fontWeights.bold};
+    line-height: \${lineHeights.xs};
+    letter-spacing: \${letterSpacings.wide};
+    text-align: center;
+    text-transform: uppercase;
+  }
 
-&.ButtonRegular {
-  background-color: \${colors.blue1};
-}
+  &.ButtonWarning {
+    color: \${colors.white};
+    font-size: \${fontSizes.m};
+    font-family: \${fontFamilies.bold};
+    font-weight: \${fontWeights.bold};
+    line-height: \${lineHeights.xs};
+    letter-spacing: \${letterSpacings.wide};
+    text-align: center;
+    text-transform: uppercase;
+    color: \${colors.white};
+    font-size: \${fontSizes.m};
+    font-family: \${fontFamilies.bold};
+    font-weight: \${fontWeights.bold};
+    line-height: \${lineHeights.xs};
+    letter-spacing: \${letterSpacings.wide};
+    text-align: center;
+    text-transform: uppercase;
+  }
 
 `;
 

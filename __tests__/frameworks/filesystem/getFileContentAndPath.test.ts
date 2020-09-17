@@ -10,22 +10,20 @@ import {
 } from '../../../testdata/getFileContentAndPathOperation';
 
 import {
-  ErrorGetFileContentAndPath,
-  ErrorGetFileContentAndPathMissingFields,
-  ErrorGetFileContentAndPathNoReturn
+  ErrorGetFileContentAndPath
+  //ErrorGetFileContentAndPathMissingFields,
+  //ErrorGetFileContentAndPathNoReturn
 } from '../../../bin/frameworks/errors/errors';
 
 describe('Failure cases', () => {
   test('It should throw an error if running without arguments', () => {
     // @ts-ignore
-    expect(() => getFileContentAndPath()).toThrowError(`Error: ${ErrorGetFileContentAndPath}`);
+    expect(() => getFileContentAndPath()).toThrowError(ErrorGetFileContentAndPath);
   });
 
   test('It should throw an error if missing any fields', () => {
     // @ts-ignore
-    expect(() => getFileContentAndPath({})).toThrowError(
-      `Error: ${ErrorGetFileContentAndPathMissingFields}`
-    );
+    expect(() => getFileContentAndPath({})).toThrowError(ErrorGetFileContentAndPath);
   });
 
   test('It should throw an error if it cannot resolve a valid type', () => {
@@ -41,7 +39,7 @@ describe('Failure cases', () => {
     expect(() =>
       // @ts-ignore
       getFileContentAndPath(invalidContentType)
-    ).toThrowError(`Error: ${ErrorGetFileContentAndPathNoReturn}`);
+    ).toThrowError(ErrorGetFileContentAndPath);
   });
 });
 

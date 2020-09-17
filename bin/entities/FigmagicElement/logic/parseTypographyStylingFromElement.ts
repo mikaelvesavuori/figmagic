@@ -158,7 +158,7 @@ const reduceCssDuplicates = (css: string) =>
     .toString()
     .replace(/,/gi, ';');
 
-const getFontColor = (textElement: any) => {
+const getFontColor = (textElement: Frame) => {
   if (textElement.fills) {
     if (textElement.fills[0] && textElement.fills[0].type === 'SOLID') {
       if (!textElement.fills[0].color) throw new Error('asdf'); // TODO: add real error
@@ -172,23 +172,23 @@ const getFontColor = (textElement: any) => {
   return null;
 };
 
-const getFontSize = (textElement: any) => {
+const getFontSize = (textElement: Frame): number | null => {
   if (textElement.type === 'TEXT' && textElement.style)
     return parseFloat(textElement.style.fontSize);
   return null;
 };
 
-const getFontFamily = (textElement: any) => {
+const getFontFamily = (textElement: Frame): string | null => {
   if (textElement.type === 'TEXT' && textElement.style) return textElement.style.fontPostScriptName;
   return null;
 };
 
-const getFontWeight = (textElement: any) => {
+const getFontWeight = (textElement: Frame): string | null => {
   if (textElement.type === 'TEXT' && textElement.style) textElement.style.fontWeight;
   return null;
 };
 
-const getFontLineHeight = (textElement: any) => {
+const getFontLineHeight = (textElement: Frame): number | null => {
   if (textElement.type === 'TEXT') {
     if (textElement.style) {
       if (textElement.style.lineHeightPercentFontSize) {
@@ -199,19 +199,19 @@ const getFontLineHeight = (textElement: any) => {
   return null;
 };
 
-const getFontAlignment = (textElement: any) => {
+const getFontAlignment = (textElement: Frame): string | null => {
   if (textElement.type === 'TEXT' && textElement.style)
     return textElement.style.textAlignHorizontal;
   return null;
 };
 
-const getFontLetterSpacing = (textElement: any) => {
+const getFontLetterSpacing = (textElement: Frame): number | null => {
   if (textElement.type === 'TEXT' && textElement.style && textElement.style.letterSpacing)
     return parseFloat(textElement.style.letterSpacing);
   return null;
 };
 
-const getFontCase = (textElement: any) => {
+const getFontCase = (textElement: Frame): string | null => {
   if (textElement.type === 'TEXT' && textElement.style && textElement.style.textCase) {
     if (textElement.style.textCase === 'LOWER') return 'lowercase';
     if (textElement.style.textCase === 'UPPER') return 'uppercase';

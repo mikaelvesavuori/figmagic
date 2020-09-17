@@ -9,7 +9,7 @@ describe('Success cases', () => {
     const USER_CONFIG_PATH = path.join(process.cwd(), 'testdata', 'figmagicrc');
     const CLI_ARGS = ['-t', 'asdf1234'];
 
-    expect(await createConfiguration(baseConfig, USER_CONFIG_PATH, ...CLI_ARGS)).toEqual(
+    expect(await createConfiguration(baseConfig, USER_CONFIG_PATH, CLI_ARGS)).toEqual(
       expect.objectContaining({
         debugMode: false,
         fontUnit: 'rem',
@@ -59,7 +59,7 @@ describe('Success cases', () => {
     // mock console.log to reduce the noise in the terminal
     const mocks = [jest.spyOn(global.console, 'log').mockImplementation()];
 
-    const configuration = await createConfiguration({} as Config, USER_CONFIG_PATH, ...['--debug']);
+    const configuration = await createConfiguration({} as Config, USER_CONFIG_PATH, ['--debug']);
 
     expect(global.console.log).toHaveBeenCalledWith(configuration);
 

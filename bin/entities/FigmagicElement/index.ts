@@ -128,8 +128,6 @@ export class FigmagicElement {
       return 'div';
     })();
 
-    console.log('ELEMENT_TYPE', ELEMENT_TYPE);
-
     const HTML = `<${ELEMENT_TYPE}>{{TEXT}}</${ELEMENT_TYPE}>`;
     this.addHtml(HTML);
     this.element = ELEMENT_TYPE;

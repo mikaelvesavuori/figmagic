@@ -44,13 +44,7 @@ export function parseCssFromElement(
     // TODO/BUG: This hardcodes token path, which should be customizable
     const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : path.join(`tokens`);
 
-    // Get data from tokens
-    // TODO: Create support function for loading and slicing
-    const borderWidths = getFileContents(PATH, 'borderWidths', outputTokenFormat);
-    const colors = getFileContents(PATH, 'colors', outputTokenFormat);
-    const radii = getFileContents(PATH, 'radii', outputTokenFormat);
-    const shadows = getFileContents(PATH, 'shadows', outputTokenFormat);
-    const spacing = getFileContents(PATH, 'spacing', outputTokenFormat);
+    const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputTokenFormat);
 
     // Start parsing
     let css = ``;
@@ -66,19 +60,21 @@ export function parseCssFromElement(
       ? getPaddingX(textElement, layoutElement)
       : null;
 
-    const PADDING = {
-      ...PADDING_Y,
-      ...PADDING_X
-    };
+    if (PADDING_Y && PADDING_X) {
+      const PADDING = {
+        ...PADDING_Y,
+        ...PADDING_X
+      };
 
-    const PARSED_PADDING = parsePadding(css, imports, {
-      padding: PADDING,
-      spacing,
-      remSize
-    });
+      const PARSED_PADDING = parsePadding(css, imports, {
+        padding: PADDING,
+        spacing,
+        remSize
+      });
 
-    css += PARSED_PADDING.css;
-    if (PARSED_PADDING.imports) imports = imports.concat(PARSED_PADDING.imports);
+      css += PARSED_PADDING.css;
+      if (PARSED_PADDING.imports) imports = imports.concat(PARSED_PADDING.imports);
+    }
 
     const HEIGHT = layoutElement.absoluteBoundingBox
       ? layoutElement.absoluteBoundingBox.height
@@ -151,3 +147,23 @@ export function parseCssFromElement(
     throw new Error(ErrorParseCssFromElement);
   }
 }
+
+const getFiles = (path: string, outputTokenFormat: string): any => {
+  try {
+    const borderWidths = getFileContents(path, 'borderWidths', outputTokenFormat);
+    const colors = getFileContents(path, 'colors', outputTokenFormat);
+    const radii = getFileContents(path, 'radii', outputTokenFormat);
+    const shadows = getFileContents(path, 'shadows', outputTokenFormat);
+    const spacing = getFileContents(path, 'spacing', outputTokenFormat);
+
+    return {
+      borderWidths,
+      colors,
+      radii,
+      shadows,
+      spacing
+    };
+  } catch (error) {
+    throw new Error(error); // TODO: Add real error
+  }
+};

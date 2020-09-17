@@ -8,6 +8,8 @@ import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
 import { ErrorGetPaddingX, ErrorGetPaddingY } from '../../../frameworks/errors/errors';
 
+// TODO: Refactor according to Codescene
+
 export type PaddingVertical = {
   top: number;
   bottom: number;
@@ -62,19 +64,16 @@ export function getPaddingX(textElement: Frame, element: Frame): PaddingHorizont
   try {
     if (!textElement) return null;
 
-    if (
-      !element.absoluteBoundingBox ||
-      !element.absoluteBoundingBox.width ||
-      !element.absoluteBoundingBox.x ||
-      !textElement.absoluteBoundingBox ||
-      !textElement.absoluteBoundingBox.width ||
-      !textElement.absoluteBoundingBox.x
-    )
-      throw new Error('asdf'); // TODO: add real error
+    if (!element.absoluteBoundingBox) throw new Error('asdf'); // TODO: add real error
 
+    // TODO: Fix this
+    // @ts-ignore
     const PARENT_WIDTH = element.absoluteBoundingBox.width;
+    // @ts-ignore
     const TEXT_WIDTH = textElement.absoluteBoundingBox.width;
+    // @ts-ignore
     const PADDING_LEFT = textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x;
+    // @ts-ignore
     const PADDING_RIGHT = PARENT_WIDTH - (PADDING_LEFT + TEXT_WIDTH);
 
     return {
@@ -374,19 +373,19 @@ export function getShadow(element: Frame): string | null {
     if (!(element.effects && element.effects[0] && element.effects[0].type === 'DROP_SHADOW'))
       return null;
 
-    const dropShadow = element.effects[0];
+    const DROP_SHADOW = element.effects[0];
 
-    const X = dropShadow.offset.x;
-    const Y = dropShadow.offset.y;
-    const RADIUS = dropShadow.radius;
-    const R = roundColorValue(dropShadow.color.r);
-    const G = roundColorValue(dropShadow.color.g);
-    const B = roundColorValue(dropShadow.color.b);
-    const A = roundColorValue(dropShadow.color.a, 1);
+    const X = DROP_SHADOW.offset.x;
+    const Y = DROP_SHADOW.offset.y;
+    const RADIUS = DROP_SHADOW.radius;
+    const R = roundColorValue(DROP_SHADOW.color.r);
+    const G = roundColorValue(DROP_SHADOW.color.g);
+    const B = roundColorValue(DROP_SHADOW.color.b);
+    const A = roundColorValue(DROP_SHADOW.color.a, 1);
 
     return `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error); // TODO: Add real error
   }
 }
 

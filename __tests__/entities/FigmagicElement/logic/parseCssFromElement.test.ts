@@ -1,3 +1,5 @@
+//import { FRAME as Frame } from '../../../../bin/contracts/Figma';
+
 import { parseCssFromElement } from '../../../../bin/entities/FigmagicElement/logic/parseCssFromElement';
 
 import { cssLayoutElement } from '../../../../testdata/elements/cssLayoutElement';
@@ -17,18 +19,20 @@ describe('Success cases', () => {
   test('It should successfully return an object (MJS), if given valid input', () => {
     // @ts-ignore
     expect(parseCssFromElement(cssLayoutElement, cssTypographyElement, 16, 'mjs')).toMatchObject({
-      css: `width: 100%;
+      updatedCss: `width: 100%;
 box-sizing: border-box;
-padding-top: 33.8125rem;
-height: \${spacing.big};
-background-color: rgba(0, 0, 0, 0);
 border: 0;
 border-style: solid;
+width: 100%;
+padding-top: 33.8125rem;
+padding-bottom: -33.8125rem;
+height: \${spacing.big};
+background-color: rgba(0; 0; 0; 0);
 border-width: \${borderWidths.hairline};
-border-color: rgba(0, 0, 0, 0);
+border-color: rgba(0; 0; 0; 0);
 border-radius: \${radii.soft};
 `,
-      imports: ['spacing', 'spacing', 'borderWidths', 'radii']
+      updatedImports: ['spacing', 'spacing', 'borderWidths', 'radii']
     });
   });
 
@@ -36,21 +40,24 @@ border-radius: \${radii.soft};
   test('It should apply linear gradient', () => {
     expect(
       // @ts-ignore
-      parseCssFromElement(cssLayoutElementGradient, cssTypographyElement, 16, true)
+      parseCssFromElement(cssLayoutElementGradient, cssTypographyElement, 16, 'mjs')
     ).toMatchObject({
-      css: `width: 100%;
+      updatedCss: `width: 100%;
 box-sizing: border-box;
-padding-bottom: 17.25rem;
-padding-right: 0.0625rem;
-height: 147;
-background: linear-gradient(rgba(255, 255, 255, 255) 20%, rgba(43, 83, 144, 252) 45%, rgba(1, 10, 23, 194) 73%);
 border: 0;
 border-style: solid;
+width: 100%;
+padding-top: -11.0625rem;
+padding-bottom: 17.25rem;
+padding-left: -0.0625rem;
+padding-right: 0.0625rem;
+height: 147;
+background: linear-gradient(rgba(255; 255; 255; 255) 20%; rgba(43; 83; 144; 252) 45%; rgba(1; 10; 23; 194) 73%);
 border-width: \${borderWidths.hairline};
 border-color: \${colors.blue2};
 border-radius: \${radii.soft};
 `,
-      imports: ['spacing', 'borderWidths', 'colors', 'radii']
+      updatedImports: ['spacing', 'borderWidths', 'colors', 'radii']
     });
   });
 
@@ -58,22 +65,25 @@ border-radius: \${radii.soft};
   test('It should apply shadow', () => {
     expect(
       // @ts-ignore
-      parseCssFromElement(cssLayoutElementShadow, cssTypographyElement, 16, true)
+      parseCssFromElement(cssLayoutElementShadow, cssTypographyElement, 16, 'mjs')
     ).toMatchObject({
-      css: `width: 100%;
+      updatedCss: `width: 100%;
 box-sizing: border-box;
-padding-top: 24.4375rem;
-padding-left: 25rem;
-height: \${spacing.big};
-background-color: \${colors.gray5};
 border: 0;
 border-style: solid;
+width: 100%;
+padding-top: 24.4375rem;
+padding-bottom: -24.4375rem;
+padding-left: 25rem;
+padding-right: -25rem;
+height: \${spacing.big};
+background-color: \${colors.gray5};
 border-width: \${borderWidths.regular};
 border-color: \${colors.black};
 border-radius: \${radii.rounded};
 box-shadow: \${shadows.deep};
 `,
-      imports: ['spacing', 'spacing', 'colors', 'borderWidths', 'colors', 'radii', 'shadows']
+      updatedImports: ['spacing', 'spacing', 'colors', 'borderWidths', 'colors', 'radii', 'shadows']
     });
   });
 });

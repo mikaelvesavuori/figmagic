@@ -76,7 +76,7 @@ function matchPadding(
 ): any {
   try {
     const keys: any = Object.keys(expectedValue);
-    if (typeof expectedValue !== 'object') return;
+    if (typeof expectedValue !== 'object') return; // TODO: Does this break something? At least breaks getTokenMatch padding test...
     keys.forEach((key: any) => {
       let foundMatch = false;
 
@@ -99,7 +99,7 @@ function matchPadding(
 
         // Write expected value as-is, since we couldn't match it to a token
         if (!foundMatch) {
-          console.warn(`${MsgGetTokenMatchNoMatch} ${property}: ${value}`);
+          console.log(`${MsgGetTokenMatchNoMatch} ${property}: ${value}`);
           css += `${property}-${key}: ${value};\n`;
         }
       }
@@ -155,7 +155,7 @@ function matchOther(
 
     // Write expected value as-is, since we couldn't match it to a token
     if (!foundMatch) {
-      console.warn(`${MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`);
+      console.log(`${MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`);
       css += `${property}: ${expectedValue};\n`;
     }
 

@@ -20,14 +20,14 @@ export function writeFile(writeOperation: WriteOperation): void {
     const { type, file, path, name, format, metadata, templates } = writeOperation;
     if (!file || !path || !name || !type) throw new Error(ErrorWriteFile);
 
-    const _type: any = typeof type === 'string' ? type.toLowerCase() : 'null';
+    const TYPE: any = typeof type === 'string' ? type.toLowerCase() : 'null';
 
-    if (!acceptedFileTypes.includes(_type)) throw new Error(ErrorWriteFileWrongType);
+    if (!acceptedFileTypes.includes(TYPE)) throw new Error(ErrorWriteFileWrongType);
 
     createFolder(path);
 
     const prepareWriteOperation: WriteOperation = {
-      type: _type,
+      type: TYPE,
       file,
       path,
       name,

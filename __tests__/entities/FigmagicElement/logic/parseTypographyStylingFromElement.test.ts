@@ -11,20 +11,20 @@ describe('Failure cases', () => {
 */
 
 describe('Success cases', () => {
-  test('It should successfully return an object, if given valid input', async () => {
-    await expect(
-      parseTypographyStylingFromElement(cssTypographyElement, 16, true)
-    ).resolves.toMatchObject({
-      css: `color: rgba(0, 0, 0, 0);
+  test('It should successfully return an object (MJS format), if given valid input', () => {
+    expect(
+      // @ts-ignore
+      parseTypographyStylingFromElement(cssTypographyElement, 16, 'mjs')
+    ).toMatchObject({
+      updatedCss: `color: rgba(0; 0; 0; 0);
 font-size: \${fontSizes.paragraph};
 font-family: \${fontFamilies.bold};
-font-weight: \${fontWeights.bold};
 line-height: \${lineHeights.xs};
 letter-spacing: \${letterSpacings.wide};
 text-align: center;
 text-transform: uppercase;
 `,
-      imports: ['fontSizes', 'fontFamilies', 'fontWeights', 'lineHeights', 'letterSpacings']
+      updatedImports: ['fontSizes', 'fontFamilies', 'lineHeights', 'letterSpacings']
     });
   });
 });
