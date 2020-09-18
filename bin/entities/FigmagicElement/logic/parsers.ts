@@ -62,9 +62,9 @@ export type PaddingHorizontal = {
  */
 export function getPaddingX(textElement: Frame, element: Frame): PaddingHorizontal | null {
   try {
-    if (!textElement) return null;
+    if (!textElement || !element) return null;
 
-    if (!element.absoluteBoundingBox) throw new Error('asdf'); // TODO: add real error
+    if (!textElement.absoluteBoundingBox || !element.absoluteBoundingBox) throw new Error('asdf'); // TODO: add real error
 
     // TODO: Fix this
     // @ts-ignore
@@ -103,6 +103,7 @@ export function parsePadding(
   params: PaddingParams
 ): ParsedElementMetadataInterface {
   try {
+    if (!css || !imports || !params) throw new Error('error'); // TODO: Add real error
     const { padding, spacing, remSize } = params;
 
     if (!(padding && Object.keys(padding).length > 0)) return { css, imports };
