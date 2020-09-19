@@ -451,7 +451,7 @@ export function parseShadow(
  * @param imports
  * @param updatedImports
  */
-function updateParsing(
+export function updateParsing(
   css: string,
   updatedCss: string | null,
   imports: any[],
@@ -465,6 +465,6 @@ function updateParsing(
 
     return { css: CSS, imports: IMPORTS };
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error); // TODO: Add real error
   }
 }
