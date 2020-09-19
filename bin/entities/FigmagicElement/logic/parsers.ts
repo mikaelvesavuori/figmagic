@@ -143,6 +143,7 @@ export function parseHeight(
   params: HeightParams
 ): ParsedElementMetadataInterface {
   try {
+    if (!css || !imports || !params) throw new Error('asdf'); // TODO: Add real error
     const { spacing, height, remSize } = params;
 
     const { updatedCss, updatedImports } = getTokenMatch(
@@ -164,6 +165,7 @@ export function parseHeight(
  */
 // TODO: Fix this
 export function getBackgroundColor(element: Frame): any {
+  if (!element) throw new Error('asdf'); // TODO: Add real error
   if (!element.fills) return null;
 
   // Check for solid fills
@@ -228,6 +230,8 @@ export function parseBackgroundColor(
   params: BackgroundColorParams
 ): ParsedElementMetadataInterface {
   try {
+    if (!css || !imports || !params) throw new Error('asdf'); // TODO: Add real error
+
     const { colors, backgroundColor, remSize } = params;
 
     const PROPERTY = backgroundColor.includes('gradient') ? 'background' : 'background-color';
@@ -265,6 +269,7 @@ export function parseBorderWidth(
   params: BorderWidthParams
 ): ParsedElementMetadataInterface {
   try {
+    if (!css || !imports || !params) throw new Error('asdf'); // TODO: Add real error
     const { borderWidths, borderWidth, remSize } = params;
 
     const { updatedCss, updatedImports } = getTokenMatch(
@@ -287,6 +292,7 @@ export function parseBorderWidth(
  * @param element
  */
 export function getBorderColor(element: Frame): string | null {
+  if (!element) throw new Error('asdf'); // TODO: Add real error
   if (!(element.strokes && element.strokes.length > 0 && element.strokes[0].type === 'SOLID'))
     return null;
 
@@ -317,6 +323,8 @@ export function parseBorderColor(
   params: BorderColorParams
 ): ParsedElementMetadataInterface {
   try {
+    if (!css || !imports || !params) throw new Error('asdf'); // TODO: Add real error
+
     const { colors, borderColor, remSize } = params;
 
     const { updatedCss, updatedImports } = getTokenMatch(
@@ -348,6 +356,8 @@ export function parseBorderRadius(
   params: BorderRadiusParams
 ): ParsedElementMetadataInterface {
   try {
+    if (!css || !imports || !params) throw new Error('asdf'); // TODO: Add real error
+
     const { radii, borderRadius, remSize } = params;
 
     const { updatedCss, updatedImports } = getTokenMatch(
@@ -371,6 +381,7 @@ export function parseBorderRadius(
  */
 export function getShadow(element: Frame): string | null {
   try {
+    if (!element) throw new Error('asdf'); // TODO: Add real error
     if (!(element.effects && element.effects[0] && element.effects[0].type === 'DROP_SHADOW'))
       return null;
 
@@ -409,7 +420,14 @@ export function parseShadow(
   params: ShadowParams
 ): ParsedElementMetadataInterface {
   try {
+    if (!css || !imports || !params) throw new Error('asdf'); // TODO: Add real error
+
     const { shadows, shadow, remSize } = params;
+
+    console.log('////');
+    console.log('css', css);
+    console.log('imports', imports);
+    console.log('params', params);
 
     const { updatedCss, updatedImports } = getTokenMatch(
       shadows,
@@ -421,7 +439,7 @@ export function parseShadow(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error); // TODO: Add real error
   }
 }
 
@@ -440,6 +458,8 @@ function updateParsing(
   updatedImports: any[] | null
 ): ParsedElementMetadataInterface {
   try {
+    if (!css || !imports) throw new Error('asdf'); // TODO: Add real error
+
     const CSS = updatedCss ? (css += updatedCss) : css;
     const IMPORTS = updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports;
 
