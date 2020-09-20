@@ -424,11 +424,6 @@ export function parseShadow(
 
     const { shadows, shadow, remSize } = params;
 
-    console.log('////');
-    console.log('css', css);
-    console.log('imports', imports);
-    console.log('params', params);
-
     const { updatedCss, updatedImports } = getTokenMatch(
       shadows,
       'shadows',

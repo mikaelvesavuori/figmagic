@@ -27,6 +27,7 @@ export function processElements(
 
     const filteredElements = elementsPage.filter((element) => element.type === 'COMPONENT');
     const parsedElements = filteredElements.map((element: FigmaElement) => {
+      console.log('/(// element', element);
       return makeFigmagicElement(element, config, components[element.id].description);
     });
     return parsedElements;
