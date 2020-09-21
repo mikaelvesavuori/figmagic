@@ -2,8 +2,6 @@ import { ErrorCreateEnumStringOutOfObject } from '../errors/errors';
 
 /**
  * @description Create enum string from object function
- *
- * @param obj The initial object with data
  */
 export function createEnumStringOutOfObject(obj: Record<string, unknown> | string): string {
   if (!obj) throw new Error(ErrorCreateEnumStringOutOfObject);

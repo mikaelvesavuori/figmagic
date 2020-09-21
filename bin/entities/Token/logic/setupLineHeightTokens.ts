@@ -15,9 +15,6 @@ import {
 
 /**
  * @description Places all Figma line heights into a clean object
- *
- * @param lineHeightFrame The line heights frame from Figma
- * @param remSize The body rem size
  */
 export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): LineHeightTokens {
   if (!lineHeightFrame) throw new Error(ErrorSetupLineHeightTokensNoFrame);

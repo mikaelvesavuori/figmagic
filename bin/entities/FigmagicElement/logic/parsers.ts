@@ -1,26 +1,31 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { ParsedElementMetadataInterface } from '../../../contracts/ParsedElementMetadataInterface';
-// TODO: ParsedElementMetadataDTO ?
 
 import { getTokenMatch } from './getTokenMatch';
 
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
-import { ErrorGetPaddingX, ErrorGetPaddingY } from '../../../frameworks/errors/errors';
-
-// TODO: Refactor according to Codescene
+import {
+  ErrorGetPaddingX,
+  ErrorGetPaddingY,
+  ErrorParseHeight,
+  ErrorParsePadding,
+  ErrorGetBackgroundColor,
+  ErrorParseBackgroundColor,
+  ErrorParseBorderWidth,
+  ErrorGetBorderColor,
+  ErrorParseBorderColor,
+  ErrorParseBorderRadius,
+  ErrorGetShadow,
+  ErrorParseShadow,
+  ErrorUpdateParsing
+} from '../../../frameworks/errors/errors';
 
 export type PaddingVertical = {
   top: number;
   bottom: number;
 };
 
-/**
- * @description Get vertical paddings
- *
- * @param textElement The Text element
- * @param element The element
- */
 export function getPaddingY(textElement: Frame, element: Frame): PaddingVertical | null {
   try {
     if (!textElement) return null;
@@ -29,9 +34,8 @@ export function getPaddingY(textElement: Frame, element: Frame): PaddingVertical
       !element.absoluteBoundingBox.height ||
       !textElement.absoluteBoundingBox ||
       !textElement.absoluteBoundingBox.height
-      //!textElement.absoluteBoundingBox.y
     )
-      throw new Error('asdf'); // TODO: add real error
+      throw new Error(ErrorGetPaddingY);
 
     const PARENT_HEIGHT = element.absoluteBoundingBox.height;
     const TEXT_HEIGHT = textElement.absoluteBoundingBox.height;
@@ -54,17 +58,12 @@ export type PaddingHorizontal = {
   right: number;
 };
 
-/**
- * @description Get horizontal paddings
- *
- * @param textElement The Text element
- * @param element The element
- */
 export function getPaddingX(textElement: Frame, element: Frame): PaddingHorizontal | null {
   try {
     if (!textElement || !element) return null;
 
-    if (!textElement.absoluteBoundingBox || !element.absoluteBoundingBox) throw new Error('asdf'); // TODO: add real error
+    if (!textElement.absoluteBoundingBox || !element.absoluteBoundingBox)
+      throw new Error(ErrorGetPaddingX);
 
     // TODO: Fix this
     // @ts-ignore
@@ -91,19 +90,13 @@ type PaddingParams = {
   remSize: number;
 };
 
-/**
- * @description TODO
- *
- * @param css CSS as string
- * @param imports Array of imports
- */
 export function parsePadding(
   css: string,
   imports: any[],
   params: PaddingParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error('error'); // TODO: Add real error
+    if (!css || !imports || !params) throw new Error(ErrorParsePadding);
     const { padding, spacing, remSize } = params;
 
     if (!(padding && Object.keys(padding).length > 0)) return { css, imports };
@@ -121,7 +114,7 @@ export function parsePadding(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorParsePadding);
   }
 }
 
@@ -131,19 +124,13 @@ type HeightParams = {
   remSize: number;
 };
 
-/**
- * @description TODO
- *
- * @param css CSS as string
- * @param imports Array of imports
- */
 export function parseHeight(
   css: string,
   imports: any[],
   params: HeightParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error('asdf'); // TODO: Add real error
+    if (!css || !imports || !params) throw new Error(ErrorParseHeight);
     const { spacing, height, remSize } = params;
 
     const { updatedCss, updatedImports } = getTokenMatch(
@@ -156,25 +143,18 @@ export function parseHeight(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorParseHeight);
   }
 }
 
-/**
- * @description Check for background color property. Prioritize solid color, then linear gradient. Expect only one value, and do so by only ever using the first fill match
- */
-// TODO: Fix this
 export function getBackgroundColor(element: Frame): any {
-  if (!element) throw new Error('asdf'); // TODO: Add real error
+  if (!element) throw new Error(ErrorGetBackgroundColor);
   if (!element.fills) return null;
-
-  // Check for solid fills
-  // A solid fill will always be #1 priority
 
   const fills = element.fills.filter((f) => f.type === 'SOLID');
 
   if (fills.length > 0) {
-    if (!fills[0].color) throw new Error('asdf'); // TODO: Add real error
+    if (!fills[0].color) throw new Error(ErrorGetBackgroundColor);
     const R = roundColorValue(fills[0].color.r);
     const G = roundColorValue(fills[0].color.g);
     const B = roundColorValue(fills[0].color.b);
@@ -217,20 +197,13 @@ type BackgroundColorParams = {
   remSize: number;
 };
 
-/**
- * @description TODO
- *
- * @param css
- * @param imports
- * @param params
- */
 export function parseBackgroundColor(
   css: string,
   imports: any[],
   params: BackgroundColorParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error('asdf'); // TODO: Add real error
+    if (!css || !imports || !params) throw new Error(ErrorParseBackgroundColor);
 
     const { colors, backgroundColor, remSize } = params;
 
@@ -246,7 +219,7 @@ export function parseBackgroundColor(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorParseBackgroundColor);
   }
 }
 
@@ -256,20 +229,13 @@ type BorderWidthParams = {
   remSize: number;
 };
 
-/**
- * @description TODO
- *
- * @param css
- * @param imports
- * @param params
- */
 export function parseBorderWidth(
   css: string,
   imports: any[],
   params: BorderWidthParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error('asdf'); // TODO: Add real error
+    if (!css || !imports || !params) throw new Error(ErrorParseBorderWidth);
     const { borderWidths, borderWidth, remSize } = params;
 
     const { updatedCss, updatedImports } = getTokenMatch(
@@ -282,21 +248,16 @@ export function parseBorderWidth(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorParseBorderWidth);
   }
 }
 
-/**
- * @description TODO
- *
- * @param element
- */
 export function getBorderColor(element: Frame): string | null {
-  if (!element) throw new Error('asdf'); // TODO: Add real error
+  if (!element) throw new Error(ErrorGetBorderColor);
   if (!(element.strokes && element.strokes.length > 0 && element.strokes[0].type === 'SOLID'))
     return null;
 
-  if (!element.strokes[0].color) throw new Error('asdf'); // TODO: add real error
+  if (!element.strokes[0].color) throw new Error('asdf');
   const R = roundColorValue(element.strokes[0].color.r);
   const G = roundColorValue(element.strokes[0].color.g);
   const B = roundColorValue(element.strokes[0].color.b);
@@ -310,20 +271,17 @@ type BorderColorParams = {
   remSize: number;
 };
 
-/**
- * @description TODO
- *
- * @param css
- * @param imports
- * @param params
- */
 export function parseBorderColor(
   css: string,
   imports: any[],
   params: BorderColorParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error('asdf'); // TODO: Add real error
+    console.log('/////');
+    console.log('css', css);
+    console.log('imports', imports);
+    console.log('params', params);
+    if (!css || !imports || !params) throw new Error(ErrorParseBorderColor);
 
     const { colors, borderColor, remSize } = params;
 
@@ -337,7 +295,7 @@ export function parseBorderColor(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorParseBorderColor);
   }
 }
 
@@ -347,16 +305,13 @@ type BorderRadiusParams = {
   remSize: number;
 };
 
-/**
- * @description TODO
- */
 export function parseBorderRadius(
   css: string,
   imports: any[],
   params: BorderRadiusParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error('asdf'); // TODO: Add real error
+    if (!css || !imports || !params) throw new Error(ErrorParseBorderRadius);
 
     const { radii, borderRadius, remSize } = params;
 
@@ -370,18 +325,13 @@ export function parseBorderRadius(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorParseBorderRadius);
   }
 }
 
-/**
- * @description TODO
- *
- * @param element
- */
 export function getShadow(element: Frame): string | null {
   try {
-    if (!element) throw new Error('asdf'); // TODO: Add real error
+    if (!element) throw new Error(ErrorGetShadow);
     if (!(element.effects && element.effects[0] && element.effects[0].type === 'DROP_SHADOW'))
       return null;
 
@@ -397,7 +347,7 @@ export function getShadow(element: Frame): string | null {
 
     return `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
   } catch (error) {
-    throw new Error(error); // TODO: Add real error
+    throw new Error(ErrorGetShadow);
   }
 }
 
@@ -407,20 +357,13 @@ type ShadowParams = {
   remSize: number;
 };
 
-/**
- * @description TODO
- *
- * @param css
- * @param imports
- * @param params
- */
 export function parseShadow(
   css: string,
   imports: any[],
   params: ShadowParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error('asdf'); // TODO: Add real error
+    if (!css || !imports || !params) throw new Error(ErrorParseShadow);
 
     const { shadows, shadow, remSize } = params;
 
@@ -434,18 +377,10 @@ export function parseShadow(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(error); // TODO: Add real error
+    throw new Error(ErrorParseShadow);
   }
 }
 
-/**
- * @description TODO
- *
- * @param css
- * @param updatedCss
- * @param imports
- * @param updatedImports
- */
 export function updateParsing(
   css: string,
   updatedCss: string | null,
@@ -453,13 +388,13 @@ export function updateParsing(
   updatedImports: any[] | null
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports) throw new Error('asdf'); // TODO: Add real error
+    if (!css || !imports) throw new Error(ErrorUpdateParsing);
 
     const CSS = updatedCss ? (css += updatedCss) : css;
     const IMPORTS = updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports;
 
     return { css: CSS, imports: IMPORTS };
   } catch (error) {
-    throw new Error(error); // TODO: Add real error
+    throw new Error(ErrorUpdateParsing);
   }
 }

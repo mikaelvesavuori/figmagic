@@ -15,10 +15,6 @@ import {
 
 /**
  * @description Places all Figma font sizes into a clean object
- *
- * @param fontSizeFrame The font size frame from Figma
- * @param fontUnit The font unit item
- * @param remSize The body rem size
  */
 export function setupFontSizeTokens(
   fontSizeFrame: Frame,

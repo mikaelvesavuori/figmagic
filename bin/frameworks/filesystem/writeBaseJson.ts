@@ -1,7 +1,6 @@
 import { FigmaData } from '../../contracts/FigmaData';
 
 import { refresh } from './refresh';
-//import { writeFile } from './writeFile';
 import { write } from './write';
 
 import { MsgWriteBaseFile } from '../messages/messages';
@@ -9,10 +8,6 @@ import { ErrorWriteBaseJson } from '../errors/errors';
 
 /**
  * @description Write base Figma JSON document to disk
- *
- * @param outputFolderBaseFile Folder where file should be written
- * @param outputFileName File name for Figma JSON file
- * @param data File contents
  */
 export async function writeBaseJson(
   outputFolderBaseFile: string,

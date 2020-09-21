@@ -11,8 +11,6 @@ import { ErrorParseCliArgs } from '../../../frameworks/errors/errors';
 
 /**
  * @description Parse CLI arguments and return config object
- *
- * @param argsArray Array of string arguments
  */
 export function parseCliArgs(baseConfig: Config, argsArray: string[]): Config {
   if (!argsArray) throw new Error(ErrorParseCliArgs);

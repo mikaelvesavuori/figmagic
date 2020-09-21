@@ -6,10 +6,6 @@ import { ErrorGetFileList } from '../../../frameworks/errors/errors';
 
 /**
  * @description Get cleaned list of files
- *
- * @param imageResponse Figma API response
- * @param ids Array of asset IDs
- * @param outputFormatGraphics String representing expected output format
  */
 export const getFileList = (
   imageResponse: ImageResponse,

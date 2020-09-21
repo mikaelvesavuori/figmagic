@@ -5,8 +5,6 @@ import {
 
 /**
  * @description Convert list of imports to string literal for CSS file production
- *
- * @param importArray List of imports
  */
 export function createImportStringFromList(importArray: any[]): string {
   if (!importArray) throw new Error(ErrorCreateImportStringFromList);

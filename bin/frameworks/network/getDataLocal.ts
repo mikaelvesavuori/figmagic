@@ -9,9 +9,6 @@ import { ErrorGetDataLocal } from '../errors/errors';
 
 /**
  * @description Helper to get Figma data from local source
- *
- * @param outputFolderBaseFile Output folder for base file
- * @param outputFileName File name for output file
  */
 export function getDataLocal(
   outputFolderBaseFile: string,

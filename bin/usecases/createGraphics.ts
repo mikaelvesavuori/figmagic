@@ -12,9 +12,6 @@ import { ErrorCreateGraphics } from '../frameworks/errors/errors';
 
 /**
  * @description Use case for syncing (creating) graphics from Figma file
- *
- * @param config User configuration
- * @param data Data from Figma
  */
 export async function createGraphics(config: Config, data: FigmaData): Promise<void> {
   try {

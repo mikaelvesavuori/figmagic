@@ -13,9 +13,6 @@ import { ErrorCreateTokens } from '../frameworks/errors/errors';
 
 /**
  * @description Use case for creating token files from Figma
- *
- * @param config User configuration
- * @param data Data from Figma
  */
 export async function createTokens(config: Config, data: FigmaData): Promise<void> {
   try {

@@ -6,9 +6,6 @@ import { ErrorDownloadFile } from '../errors/errors';
 
 /**
  * @description Get data from API
- *
- * @param url URL path
- * @param path File path
  */
 export async function downloadFile(url: string, path: string): Promise<void> {
   try {

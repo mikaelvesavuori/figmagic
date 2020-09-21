@@ -9,15 +9,6 @@ import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../../framew
 
 // TODO: Refactor
 
-/**
- * @description Match and find design tokens for CSS values
- *
- * @param tokens Design tokens
- * @param tokenFileName String representing file name from which the token is exported
- * @param property CSS property to be assigned
- * @param expectedValue Expected value to match for
- * @param remSize HTML body REM size, required for padding and anything to do with rem/em
- */
 export function getTokenMatch(
   tokens: Tokens | any,
   tokenFileName: string,
@@ -76,7 +67,7 @@ function matchPadding(
 ): any {
   try {
     const keys: any = Object.keys(expectedValue);
-    if (typeof expectedValue !== 'object') return; // TODO: Does this break something? At least breaks getTokenMatch padding test...
+    if (typeof expectedValue !== 'object') return;
     keys.forEach((key: any) => {
       let foundMatch = false;
 

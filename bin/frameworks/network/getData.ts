@@ -12,12 +12,6 @@ import {
 
 /**
  * @description Helper/orchestrator to get data locally or from Figma (remote)
- *
- * @param recompileLocal Should the local Figma JSON file be used to recompile Figmagic assets?
- * @param outputFolderBaseFile Output folder for base file
- * @param outputFileName File name for output file
- * @param token Your Figma token
- * @param url Your Figma document ID
  */
 export async function getData(
   recompileLocal: boolean,

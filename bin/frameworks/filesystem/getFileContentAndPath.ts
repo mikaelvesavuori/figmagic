@@ -27,8 +27,6 @@ import {
 
 /**
  * Orchestrator to get file content and path, before writing files
- *
- * @param getFileContentAndPathOperation Object type with everything required to start prepping the write operation
  */
 export function getFileContentAndPath(
   getFileContentAndPathOperation: GetFileDataOperation

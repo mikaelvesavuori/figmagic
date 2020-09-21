@@ -5,10 +5,7 @@ import { writeFile } from '../../../frameworks/filesystem/writeFile';
 import { ErrorWriteTokens } from '../../../frameworks/errors/errors';
 
 /**
- * @description Write tokens to file
- *
- * @param tokens The final array of design tokens
- * @param config User configuration object
+ * @description Write processed tokens to file
  */
 export function writeTokens(processedTokens: WriteOperation[]): void {
   try {

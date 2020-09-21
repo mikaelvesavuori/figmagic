@@ -4,11 +4,6 @@ import { ErrorConvertHexToRgba } from '../errors/errors';
 
 /**
  * @description Convert hex color to RGBA
- *
- * @param r Color value, red
- * @param g Color value, green
- * @param b Color value, blue
- * @param a Color value, alpha
  */
 export function convertHexToRgba(r: number, g: number, b: number, a: number): string {
   if (!r || !g || !b || !a) throw new Error(ErrorConvertHexToRgba);

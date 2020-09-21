@@ -13,8 +13,6 @@ import {
 
 /**
  * @description Places all Figma easings into a clean object
- *
- * @param easingFrame The easings frame from Figma
  */
 export function setupEasingTokens(easingFrame: Frame): EasingTokens {
   if (!easingFrame) throw new Error(ErrorSetupEasingTokensNoFrame);

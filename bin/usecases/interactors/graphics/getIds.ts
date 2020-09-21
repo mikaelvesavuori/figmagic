@@ -4,8 +4,6 @@ import { ErrorGetIds } from '../../../frameworks/errors/errors';
 
 /**
  * @description Get IDs from graphics page
- *
- * @param graphicsPage Figma 'Graphics' page
  */
 export const getIds = (graphicsPage: Frame[]): Record<string, unknown>[] => {
   if (!graphicsPage) throw new Error(ErrorGetIds);

@@ -2,8 +2,6 @@ import { createImportStringFromList } from '../string/createImportStringFromList
 
 /**
  * Helper block to decouple logic from prepareWrite function
- *
- * @param metadata Metadata
  */
 export const getElement = (metadata: undefined | null | Record<string, any>): string => {
   if (metadata) {

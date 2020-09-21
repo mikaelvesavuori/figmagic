@@ -24,10 +24,6 @@ import { Config } from '../../../contracts/Config';
  * 2. Command-line arguments and flags
  * 3. Environment variables from `.env`
  * Non-provided values should fall back to defaults outlined in `meta/config.ts`
- *
- * @param baseConfig Default configuration object
- * @param userConfigPath Path to user configuration file, based out of user's current working directory
- * @param cliArgs Array of any user-provided command line arguments and flags
  */
 export async function createConfiguration(
   baseConfig: Config,
@@ -88,14 +84,6 @@ export async function createConfiguration(
   return CONFIG;
 }
 
-/**
- * @description TODO
- *
- * @param envConfig
- * @param cliConfig
- * @param rcConfig
- * @param config
- */
 function printConfigs(
   envConfig: Record<string, unknown>,
   cliConfig: Record<string, unknown>,

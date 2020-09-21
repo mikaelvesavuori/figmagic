@@ -13,8 +13,6 @@ import {
 
 /**
  * @description Places all Figma Z indices into a clean object
- *
- * @param zIndexFrame The Z index frame from Figma
  */
 export function setupZindexTokens(zIndexFrame: Frame): ZindexTokens {
   if (!zIndexFrame) throw new Error(ErrorSetupZindexTokensNoFrame);

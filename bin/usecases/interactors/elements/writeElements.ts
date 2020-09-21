@@ -11,9 +11,6 @@ import { ErrorWriteElements } from '../../../frameworks/errors/errors';
 
 /**
  * @description Funnel function to write all the wanted files per element
- *
- * @param elements Array of cleaned elements to write out to files
- * @param config User configuration object
  */
 export function writeElements(elements: any[], config: Config): void {
   try {
@@ -34,9 +31,6 @@ export function writeElements(elements: any[], config: Config): void {
 
 /**
  * @description Create an updated user configuration that is able to drive write operations
- *
- * @param element Figmagic element
- * @param config Write operation
  */
 const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperation => {
   const html = element.html || ' ';
@@ -71,9 +65,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
 };
 
 /**
- * @description Helper to write component
- *
- * @param config Write operation
+ * @description Helper to write React component
  */
 const writeComponent = (config: WriteOperation): void => {
   const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}.jsx`);
@@ -91,8 +83,6 @@ const writeComponent = (config: WriteOperation): void => {
 
 /**
  * @description Helper to write Styled Component file
- *
- * @param config Write operation
  */
 const writeStyled = (config: WriteOperation): void => {
   const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}Styled.jsx`);
@@ -110,8 +100,6 @@ const writeStyled = (config: WriteOperation): void => {
 
 /**
  * @description Helper to write CSS file
- *
- * @param config Write operation
  */
 const writeCss = (config: WriteOperation): void => {
   writeFile({
@@ -127,8 +115,6 @@ const writeCss = (config: WriteOperation): void => {
 
 /**
  * @description Helper to write Storybook component
- *
- * @param config Write operation
  */
 const writeStorybook = (config: WriteOperation): void => {
   const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}.stories.js`);
@@ -146,8 +132,6 @@ const writeStorybook = (config: WriteOperation): void => {
 
 /**
  * @description Helper to write Markdown description
- *
- * @param config Write operation
  */
 const writeDescription = (config: WriteOperation): void => {
   writeFile({

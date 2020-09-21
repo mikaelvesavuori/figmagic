@@ -2,8 +2,6 @@ import { ErrorCamelize } from '../errors/errors';
 
 /**
  * @description Camel-case transform a string
- *
- * @param str The string which is to be camelcased
  */
 export function camelize(str: string): string {
   if (!str) throw new Error(ErrorCamelize);

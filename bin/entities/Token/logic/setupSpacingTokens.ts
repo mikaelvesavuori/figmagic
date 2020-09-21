@@ -14,10 +14,6 @@ import {
 
 /**
  * @description Places all Figma spacings into a clean object
- *
- * @param spacingFrame The spacing frame from Figma
- * @param spacingUnit The spacing unit
- * @param remSize The body rem size
  */
 export function setupSpacingTokens(
   spacingFrame: Frame,

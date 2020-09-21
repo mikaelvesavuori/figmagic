@@ -11,10 +11,7 @@ import { MsgProcessElementsCreatingElement } from '../../frameworks/messages/mes
 import { ErrorProcessElementsNoMainElement } from '../../frameworks/errors/errors';
 
 /**
- * @description TODO
- * @param element TODO
- * @param config TODO
- * @param description TODO
+ * @description Factory function to create Figmagic element
  */
 export const makeFigmagicElement = (
   element: FigmaElement,
@@ -24,10 +21,7 @@ export const makeFigmagicElement = (
   return new FigmagicElement(element, config, description);
 };
 
-/**
- * @description TODO
- */
-export class FigmagicElement {
+class FigmagicElement {
   id: string;
   name: string;
   children?: Frame[];
@@ -82,10 +76,6 @@ export class FigmagicElement {
     this.imports = [...new Set(updatedImports)];
   }
 
-  /**
-   * @description Both these big functions generate updated CSS and imports. Nested element have only GROUPs at the base of them, while "flat" elements can have zero or more GROUPs, but always something else at the base.
-   * @param children Elements
-   */
   private handleElements(children: any): any {
     try {
       if (children.every((a: any) => a.type === 'GROUP')) {
@@ -116,11 +106,6 @@ export class FigmagicElement {
     this.text += text;
   }
 
-  /**
-   * @description Get the type of HTML element this represents
-   *
-   * @param element Element
-   */
   private setElement(): void {
     const ELEMENT_TYPE = (() => {
       const _ELEMENT = this.description.match(/element=(.*)/);
@@ -147,9 +132,6 @@ export class FigmagicElement {
     }
   }
 
-  /**
-   * @description TODO
-   */
   private setPlaceholderText(): void {
     this.children?.forEach((child: Frame) => {
       if (
@@ -172,11 +154,6 @@ export class FigmagicElement {
     }
   }
 
-  /**
-   * @description Handle CSS for all elements that are nested
-   *
-   * @param element Element
-   */
   private handleNestedElements(): UpdatedCssAndImports {
     try {
       let css = ``;
@@ -233,11 +210,6 @@ export class FigmagicElement {
     }
   }
 
-  /**
-   * @description Add description to list of elements
-   *
-   * @param elements String from Figma description block
-   */
   private handleFlatElements(): UpdatedCssAndImports {
     try {
       let css = `\n`;
@@ -286,11 +258,6 @@ export class FigmagicElement {
     }
   }
 
-  /**
-   * @description Process CSS for layer with same name as self
-   *
-   * @param textElement Text element
-   */
   private processCssSelfnamedLayer(
     layoutElement: Frame,
     textElement: Frame | null = null

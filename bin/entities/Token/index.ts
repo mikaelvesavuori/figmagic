@@ -41,20 +41,10 @@ import { setupEasingTokens } from './logic/setupEasingTokens';
 import { ignoreElementsKeywords } from '../../frameworks/system/ignoreElementsKeywords';
 import { ErrorExtractTokens, ErrorExtractTokensNoConfig } from '../../frameworks/errors/errors';
 
-/**
- * @description TODO
- *
- * @param token TODO
- * @param tokenName TODO
- * @param config TODO
- */
 export const makeToken = (token: Frame, tokenName: string, config: Config): Token =>
   new Token(token, tokenName, config);
 
-/**
- * @description TODO
- */
-export class Token {
+class Token {
   token: Frame;
   tokenName: string;
   config: Config;
@@ -70,19 +60,12 @@ export class Token {
     this.setWriteOperation(processedToken, tokenName);
   }
 
-  /**
-   * @description Process tokens
-   *
-   * @param frame frame/frame object from Figma
-   * @param name Token name
-   * @param config User configuration object
-   */
-  private extractTokens(frame: Frame, name: string, config: Config): ProcessedToken {
+  private extractTokens(frame: Frame, tokenName: string, config: Config): ProcessedToken {
     try {
-      if (!frame || !name) throw new Error(ErrorExtractTokens);
+      if (!frame || !tokenName) throw new Error(ErrorExtractTokens);
 
       frame.children = this.getChildren(frame);
-      return this.getTokens(frame, name.toLowerCase(), config);
+      return this.getTokens(frame, tokenName.toLowerCase(), config);
     } catch (error) {
       throw new Error(error);
     }
@@ -174,10 +157,6 @@ export class Token {
   };
 }
 
-/**
- * @description TODO
- * @param obj TODO
- */
 export const makeBorderWidthTokens = (obj: Record<any, any>): BorderWidthTokens =>
   obj as BorderWidthTokens;
 export const makeColorTokens = (obj: Record<any, any>): ColorTokens => obj as ColorTokens;

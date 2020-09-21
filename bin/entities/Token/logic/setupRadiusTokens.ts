@@ -14,9 +14,6 @@ import {
 
 /**
  * @description Places all Figma radii into a clean object
- *
- * @param radiusFrame The radii frame from Figma
- * @param remSize The body rem size
  */
 export function setupRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTokens {
   if (!radiusFrame) throw new Error(ErrorSetupRadiusTokensNoFrame);

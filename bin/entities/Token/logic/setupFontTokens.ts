@@ -13,9 +13,6 @@ import {
 
 /**
  * @description Places all Figma fonts into a clean object
- *
- * @param fontFrame The font frame from Figma
- * @param usePostscriptFontNames Boolean to decide if to use Postscript font names or the default font family names (without spaces)
  */
 export function setupFontTokens(fontFrame: Frame, usePostscriptFontNames = true): FontTokens {
   if (!fontFrame) throw new Error(ErrorSetupFontTokensNoFrame);

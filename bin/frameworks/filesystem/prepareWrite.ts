@@ -7,8 +7,6 @@ import { ErrorPrepareWrite, ErrorWriteFile } from '../errors/errors';
 
 /**
  * @description Controller that starts the prepping/formatting of the file(s)
- *
- * @param writeOperation Object type with everything required (at this stage) to write the file later
  */
 export function prepareWrite(writeOperation: WriteOperation): any {
   try {

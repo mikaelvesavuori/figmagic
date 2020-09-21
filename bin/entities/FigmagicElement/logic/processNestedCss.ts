@@ -9,8 +9,6 @@ import {
 /**
  * @description Process nested CSS into a format that puts shared/common intersecting CSS properties
  * at the top, while unique values get sorted under their respective CSS classes.
- *
- * @param css Incoming CSS
  */
 export function processNestedCss(css: string): string {
   if (!css) throw new Error(ErrorProcessNestedCss);
@@ -29,9 +27,6 @@ export function processNestedCss(css: string): string {
 
 /**
  * @description Collate/package array objects for easier handling in later steps
- *
- * @param CLASS_NAMES List of class names
- * @param CLASS_CONTENT CSS properties
  */
 function cleanArrays(classNames: RegExpMatchArray | null, classContent: string[]): any {
   if (!classNames || !classContent) throw new Error(ErrorCleanArrays);
@@ -64,8 +59,6 @@ function cleanArrays(classNames: RegExpMatchArray | null, classContent: string[]
 
 /**
  * @description Get all shared/common/intersecting values across all "classes". These will then need to float to the top of the CSS document.
- *
- * @param arrays Arrays to check
  */
 function getIntersectingValues(arrays: any[]): any[] {
   if (!arrays) throw new Error(ErrorGetIntersectingValues);
@@ -81,9 +74,6 @@ function getIntersectingValues(arrays: any[]): any[] {
 
 /**
  * @description Get any unique values and collect them in arrays per class
- *
- * @param arrays The cleaned set of arrays
- * @param intersections The intersecting areas and values
  */
 function getUniqueValues(arrays: any[], intersections: any[]): any[] {
   if (!arrays || !intersections) throw new Error(ErrorGetUniqueValues);
@@ -108,9 +98,6 @@ function getUniqueValues(arrays: any[], intersections: any[]): any[] {
 
 /**
  * @description Create CSS string literal
- *
- * @param intersections List of intersecting values
- * @param uniqueValues List of unique values
  */
 function createCssString(intersections: any[], uniqueValues: any[]): string {
   if (!intersections || !uniqueValues) throw new Error(ErrorCreateCssString);

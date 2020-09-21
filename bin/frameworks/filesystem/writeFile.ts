@@ -10,8 +10,6 @@ import { ErrorWriteFile, ErrorWriteFileWrongType } from '../errors/errors';
 
 /**
  * @description Handles writing files to disk, complete with pre-processing.
- *
- * @param writeOperation Object type with all arguments needed to write the file
  */
 export function writeFile(writeOperation: WriteOperation): void {
   try {

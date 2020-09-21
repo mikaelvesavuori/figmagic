@@ -1,7 +1,7 @@
 import * as path from 'path';
 
 import { makeToken } from '../../../bin/entities/Token/index';
-import { Configuration } from '../../../bin/entities/Config/index';
+import { makeConfiguration } from '../../../bin/entities/Config/index';
 
 import { FRAME as Frame } from '../../../bin/contracts/Figma';
 
@@ -19,8 +19,7 @@ describe('Success cases', () => {
     const TOKEN_DATA = designTokensPage[1].children[0]; // "Colors"
     const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `testdata`, `testConfig`);
     const TOKEN_NAME = `colors`; // Should be camelized
-    const CONFIGURATION = new Configuration(USER_CONFIG_PATH, ...[]);
-    const CONFIG = await CONFIGURATION.createConfig();
+    const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
 
     expect(makeToken(TOKEN_DATA as Frame, TOKEN_NAME, CONFIG)).toMatchObject({
       token: {

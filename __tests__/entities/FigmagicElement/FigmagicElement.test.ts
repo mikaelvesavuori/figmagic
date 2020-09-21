@@ -1,7 +1,7 @@
 import * as path from 'path';
 
 import { makeFigmagicElement } from '../../../bin/entities/FigmagicElement/index';
-import { Configuration } from '../../../bin/entities/Config/index';
+import { makeConfiguration } from '../../../bin/entities/Config/index';
 
 import { FRAME as Frame } from '../../../bin/contracts/Figma';
 
@@ -879,8 +879,7 @@ describe('Success cases', () => {
   test('It should return a complete Figmagic element ("Button" example) and config when passing in valid token data (colors), configuration, and description', async () => {
     const USER_CONFIG_PATH = path.join(`\${process.cwd()}`, `testdata`, `testConfig`);
     const DESCRIPTION = `An example of a Figmagic element description!`;
-    const CONFIGURATION = new Configuration(USER_CONFIG_PATH, ...[]);
-    const CONFIG = await CONFIGURATION.createConfig();
+    const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
 
     expect(makeFigmagicElement(BUTTON_ELEMENT as Frame, CONFIG, DESCRIPTION)).toMatchObject({
       children: [

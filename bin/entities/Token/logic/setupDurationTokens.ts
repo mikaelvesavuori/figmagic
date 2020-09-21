@@ -13,8 +13,6 @@ import {
 
 /**
  * @description Places all Figma durations into a clean object
- *
- * @param durationFrame The durations frame from Figma
  */
 export function setupDurationTokens(durationFrame: Frame): DurationTokens {
   if (!durationFrame) throw new Error(ErrorSetupDurationTokensNoFrame);

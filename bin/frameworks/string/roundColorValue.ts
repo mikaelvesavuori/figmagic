@@ -2,9 +2,6 @@ import { ErrorRoundColorValue } from '../errors/errors';
 
 /**
  * @description Round color values so they are whole integers
- *
- * @param quantity Incoming quantity value, as float
- * @param scale Maximum scaling value
  */
 export function roundColorValue(quantity = 0.0, scale = 255): number {
   if (scale < 0 || scale > 255) throw new Error(ErrorRoundColorValue);

@@ -14,8 +14,6 @@ import {
 
 /**
  * @description Places all Figma font weights into a clean object
- *
- * @param fontWeightFrame The font weight frame from Figma
  */
 export function setupFontWeightTokens(fontWeightFrame: Frame): FontWeightTokens {
   if (!fontWeightFrame) throw new Error(ErrorSetupFontWeightTokensNoFrame);

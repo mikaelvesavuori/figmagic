@@ -6,11 +6,6 @@ import {
 
 /**
  * @description Normalize and convert units
- *
- * @param value Value to normalize
- * @param currentUnit The current unit to of the incoming value
- * @param spacingUnit The spacing unit
- * @param remSize The body rem size
  */
 export function normalizeUnits(
   value: number,

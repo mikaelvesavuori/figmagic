@@ -12,9 +12,6 @@ import { ErrorCreateElements } from '../frameworks/errors/errors';
 
 /**
  * @description Use case for syncing (creating) React elements from Figma files
- *
- * @param config User configuration
- * @param data Data from Figma
  */
 export async function createElements(config: Config, data: FigmaData): Promise<void> {
   try {

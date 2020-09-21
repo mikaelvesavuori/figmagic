@@ -3,16 +3,22 @@ import { Config } from '../../contracts/Config';
 import { baseConfig } from './baseConfig';
 import { createConfiguration } from './logic/createConfiguration';
 
-/**
- * @description TODO
- */
-export class Configuration {
+export const makeConfiguration = async (
+  userConfigPath: string,
+  ...cliArgs: string[]
+): Promise<Config> => {
+  const CONFIGURATION = new Configuration(userConfigPath, cliArgs);
+  await CONFIGURATION.createConfig();
+  return CONFIGURATION.getConfig();
+};
+
+class Configuration {
   baseConfiguration: Config;
   userConfigPath: string;
   cliArgs: string[];
   config: Config = baseConfig;
 
-  constructor(userConfigPath: string, ...cliArgs: string[]) {
+  constructor(userConfigPath: string, cliArgs: string[]) {
     this.baseConfiguration = baseConfig;
     this.userConfigPath = userConfigPath;
     this.cliArgs = cliArgs;

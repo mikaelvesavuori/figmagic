@@ -2,8 +2,6 @@ import { ErrorGetIdstring } from '../../../frameworks/errors/errors';
 
 /**
  * @description Collate valid string of IDs
- *
- * @param ids Figma 'Graphics' page
  */
 export const getIdString = (ids: any[]): string => {
   if (!ids) throw new Error(ErrorGetIdstring);

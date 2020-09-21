@@ -20,8 +20,6 @@ import {
  * In CSS however, the letter-spacing length allows either "px" or "em" units (or even "rem" even though it hardly make any sense for letter-spacing in practice):
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing
  *
- * @param letterSpacingFrame The letter spacings frame from Figma
- * @param letterSpacingUnit The letter spacing unit as a string
  */
 export function setupLetterSpacingTokens(
   letterSpacingFrame: Frame,

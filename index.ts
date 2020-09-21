@@ -4,7 +4,7 @@
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 
-import { Configuration } from './bin/entities/Config/index';
+import { makeConfiguration } from './bin/entities/Config/index';
 
 import { FigmaData } from './bin/contracts/FigmaData';
 import { Config } from './bin/contracts/Config';
@@ -24,8 +24,7 @@ async function main(): Promise<void> {
     dotenv.config();
     const [, , ...CLI_ARGS] = process.argv;
     const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `.figmagicrc`);
-    const CONFIGURATION = new Configuration(USER_CONFIG_PATH, ...CLI_ARGS);
-    const CONFIG: Config = await CONFIGURATION.createConfig();
+    const CONFIG: Config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
 
     // Get data
     const { recompileLocal, outputFolderBaseFile, outputFileName, token, url } = CONFIG;

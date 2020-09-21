@@ -21,15 +21,10 @@ import {
   parseShadow
 } from './parsers';
 
-import { ErrorParseCssFromElement } from '../../../frameworks/errors/errors';
+import { ErrorParseCssFromElement, ErrorGetFiles } from '../../../frameworks/errors/errors';
 
 /**
  * @description Parse layout CSS from "element" (Figma component)
- *
- * @param layoutElement Figma object representation of main layout element
- * @param textElement Figma object representation of the text field connected to the element/component
- * @param remSize HTML body REM size
- * @param outputTokenFormat Token output format
  */
 // TODO: Refactor
 export function parseCssFromElement(
@@ -164,6 +159,6 @@ const getFiles = (path: string, outputTokenFormat: string): any => {
       spacing
     };
   } catch (error) {
-    throw new Error(error); // TODO: Add real error
+    throw new Error(ErrorGetFiles);
   }
 };

@@ -13,9 +13,6 @@ import {
 
 /**
  * @description Places all Figma opacities scale into a clean object
- *
- * @param opacitiesFrame The opacities frame from Figma
- * @param opacitiesUnit The opacity unit as a string
  */
 export function setupOpacityTokens(
   opacitiesFrame: Frame,

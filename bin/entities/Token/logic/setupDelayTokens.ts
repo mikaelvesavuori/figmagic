@@ -13,8 +13,6 @@ import {
 
 /**
  * @description Places all Figma delays into a clean object
- *
- * @param delayFrame The delays frame from Figma
  */
 export function setupDelayTokens(delayFrame: Frame): DelayTokens {
   if (!delayFrame) throw new Error(ErrorSetupDelayTokensNoFrame);

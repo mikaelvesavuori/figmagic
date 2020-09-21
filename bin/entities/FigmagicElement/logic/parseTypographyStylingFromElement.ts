@@ -8,13 +8,13 @@ import { getFileContents } from './getFileContents';
 
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
-import { ErrorParseTypographyStylingFromElement } from '../../../frameworks/errors/errors';
+import {
+  ErrorParseTypographyStylingFromElement,
+  ErrorGetFontColor
+} from '../../../frameworks/errors/errors';
 
 /**
  * @description Parse typography CSS from "element" (Figma component)
- *
- * @param textElement Figma object representation of text element/component
- * @param remSize HTML body REM size
  */
 export function parseTypographyStylingFromElement(
   textElement: Frame,
@@ -104,14 +104,14 @@ export function parseTypographyStylingFromElement(
     const LETTER_SPACING: number | null = getFontLetterSpacing(textElement);
     if (LETTER_SPACING && FONT_SIZE) {
       // TODO/BUG: this duplicates the internal logic of the letter-spacing token processing, and makes the heavy assumption the expected unit is "em"
-      const size = LETTER_SPACING / FONT_SIZE;
-      const sizeString = `${size}em`;
+      const SIZE = LETTER_SPACING / FONT_SIZE;
+      const SIZE_STRING = `${SIZE}em`;
 
       const { updatedCss, updatedImports } = getTokenMatch(
         letterSpacings,
         'letterSpacings',
         'letter-spacing',
-        sizeString,
+        SIZE_STRING,
         remSize
       );
       css += updatedCss;
@@ -161,7 +161,7 @@ const reduceCssDuplicates = (css: string) =>
 const getFontColor = (textElement: Frame) => {
   if (textElement.fills) {
     if (textElement.fills[0] && textElement.fills[0].type === 'SOLID') {
-      if (!textElement.fills[0].color) throw new Error('asdf'); // TODO: add real error
+      if (!textElement.fills[0].color) throw new Error(ErrorGetFontColor);
       const R = roundColorValue(textElement.fills[0].color.r);
       const G = roundColorValue(textElement.fills[0].color.g);
       const B = roundColorValue(textElement.fills[0].color.b);

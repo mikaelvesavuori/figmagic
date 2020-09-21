@@ -17,12 +17,10 @@ import {
 
 /**
  * @description Download all image assets from Figma page
- *
- * @param graphicsPage Children of the Figma 'Graphics' page
- * @param config Configuration object
  */
 export async function processGraphics(graphicsPage: Frame[], config: Config): Promise<FileList[]> {
   if (!graphicsPage) throw new Error(ErrorProcessGraphics);
+
   const { token, url, outputFormatGraphics, outputScaleGraphics } = config;
   if (!token) throw new Error(ErrorProcessGraphics);
   if (graphicsPage.length === 0 || !graphicsPage[0].children) throw new Error(ErrorProcessGraphics);

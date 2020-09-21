@@ -14,8 +14,6 @@ import {
 
 /**
  * @description Places all Figma shadows into a clean object
- *
- * @param shadowFrame The shadows frame from Figma
  */
 export function setupShadowTokens(shadowFrame: Frame): ShadowTokens {
   if (!shadowFrame) throw new Error(ErrorSetupShadowTokensNoFrame);

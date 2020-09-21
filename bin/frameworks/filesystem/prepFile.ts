@@ -20,8 +20,6 @@ import {
 
 /**
  * Prepare component (element) to be written to file
- *
- * @param data Object with required data
  */
 export const prepComponent = (data: PrepComponent): FileContentWithPath => {
   try {
@@ -48,8 +46,6 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
 
 /**
  * Prepare Styled Components-formatted React element to be written to file
- *
- * @param data Object with required data
  */
 export const prepStyledComponents = (data: PrepStyledComponents): FileContentWithPath => {
   try {
@@ -75,8 +71,6 @@ export const prepStyledComponents = (data: PrepStyledComponents): FileContentWit
 
 /**
  * Prepare CSS to be written to file
- *
- * @param data Object with required data
  */
 export const prepCss = (data: PrepCss): FileContentWithPath => {
   try {
@@ -97,8 +91,6 @@ export const prepCss = (data: PrepCss): FileContentWithPath => {
 
 /**
  * Prepare Storybook data to be written to file
- *
- * @param data Object with required data
  */
 export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
   try {
@@ -123,8 +115,6 @@ export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
 
 /**
  * Prepare Markdown description to be written to file
- *
- * @param data Object with required data
  */
 export const prepDescription = (data: PrepDescription): FileContentWithPath => {
   try {

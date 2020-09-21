@@ -10,9 +10,6 @@ import { ErrorFigmagicController } from '../frameworks/errors/errors';
 
 /**
  * @description The main orchestration/controller point for Figmagic
- *
- * @param config User configuration object
- * @param data Data should be processed and output to file(s)
  */
 export async function FigmagicController(config: Config, data: FigmaData): Promise<any> {
   try {

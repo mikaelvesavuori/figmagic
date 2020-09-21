@@ -1,14 +1,13 @@
 import * as path from 'path';
 
-import { Configuration } from '../../../bin/entities/Config/index';
+import { makeConfiguration } from '../../../bin/entities/Config/index';
 
 describe('Failure cases', () => {
   test('It should throw an error if called without a user config path', async () => {
     const CLI_ARGS: any[] = [];
     const USER_CONFIG_PATH = '';
-    const CONFIGURATION = new Configuration(USER_CONFIG_PATH, ...CLI_ARGS);
 
-    await expect(CONFIGURATION.createConfig()).rejects.toThrowError();
+    await expect(makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS)).rejects.toThrowError();
   });
 });
 
@@ -16,9 +15,8 @@ describe('Success cases', () => {
   test('It should return a complete, default configuration when passing in valid user config path, but no CLI arguments input', async () => {
     const CLI_ARGS: any[] = [];
     const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `testdata`, `figmagicrc`);
-    const CONFIGURATION = new Configuration(USER_CONFIG_PATH, ...CLI_ARGS);
 
-    await expect(CONFIGURATION.createConfig()).resolves.toMatchObject({
+    await expect(makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS)).resolves.toMatchObject({
       debugMode: false,
       fontUnit: 'rem',
       letterSpacingUnit: 'em',
@@ -59,9 +57,8 @@ describe('Success cases', () => {
   test('It should return a complete, custom configuration when passing in valid user config path, and some CLI arguments input', async () => {
     const CLI_ARGS: any[] = ['--debug', '--skipStorybook', '-t', 'some-RANDOM-t0k3n'];
     const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `testdata`, `figmagicrc`);
-    const CONFIGURATION = new Configuration(USER_CONFIG_PATH, ...CLI_ARGS);
 
-    await expect(CONFIGURATION.createConfig()).resolves.toMatchObject({
+    await expect(makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS)).resolves.toMatchObject({
       debugMode: true,
       fontUnit: 'rem',
       letterSpacingUnit: 'em',

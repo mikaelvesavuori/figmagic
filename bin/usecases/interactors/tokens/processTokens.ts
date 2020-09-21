@@ -10,10 +10,7 @@ import { acceptedTokenTypes } from '../../../frameworks/system/acceptedTokenType
 import { ErrorWriteTokens, ErrorWriteTokensNoSettings } from '../../../frameworks/errors/errors';
 
 /**
- * @description Write tokens to file
- *
- * @param tokens The final array of design tokens
- * @param config User configuration object
+ * @description Process tokens (before writing them to file; handled in another function)
  */
 export function processTokens(tokens: Frame[], config: Config): any {
   try {
@@ -26,8 +23,8 @@ export function processTokens(tokens: Frame[], config: Config): any {
     tokens.forEach((token) => {
       const TOKEN_NAME = camelize(token.name);
       if (acceptedTokenTypes.includes(TOKEN_NAME.toLowerCase())) {
-        const _token = makeToken(token, TOKEN_NAME, config);
-        const WRITE_OP = _token.getWriteOperation();
+        const _TOKEN = makeToken(token, TOKEN_NAME, config);
+        const WRITE_OP = _TOKEN.getWriteOperation();
         if (WRITE_OP) PROCESSED_TOKENS.push(WRITE_OP);
       }
     });
