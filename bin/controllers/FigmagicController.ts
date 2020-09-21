@@ -11,12 +11,15 @@ import { ErrorFigmagicController } from '../frameworks/errors/errors';
 /**
  * @description The main orchestration/controller point for Figmagic
  */
-export async function FigmagicController(config: Config, data: FigmaData): Promise<any> {
+export async function FigmagicController(config: Config, data: FigmaData): Promise<string> {
   try {
+    if (!config || !data) throw new Error(ErrorFigmagicController);
+
     await createTokens(config, data);
     if (config.syncElements) await createElements(config, data);
     if (config.syncGraphics) await createGraphics(config, data);
     console.log(MsgJobComplete);
+    return MsgJobComplete;
   } catch (error) {
     throw new Error(ErrorFigmagicController);
   }

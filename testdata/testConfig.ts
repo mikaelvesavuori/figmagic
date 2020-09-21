@@ -12,7 +12,7 @@ export const testConfig = {
   outputScaleGraphics: 1,
   outputTokenDataType: null,
   outputTokenFormat: 'mjs',
-  recompileLocal: false,
+  recompileLocal: true,
   remSize: 16,
   skipFileGeneration: {
     forceUpdate: true,
@@ -24,7 +24,7 @@ export const testConfig = {
   },
   spacingUnit: 'rem',
   syncElements: false,
-  syncGraphics: true,
+  syncGraphics: false,
   templates: {
     templatePathReact: 'templates/react.jsx',
     templatePathStorybook: 'templates/story.js',
