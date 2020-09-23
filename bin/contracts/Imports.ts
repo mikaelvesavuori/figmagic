@@ -1,4 +1,4 @@
-export interface Imports {}
+export type Imports = string[];
 
 export type UpdatedCssAndImports = {
   updatedCss: string;

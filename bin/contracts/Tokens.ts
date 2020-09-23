@@ -2,19 +2,19 @@ export interface Tokens {
   name: string;
 }
 
-export interface BorderWidthTokens extends Tokens {}
-export interface ColorTokens extends Tokens {}
-export interface DelayTokens extends Tokens {}
-export interface DurationTokens extends Tokens {}
-export interface EasingTokens extends Tokens {}
-export interface FontSizeTokens extends Tokens {}
-export interface FontTokens extends Tokens {}
-export interface FontWeightTokens extends Tokens {}
-export interface LetterSpacingTokens extends Tokens {}
-export interface LineHeightTokens extends Tokens {}
-export interface MediaQueryTokens extends Tokens {}
-export interface OpacityTokens extends Tokens {}
-export interface RadiusTokens extends Tokens {}
-export interface ShadowTokens extends Tokens {}
-export interface SpacingTokens extends Tokens {}
-export interface ZindexTokens extends Tokens {}
+export type BorderWidthTokens = Tokens;
+export type ColorTokens = Tokens;
+export type DelayTokens = Tokens;
+export type DurationTokens = Tokens;
+export type EasingTokens = Tokens;
+export type FontSizeTokens = Tokens;
+export type FontTokens = Tokens;
+export type FontWeightTokens = Tokens;
+export type LetterSpacingTokens = Tokens;
+export type LineHeightTokens = Tokens;
+export type MediaQueryTokens = Tokens;
+export type OpacityTokens = Tokens;
+export type RadiusTokens = Tokens;
+export type ShadowTokens = Tokens;
+export type SpacingTokens = Tokens;
+export type ZindexTokens = Tokens;

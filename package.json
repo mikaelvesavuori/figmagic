@@ -77,10 +77,11 @@
   "source": "index.ts",
   "scripts": {
     "figmagic": "node --experimental-modules index.mjs",
+    "build": "rm -rf dist && tsc",
     "test": "jest __tests__ --collectCoverage",
+    "lint": "eslint './bin/**/*.ts' --quiet --fix",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+    "prepare": "npm run snyk-protect"
   },
   "config": {
     "commitizen": {

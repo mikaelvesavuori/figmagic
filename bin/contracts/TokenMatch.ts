@@ -1,4 +1,6 @@
+import { Imports } from './Imports';
+
 export interface TokenMatch {
   updatedCss: string;
-  updatedImports: string[];
+  updatedImports: Imports[];
 }

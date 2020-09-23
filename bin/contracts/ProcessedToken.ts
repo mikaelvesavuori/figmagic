@@ -1,1 +1,1 @@
-export type ProcessedToken = {};
+export type ProcessedToken = Record<string, unknown>;

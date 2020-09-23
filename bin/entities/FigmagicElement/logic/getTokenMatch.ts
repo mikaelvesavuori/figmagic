@@ -21,7 +21,7 @@ export function getTokenMatch(
       throw new Error(ErrorGetTokenMatch);
 
     let css = ``;
-    let imports: string[] = [];
+    let imports: Imports[] = [];
 
     // Padding requires both X and Y dimensions/values so requires a bit more noodling
     if (property === 'padding') {
@@ -96,7 +96,7 @@ function matchPadding(
       }
     });
 
-    imports.push(tokenFileName);
+    imports.push((tokenFileName as unknown) as Imports);
 
     return { css, imports };
   } catch (error) {
@@ -139,7 +139,7 @@ function matchOther(
 
       if (IS_TOKEN_MATCH) {
         css += `${property}: \${${tokenFileName}.${s[0]}};\n`;
-        imports.push(tokenFileName);
+        imports.push((tokenFileName as unknown) as Imports);
         foundMatch = true;
       }
     });
