@@ -1,8 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { SpacingTokens } from '../../../contracts/Tokens';
 
-import { makeSpacingTokens } from '../index';
-
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 
@@ -12,10 +10,16 @@ import {
   ErrorSetupSpacingTokensNoUnits
 } from '../../../frameworks/errors/errors';
 
+export const makeSpacingTokens = (
+  frame: Frame,
+  spacingUnit: string,
+  remSize: number
+): SpacingTokens => setupSpacingTokens(frame, spacingUnit, remSize);
+
 /**
  * @description Places all Figma spacings into a clean object
  */
-export function setupSpacingTokens(
+function setupSpacingTokens(
   spacingFrame: Frame,
   spacingUnit: string,
   remSize: number
@@ -37,5 +41,6 @@ export function setupSpacingTokens(
     spacings[NAME] = NORMALIZED_UNIT;
   });
 
-  return makeSpacingTokens(spacings);
+  // @ts-ignore
+  return spacings as SpacingTokens;
 }

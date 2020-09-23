@@ -1,8 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { ShadowTokens } from '../../../contracts/Tokens';
 
-import { makeShadowTokens } from '../index';
-
 import { camelize } from '../../../frameworks/string/camelize';
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
@@ -12,10 +10,12 @@ import {
   ErrorSetupShadowTokensMissingProps
 } from '../../../frameworks/errors/errors';
 
+export const makeShadowTokens = (frame: Frame): ShadowTokens => setupShadowTokens(frame);
+
 /**
  * @description Places all Figma shadows into a clean object
  */
-export function setupShadowTokens(shadowFrame: Frame): ShadowTokens {
+function setupShadowTokens(shadowFrame: Frame): ShadowTokens {
   if (!shadowFrame) throw new Error(ErrorSetupShadowTokensNoFrame);
   if (!shadowFrame.children) throw new Error(ErrorSetupShadowTokensNoChildren);
 
@@ -54,5 +54,6 @@ export function setupShadowTokens(shadowFrame: Frame): ShadowTokens {
     }
   });
 
-  return makeShadowTokens(shadows);
+  // @ts-ignore
+  return shadows as ShadowTokens;
 }

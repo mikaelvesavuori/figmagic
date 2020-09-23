@@ -1,8 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { FontTokens } from '../../../contracts/Tokens';
 
-import { makeFontTokens } from '../index';
-
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -11,10 +9,13 @@ import {
   ErrorSetupFontTokensMissingProps
 } from '../../../frameworks/errors/errors';
 
+export const makeFontTokens = (frame: Frame, usePostscriptFontNames = true): FontTokens =>
+  setupFontTokens(frame, usePostscriptFontNames);
+
 /**
  * @description Places all Figma fonts into a clean object
  */
-export function setupFontTokens(fontFrame: Frame, usePostscriptFontNames = true): FontTokens {
+function setupFontTokens(fontFrame: Frame, usePostscriptFontNames = true): FontTokens {
   if (!fontFrame) throw new Error(ErrorSetupFontTokensNoFrame);
   if (!fontFrame.children) throw new Error(ErrorSetupFontTokensNoChildren);
 
@@ -33,5 +34,6 @@ export function setupFontTokens(fontFrame: Frame, usePostscriptFontNames = true)
       : item.style.fontFamily.replace(' /g', '');
   });
 
-  return makeFontTokens(fonts);
+  // @ts-ignore
+  return fonts as FontTokens;
 }

@@ -1,4 +1,4 @@
-import { setupColorTokens } from '../../../../bin/entities/Token/logic/setupColorTokens';
+import { makeColorTokens } from '../../../../bin/entities/Token/logic/setupColorTokens';
 
 import {
   colorFrame,
@@ -10,28 +10,28 @@ describe('Failure cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
     expect(() => {
       // @ts-ignore
-      setupColorTokens({});
+      makeColorTokens({});
     }).toThrow();
   });
 
   test('It should throw an error if frame has "color" property but not "color.fills"', () => {
     expect(() => {
       // @ts-ignore
-      setupColorTokens(colorFrameInvalid);
+      makeColorTokens(colorFrameInvalid);
     }).toThrow();
   });
 
   test('It should throw an error if no argument is provided', () => {
     expect(() => {
       // @ts-ignore
-      setupColorTokens();
+      makeColorTokens();
     }).toThrow();
   });
 });
 
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input (using opacity)', () => {
-    expect(setupColorTokens(colorFrameOpacity)).toEqual(
+    expect(makeColorTokens(colorFrameOpacity)).toEqual(
       expect.objectContaining({
         black: 'rgba(51, 51, 51, 1)',
         blue1: 'rgba(47, 128, 237, 1)',
@@ -55,7 +55,7 @@ describe('Success cases', () => {
   });
 
   test('It should return a complete object when passing in valid input (using alpha channel)', () => {
-    expect(setupColorTokens(colorFrame)).toEqual(
+    expect(makeColorTokens(colorFrame)).toEqual(
       expect.objectContaining({
         black: 'rgba(51, 51, 51, 1)',
         blue1: 'rgba(47, 128, 237, 1)',

@@ -1,8 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { ColorTokens } from '../../../contracts/Tokens';
 
-import { makeColorTokens } from '../index';
-
 import { camelize } from '../../../frameworks/string/camelize';
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
@@ -12,10 +10,12 @@ import {
   ErrorSetupColorTokensNoFills
 } from '../../../frameworks/errors/errors';
 
+export const makeColorTokens = (frame: Frame): ColorTokens => setupColorTokens(frame);
+
 /**
  * @description Places all Figma color frames into a clean object
  */
-export function setupColorTokens(colorFrame: Frame): ColorTokens {
+function setupColorTokens(colorFrame: Frame): ColorTokens {
   if (!colorFrame) throw new Error(ErrorSetupColorTokensNoFrame);
   if (!colorFrame.children) throw new Error(ErrorSetupColorTokensNoChildren);
 
@@ -40,5 +40,6 @@ export function setupColorTokens(colorFrame: Frame): ColorTokens {
     colors[NAME] = COLOR_STRING;
   });
 
-  return makeColorTokens(colors);
+  // @ts-ignore
+  return colors as ColorTokens;
 }

@@ -1,4 +1,4 @@
-import { setupFontWeightTokens } from '../../../../bin/entities/Token/logic/setupFontWeightTokens';
+import { makeFontWeightTokens } from '../../../../bin/entities/Token/logic/setupFontWeightTokens';
 
 import {
   fontWeightFrame,
@@ -10,35 +10,35 @@ describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
     expect(() => {
       // @ts-ignore
-      setupFontWeightTokens();
+      makeFontWeightTokens();
     }).toThrow();
   });
 
   test('It should throw an error if children are missing', () => {
     expect(() => {
       // @ts-ignore
-      setupFontWeightTokens({});
+      makeFontWeightTokens({});
     }).toThrow();
   });
 
   test('It should throw an error if children are missing "name" and "style" properties', () => {
     expect(() => {
       // @ts-ignore
-      setupFontWeightTokens(fontWeightFrameInvalid);
+      makeFontWeightTokens(fontWeightFrameInvalid);
     }).toThrow();
   });
 
   test('It should throw an error if children has "style" property but not "fontWeight"', () => {
     expect(() => {
       // @ts-ignore
-      setupFontWeightTokens(fontWeightFrameFontWeightMismatch);
+      makeFontWeightTokens(fontWeightFrameFontWeightMismatch);
     }).toThrow();
   });
 });
 
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {
-    expect(setupFontWeightTokens(fontWeightFrame)).toEqual(
+    expect(makeFontWeightTokens(fontWeightFrame)).toEqual(
       expect.objectContaining({ light: 300, medium: 500, regular: 400 })
     );
   });

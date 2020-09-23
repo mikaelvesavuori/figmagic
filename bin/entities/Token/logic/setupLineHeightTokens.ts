@@ -1,8 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { LineHeightTokens } from '../../../contracts/Tokens';
 
-import { makeLineHeightTokens } from '../index';
-
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 
@@ -13,10 +11,13 @@ import {
   ErrorSetupLineHeightTokensMissingPercent
 } from '../../../frameworks/errors/errors';
 
+export const makeLineHeightTokens = (frame: Frame, remSize: number): LineHeightTokens =>
+  setupLineHeightTokens(frame, remSize);
+
 /**
  * @description Places all Figma line heights into a clean object
  */
-export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): LineHeightTokens {
+function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): LineHeightTokens {
   if (!lineHeightFrame) throw new Error(ErrorSetupLineHeightTokensNoFrame);
   if (!lineHeightFrame.children) throw new Error(ErrorSetupLineHeightTokensNoChildren);
 
@@ -42,5 +43,6 @@ export function setupLineHeightTokens(lineHeightFrame: Frame, remSize: number): 
     lineHeights[NAME] = lineHeight;
   });
 
-  return makeLineHeightTokens(lineHeights);
+  // @ts-ignore
+  return lineHeights as LineHeightTokens;
 }

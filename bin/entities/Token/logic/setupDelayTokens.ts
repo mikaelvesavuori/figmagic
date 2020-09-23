@@ -1,8 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { DelayTokens } from '../../../contracts/Tokens';
 
-import { makeDelayTokens } from '../index';
-
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -11,10 +9,12 @@ import {
   ErrorSetupDelayTokensMissingProps
 } from '../../../frameworks/errors/errors';
 
+export const makeDelayTokens = (frame: Frame): DelayTokens => setupDelayTokens(frame);
+
 /**
  * @description Places all Figma delays into a clean object
  */
-export function setupDelayTokens(delayFrame: Frame): DelayTokens {
+function setupDelayTokens(delayFrame: Frame): DelayTokens {
   if (!delayFrame) throw new Error(ErrorSetupDelayTokensNoFrame);
   if (!delayFrame.children) throw new Error(ErrorSetupDelayTokensNoChildren);
 
@@ -28,5 +28,6 @@ export function setupDelayTokens(delayFrame: Frame): DelayTokens {
     delays[NAME] = parseFloat(item.characters);
   });
 
-  return makeDelayTokens(delays);
+  // @ts-ignore
+  return delays as DelayTokens;
 }

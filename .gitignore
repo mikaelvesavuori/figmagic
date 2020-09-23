@@ -27,11 +27,6 @@ hint-report/
 .env
 .env.*
 
-# Build generated
-dist/
-build/
-.next
-
 # Compressed archives
 *.7zip
 *.rar

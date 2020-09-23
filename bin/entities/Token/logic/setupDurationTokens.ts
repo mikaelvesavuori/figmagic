@@ -1,8 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { DurationTokens } from '../../../contracts/Tokens';
 
-import { makeDurationTokens } from '../index';
-
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -11,10 +9,12 @@ import {
   ErrorSetupDurationTokensMissingProps
 } from '../../../frameworks/errors/errors';
 
+export const makeDurationTokens = (frame: Frame): DurationTokens => setupDurationTokens(frame);
+
 /**
  * @description Places all Figma durations into a clean object
  */
-export function setupDurationTokens(durationFrame: Frame): DurationTokens {
+function setupDurationTokens(durationFrame: Frame): DurationTokens {
   if (!durationFrame) throw new Error(ErrorSetupDurationTokensNoFrame);
   if (!durationFrame.children) throw new Error(ErrorSetupDurationTokensNoChildren);
 
@@ -28,5 +28,6 @@ export function setupDurationTokens(durationFrame: Frame): DurationTokens {
     durations[NAME] = parseFloat(item.characters);
   });
 
-  return makeDurationTokens(durations);
+  // @ts-ignore
+  return durations as DurationTokens;
 }

@@ -45,10 +45,10 @@
     "@babel/plugin-transform-modules-commonjs": "^7.10.4",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
-    "@types/jest": "^26.0.13",
+    "@types/jest": "^26.0.14",
     "@types/node-fetch": "^2.5.7",
-    "@typescript-eslint/eslint-plugin": "^4.1.1",
-    "@typescript-eslint/parser": "^4.1.1",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "commitizen": "^4.2.1",
@@ -58,12 +58,11 @@
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.3.0",
     "jest": "^26.4.2",
-    "microbundle": "^0.12.3",
-    "prettier": "^2.1.1",
+    "prettier": "^2.1.2",
     "pretty-quick": "^3.0.2",
-    "snyk": "^1.394.0",
-    "ts-jest": "^26.3.0",
-    "typescript": "^4.0.2",
+    "snyk": "^1.399.1",
+    "ts-jest": "^26.4.0",
+    "typescript": "^4.0.3",
     "validate-commit-msg": "^2.14.0"
   },
   "dependencies": {
@@ -74,15 +73,11 @@
   "bin": {
     "figmagic": "index.ts"
   },
-  "source": "index.ts",
   "main": "dist/index.js",
-  "module": "dist/figmagic.module.js",
-  "unpkg": "dist/figmagic.umd.js",
+  "source": "index.ts",
   "scripts": {
     "figmagic": "node --experimental-modules index.mjs",
     "test": "jest __tests__ --collectCoverage",
-    "build": "microbundle",
-    "dev": "microbundle watch",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"

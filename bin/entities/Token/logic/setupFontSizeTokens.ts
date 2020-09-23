@@ -1,8 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { FontSizeTokens } from '../../../contracts/Tokens';
 
-import { makeFontSizeTokens } from '../index';
-
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -13,10 +11,16 @@ import {
   ErrorSetupFontSizeTokensMissingSize
 } from '../../../frameworks/errors/errors';
 
+export const makeFontSizeTokens = (
+  frame: Frame,
+  fontUnit: string,
+  remSize: number
+): FontSizeTokens => setupFontSizeTokens(frame, fontUnit, remSize);
+
 /**
  * @description Places all Figma font sizes into a clean object
  */
-export function setupFontSizeTokens(
+function setupFontSizeTokens(
   fontSizeFrame: Frame,
   fontUnit: string,
   remSize: number
@@ -38,5 +42,6 @@ export function setupFontSizeTokens(
     fontSizes[NAME] = FONT_SIZE;
   });
 
-  return makeFontSizeTokens(fontSizes);
+  // @ts-ignore
+  return fontSizes as FontSizeTokens;
 }

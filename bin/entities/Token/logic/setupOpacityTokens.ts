@@ -1,8 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { OpacityTokens } from '../../../contracts/Tokens';
 
-import { makeOpacityTokens } from '../index';
-
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -11,10 +9,15 @@ import {
   ErrorSetupOpacityTokensMissingProps
 } from '../../../frameworks/errors/errors';
 
+export const makeOpacityTokens = (
+  frame: Frame,
+  opacitiesUnit: 'float' | 'percent'
+): OpacityTokens => setupOpacityTokens(frame, opacitiesUnit);
+
 /**
  * @description Places all Figma opacities scale into a clean object
  */
-export function setupOpacityTokens(
+function setupOpacityTokens(
   opacitiesFrame: Frame,
   opacitiesUnit: 'float' | 'percent'
 ): OpacityTokens {
@@ -53,5 +56,6 @@ export function setupOpacityTokens(
     {}
   );
 
-  return makeOpacityTokens(_opacityTokens);
+  // @ts-ignore
+  return _opacityTokens as OpacityTokens;
 }

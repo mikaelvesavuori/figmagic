@@ -1,8 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { ZindexTokens } from '../../../contracts/Tokens';
 
-import { makeZindexTokens } from '../index';
-
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -11,10 +9,12 @@ import {
   ErrorSetupZindexTokensMissingProps
 } from '../../../frameworks/errors/errors';
 
+export const makeZindexTokens = (frame: Frame): ZindexTokens => setupZindexTokens(frame);
+
 /**
  * @description Places all Figma Z indices into a clean object
  */
-export function setupZindexTokens(zIndexFrame: Frame): ZindexTokens {
+function setupZindexTokens(zIndexFrame: Frame): ZindexTokens {
   if (!zIndexFrame) throw new Error(ErrorSetupZindexTokensNoFrame);
   if (!zIndexFrame.children) throw new Error(ErrorSetupZindexTokensNoChildren);
 
@@ -28,5 +28,6 @@ export function setupZindexTokens(zIndexFrame: Frame): ZindexTokens {
     zIndex[NAME] = parseInt(item.characters);
   });
 
-  return makeZindexTokens(zIndex);
+  // @ts-ignore
+  return zIndex as ZindexTokens;
 }

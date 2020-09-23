@@ -1,8 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { FontWeightTokens } from '../../../contracts/Tokens';
 
-import { makeFontWeightTokens } from '../index';
-
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
@@ -12,10 +10,13 @@ import {
   ErrorSetupFontWeightTokensMissingWeight
 } from '../../../frameworks/errors/errors';
 
+export const makeFontWeightTokens = (frame: Frame): FontWeightTokens =>
+  setupFontWeightTokens(frame);
+
 /**
  * @description Places all Figma font weights into a clean object
  */
-export function setupFontWeightTokens(fontWeightFrame: Frame): FontWeightTokens {
+function setupFontWeightTokens(fontWeightFrame: Frame): FontWeightTokens {
   if (!fontWeightFrame) throw new Error(ErrorSetupFontWeightTokensNoFrame);
   if (!fontWeightFrame.children) throw new Error(ErrorSetupFontWeightTokensNoChildren);
 
@@ -31,5 +32,6 @@ export function setupFontWeightTokens(fontWeightFrame: Frame): FontWeightTokens 
     fontWeights[NAME] = item.style.fontWeight;
   });
 
-  return makeFontWeightTokens(fontWeights);
+  // @ts-ignore
+  return fontWeights as FontWeightTokens;
 }

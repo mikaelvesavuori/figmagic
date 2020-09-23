@@ -1,4 +1,4 @@
-import { setupMediaQueryTokens } from '../../../../bin/entities/Token/logic/setupMediaQueryTokens';
+import { makeMediaQueryTokens } from '../../../../bin/entities/Token/logic/setupMediaQueryTokens';
 
 import {
   mediaQueriesFrame,
@@ -9,28 +9,28 @@ describe('Success cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
     expect(() => {
       // @ts-ignore
-      setupMediaQueryTokens({});
+      makeMediaQueryTokens({});
     }).toThrow();
   });
 
   test('It should throw an error if frame does not have "absoluteBoundingBox" property', () => {
     expect(() => {
       // @ts-ignore
-      setupMediaQueryTokens(mediaQueriesFrameNoAbsoluteBoundingBox);
+      makeMediaQueryTokens(mediaQueriesFrameNoAbsoluteBoundingBox);
     }).toThrow();
   });
 
   test('It should throw an error if no argument is provided', () => {
     expect(() => {
       // @ts-ignore
-      setupMediaQueryTokens();
+      makeMediaQueryTokens();
     }).toThrow();
   });
 });
 
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {
-    expect(setupMediaQueryTokens(mediaQueriesFrame)).toEqual(
+    expect(makeMediaQueryTokens(mediaQueriesFrame)).toEqual(
       expect.objectContaining({
         desktopLg: '1440px',
         desktopMd: '1180px',
