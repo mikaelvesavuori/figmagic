@@ -1,6 +1,6 @@
 export interface FigmaData {
   document: Document;
-  components?: object;
+  components?: Record<string, unknown>;
 }
 
 type Document = {

@@ -19,13 +19,14 @@ import {
 export function parseTypographyStylingFromElement(
   textElement: Frame,
   remSize: number,
-  outputTokenFormat: string
+  outputTokenFormat: string,
+  letterSpacingUnit: string,
+  outputFolderTokens: string
 ): UpdatedCssAndImports {
   try {
     if (!textElement || !remSize) throw new Error(ErrorParseTypographyStylingFromElement);
 
-    // TODO/BUG: This hardcodes token path, which should be customizable
-    const PATH = process.env.IS_TEST ? path.join('testdata', 'tokens') : `tokens`;
+    const PATH = process.env.IS_TEST ? path.join('testdata', 'tokens') : outputFolderTokens;
 
     const { colors, fontFamilies, fontSizes, fontWeights, letterSpacings, lineHeights } = getFiles(
       PATH,
@@ -45,7 +46,7 @@ export function parseTypographyStylingFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
+      updatedImports.forEach((i: any) => imports.push(i));
     }
 
     const FONT_SIZE: number | null = getFontSize(textElement);
@@ -58,7 +59,7 @@ export function parseTypographyStylingFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
+      updatedImports.forEach((i: any) => imports.push(i));
     }
 
     // BUG? Will only work correctly with Postscript name?
@@ -72,7 +73,7 @@ export function parseTypographyStylingFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
+      updatedImports.forEach((i: any) => imports.push(i));
     }
 
     const FONT_WEIGHT = getFontWeight(textElement);
@@ -85,7 +86,7 @@ export function parseTypographyStylingFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
+      updatedImports.forEach((i: any) => imports.push(i));
     }
 
     const FONT_LINE_HEIGHT = getFontLineHeight(textElement);
@@ -98,14 +99,13 @@ export function parseTypographyStylingFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
+      updatedImports.forEach((i: any) => imports.push(i));
     }
 
     const LETTER_SPACING: number | null = getFontLetterSpacing(textElement);
     if (LETTER_SPACING && FONT_SIZE) {
-      // TODO/BUG: this duplicates the internal logic of the letter-spacing token processing, and makes the heavy assumption the expected unit is "em"
       const SIZE = LETTER_SPACING / FONT_SIZE;
-      const SIZE_STRING = `${SIZE}em`;
+      const SIZE_STRING = `${SIZE}${letterSpacingUnit}`;
 
       const { updatedCss, updatedImports } = getTokenMatch(
         letterSpacings,
@@ -115,7 +115,7 @@ export function parseTypographyStylingFromElement(
         remSize
       );
       css += updatedCss;
-      updatedImports.forEach((i: Record<string, unknown>) => imports.push(i));
+      updatedImports.forEach((i: any) => imports.push(i));
     }
 
     const FONT_ALIGNMENT = getFontAlignment(textElement);

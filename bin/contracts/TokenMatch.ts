@@ -1,4 +1,4 @@
 export interface TokenMatch {
-  updatedCss: any;
-  updatedImports: any;
+  updatedCss: string;
+  updatedImports: string[];
 }

@@ -21,11 +21,11 @@ export function getTokenMatch(
       throw new Error(ErrorGetTokenMatch);
 
     let css = ``;
-    let imports: any[] = [];
+    let imports: string[] = [];
 
     // Padding requires both X and Y dimensions/values so requires a bit more noodling
     if (property === 'padding') {
-      const a: any = matchPadding(
+      const PADDING_MATCH: any = matchPadding(
         expectedValue,
         remSize,
         tokens,
@@ -34,10 +34,10 @@ export function getTokenMatch(
         css,
         imports
       );
-      css = a.css;
-      imports = a.imports;
+      css = PADDING_MATCH.css;
+      imports = PADDING_MATCH.imports;
     } else {
-      const a: any = matchOther(
+      const OTHER_MATCH: any = matchOther(
         expectedValue,
         remSize,
         tokens,
@@ -46,8 +46,8 @@ export function getTokenMatch(
         css,
         imports
       );
-      css = a.css;
-      imports = a.imports;
+      css = OTHER_MATCH.css;
+      imports = OTHER_MATCH.imports;
     }
 
     return { updatedCss: css, updatedImports: imports };
@@ -64,7 +64,7 @@ function matchPadding(
   property: string,
   css: string,
   imports: Imports[]
-): any {
+): Record<string, string | Imports[]> | undefined {
   try {
     const keys: any = Object.keys(expectedValue);
     if (typeof expectedValue !== 'object') return;

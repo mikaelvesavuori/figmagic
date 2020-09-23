@@ -5,7 +5,7 @@
   "outputFileName": "figma.json",
   "outputFolderBaseFile": ".figmagic",
   "outputFolderTokens": "tokens",
-  "outputTokenFormat": "mjs",
+  "outputTokenFormat": "js",
   "outputFolderElements": "elements",
   "spacingUnit": "rem",
   "usePostscriptFontNames": true,

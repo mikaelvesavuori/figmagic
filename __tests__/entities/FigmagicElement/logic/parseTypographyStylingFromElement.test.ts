@@ -14,7 +14,7 @@ describe('Success cases', () => {
   test('It should successfully return an object (MJS format), if given valid input', () => {
     expect(
       // @ts-ignore
-      parseTypographyStylingFromElement(cssTypographyElement, 16, 'mjs')
+      parseTypographyStylingFromElement(cssTypographyElement, 16, 'mjs', 'em', 'tokens')
     ).toMatchObject({
       updatedCss: `color: rgba(0; 0; 0; 0);
 font-size: \${fontSizes.paragraph};

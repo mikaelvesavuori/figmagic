@@ -184,7 +184,8 @@ class FigmagicElement {
           MAIN_ELEMENT,
           TEXT_ELEMENT as any,
           this.config.remSize,
-          this.config.outputTokenFormat
+          this.config.outputTokenFormat,
+          this.config.outputFolderTokens
         );
 
         css += `\n.${FIXED_NAME} {\n${updatedCss}}`; // Add 'dot' selector
@@ -194,7 +195,9 @@ class FigmagicElement {
           const { updatedCss, updatedImports } = parseTypographyStylingFromElement(
             TEXT_ELEMENT,
             this.config.remSize,
-            this.config.outputTokenFormat
+            this.config.outputTokenFormat,
+            this.config.letterSpacingUnit,
+            this.config.outputFolderTokens
           );
           css += `\n.${FIXED_NAME} {\n${updatedCss}}`;
           imports = imports.concat(updatedImports);
@@ -226,7 +229,9 @@ class FigmagicElement {
         const { updatedCss, updatedImports } = parseTypographyStylingFromElement(
           TEXT_ELEMENT,
           this.config.remSize,
-          this.config.outputTokenFormat
+          this.config.outputTokenFormat,
+          this.config.letterSpacingUnit,
+          this.config.outputFolderTokens
         );
         css += updatedCss;
         imports = imports.concat(updatedImports);
@@ -274,7 +279,8 @@ class FigmagicElement {
           layoutElement,
           textElement,
           this.config.remSize,
-          this.config.outputTokenFormat
+          this.config.outputTokenFormat,
+          this.config.outputFolderTokens
         );
 
         css += updatedCss;

@@ -31,13 +31,13 @@ export function parseCssFromElement(
   layoutElement: Frame,
   textElement: Frame | null,
   remSize: number,
-  outputTokenFormat: string
+  outputTokenFormat: string,
+  outputFolderTokens: string
 ): UpdatedCssAndImports {
   try {
     if (!layoutElement || !remSize || !outputTokenFormat) throw new Error(ErrorParseCssFromElement);
 
-    // TODO/BUG: This hardcodes token path, which should be customizable
-    const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : path.join(`tokens`);
+    const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : outputFolderTokens;
 
     const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputTokenFormat);
 

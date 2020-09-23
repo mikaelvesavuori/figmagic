@@ -6,7 +6,7 @@ import { FigmaElement } from './FigmaElement';
  */
 export interface FigmagicElement extends FigmaElement {
   element?: string;
-  imports?: any[];
+  imports?: string[];
   css?: string;
   html?: string;
   text?: string;
@@ -16,7 +16,7 @@ export interface FigmagicElement extends FigmaElement {
   name: string;
   description?: string;
   element?: string;
-  imports?: any[];
+  imports?: string[];
   css?: string;
   html?: string;
   text?: string;

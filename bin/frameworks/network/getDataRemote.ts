@@ -8,7 +8,6 @@ import { MsgSetDataFromApi } from '../messages/messages';
 /**
  * @description Helper to get Figma data from their API
  */
-// TODO: Fix real return type?
 export async function getDataRemote(token: string, url: string): Promise<any> {
   try {
     if (!token || !url) throw new Error(ErrorGetDataNoTokenOrUrl);

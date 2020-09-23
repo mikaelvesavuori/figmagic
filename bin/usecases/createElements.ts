@@ -21,10 +21,10 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
     await refresh(config.outputFolderElements);
 
     const { components }: any = data;
-    const elementsPage = createPage(data.document.children, 'Elements');
-    const elements = processElements(elementsPage, config, components);
+    const ELEMENTS_PAGE = createPage(data.document.children, 'Elements');
+    const ELEMENTS = processElements(ELEMENTS_PAGE, config, components);
 
-    writeElements(elements, config);
+    writeElements(ELEMENTS, config);
   } catch (error) {
     throw new Error(ErrorCreateElements);
   }

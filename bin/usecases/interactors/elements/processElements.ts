@@ -21,11 +21,11 @@ export function processElements(
   try {
     if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
 
-    const filteredElements = elementsPage.filter((element) => element.type === 'COMPONENT');
-    const parsedElements = filteredElements.map((element: FigmaElement) => {
+    const FILTERED_ELEMENTS = elementsPage.filter((element) => element.type === 'COMPONENT');
+    const PARSED_ELEMENTS = FILTERED_ELEMENTS.map((element: FigmaElement) => {
       return makeFigmagicElement(element, config, components[element.id].description);
     });
-    return parsedElements;
+    return PARSED_ELEMENTS;
   } catch (error) {
     throw new Error(ErrorProcessElements);
   }

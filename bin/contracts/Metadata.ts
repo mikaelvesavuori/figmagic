@@ -4,6 +4,6 @@ export interface Metadata {
   text: string;
   dataType: null | 'enum';
   element: Frame;
-  extraProps: any[];
-  imports: any[];
+  extraProps: string[];
+  imports: string[];
 }
