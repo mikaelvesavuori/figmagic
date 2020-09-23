@@ -10,14 +10,14 @@ import { figmaTestResponse } from '../../testdata/figmaTestResponse';
 
 describe('Success cases', () => {
   test('It should write tokens given a valid configuration, valid data and an output folder', async () => {
-    const config = testConfig;
-    const data = figmaTestResponse;
-    config.outputFolderTokens = '__test-tokens-success__';
+    const CONFIG = testConfig;
+    const DATA = figmaTestResponse;
+    CONFIG.outputFolderTokens = '__test-tokens-success__';
     // @ts-ignore
-    await createTokens(config, data);
-    const FILE_EXISTS = fs.existsSync(config.outputFolderTokens);
+    await createTokens(CONFIG, DATA);
+    const FILE_EXISTS = fs.existsSync(CONFIG.outputFolderTokens);
     expect(FILE_EXISTS).toBe(true);
-    trash(config.outputFolderTokens);
+    trash(CONFIG.outputFolderTokens);
   });
 });
 

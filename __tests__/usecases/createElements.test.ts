@@ -1,5 +1,5 @@
-//import * as fs from 'fs';
-//import trash from 'trash';
+import * as fs from 'fs';
+import trash from 'trash';
 import dotenv from 'dotenv';
 
 import { createElements } from '../../bin/usecases/createElements';
@@ -29,17 +29,16 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should write tokens given a valid configuration, valid data and an output folder', async () => {
-    const config = testConfig;
-    config.token = process.env.FIGMA_TOKEN || '';
-    config.url = process.env.FIGMA_URL || '';
-    config.outputFolderGraphics = '__test-graphics-success__';
-    const data = figmaTestResponse;
+    const CONFIG = testConfig;
+    CONFIG.token = process.env.FIGMA_TOKEN || '';
+    CONFIG.url = process.env.FIGMA_URL || '';
+    CONFIG.outputFolderElements = '__test-elements-success__';
+    const DATA = figmaTestResponse;
+
     // @ts-ignore
-    await createElements(config, data);
-    /*
-    const fileExists = fs.existsSync(outputFolderGraphics);
-    expect(fileExists).toBeTruthy();
-    trash(outputFolderGraphics);
-    */
+    await createElements(CONFIG, DATA);
+    const FILE_EXISTS = fs.existsSync(CONFIG.outputFolderElements);
+    expect(FILE_EXISTS).toBeTruthy();
+    trash(CONFIG.outputFolderElements);
   });
 });

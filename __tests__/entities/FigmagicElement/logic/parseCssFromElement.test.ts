@@ -1,5 +1,3 @@
-//import { FRAME as Frame } from '../../../../bin/contracts/Figma';
-
 import { parseCssFromElement } from '../../../../bin/entities/FigmagicElement/logic/parseCssFromElement';
 
 import { cssLayoutElement } from '../../../../testdata/elements/cssLayoutElement';
@@ -7,13 +5,12 @@ import { cssLayoutElementGradient } from '../../../../testdata/elements/cssLayou
 import { cssLayoutElementShadow } from '../../../../testdata/elements/cssLayoutElementShadow';
 import { cssTypographyElement } from '../../../../testdata/elements/cssTypographyElement';
 
-/*
 describe('Failure cases', () => {
-  test('It should throw an error if no argument is provided', async () => {
-    await expect(parseCssFromElement()).rejects.toThrow();
+  test('It should throw an error if no argument is provided', () => {
+    // @ts-ignore
+    expect(() => parseCssFromElement()).toThrow();
   });
 });
-*/
 
 describe('Success cases', () => {
   test('It should successfully return an object (MJS), if given valid input', () => {

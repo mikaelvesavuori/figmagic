@@ -8,14 +8,10 @@ describe('Failure cases', () => {
     }).toThrowError();
   });
 
-  /*
   test('It should throw an error if attempting to get file contents for non-existing file', () => {
-    const FILE_PATH = '__test-getFileContents__';
-    const FILE_NAME = 'testfile001';
-    const FORMAT = 'mjs';
-    expect(() => sliceOutObjectFromFile(FILE_PATH, FILE_NAME, FORMAT)).toThrowError();
+    const FILE_PATH = '__test-getFileContents__/testfile001.mjs';
+    expect(() => sliceOutObjectFromFile(FILE_PATH)).toThrowError();
   });
-  */
 });
 
 describe('Success cases', () => {

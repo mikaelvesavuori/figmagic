@@ -4,49 +4,19 @@ import { createConfiguration } from '../../../../bin/entities/Config/logic/creat
 import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 import { Config } from '../../../../bin/contracts/Config';
 
+import { testConfig } from '../../../../testdata/testConfig';
+
 describe('Success cases', () => {
   test('It should return a valid merged configuration if given a path to an RC file and a set of CLI arguments', async () => {
     const USER_CONFIG_PATH = path.join(process.cwd(), 'testdata', 'figmagicrc');
     const CLI_ARGS = ['-t', 'asdf1234'];
+    testConfig.token = 'asdf1234';
+    testConfig.recompileLocal = false;
+    testConfig.usePostscriptFontNames = false;
 
-    expect(await createConfiguration(baseConfig, USER_CONFIG_PATH, CLI_ARGS)).toEqual(
-      expect.objectContaining({
-        debugMode: false,
-        fontUnit: 'rem',
-        letterSpacingUnit: 'em',
-        opacitiesUnit: 'float',
-        outputFileName: 'figma.json',
-        outputFolderBaseFile: '.figmagic',
-        outputFolderElements: 'elements',
-        outputFolderGraphics: 'graphics',
-        outputFolderTokens: 'tokens',
-        outputFormatGraphics: 'svg',
-        outputScaleGraphics: 1,
-        outputTokenDataType: null,
-        outputTokenFormat: 'mjs',
-        recompileLocal: false,
-        remSize: 16,
-        skipFileGeneration: {
-          forceUpdate: true,
-          skipCss: false,
-          skipDescription: false,
-          skipReact: false,
-          skipStorybook: false,
-          skipStyled: false
-        },
-        spacingUnit: 'rem',
-        syncElements: false,
-        syncGraphics: false,
-        templates: {
-          templatePathReact: 'templates/react.jsx',
-          templatePathStorybook: 'templates/story.js',
-          templatePathStyled: 'templates/styled.jsx'
-        },
-        token: 'asdf1234',
-        url: '',
-        usePostscriptFontNames: false
-      })
-    );
+    await expect(
+      createConfiguration(baseConfig, USER_CONFIG_PATH, CLI_ARGS)
+    ).resolves.toMatchObject(testConfig);
   });
 
   test('It should throw an error when missing user configuration path', async () => {

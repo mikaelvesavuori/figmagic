@@ -21,6 +21,7 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should successfully write graphics (PNG) if provided valid file list and config', async () => {
     baseConfig.outputFormatGraphics = 'png';
+
     await writeGraphics(fileList, baseConfig);
     const PATH = `${TEMP_FOLDER}/${fileList[0].file}`;
     const FILE_EXISTS = fs.existsSync(PATH);
@@ -32,6 +33,7 @@ describe('Success cases', () => {
 describe('Success cases', () => {
   test('It should successfully write graphics (SVG) if provided valid file list and config', async () => {
     baseConfig.outputFormatGraphics = 'svg';
+
     await writeGraphics(fileList, baseConfig);
     const PATH = `${TEMP_FOLDER}/${fileList[1].file}`;
     const FILE_EXISTS = fs.existsSync(PATH);
