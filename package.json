@@ -71,7 +71,7 @@
     "trash": "^6.1.1"
   },
   "bin": {
-    "figmagic": "index.ts"
+    "figmagic": "dist/index.js"
   },
   "main": "dist/index.js",
   "source": "index.ts",

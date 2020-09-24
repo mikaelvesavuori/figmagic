@@ -1,3 +1,6 @@
+# Ensure built files are included
+!dist/
+
 /.figmagic
 /figma
 /grid
