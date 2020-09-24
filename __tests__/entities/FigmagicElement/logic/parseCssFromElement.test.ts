@@ -64,7 +64,7 @@ border-radius: \${radii.soft};
   test('It should apply shadow', () => {
     expect(
       // @ts-ignore
-      parseCssFromElement(cssLayoutElementShadow, cssTypographyElement, 16, 'mjs')
+      parseCssFromElement(cssLayoutElementShadow, cssTypographyElement, 16, 'mjs', 'tokens')
     ).toMatchObject({
       updatedCss: `width: 100%;
 box-sizing: border-box;

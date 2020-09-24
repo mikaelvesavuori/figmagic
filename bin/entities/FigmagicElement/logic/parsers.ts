@@ -65,9 +65,7 @@ export function getPaddingX(textElement: Frame, element: Frame): PaddingHorizont
       throw new Error(ErrorGetPaddingX);
 
     // TODO: Fix this
-    // @ts-ignore
     const PARENT_WIDTH = element.absoluteBoundingBox.width;
-    // @ts-ignore
     const TEXT_WIDTH = textElement.absoluteBoundingBox.width;
     // @ts-ignore
     const PADDING_LEFT = textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x;

@@ -26,7 +26,6 @@ import { ErrorParseCssFromElement, ErrorGetFiles } from '../../../frameworks/err
 /**
  * @description Parse layout CSS from "element" (Figma component)
  */
-// TODO: Refactor
 export function parseCssFromElement(
   layoutElement: Frame,
   textElement: Frame | null,
@@ -38,16 +37,15 @@ export function parseCssFromElement(
     if (!layoutElement || !remSize || !outputTokenFormat) throw new Error(ErrorParseCssFromElement);
 
     const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : outputFolderTokens;
-
     const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputTokenFormat);
 
-    // Start parsing
-    let css = ``;
+    // Start parsing, and add defaults
+    let css = `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
     let imports: any = [];
 
-    // Add defaults
-    css += `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
-
+    /**
+     * Padding
+     */
     const PADDING_Y: PaddingVertical | null = textElement
       ? getPaddingY(textElement, layoutElement)
       : null;
@@ -71,6 +69,9 @@ export function parseCssFromElement(
       if (PARSED_PADDING.imports) imports = imports.concat(PARSED_PADDING.imports);
     }
 
+    /**
+     * Heights
+     */
     const HEIGHT = layoutElement.absoluteBoundingBox
       ? layoutElement.absoluteBoundingBox.height
       : null;
@@ -80,7 +81,9 @@ export function parseCssFromElement(
       if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
     }
 
-    // Seem to get dual background-color for Checkbox? One should be color
+    /**
+     * Background color
+     */
     const BACKGROUND_COLOR = getBackgroundColor(layoutElement);
     if (BACKGROUND_COLOR) {
       const parsedValue = parseBackgroundColor(css, imports, {
@@ -92,6 +95,9 @@ export function parseCssFromElement(
       if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
     }
 
+    /**
+     * Border width
+     */
     const BORDER_WIDTH = layoutElement.strokeWeight ? `${layoutElement.strokeWeight}px` : null;
     if (BORDER_WIDTH) {
       const parsedValue = parseBorderWidth(css, imports, {
@@ -103,6 +109,9 @@ export function parseCssFromElement(
       if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
     }
 
+    /**
+     * Border color
+     */
     const BORDER_COLOR = getBorderColor(layoutElement);
     if (BORDER_COLOR) {
       const parsedValue = parseBorderColor(css, imports, {
@@ -114,6 +123,9 @@ export function parseCssFromElement(
       if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
     }
 
+    /**
+     * Border radius
+     */
     const BORDER_RADIUS = layoutElement.cornerRadius ? `${layoutElement.cornerRadius}px` : null;
     if (BORDER_RADIUS) {
       const parsedValue = parseBorderRadius(css, imports, {
@@ -125,6 +137,9 @@ export function parseCssFromElement(
       if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
     }
 
+    /**
+     * Shadows
+     */
     const SHADOW = getShadow(layoutElement);
     if (SHADOW) {
       const parsedValue = parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
@@ -132,16 +147,17 @@ export function parseCssFromElement(
       if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
     }
 
-    // Reduce all duplicates
-    const NEW_CSS = Array.from(new Set(css.split(/;/gi)))
-      .toString()
-      .replace(/,/gi, ';');
-
+    const NEW_CSS = reduceDuplicates(css);
     return { updatedCss: NEW_CSS, updatedImports: imports };
   } catch (error) {
     throw new Error(ErrorParseCssFromElement);
   }
 }
+
+const reduceDuplicates = (str: string) =>
+  Array.from(new Set(str.split(/;/gi)))
+    .toString()
+    .replace(/,/gi, ';');
 
 const getFiles = (path: string, outputTokenFormat: string): any => {
   try {
