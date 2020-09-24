@@ -38,6 +38,5 @@ export function makeColorTokens(colorFrame: Frame): ColorTokens {
     colors[NAME] = COLOR_STRING;
   });
 
-  // @ts-ignore
-  return colors as ColorTokens;
+  return colors;
 }

@@ -25,12 +25,10 @@ export function makeFontTokens(fontFrame: Frame, usePostscriptFontNames = true):
 
     const NAME = camelize(item.name);
 
-    // Use Postscript font names or the default font family names (without spaces)
     fonts[NAME] = usePostscriptFontNames
       ? item.style.fontPostScriptName
       : item.style.fontFamily.replace(' /g', '');
   });
 
-  // @ts-ignore
-  return fonts as FontTokens;
+  return fonts;
 }

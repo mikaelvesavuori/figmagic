@@ -35,11 +35,9 @@ export function makeLineHeightTokens(lineHeightFrame: Frame, remSize: number): L
       remSize
     );
 
-    // Do a tiny bit of rounding to avoid ugly numbers
     const lineHeight = parseFloat(LINE_HEIGHT).toFixed(2);
     lineHeights[NAME] = lineHeight;
   });
 
-  // @ts-ignore
-  return lineHeights as LineHeightTokens;
+  return lineHeights;
 }

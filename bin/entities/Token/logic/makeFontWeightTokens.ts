@@ -29,6 +29,5 @@ export function makeFontWeightTokens(fontWeightFrame: Frame): FontWeightTokens {
     fontWeights[NAME] = item.style.fontWeight;
   });
 
-  // @ts-ignore
-  return fontWeights as FontWeightTokens;
+  return fontWeights;
 }

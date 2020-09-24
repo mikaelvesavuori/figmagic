@@ -21,8 +21,8 @@ export async function getFromApi(
       }
     })
       .then((res) => res.json())
-      .catch((error) => {
-        throw new Error(error);
+      .catch(() => {
+        throw new Error(ErrorGetFromApi);
       });
   } catch (error) {
     throw new Error(ErrorGetFromApi);

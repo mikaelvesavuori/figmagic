@@ -7,8 +7,6 @@ import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 import { MsgGetTokenMatchNoMatch } from '../../../frameworks/messages/messages';
 import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../../frameworks/errors/errors';
 
-// TODO: Refactor
-
 export function getTokenMatch(
   tokens: Tokens | any,
   tokenFileName: string,
@@ -52,7 +50,7 @@ export function getTokenMatch(
 
     return { updatedCss: css, updatedImports: imports };
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorGetTokenMatch);
   }
 }
 
@@ -66,12 +64,12 @@ function matchPadding(
   imports: Imports[]
 ): Record<string, string | Imports[]> | undefined {
   try {
-    const keys: any = Object.keys(expectedValue);
+    const KEYS: any = Object.keys(expectedValue);
     if (typeof expectedValue !== 'object') return;
-    keys.forEach((key: any) => {
+
+    KEYS.forEach((key: any) => {
       let foundMatch = false;
 
-      //  && expectedValue[key] > 0
       if (expectedValue[key]) {
         if (!remSize) throw new Error(ErrorGetTokenMatchNoRemSize);
         const parsedValue =
@@ -81,9 +79,9 @@ function matchPadding(
         const value = normalizeUnits(parsedValue as any, 'px', 'rem', remSize);
 
         // Check if we can match value with a token and its value
-        Object.entries(tokens).forEach((s) => {
-          if (s[1] === value) {
-            css += `${property}-${key}: \${${tokenFileName}.${s[0]}};\n`;
+        Object.entries(tokens).forEach((token) => {
+          if (token[1] === value) {
+            css += `${property}-${key}: \${${tokenFileName}.${token[0]}};\n`;
             foundMatch = true;
           }
         });
@@ -116,10 +114,10 @@ function matchOther(
   try {
     let foundMatch = false;
 
-    Object.entries(tokens).forEach((s) => {
+    Object.entries(tokens).forEach((token) => {
       const TOKEN_VALUE = (() => {
-        if (typeof s[1] === 'number') return s[1];
-        return s[1];
+        if (typeof token[1] === 'number') return token[1];
+        return token[1];
       })();
 
       // Multiply rem|em strings through REM size argument
@@ -138,7 +136,7 @@ function matchOther(
         : TOKEN_VALUE == expectedValue;
 
       if (IS_TOKEN_MATCH) {
-        css += `${property}: \${${tokenFileName}.${s[0]}};\n`;
+        css += `${property}: \${${tokenFileName}.${token[0]}};\n`;
         imports.push((tokenFileName as unknown) as Imports);
         foundMatch = true;
       }

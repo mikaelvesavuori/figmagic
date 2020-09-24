@@ -1,6 +1,4 @@
-export interface Tokens {
-  name: string;
-}
+export type Tokens = Record<string, unknown>;
 
 export type BorderWidthTokens = Tokens;
 export type ColorTokens = Tokens;

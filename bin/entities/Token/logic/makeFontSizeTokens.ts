@@ -36,6 +36,5 @@ export function makeFontSizeTokens(
     fontSizes[NAME] = FONT_SIZE;
   });
 
-  // @ts-ignore
-  return fontSizes as FontSizeTokens;
+  return fontSizes;
 }

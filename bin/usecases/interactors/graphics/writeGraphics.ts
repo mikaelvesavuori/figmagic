@@ -21,6 +21,6 @@ export async function writeGraphics(fileList: any[], config: Config): Promise<vo
       )
     );
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorWriteGraphics);
   }
 }

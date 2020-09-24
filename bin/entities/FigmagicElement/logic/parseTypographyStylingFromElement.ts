@@ -131,7 +131,7 @@ export function parseTypographyStylingFromElement(
 
     return { updatedCss: NEW_CSS, updatedImports: imports };
   } catch (error) {
-    throw new Error(error);
+    throw new Error(ErrorParseTypographyStylingFromElement);
   }
 }
 

@@ -26,6 +26,5 @@ export function makeDurationTokens(durationFrame: Frame): DurationTokens {
     durations[NAME] = parseFloat(item.characters);
   });
 
-  // @ts-ignore
-  return durations as DurationTokens;
+  return durations;
 }

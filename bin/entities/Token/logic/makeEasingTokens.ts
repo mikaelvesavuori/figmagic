@@ -26,6 +26,5 @@ export function makeEasingTokens(easingFrame: Frame): EasingTokens {
     easings[NAME] = item.characters.trim();
   });
 
-  // @ts-ignore
-  return easings as EasingTokens;
+  return easings;
 }

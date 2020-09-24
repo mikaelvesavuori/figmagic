@@ -29,6 +29,5 @@ export function makeMediaQueryTokens(mediaQueryFrame: Frame): MediaQueryTokens {
     mediaQueries[NAME] = `${item.absoluteBoundingBox.width}px`;
   });
 
-  // @ts-ignore
-  return mediaQueries as MediaQueryTokens;
+  return mediaQueries;
 }

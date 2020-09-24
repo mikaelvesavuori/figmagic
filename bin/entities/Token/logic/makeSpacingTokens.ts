@@ -30,11 +30,11 @@ export function makeSpacingTokens(
     const NAME: string = camelize(item.name);
     if (!item.absoluteBoundingBox || !item.absoluteBoundingBox.width)
       throw new Error(ErrorMakeSpacingTokensNoFrame);
+
     const WIDTH: number = item.absoluteBoundingBox.width;
     const NORMALIZED_UNIT = normalizeUnits(WIDTH, 'px', spacingUnit, remSize);
     spacings[NAME] = NORMALIZED_UNIT;
   });
 
-  // @ts-ignore
-  return spacings as SpacingTokens;
+  return spacings;
 }

@@ -24,12 +24,11 @@ export function makeRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTok
   TOKENS.forEach((item: Frame) => {
     if (!item.name) throw new Error(ErrorMakeRadiusTokensMissingProps);
     const NAME: string = camelize(item.name);
-    const cornerRadius: string = item.cornerRadius
+    const CORNER_RADIUS: string = item.cornerRadius
       ? normalizeUnits(item.cornerRadius, 'cornerRadius', 'adjustedRadius', remSize)
       : '0px';
-    cornerRadii[NAME] = cornerRadius;
+    cornerRadii[NAME] = CORNER_RADIUS;
   });
 
-  // @ts-ignore
-  return cornerRadii as RadiusTokens;
+  return cornerRadii;
 }

@@ -26,6 +26,5 @@ export function makeDelayTokens(delayFrame: Frame): DelayTokens {
     delays[NAME] = parseFloat(item.characters);
   });
 
-  // @ts-ignore
-  return delays as DelayTokens;
+  return delays;
 }
