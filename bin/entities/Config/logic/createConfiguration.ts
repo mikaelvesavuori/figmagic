@@ -44,7 +44,6 @@ export async function createConfiguration(
   } catch (e) {} // eslint-disable-line no-empty
 
   // Env var configuration
-  // BUG/TODO: Env config will negate/remove token+url and others from RC file
   const ENV_CONFIG = {
     token: process.env.FIGMA_TOKEN || null,
     url: process.env.FIGMA_URL || null

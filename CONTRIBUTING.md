@@ -19,9 +19,9 @@ import { makeBorderWidthTokens } from '../index';
 import { camelize } from '../../../frameworks/string/camelize';
 
 import {
-  ErrorSetupBorderWidthTokensNoFrame,
-  ErrorSetupBorderWidthTokensNoChildren,
-  ErrorSetupBorderWidthTokensMissingProps
+  ErrorMakeBorderWidthTokensNoFrame,
+  ErrorMakeBorderWidthTokensNoChildren,
+  ErrorMakeBorderWidthTokensMissingProps
 } from '../../../frameworks/errors/errors';
 ```
 

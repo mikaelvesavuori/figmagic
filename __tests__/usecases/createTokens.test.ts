@@ -28,14 +28,14 @@ describe('Failure cases', () => {
   });
 
   test('It should throw an error if misconfigured (no children in data)', async () => {
-    const config = testConfig;
-    const data = { ...figmaTestResponse };
-    data.document.children = [];
-    config.outputFolderTokens = '__test-tokens-fail__';
+    const CONFIG = testConfig;
+    const DATA = { ...figmaTestResponse };
+    DATA.document.children = [];
+    CONFIG.outputFolderTokens = '__test-tokens-fail__';
     await expect(
       // @ts-ignore
-      createTokens(config, data)
+      createTokens(CONFIG, DATA)
     ).rejects.toThrowError();
-    trash(config.outputFolderTokens);
+    trash(CONFIG.outputFolderTokens);
   });
 });

@@ -14,17 +14,6 @@ describe('Failure cases', () => {
     // @ts-ignore
     await expect(createElements()).rejects.toThrowError();
   });
-
-  /*
-  test('It should throw an error if misconfigured (missing token and URL)', async () => {
-    const config = testConfig;
-    const data = figmaTestResponse;
-    const outputFolderGraphics = '__test-graphics__';
-    // @ts-ignore
-    await expect(createElements(config, data, outputFolderGraphics)).rejects.toThrowError();
-    trash(outputFolderGraphics);
-  });
-  */
 });
 
 describe('Success cases', () => {

@@ -39,7 +39,6 @@ export function getPaddingY(textElement: Frame, element: Frame): PaddingVertical
 
     const PARENT_HEIGHT = element.absoluteBoundingBox.height;
     const TEXT_HEIGHT = textElement.absoluteBoundingBox.height;
-    // TODO: The below is added as it seems that it will interpret the above "if gate" as falsy if value for Y is 0
     // @ts-ignore
     const PADDING_TOP = textElement.absoluteBoundingBox.y - element.absoluteBoundingBox.y;
     const PADDING_BOTTOM = PARENT_HEIGHT - (PADDING_TOP + TEXT_HEIGHT);

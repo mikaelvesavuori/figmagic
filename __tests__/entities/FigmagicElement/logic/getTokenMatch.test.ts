@@ -10,7 +10,7 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  // TODO: Add test cases for each type
+  // TODO: Add test cases for each type?
   test('It should match a non-token match', () => {
     expect(
       getTokenMatch(

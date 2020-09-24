@@ -1,4 +1,8 @@
+import dotenv from 'dotenv';
+
 import { getDataRemote } from '../../../bin/frameworks/network/getDataRemote';
+
+dotenv.config();
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
@@ -12,11 +16,10 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  /*
-  // TODO: Fix this, mock?
   test('It should get API data given valid URL and token', async () => {
-    // @ts-ignore
-    await expect(getDataRemote('token', 'url')).resolves.toBeTruthy();
+    await expect(
+      // @ts-ignore
+      getDataRemote(process.env.FIGMA_TOKEN, process.env.FIGMA_URL)
+    ).resolves.toBeTruthy();
   });
-  */
 });
