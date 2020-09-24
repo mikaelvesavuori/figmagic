@@ -76,7 +76,7 @@
   "main": "dist/index.js",
   "source": "index.ts",
   "scripts": {
-    "figmagic": "node --experimental-modules index.mjs",
+    "figmagic": "node --experimental-modules dist/index.js",
     "build": "rm -rf dist && tsc",
     "test": "jest __tests__ --collectCoverage",
     "lint": "eslint './bin/**/*.ts' --quiet --fix",
