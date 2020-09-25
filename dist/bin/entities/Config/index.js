@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.makeConfiguration = void 0;
 const baseConfig_1 = require("./baseConfig");
 const createConfiguration_1 = require("./logic/createConfiguration");
+const validateConfig_1 = require("./logic/validateConfig");
 exports.makeConfiguration = async (userConfigPath, ...cliArgs) => {
     const CONFIGURATION = new Configuration(userConfigPath, cliArgs);
     await CONFIGURATION.createConfig();
@@ -16,7 +17,19 @@ class Configuration {
         this.cliArgs = cliArgs;
     }
     async createConfig() {
-        const config = await createConfiguration_1.createConfiguration(this.baseConfiguration, this.userConfigPath, this.cliArgs);
+        let config = null;
+        try {
+            config = await createConfiguration_1.createConfiguration(this.baseConfiguration, this.userConfigPath, this.cliArgs);
+        }
+        catch (error) {
+            throw new Error(error);
+        }
+        try {
+            validateConfig_1.validateConfig(config);
+        }
+        catch (error) {
+            throw new Error(error);
+        }
         this.config = config;
         return this.getConfig();
     }

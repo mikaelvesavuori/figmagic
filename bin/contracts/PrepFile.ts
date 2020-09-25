@@ -20,7 +20,7 @@ export interface PrepStyledComponents {
 export interface PrepCss {
   name: string;
   filePath: string;
-  format: string;
+  format: 'ts' | 'mjs' | 'js';
   imports: string;
   file: string;
 }

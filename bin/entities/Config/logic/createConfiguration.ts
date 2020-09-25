@@ -50,7 +50,7 @@ export async function createConfiguration(
   };
 
   // CLI arguments configuration
-  const CLI_CONFIG = parseCliArgs(baseConfig, cliArgs) as Config;
+  const CLI_CONFIG = parseCliArgs(cliArgs) as Config;
 
   // Merge configurations in order of prioritization
   // 1. Base required config

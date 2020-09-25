@@ -6,7 +6,8 @@
   "outputFolderBaseFile": ".figmagic",
   "outputFolderElements": "elements",
   "outputFolderTokens": "tokens",
-  "outputTokenFormat": "mjs",
+  "outputFormatElements": "tsx",
+  "outputFormatTokens": "ts",
   "spacingUnit": "rem",
   "usePostscriptFontNames": true
 }

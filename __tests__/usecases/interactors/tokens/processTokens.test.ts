@@ -54,7 +54,7 @@ describe('Success cases', () => {
             white: 'rgba(255, 255, 255, 1)',
             yellow: 'rgba(242, 201, 76, 1)'
           },
-          format: 'mjs',
+          format: 'ts',
           name: 'colors',
           path: 'tokens',
           type: 'token'
@@ -75,7 +75,7 @@ describe('Success cases', () => {
             small: '1rem',
             tiny: '0.5rem'
           },
-          format: 'mjs',
+          format: 'ts',
           name: 'spacing',
           path: 'tokens',
           type: 'token'
@@ -93,7 +93,7 @@ describe('Success cases', () => {
             medium: 'Helvetica Neue',
             regular: 'Helvetica Neue'
           },
-          format: 'mjs',
+          format: 'ts',
           name: 'fontFamilies',
           path: 'tokens',
           type: 'token'
@@ -116,7 +116,7 @@ describe('Success cases', () => {
             paragraph: '1rem',
             sub: '0.75rem'
           },
-          format: 'mjs',
+          format: 'ts',
           name: 'fontSizes',
           path: 'tokens',
           type: 'token'
@@ -130,7 +130,7 @@ describe('Success cases', () => {
       expect.arrayContaining([
         {
           file: { bold: 700, light: 300, medium: 500, regular: 400 },
-          format: 'mjs',
+          format: 'ts',
           name: 'fontWeights',
           path: 'tokens',
           type: 'token'
@@ -144,7 +144,7 @@ describe('Success cases', () => {
       expect.arrayContaining([
         {
           file: { l: '1.65', m: '1.45', s: '1.35', xs: '1.00' },
-          format: 'mjs',
+          format: 'ts',
           name: 'lineHeights',
           path: 'tokens',
           type: 'token'
@@ -158,7 +158,7 @@ describe('Success cases', () => {
       expect.arrayContaining([
         {
           file: { chunky: '8px', fat: '4px', hairline: '1px', regular: '2px' },
-          format: 'mjs',
+          format: 'ts',
           name: 'borderWidths',
           path: 'tokens',
           type: 'token'
@@ -172,7 +172,7 @@ describe('Success cases', () => {
       expect.arrayContaining([
         {
           file: { regular: '0em', tight: '-0.045em', wide: '0.05em' },
-          format: 'mjs',
+          format: 'ts',
           name: 'letterSpacings',
           path: 'tokens',
           type: 'token'
@@ -186,7 +186,7 @@ describe('Success cases', () => {
       expect.arrayContaining([
         {
           file: { disabled: 0.65, opaque: 1, semiOpaque: 0.5, transparent: 0 },
-          format: 'mjs',
+          format: 'ts',
           name: 'opacities',
           path: 'tokens',
           type: 'token'
@@ -210,7 +210,7 @@ describe('Success cases', () => {
             tabletMin: '768px',
             wide: '1920px'
           },
-          format: 'mjs',
+          format: 'ts',
           name: 'mediaQueries',
           path: 'tokens',
           type: 'token'
@@ -224,7 +224,7 @@ describe('Success cases', () => {
       expect.arrayContaining([
         {
           file: { circle: '100px', hard: '0px', rounded: '4px', soft: '8px' },
-          format: 'mjs',
+          format: 'ts',
           name: 'radii',
           path: 'tokens',
           type: 'token'
@@ -243,7 +243,7 @@ describe('Success cases', () => {
             medium: '0px 0px 5px rgba(0, 0, 0, 0.5)',
             soft: '0px 0px 5px rgba(196, 196, 196, 1)'
           },
-          format: 'mjs',
+          format: 'ts',
           name: 'shadows',
           path: 'tokens',
           type: 'token'
@@ -257,7 +257,7 @@ describe('Success cases', () => {
       expect.arrayContaining([
         {
           file: { focus: 10, high: 1, higher: 2, regular: 0, top: 100 },
-          format: 'mjs',
+          format: 'ts',
           name: 'zIndices',
           path: 'tokens',
           type: 'token'
@@ -269,7 +269,7 @@ describe('Success cases', () => {
   test('It should return data when passed valid Z index frame and valid settings, ignoring an element including an "ignored" keyword', () => {
     expect(processTokens([zIndicesFrameWithIgnoreKeyword], baseConfig)).toEqual(
       expect.arrayContaining([
-        { file: { regular: 0 }, format: 'mjs', name: 'zIndices', path: 'tokens', type: 'token' }
+        { file: { regular: 0 }, format: 'ts', name: 'zIndices', path: 'tokens', type: 'token' }
       ])
     );
   });
@@ -279,7 +279,7 @@ describe('Success cases', () => {
       expect.arrayContaining([
         {
           file: { long: 0.6, medium: 0.25, short: 0.15, veryLong: 1 },
-          format: 'mjs',
+          format: 'ts',
           name: 'durations',
           path: 'tokens',
           type: 'token'
@@ -293,7 +293,7 @@ describe('Success cases', () => {
       expect.arrayContaining([
         {
           file: { decimal: 0.5, fast: 200, medium: 400, slow: 750 },
-          format: 'mjs',
+          format: 'ts',
           name: 'delays',
           path: 'tokens',
           type: 'token'
@@ -311,7 +311,7 @@ describe('Success cases', () => {
             easeInout: 'cubic-bezier(0.45, 0, 0.40, 1)',
             easeOut: 'cubic-bezier(0, 0, 0.40, 1)'
           },
-          format: 'mjs',
+          format: 'ts',
           name: 'easings',
           path: 'tokens',
           type: 'token'

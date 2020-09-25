@@ -308,8 +308,8 @@ export const baseConfig: Config = {
   outputFolderTokens: 'tokens',
   outputFormatGraphics: 'svg',
   outputScaleGraphics: 1,
-  outputTokenDataType: null,
-  outputTokenFormat: 'mjs',
+  outputDataTypeToken: null,
+  outputFormatTokens: 'mjs',
   recompileLocal: false,
   remSize: 16,
   skipFileGeneration: {
@@ -404,7 +404,7 @@ Default is `false`. Forces all elements and file types to be regenerated.
 
 #### Switch token file format
 
-`figmagic --outputTokenFormat [mjs|js]||` or `figmagic -tf [mjs|js]`
+`figmagic --outputFormatTokens [mjs|js]||` or `figmagic -tf [mjs|js]`
 
 Default is `mjs`.
 
@@ -470,7 +470,7 @@ Default is `figma.json`.
 
 #### Set output token data type
 
-`figmagic --outputTokenDataType [null | enum]` or `figmagic -tokentype [null | enum]`
+`figmagic --outputDataTypeToken [null | enum]` or `figmagic -tokentype [null | enum]`
 
 Default is `null`. Currently the only valid non-null value is `enum`.
 

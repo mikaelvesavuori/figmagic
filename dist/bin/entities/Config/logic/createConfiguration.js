@@ -21,7 +21,7 @@ async function createConfiguration(baseConfig, userConfigPath, cliArgs) {
         token: process.env.FIGMA_TOKEN || null,
         url: process.env.FIGMA_URL || null
     };
-    const CLI_CONFIG = parseCliArgs_1.parseCliArgs(baseConfig, cliArgs);
+    const CLI_CONFIG = parseCliArgs_1.parseCliArgs(cliArgs);
     const CONFIG = {
         ...DEFAULT_CONFIG,
         ...RC_CONFIG,

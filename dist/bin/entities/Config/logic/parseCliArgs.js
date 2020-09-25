@@ -1,166 +1,144 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseCliArgs = void 0;
-const warnings_1 = require("../../../frameworks/warnings/warnings");
 const errors_1 = require("../../../frameworks/errors/errors");
-function parseCliArgs(baseConfig, argsArray) {
+function parseCliArgs(argsArray) {
     if (!argsArray)
         throw new Error(errors_1.ErrorParseCliArgs);
     if (argsArray.length === 0)
         return {};
-    return argsArray.reduce((accumulatedConfig, arg, index) => {
-        switch (arg) {
-            case '--debug':
-                accumulatedConfig.debugMode = true;
-                break;
-            case '--recompileLocal':
-                accumulatedConfig.recompileLocal = true;
-                break;
-            case '--syncGraphics':
-                accumulatedConfig.syncGraphics = true;
-                break;
-            case '--syncElements':
-                accumulatedConfig.syncElements = true;
-                break;
-            case '--skipReact':
-                accumulatedConfig.skipFileGeneration = {
-                    ...accumulatedConfig.skipFileGeneration,
-                    skipReact: true
-                };
-                break;
-            case '--skipStyled':
-                accumulatedConfig.skipFileGeneration = {
-                    ...accumulatedConfig.skipFileGeneration,
-                    skipStyled: true
-                };
-                break;
-            case '--skipCss':
-                accumulatedConfig.skipFileGeneration = {
-                    ...accumulatedConfig.skipFileGeneration,
-                    skipCss: true
-                };
-                break;
-            case '--skipStorybook':
-                accumulatedConfig.skipFileGeneration = {
-                    ...accumulatedConfig.skipFileGeneration,
-                    skipStorybook: true
-                };
-                break;
-            case '--skipDescription':
-                accumulatedConfig.skipFileGeneration = {
-                    ...accumulatedConfig.skipFileGeneration,
-                    skipDescription: true
-                };
-                break;
-            case '--forceUpdate':
-                accumulatedConfig.skipFileGeneration = {
-                    ...accumulatedConfig.skipFileGeneration,
-                    forceUpdate: true
-                };
-                break;
-            case '--outputTokenFormat':
-            case '-tf': {
-                let outputTokenFormat = argsArray[index + 1].toLowerCase();
-                if (!['mjs', 'js'].includes(outputTokenFormat)) {
-                    console.warn(warnings_1.WarnParseCliArgsOutputFormat);
-                    outputTokenFormat = baseConfig.outputTokenFormat;
-                }
-                accumulatedConfig.outputTokenFormat = outputTokenFormat;
-                break;
-            }
-            case '--fontUnit':
-            case '-f': {
-                let fontUnit = argsArray[index + 1].toLowerCase();
-                if (!['rem', 'em'].includes(fontUnit)) {
-                    console.warn(warnings_1.WarnParseCliArgsFontUnit);
-                    fontUnit = baseConfig.fontUnit;
-                }
-                accumulatedConfig.fontUnit = fontUnit;
-                break;
-            }
-            case '--letterSpacingUnit':
-            case '-lsu': {
-                let letterSpacingUnit = argsArray[index + 1].toLowerCase();
-                if (!['em', 'px'].includes(letterSpacingUnit)) {
-                    console.warn(warnings_1.WarnParseCliArgsLetterSpacingUnit);
-                    letterSpacingUnit = baseConfig.letterSpacingUnit;
-                }
-                accumulatedConfig.letterSpacingUnit = letterSpacingUnit;
-                break;
-            }
-            case '--opacitiesUnit':
-            case '-ou': {
-                let opacitiesUnit = argsArray[index + 1].toLowerCase();
-                if (!['float', 'percent'].includes(opacitiesUnit)) {
-                    console.warn(warnings_1.WarnParseCliArgsOpacitiesUnit);
-                    opacitiesUnit = baseConfig.opacitiesUnit;
-                }
-                accumulatedConfig.opacitiesUnit = opacitiesUnit;
-                break;
-            }
-            case '--spacingUnit':
-            case '-s': {
-                let spacingUnit = argsArray[index + 1].toLowerCase();
-                if (!['rem', 'em'].includes(spacingUnit)) {
-                    console.warn(warnings_1.WarnParseCliArgsSpacingUnit);
-                    spacingUnit = baseConfig.spacingUnit;
-                }
-                accumulatedConfig.spacingUnit = spacingUnit;
-                break;
-            }
-            case '--token':
-            case '-t':
-                accumulatedConfig.token = argsArray[index + 1];
-                break;
-            case '--url':
-            case '-u':
-                accumulatedConfig.url = argsArray[index + 1];
-                break;
-            case '--outputFolderBaseFile':
-            case '-base':
-                accumulatedConfig.outputFolderBaseFile = argsArray[index + 1];
-                break;
-            case '--outputFolderTokens':
-            case '-tokens':
-                accumulatedConfig.outputFolderTokens = argsArray[index + 1];
-                break;
-            case '--outputFolderElements':
-            case '-elements':
-                accumulatedConfig.outputFolderElements = argsArray[index + 1];
-                break;
-            case '--outputFileName':
-            case '-file':
-                accumulatedConfig.outputFileName = argsArray[index + 1];
-                break;
-            case '--outputTokenDataType':
-            case '-tokentype':
-                accumulatedConfig.outputTokenDataType = argsArray[index + 1];
-                break;
-            case '--usePostscriptFontNames':
-            case '-ps':
-                accumulatedConfig.usePostscriptFontNames = true;
-                break;
-            case '--templatePathReact':
-                accumulatedConfig.templates = {
-                    ...accumulatedConfig.templates,
-                    templatePathReact: argsArray[index + 1]
-                };
-                break;
-            case '--templatePathStyled':
-                accumulatedConfig.templates = {
-                    ...accumulatedConfig.templates,
-                    templatePathStyled: argsArray[index + 1]
-                };
-                break;
-            case '--templatePathStorybook':
-                accumulatedConfig.templates = {
-                    ...accumulatedConfig.templates,
-                    templatePathStorybook: argsArray[index + 1]
-                };
-                break;
-        }
-        return accumulatedConfig;
-    }, {});
+    const cliArguments = {
+        '--debug': () => (config.debugMode = true),
+        '-d': () => (config.debugMode = true),
+        '--fontUnit': (val) => (config.fontUnit = val.toLowerCase()),
+        '-fu': (val) => (config.fontUnit = val.toLowerCase()),
+        '--letterSpacingUnit': (val) => (config.letterSpacingUnit = val.toLowerCase()),
+        '-lsu': (val) => (config.letterSpacingUnit = val.toLowerCase()),
+        '--opacitiesUnit': (val) => (config.opacitiesUnit = val.toLowerCase()),
+        '-ou': (val) => (config.opacitiesUnit = val.toLowerCase()),
+        '--outputFileName': (val) => (config.outputFileName = val),
+        '-file': (val) => (config.outputFileName = val),
+        '--outputFolderBaseFile': (val) => (config.outputFolderBaseFile = val),
+        '-base': (val) => (config.outputFolderBaseFile = val),
+        '--outputFolderElements': (val) => (config.outputFolderElements = val),
+        '-elements': (val) => (config.outputFolderElements = val),
+        '--outputFolderGraphics': (val) => (config.outputFolderGraphics = val),
+        '-graphics': (val) => (config.outputFolderGraphics = val),
+        '--outputFolderTokens': (val) => (config.outputFolderTokens = val),
+        '-tokens': (val) => (config.outputFolderTokens = val),
+        '--outputFormatCss': (val) => (config.outputFormatCss = val.toLowerCase()),
+        '-fc': (val) => (config.outputFormatCss = val.toLowerCase()),
+        '--outputFormatElements': (val) => (config.outputFormatElements = val.toLowerCase()),
+        '-fe': (val) => (config.outputFormatElements = val.toLowerCase()),
+        '--outputFormatGraphics': (val) => (config.outputFormatGraphics = val.toLowerCase()),
+        '-fg': (val) => (config.outputFormatGraphics = val.toLowerCase()),
+        '--outputFormatTokens': (val) => (config.outputFormatTokens = val.toLowerCase()),
+        '-ft': (val) => (config.outputFormatTokens = val.toLowerCase()),
+        '--outputScaleGraphics': (val) => (config.outputScaleGraphics = val),
+        '-scale': (val) => (config.outputScaleGraphics = val),
+        '--outputDataTypeToken': (val) => (config.outputDataTypeToken = val.toLowerCase()),
+        '-tokentype': (val) => (config.outputDataTypeToken = val.toLowerCase()),
+        '--recompileLocal': () => (config.recompileLocal = true),
+        '-local': () => (config.recompileLocal = true),
+        '--remSize': (val) => (config.remSize = typeof val === 'string' ? parseInt(val) : val),
+        '-rem': (val) => (config.remSize = typeof val === 'string' ? parseInt(val) : val),
+        '--forceUpdate': () => (config.skipFileGeneration = {
+            ...config.skipFileGeneration,
+            forceUpdate: true
+        }),
+        '-force': () => (config.skipFileGeneration = {
+            ...config.skipFileGeneration,
+            forceUpdate: true
+        }),
+        '--skipCss': () => (config.skipFileGeneration = {
+            ...config.skipFileGeneration,
+            skipCss: true
+        }),
+        '-nocss': () => (config.skipFileGeneration = {
+            ...config.skipFileGeneration,
+            skipCss: true
+        }),
+        '--skipDescription': () => (config.skipFileGeneration = {
+            ...config.skipFileGeneration,
+            skipDescription: true
+        }),
+        '-nodesc': () => (config.skipFileGeneration = {
+            ...config.skipFileGeneration,
+            skipDescription: true
+        }),
+        '--skipReact': () => (config.skipFileGeneration = {
+            ...config.skipFileGeneration,
+            skipReact: true
+        }),
+        '-noreact': () => (config.skipFileGeneration = {
+            ...config.skipFileGeneration,
+            skipReact: true
+        }),
+        '--skipStorybook': () => (config.skipFileGeneration = {
+            ...config.skipFileGeneration,
+            skipStorybook: true
+        }),
+        '-nostory': () => (config.skipFileGeneration = {
+            ...config.skipFileGeneration,
+            skipStorybook: true
+        }),
+        '--skipStyled': () => (config.skipFileGeneration = {
+            ...config.skipFileGeneration,
+            skipStyled: true
+        }),
+        '-nostyled': () => (config.skipFileGeneration = {
+            ...config.skipFileGeneration,
+            skipStyled: true
+        }),
+        '--spacingUnit': (val) => (config.spacingUnit = val.toLowerCase()),
+        '-s': (val) => (config.spacingUnit = val.toLowerCase()),
+        '--syncElements': () => (config.syncElements = true),
+        '-se': () => (config.syncElements = true),
+        '--syncGraphics': () => (config.syncGraphics = true),
+        '-sg': () => (config.syncGraphics = true),
+        '--syncTokens': () => (config.syncTokens = true),
+        '-st': () => (config.syncTokens = true),
+        '--templatePathReact': (val) => (config.templates = {
+            ...config.templates,
+            templatePathReact: val
+        }),
+        '-tpreact': (val) => (config.templates = {
+            ...config.templates,
+            templatePathReact: val
+        }),
+        '--templatePathStorybook': (val) => (config.templates = {
+            ...config.templates,
+            templatePathStorybook: val
+        }),
+        '-tpstory': (val) => (config.templates = {
+            ...config.templates,
+            templatePathStorybook: val
+        }),
+        '--templatePathStyled': (val) => (config.templates = {
+            ...config.templates,
+            templatePathStyled: val
+        }),
+        '-tpstyled': (val) => (config.templates = {
+            ...config.templates,
+            templatePathStyled: val
+        }),
+        '--token': (val) => (config.token = val),
+        '-t': (val) => (config.token = val),
+        '--url': (val) => (config.url = val),
+        '-u': (val) => (config.url = val),
+        '--usePostscriptFontNames': () => (config.usePostscriptFontNames = true),
+        '-ps': () => (config.usePostscriptFontNames = true)
+    };
+    const config = {};
+    const args = {};
+    if (argsArray.length > 0) {
+        argsArray.map((arg) => (args[arg] = arg));
+        Object.keys(args).forEach((arg, index) => {
+            if (cliArguments.hasOwnProperty(arg))
+                cliArguments[arg](argsArray[index + 1]);
+        });
+    }
+    return config;
 }
 exports.parseCliArgs = parseCliArgs;
 //# sourceMappingURL=parseCliArgs.js.map

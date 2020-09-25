@@ -7,12 +7,12 @@ const getTokenMatch_1 = require("./getTokenMatch");
 const getFileContents_1 = require("./getFileContents");
 const roundColorValue_1 = require("../../../frameworks/string/roundColorValue");
 const errors_1 = require("../../../frameworks/errors/errors");
-function parseTypographyStylingFromElement(textElement, remSize, outputTokenFormat, letterSpacingUnit, outputFolderTokens) {
+function parseTypographyStylingFromElement(textElement, remSize, outputFormatTokens, letterSpacingUnit, outputFolderTokens) {
     try {
         if (!textElement || !remSize)
             throw new Error(errors_1.ErrorParseTypographyStylingFromElement);
         const PATH = process.env.IS_TEST ? path.join('testdata', 'tokens') : outputFolderTokens;
-        const { colors, fontFamilies, fontSizes, fontWeights, letterSpacings, lineHeights } = getFiles(PATH, outputTokenFormat);
+        const { colors, fontFamilies, fontSizes, fontWeights, letterSpacings, lineHeights } = getFiles(PATH, outputFormatTokens);
         let css = ``;
         const imports = [];
         const FONT_COLOR = getFontColor(textElement);
@@ -69,13 +69,13 @@ function parseTypographyStylingFromElement(textElement, remSize, outputTokenForm
     }
 }
 exports.parseTypographyStylingFromElement = parseTypographyStylingFromElement;
-const getFiles = (path, outputTokenFormat) => {
-    const colors = getFileContents_1.getFileContents(path, 'colors', outputTokenFormat);
-    const fontFamilies = getFileContents_1.getFileContents(path, 'fontFamilies', outputTokenFormat);
-    const fontSizes = getFileContents_1.getFileContents(path, 'fontSizes', outputTokenFormat);
-    const fontWeights = getFileContents_1.getFileContents(path, 'fontWeights', outputTokenFormat);
-    const letterSpacings = getFileContents_1.getFileContents(path, 'letterSpacings', outputTokenFormat);
-    const lineHeights = getFileContents_1.getFileContents(path, 'lineHeights', outputTokenFormat);
+const getFiles = (path, outputFormatTokens) => {
+    const colors = getFileContents_1.getFileContents(path, 'colors', outputFormatTokens);
+    const fontFamilies = getFileContents_1.getFileContents(path, 'fontFamilies', outputFormatTokens);
+    const fontSizes = getFileContents_1.getFileContents(path, 'fontSizes', outputFormatTokens);
+    const fontWeights = getFileContents_1.getFileContents(path, 'fontWeights', outputFormatTokens);
+    const letterSpacings = getFileContents_1.getFileContents(path, 'letterSpacings', outputFormatTokens);
+    const lineHeights = getFileContents_1.getFileContents(path, 'lineHeights', outputFormatTokens);
     return {
         colors,
         fontFamilies,

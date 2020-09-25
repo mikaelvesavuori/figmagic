@@ -2,6 +2,7 @@ import { Config } from '../../contracts/Config';
 
 import { baseConfig } from './baseConfig';
 import { createConfiguration } from './logic/createConfiguration';
+import { validateConfig } from './logic/validateConfig';
 
 export const makeConfiguration = async (
   userConfigPath: string,
@@ -25,11 +26,19 @@ class Configuration {
   }
 
   async createConfig(): Promise<Config> {
-    const config = await createConfiguration(
-      this.baseConfiguration,
-      this.userConfigPath,
-      this.cliArgs
-    );
+    let config = null;
+
+    try {
+      config = await createConfiguration(this.baseConfiguration, this.userConfigPath, this.cliArgs);
+    } catch (error) {
+      throw new Error(error);
+    }
+
+    try {
+      validateConfig(config);
+    } catch (error) {
+      throw new Error(error);
+    }
 
     this.config = config;
     return this.getConfig();

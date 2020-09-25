@@ -8,11 +8,12 @@ export const testConfig = {
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
   outputFolderTokens: 'tokens',
+  outputFormatCss: 'mjs',
   outputFormatGraphics: 'svg',
+  outputFormatTokens: 'mjs',
   outputScaleGraphics: 1,
-  outputTokenDataType: null,
-  outputTokenFormat: 'mjs',
-  recompileLocal: true,
+  outputDataTypeToken: null,
+  recompileLocal: false,
   remSize: 16,
   skipFileGeneration: {
     forceUpdate: true,
@@ -25,6 +26,7 @@ export const testConfig = {
   spacingUnit: 'rem',
   syncElements: false,
   syncGraphics: false,
+  syncTokens: true,
   templates: {
     templatePathReact: 'templates/react.jsx',
     templatePathStorybook: 'templates/story.js',

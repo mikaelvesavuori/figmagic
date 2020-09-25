@@ -22,6 +22,7 @@ async function main(): Promise<void> {
   try {
     // Setup environment and user configuration
     dotenv.config();
+
     const [, , ...CLI_ARGS] = process.argv;
     const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `.figmagicrc`);
     const CONFIG: Config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);

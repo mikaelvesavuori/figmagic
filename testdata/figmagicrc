@@ -4,7 +4,7 @@
   "outputFileName": "figma.json",
   "outputFolderBaseFile": ".figmagic",
   "outputFolderTokens": "tokens",
-  "outputTokenFormat": "mjs",
+  "outputFormatTokens": "ts",
   "outputFolderGraphics": "graphics",
   "outputFormatGraphics": "svg",
   "outputScaleGraphics": 1,

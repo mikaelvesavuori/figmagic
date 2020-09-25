@@ -97,7 +97,7 @@ class Token {
                 file: processedToken,
                 path: this.config.outputFolderTokens,
                 name: tokenName,
-                format: this.config.outputTokenFormat
+                format: this.config.outputFormatTokens
             };
         };
         this.getWriteOperation = () => {

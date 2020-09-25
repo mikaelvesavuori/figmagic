@@ -5,7 +5,7 @@ import { createTokens } from '../usecases/createTokens';
 import { createElements } from '../usecases/createElements';
 import { createGraphics } from '../usecases/createGraphics';
 
-import { MsgJobComplete } from '../frameworks/messages/messages';
+import { MsgJobComplete, MsgJobCompleteNoActions } from '../frameworks/messages/messages';
 import { ErrorFigmagicController } from '../frameworks/errors/errors';
 
 /**
@@ -15,10 +15,14 @@ export async function FigmagicController(config: Config, data: FigmaData): Promi
   try {
     if (!config || !data) throw new Error(ErrorFigmagicController);
 
-    await createTokens(config, data);
+    if (config.syncTokens) await createTokens(config, data);
     if (config.syncElements) await createElements(config, data);
     if (config.syncGraphics) await createGraphics(config, data);
-    console.log(MsgJobComplete);
+
+    if (!config.syncTokens && !config.syncElements && !config.syncGraphics)
+      console.log(MsgJobCompleteNoActions);
+    else console.log(MsgJobComplete);
+
     return MsgJobComplete;
   } catch (error) {
     throw new Error(ErrorFigmagicController);

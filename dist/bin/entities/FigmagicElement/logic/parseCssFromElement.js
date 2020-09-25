@@ -6,12 +6,12 @@ const path = tslib_1.__importStar(require("path"));
 const getFileContents_1 = require("./getFileContents");
 const parsers_1 = require("./parsers");
 const errors_1 = require("../../../frameworks/errors/errors");
-function parseCssFromElement(layoutElement, textElement, remSize, outputTokenFormat, outputFolderTokens) {
+function parseCssFromElement(layoutElement, textElement, remSize, outputFormatToken, outputFolderTokens) {
     try {
-        if (!layoutElement || !remSize || !outputTokenFormat)
+        if (!layoutElement || !remSize || !outputFormatToken || !outputFolderTokens)
             throw new Error(errors_1.ErrorParseCssFromElement);
         const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : outputFolderTokens;
-        const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputTokenFormat);
+        const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputFormatToken);
         let css = `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
         let imports = [];
         const PADDING_Y = textElement
@@ -105,13 +105,13 @@ exports.parseCssFromElement = parseCssFromElement;
 const reduceDuplicates = (str) => Array.from(new Set(str.split(/;/gi)))
     .toString()
     .replace(/,/gi, ';');
-const getFiles = (path, outputTokenFormat) => {
+const getFiles = (path, outputFormatToken) => {
     try {
-        const borderWidths = getFileContents_1.getFileContents(path, 'borderWidths', outputTokenFormat);
-        const colors = getFileContents_1.getFileContents(path, 'colors', outputTokenFormat);
-        const radii = getFileContents_1.getFileContents(path, 'radii', outputTokenFormat);
-        const shadows = getFileContents_1.getFileContents(path, 'shadows', outputTokenFormat);
-        const spacing = getFileContents_1.getFileContents(path, 'spacing', outputTokenFormat);
+        const borderWidths = getFileContents_1.getFileContents(path, 'borderWidths', outputFormatToken);
+        const colors = getFileContents_1.getFileContents(path, 'colors', outputFormatToken);
+        const radii = getFileContents_1.getFileContents(path, 'radii', outputFormatToken);
+        const shadows = getFileContents_1.getFileContents(path, 'shadows', outputFormatToken);
+        const spacing = getFileContents_1.getFileContents(path, 'spacing', outputFormatToken);
         return {
             borderWidths,
             colors,

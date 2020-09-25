@@ -1707,8 +1707,8 @@ export const validButtonFigmagicElement = {
     outputFolderTokens: 'tokens',
     outputFormatGraphics: 'svg',
     outputScaleGraphics: 1,
-    outputTokenDataType: null,
-    outputTokenFormat: 'mjs',
+    outputDataTypeToken: null,
+    outputFormatTokens: 'ts',
     recompileLocal: false,
     remSize: 16,
     skipFileGeneration: {

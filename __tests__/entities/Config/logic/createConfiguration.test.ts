@@ -13,6 +13,7 @@ describe('Success cases', () => {
     testConfig.token = 'asdf1234';
     testConfig.recompileLocal = false;
     testConfig.usePostscriptFontNames = false;
+    testConfig.syncTokens = false;
 
     await expect(
       createConfiguration(baseConfig, USER_CONFIG_PATH, CLI_ARGS)

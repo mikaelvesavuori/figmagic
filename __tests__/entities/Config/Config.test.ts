@@ -19,6 +19,7 @@ describe('Success cases', () => {
     const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `testdata`, `figmagicrc`);
     testConfig.recompileLocal = false;
     testConfig.usePostscriptFontNames = false;
+    testConfig.syncTokens = false;
 
     await expect(makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS)).resolves.toMatchObject(
       testConfig

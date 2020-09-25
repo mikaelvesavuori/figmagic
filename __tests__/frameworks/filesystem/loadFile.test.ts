@@ -27,7 +27,7 @@ describe('Success cases', () => {
         outputFolderTokens: 'tokens',
         outputFormatGraphics: 'svg',
         outputScaleGraphics: 1,
-        outputTokenFormat: 'mjs',
+        outputFormatTokens: 'ts',
         spacingUnit: 'rem',
         usePostscriptFontNames: false
       })
@@ -46,7 +46,7 @@ test('It should return data from local file in raw format (not JSON-parsed)', ()
   \"outputFileName\": \"figma.json\",
   \"outputFolderBaseFile\": \".figmagic\",
   \"outputFolderTokens\": \"tokens\",
-  \"outputTokenFormat\": \"mjs\",
+  \"outputFormatTokens\": \"mjs\",
   \"outputFolderGraphics\": \"graphics\",
   \"outputFormatGraphics\": \"svg\",
   \"outputScaleGraphics\": 1,

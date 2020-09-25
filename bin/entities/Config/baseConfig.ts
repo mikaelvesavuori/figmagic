@@ -10,10 +10,12 @@ export const baseConfig: Config = {
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
   outputFolderTokens: 'tokens',
+  outputFormatCss: 'ts',
+  outputFormatElements: 'tsx',
   outputFormatGraphics: 'svg',
+  outputFormatTokens: 'ts',
   outputScaleGraphics: 1,
-  outputTokenDataType: null,
-  outputTokenFormat: 'mjs',
+  outputDataTypeToken: null,
   recompileLocal: false,
   remSize: 16,
   skipFileGeneration: {
@@ -27,6 +29,7 @@ export const baseConfig: Config = {
   spacingUnit: 'rem',
   syncElements: false,
   syncGraphics: false,
+  syncTokens: false,
   templates: {
     templatePathReact: 'templates/react.jsx',
     templatePathStorybook: 'templates/story.js',

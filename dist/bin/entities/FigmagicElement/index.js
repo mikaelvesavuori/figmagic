@@ -122,11 +122,11 @@ class FigmagicElement {
                 this.setElementType();
                 const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
                 console.log(messages_1.MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
-                const { updatedCss, updatedImports } = parseCssFromElement_1.parseCssFromElement(MAIN_ELEMENT, TEXT_ELEMENT, this.config.remSize, this.config.outputTokenFormat, this.config.outputFolderTokens);
+                const { updatedCss, updatedImports } = parseCssFromElement_1.parseCssFromElement(MAIN_ELEMENT, TEXT_ELEMENT, this.config.remSize, this.config.outputFormatTokens, this.config.outputFolderTokens);
                 css += `\n.${FIXED_NAME} {\n${updatedCss}}`;
                 imports = imports.concat(updatedImports);
                 if (TEXT_ELEMENT) {
-                    const { updatedCss, updatedImports } = parseTypographyStylingFromElement_1.parseTypographyStylingFromElement(TEXT_ELEMENT, this.config.remSize, this.config.outputTokenFormat, this.config.letterSpacingUnit, this.config.outputFolderTokens);
+                    const { updatedCss, updatedImports } = parseTypographyStylingFromElement_1.parseTypographyStylingFromElement(TEXT_ELEMENT, this.config.remSize, this.config.outputFormatTokens, this.config.letterSpacingUnit, this.config.outputFolderTokens);
                     css += `\n.${FIXED_NAME} {\n${updatedCss}}`;
                     imports = imports.concat(updatedImports);
                     this.text = TEXT_ELEMENT.characters || '';
@@ -148,7 +148,7 @@ class FigmagicElement {
             this.setPlaceholderText();
             this.setElementType();
             if (TEXT_ELEMENT) {
-                const { updatedCss, updatedImports } = parseTypographyStylingFromElement_1.parseTypographyStylingFromElement(TEXT_ELEMENT, this.config.remSize, this.config.outputTokenFormat, this.config.letterSpacingUnit, this.config.outputFolderTokens);
+                const { updatedCss, updatedImports } = parseTypographyStylingFromElement_1.parseTypographyStylingFromElement(TEXT_ELEMENT, this.config.remSize, this.config.outputFormatTokens, this.config.letterSpacingUnit, this.config.outputFolderTokens);
                 css += updatedCss;
                 imports = imports.concat(updatedImports);
                 this.text = TEXT_ELEMENT.characters || '';
@@ -175,7 +175,7 @@ class FigmagicElement {
             if (layoutElement) {
                 const FIXED_NAME = this.name.replace(/\s/gi, '');
                 console.log(messages_1.MsgProcessElementsCreatingElement(this.name, FIXED_NAME));
-                const { updatedCss, updatedImports } = parseCssFromElement_1.parseCssFromElement(layoutElement, textElement, this.config.remSize, this.config.outputTokenFormat, this.config.outputFolderTokens);
+                const { updatedCss, updatedImports } = parseCssFromElement_1.parseCssFromElement(layoutElement, textElement, this.config.remSize, this.config.outputFormatTokens, this.config.outputFolderTokens);
                 css += updatedCss;
                 imports = imports.concat(updatedImports);
             }

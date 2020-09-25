@@ -19,7 +19,7 @@ import {
 export function parseTypographyStylingFromElement(
   textElement: Frame,
   remSize: number,
-  outputTokenFormat: string,
+  outputFormatTokens: string,
   letterSpacingUnit: string,
   outputFolderTokens: string
 ): UpdatedCssAndImports {
@@ -30,7 +30,7 @@ export function parseTypographyStylingFromElement(
 
     const { colors, fontFamilies, fontSizes, fontWeights, letterSpacings, lineHeights } = getFiles(
       PATH,
-      outputTokenFormat
+      outputFormatTokens
     );
 
     let css = ``;
@@ -135,13 +135,13 @@ export function parseTypographyStylingFromElement(
   }
 }
 
-const getFiles = (path: string, outputTokenFormat: string): any => {
-  const colors = getFileContents(path, 'colors', outputTokenFormat);
-  const fontFamilies = getFileContents(path, 'fontFamilies', outputTokenFormat);
-  const fontSizes = getFileContents(path, 'fontSizes', outputTokenFormat);
-  const fontWeights = getFileContents(path, 'fontWeights', outputTokenFormat);
-  const letterSpacings = getFileContents(path, 'letterSpacings', outputTokenFormat);
-  const lineHeights = getFileContents(path, 'lineHeights', outputTokenFormat);
+const getFiles = (path: string, outputFormatTokens: string): any => {
+  const colors = getFileContents(path, 'colors', outputFormatTokens);
+  const fontFamilies = getFileContents(path, 'fontFamilies', outputFormatTokens);
+  const fontSizes = getFileContents(path, 'fontSizes', outputFormatTokens);
+  const fontWeights = getFileContents(path, 'fontWeights', outputFormatTokens);
+  const letterSpacings = getFileContents(path, 'letterSpacings', outputFormatTokens);
+  const lineHeights = getFileContents(path, 'lineHeights', outputFormatTokens);
 
   return {
     colors,

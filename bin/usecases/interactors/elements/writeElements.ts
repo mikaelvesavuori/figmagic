@@ -38,6 +38,8 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
   const description = element.description || ' ';
   const name = toPascalCase(element.name);
   const folder = `${config.outputFolderElements}/${name}`;
+  const cssFormat = config.outputFormatCss;
+  const elementsFormat = config.outputFormatElements;
   const metadata = {
     dataType: null,
     html: element.html,
@@ -57,6 +59,8 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
     description,
     name,
     folder,
+    cssFormat,
+    elementsFormat,
     metadata,
     templates,
     forceUpdate,
@@ -68,14 +72,16 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
  * @description Helper to write React component
  */
 const writeComponent = (config: WriteOperation): void => {
-  const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}.jsx`);
+  const FILE_EXISTS = fs.existsSync(
+    `${config.folder}/${config.fixedName}${config.outputFormatElements}`
+  );
   if (!FILE_EXISTS || config.forceUpdate)
     writeFile({
       type: 'component',
       file: config.html,
       path: config.folder,
       name: config.fixedName,
-      format: 'jsx',
+      format: config.outputFormatElements,
       metadata: config.metadata,
       templates: config.templates
     } as WriteOperation);
@@ -85,7 +91,9 @@ const writeComponent = (config: WriteOperation): void => {
  * @description Helper to write Styled Component file
  */
 const writeStyled = (config: WriteOperation): void => {
-  const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}Styled.jsx`);
+  const FILE_EXISTS = fs.existsSync(
+    `${config.folder}/${config.fixedName}Styled${config.outputFormatElements}`
+  );
   if (!FILE_EXISTS || config.forceUpdate)
     writeFile({
       type: 'style',
@@ -107,7 +115,7 @@ const writeCss = (config: WriteOperation): void => {
     file: config.css,
     path: config.folder,
     name: config.name,
-    format: 'mjs',
+    format: config.outputFormatCss,
     metadata: config.metadata,
     templates: config.templates
   } as WriteOperation);

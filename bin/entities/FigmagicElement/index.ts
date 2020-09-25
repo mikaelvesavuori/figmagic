@@ -184,7 +184,7 @@ class FigmagicElement {
           MAIN_ELEMENT,
           TEXT_ELEMENT as any,
           this.config.remSize,
-          this.config.outputTokenFormat,
+          this.config.outputFormatTokens,
           this.config.outputFolderTokens
         );
 
@@ -195,7 +195,7 @@ class FigmagicElement {
           const { updatedCss, updatedImports } = parseTypographyStylingFromElement(
             TEXT_ELEMENT,
             this.config.remSize,
-            this.config.outputTokenFormat,
+            this.config.outputFormatTokens,
             this.config.letterSpacingUnit,
             this.config.outputFolderTokens
           );
@@ -229,7 +229,7 @@ class FigmagicElement {
         const { updatedCss, updatedImports } = parseTypographyStylingFromElement(
           TEXT_ELEMENT,
           this.config.remSize,
-          this.config.outputTokenFormat,
+          this.config.outputFormatTokens,
           this.config.letterSpacingUnit,
           this.config.outputFolderTokens
         );
@@ -279,7 +279,7 @@ class FigmagicElement {
           layoutElement,
           textElement,
           this.config.remSize,
-          this.config.outputTokenFormat,
+          this.config.outputFormatTokens,
           this.config.outputFolderTokens
         );
 

@@ -35,6 +35,8 @@ const makeFixedConfig = (element, config) => {
     const description = element.description || ' ';
     const name = toPascalCase_1.toPascalCase(element.name);
     const folder = `${config.outputFolderElements}/${name}`;
+    const cssFormat = config.outputFormatCss;
+    const elementsFormat = config.outputFormatElements;
     const metadata = {
         dataType: null,
         html: element.html,
@@ -52,6 +54,8 @@ const makeFixedConfig = (element, config) => {
         description,
         name,
         folder,
+        cssFormat,
+        elementsFormat,
         metadata,
         templates,
         forceUpdate,
@@ -59,20 +63,20 @@ const makeFixedConfig = (element, config) => {
     };
 };
 const writeComponent = (config) => {
-    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}.jsx`);
+    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}${config.outputFormatElements}`);
     if (!FILE_EXISTS || config.forceUpdate)
         writeFile_1.writeFile({
             type: 'component',
             file: config.html,
             path: config.folder,
             name: config.fixedName,
-            format: 'jsx',
+            format: config.outputFormatElements,
             metadata: config.metadata,
             templates: config.templates
         });
 };
 const writeStyled = (config) => {
-    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}Styled.jsx`);
+    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}Styled${config.outputFormatElements}`);
     if (!FILE_EXISTS || config.forceUpdate)
         writeFile_1.writeFile({
             type: 'style',
@@ -90,7 +94,7 @@ const writeCss = (config) => {
         file: config.css,
         path: config.folder,
         name: config.name,
-        format: 'mjs',
+        format: config.outputFormatCss,
         metadata: config.metadata,
         templates: config.templates
     });

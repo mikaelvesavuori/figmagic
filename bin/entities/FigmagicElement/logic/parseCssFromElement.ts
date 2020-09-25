@@ -30,14 +30,15 @@ export function parseCssFromElement(
   layoutElement: Frame,
   textElement: Frame | null,
   remSize: number,
-  outputTokenFormat: string,
+  outputFormatToken: string,
   outputFolderTokens: string
 ): UpdatedCssAndImports {
   try {
-    if (!layoutElement || !remSize || !outputTokenFormat) throw new Error(ErrorParseCssFromElement);
+    if (!layoutElement || !remSize || !outputFormatToken || !outputFolderTokens)
+      throw new Error(ErrorParseCssFromElement);
 
     const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : outputFolderTokens;
-    const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputTokenFormat);
+    const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputFormatToken);
 
     // Start parsing, and add defaults
     let css = `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
@@ -159,13 +160,14 @@ const reduceDuplicates = (str: string) =>
     .toString()
     .replace(/,/gi, ';');
 
-const getFiles = (path: string, outputTokenFormat: string): any => {
+const getFiles = (path: string, outputFormatToken: string): any => {
   try {
-    const borderWidths = getFileContents(path, 'borderWidths', outputTokenFormat);
-    const colors = getFileContents(path, 'colors', outputTokenFormat);
-    const radii = getFileContents(path, 'radii', outputTokenFormat);
-    const shadows = getFileContents(path, 'shadows', outputTokenFormat);
-    const spacing = getFileContents(path, 'spacing', outputTokenFormat);
+    //const x = outputFormatToken !== 'ts' ? outputFormatToken : 'mjs';
+    const borderWidths = getFileContents(path, 'borderWidths', outputFormatToken);
+    const colors = getFileContents(path, 'colors', outputFormatToken);
+    const radii = getFileContents(path, 'radii', outputFormatToken);
+    const shadows = getFileContents(path, 'shadows', outputFormatToken);
+    const spacing = getFileContents(path, 'spacing', outputFormatToken);
 
     return {
       borderWidths,

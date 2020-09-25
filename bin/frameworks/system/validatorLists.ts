@@ -1,0 +1,11 @@
+export const validFontUnitList = ['rem', 'em'];
+export const validLetterSpacingUnitList = ['em', 'px'];
+export const validOpacitiesUnitList = ['float', 'percent'];
+export const validOutputFormatCssList = ['ts', 'mjs', 'js'];
+export const validOutputFormatGraphicsList = ['svg', 'png'];
+export const validOutputFormatTokensList = ['ts', 'mjs', 'js'];
+export const validOutputDataTypeTokenList = ['enum', 'null', null, undefined];
+export const validSpacingUnitList = ['rem', 'em'];
+export const validTemplatePathReactFiletype = '.jsx';
+export const validTemplatePathStorybookFiletype = '.js';
+export const validTemplatePathStyledFiletype = '.jsx';

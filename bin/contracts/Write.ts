@@ -13,6 +13,10 @@ export type WriteOperation = {
 
   description?: string;
   folder?: string;
+  outputFormatCss?: 'ts' | 'mjs' | 'js';
+  outputFormatElements?: 'tsx' | 'jsx';
+  outputFormatGraphics?: 'svg' | 'png';
+  outputFormatTokens?: 'ts' | 'mjs' | 'js';
   fixedName?: string;
   forceUpdate?: string;
   css?: string;
