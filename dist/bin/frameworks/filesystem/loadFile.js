@@ -20,6 +20,7 @@ function loadFile(path) {
 exports.loadFile = loadFile;
 const isJsonString = (str) => {
     try {
+        console.log('str', str);
         JSON.parse(str);
     }
     catch (e) {

@@ -248,9 +248,7 @@ export const ErrorPrepFileStorybook = ErrorMessage(
 export const ErrorPrepFileStyledComponents = ErrorMessage(
   'Missing required arguments in type, when calling prepComponent()!'
 );
-export const ErrorPrepareWrite = ErrorMessage(
-  'No templates provided to prepareWrite()! Seems like fallback template path also failed...'
-);
+export const ErrorPrepareWrite = ErrorMessage('No templates provided to prepareWrite()!');
 export const ErrorProcessElements = ErrorMessage(
   'Missing one or more of required arguments: "elementsPage", "config", and/or "components"! Make sure you have a page called "Elements" in your Figma document.'
 );
@@ -311,6 +309,9 @@ export const ErrorValidateConfigOutputDataTypeToken = ErrorMessage(
 );
 export const ErrorValidateConfigOutputFormatCss = ErrorMessage(
   'Received unrecognized "outputFormatCss" arguments, it must be "ts" (default), "mjs" or "js".'
+);
+export const ErrorValidateConfigOutputFormatElements = ErrorMessage(
+  'Received unrecognized "outputFormatElements" arguments, it must be "tsx" (default), or "jsx".'
 );
 export const ErrorValidateConfigOutputFormatGraphics = ErrorMessage(
   'Received unrecognized "outputFormatGraphics" arguments, it must be "svg" (default) or "png".'

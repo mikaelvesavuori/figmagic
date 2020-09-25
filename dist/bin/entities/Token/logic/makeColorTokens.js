@@ -11,20 +11,20 @@ function makeColorTokens(colorFrame) {
         throw new Error(errors_1.ErrorMakeColorTokensNoChildren);
     const colors = {};
     const TOKENS = colorFrame.children;
-    TOKENS.forEach((item) => {
-        if (!item.fills)
-            throw new Error(errors_1.ErrorMakeColorTokensNoFills);
-        if (!item.fills[0].color)
-            throw new Error(errors_1.ErrorMakeColorTokensNoFills);
-        const ALPHA = item.opacity ? item.opacity : item.fills[0].color.a;
-        const _R = item.fills[0].color.r;
-        const _G = item.fills[0].color.g;
-        const _B = item.fills[0].color.b;
-        const COLOR_STRING = `rgba(${roundColorValue_1.roundColorValue(_R, 255)}, ${roundColorValue_1.roundColorValue(_G, 255)}, ${roundColorValue_1.roundColorValue(_B, 255)}, ${roundColorValue_1.roundColorValue(ALPHA, 1)})`;
-        const NAME = camelize_1.camelize(item.name);
-        colors[NAME] = COLOR_STRING;
-    });
+    TOKENS.forEach((item) => makeColorToken(item, colors));
     return colors;
 }
 exports.makeColorTokens = makeColorTokens;
+function makeColorToken(item, colors) {
+    if (!item.fills)
+        throw new Error(errors_1.ErrorMakeColorTokensNoFills);
+    if (!item.fills[0].color)
+        throw new Error(errors_1.ErrorMakeColorTokensNoFills);
+    const R = roundColorValue_1.roundColorValue(item.fills[0].color.r, 255);
+    const G = roundColorValue_1.roundColorValue(item.fills[0].color.g, 255);
+    const B = roundColorValue_1.roundColorValue(item.fills[0].color.b, 255);
+    const A = roundColorValue_1.roundColorValue(item.opacity ? item.opacity : item.fills[0].color.a, 1);
+    const NAME = camelize_1.camelize(item.name);
+    colors[NAME] = `rgba(${R}, ${G}, ${B}, ${A})`;
+}
 //# sourceMappingURL=makeColorTokens.js.map

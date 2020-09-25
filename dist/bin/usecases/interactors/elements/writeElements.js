@@ -35,8 +35,8 @@ const makeFixedConfig = (element, config) => {
     const description = element.description || ' ';
     const name = toPascalCase_1.toPascalCase(element.name);
     const folder = `${config.outputFolderElements}/${name}`;
-    const cssFormat = config.outputFormatCss;
-    const elementsFormat = config.outputFormatElements;
+    const outputFormatCss = config.outputFormatCss;
+    const outputFormatElements = config.outputFormatElements;
     const metadata = {
         dataType: null,
         html: element.html,
@@ -54,8 +54,8 @@ const makeFixedConfig = (element, config) => {
         description,
         name,
         folder,
-        cssFormat,
-        elementsFormat,
+        outputFormatCss,
+        outputFormatElements,
         metadata,
         templates,
         forceUpdate,

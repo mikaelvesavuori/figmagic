@@ -9,6 +9,7 @@
   "outputFolderTokens": "tokens",
   "outputFormatCss": "mjs",
   "outputFormatGraphics": "svg",
+  "outputFormatElements": "tsx",
   "outputFormatTokens": "ts",
   "outputScaleGraphics": 1,
   "outputDataTypeToken": null,

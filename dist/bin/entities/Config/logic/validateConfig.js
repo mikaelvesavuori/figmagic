@@ -13,6 +13,7 @@ function validateConfig(config) {
         validateFolderName(config.outputFolderGraphics);
         validateFolderName(config.outputFolderTokens);
         validateOutputFormatCss(config.outputFormatCss);
+        validateOutputFormatElements(config.outputFormatElements);
         validateOutputFormatGraphics(config.outputFormatGraphics);
         validateOutputFormatTokens(config.outputFormatTokens);
         validateOutputScaleGraphics(config.outputScaleGraphics);
@@ -57,6 +58,11 @@ const validateOutputFormatCss = (format) => {
     if (validatorLists_1.validOutputFormatCssList.includes(format))
         return true;
     throw new Error(errors_1.ErrorValidateConfigOutputFormatCss);
+};
+const validateOutputFormatElements = (format) => {
+    if (validatorLists_1.validOutputFormatElementsList.includes(format))
+        return true;
+    throw new Error(errors_1.ErrorValidateConfigOutputFormatElements);
 };
 const validateOutputFormatGraphics = (format) => {
     if (validatorLists_1.validOutputFormatGraphicsList.includes(format))

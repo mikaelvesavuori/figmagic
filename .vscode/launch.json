@@ -5,8 +5,10 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Figmagic",
-      "program": "${workspaceFolder}/dist/index.js",
-      "skipFiles": ["<node_internals>/**"]
+      "program": "${workspaceFolder}/index.ts",
+      "skipFiles": ["<node_internals>/**"],
+      "preLaunchTask": "tsc: build - tsconfig.json",
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
     }
   ]
 }

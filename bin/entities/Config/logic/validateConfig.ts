@@ -7,6 +7,7 @@ import {
   ErrorValidateConfigOpacitiesUnit,
   ErrorValidateConfigOutputDataTypeToken,
   ErrorValidateConfigOutputFormatCss,
+  ErrorValidateConfigOutputFormatElements,
   ErrorValidateConfigOutputFormatGraphics,
   ErrorValidateConfigOutputFormatTokens,
   ErrorValidateConfigSpacingUnit,
@@ -28,6 +29,7 @@ export function validateConfig(config: Config): void {
     validateFolderName(config.outputFolderGraphics);
     validateFolderName(config.outputFolderTokens);
     validateOutputFormatCss(config.outputFormatCss);
+    validateOutputFormatElements(config.outputFormatElements);
     validateOutputFormatGraphics(config.outputFormatGraphics);
     validateOutputFormatTokens(config.outputFormatTokens);
     validateOutputScaleGraphics(config.outputScaleGraphics);
@@ -45,6 +47,7 @@ import {
   validLetterSpacingUnitList,
   validOpacitiesUnitList,
   validOutputFormatCssList,
+  validOutputFormatElementsList,
   validOutputFormatGraphicsList,
   validOutputFormatTokensList,
   validOutputDataTypeTokenList,
@@ -82,6 +85,11 @@ const validateFolderName = (filename: string): boolean => {
 const validateOutputFormatCss = (format: string): boolean => {
   if (validOutputFormatCssList.includes(format)) return true;
   throw new Error(ErrorValidateConfigOutputFormatCss);
+};
+
+const validateOutputFormatElements = (format: string): boolean => {
+  if (validOutputFormatElementsList.includes(format)) return true;
+  throw new Error(ErrorValidateConfigOutputFormatElements);
 };
 
 const validateOutputFormatGraphics = (format: string): boolean => {

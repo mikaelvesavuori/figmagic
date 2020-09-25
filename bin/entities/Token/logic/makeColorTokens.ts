@@ -18,25 +18,20 @@ export function makeColorTokens(colorFrame: Frame): ColorTokens {
   if (!colorFrame.children) throw new Error(ErrorMakeColorTokensNoChildren);
 
   const colors: Record<string, unknown> = {};
-
   const TOKENS = colorFrame.children;
-
-  TOKENS.forEach((item: Frame) => {
-    if (!item.fills) throw new Error(ErrorMakeColorTokensNoFills);
-    if (!item.fills[0].color) throw new Error(ErrorMakeColorTokensNoFills);
-
-    const ALPHA = item.opacity ? item.opacity : item.fills[0].color.a;
-    const _R = item.fills[0].color.r;
-    const _G = item.fills[0].color.g;
-    const _B = item.fills[0].color.b;
-    const COLOR_STRING = `rgba(${roundColorValue(_R, 255)}, ${roundColorValue(
-      _G,
-      255
-    )}, ${roundColorValue(_B, 255)}, ${roundColorValue(ALPHA, 1)})`;
-
-    const NAME = camelize(item.name);
-    colors[NAME] = COLOR_STRING;
-  });
+  TOKENS.forEach((item: Frame) => makeColorToken(item, colors));
 
   return colors;
+}
+
+function makeColorToken(item: Frame, colors: Record<string, unknown>) {
+  if (!item.fills) throw new Error(ErrorMakeColorTokensNoFills);
+  if (!item.fills[0].color) throw new Error(ErrorMakeColorTokensNoFills);
+
+  const R = roundColorValue(item.fills[0].color.r, 255);
+  const G = roundColorValue(item.fills[0].color.g, 255);
+  const B = roundColorValue(item.fills[0].color.b, 255);
+  const A = roundColorValue(item.opacity ? item.opacity : item.fills[0].color.a, 1);
+  const NAME = camelize(item.name);
+  colors[NAME] = `rgba(${R}, ${G}, ${B}, ${A})`;
 }

@@ -38,8 +38,8 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
   const description = element.description || ' ';
   const name = toPascalCase(element.name);
   const folder = `${config.outputFolderElements}/${name}`;
-  const cssFormat = config.outputFormatCss;
-  const elementsFormat = config.outputFormatElements;
+  const outputFormatCss = config.outputFormatCss;
+  const outputFormatElements = config.outputFormatElements;
   const metadata = {
     dataType: null,
     html: element.html,
@@ -59,8 +59,8 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
     description,
     name,
     folder,
-    cssFormat,
-    elementsFormat,
+    outputFormatCss,
+    outputFormatElements,
     metadata,
     templates,
     forceUpdate,
@@ -75,6 +75,7 @@ const writeComponent = (config: WriteOperation): void => {
   const FILE_EXISTS = fs.existsSync(
     `${config.folder}/${config.fixedName}${config.outputFormatElements}`
   );
+
   if (!FILE_EXISTS || config.forceUpdate)
     writeFile({
       type: 'component',

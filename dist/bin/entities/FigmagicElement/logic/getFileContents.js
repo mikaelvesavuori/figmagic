@@ -10,7 +10,6 @@ function getFileContents(filepath, filename, format) {
         if (!filepath || !filename || !format)
             throw new Error(errors_1.ErrorGetFileContents);
         const FILE = path.join(`${process.cwd()}`, filepath, `${filename}.${format}`);
-        console.log('FILE', FILE);
         return sliceOutObjectFromFile_1.sliceOutObjectFromFile(FILE);
     }
     catch (error) {
