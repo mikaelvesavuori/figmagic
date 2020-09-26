@@ -37,6 +37,7 @@ const makeFixedConfig = (element, config) => {
     const folder = `${config.outputFolderElements}/${name}`;
     const outputFormatCss = config.outputFormatCss;
     const outputFormatElements = config.outputFormatElements;
+    const outputFormatStorybook = config.outputFormatStorybook;
     const metadata = {
         dataType: null,
         html: element.html,
@@ -56,6 +57,7 @@ const makeFixedConfig = (element, config) => {
         folder,
         outputFormatCss,
         outputFormatElements,
+        outputFormatStorybook,
         metadata,
         templates,
         forceUpdate,
@@ -100,14 +102,14 @@ const writeCss = (config) => {
     });
 };
 const writeStorybook = (config) => {
-    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}.stories.js`);
+    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}.stories.${config.outputFormatStorybook}`);
     if (!FILE_EXISTS || config.forceUpdate)
         writeFile_1.writeFile({
             type: 'story',
             file: config.css,
             path: config.folder,
             name: config.fixedName,
-            format: 'js',
+            format: config.outputFormatStorybook,
             metadata: config.metadata,
             templates: config.templates
         });

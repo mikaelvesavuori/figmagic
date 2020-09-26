@@ -18,8 +18,8 @@ async function createConfiguration(baseConfig, userConfigPath, cliArgs) {
     }
     catch (e) { }
     const ENV_CONFIG = {
-        token: process.env.FIGMA_TOKEN || null,
-        url: process.env.FIGMA_URL || null
+        token: process.env.FIGMA_TOKEN || '',
+        url: process.env.FIGMA_URL || ''
     };
     const CLI_CONFIG = parseCliArgs_1.parseCliArgs(cliArgs);
     const CONFIG = {

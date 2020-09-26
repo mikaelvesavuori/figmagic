@@ -14,7 +14,7 @@ describe('Failure cases', () => {
     await expect(writeBaseJson(null, 'asdf', {})).rejects.toThrow();
   });
 
-  test('It should throw an error if missing "outputFileName"', async () => {
+  test('It should throw an error if missing "figmaData"', async () => {
     // @ts-ignore
     await expect(writeBaseJson('asdf', null, {})).rejects.toThrow();
   });

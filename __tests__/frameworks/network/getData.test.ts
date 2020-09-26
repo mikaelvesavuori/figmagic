@@ -16,14 +16,14 @@ describe('Failure cases', () => {
     await expect(getData(false, null, null, 'token', null)).rejects.toThrowError();
   });
 
-  test('It should fail if attempting to recompile locally, but missing outputFolderBaseFile', async () => {
+  test('It should fail if attempting to recompile locally, but missing figmagicFolder', async () => {
     // @ts-ignore
-    await expect(getData(true, null, 'outputFileName', null, null)).rejects.toThrowError();
+    await expect(getData(true, null, 'figmaData', null, null)).rejects.toThrowError();
   });
 
-  test('It should fail if attempting to recompile locally, but missing outputFileName', async () => {
+  test('It should fail if attempting to recompile locally, but missing figmaData', async () => {
     // @ts-ignore
-    await expect(getData(true, 'outputFolderBaseFile', null, null, null)).rejects.toThrowError();
+    await expect(getData(true, 'figmagicFolder', null, null, null)).rejects.toThrowError();
   });
 });
 

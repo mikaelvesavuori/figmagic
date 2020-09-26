@@ -301,8 +301,8 @@ export const baseConfig: Config = {
   fontUnit: 'rem',
   letterSpacingUnit: 'em',
   opacitiesUnit: 'float',
-  outputFileName: 'figma.json',
-  outputFolderBaseFile: '.figmagic',
+  figmaData: 'figma.json',
+  figmagicFolder: '.figmagic',
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
   outputFolderTokens: 'tokens',
@@ -446,7 +446,7 @@ Default is `null`, and will then be taken from local `.env` file if not explicit
 
 #### Set Figma base file output folder
 
-`figmagic --outputFolderBaseFile [folder]` or `figmagic -base [folder]`
+`figmagic --figmagicFolder [folder]` or `figmagic -base [folder]`
 
 Default is `figma`.
 
@@ -464,7 +464,7 @@ Default is `elements`.
 
 #### Set output file name
 
-`figmagic --outputFileName [filename]` or `figmagic -file [filename]`
+`figmagic --figmaData [filename]` or `figmagic -file [filename]`
 
 Default is `figma.json`.
 

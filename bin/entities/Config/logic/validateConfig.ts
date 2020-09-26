@@ -19,13 +19,14 @@ import {
   ErrorValidateConfigOutputScaleGraphics
 } from '../../../frameworks/errors/errors';
 
-export function validateConfig(config: Config): void {
+export function validateConfig(config: Config): boolean {
+  if (!config) throw new Error('validateConfig error'); // TODO: Add real error
   try {
     validateFontUnit(config.fontUnit);
     validateLetterSpacingUnit(config.letterSpacingUnit);
     validateOpacitiesUnit(config.opacitiesUnit);
-    validateFileName(config.outputFileName);
-    validateFileName(config.outputFolderBaseFile);
+    validateFileName(config.figmaData);
+    validateFileName(config.figmagicFolder);
     validateFolderName(config.outputFolderElements);
     validateFolderName(config.outputFolderGraphics);
     validateFolderName(config.outputFolderTokens);
@@ -40,6 +41,7 @@ export function validateConfig(config: Config): void {
     validateTemplatePathReact(config.templates.templatePathReact);
     validateTemplatePathStorybook(config.templates.templatePathStorybook);
     validateTemplatePathStyled(config.templates.templatePathStyled);
+    return true;
   } catch (error) {
     throw new Error(error);
   }

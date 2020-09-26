@@ -6,6 +6,13 @@ import { Config } from '../../../../bin/contracts/Config';
 
 import { testConfig } from '../../../../testdata/testConfig';
 
+describe('Failure cases', () => {
+  test('It should throw an error when missing user configuration path', async () => {
+    // @ts-ignore
+    await expect(createConfiguration()).rejects.toThrow();
+  });
+});
+
 describe('Success cases', () => {
   test('It should return a valid merged configuration if given a path to an RC file and a set of CLI arguments', async () => {
     const USER_CONFIG_PATH = path.join(process.cwd(), 'testdata', 'figmagicrc');
@@ -17,11 +24,6 @@ describe('Success cases', () => {
     await expect(
       createConfiguration(baseConfig, USER_CONFIG_PATH, CLI_ARGS)
     ).resolves.toMatchObject(testConfig);
-  });
-
-  test('It should throw an error when missing user configuration path', async () => {
-    // @ts-ignore
-    await expect(createConfiguration()).rejects.toThrow();
   });
 
   test('It logs the configuration when debug mode is enabled', async () => {

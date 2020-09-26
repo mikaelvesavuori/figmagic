@@ -6,12 +6,12 @@ const path = tslib_1.__importStar(require("path"));
 const loadFile_1 = require("../filesystem/loadFile");
 const messages_1 = require("../messages/messages");
 const errors_1 = require("../errors/errors");
-function getDataLocal(outputFolderBaseFile, outputFileName) {
+function getDataLocal(figmagicFolder, figmaData) {
     try {
-        if (!outputFolderBaseFile || !outputFileName)
+        if (!figmagicFolder || !figmaData)
             throw new Error(errors_1.ErrorGetDataLocal);
         console.log(messages_1.MsgSetDataFromLocal);
-        return loadFile_1.loadFile(path.join(`${outputFolderBaseFile}`, `${outputFileName}`));
+        return loadFile_1.loadFile(path.join(`${figmagicFolder}`, `${figmaData}`));
     }
     catch (error) {
         throw new Error(errors_1.ErrorGetDataLocal);

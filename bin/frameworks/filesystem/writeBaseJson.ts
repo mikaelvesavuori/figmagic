@@ -10,16 +10,16 @@ import { ErrorWriteBaseJson } from '../errors/errors';
  * @description Write base Figma JSON document to disk
  */
 export async function writeBaseJson(
-  outputFolderBaseFile: string,
-  outputFileName: string,
+  figmagicFolder: string,
+  figmaData: string,
   data: FigmaData | Record<string, unknown>
 ): Promise<void> {
-  if (!outputFolderBaseFile || !outputFileName || !data) throw new Error(ErrorWriteBaseJson);
+  if (!figmagicFolder || !figmaData || !data) throw new Error(ErrorWriteBaseJson);
 
   console.log(MsgWriteBaseFile);
   try {
-    await refresh(outputFolderBaseFile);
-    write(`${outputFolderBaseFile}/${outputFileName}`, JSON.stringify(data));
+    await refresh(figmagicFolder);
+    write(`${figmagicFolder}/${figmaData}`, JSON.stringify(data));
   } catch (error) {
     throw new Error(ErrorWriteBaseJson);
   }

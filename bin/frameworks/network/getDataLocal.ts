@@ -11,13 +11,13 @@ import { ErrorGetDataLocal } from '../errors/errors';
  * @description Helper to get Figma data from local source
  */
 export function getDataLocal(
-  outputFolderBaseFile: string,
-  outputFileName: string
+  figmagicFolder: string,
+  figmaData: string
 ): Record<string, unknown> | string | FigmaData {
   try {
-    if (!outputFolderBaseFile || !outputFileName) throw new Error(ErrorGetDataLocal);
+    if (!figmagicFolder || !figmaData) throw new Error(ErrorGetDataLocal);
     console.log(MsgSetDataFromLocal);
-    return loadFile(path.join(`${outputFolderBaseFile}`, `${outputFileName}`));
+    return loadFile(path.join(`${figmagicFolder}`, `${figmaData}`));
   } catch (error) {
     throw new Error(ErrorGetDataLocal);
   }

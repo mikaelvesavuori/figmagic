@@ -30,10 +30,10 @@ async function main() {
         else {
             const USER_CONFIG_PATH = path.join(`${process.cwd()}`, RC_FILE);
             const CONFIG = await index_1.makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
-            const { recompileLocal, outputFolderBaseFile, outputFileName, token, url } = CONFIG;
-            const DATA = await getData_1.getData(recompileLocal, outputFolderBaseFile, outputFileName, token, url);
+            const { recompileLocal, figmagicFolder, figmaData, token, url } = CONFIG;
+            const DATA = await getData_1.getData(recompileLocal, figmagicFolder, figmaData, token, url);
             if (!recompileLocal)
-                await writeBaseJson_1.writeBaseJson(outputFolderBaseFile, outputFileName, DATA);
+                await writeBaseJson_1.writeBaseJson(figmagicFolder, figmaData, DATA);
             await FigmagicController_1.FigmagicController(CONFIG, DATA);
         }
     }

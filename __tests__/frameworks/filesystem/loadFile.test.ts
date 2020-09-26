@@ -21,8 +21,8 @@ describe('Success cases', () => {
       expect.objectContaining({
         debugMode: false,
         fontUnit: 'rem',
-        outputFileName: 'figma.json',
-        outputFolderBaseFile: '.figmagic',
+        figmaData: 'figma.json',
+        figmagicFolder: '.figmagic',
         outputFolderGraphics: 'graphics',
         outputFolderTokens: 'tokens',
         outputFormatGraphics: 'svg',
@@ -43,8 +43,8 @@ test('It should return data from local file in raw format (not JSON-parsed)', ()
   expect(FILE).toBe(`{
   \"debugMode\": false,
   \"fontUnit\": \"rem\",
-  \"outputFileName\": \"figma.json\",
-  \"outputFolderBaseFile\": \".figmagic\",
+  \"figmaData\": \"figma.json\",
+  \"figmagicFolder\": \".figmagic\",
   \"outputFolderTokens\": \"tokens\",
   \"outputFormatTokens\": \"mjs\",
   \"outputFolderGraphics\": \"graphics\",

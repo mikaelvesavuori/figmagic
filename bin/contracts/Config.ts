@@ -3,8 +3,8 @@ export type Config = {
   fontUnit: 'rem' | 'em';
   letterSpacingUnit: 'em' | 'px';
   opacitiesUnit: 'float' | 'percent';
-  outputFileName: string;
-  outputFolderBaseFile: string;
+  figmaData: string;
+  figmagicFolder: string;
   outputFolderElements: string;
   outputFolderGraphics: string;
   outputFolderTokens: string;
@@ -44,14 +44,15 @@ export type ConfigDTO = {
   fontUnit?: 'rem' | 'em';
   letterSpacingUnit?: 'em' | 'px';
   opacitiesUnit?: 'float' | 'percent';
-  outputFileName?: string;
-  outputFolderBaseFile?: string;
+  figmaData?: string;
+  figmagicFolder?: string;
   outputFolderElements?: string;
   outputFolderGraphics?: string;
   outputFolderTokens?: string;
   outputFormatCss?: 'ts' | 'mjs' | 'js';
   outputFormatElements?: 'tsx' | 'jsx';
   outputFormatGraphics?: 'svg' | 'png';
+  outputFormatStorybook?: 'ts' | 'js';
   outputFormatTokens?: 'ts' | 'mjs' | 'js';
   outputScaleGraphics?: number;
   outputDataTypeToken?: null | 'enum';

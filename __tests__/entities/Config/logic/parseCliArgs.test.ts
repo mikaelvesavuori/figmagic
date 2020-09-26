@@ -10,509 +10,793 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('Should return an empty object if an empty array of args is passed', () => {
-    // @ts-ignore
-    expect(parseCliArgs([])).toEqual({});
-  });
-
-  /*
-   * Debug mode
-   */
-  test('It should return true for debugMode if passing "--debug"', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--debug'])).toEqual(
-      expect.objectContaining({
-        debugMode: true
-      })
-    );
-  });
-
-  /*
-   * Recompile only local files
-   */
-  test('It should return true for recompileLocal if passing "--recompileLocal"', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--recompileLocal'])).toEqual(
-      expect.objectContaining({
-        recompileLocal: true
-      })
-    );
-  });
-
-  /*
-   * Sync graphics
-   */
-  test('It should return true for syncGraphics if passing "--syncGraphics"', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--syncGraphics'])).toEqual(
-      expect.objectContaining({
-        syncGraphics: true
-      })
-    );
-  });
-
-  /*
-   * Sync elements
-   */
-  test('It should return true for syncElements if passing "--syncElements"', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--syncElements'])).toEqual(
-      expect.objectContaining({
-        syncElements: true
-      })
-    );
-  });
-
-  /*
-   * Skip file generation: React
-   */
-  test('It should return true for skipFileGeneration.react if passing "--skipReact"', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--skipReact'])).toEqual(
-      expect.objectContaining({
-        skipFileGeneration: expect.objectContaining({
-          skipReact: true
+  describe('Debug mode', () => {
+    test('It should return true for debugMode if passing "--debug" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--debug'])).toEqual(
+        expect.objectContaining({
+          debugMode: true
         })
-      })
-    );
+      );
+    });
+
+    test('It should return true for debugMode if passing "-d" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-d'])).toEqual(
+        expect.objectContaining({
+          debugMode: true
+        })
+      );
+    });
   });
 
-  /*
-   * Skip file generation: Styled Components
-   */
-  test('It should return true for skipFileGeneration.styled if passing "--skipStyled"', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--skipStyled'])).toEqual(
-      expect.objectContaining({
-        skipFileGeneration: expect.objectContaining({
-          skipStyled: true
+  describe('Font unit', () => {
+    test('It should return "em" for fontUnit if passing "em" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--fontUnit', 'em'])).toEqual(
+        expect.objectContaining({
+          fontUnit: 'em'
         })
-      })
-    );
+      );
+    });
+
+    test('It should return "em" for fontUnit if passing "em" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-fu', 'em'])).toEqual(
+        expect.objectContaining({
+          fontUnit: 'em'
+        })
+      );
+    });
   });
 
-  /*
-   * Skip file generation: CSS
-   */
-  test('It should return true for skipFileGeneration.css if passing "--skipCss"', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--skipCss'])).toEqual(
-      expect.objectContaining({
-        skipFileGeneration: expect.objectContaining({
-          skipCss: true
+  describe('Letter spacing unit', () => {
+    test('It should return the unit for letterSpacingUnit if passing valid value (long-hand)', () => {
+      const unit = 'em';
+      // @ts-ignore
+      expect(parseCliArgs(['--letterSpacingUnit', unit])).toEqual(
+        expect.objectContaining({
+          letterSpacingUnit: unit
         })
-      })
-    );
+      );
+    });
+
+    test('It should return the unit for letterSpacingUnit if passing valid value (short-hand)', () => {
+      const unit = 'px';
+      // @ts-ignore
+      expect(parseCliArgs(['-lsu', unit])).toEqual(
+        expect.objectContaining({
+          letterSpacingUnit: unit
+        })
+      );
+    });
   });
 
-  /*
-   * Skip file generation: Storybook
-   */
-  test('It should return true for skipFileGeneration.storybook if passing "--skipStorybook"', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--skipStorybook'])).toEqual(
-      expect.objectContaining({
-        skipFileGeneration: expect.objectContaining({
-          skipStorybook: true
+  describe('Opacities unit', () => {
+    test('It should return the unit for opacitiesUnit if passing valid value (long-hand)', () => {
+      const unit = 'percent';
+      // @ts-ignore
+      expect(parseCliArgs(['--opacitiesUnit', unit])).toEqual(
+        expect.objectContaining({
+          opacitiesUnit: unit
         })
-      })
-    );
+      );
+    });
+
+    test('It should return the unit for opacitiesUnit if passing valid value (short-hand)', () => {
+      const unit = 'float';
+      // @ts-ignore
+      expect(parseCliArgs(['-ou', unit])).toEqual(
+        expect.objectContaining({
+          opacitiesUnit: unit
+        })
+      );
+    });
   });
 
-  /*
-   * Skip file generation: Markdown description
-   */
-  test('It should return true for skipFileGeneration.styled if passing "--skipDescription"', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--skipDescription'])).toEqual(
-      expect.objectContaining({
-        skipFileGeneration: expect.objectContaining({
-          skipDescription: true
+  describe('Figma data', () => {
+    test('It should return the assigned path for figmaData if passing "--figmaData figma.json" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--figmaData', 'figma.json'])).toEqual(
+        expect.objectContaining({
+          figmaData: 'figma.json'
         })
-      })
-    );
+      );
+    });
+
+    test('It should return the assigned path for figmaData if passing "-file figma.json" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-data', 'figma.json'])).toEqual(
+        expect.objectContaining({
+          figmaData: 'figma.json'
+        })
+      );
+    });
   });
 
-  /*
-   * Force update
-   */
-  test('It should return true for skipFileGeneration.forceUpdate if passing "--forceUpdate"', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--forceUpdate'])).toEqual(
-      expect.objectContaining({
-        skipFileGeneration: expect.objectContaining({
-          forceUpdate: true
+  describe('Figmagic folder', () => {
+    test('It should return ".figmagic" for figmagicFolder if passing "figma" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--figmagicFolder', '.figmagic'])).toEqual(
+        expect.objectContaining({
+          figmagicFolder: '.figmagic'
         })
-      })
-    );
+      );
+    });
+
+    test('It should return ".figmagic" for figmagicFolder if passing "figma" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-base', '.figmagic'])).toEqual(
+        expect.objectContaining({
+          figmagicFolder: '.figmagic'
+        })
+      );
+    });
+  });
+
+  describe('Output folder elements', () => {
+    test('It should return "elements" for outputFolderElements if passing "--outputFolderElements" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputFolderElements', 'elements'])).toEqual(
+        expect.objectContaining({
+          outputFolderElements: 'elements'
+        })
+      );
+    });
+
+    test('It should return "elements" for outputFolderElements if passing "-elements" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-elements', 'elements'])).toEqual(
+        expect.objectContaining({
+          outputFolderElements: 'elements'
+        })
+      );
+    });
+  });
+
+  describe('Output folder graphics', () => {
+    test('It should return "graphics" for outputFolderGraphics if passing "--outputFolderGraphics" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputFolderGraphics', 'graphics'])).toEqual(
+        expect.objectContaining({
+          outputFolderGraphics: 'graphics'
+        })
+      );
+    });
+
+    test('It should return "graphics" for outputFolderGraphics if passing "-graphics" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-graphics', 'graphics'])).toEqual(
+        expect.objectContaining({
+          outputFolderGraphics: 'graphics'
+        })
+      );
+    });
+  });
+
+  describe('Output folder tokens', () => {
+    test('It should return "tokens" for outputFolderTokens if passing "--outputFolderTokens" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputFolderTokens', 'tokens'])).toEqual(
+        expect.objectContaining({
+          outputFolderTokens: 'tokens'
+        })
+      );
+    });
+
+    test('It should return "tokens" for outputFolderTokens if passing "-tokens" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-tokens', 'tokens'])).toEqual(
+        expect.objectContaining({
+          outputFolderTokens: 'tokens'
+        })
+      );
+    });
+  });
+
+  describe('Output format CSS', () => {
+    test('It should return "ts" for outputFormatCss if passing "--outputFormatCss ts" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputFormatCss', 'ts'])).toEqual(
+        expect.objectContaining({
+          outputFormatCss: 'ts'
+        })
+      );
+    });
+
+    test('It should return "ts" for outputFormatCss if passing "-fc outputFormatCss" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-fc', 'ts'])).toEqual(
+        expect.objectContaining({
+          outputFormatCss: 'ts'
+        })
+      );
+    });
+  });
+
+  describe('Output format elements', () => {
+    test('It should return "tsx" for outputFormatElements if passing "--outputFormatElements tsx" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputFormatElements', 'tsx'])).toEqual(
+        expect.objectContaining({
+          outputFormatElements: 'tsx'
+        })
+      );
+    });
+
+    test('It should return "tsx" for outputFormatElements if passing "-elements tsx" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-fe', 'tsx'])).toEqual(
+        expect.objectContaining({
+          outputFormatElements: 'tsx'
+        })
+      );
+    });
+  });
+
+  describe('Output format graphics', () => {
+    test('It should return "svg" for outputFormatGraphics if passing "--outputFormatGraphics tsx" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputFormatGraphics', 'svg'])).toEqual(
+        expect.objectContaining({
+          outputFormatGraphics: 'svg'
+        })
+      );
+    });
+
+    test('It should return "svg" for outputFormatGraphics if passing "-fg tsx" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-fg', 'svg'])).toEqual(
+        expect.objectContaining({
+          outputFormatGraphics: 'svg'
+        })
+      );
+    });
+  });
+
+  describe('Output format Storybook', () => {
+    test('It should return "tsx" for outputFormatStorybook if passing "--outputFormatStorybook ts" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputFormatStorybook', 'ts'])).toEqual(
+        expect.objectContaining({
+          outputFormatStorybook: 'ts'
+        })
+      );
+    });
+
+    test('It should return "tsx" for outputFormatStorybook if passing "-fs ts" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-fs', 'ts'])).toEqual(
+        expect.objectContaining({
+          outputFormatStorybook: 'ts'
+        })
+      );
+    });
+  });
+
+  describe('Output format tokens', () => {
+    test('It should return "ts" for outputFormatTokens if passing "ts" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputFormatTokens', 'ts'])).toEqual(
+        expect.objectContaining({
+          outputFormatTokens: 'ts'
+        })
+      );
+    });
+
+    test('It should return "ts" for outputFormatTokens if passing "ts" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-ft', 'ts'])).toEqual(
+        expect.objectContaining({
+          outputFormatTokens: 'ts'
+        })
+      );
+    });
+  });
+
+  describe('Output scale graphics', () => {
+    test('It should return "2" for outputScaleGraphics if passing "2" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputScaleGraphics', '2'])).toEqual(
+        expect.objectContaining({
+          outputScaleGraphics: 2
+        })
+      );
+    });
+
+    test('It should return "2" for outputScaleGraphics if passing "2" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-scale', '2'])).toEqual(
+        expect.objectContaining({
+          outputScaleGraphics: 2
+        })
+      );
+    });
+  });
+
+  describe('Output data type for tokens', () => {
+    test('It should return "enum" for token if passing "enum" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputDataTypeToken', 'enum'])).toEqual(
+        expect.objectContaining({
+          outputDataTypeToken: 'enum'
+        })
+      );
+    });
+
+    test('It should return "enum" for token if passing "enum" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-tokentype', 'enum'])).toEqual(
+        expect.objectContaining({
+          outputDataTypeToken: 'enum'
+        })
+      );
+    });
+  });
+
+  describe('Recompile local', () => {
+    test('It should return true for recompileLocal if passing "--recompileLocal" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--recompileLocal'])).toEqual(
+        expect.objectContaining({
+          recompileLocal: true
+        })
+      );
+    });
+
+    test('It should return true for recompileLocal if passing "--recompileLocal" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-local'])).toEqual(
+        expect.objectContaining({
+          recompileLocal: true
+        })
+      );
+    });
+  });
+
+  describe('REM size', () => {
+    test('It should return "16" for remSize if passing "16" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--remSize', '16'])).toEqual(
+        expect.objectContaining({
+          remSize: 16
+        })
+      );
+    });
+
+    test('It should return "16" for remSize if passing "16" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-rem', '16'])).toEqual(
+        expect.objectContaining({
+          remSize: 16
+        })
+      );
+    });
+  });
+
+  describe('Force update', () => {
+    test('It should return true for skipFileGeneration.forceUpdate if passing "--forceUpdate" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--forceUpdate'])).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            forceUpdate: true
+          })
+        })
+      );
+    });
+
+    test('It should return true for skipFileGeneration.forceUpdate if passing "-f" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-force'])).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            forceUpdate: true
+          })
+        })
+      );
+    });
+  });
+
+  describe('Skip CSS', () => {
+    test('It should return true for skipFileGeneration.css if passing "--skipCss" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--skipCss'])).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            skipCss: true
+          })
+        })
+      );
+    });
+
+    test('It should return true for skipFileGeneration.css if passing "-nocss" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-nocss'])).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            skipCss: true
+          })
+        })
+      );
+    });
+  });
+
+  describe('Skip description', () => {
+    test('It should return true for skipFileGeneration.styled if passing "--skipDescription" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--skipDescription'])).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            skipDescription: true
+          })
+        })
+      );
+    });
+
+    test('It should return true for skipFileGeneration.styled if passing "-nodesc" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-nodesc'])).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            skipDescription: true
+          })
+        })
+      );
+    });
+  });
+
+  describe('Skip React', () => {
+    test('It should return true for skipFileGeneration.react if passing "--skipReact" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--skipReact'])).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            skipReact: true
+          })
+        })
+      );
+    });
+
+    test('It should return true for skipFileGeneration.react if passing "-noreact" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-noreact'])).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            skipReact: true
+          })
+        })
+      );
+    });
+  });
+
+  describe('Skip Storybook', () => {
+    test('It should return true for skipFileGeneration.storybook if passing "--skipStorybook" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--skipStorybook'])).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            skipStorybook: true
+          })
+        })
+      );
+    });
+
+    test('It should return true for skipFileGeneration.storybook if passing "-nostory" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-nostory'])).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            skipStorybook: true
+          })
+        })
+      );
+    });
+  });
+
+  describe('Skip Styled Components', () => {
+    test('It should return true for skipFileGeneration.styled if passing "--skipStyled" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--skipStyled'])).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            skipStyled: true
+          })
+        })
+      );
+    });
+
+    test('It should return true for skipFileGeneration.styled if passing "-nostyled" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-nostyled'])).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            skipStyled: true
+          })
+        })
+      );
+    });
+  });
+
+  describe('Spacing unit', () => {
+    test('It should return "em" for outputFormatTokens if passing "em" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--spacingUnit', 'em'])).toEqual(
+        expect.objectContaining({
+          spacingUnit: 'em'
+        })
+      );
+    });
+
+    test('It should return "em" for outputFormatTokens if passing "em" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-s', 'em'])).toEqual(
+        expect.objectContaining({
+          spacingUnit: 'em'
+        })
+      );
+    });
+  });
+
+  describe('Sync elements', () => {
+    test('It should return true for syncElements if passing "--syncElements" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--syncElements'])).toEqual(
+        expect.objectContaining({
+          syncElements: true
+        })
+      );
+    });
+
+    test('It should return true for syncElements if passing "-se" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-se'])).toEqual(
+        expect.objectContaining({
+          syncElements: true
+        })
+      );
+    });
+  });
+
+  describe('Sync graphics', () => {
+    test('It should return true for syncGraphics if passing "--syncGraphics" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--syncGraphics'])).toEqual(
+        expect.objectContaining({
+          syncGraphics: true
+        })
+      );
+    });
+
+    test('It should return true for syncGraphics if passing "-sg" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-sg'])).toEqual(
+        expect.objectContaining({
+          syncGraphics: true
+        })
+      );
+    });
+  });
+
+  describe('Sync tokens', () => {
+    test('It should return true for syncTokens if passing "--syncGraphics" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--syncTokens'])).toEqual(
+        expect.objectContaining({
+          syncTokens: true
+        })
+      );
+    });
+
+    test('It should return true for syncTokens if passing "-st" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-st'])).toEqual(
+        expect.objectContaining({
+          syncTokens: true
+        })
+      );
+    });
+  });
+
+  describe('Template path React', () => {
+    test('It should return template path for React (long-hand)', () => {
+      const templatePathReact = 'foo/react.jsx';
+      // @ts-ignore
+      expect(parseCliArgs(['--templatePathReact', templatePathReact])).toEqual(
+        expect.objectContaining({
+          templates: expect.objectContaining({
+            templatePathReact
+          })
+        })
+      );
+    });
+
+    test('It should return template path for React (short-hand)', () => {
+      const templatePathReact = 'foo/react.jsx';
+      // @ts-ignore
+      expect(parseCliArgs(['-tpreact', templatePathReact])).toEqual(
+        expect.objectContaining({
+          templates: expect.objectContaining({
+            templatePathReact
+          })
+        })
+      );
+    });
+  });
+
+  describe('Template path Storybook', () => {
+    test('It should return template path for Storybook (long-hand)', () => {
+      const templatePathStorybook = 'foo/story.js';
+      // @ts-ignore
+      expect(parseCliArgs(['--templatePathStorybook', templatePathStorybook])).toEqual(
+        expect.objectContaining({
+          templates: expect.objectContaining({
+            templatePathStorybook
+          })
+        })
+      );
+    });
+
+    test('It should return template path for Storybook (short-hand)', () => {
+      const templatePathStorybook = 'foo/story.js';
+      // @ts-ignore
+      expect(parseCliArgs(['-tpstory', templatePathStorybook])).toEqual(
+        expect.objectContaining({
+          templates: expect.objectContaining({
+            templatePathStorybook
+          })
+        })
+      );
+    });
+  });
+
+  describe('Template path Styled Components', () => {
+    test('It should return template path for Styled Components (long-hand)', () => {
+      const templatePathStyled = 'foo/styled.jsx';
+      // @ts-ignore
+      expect(parseCliArgs(['--templatePathStyled', templatePathStyled])).toEqual(
+        expect.objectContaining({
+          templates: expect.objectContaining({
+            templatePathStyled
+          })
+        })
+      );
+    });
+
+    test('It should return template path for Styled Components (short-hand)', () => {
+      const templatePathStyled = 'foo/styled.jsx';
+      // @ts-ignore
+      expect(parseCliArgs(['-tpstyled', templatePathStyled])).toEqual(
+        expect.objectContaining({
+          templates: expect.objectContaining({
+            templatePathStyled
+          })
+        })
+      );
+    });
+  });
+
+  describe('Token', () => {
+    test('It should return "asdf" for token if passing "asdf" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--token', 'asdf'])).toEqual(
+        expect.objectContaining({
+          token: 'asdf'
+        })
+      );
+    });
+
+    test('It should return "asdf" for token if passing "asdf" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-t', 'asdf'])).toEqual(
+        expect.objectContaining({
+          token: 'asdf'
+        })
+      );
+    });
+  });
+
+  describe('URL', () => {
+    test('It should return "abc123" for url if passing "abc123" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--url', 'abc123'])).toEqual(
+        expect.objectContaining({
+          url: 'abc123'
+        })
+      );
+    });
+
+    test('It should return "abc123" for url if passing "abc123" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-u', 'abc123'])).toEqual(
+        expect.objectContaining({
+          url: 'abc123'
+        })
+      );
+    });
+  });
+
+  describe('Use Postscript font names', () => {
+    test('It should return true for usePostscriptFontNames if passing true (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--usePostscriptFontNames', true])).toEqual(
+        expect.objectContaining({
+          usePostscriptFontNames: true
+        })
+      );
+    });
+
+    test('It should return true for usePostscriptFontNames if passing true (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-ps', true])).toEqual(
+        expect.objectContaining({
+          usePostscriptFontNames: true
+        })
+      );
+    });
   });
 
   /**
-   * Skip file generation: all
+   * Odd cases
    */
-  test('It should return true for all skipFileGeneration properties, if passing all --skip flags', () => {
-    const args = [
-      '--skipReact',
-      '--skipStyled',
-      '--skipCss',
-      '--skipStorybook',
-      '--skipDescription'
-    ];
 
-    // @ts-ignore
-    expect(parseCliArgs(args)).toEqual(
-      expect.objectContaining({
-        skipFileGeneration: expect.objectContaining({
-          skipCss: true,
-          skipDescription: true,
-          skipReact: true,
-          skipStorybook: true,
-          skipStyled: true
+  describe('Return successfully if given no arguments', () => {
+    test('Should return an empty object if an empty array of args is passed', () => {
+      // @ts-ignore
+      expect(parseCliArgs([])).toEqual({});
+    });
+  });
+
+  describe('Skip file generation: all', () => {
+    test('It should return true for all skipFileGeneration properties, if passing all --skip flags', () => {
+      const args = [
+        '--skipReact',
+        '--skipStyled',
+        '--skipCss',
+        '--skipStorybook',
+        '--skipDescription'
+      ];
+
+      // @ts-ignore
+      expect(parseCliArgs(args)).toEqual(
+        expect.objectContaining({
+          skipFileGeneration: expect.objectContaining({
+            skipCss: true,
+            skipDescription: true,
+            skipReact: true,
+            skipStorybook: true,
+            skipStyled: true
+          })
         })
-      })
-    );
+      );
+    });
   });
 
-  /*
-   * Output token format
-   */
-  test('It should return "js" for outputFormatTokens if passing "js" (long-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--outputFormatTokens', 'js'])).toEqual(
-      expect.objectContaining({
-        outputFormatTokens: 'js'
-      })
-    );
-  });
+  describe('Template paths', () => {
+    test('It should return all template paths', () => {
+      const templatePathReact = 'foo/react.jsx';
+      const templatePathStyled = 'foo/styled.jsx';
+      const templatePathStorybook = 'foo/story.js';
 
-  test('It should return "js" for outputFormatTokens if passing "js" (short-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['-ft', 'js'])).toEqual(
-      expect.objectContaining({
-        outputFormatTokens: 'js'
-      })
-    );
-  });
+      const args = [
+        '--templatePathReact',
+        templatePathReact,
+        '--templatePathStyled',
+        templatePathStyled,
+        '--templatePathStorybook',
+        templatePathStorybook
+      ];
 
-  /*
-   * Font unit
-   */
-  test('It should return "em" for fontUnit if passing "em" (long-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--fontUnit', 'em'])).toEqual(
-      expect.objectContaining({
-        fontUnit: 'em'
-      })
-    );
-  });
-
-  test('It should return "em" for fontUnit if passing "em" (short-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['-fu', 'em'])).toEqual(
-      expect.objectContaining({
-        fontUnit: 'em'
-      })
-    );
-  });
-
-  /*
-   * LetterSpacing unit
-   */
-  test('It should return the unit for letterSpacingUnit if passing valid value (long-hand)', () => {
-    const unit = 'em';
-    // @ts-ignore
-    expect(parseCliArgs(['--letterSpacingUnit', unit])).toEqual(
-      expect.objectContaining({
-        letterSpacingUnit: unit
-      })
-    );
-  });
-
-  test('It should return the unit for letterSpacingUnit if passing valid value (short-hand)', () => {
-    const unit = 'px';
-    // @ts-ignore
-    expect(parseCliArgs(['-lsu', unit])).toEqual(
-      expect.objectContaining({
-        letterSpacingUnit: unit
-      })
-    );
-  });
-
-  /*
-   * Opacities unit
-   */
-  test('It should return the unit for opacitiesUnit if passing valid value (long-hand)', () => {
-    const unit = 'percent';
-    // @ts-ignore
-    expect(parseCliArgs(['--opacitiesUnit', unit])).toEqual(
-      expect.objectContaining({
-        opacitiesUnit: unit
-      })
-    );
-  });
-
-  test('It should return the unit for opacitiesUnit if passing valid value (short-hand)', () => {
-    const unit = 'float';
-    // @ts-ignore
-    expect(parseCliArgs(['-ou', unit])).toEqual(
-      expect.objectContaining({
-        opacitiesUnit: unit
-      })
-    );
-  });
-
-  /*
-   * Spacing unit
-   */
-  test('It should return "em" for outputFormatTokens if passing "em" (long-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--spacingUnit', 'em'])).toEqual(
-      expect.objectContaining({
-        spacingUnit: 'em'
-      })
-    );
-  });
-
-  test('It should return "em" for outputFormatTokens if passing "em" (short-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['-s', 'em'])).toEqual(
-      expect.objectContaining({
-        spacingUnit: 'em'
-      })
-    );
-  });
-
-  /*
-   * Token
-   */
-  test('It should return "asdf" for token if passing "asdf" (long-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--token', 'asdf'])).toEqual(
-      expect.objectContaining({
-        token: 'asdf'
-      })
-    );
-  });
-
-  test('It should return "asdf" for token if passing "asdf" (short-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['-t', 'asdf'])).toEqual(
-      expect.objectContaining({
-        token: 'asdf'
-      })
-    );
-  });
-
-  /*
-   * Token data type
-   */
-  test('It should return "enum" for token if passing "enum" (long-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--outputDataTypeToken', 'enum'])).toEqual(
-      expect.objectContaining({
-        outputDataTypeToken: 'enum'
-      })
-    );
-  });
-
-  test('It should return "enum" for token if passing "enum" (short-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['-tokentype', 'enum'])).toEqual(
-      expect.objectContaining({
-        outputDataTypeToken: 'enum'
-      })
-    );
-  });
-
-  /*
-   * URL
-   */
-  test('It should return "abc123" for url if passing "abc123" (long-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--url', 'abc123'])).toEqual(
-      expect.objectContaining({
-        url: 'abc123'
-      })
-    );
-  });
-
-  test('It should return "abc123" for url if passing "abc123" (short-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['-u', 'abc123'])).toEqual(
-      expect.objectContaining({
-        url: 'abc123'
-      })
-    );
-  });
-
-  /*
-   * Output folder base file
-   */
-  test('It should return ".figma" for outputFolderBaseFile if passing "figma" (long-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--outputFolderBaseFile', 'figma'])).toEqual(
-      expect.objectContaining({
-        outputFolderBaseFile: 'figma'
-      })
-    );
-  });
-
-  test('It should return "figma" for outputFolderBaseFile if passing "figma" (short-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['-base', 'figma'])).toEqual(
-      expect.objectContaining({
-        outputFolderBaseFile: 'figma'
-      })
-    );
-  });
-
-  /*
-   * Output folder tokens
-   */
-  test('It should return "tokens" for outputFolderTokens if passing "--outputFolderTokens" (long-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--outputFolderTokens', 'tokens'])).toEqual(
-      expect.objectContaining({
-        outputFolderTokens: 'tokens'
-      })
-    );
-  });
-
-  test('It should return "tokens" for outputFolderTokens if passing "-tokens" (short-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['-tokens', 'tokens'])).toEqual(
-      expect.objectContaining({
-        outputFolderTokens: 'tokens'
-      })
-    );
-  });
-
-  /*
-   * Output folder elements
-   */
-  test('It should return "elements" for outputFolderElements if passing "--outputFolderElements" (long-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--outputFolderElements', 'elements'])).toEqual(
-      expect.objectContaining({
-        outputFolderElements: 'elements'
-      })
-    );
-  });
-
-  test('It should return "elements" for outputFolderElements if passing "-elements" (short-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['-elements', 'elements'])).toEqual(
-      expect.objectContaining({
-        outputFolderElements: 'elements'
-      })
-    );
-  });
-
-  /*
-   * Output file name
-   */
-  test('It should return "tokens" for outputFileName if passing "--outputFileName figma.json" (long-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--outputFileName', 'figma.json'])).toEqual(
-      expect.objectContaining({
-        outputFileName: 'figma.json'
-      })
-    );
-  });
-
-  test('It should return "tokens" for outputFileName if passing "-file figma.json" (short-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['-file', 'figma.json'])).toEqual(
-      expect.objectContaining({
-        outputFileName: 'figma.json'
-      })
-    );
-  });
-
-  /*
-   * Postscript font family names
-   */
-  test('It should return true for usePostscriptFontNames if passing true (long-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['--usePostscriptFontNames', true])).toEqual(
-      expect.objectContaining({
-        usePostscriptFontNames: true
-      })
-    );
-  });
-
-  test('It should return true for usePostscriptFontNames if passing true (short-hand)', () => {
-    // @ts-ignore
-    expect(parseCliArgs(['-ps', true])).toEqual(
-      expect.objectContaining({
-        usePostscriptFontNames: true
-      })
-    );
-  });
-
-  /*
-   * Template paths
-   */
-
-  test('It should return template path for React, if provided', () => {
-    const templatePathReact = 'foo/react.jsx';
-    // @ts-ignore
-    expect(parseCliArgs(['--templatePathReact', templatePathReact])).toEqual(
-      expect.objectContaining({
-        templates: expect.objectContaining({
-          templatePathReact
+      // @ts-ignore
+      expect(parseCliArgs(args)).toEqual(
+        expect.objectContaining({
+          templates: expect.objectContaining({
+            templatePathReact,
+            templatePathStyled,
+            templatePathStorybook
+          })
         })
-      })
-    );
-  });
-
-  test('It should return template path for Styled Components, if provided', () => {
-    const templatePathStyled = 'foo/styled.jsx';
-    // @ts-ignore
-    expect(parseCliArgs(['--templatePathStyled', templatePathStyled])).toEqual(
-      expect.objectContaining({
-        templates: expect.objectContaining({
-          templatePathStyled
-        })
-      })
-    );
-  });
-
-  test('It should return template path for Storybook, if provided', () => {
-    const templatePathStorybook = 'foo/story.js';
-    // @ts-ignore
-    expect(parseCliArgs(['--templatePathStorybook', templatePathStorybook])).toEqual(
-      expect.objectContaining({
-        templates: expect.objectContaining({
-          templatePathStorybook
-        })
-      })
-    );
-  });
-
-  test('It should return all template paths, if provided', () => {
-    const templatePathReact = 'foo/react.jsx';
-    const templatePathStyled = 'foo/styled.jsx';
-    const templatePathStorybook = 'foo/story.js';
-
-    const args = [
-      '--templatePathReact',
-      templatePathReact,
-      '--templatePathStyled',
-      templatePathStyled,
-      '--templatePathStorybook',
-      templatePathStorybook
-    ];
-
-    // @ts-ignore
-    expect(parseCliArgs(args)).toEqual(
-      expect.objectContaining({
-        templates: expect.objectContaining({
-          templatePathReact,
-          templatePathStyled,
-          templatePathStorybook
-        })
-      })
-    );
+      );
+    });
   });
 });

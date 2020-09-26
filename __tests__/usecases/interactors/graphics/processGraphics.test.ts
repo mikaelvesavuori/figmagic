@@ -15,8 +15,8 @@ describe('Success cases', () => {
     await expect(
       // @ts-ignore
       processGraphics(graphicsPage, {
-        outputFileName: 'figma.json',
-        outputFolderBaseFile: '.figmagic',
+        figmaData: 'figma.json',
+        figmagicFolder: '.figmagic',
         outputFolderTokens: 'tokens',
         outputFolderGraphics: 'graphics',
         outputFormatGraphics: 'svg',
@@ -42,8 +42,8 @@ describe('Failure cases', () => {
     await expect(
       // @ts-ignore
       processGraphics(xxx, {
-        outputFileName: 'figma.json',
-        outputFolderBaseFile: '.figmagic',
+        figmaData: 'figma.json',
+        figmagicFolder: '.figmagic',
         outputFolderTokens: 'tokens',
         outputFolderGraphics: 'graphics',
         outputFormatGraphics: 'svg',
@@ -63,8 +63,8 @@ describe('Failure cases', () => {
     await expect(
       // @ts-ignore
       processGraphics(data, {
-        outputFileName: 'figma.json',
-        outputFolderBaseFile: '.figmagic',
+        figmaData: 'figma.json',
+        figmagicFolder: '.figmagic',
         outputFolderTokens: 'tokens',
         outputFolderGraphics: 'graphics',
         outputFormatGraphics: 'svg',

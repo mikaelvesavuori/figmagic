@@ -15,18 +15,18 @@ import {
  */
 export async function getData(
   recompileLocal: boolean,
-  outputFolderBaseFile: string,
-  outputFileName: string,
+  figmagicFolder: string,
+  figmaData: string,
   token: string | null,
   url: string | null
 ): Promise<FigmaData> {
   try {
     if (!recompileLocal && (!token || !url)) throw new Error(ErrorGetData);
-    if (recompileLocal && (!outputFolderBaseFile || !outputFileName))
+    if (recompileLocal && (!figmagicFolder || !figmaData))
       throw new Error(ErrorGetDataNoTokenOrUrl);
 
     const DATA = (async () => {
-      if (recompileLocal) return getDataLocal(outputFolderBaseFile, outputFileName);
+      if (recompileLocal) return getDataLocal(figmagicFolder, figmaData);
       else {
         if (token && url) return await getDataRemote(token, url);
       }

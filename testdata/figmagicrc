@@ -1,8 +1,8 @@
 {
   "debugMode": false,
   "fontUnit": "rem",
-  "outputFileName": "figma.json",
-  "outputFolderBaseFile": ".figmagic",
+  "figmaData": "figma.json",
+  "figmagicFolder": ".figmagic",
   "outputFolderTokens": "tokens",
   "outputFormatTokens": "ts",
   "outputFolderGraphics": "graphics",

@@ -44,17 +44,11 @@ async function main(): Promise<void> {
       const CONFIG: Config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
 
       // Get data
-      const { recompileLocal, outputFolderBaseFile, outputFileName, token, url } = CONFIG;
-      const DATA: FigmaData = await getData(
-        recompileLocal,
-        outputFolderBaseFile,
-        outputFileName,
-        token,
-        url
-      );
+      const { recompileLocal, figmagicFolder, figmaData, token, url } = CONFIG;
+      const DATA: FigmaData = await getData(recompileLocal, figmagicFolder, figmaData, token, url);
 
       // Write new JSON base data, unless user explicitly opts out
-      if (!recompileLocal) await writeBaseJson(outputFolderBaseFile, outputFileName, DATA);
+      if (!recompileLocal) await writeBaseJson(figmagicFolder, figmaData, DATA);
 
       // Run the controller
       await FigmagicController(CONFIG, DATA);

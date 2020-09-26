@@ -7,14 +7,15 @@ function validateConfig(config) {
         validateFontUnit(config.fontUnit);
         validateLetterSpacingUnit(config.letterSpacingUnit);
         validateOpacitiesUnit(config.opacitiesUnit);
-        validateFileName(config.outputFileName);
-        validateFileName(config.outputFolderBaseFile);
+        validateFileName(config.figmaData);
+        validateFileName(config.figmagicFolder);
         validateFolderName(config.outputFolderElements);
         validateFolderName(config.outputFolderGraphics);
         validateFolderName(config.outputFolderTokens);
         validateOutputFormatCss(config.outputFormatCss);
         validateOutputFormatElements(config.outputFormatElements);
         validateOutputFormatGraphics(config.outputFormatGraphics);
+        validateOutputFormatStorybook(config.outputFormatStorybook);
         validateOutputFormatTokens(config.outputFormatTokens);
         validateOutputScaleGraphics(config.outputScaleGraphics);
         validateOutputDataTypeToken(config.outputDataTypeToken);
@@ -68,6 +69,11 @@ const validateOutputFormatGraphics = (format) => {
     if (validatorLists_1.validOutputFormatGraphicsList.includes(format))
         return true;
     throw new Error(errors_1.ErrorValidateConfigOutputFormatGraphics);
+};
+const validateOutputFormatStorybook = (format) => {
+    if (validatorLists_1.validOutputFormatStorybookList.includes(format))
+        return true;
+    throw new Error(errors_1.ErrorValidateConfigOutputFormatStorybook);
 };
 const validateOutputFormatTokens = (format) => {
     if (validatorLists_1.validOutputFormatTokensList.includes(format))
