@@ -34,6 +34,8 @@ export function parseCliArgs(argsArray: string[]): Config {
     '-fe': (val: string) => (config.outputFormatElements = val.toLowerCase()),
     '--outputFormatGraphics': (val: string) => (config.outputFormatGraphics = val.toLowerCase()),
     '-fg': (val: string) => (config.outputFormatGraphics = val.toLowerCase()),
+    '--outputFormatStorybook': (val: string) => (config.outputFormatStorybook = val.toLowerCase()),
+    '-fs': (val: string) => (config.outputFormatStorybook = val.toLowerCase()),
     '--outputFormatTokens': (val: string) => (config.outputFormatTokens = val.toLowerCase()),
     '-ft': (val: string) => (config.outputFormatTokens = val.toLowerCase()),
     '--outputScaleGraphics': (val: string | number) => (config.outputScaleGraphics = val),

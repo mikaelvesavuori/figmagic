@@ -41,7 +41,6 @@ export function getFileContentAndPath(
   | PrepDescription {
   try {
     if (!getFileContentAndPathOperation) throw new Error(ErrorGetFileContentAndPath);
-
     if (
       !getFileContentAndPathOperation.type ||
       !getFileContentAndPathOperation.file ||
@@ -51,7 +50,6 @@ export function getFileContentAndPath(
       !getFileContentAndPathOperation.element
     )
       throw new Error(ErrorGetFileContentAndPathMissingFields);
-
     const {
       type,
       file,
@@ -65,9 +63,7 @@ export function getFileContentAndPath(
       metadata,
       templates
     } = getFileContentAndPathOperation;
-
     let filePath = `${path}/${name}`;
-
     // Raw file output
     if (type === 'raw') return { fileContent: `${JSON.stringify(file, null, ' ')}`, filePath };
     // Design token

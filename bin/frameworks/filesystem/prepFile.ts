@@ -31,6 +31,8 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
     const SUFFIX = 'Styled';
     const PATH = `${templates.templatePathReact}.${format}`;
 
+    console.log('PATH', PATH);
+
     let template = loadFile(PATH) as string;
     template = template.replace(/{{NAME}}/gi, name);
     template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);

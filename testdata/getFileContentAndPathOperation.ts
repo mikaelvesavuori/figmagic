@@ -161,7 +161,7 @@ export const getFileContentAndPathOperationStory = {
   },
   path: 'tokens',
   name: 'colors',
-  format: 'mjs',
+  format: 'js',
   text: 'text',
   element: 'div',
   imports: '',

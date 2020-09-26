@@ -9,6 +9,7 @@ import {
   ErrorValidateConfigOutputFormatCss,
   ErrorValidateConfigOutputFormatElements,
   ErrorValidateConfigOutputFormatGraphics,
+  ErrorValidateConfigOutputFormatStorybook,
   ErrorValidateConfigOutputFormatTokens,
   ErrorValidateConfigSpacingUnit,
   ErrorValidateConfigTemplatePathReact,
@@ -31,6 +32,7 @@ export function validateConfig(config: Config): void {
     validateOutputFormatCss(config.outputFormatCss);
     validateOutputFormatElements(config.outputFormatElements);
     validateOutputFormatGraphics(config.outputFormatGraphics);
+    validateOutputFormatStorybook(config.outputFormatStorybook);
     validateOutputFormatTokens(config.outputFormatTokens);
     validateOutputScaleGraphics(config.outputScaleGraphics);
     validateOutputDataTypeToken(config.outputDataTypeToken);
@@ -49,6 +51,7 @@ import {
   validOutputFormatCssList,
   validOutputFormatElementsList,
   validOutputFormatGraphicsList,
+  validOutputFormatStorybookList,
   validOutputFormatTokensList,
   validOutputDataTypeTokenList,
   validSpacingUnitList
@@ -92,6 +95,11 @@ const validateOutputFormatElements = (format: string): boolean => {
 const validateOutputFormatGraphics = (format: string): boolean => {
   if (validOutputFormatGraphicsList.includes(format)) return true;
   throw new Error(ErrorValidateConfigOutputFormatGraphics);
+};
+
+const validateOutputFormatStorybook = (format: string): boolean => {
+  if (validOutputFormatStorybookList.includes(format)) return true;
+  throw new Error(ErrorValidateConfigOutputFormatStorybook);
 };
 
 const validateOutputFormatTokens = (format: string): boolean => {

@@ -45,8 +45,8 @@ export async function createConfiguration(
 
   // Env var configuration
   const ENV_CONFIG = {
-    token: process.env.FIGMA_TOKEN || null,
-    url: process.env.FIGMA_URL || null
+    token: process.env.FIGMA_TOKEN || '',
+    url: process.env.FIGMA_URL || ''
   };
 
   // CLI arguments configuration

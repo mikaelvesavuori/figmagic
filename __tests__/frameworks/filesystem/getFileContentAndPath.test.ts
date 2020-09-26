@@ -119,7 +119,7 @@ export default colors;`,
 
   describe('Components', () => {
     test('It should return valid data for components', () => {
-      const fileContent = `import React from 'react';
+      const FILE_CONTENT = `import React from 'react';
 import PropTypes from 'prop-types';
 
 import colorsStyled from './colorsStyled';
@@ -134,7 +134,7 @@ export default colors;`;
         // @ts-ignore
         getFileContentAndPath(getFileContentAndPathOperationComponent)
       ).toMatchObject({
-        fileContent: fileContent,
+        fileContent: FILE_CONTENT,
         filePath: 'tokens/colors.mjs'
       });
     });
@@ -144,7 +144,7 @@ export default colors;`;
     test('It should return valid data for style', () => {
       const fileContent = `import styled from 'styled-components';
 
-import colorsCss from './colorsCss.ts';
+import colorsCss from './colorsCss';
 
 // Do your regular imports like:
 // import fontSizes from 'tokens/fontSizes';
@@ -200,7 +200,7 @@ export const colors = () => <colors>text</colors>;`;
         getFileContentAndPath(getFileContentAndPathOperationStory)
       ).toMatchObject({
         fileContent: fileContent,
-        filePath: 'tokens/colors.stories.mjs'
+        filePath: 'tokens/colors.stories.js'
       });
     });
   });

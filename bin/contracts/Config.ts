@@ -9,8 +9,9 @@ export type Config = {
   outputFolderGraphics: string;
   outputFolderTokens: string;
   outputFormatCss: 'ts' | 'mjs' | 'js';
-  outputFormatElements: 'tsx' | 'jsx';
+  outputFormatElements: 'tsx' | 'jsx' | 'mjs' | 'js';
   outputFormatGraphics: 'svg' | 'png';
+  outputFormatStorybook: 'ts' | 'js';
   outputFormatTokens: 'ts' | 'mjs' | 'js';
   outputScaleGraphics: number;
   outputDataTypeToken: null | 'enum';

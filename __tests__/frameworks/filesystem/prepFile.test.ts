@@ -112,7 +112,7 @@ export default aaa;`;
 
     const fileContent = `import styled from 'styled-components';
 
-import aaaCss from './aaaCss.ts';
+import aaaCss from './aaaCss';
 
 // Do your regular imports like:
 // import fontSizes from 'tokens/fontSizes';
@@ -135,7 +135,7 @@ export default aaaStyled;`;
     const data = {
       name: 'ComponentName',
       filePath: 'ComponentName',
-      format: 'mjs',
+      format: 'js',
       imports: 'asdf',
       file: css
     };
@@ -147,7 +147,7 @@ const ComponentNameCss = \`asdf\`;
 
 export default ComponentNameCss;`;
 
-    const expectedData = { fileContent: fileContent, filePath: 'ComponentNameCss.mjs' };
+    const expectedData = { fileContent: fileContent, filePath: 'ComponentNameCss.js' };
 
     expect(prepCss(data as PrepCss)).toMatchObject(expectedData);
   });
@@ -156,7 +156,7 @@ export default ComponentNameCss;`;
     const data = {
       name: 'ComponentName',
       filePath: 'ComponentName',
-      format: 'mjs',
+      format: 'js',
       templates: {
         templatePathStorybook: 'templates/story'
       },
@@ -172,7 +172,7 @@ export default { title: 'ComponentName', parameters: { notes } };
 
 export const ComponentName = () => <ComponentName>Something here</ComponentName>;`;
 
-    const expectedData = { fileContent: fileContent, filePath: 'ComponentName.stories.mjs' };
+    const expectedData = { fileContent: fileContent, filePath: 'ComponentName.stories.js' };
 
     expect(prepStorybook(data as PrepStorybook)).toMatchObject(expectedData);
   });

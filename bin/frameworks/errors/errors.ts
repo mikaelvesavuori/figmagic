@@ -98,7 +98,7 @@ export const ErrorGetUniqueValues = ErrorMessage(
 export const ErrorHandleNestedElements = ErrorMessage('Missing element in handleNestedElements()!');
 export const ErrorLoadFile = (path: string): string => {
   if (!path) throw new Error('No string passed to ErrorLoadFile!');
-  return ErrorMessage('Could not find file: ${path}!');
+  return ErrorMessage(`Could not find file: ${path}!`);
 };
 export const ErrorGetBackgroundColor = ErrorMessage('Error in getBackgroundColor()!');
 export const ErrorGetBorderColor = ErrorMessage('Error in getBorderColor()!');
@@ -315,6 +315,9 @@ export const ErrorValidateConfigOutputFormatElements = ErrorMessage(
 );
 export const ErrorValidateConfigOutputFormatGraphics = ErrorMessage(
   'Received unrecognized "outputFormatGraphics" arguments, it must be "svg" (default) or "png".'
+);
+export const ErrorValidateConfigOutputFormatStorybook = ErrorMessage(
+  'Received unrecognized "outputFormatStorybook" arguments, it must be "js" (default) or "ts".'
 );
 export const ErrorValidateConfigOutputFormatTokens = ErrorMessage(
   'Received unrecognized "outputFormatTokens" arguments, it must be "ts" (default), "mjs" or "js".'

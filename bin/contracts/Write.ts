@@ -16,6 +16,7 @@ export type WriteOperation = {
   outputFormatCss?: 'ts' | 'mjs' | 'js';
   outputFormatElements?: 'tsx' | 'jsx';
   outputFormatGraphics?: 'svg' | 'png';
+  outputFormatStorybook?: 'ts' | 'js';
   outputFormatTokens?: 'ts' | 'mjs' | 'js';
   fixedName?: string;
   forceUpdate?: string;

@@ -13,6 +13,7 @@ export const baseConfig: Config = {
   outputFormatCss: 'ts',
   outputFormatElements: 'tsx',
   outputFormatGraphics: 'svg',
+  outputFormatStorybook: 'js',
   outputFormatTokens: 'ts',
   outputScaleGraphics: 1,
   outputDataTypeToken: null,
