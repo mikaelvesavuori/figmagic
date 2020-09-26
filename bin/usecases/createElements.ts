@@ -17,7 +17,11 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
   try {
     if (!config || !data) throw new Error(ErrorCreateElements);
     console.log(MsgSyncElements);
+  } catch (error) {
+    throw new Error(error);
+  }
 
+  try {
     await refresh(config.outputFolderElements);
 
     const { components }: any = data;
@@ -26,6 +30,6 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
 
     writeElements(ELEMENTS, config);
   } catch (error) {
-    throw new Error(ErrorCreateElements);
+    throw new Error(error); // TODO: Add real error?
   }
 }

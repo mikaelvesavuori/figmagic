@@ -90,17 +90,17 @@ const validateSpacingUnit = (unit) => {
     throw new Error(errors_1.ErrorValidateConfigSpacingUnit);
 };
 const validateTemplatePathReact = (path) => {
-    if (path && path.includes(validatorLists_1.validTemplatePathReactFiletype))
+    if (path)
         return true;
     throw new Error(errors_1.ErrorValidateConfigTemplatePathReact);
 };
 const validateTemplatePathStorybook = (path) => {
-    if (path && path.includes(validatorLists_1.validTemplatePathStorybookFiletype))
+    if (path)
         return true;
     throw new Error(errors_1.ErrorValidateConfigTemplatePathStorybook);
 };
 const validateTemplatePathStyled = (path) => {
-    if (path && path.includes(validatorLists_1.validTemplatePathStyledFiletype))
+    if (path)
         return true;
     throw new Error(errors_1.ErrorValidateConfigTemplatePathStyled);
 };

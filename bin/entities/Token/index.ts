@@ -73,6 +73,7 @@ class Token {
     }
   };
 
+  // TODO: Refactor complexity
   private getTokens = (frame: Frame, name: string, config: Config): any => {
     switch (name) {
       case 'borderwidths':

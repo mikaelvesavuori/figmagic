@@ -326,13 +326,13 @@ export const ErrorValidateConfigSpacingUnit = ErrorMessage(
   'Received unrecognized "spacingUnit" argument, it must be "rem" (default) or "em".'
 );
 export const ErrorValidateConfigTemplatePathReact = ErrorMessage(
-  'Argument "templatePathReact" should include valid file format suffix (e.g. jsx), but does not!.'
+  'Argument "templatePathReact" cannot be empty!'
 );
 export const ErrorValidateConfigTemplatePathStorybook = ErrorMessage(
-  'Argument "templatePathStorybook" should include valid file format suffix (e.g. js), but does not!'
+  'Argument "templatePathStorybook" cannot be empty!'
 );
 export const ErrorValidateConfigTemplatePathStyled = ErrorMessage(
-  'Argument "templatePathStyled" should include valid file format suffix (e.g. jsx), but does not!'
+  'Argument "templatePathStyled" cannot be empty!'
 );
 export const ErrorWrite = ErrorMessage('Error while attempting to write file!');
 export const ErrorWriteBaseJson = ErrorMessage('Error while attempting to write Figma JSON!');

@@ -23,7 +23,6 @@ export function loadFile(path: string): string | Record<string, unknown> {
  */
 const isJsonString = (str: string): Record<string, unknown> | boolean => {
   try {
-    console.log('str', str);
     JSON.parse(str);
   } catch (e) {
     return false;

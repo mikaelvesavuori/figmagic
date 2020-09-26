@@ -51,10 +51,7 @@ import {
   validOutputFormatGraphicsList,
   validOutputFormatTokensList,
   validOutputDataTypeTokenList,
-  validSpacingUnitList,
-  validTemplatePathReactFiletype,
-  validTemplatePathStorybookFiletype,
-  validTemplatePathStyledFiletype
+  validSpacingUnitList
 } from '../../../frameworks/system/validatorLists';
 
 const validateFontUnit = (unit: string): boolean => {
@@ -118,16 +115,16 @@ const validateSpacingUnit = (unit: string): boolean => {
 };
 
 const validateTemplatePathReact = (path: string): boolean => {
-  if (path && path.includes(validTemplatePathReactFiletype)) return true;
+  if (path) return true;
   throw new Error(ErrorValidateConfigTemplatePathReact);
 };
 
 const validateTemplatePathStorybook = (path: string): boolean => {
-  if (path && path.includes(validTemplatePathStorybookFiletype)) return true;
+  if (path) return true;
   throw new Error(ErrorValidateConfigTemplatePathStorybook);
 };
 
 const validateTemplatePathStyled = (path: string): void | boolean => {
-  if (path && path.includes(validTemplatePathStyledFiletype)) return true;
+  if (path) return true;
   throw new Error(ErrorValidateConfigTemplatePathStyled);
 };

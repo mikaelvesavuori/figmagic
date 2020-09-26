@@ -73,7 +73,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
  */
 const writeComponent = (config: WriteOperation): void => {
   const FILE_EXISTS = fs.existsSync(
-    `${config.folder}/${config.fixedName}${config.outputFormatElements}`
+    `${config.folder}/${config.fixedName}.${config.outputFormatElements}`
   );
 
   if (!FILE_EXISTS || config.forceUpdate)
@@ -89,11 +89,11 @@ const writeComponent = (config: WriteOperation): void => {
 };
 
 /**
- * @description Helper to write Styled Component file
+ * @description Helper to write Styled Components file
  */
 const writeStyled = (config: WriteOperation): void => {
   const FILE_EXISTS = fs.existsSync(
-    `${config.folder}/${config.fixedName}Styled${config.outputFormatElements}`
+    `${config.folder}/${config.fixedName}Styled.${config.outputFormatElements}`
   );
   if (!FILE_EXISTS || config.forceUpdate)
     writeFile({
@@ -101,7 +101,7 @@ const writeStyled = (config: WriteOperation): void => {
       file: config.css,
       path: config.folder,
       name: config.fixedName,
-      format: 'jsx',
+      format: config.outputFormatElements,
       metadata: config.metadata,
       templates: config.templates
     } as WriteOperation);

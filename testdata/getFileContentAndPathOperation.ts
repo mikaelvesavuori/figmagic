@@ -60,9 +60,9 @@ export const getFileContentAndPathOperationComponent = {
   extraProps: ' ',
   metadata: {},
   templates: {
-    templatePathReact: 'templates/react.jsx',
-    templatePathStorybook: 'templates/story.js',
-    templatePathStyled: 'templates/styled.jsx'
+    templatePathReact: 'templates/react',
+    templatePathStorybook: 'templates/story',
+    templatePathStyled: 'templates/styled'
   }
 };
 
@@ -96,9 +96,9 @@ export const getFileContentAndPathOperationStyle = {
   extraProps: ' ',
   metadata: {},
   templates: {
-    templatePathReact: 'templates/react.jsx',
-    templatePathStorybook: 'templates/story.js',
-    templatePathStyled: 'templates/styled.jsx'
+    templatePathReact: 'templates/react',
+    templatePathStorybook: 'templates/story',
+    templatePathStyled: 'templates/styled'
   }
 };
 
@@ -132,9 +132,9 @@ export const getFileContentAndPathOperationCss = {
   extraProps: ' ',
   metadata: {},
   templates: {
-    templatePathReact: 'templates/react.jsx',
-    templatePathStorybook: 'templates/story.js',
-    templatePathStyled: 'templates/styled.jsx'
+    templatePathReact: 'templates/react',
+    templatePathStorybook: 'templates/story',
+    templatePathStyled: 'templates/styled'
   }
 };
 
@@ -168,9 +168,9 @@ export const getFileContentAndPathOperationStory = {
   extraProps: ' ',
   metadata: {},
   templates: {
-    templatePathReact: 'templates/react.jsx',
-    templatePathStorybook: 'templates/story.js',
-    templatePathStyled: 'templates/styled.jsx'
+    templatePathReact: 'templates/react',
+    templatePathStorybook: 'templates/story',
+    templatePathStyled: 'templates/styled'
   }
 };
 
@@ -204,8 +204,8 @@ export const getFileContentAndPathOperationDescription = {
   extraProps: ' ',
   metadata: {},
   templates: {
-    templatePathReact: 'templates/react.jsx',
-    templatePathStorybook: 'templates/story.js',
-    templatePathStyled: 'templates/styled.jsx'
+    templatePathReact: 'templates/react',
+    templatePathStorybook: 'templates/story',
+    templatePathStyled: 'templates/styled'
   }
 };

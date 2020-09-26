@@ -1723,9 +1723,9 @@ export const validButtonFigmagicElement = {
     syncElements: false,
     syncGraphics: false,
     templates: {
-      templatePathReact: 'templates/react.jsx',
-      templatePathStorybook: 'templates/story.js',
-      templatePathStyled: 'templates/styled.jsx'
+      templatePathReact: 'templates/react',
+      templatePathStorybook: 'templates/story',
+      templatePathStyled: 'templates/styled'
     },
     token: '',
     url: '',

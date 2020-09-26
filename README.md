@@ -324,9 +324,9 @@ export const baseConfig: Config = {
   syncElements: false,
   syncGraphics: false,
   templates: {
-    templatePathReact: 'templates/react.jsx',
-    templatePathStorybook: 'templates/story.js',
-    templatePathStyled: 'templates/styled.jsx'
+    templatePathReact: 'templates/react',
+    templatePathStorybook: 'templates/story',
+    templatePathStyled: 'templates/styled'
   },
   token: '',
   url: '',
@@ -478,25 +478,25 @@ Default is `null`. Currently the only valid non-null value is `enum`.
 
 `figmagic --templatePathReact [path]`
 
-Default is `templates/react.jsx`.
+Default is `templates/react`.
 
-**If you want to use the Figmagic-provided template you must explicitly add a block to your `.figmagicrc` file, pointing `templates.templatePathReact` to `./node_modules/figmagic/templates/react.jsx`**.
+**If you want to use the Figmagic-provided template you must explicitly add a block to your `.figmagicrc` file, pointing `templates.templatePathReact` to `./node_modules/figmagic/templates/react`**.
 
 #### Set path to Styled Components template
 
 `figmagic --templatePathStyled [path]`
 
-Default is `templates/styled.jsx`.
+Default is `templates/styled`.
 
-**If you want to use the Figmagic-provided template you must explicitly add a block to your `.figmagicrc` file, pointing `templates.templatePathStyled` to `./node_modules/figmagic/templates/styled.jsx`**.
+**If you want to use the Figmagic-provided template you must explicitly add a block to your `.figmagicrc` file, pointing `templates.templatePathStyled` to `./node_modules/figmagic/templates/styled`**.
 
 #### Set path to Storybook template
 
 `figmagic --templatePathStorybook [path]`
 
-Default is `templates/story.js`.
+Default is `templates/story`.
 
-**If you want to use the Figmagic-provided template you must explicitly add a block to your `.figmagicrc` file, pointing `templates.templatePathStorybook` to `./node_modules/figmagic/templates/story.js`**.
+**If you want to use the Figmagic-provided template you must explicitly add a block to your `.figmagicrc` file, pointing `templates.templatePathStorybook` to `./node_modules/figmagic/templates/story`**.
 
 #### Set font family name to be Postscript name instead of "common name"
 

@@ -7,6 +7,3 @@ export const validOutputFormatGraphicsList = ['svg', 'png'];
 export const validOutputFormatTokensList = ['ts', 'mjs', 'js'];
 export const validOutputDataTypeTokenList = ['enum', 'null', null, undefined];
 export const validSpacingUnitList = ['rem', 'em'];
-export const validTemplatePathReactFiletype = '.jsx';
-export const validTemplatePathStorybookFiletype = '.js';
-export const validTemplatePathStyledFiletype = '.jsx';

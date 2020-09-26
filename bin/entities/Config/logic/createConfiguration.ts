@@ -64,7 +64,7 @@ export async function createConfiguration(
   const CONFIG = {
     ...DEFAULT_CONFIG,
     ...RC_CONFIG,
-    //...ENV_CONFIG,
+    ...ENV_CONFIG,
     ...CLI_CONFIG,
     templates: {
       ...DEFAULT_CONFIG.templates,

@@ -12,7 +12,7 @@ exports.prepComponent = (data) => {
             throw new Error(errors_1.ErrorPrepFileComponent);
         const { name, filePath, format, templates, text, extraProps } = data;
         const SUFFIX = 'Styled';
-        const PATH = templates.templatePathReact;
+        const PATH = `${templates.templatePathReact}.${format}`;
         let template = loadFile_1.loadFile(PATH);
         template = template.replace(/{{NAME}}/gi, name);
         template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
@@ -33,7 +33,7 @@ exports.prepStyledComponents = (data) => {
             throw new Error(errors_1.ErrorPrepFileStyledComponents);
         const { name, filePath, format, templates, element } = data;
         const SUFFIX = 'Styled';
-        const PATH = templates.templatePathStyled;
+        const PATH = `${templates.templatePathStyled}.${format}`;
         let template = loadFile_1.loadFile(PATH);
         template = template.replace(/{{ELEMENT}}/gi, element);
         template = template.replace(/{{NAME_CSS}}/gi, `${name}Css`);
@@ -67,7 +67,7 @@ exports.prepStorybook = (data) => {
             throw new Error(errors_1.ErrorPrepFileStorybook);
         const { name, filePath, format, templates, text } = data;
         const SUFFIX = '.stories';
-        const PATH = templates.templatePathStorybook;
+        const PATH = `${templates.templatePathStorybook}.${format}`;
         let template = loadFile_1.loadFile(PATH);
         template = template.replace(/{{NAME}}/gi, name);
         template = template.replace(/{{TEXT}}/gi, text);

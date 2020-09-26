@@ -16,10 +16,7 @@ async function FigmagicController(config, data) {
             await createElements_1.createElements(config, data);
         if (config.syncGraphics)
             await createGraphics_1.createGraphics(config, data);
-        if (!config.syncTokens && !config.syncElements && !config.syncGraphics)
-            console.log(messages_1.MsgJobCompleteNoActions);
-        else
-            console.log(messages_1.MsgJobComplete);
+        console.log(messages_1.MsgJobComplete);
         return messages_1.MsgJobComplete;
     }
     catch (error) {

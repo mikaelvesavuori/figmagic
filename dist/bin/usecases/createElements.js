@@ -12,6 +12,11 @@ async function createElements(config, data) {
         if (!config || !data)
             throw new Error(errors_1.ErrorCreateElements);
         console.log(messages_1.MsgSyncElements);
+    }
+    catch (error) {
+        throw new Error(error);
+    }
+    try {
         await refresh_1.refresh(config.outputFolderElements);
         const { components } = data;
         const ELEMENTS_PAGE = createPage_1.createPage(data.document.children, 'Elements');
@@ -19,7 +24,7 @@ async function createElements(config, data) {
         writeElements_1.writeElements(ELEMENTS, config);
     }
     catch (error) {
-        throw new Error(errors_1.ErrorCreateElements);
+        throw new Error(error);
     }
 }
 exports.createElements = createElements;

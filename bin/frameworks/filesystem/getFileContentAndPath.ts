@@ -28,6 +28,7 @@ import {
 /**
  * Orchestrator to get file content and path, before writing files
  */
+// TODO: Refactor if possible
 export function getFileContentAndPath(
   getFileContentAndPathOperation: GetFileDataOperation
 ):
@@ -111,14 +112,14 @@ export function getFileContentAndPath(
 }
 
 const getTokenEnumString = (file: string | ProcessedToken, name: string, format: string) => {
-  const EXPORT = format === 'mjs' ? `export default ${name}` : `module.exports = ${name}`;
+  const EXPORT = format !== 'js' ? `export default ${name}` : `module.exports = ${name}`;
   return `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
     file
   )}\n}\n\n${EXPORT};`;
 };
 
 const getTokenString = (file: string | ProcessedToken, name: string, format: string) => {
-  const EXPORT = format === 'mjs' ? `export default ${name}` : `module.exports = ${name}`;
+  const EXPORT = format !== 'js' ? `export default ${name}` : `module.exports = ${name}`;
   return `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
     file,
     null,

@@ -63,7 +63,7 @@ const makeFixedConfig = (element, config) => {
     };
 };
 const writeComponent = (config) => {
-    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}${config.outputFormatElements}`);
+    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}.${config.outputFormatElements}`);
     if (!FILE_EXISTS || config.forceUpdate)
         writeFile_1.writeFile({
             type: 'component',
@@ -76,14 +76,14 @@ const writeComponent = (config) => {
         });
 };
 const writeStyled = (config) => {
-    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}Styled${config.outputFormatElements}`);
+    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}Styled.${config.outputFormatElements}`);
     if (!FILE_EXISTS || config.forceUpdate)
         writeFile_1.writeFile({
             type: 'style',
             file: config.css,
             path: config.folder,
             name: config.fixedName,
-            format: 'jsx',
+            format: config.outputFormatElements,
             metadata: config.metadata,
             templates: config.templates
         });

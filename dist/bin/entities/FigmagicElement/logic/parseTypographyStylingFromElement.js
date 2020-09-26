@@ -70,20 +70,25 @@ function parseTypographyStylingFromElement(textElement, remSize, outputFormatTok
 }
 exports.parseTypographyStylingFromElement = parseTypographyStylingFromElement;
 const getFiles = (path, outputFormatTokens) => {
-    const colors = getFileContents_1.getFileContents(path, 'colors', outputFormatTokens);
-    const fontFamilies = getFileContents_1.getFileContents(path, 'fontFamilies', outputFormatTokens);
-    const fontSizes = getFileContents_1.getFileContents(path, 'fontSizes', outputFormatTokens);
-    const fontWeights = getFileContents_1.getFileContents(path, 'fontWeights', outputFormatTokens);
-    const letterSpacings = getFileContents_1.getFileContents(path, 'letterSpacings', outputFormatTokens);
-    const lineHeights = getFileContents_1.getFileContents(path, 'lineHeights', outputFormatTokens);
-    return {
-        colors,
-        fontFamilies,
-        fontSizes,
-        fontWeights,
-        letterSpacings,
-        lineHeights
-    };
+    try {
+        const colors = getFileContents_1.getFileContents(path, 'colors', outputFormatTokens);
+        const fontFamilies = getFileContents_1.getFileContents(path, 'fontFamilies', outputFormatTokens);
+        const fontSizes = getFileContents_1.getFileContents(path, 'fontSizes', outputFormatTokens);
+        const fontWeights = getFileContents_1.getFileContents(path, 'fontWeights', outputFormatTokens);
+        const letterSpacings = getFileContents_1.getFileContents(path, 'letterSpacings', outputFormatTokens);
+        const lineHeights = getFileContents_1.getFileContents(path, 'lineHeights', outputFormatTokens);
+        return {
+            colors,
+            fontFamilies,
+            fontSizes,
+            fontWeights,
+            letterSpacings,
+            lineHeights
+        };
+    }
+    catch (error) {
+        throw new Error(error);
+    }
 };
 const reduceCssDuplicates = (css) => Array.from(new Set(css.split(/;/gi)))
     .toString()

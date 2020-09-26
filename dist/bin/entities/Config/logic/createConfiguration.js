@@ -25,6 +25,7 @@ async function createConfiguration(baseConfig, userConfigPath, cliArgs) {
     const CONFIG = {
         ...DEFAULT_CONFIG,
         ...RC_CONFIG,
+        ...ENV_CONFIG,
         ...CLI_CONFIG,
         templates: {
             ...DEFAULT_CONFIG.templates,

@@ -77,7 +77,7 @@ describe('Success cases', () => {
       filePath: 'ComponentName',
       format: 'jsx',
       templates: {
-        templatePathReact: 'templates/react.jsx'
+        templatePathReact: 'templates/react'
       },
       text: 'fff',
       extraProps: 'qqq'
@@ -105,7 +105,7 @@ export default aaa;`;
       filePath: 'ComponentName',
       format: 'jsx',
       templates: {
-        templatePathStyled: 'templates/styled.jsx'
+        templatePathStyled: 'templates/styled'
       },
       element: 'div'
     };
@@ -158,7 +158,7 @@ export default ComponentNameCss;`;
       filePath: 'ComponentName',
       format: 'mjs',
       templates: {
-        templatePathStorybook: 'templates/story.js'
+        templatePathStorybook: 'templates/story'
       },
       text: 'Something here'
     };

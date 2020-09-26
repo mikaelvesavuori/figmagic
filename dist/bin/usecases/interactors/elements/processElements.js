@@ -8,9 +8,7 @@ function processElements(elementsPage, config, components) {
         if (!elementsPage || !components || !config)
             throw new Error(errors_1.ErrorProcessElements);
         const FILTERED_ELEMENTS = elementsPage.filter((element) => element.type === 'COMPONENT');
-        const PARSED_ELEMENTS = FILTERED_ELEMENTS.map((element) => {
-            return FigmagicElement_1.makeFigmagicElement(element, config, components[element.id].description);
-        });
+        const PARSED_ELEMENTS = FILTERED_ELEMENTS.map((element) => FigmagicElement_1.makeFigmagicElement(element, config, components[element.id].description));
         return PARSED_ELEMENTS;
     }
     catch (error) {

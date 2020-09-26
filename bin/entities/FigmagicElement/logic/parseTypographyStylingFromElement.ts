@@ -136,21 +136,25 @@ export function parseTypographyStylingFromElement(
 }
 
 const getFiles = (path: string, outputFormatTokens: string): any => {
-  const colors = getFileContents(path, 'colors', outputFormatTokens);
-  const fontFamilies = getFileContents(path, 'fontFamilies', outputFormatTokens);
-  const fontSizes = getFileContents(path, 'fontSizes', outputFormatTokens);
-  const fontWeights = getFileContents(path, 'fontWeights', outputFormatTokens);
-  const letterSpacings = getFileContents(path, 'letterSpacings', outputFormatTokens);
-  const lineHeights = getFileContents(path, 'lineHeights', outputFormatTokens);
+  try {
+    const colors = getFileContents(path, 'colors', outputFormatTokens);
+    const fontFamilies = getFileContents(path, 'fontFamilies', outputFormatTokens);
+    const fontSizes = getFileContents(path, 'fontSizes', outputFormatTokens);
+    const fontWeights = getFileContents(path, 'fontWeights', outputFormatTokens);
+    const letterSpacings = getFileContents(path, 'letterSpacings', outputFormatTokens);
+    const lineHeights = getFileContents(path, 'lineHeights', outputFormatTokens);
 
-  return {
-    colors,
-    fontFamilies,
-    fontSizes,
-    fontWeights,
-    letterSpacings,
-    lineHeights
-  };
+    return {
+      colors,
+      fontFamilies,
+      fontSizes,
+      fontWeights,
+      letterSpacings,
+      lineHeights
+    };
+  } catch (error) {
+    throw new Error(error); // TODO: Add real error
+  }
 };
 
 const reduceCssDuplicates = (css: string) =>

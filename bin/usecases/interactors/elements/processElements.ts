@@ -22,9 +22,9 @@ export function processElements(
     if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
 
     const FILTERED_ELEMENTS = elementsPage.filter((element) => element.type === 'COMPONENT');
-    const PARSED_ELEMENTS = FILTERED_ELEMENTS.map((element: FigmaElement) => {
-      return makeFigmagicElement(element, config, components[element.id].description);
-    });
+    const PARSED_ELEMENTS = FILTERED_ELEMENTS.map((element: FigmaElement) =>
+      makeFigmagicElement(element, config, components[element.id].description)
+    );
     return PARSED_ELEMENTS;
   } catch (error) {
     throw new Error(ErrorProcessElements);
