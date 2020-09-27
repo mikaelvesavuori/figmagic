@@ -27,9 +27,7 @@ export async function getData(
 
     const DATA = (async () => {
       if (recompileLocal) return getDataLocal(figmagicFolder, figmaData);
-      else {
-        if (token && url) return await getDataRemote(token, url);
-      }
+      else if (token && url) return await getDataRemote(token, url);
       throw new Error(ErrorGetDataFailedLocalAndRemote);
     })();
 

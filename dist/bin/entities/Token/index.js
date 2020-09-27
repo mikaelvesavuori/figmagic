@@ -109,6 +109,7 @@ class Token {
         this.tokenName = tokenName;
         this.config = config;
         this.writeOperation = null;
+        console.log('***** this.config.remSize', this.config.remSize);
         const processedToken = this.extractTokens(this.token, this.tokenName, this.config);
         this.setWriteOperation(processedToken, tokenName);
     }

@@ -36,14 +36,14 @@ function parseCliArgs(argsArray) {
         '-fs': (val) => (config.outputFormatStorybook = val.toLowerCase()),
         '--outputFormatTokens': (val) => (config.outputFormatTokens = val.toLowerCase()),
         '-ft': (val) => (config.outputFormatTokens = val.toLowerCase()),
-        '--outputScaleGraphics': (val) => (config.outputScaleGraphics = typeof val === 'string' ? parseInt(val) : val),
-        '-scale': (val) => (config.outputScaleGraphics = typeof val === 'string' ? parseInt(val) : val),
+        '--outputScaleGraphics': (val) => (config.outputScaleGraphics = parseInt(val)),
+        '-scale': (val) => (config.outputScaleGraphics = parseInt(val)),
         '--outputDataTypeToken': (val) => (config.outputDataTypeToken = val.toLowerCase()),
         '-tokentype': (val) => (config.outputDataTypeToken = val.toLowerCase()),
         '--recompileLocal': () => (config.recompileLocal = true),
         '-local': () => (config.recompileLocal = true),
-        '--remSize': (val) => (config.remSize = typeof val === 'string' ? parseInt(val) : val),
-        '-rem': (val) => (config.remSize = typeof val === 'string' ? parseInt(val) : val),
+        '--remSize': (val) => (config.remSize = parseInt(val)),
+        '-rem': (val) => (config.remSize = parseInt(val)),
         '--forceUpdate': () => (config.skipFileGeneration = {
             ...config.skipFileGeneration,
             forceUpdate: true
@@ -133,13 +133,11 @@ function parseCliArgs(argsArray) {
     };
     const config = {};
     const args = {};
-    if (argsArray.length > 0) {
-        argsArray.forEach((arg) => (args[arg] = arg));
-        Object.keys(args).forEach((arg, index) => {
-            if (cliArguments.hasOwnProperty(arg))
-                cliArguments[arg](argsArray[index + 1]);
-        });
-    }
+    argsArray.forEach((arg) => (args[arg] = arg));
+    Object.keys(args).forEach((arg, index) => {
+        if (cliArguments.hasOwnProperty(arg))
+            cliArguments[arg](argsArray[index + 1]);
+    });
     return config;
 }
 exports.parseCliArgs = parseCliArgs;

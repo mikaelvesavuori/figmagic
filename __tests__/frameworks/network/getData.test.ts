@@ -1,4 +1,8 @@
+import dotenv from 'dotenv';
+
 import { getData } from '../../../bin/frameworks/network/getData';
+
+dotenv.config();
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
@@ -29,21 +33,23 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should get local data', async () => {
-    await expect(
-      getData(true, 'testdata', 'exampleData.json', 'token', 'url')
-    ).resolves.toMatchObject({
+    await expect(getData(true, 'testdata', 'exampleData.json', '', '')).resolves.toMatchObject({
       something: 'value'
     });
   });
 
-  /*
   // TODO: Add mocking?
-  test('It should get remote data', async () => {
-    await expect(
-      getData(true, 'testdata', 'exampleData.json', 'token', 'url')
-    ).resolves.toMatchObject({
-      something: 'value'
-    });
+  test('It should get remote data (check for "components" property)', async () => {
+    const DATA = await getData(
+      false,
+      '.',
+      'exampleFigmaData.json',
+      // @ts-ignore
+      process.env.FIGMA_TOKEN,
+      // @ts-ignore
+      process.env.FIGMA_URL
+    );
+
+    expect(DATA).toHaveProperty('components');
   });
-  */
 });

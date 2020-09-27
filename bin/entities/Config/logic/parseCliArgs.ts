@@ -38,18 +38,14 @@ export function parseCliArgs(argsArray: string[]): Config {
     '-fs': (val: string) => (config.outputFormatStorybook = val.toLowerCase()),
     '--outputFormatTokens': (val: string) => (config.outputFormatTokens = val.toLowerCase()),
     '-ft': (val: string) => (config.outputFormatTokens = val.toLowerCase()),
-    '--outputScaleGraphics': (val: string | number) =>
-      (config.outputScaleGraphics = typeof val === 'string' ? parseInt(val) : val),
-    '-scale': (val: string | number) =>
-      (config.outputScaleGraphics = typeof val === 'string' ? parseInt(val) : val),
+    '--outputScaleGraphics': (val: string) => (config.outputScaleGraphics = parseInt(val)),
+    '-scale': (val: string) => (config.outputScaleGraphics = parseInt(val)),
     '--outputDataTypeToken': (val: string) => (config.outputDataTypeToken = val.toLowerCase()),
     '-tokentype': (val: string) => (config.outputDataTypeToken = val.toLowerCase()),
     '--recompileLocal': () => (config.recompileLocal = true),
     '-local': () => (config.recompileLocal = true),
-    '--remSize': (val: string | number) =>
-      (config.remSize = typeof val === 'string' ? parseInt(val) : val),
-    '-rem': (val: string | number) =>
-      (config.remSize = typeof val === 'string' ? parseInt(val) : val),
+    '--remSize': (val: string) => (config.remSize = parseInt(val)),
+    '-rem': (val: string) => (config.remSize = parseInt(val)),
     '--forceUpdate': () =>
       (config.skipFileGeneration = {
         ...config.skipFileGeneration,
@@ -158,14 +154,12 @@ export function parseCliArgs(argsArray: string[]): Config {
 
   const config: any = {};
   const args = {};
-  if (argsArray.length > 0) {
+  // @ts-ignore
+  argsArray.forEach((arg: string) => (args[arg] = arg));
+  Object.keys(args).forEach((arg: string, index: number) => {
     // @ts-ignore
-    argsArray.forEach((arg: string) => (args[arg] = arg));
-    Object.keys(args).forEach((arg: string, index: number) => {
-      // @ts-ignore
-      if (cliArguments.hasOwnProperty(arg)) cliArguments[arg](argsArray[index + 1]);
-    });
-  }
+    if (cliArguments.hasOwnProperty(arg)) cliArguments[arg](argsArray[index + 1]);
+  });
 
   return config as Config;
 }

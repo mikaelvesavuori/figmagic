@@ -33,7 +33,7 @@ export async function createConfiguration(
   if (!baseConfig) throw new Error(ErrorCreateConfigurationNoDefault);
   if (!userConfigPath) throw new Error(ErrorCreateConfiguration);
 
-  const DEFAULT_CONFIG: any = baseConfig;
+  const DEFAULT_CONFIG: Config = baseConfig;
 
   // RC file configuration
   let RC_CONFIG: any = {};
@@ -53,7 +53,7 @@ export async function createConfiguration(
   const CLI_CONFIG = parseCliArgs(cliArgs) as Config;
 
   // Merge configurations in order of prioritization
-  // 1. Base required config
+  // 1. Default config
   // 2. Config file: next highest priority
   // Versioned, "main" local config
   // NOTE: config is not deep-merged

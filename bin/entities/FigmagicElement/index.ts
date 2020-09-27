@@ -65,7 +65,7 @@ class FigmagicElement {
     const text = ``;
     //const imports = [];
 
-    const { updatedCss, updatedImports } = this.handleElements(this.children);
+    const { updatedCss, updatedImports } = this.handleElements();
 
     this.setCss(updatedCss);
     this.addHtml(html);
@@ -76,11 +76,10 @@ class FigmagicElement {
     this.imports = [...new Set(updatedImports)];
   }
 
-  private handleElements(children: any): any {
+  private handleElements(): any {
     try {
-      if (children.every((a: any) => a.type === 'GROUP')) {
-        return this.handleNestedElements();
-      } else return this.handleFlatElements();
+      if (this.children?.every((a: any) => a.type === 'GROUP')) return this.handleNestedElements();
+      else return this.handleFlatElements();
     } catch (error) {
       throw new Error(error);
     }

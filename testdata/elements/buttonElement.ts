@@ -1762,7 +1762,8 @@ export const validButtonFigmagicElement = {
   }
 
 `,
-  description: 'An example of a Figmagic element description!',
+  description:
+    'type=text\nplaceholder=Some placeholder text\n\nAn example of a Figmagic element description!',
   element: 'div',
   extraProps: '',
   html: '<div>{{TEXT}}</div>',

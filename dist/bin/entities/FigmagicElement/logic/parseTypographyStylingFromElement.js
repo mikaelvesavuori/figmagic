@@ -119,7 +119,7 @@ const getFontFamily = (textElement) => {
 };
 const getFontWeight = (textElement) => {
     if (textElement.type === 'TEXT' && textElement.style)
-        textElement.style.fontWeight;
+        return textElement.style.fontWeight;
     return null;
 };
 const getFontLineHeight = (textElement) => {

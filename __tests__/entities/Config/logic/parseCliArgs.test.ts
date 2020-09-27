@@ -10,6 +10,11 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
+  test('It should return empty object if empty arguments array', () => {
+    // @ts-ignore
+    expect(parseCliArgs([])).toMatchObject({});
+  });
+
   describe('Debug mode', () => {
     test('It should return true for debugMode if passing "--debug" (long-hand)', () => {
       // @ts-ignore
@@ -600,7 +605,7 @@ describe('Success cases', () => {
 
   describe('Template path React', () => {
     test('It should return template path for React (long-hand)', () => {
-      const templatePathReact = 'foo/react.jsx';
+      const templatePathReact = 'foo/react';
       // @ts-ignore
       expect(parseCliArgs(['--templatePathReact', templatePathReact])).toEqual(
         expect.objectContaining({
@@ -612,7 +617,7 @@ describe('Success cases', () => {
     });
 
     test('It should return template path for React (short-hand)', () => {
-      const templatePathReact = 'foo/react.jsx';
+      const templatePathReact = 'foo/react';
       // @ts-ignore
       expect(parseCliArgs(['-tpreact', templatePathReact])).toEqual(
         expect.objectContaining({
@@ -626,7 +631,7 @@ describe('Success cases', () => {
 
   describe('Template path Storybook', () => {
     test('It should return template path for Storybook (long-hand)', () => {
-      const templatePathStorybook = 'foo/story.js';
+      const templatePathStorybook = 'foo/story';
       // @ts-ignore
       expect(parseCliArgs(['--templatePathStorybook', templatePathStorybook])).toEqual(
         expect.objectContaining({
@@ -638,7 +643,7 @@ describe('Success cases', () => {
     });
 
     test('It should return template path for Storybook (short-hand)', () => {
-      const templatePathStorybook = 'foo/story.js';
+      const templatePathStorybook = 'foo/story';
       // @ts-ignore
       expect(parseCliArgs(['-tpstory', templatePathStorybook])).toEqual(
         expect.objectContaining({
@@ -652,7 +657,7 @@ describe('Success cases', () => {
 
   describe('Template path Styled Components', () => {
     test('It should return template path for Styled Components (long-hand)', () => {
-      const templatePathStyled = 'foo/styled.jsx';
+      const templatePathStyled = 'foo/styled';
       // @ts-ignore
       expect(parseCliArgs(['--templatePathStyled', templatePathStyled])).toEqual(
         expect.objectContaining({
@@ -664,7 +669,7 @@ describe('Success cases', () => {
     });
 
     test('It should return template path for Styled Components (short-hand)', () => {
-      const templatePathStyled = 'foo/styled.jsx';
+      const templatePathStyled = 'foo/styled';
       // @ts-ignore
       expect(parseCliArgs(['-tpstyled', templatePathStyled])).toEqual(
         expect.objectContaining({
@@ -774,9 +779,9 @@ describe('Success cases', () => {
 
   describe('Template paths', () => {
     test('It should return all template paths', () => {
-      const templatePathReact = 'foo/react.jsx';
-      const templatePathStyled = 'foo/styled.jsx';
-      const templatePathStorybook = 'foo/story.js';
+      const templatePathReact = 'foo/react';
+      const templatePathStyled = 'foo/styled';
+      const templatePathStorybook = 'foo/story';
 
       const args = [
         '--templatePathReact',

@@ -13,10 +13,8 @@ async function getData(recompileLocal, figmagicFolder, figmaData, token, url) {
         const DATA = (async () => {
             if (recompileLocal)
                 return getDataLocal_1.getDataLocal(figmagicFolder, figmaData);
-            else {
-                if (token && url)
-                    return await getDataRemote_1.getDataRemote(token, url);
-            }
+            else if (token && url)
+                return await getDataRemote_1.getDataRemote(token, url);
             throw new Error(errors_1.ErrorGetDataFailedLocalAndRemote);
         })();
         if (!DATA)

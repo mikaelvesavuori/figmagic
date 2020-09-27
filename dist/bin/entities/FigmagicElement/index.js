@@ -31,18 +31,17 @@ class FigmagicElement {
         const html = ``;
         const extraProps = ``;
         const text = ``;
-        const { updatedCss, updatedImports } = this.handleElements(this.children);
+        const { updatedCss, updatedImports } = this.handleElements();
         this.setCss(updatedCss);
         this.addHtml(html);
         this.addExtraProps(extraProps);
         this.addText(text);
         this.imports = [...new Set(updatedImports)];
     }
-    handleElements(children) {
+    handleElements() {
         try {
-            if (children.every((a) => a.type === 'GROUP')) {
+            if (this.children?.every((a) => a.type === 'GROUP'))
                 return this.handleNestedElements();
-            }
             else
                 return this.handleFlatElements();
         }
