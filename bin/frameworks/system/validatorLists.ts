@@ -2,6 +2,7 @@ export const validFontUnitList = ['rem', 'em'];
 export const validLetterSpacingUnitList = ['em', 'px'];
 export const validOpacitiesUnitList = ['float', 'percent'];
 export const validOutputFormatCssList = ['ts', 'mjs', 'js'];
+export const validOutputFormatDescList = ['md', 'txt'];
 export const validOutputFormatElementsList = ['tsx', 'jsx', 'mjs', 'js'];
 export const validOutputFormatGraphicsList = ['svg', 'png'];
 export const validOutputFormatStorybookList = ['ts', 'js'];

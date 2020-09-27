@@ -28,6 +28,8 @@ function parseCliArgs(argsArray) {
         '-tokens': (val) => (config.outputFolderTokens = val),
         '--outputFormatCss': (val) => (config.outputFormatCss = val.toLowerCase()),
         '-fc': (val) => (config.outputFormatCss = val.toLowerCase()),
+        '--outputFormatDesc': (val) => (config.outputFormatDescription = val.toLowerCase()),
+        '-fd': (val) => (config.outputFormatDescription = val.toLowerCase()),
         '--outputFormatElements': (val) => (config.outputFormatElements = val.toLowerCase()),
         '-fe': (val) => (config.outputFormatElements = val.toLowerCase()),
         '--outputFormatGraphics': (val) => (config.outputFormatGraphics = val.toLowerCase()),

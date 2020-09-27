@@ -40,7 +40,6 @@ async function createConfiguration(baseConfig, userConfigPath, cliArgs) {
     };
     if (CONFIG.debugMode === true)
         printConfigs(ENV_CONFIG, CLI_CONFIG, RC_CONFIG, CONFIG);
-    console.log('CONFIG', CONFIG);
     return CONFIG;
 }
 exports.createConfiguration = createConfiguration;

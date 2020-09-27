@@ -14,6 +14,7 @@ export type WriteOperation = {
   description?: string;
   folder?: string;
   outputFormatCss?: 'ts' | 'mjs' | 'js';
+  outputFormatDescription?: 'md' | 'txt';
   outputFormatElements?: 'tsx' | 'jsx';
   outputFormatGraphics?: 'svg' | 'png';
   outputFormatStorybook?: 'ts' | 'js';

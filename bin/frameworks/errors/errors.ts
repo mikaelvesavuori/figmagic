@@ -310,6 +310,9 @@ export const ErrorValidateConfigOutputDataTypeToken = ErrorMessage(
 export const ErrorValidateConfigOutputFormatCss = ErrorMessage(
   'Received unrecognized "outputFormatCss" arguments, it must be "ts" (default), "mjs" or "js".'
 );
+export const ErrorValidateConfigOutputFormatDesc = ErrorMessage(
+  'Received unrecognized "outputFormatDescription" arguments, it must be "md" (default), or "txt".'
+);
 export const ErrorValidateConfigOutputFormatElements = ErrorMessage(
   'Received unrecognized "outputFormatElements" arguments, it must be "tsx" (default), or "jsx".'
 );

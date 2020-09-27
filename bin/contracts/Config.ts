@@ -9,6 +9,7 @@ export type Config = {
   outputFolderGraphics: string;
   outputFolderTokens: string;
   outputFormatCss: 'ts' | 'mjs' | 'js';
+  outputFormatDescription: 'md' | 'txt';
   outputFormatElements: 'tsx' | 'jsx' | 'mjs' | 'js';
   outputFormatGraphics: 'svg' | 'png';
   outputFormatStorybook: 'ts' | 'js';
@@ -50,6 +51,7 @@ export type ConfigDTO = {
   outputFolderGraphics?: string;
   outputFolderTokens?: string;
   outputFormatCss?: 'ts' | 'mjs' | 'js';
+  outputFormatDescription?: 'md' | 'txt';
   outputFormatElements?: 'tsx' | 'jsx';
   outputFormatGraphics?: 'svg' | 'png';
   outputFormatStorybook?: 'ts' | 'js';

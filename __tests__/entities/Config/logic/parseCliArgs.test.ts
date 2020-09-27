@@ -219,6 +219,26 @@ describe('Success cases', () => {
     });
   });
 
+  describe('Output format description', () => {
+    test('It should return "md" for outputFormatDescription if passing "--outputFormatDescription md" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputFormatDesc', 'md'])).toEqual(
+        expect.objectContaining({
+          outputFormatDescription: 'md'
+        })
+      );
+    });
+
+    test('It should return "md" for outputFormatDescription if passing "-fd md" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-fd', 'md'])).toEqual(
+        expect.objectContaining({
+          outputFormatDescription: 'md'
+        })
+      );
+    });
+  });
+
   describe('Output format elements', () => {
     test('It should return "tsx" for outputFormatElements if passing "--outputFormatElements tsx" (long-hand)', () => {
       // @ts-ignore

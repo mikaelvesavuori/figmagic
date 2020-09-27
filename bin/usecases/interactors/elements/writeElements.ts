@@ -39,6 +39,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
   const name = toPascalCase(element.name);
   const folder = `${config.outputFolderElements}/${name}`;
   const outputFormatCss = config.outputFormatCss;
+  const outputFormatDescription = config.outputFormatDescription;
   const outputFormatElements = config.outputFormatElements;
   const outputFormatStorybook = config.outputFormatStorybook;
   const metadata = {
@@ -61,6 +62,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
     name,
     folder,
     outputFormatCss,
+    outputFormatDescription,
     outputFormatElements,
     outputFormatStorybook,
     metadata,
@@ -152,7 +154,7 @@ const writeDescription = (config: WriteOperation): void => {
     file: config.description,
     path: config.folder,
     name: config.name,
-    format: 'md',
+    format: config.outputFormatDescription,
     metadata: config.metadata,
     templates: config.templates
   } as WriteOperation);

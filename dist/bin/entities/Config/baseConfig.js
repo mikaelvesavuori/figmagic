@@ -12,6 +12,7 @@ exports.baseConfig = {
     outputFolderGraphics: 'graphics',
     outputFolderTokens: 'tokens',
     outputFormatCss: 'ts',
+    outputFormatDescription: 'md',
     outputFormatElements: 'tsx',
     outputFormatGraphics: 'svg',
     outputFormatStorybook: 'js',

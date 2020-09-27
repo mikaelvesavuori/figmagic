@@ -30,6 +30,8 @@ export function parseCliArgs(argsArray: string[]): Config {
     '-tokens': (val: string) => (config.outputFolderTokens = val),
     '--outputFormatCss': (val: string) => (config.outputFormatCss = val.toLowerCase()),
     '-fc': (val: string) => (config.outputFormatCss = val.toLowerCase()),
+    '--outputFormatDesc': (val: string) => (config.outputFormatDescription = val.toLowerCase()),
+    '-fd': (val: string) => (config.outputFormatDescription = val.toLowerCase()),
     '--outputFormatElements': (val: string) => (config.outputFormatElements = val.toLowerCase()),
     '-fe': (val: string) => (config.outputFormatElements = val.toLowerCase()),
     '--outputFormatGraphics': (val: string) => (config.outputFormatGraphics = val.toLowerCase()),
