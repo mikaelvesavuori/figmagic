@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTokenMatch = void 0;
 const normalizeUnits_1 = require("../../../frameworks/string/normalizeUnits");
+const convertRgbaToHex_1 = require("../../../frameworks/string/convertRgbaToHex");
 const messages_1 = require("../../../frameworks/messages/messages");
 const errors_1 = require("../../../frameworks/errors/errors");
 function getTokenMatch(tokens, tokenFileName, property, expectedValue, remSize) {
@@ -89,7 +90,10 @@ function matchOther(expectedValue, remSize, tokens, tokenFileName, property, css
             }
         });
         if (!foundMatch) {
-            console.log(`${messages_1.MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`);
+            let notFoundMessage = `${messages_1.MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`;
+            if (property === 'color' || property === 'background-color')
+                notFoundMessage += ` (HEX: ${convertRgbaToHex_1.convertRgbaToHex(expectedValue)}, ${getAlphaInPercent(expectedValue)})`;
+            console.log(notFoundMessage);
             css += `${property}: ${expectedValue};\n`;
         }
         return { css, imports };
@@ -98,4 +102,8 @@ function matchOther(expectedValue, remSize, tokens, tokenFileName, property, css
         throw new Error(error);
     }
 }
+const getAlphaInPercent = (color) => {
+    const SECTIONED = color.split(',');
+    return SECTIONED[SECTIONED.length - 1].replace(/ /gi, '').replace(')', '') * 100 + '%';
+};
 //# sourceMappingURL=getTokenMatch.js.map

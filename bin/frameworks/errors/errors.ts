@@ -14,6 +14,9 @@ export const ErrorCleanArrays = ErrorMessage(
 export const ErrorConvertHexToRgba = ErrorMessage(
   'Missing one or more of red, green, blue and alpha in convertHexToRgba()!'
 );
+export const ErrorConvertRgbaToHex = ErrorMessage(
+  'Missing color value (as string, like "rgba(123,123,123,0.05) when calling convertRgbaToHex()!'
+);
 export const ErrorCreateConfiguration = ErrorMessage('No path provided to createConfiguration()!');
 export const ErrorCreateConfigurationNoDefault = ErrorMessage(
   'No default configuration provided to createConfiguration()!'

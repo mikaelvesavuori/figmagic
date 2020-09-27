@@ -3,6 +3,7 @@ import { Imports } from '../../../contracts/Imports';
 import { TokenMatch } from '../../../contracts/TokenMatch';
 
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
+import { convertRgbaToHex } from '../../../frameworks/string/convertRgbaToHex';
 
 import { MsgGetTokenMatchNoMatch } from '../../../frameworks/messages/messages';
 import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../../frameworks/errors/errors';
@@ -144,7 +145,12 @@ function matchOther(
 
     // Write expected value as-is, since we couldn't match it to a token
     if (!foundMatch) {
-      console.log(`${MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`);
+      let notFoundMessage = `${MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`;
+      if (property === 'color' || property === 'background-color')
+        notFoundMessage += ` (HEX: ${convertRgbaToHex(
+          expectedValue as string
+        )}, ${getAlphaInPercent(expectedValue as string)})`;
+      console.log(notFoundMessage);
       css += `${property}: ${expectedValue};\n`;
     }
 
@@ -153,3 +159,9 @@ function matchOther(
     throw new Error(error);
   }
 }
+
+const getAlphaInPercent = (color: string): string => {
+  const SECTIONED = color.split(',');
+  // @ts-ignore
+  return SECTIONED[SECTIONED.length - 1].replace(/ /gi, '').replace(')', '') * 100 + '%';
+};
