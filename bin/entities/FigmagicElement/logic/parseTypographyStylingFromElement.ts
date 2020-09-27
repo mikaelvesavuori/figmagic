@@ -188,7 +188,7 @@ const getFontFamily = (textElement: Frame): string | null => {
 };
 
 const getFontWeight = (textElement: Frame): string | null => {
-  if (textElement.type === 'TEXT' && textElement.style) textElement.style.fontWeight;
+  if (textElement.type === 'TEXT' && textElement.style) return textElement.style.fontWeight;
   return null;
 };
 

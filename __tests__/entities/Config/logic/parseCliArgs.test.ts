@@ -295,18 +295,18 @@ describe('Success cases', () => {
   });
 
   describe('Output scale graphics', () => {
-    test('It should return "2" for outputScaleGraphics if passing "2" (long-hand)', () => {
+    test('It should return "2" for outputScaleGraphics if passing "2x" (long-hand)', () => {
       // @ts-ignore
-      expect(parseCliArgs(['--outputScaleGraphics', '2'])).toEqual(
+      expect(parseCliArgs(['--outputScaleGraphics', '2x'])).toEqual(
         expect.objectContaining({
           outputScaleGraphics: 2
         })
       );
     });
 
-    test('It should return "2" for outputScaleGraphics if passing "2" (short-hand)', () => {
+    test('It should return "2" for outputScaleGraphics if passing "2x" (short-hand)', () => {
       // @ts-ignore
-      expect(parseCliArgs(['-scale', '2'])).toEqual(
+      expect(parseCliArgs(['-scale', '2x'])).toEqual(
         expect.objectContaining({
           outputScaleGraphics: 2
         })
@@ -355,18 +355,18 @@ describe('Success cases', () => {
   });
 
   describe('REM size', () => {
-    test('It should return "16" for remSize if passing "16" (long-hand)', () => {
+    test('It should return "16" for remSize if passing "16p" (long-hand)', () => {
       // @ts-ignore
-      expect(parseCliArgs(['--remSize', '16'])).toEqual(
+      expect(parseCliArgs(['--remSize', '16p'])).toEqual(
         expect.objectContaining({
           remSize: 16
         })
       );
     });
 
-    test('It should return "16" for remSize if passing "16" (short-hand)', () => {
+    test('It should return "16" for remSize if passing "16p" (short-hand)', () => {
       // @ts-ignore
-      expect(parseCliArgs(['-rem', '16'])).toEqual(
+      expect(parseCliArgs(['-rem', '16p'])).toEqual(
         expect.objectContaining({
           remSize: 16
         })

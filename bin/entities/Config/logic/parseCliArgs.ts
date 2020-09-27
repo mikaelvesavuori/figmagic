@@ -38,8 +38,10 @@ export function parseCliArgs(argsArray: string[]): Config {
     '-fs': (val: string) => (config.outputFormatStorybook = val.toLowerCase()),
     '--outputFormatTokens': (val: string) => (config.outputFormatTokens = val.toLowerCase()),
     '-ft': (val: string) => (config.outputFormatTokens = val.toLowerCase()),
-    '--outputScaleGraphics': (val: string | number) => (config.outputScaleGraphics = val),
-    '-scale': (val: string | number) => (config.outputScaleGraphics = val),
+    '--outputScaleGraphics': (val: string | number) =>
+      (config.outputScaleGraphics = typeof val === 'string' ? parseInt(val) : val),
+    '-scale': (val: string | number) =>
+      (config.outputScaleGraphics = typeof val === 'string' ? parseInt(val) : val),
     '--outputDataTypeToken': (val: string) => (config.outputDataTypeToken = val.toLowerCase()),
     '-tokentype': (val: string) => (config.outputDataTypeToken = val.toLowerCase()),
     '--recompileLocal': () => (config.recompileLocal = true),
@@ -158,7 +160,7 @@ export function parseCliArgs(argsArray: string[]): Config {
   const args = {};
   if (argsArray.length > 0) {
     // @ts-ignore
-    argsArray.map((arg: string) => (args[arg] = arg));
+    argsArray.forEach((arg: string) => (args[arg] = arg));
     Object.keys(args).forEach((arg: string, index: number) => {
       // @ts-ignore
       if (cliArguments.hasOwnProperty(arg)) cliArguments[arg](argsArray[index + 1]);

@@ -26,7 +26,7 @@ export function validateConfig(config: Config): boolean {
     validateLetterSpacingUnit(config.letterSpacingUnit);
     validateOpacitiesUnit(config.opacitiesUnit);
     validateFileName(config.figmaData);
-    validateFileName(config.figmagicFolder);
+    validateFolderName(config.figmagicFolder);
     validateFolderName(config.outputFolderElements);
     validateFolderName(config.outputFolderGraphics);
     validateFolderName(config.outputFolderTokens);
@@ -110,7 +110,7 @@ const validateOutputFormatTokens = (format: string): boolean => {
 };
 
 const validateOutputScaleGraphics = (scale: number): boolean => {
-  if (typeof scale === 'number') return true;
+  if (scale && typeof scale === 'number' && scale > 0) return true;
   throw new Error(ErrorValidateConfigOutputScaleGraphics);
 };
 
@@ -134,7 +134,7 @@ const validateTemplatePathStorybook = (path: string): boolean => {
   throw new Error(ErrorValidateConfigTemplatePathStorybook);
 };
 
-const validateTemplatePathStyled = (path: string): void | boolean => {
+const validateTemplatePathStyled = (path: string): boolean => {
   if (path) return true;
   throw new Error(ErrorValidateConfigTemplatePathStyled);
 };

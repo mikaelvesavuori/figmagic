@@ -20,6 +20,7 @@ describe('Success cases', () => {
 color: \${colors.black};
 font-size: \${fontSizes.sub};
 font-family: \${fontFamilies.regular};
+font-weight: \${fontWeights.regular};
 line-height: \${lineHeights.xs};
 text-align: left;
 `,
@@ -28,7 +29,7 @@ text-align: left;
         extraProps: '',
         html: '<sub>Microcopy</sub>',
         id: '2875:22',
-        imports: ['colors', 'fontSizes', 'fontFamilies', 'lineHeights'],
+        imports: ['colors', 'fontSizes', 'fontFamilies', 'fontWeights', 'lineHeights'],
         name: 'Microcopy',
         text: 'Microcopy'
       }

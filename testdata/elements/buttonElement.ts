@@ -1743,6 +1743,7 @@ export const validButtonFigmagicElement = {
   color: \${colors.white};
   font-size: \${fontSizes.paragraph};
   font-family: \${fontFamilies.bold};
+  font-weight: \${fontWeights.bold};
   line-height: \${lineHeights.xs};
   letter-spacing: \${letterSpacings.wide};
   text-align: center;
@@ -1773,6 +1774,7 @@ export const validButtonFigmagicElement = {
     'radii',
     'fontSizes',
     'fontFamilies',
+    'fontWeights',
     'lineHeights',
     'letterSpacings'
   ],

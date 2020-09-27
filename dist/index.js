@@ -25,7 +25,7 @@ async function main() {
     try {
         dotenv.config();
         const [, , ...CLI_ARGS] = process.argv;
-        if (CLI_ARGS[0].toLowerCase() === 'init')
+        if (CLI_ARGS[0]?.toLowerCase() === 'init')
             initConfig(BASE_CONFIG);
         else {
             const USER_CONFIG_PATH = path.join(`${process.cwd()}`, RC_FILE);

@@ -3,12 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateConfig = void 0;
 const errors_1 = require("../../../frameworks/errors/errors");
 function validateConfig(config) {
+    if (!config)
+        throw new Error('validateConfig error');
     try {
         validateFontUnit(config.fontUnit);
         validateLetterSpacingUnit(config.letterSpacingUnit);
         validateOpacitiesUnit(config.opacitiesUnit);
         validateFileName(config.figmaData);
-        validateFileName(config.figmagicFolder);
+        validateFolderName(config.figmagicFolder);
         validateFolderName(config.outputFolderElements);
         validateFolderName(config.outputFolderGraphics);
         validateFolderName(config.outputFolderTokens);
@@ -23,6 +25,7 @@ function validateConfig(config) {
         validateTemplatePathReact(config.templates.templatePathReact);
         validateTemplatePathStorybook(config.templates.templatePathStorybook);
         validateTemplatePathStyled(config.templates.templatePathStyled);
+        return true;
     }
     catch (error) {
         throw new Error(error);
@@ -81,7 +84,7 @@ const validateOutputFormatTokens = (format) => {
     throw new Error(errors_1.ErrorValidateConfigOutputFormatTokens);
 };
 const validateOutputScaleGraphics = (scale) => {
-    if (typeof scale === 'number')
+    if (scale && typeof scale === 'number' && scale > 0)
         return true;
     throw new Error(errors_1.ErrorValidateConfigOutputScaleGraphics);
 };

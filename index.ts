@@ -38,7 +38,7 @@ async function main(): Promise<void> {
     dotenv.config();
 
     const [, , ...CLI_ARGS] = process.argv;
-    if (CLI_ARGS[0].toLowerCase() === 'init') initConfig(BASE_CONFIG);
+    if (CLI_ARGS[0]?.toLowerCase() === 'init') initConfig(BASE_CONFIG);
     else {
       const USER_CONFIG_PATH = path.join(`${process.cwd()}`, RC_FILE);
       const CONFIG: Config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
