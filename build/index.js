@@ -11,21 +11,15 @@ const getData_1 = require("./bin/frameworks/network/getData");
 const writeBaseJson_1 = require("./bin/frameworks/filesystem/writeBaseJson");
 const colors_1 = require("./bin/frameworks/system/colors");
 const checkIfExists_1 = require("./bin/frameworks/filesystem/checkIfExists");
+const configToInit_1 = require("./bin/frameworks/system/configToInit");
 const messages_1 = require("./bin/frameworks/messages/messages");
-const BASE_CONFIG = {
-    templates: {
-        templatePathReact: '/node_modules/figmagic/templates/react',
-        templatePathStorybook: '/node_modules/figmagic/templates/story',
-        templatePathStyled: '/node_modules/figmagic/templates/styled'
-    }
-};
 const RC_FILE = '.figmagicrc';
 async function main() {
     try {
         dotenv.config();
         const [, , ...CLI_ARGS] = process.argv;
         if (CLI_ARGS[0]?.toLowerCase() === 'init')
-            initConfig(BASE_CONFIG);
+            initConfig(configToInit_1.configToInit);
         else {
             const USER_CONFIG_PATH = path.join(`${process.cwd()}`, RC_FILE);
             const CONFIG = await index_1.makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);

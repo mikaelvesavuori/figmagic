@@ -18,38 +18,38 @@ export function makeShadowTokens(shadowFrame: Frame): ShadowTokens {
   if (!shadowFrame.children) throw new Error(ErrorMakeShadowTokensNoChildren);
 
   const shadows: Record<string, unknown> = {};
-
   const TOKENS = shadowFrame.children;
-
-  TOKENS.forEach((item: Frame) => {
-    if (!item.name || !item.effects) throw new Error(ErrorMakeShadowTokensMissingProps);
-
-    const NAME = camelize(item.name);
-
-    const EFFECTS = item.effects.map((effect) => {
-      if (effect.type === 'DROP_SHADOW') return effect;
-      return null;
-    });
-
-    shadows[NAME] = ``;
-
-    if (EFFECTS.length > 0) {
-      EFFECTS.forEach((effect, index) => {
-        if (effect) {
-          const X = effect.offset.x;
-          const Y = effect.offset.y;
-          const RADIUS = effect.radius;
-          const R = roundColorValue(effect.color.r);
-          const G = roundColorValue(effect.color.g);
-          const B = roundColorValue(effect.color.b);
-          const A = roundColorValue(effect.color.a, 1);
-
-          shadows[NAME] += `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
-          if (index !== EFFECTS.length - 1) shadows[NAME] += `, `;
-        }
-      });
-    }
-  });
+  TOKENS.forEach((item: Frame) => makeShadowToken(item, shadows));
 
   return shadows;
+}
+
+function makeShadowToken(item: Frame, shadows: Record<string, unknown>) {
+  if (!item.name || !item.effects) throw new Error(ErrorMakeShadowTokensMissingProps);
+
+  const NAME = camelize(item.name);
+
+  const EFFECTS = item.effects.map((effect) => {
+    if (effect.type === 'DROP_SHADOW') return effect;
+    return null;
+  });
+
+  shadows[NAME] = ``;
+
+  if (EFFECTS.length > 0) {
+    EFFECTS.forEach((effect, index) => {
+      if (effect) {
+        const X = effect.offset.x;
+        const Y = effect.offset.y;
+        const RADIUS = effect.radius;
+        const R = roundColorValue(effect.color.r);
+        const G = roundColorValue(effect.color.g);
+        const B = roundColorValue(effect.color.b);
+        const A = roundColorValue(effect.color.a, 1);
+
+        shadows[NAME] += `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
+        if (index !== EFFECTS.length - 1) shadows[NAME] += `, `;
+      }
+    });
+  }
 }

@@ -17,14 +17,14 @@ export function makeZindexTokens(zIndexFrame: Frame): ZindexTokens {
   if (!zIndexFrame.children) throw new Error(ErrorMakeZindexTokensNoChildren);
 
   const zIndex: Record<string, unknown> = {};
-
   const TOKENS = zIndexFrame.children;
-
-  TOKENS.forEach((item: Frame) => {
-    if (!item.name || !item.characters) throw new Error(ErrorMakeZindexTokensMissingProps);
-    const NAME = camelize(item.name);
-    zIndex[NAME] = parseInt(item.characters);
-  });
+  TOKENS.forEach((item: Frame) => makeZindexToken(item, zIndex));
 
   return zIndex;
+}
+
+function makeZindexToken(item: Frame, zIndex: Record<string, unknown>) {
+  if (!item.name || !item.characters) throw new Error(ErrorMakeZindexTokensMissingProps);
+  const NAME = camelize(item.name);
+  zIndex[NAME] = parseInt(item.characters);
 }

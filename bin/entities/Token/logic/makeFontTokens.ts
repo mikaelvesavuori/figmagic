@@ -17,18 +17,20 @@ export function makeFontTokens(fontFrame: Frame, usePostscriptFontNames = true):
   if (!fontFrame.children) throw new Error(ErrorMakeFontTokensNoChildren);
 
   const fonts: Record<string, unknown> = {};
-
   const TOKENS = fontFrame.children;
-
-  TOKENS.forEach((item: Frame) => {
-    if (!item.name || !item.style) throw new Error(ErrorMakeFontTokensMissingProps);
-
-    const NAME = camelize(item.name);
-
-    fonts[NAME] = usePostscriptFontNames
-      ? item.style.fontPostScriptName
-      : item.style.fontFamily.replace(' /g', '');
-  });
+  TOKENS.forEach((item: Frame) => makeFontToken(item, fonts, usePostscriptFontNames));
 
   return fonts;
+}
+
+function makeFontToken(
+  item: Frame,
+  fonts: Record<string, unknown>,
+  usePostscriptFontNames: boolean
+) {
+  if (!item.name || !item.style) throw new Error(ErrorMakeFontTokensMissingProps);
+  const NAME = camelize(item.name);
+  fonts[NAME] = usePostscriptFontNames
+    ? item.style.fontPostScriptName
+    : item.style.fontFamily.replace(' /g', '');
 }

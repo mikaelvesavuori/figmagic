@@ -17,14 +17,14 @@ export function makeDelayTokens(delayFrame: Frame): DelayTokens {
   if (!delayFrame.children) throw new Error(ErrorMakeDelayTokensNoChildren);
 
   const delays: Record<string, unknown> = {};
-
   const TOKENS = delayFrame.children;
-
-  TOKENS.forEach((item: Frame) => {
-    if (!item.name || !item.characters) throw new Error(ErrorMakeDelayTokensMissingProps);
-    const NAME = camelize(item.name);
-    delays[NAME] = parseFloat(item.characters);
-  });
+  TOKENS.forEach((item: Frame) => makeDelayToken(item, delays));
 
   return delays;
+}
+
+function makeDelayToken(item: Frame, delays: Record<string, unknown>) {
+  if (!item.name || !item.characters) throw new Error(ErrorMakeDelayTokensMissingProps);
+  const NAME = camelize(item.name);
+  delays[NAME] = parseFloat(item.characters);
 }

@@ -17,14 +17,14 @@ export function makeEasingTokens(easingFrame: Frame): EasingTokens {
   if (!easingFrame.children) throw new Error(ErrorMakeEasingTokensNoChildren);
 
   const easings: Record<string, unknown> = {};
-
   const TOKENS = easingFrame.children;
-
-  TOKENS.forEach((item: Frame) => {
-    if (!item.name || !item.characters) throw new Error(ErrorMakeEasingTokensMissingProps);
-    const NAME = camelize(item.name);
-    easings[NAME] = item.characters.trim();
-  });
+  TOKENS.forEach((item: Frame) => makeEasingToken(item, easings));
 
   return easings;
+}
+
+function makeEasingToken(item: Frame, easings: Record<string, unknown>) {
+  if (!item.name || !item.characters) throw new Error(ErrorMakeEasingTokensMissingProps);
+  const NAME = camelize(item.name);
+  easings[NAME] = item.characters.trim();
 }

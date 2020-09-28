@@ -17,14 +17,14 @@ export function makeDurationTokens(durationFrame: Frame): DurationTokens {
   if (!durationFrame.children) throw new Error(ErrorMakeDurationTokensNoChildren);
 
   const durations: Record<string, unknown> = {};
-
   const TOKENS = durationFrame.children;
-
-  TOKENS.forEach((item: Frame) => {
-    if (!item.name || !item.characters) throw new Error(ErrorMakeDurationTokensMissingProps);
-    const NAME = camelize(item.name);
-    durations[NAME] = parseFloat(item.characters);
-  });
+  TOKENS.forEach((item: Frame) => makeDurationToken(item, durations));
 
   return durations;
+}
+
+function makeDurationToken(item: Frame, durations: Record<string, unknown>) {
+  if (!item.name || !item.characters) throw new Error(ErrorMakeDurationTokensMissingProps);
+  const NAME = camelize(item.name);
+  durations[NAME] = parseFloat(item.characters);
 }

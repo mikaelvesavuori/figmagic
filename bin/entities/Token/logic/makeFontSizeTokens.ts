@@ -24,17 +24,22 @@ export function makeFontSizeTokens(
   if (!fontUnit || !remSize) throw new Error(ErrorMakeFontSizeTokensNoSizing);
 
   const fontSizes: Record<string, unknown> = {};
-
   const TOKENS = fontSizeFrame.children;
-
-  TOKENS.forEach((item: Frame) => {
-    if (!item.name || !item.style) throw new Error(ErrorMakeFontSizeTokensMissingProps);
-    if (!item.style.fontSize) throw new Error(ErrorMakeFontSizeTokensMissingSize);
-
-    const NAME = camelize(item.name);
-    const FONT_SIZE = ((item.style.fontSize as unknown) as number) / remSize + fontUnit;
-    fontSizes[NAME] = FONT_SIZE;
-  });
+  TOKENS.forEach((item: Frame) => makeFontSizeToken(item, fontSizes, remSize, fontUnit));
 
   return fontSizes;
+}
+
+function makeFontSizeToken(
+  item: Frame,
+  fontSizes: Record<string, unknown>,
+  remSize: number,
+  fontUnit: string
+) {
+  if (!item.name || !item.style) throw new Error(ErrorMakeFontSizeTokensMissingProps);
+  if (!item.style.fontSize) throw new Error(ErrorMakeFontSizeTokensMissingSize);
+
+  const NAME = camelize(item.name);
+  const FONT_SIZE = ((item.style.fontSize as unknown) as number) / remSize + fontUnit;
+  fontSizes[NAME] = FONT_SIZE;
 }

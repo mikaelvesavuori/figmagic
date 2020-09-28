@@ -18,17 +18,17 @@ export function makeRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTok
   if (!radiusFrame.children) throw new Error(ErrorMakeRadiusTokensNoChildren);
 
   const cornerRadii: Record<string, unknown> = {};
-
   const TOKENS = radiusFrame.children;
-
-  TOKENS.forEach((item: Frame) => {
-    if (!item.name) throw new Error(ErrorMakeRadiusTokensMissingProps);
-    const NAME: string = camelize(item.name);
-    const CORNER_RADIUS: string = item.cornerRadius
-      ? normalizeUnits(item.cornerRadius, 'cornerRadius', 'adjustedRadius', remSize)
-      : '0px';
-    cornerRadii[NAME] = CORNER_RADIUS;
-  });
+  TOKENS.forEach((item: Frame) => makeRadiusToken(item, cornerRadii, remSize));
 
   return cornerRadii;
+}
+
+function makeRadiusToken(item: Frame, cornerRadii: Record<string, unknown>, remSize: number) {
+  if (!item.name) throw new Error(ErrorMakeRadiusTokensMissingProps);
+  const NAME: string = camelize(item.name);
+  const CORNER_RADIUS: string = item.cornerRadius
+    ? normalizeUnits(item.cornerRadius, 'cornerRadius', 'adjustedRadius', remSize)
+    : '0px';
+  cornerRadii[NAME] = CORNER_RADIUS;
 }

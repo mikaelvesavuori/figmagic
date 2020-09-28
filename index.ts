@@ -15,16 +15,9 @@ import { getData } from './bin/frameworks/network/getData';
 import { writeBaseJson } from './bin/frameworks/filesystem/writeBaseJson';
 import { colors } from './bin/frameworks/system/colors';
 import { checkIfExists } from './bin/frameworks/filesystem/checkIfExists';
+import { configToInit } from './bin/frameworks/system/configToInit';
 
 import { MsgJobCompleteInit, MsgJobCompleteInitStopped } from './bin/frameworks/messages/messages';
-
-const BASE_CONFIG = {
-  templates: {
-    templatePathReact: '/node_modules/figmagic/templates/react',
-    templatePathStorybook: '/node_modules/figmagic/templates/story',
-    templatePathStyled: '/node_modules/figmagic/templates/styled'
-  }
-};
 
 const RC_FILE = '.figmagicrc';
 
@@ -36,8 +29,10 @@ async function main(): Promise<void> {
     // Setup environment and user configuration
     dotenv.config();
 
+    // User wants to init a configuration...
     const [, , ...CLI_ARGS] = process.argv;
-    if (CLI_ARGS[0]?.toLowerCase() === 'init') initConfig(BASE_CONFIG);
+    if (CLI_ARGS[0]?.toLowerCase() === 'init') initConfig(configToInit);
+    // User wants to run Figmagic
     else {
       const USER_CONFIG_PATH = path.join(`${process.cwd()}`, RC_FILE);
       const CONFIG: Config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);

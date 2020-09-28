@@ -12,6 +12,7 @@ import {
 /**
  * @description Places all Figma opacities scale into a clean object
  */
+// TODO: Refactor
 export function makeOpacityTokens(
   opacitiesFrame: Frame,
   opacitiesUnit: 'float' | 'percent'

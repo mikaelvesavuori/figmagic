@@ -23,18 +23,23 @@ export function makeSpacingTokens(
   if (!spacingUnit || !remSize) throw new Error(ErrorMakeSpacingTokensNoUnits);
 
   const spacings: Record<string, unknown> = {};
-
   const TOKENS = spacingFrame.children;
-
-  TOKENS.forEach((item: Frame) => {
-    const NAME: string = camelize(item.name);
-    if (!item.absoluteBoundingBox || !item.absoluteBoundingBox.width)
-      throw new Error(ErrorMakeSpacingTokensNoFrame);
-
-    const WIDTH: number = item.absoluteBoundingBox.width;
-    const NORMALIZED_UNIT = normalizeUnits(WIDTH, 'px', spacingUnit, remSize);
-    spacings[NAME] = NORMALIZED_UNIT;
-  });
+  TOKENS.forEach((item: Frame) => makeSpacingToken(item, spacings, spacingUnit, remSize));
 
   return spacings;
+}
+
+function makeSpacingToken(
+  item: Frame,
+  spacings: Record<string, unknown>,
+  spacingUnit: string,
+  remSize: number
+) {
+  const NAME: string = camelize(item.name);
+  if (!item.absoluteBoundingBox || !item.absoluteBoundingBox.width)
+    throw new Error(ErrorMakeSpacingTokensNoFrame);
+
+  const WIDTH: number = item.absoluteBoundingBox.width;
+  const NORMALIZED_UNIT = normalizeUnits(WIDTH, 'px', spacingUnit, remSize);
+  spacings[NAME] = NORMALIZED_UNIT;
 }
