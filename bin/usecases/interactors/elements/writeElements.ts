@@ -102,14 +102,21 @@ const writeFileHelper = (
   format: string,
   fileExists: boolean | undefined = undefined
 ): void => {
-  if (fileExists === false || config.forceUpdate)
+  if (fileExists === false || config.forceUpdate) {
+    const FILE_DATA = (() => {
+      if (type === 'description') return config.description;
+      if (type === 'css') return config.css;
+      return config.html;
+    })();
+
     writeFile({
       type,
-      file: config.html,
+      file: FILE_DATA,
       path: config.folder,
       name: config.fixedName,
       format,
       metadata: config.metadata,
       templates: config.templates
     } as WriteOperation);
+  }
 };

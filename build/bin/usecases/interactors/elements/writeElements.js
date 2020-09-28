@@ -72,15 +72,23 @@ const makeFixedConfig = (element, config) => {
     };
 };
 const writeFileHelper = (config, type, format, fileExists = undefined) => {
-    if (fileExists === false || config.forceUpdate)
+    if (fileExists === false || config.forceUpdate) {
+        const FILE_DATA = (() => {
+            if (type === 'description')
+                return config.description;
+            if (type === 'css')
+                return config.css;
+            return config.html;
+        })();
         writeFile_1.writeFile({
             type,
-            file: config.html,
+            file: FILE_DATA,
             path: config.folder,
             name: config.fixedName,
             format,
             metadata: config.metadata,
             templates: config.templates
         });
+    }
 };
 //# sourceMappingURL=writeElements.js.map

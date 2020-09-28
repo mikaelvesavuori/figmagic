@@ -61,9 +61,8 @@ class FigmagicElement {
     this.setDescription();
 
     const html = ``;
-    const extraProps = ``; // Any extra properties, like "placeholder"
+    const extraProps = ``;
     const text = ``;
-    //const imports = [];
 
     const { updatedCss, updatedImports } = this.handleElements();
 
@@ -171,7 +170,7 @@ class FigmagicElement {
           (e: Frame) => e.type === 'TEXT' && e.name[0] !== '_'
         )[0];
 
-        this.setPlaceholderText(); // was filter loop
+        this.setPlaceholderText();
         this.setElementType();
 
         const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, ''); // Clean names from any spaces
