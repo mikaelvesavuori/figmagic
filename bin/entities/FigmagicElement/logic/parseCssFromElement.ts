@@ -40,7 +40,7 @@ export function parseCssFromElement(
     const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : outputFolderTokens;
     const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputFormatToken);
 
-    // Start parsing, and add defaults
+    // Add defaults
     let css = `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
     let imports: any = [];
 

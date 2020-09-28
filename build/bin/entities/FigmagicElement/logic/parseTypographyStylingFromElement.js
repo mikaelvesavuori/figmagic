@@ -14,53 +14,48 @@ function parseTypographyStylingFromElement(textElement, remSize, outputFormatTok
         const PATH = process.env.IS_TEST ? path.join('testdata', 'tokens') : outputFolderTokens;
         const { colors, fontFamilies, fontSizes, fontWeights, letterSpacings, lineHeights } = getFiles(PATH, outputFormatTokens);
         let css = ``;
-        const imports = [];
-        const FONT_COLOR = getFontColor(textElement);
-        if (FONT_COLOR) {
-            const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(colors, 'colors', 'color', FONT_COLOR, remSize);
-            css += updatedCss;
-            updatedImports.forEach((i) => imports.push(i));
-        }
-        const FONT_SIZE = getFontSize(textElement);
-        if (FONT_SIZE) {
-            const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(fontSizes, 'fontSizes', 'font-size', FONT_SIZE, remSize);
-            css += updatedCss;
-            updatedImports.forEach((i) => imports.push(i));
-        }
-        const FONT_FAMILY = getFontFamily(textElement);
-        if (FONT_FAMILY) {
-            const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(fontFamilies, 'fontFamilies', 'font-family', FONT_FAMILY, remSize);
-            css += updatedCss;
-            updatedImports.forEach((i) => imports.push(i));
-        }
-        const FONT_WEIGHT = getFontWeight(textElement);
-        if (FONT_WEIGHT) {
-            const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(fontWeights, 'fontWeights', 'font-weight', FONT_WEIGHT, remSize);
-            css += updatedCss;
-            updatedImports.forEach((i) => imports.push(i));
-        }
-        const FONT_LINE_HEIGHT = getFontLineHeight(textElement);
-        if (FONT_LINE_HEIGHT) {
-            const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(lineHeights, 'lineHeights', 'line-height', FONT_LINE_HEIGHT, remSize);
-            css += updatedCss;
-            updatedImports.forEach((i) => imports.push(i));
-        }
-        const LETTER_SPACING = getFontLetterSpacing(textElement);
-        if (LETTER_SPACING && FONT_SIZE) {
-            const SIZE = LETTER_SPACING / FONT_SIZE;
-            const SIZE_STRING = `${SIZE}${letterSpacingUnit}`;
-            const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(letterSpacings, 'letterSpacings', 'letter-spacing', SIZE_STRING, remSize);
-            css += updatedCss;
-            updatedImports.forEach((i) => imports.push(i));
-        }
-        const FONT_ALIGNMENT = getFontAlignment(textElement);
-        if (FONT_ALIGNMENT) {
-            const ALIGNMENT = FONT_ALIGNMENT.toLowerCase();
-            css += `text-align: ${ALIGNMENT};\n`;
-        }
-        const FONT_CASE = getFontCase(textElement);
-        if (FONT_CASE)
-            css += `text-transform: ${FONT_CASE};\n`;
+        let imports = [];
+        const FONT_COLOR = calcFontColor({ textElement, css, imports, remSize }, colors);
+        css = FONT_COLOR.css;
+        imports = FONT_COLOR.imports;
+        const FONT_SIZE = calcFontSize({ textElement, css, imports, remSize }, fontSizes);
+        css = FONT_SIZE.css;
+        imports = FONT_SIZE.imports;
+        const fontSize = FONT_SIZE.fontSize;
+        const FONT_FAMILY = calcFontFamily({
+            textElement,
+            css,
+            imports,
+            remSize
+        }, fontFamilies);
+        css = FONT_FAMILY.css;
+        imports = FONT_FAMILY.imports;
+        const FONT_WEIGHT = calcFontWeight({
+            textElement,
+            css,
+            imports,
+            remSize
+        }, fontWeights);
+        css = FONT_WEIGHT.css;
+        imports = FONT_WEIGHT.imports;
+        const FONT_LINEHEIGHT = calcFontLineHeight({
+            textElement,
+            css,
+            imports,
+            remSize
+        }, lineHeights);
+        css = FONT_LINEHEIGHT.css;
+        imports = FONT_LINEHEIGHT.imports;
+        const FONT_LETTERSPACING = calcLetterSpacing({ textElement, css, imports, remSize }, letterSpacings, letterSpacingUnit, fontSize);
+        css = FONT_LETTERSPACING.css;
+        imports = FONT_LETTERSPACING.imports;
+        css = calcFontAlignment({
+            textElement,
+            css,
+            imports,
+            remSize
+        });
+        css = calcFontCase({ textElement, css, imports, remSize });
         const NEW_CSS = reduceCssDuplicates(css);
         return { updatedCss: NEW_CSS, updatedImports: imports };
     }
@@ -155,4 +150,90 @@ const getFontCase = (textElement) => {
     }
     return null;
 };
+function calcFontColor(calcData, colors) {
+    const { textElement, remSize, imports } = calcData;
+    let { css } = calcData;
+    const FONT_COLOR = getFontColor(textElement);
+    if (FONT_COLOR) {
+        const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(colors, 'colors', 'color', FONT_COLOR, remSize);
+        css += updatedCss;
+        updatedImports.forEach((i) => imports.push(i));
+    }
+    return { css, imports };
+}
+function calcFontSize(calcData, fontSizes) {
+    const { textElement, remSize, imports } = calcData;
+    let { css } = calcData;
+    const FONT_SIZE = getFontSize(textElement);
+    if (FONT_SIZE) {
+        const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(fontSizes, 'fontSizes', 'font-size', FONT_SIZE, remSize);
+        css += updatedCss;
+        updatedImports.forEach((i) => imports.push(i));
+    }
+    return { css, imports, fontSize: FONT_SIZE };
+}
+function calcFontFamily(calcData, fontFamilies) {
+    const { textElement, remSize, imports } = calcData;
+    let { css } = calcData;
+    const FONT_FAMILY = getFontFamily(textElement);
+    if (FONT_FAMILY) {
+        const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(fontFamilies, 'fontFamilies', 'font-family', FONT_FAMILY, remSize);
+        css += updatedCss;
+        updatedImports.forEach((i) => imports.push(i));
+    }
+    return { css, imports };
+}
+function calcFontWeight(calcData, fontWeights) {
+    const { textElement, remSize, imports } = calcData;
+    let { css } = calcData;
+    const FONT_WEIGHT = getFontWeight(textElement);
+    if (FONT_WEIGHT) {
+        const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(fontWeights, 'fontWeights', 'font-weight', FONT_WEIGHT, remSize);
+        css += updatedCss;
+        updatedImports.forEach((i) => imports.push(i));
+    }
+    return { css, imports };
+}
+function calcFontLineHeight(calcData, lineHeights) {
+    const { textElement, remSize, imports } = calcData;
+    let { css } = calcData;
+    const FONT_LINE_HEIGHT = getFontLineHeight(textElement);
+    if (FONT_LINE_HEIGHT) {
+        const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(lineHeights, 'lineHeights', 'line-height', FONT_LINE_HEIGHT, remSize);
+        css += updatedCss;
+        updatedImports.forEach((i) => imports.push(i));
+    }
+    return { css, imports };
+}
+function calcLetterSpacing(calcData, letterSpacings, letterSpacingUnit, fontSize) {
+    const { textElement, remSize, imports } = calcData;
+    let { css } = calcData;
+    const LETTER_SPACING = getFontLetterSpacing(textElement);
+    if (LETTER_SPACING && fontSize) {
+        const SIZE = LETTER_SPACING / fontSize;
+        const SIZE_STRING = `${SIZE}${letterSpacingUnit}`;
+        const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(letterSpacings, 'letterSpacings', 'letter-spacing', SIZE_STRING, remSize);
+        css += updatedCss;
+        updatedImports.forEach((i) => imports.push(i));
+    }
+    return { css, imports };
+}
+function calcFontAlignment(calcData) {
+    const { textElement } = calcData;
+    let { css } = calcData;
+    const FONT_ALIGNMENT = getFontAlignment(textElement);
+    if (FONT_ALIGNMENT) {
+        const ALIGNMENT = FONT_ALIGNMENT.toLowerCase();
+        css += `text-align: ${ALIGNMENT};\n`;
+    }
+    return css;
+}
+function calcFontCase(calcData) {
+    const { textElement } = calcData;
+    let { css } = calcData;
+    const FONT_CASE = getFontCase(textElement);
+    if (FONT_CASE)
+        css += `text-transform: ${FONT_CASE};\n`;
+    return css;
+}
 //# sourceMappingURL=parseTypographyStylingFromElement.js.map
