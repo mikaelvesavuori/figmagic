@@ -1,5 +1,4 @@
-#!/bin/sh
-':'; //# ; exec /usr/bin/env node --experimental-modules --no-warnings "$0" "$@"
+#! node
 
 import * as fs from 'fs';
 import * as path from 'path';
