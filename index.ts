@@ -1,6 +1,5 @@
 #! node
 
-import * as fs from 'fs';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 
@@ -15,6 +14,7 @@ import { write } from './bin/frameworks/filesystem/write';
 import { getData } from './bin/frameworks/network/getData';
 import { writeBaseJson } from './bin/frameworks/filesystem/writeBaseJson';
 import { colors } from './bin/frameworks/system/colors';
+import { checkIfExists } from './bin/frameworks/filesystem/checkIfExists';
 
 import { MsgJobCompleteInit, MsgJobCompleteInitStopped } from './bin/frameworks/messages/messages';
 
@@ -61,7 +61,7 @@ async function main(): Promise<void> {
  * @description Handle basic configuration initialization
  */
 function initConfig(file: any) {
-  const FILE_EXISTS = fs.existsSync(RC_FILE);
+  const FILE_EXISTS = checkIfExists(RC_FILE);
   if (!FILE_EXISTS) {
     write(RC_FILE, JSON.stringify(file, null, ' '));
     console.log(MsgJobCompleteInit);

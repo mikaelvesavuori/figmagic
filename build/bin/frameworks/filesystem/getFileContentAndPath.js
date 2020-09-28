@@ -9,46 +9,52 @@ function getFileContentAndPath(getFileContentAndPathOperation) {
     try {
         if (!getFileContentAndPathOperation)
             throw new Error(errors_1.ErrorGetFileContentAndPath);
-        if (!getFileContentAndPathOperation.type ||
-            !getFileContentAndPathOperation.file ||
-            !getFileContentAndPathOperation.path ||
-            !getFileContentAndPathOperation.name ||
-            !getFileContentAndPathOperation.format ||
-            !getFileContentAndPathOperation.element)
+        if (!checkIfFieldsExist(getFileContentAndPathOperation))
             throw new Error(errors_1.ErrorGetFileContentAndPathMissingFields);
         const { type, file, path, name, format, text, element, imports, extraProps, metadata, templates } = getFileContentAndPathOperation;
         let filePath = `${path}/${name}`;
-        if (type === 'raw')
-            return { fileContent: `${JSON.stringify(file, null, ' ')}`, filePath };
-        else if (type === 'token') {
-            if (metadata && metadata.dataType === 'enum')
-                return { fileContent: getTokenEnumString(file, name, format), filePath };
-            filePath += `.${format}`;
-            return { fileContent: getTokenString(file, name, format), filePath };
-        }
-        else if (type === 'component' && templates)
-            return prepFile_1.prepComponent({
-                name,
-                filePath,
-                format,
-                templates,
-                text,
-                extraProps
-            });
-        else if (type === 'style' && templates)
-            return prepFile_1.prepStyledComponents({
-                name,
-                filePath,
-                format,
-                templates,
-                element
-            });
-        else if (type === 'css')
-            return prepFile_1.prepCss({ name, filePath, format, imports, file });
-        else if (type === 'story' && templates)
-            return prepFile_1.prepStorybook({ name, filePath, format, templates, text });
-        else if (type === 'description')
-            return prepFile_1.prepDescription({ filePath, file, format });
+        const fileOperations = {
+            raw: () => {
+                return { fileContent: `${JSON.stringify(file, null, ' ')}`, filePath };
+            },
+            token: () => {
+                if (metadata && metadata.dataType === 'enum')
+                    return { fileContent: getTokenEnumString(file, name, format), filePath };
+                filePath += `.${format}`;
+                return { fileContent: getTokenString(file, name, format), filePath };
+            },
+            component: () => {
+                console.log('COMPONENT', name, filePath, format, templates, text, extraProps);
+                if (type === 'component' && templates)
+                    return prepFile_1.prepComponent({
+                        name,
+                        filePath,
+                        format,
+                        templates,
+                        text,
+                        extraProps
+                    });
+            },
+            style: () => {
+                console.log('STYLED', metadata, filePath, file, name, format);
+                if (type === 'style' && templates)
+                    return prepFile_1.prepStyledComponents({
+                        name,
+                        filePath,
+                        format,
+                        templates,
+                        element
+                    });
+            },
+            story: () => {
+                if (type === 'story' && templates)
+                    return prepFile_1.prepStorybook({ name, filePath, format, templates, text });
+            },
+            css: () => prepFile_1.prepCss({ name, filePath, format, imports, file }),
+            description: () => prepFile_1.prepDescription({ filePath, file, format })
+        };
+        if (fileOperations.hasOwnProperty(type))
+            return fileOperations[type]();
         else
             throw new Error(errors_1.ErrorGetFileContentAndPathNoReturn);
     }
@@ -64,5 +70,15 @@ const getTokenEnumString = (file, name, format) => {
 const getTokenString = (file, name, format) => {
     const EXPORT = format !== 'js' ? `export default ${name}` : `module.exports = ${name}`;
     return `// ${messages_1.MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(file, null, ' ')}\n\n${EXPORT};`;
+};
+const checkIfFieldsExist = (getFileContentAndPathOperation) => {
+    if (!getFileContentAndPathOperation.type ||
+        !getFileContentAndPathOperation.file ||
+        !getFileContentAndPathOperation.path ||
+        !getFileContentAndPathOperation.name ||
+        !getFileContentAndPathOperation.format ||
+        !getFileContentAndPathOperation.element)
+        return false;
+    return true;
 };
 //# sourceMappingURL=getFileContentAndPath.js.map

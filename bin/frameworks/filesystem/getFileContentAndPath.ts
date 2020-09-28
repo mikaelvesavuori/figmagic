@@ -41,15 +41,9 @@ export function getFileContentAndPath(
   | PrepDescription {
   try {
     if (!getFileContentAndPathOperation) throw new Error(ErrorGetFileContentAndPath);
-    if (
-      !getFileContentAndPathOperation.type ||
-      !getFileContentAndPathOperation.file ||
-      !getFileContentAndPathOperation.path ||
-      !getFileContentAndPathOperation.name ||
-      !getFileContentAndPathOperation.format ||
-      !getFileContentAndPathOperation.element
-    )
+    if (!checkIfFieldsExist(getFileContentAndPathOperation))
       throw new Error(ErrorGetFileContentAndPathMissingFields);
+
     const {
       type,
       file,
@@ -63,50 +57,60 @@ export function getFileContentAndPath(
       metadata,
       templates
     } = getFileContentAndPathOperation;
-    let filePath = `${path}/${name}`;
-    // Raw file output
-    if (type === 'raw') return { fileContent: `${JSON.stringify(file, null, ' ')}`, filePath };
-    // Design token
-    else if (type === 'token') {
-      if (metadata && metadata.dataType === 'enum')
-        return { fileContent: getTokenEnumString(file, name, format), filePath };
 
-      filePath += `.${format}`;
-      return { fileContent: getTokenString(file, name, format), filePath };
-    }
-    // Component
-    else if (type === 'component' && templates)
-      return prepComponent({
-        name,
-        filePath,
-        format,
-        templates,
-        text,
-        extraProps
-      } as PrepComponent);
-    // Styled Components
-    else if (type === 'style' && templates)
-      return prepStyledComponents({
-        name,
-        filePath,
-        format,
-        templates,
-        element
-      } as PrepStyledComponents);
-    // CSS
-    else if (type === 'css') return prepCss({ name, filePath, format, imports, file } as PrepCss);
-    // Storybook
-    else if (type === 'story' && templates)
-      return prepStorybook({ name, filePath, format, templates, text } as PrepStorybook);
-    // Markdown description
-    else if (type === 'description')
-      return prepDescription({ filePath, file, format } as PrepDescription);
+    let filePath = `${path}/${name}`;
+
+    const fileOperations = {
+      raw: () => {
+        return { fileContent: `${JSON.stringify(file, null, ' ')}`, filePath };
+      },
+      token: () => {
+        if (metadata && metadata.dataType === 'enum')
+          return { fileContent: getTokenEnumString(file, name, format), filePath };
+
+        filePath += `.${format}`;
+        return { fileContent: getTokenString(file, name, format), filePath };
+      },
+      component: () => {
+        if (type === 'component' && templates)
+          return prepComponent({
+            name,
+            filePath,
+            format,
+            templates,
+            text,
+            extraProps
+          } as PrepComponent);
+      },
+      style: () => {
+        if (type === 'style' && templates)
+          return prepStyledComponents({
+            name,
+            filePath,
+            format,
+            templates,
+            element
+          } as PrepStyledComponents);
+      },
+      story: () => {
+        if (type === 'story' && templates)
+          return prepStorybook({ name, filePath, format, templates, text } as PrepStorybook);
+      },
+      css: () => prepCss({ name, filePath, format, imports, file } as PrepCss),
+      description: () => prepDescription({ filePath, file, format } as PrepDescription)
+    };
+
+    // @ts-ignore
+    if (fileOperations.hasOwnProperty(type)) return fileOperations[type]();
     else throw new Error(ErrorGetFileContentAndPathNoReturn);
   } catch (error) {
     throw new Error(ErrorGetFileContentAndPath);
   }
 }
 
+/**
+ * @description Get file data string for tokens using enum data type
+ */
 const getTokenEnumString = (file: string | ProcessedToken, name: string, format: string) => {
   const EXPORT = format !== 'js' ? `export default ${name}` : `module.exports = ${name}`;
   return `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
@@ -114,6 +118,9 @@ const getTokenEnumString = (file: string | ProcessedToken, name: string, format:
   )}\n}\n\n${EXPORT};`;
 };
 
+/**
+ * @description Get file data string for tokens using null/no data type
+ */
 const getTokenString = (file: string | ProcessedToken, name: string, format: string) => {
   const EXPORT = format !== 'js' ? `export default ${name}` : `module.exports = ${name}`;
   return `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
@@ -121,4 +128,20 @@ const getTokenString = (file: string | ProcessedToken, name: string, format: str
     null,
     ' '
   )}\n\n${EXPORT};`;
+};
+
+/**
+ * @description Validate whether required fields exist on GetFileDataOperation type
+ */
+const checkIfFieldsExist = (getFileContentAndPathOperation: GetFileDataOperation): boolean => {
+  if (
+    !getFileContentAndPathOperation.type ||
+    !getFileContentAndPathOperation.file ||
+    !getFileContentAndPathOperation.path ||
+    !getFileContentAndPathOperation.name ||
+    !getFileContentAndPathOperation.format ||
+    !getFileContentAndPathOperation.element
+  )
+    return false;
+  return true;
 };
