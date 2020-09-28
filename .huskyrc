@@ -1,6 +1,5 @@
 {
   "hooks": {
-    "pre-commit": "echo Running pre-commit linting... && npm run lint && npm run build",
-    "commitmsg": "validate-commit-msg"
+    "pre-commit": "echo Running pre-commit linting... && npm run lint && npm run build"
   }
 }

@@ -8,7 +8,7 @@
       "program": "${workspaceFolder}/index.ts",
       "skipFiles": ["<node_internals>/**"],
       "preLaunchTask": "tsc: build - tsconfig.json",
-      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+      "outFiles": ["${workspaceFolder}/build/**/*.js"]
     }
   ]
 }

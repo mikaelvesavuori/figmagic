@@ -56,8 +56,7 @@
     "pretty-quick": "^3.0.2",
     "snyk": "^1.401.0",
     "ts-jest": "^26.4.0",
-    "typescript": "^4.0.3",
-    "validate-commit-msg": "^2.14.0"
+    "typescript": "^4.0.3"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
@@ -65,11 +64,11 @@
     "trash": "^6.1.1"
   },
   "bin": {
-    "figmagic": "dist/index.js"
+    "figmagic": "build/index.js"
   },
   "scripts": {
-    "figmagic": "node dist/index.js",
-    "build": "rm -rf dist && tsc",
+    "figmagic": "node build/index.js",
+    "build": "rm -rf build && tsc",
     "test": "jest __tests__ --collectCoverage",
     "lint": "eslint './bin/**/*.ts' --quiet --fix",
     "snyk-protect": "snyk protect",

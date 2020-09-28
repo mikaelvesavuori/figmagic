@@ -1,5 +1,5 @@
 # Ensure built files are included
-!dist/
+!build/
 
 /.figmagic
 /figma
