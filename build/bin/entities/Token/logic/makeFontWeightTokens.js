@@ -10,15 +10,16 @@ function makeFontWeightTokens(fontWeightFrame) {
         throw new Error(errors_1.ErrorMakeFontWeightTokensNoChildren);
     const fontWeights = {};
     const TOKENS = fontWeightFrame.children;
-    TOKENS.forEach((item) => {
-        if (!item.name || !item.style)
-            throw new Error(errors_1.ErrorMakeFontWeightTokensMissingProps);
-        if (!item.style.fontWeight)
-            throw new Error(errors_1.ErrorMakeFontWeightTokensMissingWeight);
-        const NAME = camelize_1.camelize(item.name);
-        fontWeights[NAME] = item.style.fontWeight;
-    });
+    TOKENS.forEach((item) => makeFontWeightToken(item, fontWeights));
     return fontWeights;
 }
 exports.makeFontWeightTokens = makeFontWeightTokens;
+function makeFontWeightToken(item, fontWeights) {
+    if (!item.name || !item.style)
+        throw new Error(errors_1.ErrorMakeFontWeightTokensMissingProps);
+    if (!item.style.fontWeight)
+        throw new Error(errors_1.ErrorMakeFontWeightTokensMissingWeight);
+    const NAME = camelize_1.camelize(item.name);
+    fontWeights[NAME] = item.style.fontWeight;
+}
 //# sourceMappingURL=makeFontWeightTokens.js.map

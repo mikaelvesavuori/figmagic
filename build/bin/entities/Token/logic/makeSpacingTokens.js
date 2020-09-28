@@ -13,15 +13,16 @@ function makeSpacingTokens(spacingFrame, spacingUnit, remSize) {
         throw new Error(errors_1.ErrorMakeSpacingTokensNoUnits);
     const spacings = {};
     const TOKENS = spacingFrame.children;
-    TOKENS.forEach((item) => {
-        const NAME = camelize_1.camelize(item.name);
-        if (!item.absoluteBoundingBox || !item.absoluteBoundingBox.width)
-            throw new Error(errors_1.ErrorMakeSpacingTokensNoFrame);
-        const WIDTH = item.absoluteBoundingBox.width;
-        const NORMALIZED_UNIT = normalizeUnits_1.normalizeUnits(WIDTH, 'px', spacingUnit, remSize);
-        spacings[NAME] = NORMALIZED_UNIT;
-    });
+    TOKENS.forEach((item) => makeSpacingToken(item, spacings, spacingUnit, remSize));
     return spacings;
 }
 exports.makeSpacingTokens = makeSpacingTokens;
+function makeSpacingToken(item, spacings, spacingUnit, remSize) {
+    const NAME = camelize_1.camelize(item.name);
+    if (!item.absoluteBoundingBox || !item.absoluteBoundingBox.width)
+        throw new Error(errors_1.ErrorMakeSpacingTokensNoFrame);
+    const WIDTH = item.absoluteBoundingBox.width;
+    const NORMALIZED_UNIT = normalizeUnits_1.normalizeUnits(WIDTH, 'px', spacingUnit, remSize);
+    spacings[NAME] = NORMALIZED_UNIT;
+}
 //# sourceMappingURL=makeSpacingTokens.js.map

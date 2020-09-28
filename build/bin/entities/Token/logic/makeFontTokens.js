@@ -10,15 +10,16 @@ function makeFontTokens(fontFrame, usePostscriptFontNames = true) {
         throw new Error(errors_1.ErrorMakeFontTokensNoChildren);
     const fonts = {};
     const TOKENS = fontFrame.children;
-    TOKENS.forEach((item) => {
-        if (!item.name || !item.style)
-            throw new Error(errors_1.ErrorMakeFontTokensMissingProps);
-        const NAME = camelize_1.camelize(item.name);
-        fonts[NAME] = usePostscriptFontNames
-            ? item.style.fontPostScriptName
-            : item.style.fontFamily.replace(' /g', '');
-    });
+    TOKENS.forEach((item) => makeFontToken(item, fonts, usePostscriptFontNames));
     return fonts;
 }
 exports.makeFontTokens = makeFontTokens;
+function makeFontToken(item, fonts, usePostscriptFontNames) {
+    if (!item.name || !item.style)
+        throw new Error(errors_1.ErrorMakeFontTokensMissingProps);
+    const NAME = camelize_1.camelize(item.name);
+    fonts[NAME] = usePostscriptFontNames
+        ? item.style.fontPostScriptName
+        : item.style.fontFamily.replace(' /g', '');
+}
 //# sourceMappingURL=makeFontTokens.js.map

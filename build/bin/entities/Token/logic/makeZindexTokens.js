@@ -10,13 +10,14 @@ function makeZindexTokens(zIndexFrame) {
         throw new Error(errors_1.ErrorMakeZindexTokensNoChildren);
     const zIndex = {};
     const TOKENS = zIndexFrame.children;
-    TOKENS.forEach((item) => {
-        if (!item.name || !item.characters)
-            throw new Error(errors_1.ErrorMakeZindexTokensMissingProps);
-        const NAME = camelize_1.camelize(item.name);
-        zIndex[NAME] = parseInt(item.characters);
-    });
+    TOKENS.forEach((item) => makeZindexToken(item, zIndex));
     return zIndex;
 }
 exports.makeZindexTokens = makeZindexTokens;
+function makeZindexToken(item, zIndex) {
+    if (!item.name || !item.characters)
+        throw new Error(errors_1.ErrorMakeZindexTokensMissingProps);
+    const NAME = camelize_1.camelize(item.name);
+    zIndex[NAME] = parseInt(item.characters);
+}
 //# sourceMappingURL=makeZindexTokens.js.map

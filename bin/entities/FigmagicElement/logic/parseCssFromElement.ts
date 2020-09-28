@@ -4,22 +4,18 @@ import { FRAME as Frame } from '../../../contracts/Figma';
 import { UpdatedCssAndImports } from '../../../contracts/Imports';
 
 import { getFileContents } from './getFileContents';
-import {
-  PaddingVertical,
-  PaddingHorizontal,
-  getPaddingY,
-  getPaddingX,
-  parsePadding,
-  parseHeight,
-  getBackgroundColor,
-  parseBackgroundColor,
-  parseBorderWidth,
-  getBorderColor,
-  parseBorderColor,
-  parseBorderRadius,
-  getShadow,
-  parseShadow
-} from './parsers';
+import { getPaddingY, PaddingVertical } from './parsers/getPaddingY';
+import { getPaddingX, PaddingHorizontal } from './parsers/getPaddingX';
+import { parsePadding } from './parsers/parsePadding';
+import { parseHeight } from './parsers/parseHeight';
+import { getBackgroundColor } from './parsers/getBackgroundColor';
+import { parseBackgroundColor } from './parsers/parseBackgroundColor';
+import { parseBorderWidth } from './parsers/parseBorderWidth';
+import { getBorderColor } from './parsers/getBorderColor';
+import { parseBorderColor } from './parsers/parseBorderColor';
+import { parseBorderRadius } from './parsers/parseBorderRadius';
+import { getShadow } from './parsers/getShadow';
+import { parseShadow } from './parsers/parseShadow';
 
 import { ErrorParseCssFromElement, ErrorGetFiles } from '../../../frameworks/errors/errors';
 

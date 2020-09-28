@@ -11,16 +11,17 @@ function makeRadiusTokens(radiusFrame, remSize) {
         throw new Error(errors_1.ErrorMakeRadiusTokensNoChildren);
     const cornerRadii = {};
     const TOKENS = radiusFrame.children;
-    TOKENS.forEach((item) => {
-        if (!item.name)
-            throw new Error(errors_1.ErrorMakeRadiusTokensMissingProps);
-        const NAME = camelize_1.camelize(item.name);
-        const CORNER_RADIUS = item.cornerRadius
-            ? normalizeUnits_1.normalizeUnits(item.cornerRadius, 'cornerRadius', 'adjustedRadius', remSize)
-            : '0px';
-        cornerRadii[NAME] = CORNER_RADIUS;
-    });
+    TOKENS.forEach((item) => makeRadiusToken(item, cornerRadii, remSize));
     return cornerRadii;
 }
 exports.makeRadiusTokens = makeRadiusTokens;
+function makeRadiusToken(item, cornerRadii, remSize) {
+    if (!item.name)
+        throw new Error(errors_1.ErrorMakeRadiusTokensMissingProps);
+    const NAME = camelize_1.camelize(item.name);
+    const CORNER_RADIUS = item.cornerRadius
+        ? normalizeUnits_1.normalizeUnits(item.cornerRadius, 'cornerRadius', 'adjustedRadius', remSize)
+        : '0px';
+    cornerRadii[NAME] = CORNER_RADIUS;
+}
 //# sourceMappingURL=makeRadiusTokens.js.map

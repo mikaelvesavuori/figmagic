@@ -4,7 +4,18 @@ exports.parseCssFromElement = void 0;
 const tslib_1 = require("tslib");
 const path = tslib_1.__importStar(require("path"));
 const getFileContents_1 = require("./getFileContents");
-const parsers_1 = require("./parsers");
+const getPaddingY_1 = require("./parsers/getPaddingY");
+const getPaddingX_1 = require("./parsers/getPaddingX");
+const parsePadding_1 = require("./parsers/parsePadding");
+const parseHeight_1 = require("./parsers/parseHeight");
+const getBackgroundColor_1 = require("./parsers/getBackgroundColor");
+const parseBackgroundColor_1 = require("./parsers/parseBackgroundColor");
+const parseBorderWidth_1 = require("./parsers/parseBorderWidth");
+const getBorderColor_1 = require("./parsers/getBorderColor");
+const parseBorderColor_1 = require("./parsers/parseBorderColor");
+const parseBorderRadius_1 = require("./parsers/parseBorderRadius");
+const getShadow_1 = require("./parsers/getShadow");
+const parseShadow_1 = require("./parsers/parseShadow");
 const errors_1 = require("../../../frameworks/errors/errors");
 function parseCssFromElement(layoutElement, textElement, remSize, outputFormatToken, outputFolderTokens) {
     try {
@@ -69,17 +80,17 @@ function calcPadding(calcData, spacing) {
     const { textElement, layoutElement, remSize } = calcData;
     let { css, imports } = calcData;
     const PADDING_Y = textElement
-        ? parsers_1.getPaddingY(textElement, layoutElement)
+        ? getPaddingY_1.getPaddingY(textElement, layoutElement)
         : null;
     const PADDING_X = textElement
-        ? parsers_1.getPaddingX(textElement, layoutElement)
+        ? getPaddingX_1.getPaddingX(textElement, layoutElement)
         : null;
     if (PADDING_Y && PADDING_X) {
         const PADDING = {
             ...PADDING_Y,
             ...PADDING_X
         };
-        const PARSED_PADDING = parsers_1.parsePadding(css, imports, {
+        const PARSED_PADDING = parsePadding_1.parsePadding(css, imports, {
             padding: PADDING,
             spacing,
             remSize
@@ -97,7 +108,7 @@ function calcHeight(calcData, spacing) {
         ? layoutElement.absoluteBoundingBox.height
         : null;
     if (HEIGHT) {
-        const parsedValue = parsers_1.parseHeight(css, imports, { spacing, height: HEIGHT, remSize });
+        const parsedValue = parseHeight_1.parseHeight(css, imports, { spacing, height: HEIGHT, remSize });
         css += parsedValue.css;
         if (parsedValue.imports)
             imports = imports.concat(parsedValue.imports);
@@ -107,9 +118,9 @@ function calcHeight(calcData, spacing) {
 function calcBackgroundColor(calcData, colors) {
     const { layoutElement, remSize } = calcData;
     let { css, imports } = calcData;
-    const BACKGROUND_COLOR = parsers_1.getBackgroundColor(layoutElement);
+    const BACKGROUND_COLOR = getBackgroundColor_1.getBackgroundColor(layoutElement);
     if (BACKGROUND_COLOR) {
-        const parsedValue = parsers_1.parseBackgroundColor(css, imports, {
+        const parsedValue = parseBackgroundColor_1.parseBackgroundColor(css, imports, {
             colors,
             backgroundColor: BACKGROUND_COLOR,
             remSize
@@ -125,7 +136,7 @@ function calcBorderWidth(calcData, borderWidths) {
     let { css, imports } = calcData;
     const BORDER_WIDTH = layoutElement.strokeWeight ? `${layoutElement.strokeWeight}px` : null;
     if (BORDER_WIDTH) {
-        const parsedValue = parsers_1.parseBorderWidth(css, imports, {
+        const parsedValue = parseBorderWidth_1.parseBorderWidth(css, imports, {
             borderWidths,
             borderWidth: BORDER_WIDTH,
             remSize
@@ -139,9 +150,9 @@ function calcBorderWidth(calcData, borderWidths) {
 function calcBorderColor(calcData, colors) {
     const { layoutElement, remSize } = calcData;
     let { css, imports } = calcData;
-    const BORDER_COLOR = parsers_1.getBorderColor(layoutElement);
+    const BORDER_COLOR = getBorderColor_1.getBorderColor(layoutElement);
     if (BORDER_COLOR) {
-        const parsedValue = parsers_1.parseBorderColor(css, imports, {
+        const parsedValue = parseBorderColor_1.parseBorderColor(css, imports, {
             colors,
             borderColor: BORDER_COLOR,
             remSize
@@ -157,7 +168,7 @@ function calcBorderRadius(calcData, radii) {
     let { css, imports } = calcData;
     const BORDER_RADIUS = layoutElement.cornerRadius ? `${layoutElement.cornerRadius}px` : null;
     if (BORDER_RADIUS) {
-        const parsedValue = parsers_1.parseBorderRadius(css, imports, {
+        const parsedValue = parseBorderRadius_1.parseBorderRadius(css, imports, {
             radii,
             borderRadius: BORDER_RADIUS,
             remSize
@@ -171,9 +182,9 @@ function calcBorderRadius(calcData, radii) {
 function calcShadows(calcData, shadows) {
     const { layoutElement, remSize } = calcData;
     let { css, imports } = calcData;
-    const SHADOW = parsers_1.getShadow(layoutElement);
+    const SHADOW = getShadow_1.getShadow(layoutElement);
     if (SHADOW) {
-        const parsedValue = parsers_1.parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
+        const parsedValue = parseShadow_1.parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
         css += parsedValue.css;
         if (parsedValue.imports)
             imports = imports.concat(parsedValue.imports);

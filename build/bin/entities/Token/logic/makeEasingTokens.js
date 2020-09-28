@@ -10,13 +10,14 @@ function makeEasingTokens(easingFrame) {
         throw new Error(errors_1.ErrorMakeEasingTokensNoChildren);
     const easings = {};
     const TOKENS = easingFrame.children;
-    TOKENS.forEach((item) => {
-        if (!item.name || !item.characters)
-            throw new Error(errors_1.ErrorMakeEasingTokensMissingProps);
-        const NAME = camelize_1.camelize(item.name);
-        easings[NAME] = item.characters.trim();
-    });
+    TOKENS.forEach((item) => makeEasingToken(item, easings));
     return easings;
 }
 exports.makeEasingTokens = makeEasingTokens;
+function makeEasingToken(item, easings) {
+    if (!item.name || !item.characters)
+        throw new Error(errors_1.ErrorMakeEasingTokensMissingProps);
+    const NAME = camelize_1.camelize(item.name);
+    easings[NAME] = item.characters.trim();
+}
 //# sourceMappingURL=makeEasingTokens.js.map

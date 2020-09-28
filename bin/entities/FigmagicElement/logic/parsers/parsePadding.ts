@@ -1,0 +1,41 @@
+import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
+
+import { getTokenMatch } from '../getTokenMatch';
+
+import { ErrorParsePadding } from '../../../../frameworks/errors/errors';
+
+import { updateParsing } from './updateParsing';
+
+type PaddingParams = {
+  padding: Record<string, unknown>;
+  spacing: Record<string, unknown>;
+  remSize: number;
+};
+
+export function parsePadding(
+  css: string,
+  imports: any[],
+  params: PaddingParams
+): ParsedElementMetadataInterface {
+  try {
+    if (!css || !imports || !params) throw new Error(ErrorParsePadding);
+    const { padding, spacing, remSize } = params;
+
+    if (!(padding && Object.keys(padding).length > 0)) return { css, imports };
+
+    const PADDINGS = Object.values(padding).map((p) => p);
+    if (PADDINGS.every((item) => item === 0)) return updateParsing(css, null, imports, null);
+
+    const { updatedCss, updatedImports } = getTokenMatch(
+      spacing,
+      'spacing',
+      'padding',
+      padding,
+      remSize
+    );
+
+    return updateParsing(css, updatedCss, imports, updatedImports);
+  } catch (error) {
+    throw new Error(ErrorParsePadding);
+  }
+}

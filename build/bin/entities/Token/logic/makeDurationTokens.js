@@ -10,13 +10,14 @@ function makeDurationTokens(durationFrame) {
         throw new Error(errors_1.ErrorMakeDurationTokensNoChildren);
     const durations = {};
     const TOKENS = durationFrame.children;
-    TOKENS.forEach((item) => {
-        if (!item.name || !item.characters)
-            throw new Error(errors_1.ErrorMakeDurationTokensMissingProps);
-        const NAME = camelize_1.camelize(item.name);
-        durations[NAME] = parseFloat(item.characters);
-    });
+    TOKENS.forEach((item) => makeDurationToken(item, durations));
     return durations;
 }
 exports.makeDurationTokens = makeDurationTokens;
+function makeDurationToken(item, durations) {
+    if (!item.name || !item.characters)
+        throw new Error(errors_1.ErrorMakeDurationTokensMissingProps);
+    const NAME = camelize_1.camelize(item.name);
+    durations[NAME] = parseFloat(item.characters);
+}
 //# sourceMappingURL=makeDurationTokens.js.map

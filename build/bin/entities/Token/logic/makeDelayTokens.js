@@ -10,13 +10,14 @@ function makeDelayTokens(delayFrame) {
         throw new Error(errors_1.ErrorMakeDelayTokensNoChildren);
     const delays = {};
     const TOKENS = delayFrame.children;
-    TOKENS.forEach((item) => {
-        if (!item.name || !item.characters)
-            throw new Error(errors_1.ErrorMakeDelayTokensMissingProps);
-        const NAME = camelize_1.camelize(item.name);
-        delays[NAME] = parseFloat(item.characters);
-    });
+    TOKENS.forEach((item) => makeDelayToken(item, delays));
     return delays;
 }
 exports.makeDelayTokens = makeDelayTokens;
+function makeDelayToken(item, delays) {
+    if (!item.name || !item.characters)
+        throw new Error(errors_1.ErrorMakeDelayTokensMissingProps);
+    const NAME = camelize_1.camelize(item.name);
+    delays[NAME] = parseFloat(item.characters);
+}
 //# sourceMappingURL=makeDelayTokens.js.map

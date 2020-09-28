@@ -12,16 +12,17 @@ function makeFontSizeTokens(fontSizeFrame, fontUnit, remSize) {
         throw new Error(errors_1.ErrorMakeFontSizeTokensNoSizing);
     const fontSizes = {};
     const TOKENS = fontSizeFrame.children;
-    TOKENS.forEach((item) => {
-        if (!item.name || !item.style)
-            throw new Error(errors_1.ErrorMakeFontSizeTokensMissingProps);
-        if (!item.style.fontSize)
-            throw new Error(errors_1.ErrorMakeFontSizeTokensMissingSize);
-        const NAME = camelize_1.camelize(item.name);
-        const FONT_SIZE = item.style.fontSize / remSize + fontUnit;
-        fontSizes[NAME] = FONT_SIZE;
-    });
+    TOKENS.forEach((item) => makeFontSizeToken(item, fontSizes, remSize, fontUnit));
     return fontSizes;
 }
 exports.makeFontSizeTokens = makeFontSizeTokens;
+function makeFontSizeToken(item, fontSizes, remSize, fontUnit) {
+    if (!item.name || !item.style)
+        throw new Error(errors_1.ErrorMakeFontSizeTokensMissingProps);
+    if (!item.style.fontSize)
+        throw new Error(errors_1.ErrorMakeFontSizeTokensMissingSize);
+    const NAME = camelize_1.camelize(item.name);
+    const FONT_SIZE = item.style.fontSize / remSize + fontUnit;
+    fontSizes[NAME] = FONT_SIZE;
+}
 //# sourceMappingURL=makeFontSizeTokens.js.map

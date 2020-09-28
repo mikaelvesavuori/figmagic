@@ -1,18 +1,16 @@
-import {
-  getPaddingY,
-  getPaddingX,
-  parsePadding,
-  parseHeight,
-  getBackgroundColor,
-  parseBackgroundColor,
-  parseBorderWidth,
-  getBorderColor,
-  parseBorderColor,
-  parseBorderRadius,
-  getShadow,
-  parseShadow,
-  updateParsing
-} from '../../../../bin/entities/FigmagicElement/logic/parsers';
+import { getPaddingY } from '../../../../bin/entities/FigmagicElement/logic/parsers/getPaddingY';
+import { getPaddingX } from '../../../../bin/entities/FigmagicElement/logic/parsers/getPaddingX';
+import { parsePadding } from '../../../../bin/entities/FigmagicElement/logic/parsers/parsePadding';
+import { parseHeight } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseHeight';
+import { getBackgroundColor } from '../../../../bin/entities/FigmagicElement/logic/parsers/getBackgroundColor';
+import { parseBackgroundColor } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseBackgroundColor';
+import { parseBorderWidth } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseBorderWidth';
+import { getBorderColor } from '../../../../bin/entities/FigmagicElement/logic/parsers/getBorderColor';
+import { parseBorderColor } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseBorderColor';
+import { parseBorderRadius } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseBorderRadius';
+import { getShadow } from '../../../../bin/entities/FigmagicElement/logic/parsers/getShadow';
+import { parseShadow } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseShadow';
+import { updateParsing } from '../../../../bin/entities/FigmagicElement/logic/parsers/updateParsing';
 
 const TEXT_ELEMENT = {
   id: '3005:102',
