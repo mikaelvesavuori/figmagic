@@ -2,7 +2,7 @@ export const acceptedFileTypes: string[] = [
   'raw',
   'token',
   'component',
-  'style',
+  'styled',
   'css',
   'story',
   'description'

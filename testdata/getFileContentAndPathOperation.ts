@@ -67,7 +67,7 @@ export const getFileContentAndPathOperationComponent = {
 };
 
 export const getFileContentAndPathOperationStyle = {
-  type: 'style',
+  type: 'styled',
   file: {
     green3: 'rgba(111, 207, 151, 1)',
     green2: 'rgba(39, 174, 96, 1)',

@@ -14,86 +14,27 @@ function parseCssFromElement(layoutElement, textElement, remSize, outputFormatTo
         const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputFormatToken);
         let css = `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
         let imports = [];
-        const PADDING_Y = textElement
-            ? parsers_1.getPaddingY(textElement, layoutElement)
-            : null;
-        const PADDING_X = textElement
-            ? parsers_1.getPaddingX(textElement, layoutElement)
-            : null;
-        if (PADDING_Y && PADDING_X) {
-            const PADDING = {
-                ...PADDING_Y,
-                ...PADDING_X
-            };
-            const PARSED_PADDING = parsers_1.parsePadding(css, imports, {
-                padding: PADDING,
-                spacing,
-                remSize
-            });
-            css += PARSED_PADDING.css;
-            if (PARSED_PADDING.imports)
-                imports = imports.concat(PARSED_PADDING.imports);
-        }
-        const HEIGHT = layoutElement.absoluteBoundingBox
-            ? layoutElement.absoluteBoundingBox.height
-            : null;
-        if (HEIGHT) {
-            const parsedValue = parsers_1.parseHeight(css, imports, { spacing, height: HEIGHT, remSize });
-            css += parsedValue.css;
-            if (parsedValue.imports)
-                imports = imports.concat(parsedValue.imports);
-        }
-        const BACKGROUND_COLOR = parsers_1.getBackgroundColor(layoutElement);
-        if (BACKGROUND_COLOR) {
-            const parsedValue = parsers_1.parseBackgroundColor(css, imports, {
-                colors,
-                backgroundColor: BACKGROUND_COLOR,
-                remSize
-            });
-            css += parsedValue.css;
-            if (parsedValue.imports)
-                imports = imports.concat(parsedValue.imports);
-        }
-        const BORDER_WIDTH = layoutElement.strokeWeight ? `${layoutElement.strokeWeight}px` : null;
-        if (BORDER_WIDTH) {
-            const parsedValue = parsers_1.parseBorderWidth(css, imports, {
-                borderWidths,
-                borderWidth: BORDER_WIDTH,
-                remSize
-            });
-            css += parsedValue.css;
-            if (parsedValue.imports)
-                imports = imports.concat(parsedValue.imports);
-        }
-        const BORDER_COLOR = parsers_1.getBorderColor(layoutElement);
-        if (BORDER_COLOR) {
-            const parsedValue = parsers_1.parseBorderColor(css, imports, {
-                colors,
-                borderColor: BORDER_COLOR,
-                remSize
-            });
-            css += parsedValue.css;
-            if (parsedValue.imports)
-                imports = imports.concat(parsedValue.imports);
-        }
-        const BORDER_RADIUS = layoutElement.cornerRadius ? `${layoutElement.cornerRadius}px` : null;
-        if (BORDER_RADIUS) {
-            const parsedValue = parsers_1.parseBorderRadius(css, imports, {
-                radii,
-                borderRadius: BORDER_RADIUS,
-                remSize
-            });
-            css += parsedValue.css;
-            if (parsedValue.imports)
-                imports = imports.concat(parsedValue.imports);
-        }
-        const SHADOW = parsers_1.getShadow(layoutElement);
-        if (SHADOW) {
-            const parsedValue = parsers_1.parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
-            css += parsedValue.css;
-            if (parsedValue.imports)
-                imports = imports.concat(parsedValue.imports);
-        }
+        const padding = calcPadding({ textElement, layoutElement, css, imports, remSize }, spacing);
+        css = padding.css;
+        imports = padding.imports;
+        const height = calcHeight({ layoutElement, css, imports, remSize }, spacing);
+        css = height.css;
+        imports = height.imports;
+        const bgColor = calcBackgroundColor({ layoutElement, css, imports, remSize }, colors);
+        css = bgColor.css;
+        imports = bgColor.imports;
+        const borderWidth = calcBorderWidth({ layoutElement, css, imports, remSize }, borderWidths);
+        css = borderWidth.css;
+        imports = borderWidth.imports;
+        const borderColor = calcBorderColor({ layoutElement, css, imports, remSize }, colors);
+        css = borderColor.css;
+        imports = borderColor.imports;
+        const borderRadius = calcBorderRadius({ layoutElement, css, imports, remSize }, radii);
+        css = borderRadius.css;
+        imports = borderRadius.imports;
+        const shadow = calcShadows({ layoutElement, css, imports, remSize }, shadows);
+        css = shadow.css;
+        imports = shadow.imports;
         const NEW_CSS = reduceDuplicates(css);
         return { updatedCss: NEW_CSS, updatedImports: imports };
     }
@@ -124,4 +65,119 @@ const getFiles = (path, outputFormatToken) => {
         throw new Error(errors_1.ErrorGetFiles);
     }
 };
+function calcPadding(calcData, spacing) {
+    const { textElement, layoutElement, remSize } = calcData;
+    let { css, imports } = calcData;
+    const PADDING_Y = textElement
+        ? parsers_1.getPaddingY(textElement, layoutElement)
+        : null;
+    const PADDING_X = textElement
+        ? parsers_1.getPaddingX(textElement, layoutElement)
+        : null;
+    if (PADDING_Y && PADDING_X) {
+        const PADDING = {
+            ...PADDING_Y,
+            ...PADDING_X
+        };
+        const PARSED_PADDING = parsers_1.parsePadding(css, imports, {
+            padding: PADDING,
+            spacing,
+            remSize
+        });
+        css += PARSED_PADDING.css;
+        if (PARSED_PADDING.imports)
+            imports = imports.concat(PARSED_PADDING.imports);
+    }
+    return { css, imports };
+}
+function calcHeight(calcData, spacing) {
+    const { layoutElement, remSize } = calcData;
+    let { css, imports } = calcData;
+    const HEIGHT = layoutElement.absoluteBoundingBox
+        ? layoutElement.absoluteBoundingBox.height
+        : null;
+    if (HEIGHT) {
+        const parsedValue = parsers_1.parseHeight(css, imports, { spacing, height: HEIGHT, remSize });
+        css += parsedValue.css;
+        if (parsedValue.imports)
+            imports = imports.concat(parsedValue.imports);
+    }
+    return { css, imports };
+}
+function calcBackgroundColor(calcData, colors) {
+    const { layoutElement, remSize } = calcData;
+    let { css, imports } = calcData;
+    const BACKGROUND_COLOR = parsers_1.getBackgroundColor(layoutElement);
+    if (BACKGROUND_COLOR) {
+        const parsedValue = parsers_1.parseBackgroundColor(css, imports, {
+            colors,
+            backgroundColor: BACKGROUND_COLOR,
+            remSize
+        });
+        css += parsedValue.css;
+        if (parsedValue.imports)
+            imports = imports.concat(parsedValue.imports);
+    }
+    return { css, imports };
+}
+function calcBorderWidth(calcData, borderWidths) {
+    const { layoutElement, remSize } = calcData;
+    let { css, imports } = calcData;
+    const BORDER_WIDTH = layoutElement.strokeWeight ? `${layoutElement.strokeWeight}px` : null;
+    if (BORDER_WIDTH) {
+        const parsedValue = parsers_1.parseBorderWidth(css, imports, {
+            borderWidths,
+            borderWidth: BORDER_WIDTH,
+            remSize
+        });
+        css += parsedValue.css;
+        if (parsedValue.imports)
+            imports = imports.concat(parsedValue.imports);
+    }
+    return { css, imports };
+}
+function calcBorderColor(calcData, colors) {
+    const { layoutElement, remSize } = calcData;
+    let { css, imports } = calcData;
+    const BORDER_COLOR = parsers_1.getBorderColor(layoutElement);
+    if (BORDER_COLOR) {
+        const parsedValue = parsers_1.parseBorderColor(css, imports, {
+            colors,
+            borderColor: BORDER_COLOR,
+            remSize
+        });
+        css += parsedValue.css;
+        if (parsedValue.imports)
+            imports = imports.concat(parsedValue.imports);
+    }
+    return { css, imports };
+}
+function calcBorderRadius(calcData, radii) {
+    const { layoutElement, remSize } = calcData;
+    let { css, imports } = calcData;
+    const BORDER_RADIUS = layoutElement.cornerRadius ? `${layoutElement.cornerRadius}px` : null;
+    if (BORDER_RADIUS) {
+        const parsedValue = parsers_1.parseBorderRadius(css, imports, {
+            radii,
+            borderRadius: BORDER_RADIUS,
+            remSize
+        });
+        css += parsedValue.css;
+        if (parsedValue.imports)
+            imports = imports.concat(parsedValue.imports);
+    }
+    return { css, imports };
+}
+function calcShadows(calcData, shadows) {
+    const { layoutElement, remSize } = calcData;
+    let { css, imports } = calcData;
+    const SHADOW = parsers_1.getShadow(layoutElement);
+    if (SHADOW) {
+        const parsedValue = parsers_1.parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
+        css += parsedValue.css;
+        if (parsedValue.imports)
+            imports = imports.concat(parsedValue.imports);
+    }
+    return { css, imports };
+}
 //# sourceMappingURL=parseCssFromElement.js.map

@@ -3,7 +3,7 @@ import { Templates } from './Templates';
 import { ProcessedToken } from './ProcessedToken';
 
 export type WriteOperation = {
-  type: 'raw' | 'token' | 'component' | 'style' | 'css' | 'story' | 'description';
+  type: 'raw' | 'token' | 'component' | 'styled' | 'css' | 'story' | 'description';
   file: string | ProcessedToken;
   path: string;
   name: string;
@@ -26,7 +26,7 @@ export type WriteOperation = {
 };
 
 export type GetFileDataOperation = {
-  type: 'raw' | 'token' | 'component' | 'style' | 'css' | 'story' | 'description';
+  type: 'raw' | 'token' | 'component' | 'styled' | 'css' | 'story' | 'description';
   file: string | ProcessedToken;
   path: string;
   name: string;

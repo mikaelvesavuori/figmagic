@@ -24,7 +24,6 @@ function getFileContentAndPath(getFileContentAndPathOperation) {
                 return { fileContent: getTokenString(file, name, format), filePath };
             },
             component: () => {
-                console.log('COMPONENT', name, filePath, format, templates, text, extraProps);
                 if (type === 'component' && templates)
                     return prepFile_1.prepComponent({
                         name,
@@ -35,9 +34,8 @@ function getFileContentAndPath(getFileContentAndPathOperation) {
                         extraProps
                     });
             },
-            style: () => {
-                console.log('STYLED', metadata, filePath, file, name, format);
-                if (type === 'style' && templates)
+            styled: () => {
+                if (type === 'styled' && templates)
                     return prepFile_1.prepStyledComponents({
                         name,
                         filePath,

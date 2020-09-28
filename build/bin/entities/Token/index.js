@@ -38,58 +38,52 @@ class Token {
             }
         };
         this.getTokens = (frame, name, config) => {
-            switch (name) {
-                case 'borderwidths':
-                    return makeBorderWidthTokens_1.makeBorderWidthTokens(frame);
-                case 'color':
-                case 'colors': {
-                    return makeColorTokens_1.makeColorTokens(frame);
-                }
-                case 'fontfamilies': {
+            const tokenOperations = {
+                borderwidths: () => makeBorderWidthTokens_1.makeBorderWidthTokens(frame),
+                color: () => makeColorTokens_1.makeColorTokens(frame),
+                colors: () => makeColorTokens_1.makeColorTokens(frame),
+                delays: () => makeDelayTokens_1.makeDelayTokens(frame),
+                durations: () => makeDurationTokens_1.makeDurationTokens(frame),
+                easings: () => makeEasingTokens_1.makeEasingTokens(frame),
+                fontfamilies: () => {
                     if (!config)
                         throw new Error(errors_1.ErrorExtractTokensNoConfig);
                     return makeFontTokens_1.makeFontTokens(frame, config.usePostscriptFontNames);
-                }
-                case 'fontsizes': {
+                },
+                fontsizes: () => {
                     if (!config)
                         throw new Error(errors_1.ErrorExtractTokensNoConfig);
                     return makeFontSizeTokens_1.makeFontSizeTokens(frame, config.fontUnit, config.remSize);
-                }
-                case 'fontweights':
-                    return makeFontWeightTokens_1.makeFontWeightTokens(frame);
-                case 'letterspacings': {
+                },
+                fontweights: () => makeFontWeightTokens_1.makeFontWeightTokens(frame),
+                letterspacings: () => {
                     if (!config)
                         throw new Error(errors_1.ErrorExtractTokensNoConfig);
                     return makeLetterSpacingTokens_1.makeLetterSpacingTokens(frame, config.letterSpacingUnit);
-                }
-                case 'lineheights':
-                    return makeLineHeightTokens_1.makeLineHeightTokens(frame, config.remSize);
-                case 'mediaqueries':
-                    return makeMediaQueryTokens_1.makeMediaQueryTokens(frame);
-                case 'opacities': {
+                },
+                lineheights: () => makeLineHeightTokens_1.makeLineHeightTokens(frame, config.remSize),
+                mediaqueries: () => makeMediaQueryTokens_1.makeMediaQueryTokens(frame),
+                opacities: () => {
                     if (!config)
                         throw new Error(errors_1.ErrorExtractTokensNoConfig);
                     return makeOpacityTokens_1.makeOpacityTokens(frame, config.opacitiesUnit);
-                }
-                case 'radii':
-                    return makeRadiusTokens_1.makeRadiusTokens(frame, config.remSize);
-                case 'shadows':
-                    return makeShadowTokens_1.makeShadowTokens(frame);
-                case 'spacing':
-                case 'spacings': {
+                },
+                radii: () => makeRadiusTokens_1.makeRadiusTokens(frame, config.remSize),
+                shadows: () => makeShadowTokens_1.makeShadowTokens(frame),
+                spacing: () => {
                     if (!config)
                         throw new Error(errors_1.ErrorExtractTokensNoConfig);
                     return makeSpacingTokens_1.makeSpacingTokens(frame, config.spacingUnit, config.remSize);
-                }
-                case 'zindices':
-                    return makeZindexTokens_1.makeZindexTokens(frame);
-                case 'durations':
-                    return makeDurationTokens_1.makeDurationTokens(frame);
-                case 'delays':
-                    return makeDelayTokens_1.makeDelayTokens(frame);
-                case 'easings':
-                    return makeEasingTokens_1.makeEasingTokens(frame);
-            }
+                },
+                spacings: () => {
+                    if (!config)
+                        throw new Error(errors_1.ErrorExtractTokensNoConfig);
+                    return makeSpacingTokens_1.makeSpacingTokens(frame, config.spacingUnit, config.remSize);
+                },
+                zindices: () => makeZindexTokens_1.makeZindexTokens(frame)
+            };
+            if (tokenOperations.hasOwnProperty(name))
+                return tokenOperations[name]();
         };
         this.setWriteOperation = (processedToken, tokenName) => {
             this.writeOperation = {

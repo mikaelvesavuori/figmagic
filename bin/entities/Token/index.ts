@@ -73,55 +73,48 @@ class Token {
     }
   };
 
-  // TODO: Refactor complexity
   private getTokens = (frame: Frame, name: string, config: Config): any => {
-    switch (name) {
-      case 'borderwidths':
-        return makeBorderWidthTokens(frame);
-      case 'color':
-      case 'colors': {
-        return makeColorTokens(frame);
-      }
-      case 'fontfamilies': {
+    const tokenOperations = {
+      borderwidths: () => makeBorderWidthTokens(frame),
+      color: () => makeColorTokens(frame),
+      colors: () => makeColorTokens(frame),
+      delays: () => makeDelayTokens(frame),
+      durations: () => makeDurationTokens(frame),
+      easings: () => makeEasingTokens(frame),
+      fontfamilies: () => {
         if (!config) throw new Error(ErrorExtractTokensNoConfig);
         return makeFontTokens(frame, config.usePostscriptFontNames);
-      }
-      case 'fontsizes': {
+      },
+      fontsizes: () => {
         if (!config) throw new Error(ErrorExtractTokensNoConfig);
         return makeFontSizeTokens(frame, config.fontUnit, config.remSize);
-      }
-      case 'fontweights':
-        return makeFontWeightTokens(frame);
-      case 'letterspacings': {
+      },
+      fontweights: () => makeFontWeightTokens(frame),
+      letterspacings: () => {
         if (!config) throw new Error(ErrorExtractTokensNoConfig);
         return makeLetterSpacingTokens(frame, config.letterSpacingUnit);
-      }
-      case 'lineheights':
-        return makeLineHeightTokens(frame, config.remSize);
-      case 'mediaqueries':
-        return makeMediaQueryTokens(frame);
-      case 'opacities': {
+      },
+      lineheights: () => makeLineHeightTokens(frame, config.remSize),
+      mediaqueries: () => makeMediaQueryTokens(frame),
+      opacities: () => {
         if (!config) throw new Error(ErrorExtractTokensNoConfig);
         return makeOpacityTokens(frame, config.opacitiesUnit);
-      }
-      case 'radii':
-        return makeRadiusTokens(frame, config.remSize);
-      case 'shadows':
-        return makeShadowTokens(frame);
-      case 'spacing':
-      case 'spacings': {
+      },
+      radii: () => makeRadiusTokens(frame, config.remSize),
+      shadows: () => makeShadowTokens(frame),
+      spacing: () => {
         if (!config) throw new Error(ErrorExtractTokensNoConfig);
         return makeSpacingTokens(frame, config.spacingUnit, config.remSize);
-      }
-      case 'zindices':
-        return makeZindexTokens(frame);
-      case 'durations':
-        return makeDurationTokens(frame);
-      case 'delays':
-        return makeDelayTokens(frame);
-      case 'easings':
-        return makeEasingTokens(frame);
-    }
+      },
+      spacings: () => {
+        if (!config) throw new Error(ErrorExtractTokensNoConfig);
+        return makeSpacingTokens(frame, config.spacingUnit, config.remSize);
+      },
+      zindices: () => makeZindexTokens(frame)
+    };
+
+    // @ts-ignore
+    if (tokenOperations.hasOwnProperty(name)) return tokenOperations[name]();
   };
 
   setWriteOperation = (processedToken: ProcessedToken, tokenName: string): void => {

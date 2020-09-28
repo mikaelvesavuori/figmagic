@@ -30,7 +30,7 @@ export function writeElements(elements: any[], config: Config): void {
 
       if (!config.skipFileGeneration.skipStyled) {
         const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
-        writeFileHelper(FIXED_CONFIG, 'style', config.outputFormatElements, checkIfExists(PATH));
+        writeFileHelper(FIXED_CONFIG, 'styled', config.outputFormatElements, checkIfExists(PATH));
       }
 
       if (!config.skipFileGeneration.skipStorybook) {

@@ -17,7 +17,7 @@ function writeElements(elements, config) {
             }
             if (!config.skipFileGeneration.skipStyled) {
                 const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
-                writeFileHelper(FIXED_CONFIG, 'style', config.outputFormatElements, checkIfExists_1.checkIfExists(PATH));
+                writeFileHelper(FIXED_CONFIG, 'styled', config.outputFormatElements, checkIfExists_1.checkIfExists(PATH));
             }
             if (!config.skipFileGeneration.skipStorybook) {
                 const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.stories.${FIXED_CONFIG.outputFormatStorybook}`;

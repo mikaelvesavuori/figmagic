@@ -28,7 +28,6 @@ import {
 /**
  * Orchestrator to get file content and path, before writing files
  */
-// TODO: Refactor if possible
 export function getFileContentAndPath(
   getFileContentAndPathOperation: GetFileDataOperation
 ):
@@ -82,8 +81,8 @@ export function getFileContentAndPath(
             extraProps
           } as PrepComponent);
       },
-      style: () => {
-        if (type === 'style' && templates)
+      styled: () => {
+        if (type === 'styled' && templates)
           return prepStyledComponents({
             name,
             filePath,

@@ -5,7 +5,7 @@ exports.acceptedFileTypes = [
     'raw',
     'token',
     'component',
-    'style',
+    'styled',
     'css',
     'story',
     'description'
