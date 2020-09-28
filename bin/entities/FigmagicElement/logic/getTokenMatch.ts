@@ -4,6 +4,7 @@ import { TokenMatch } from '../../../contracts/TokenMatch';
 
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 import { convertRgbaToHex } from '../../../frameworks/string/convertRgbaToHex';
+import { getAlphaInPercent } from '../../../frameworks/string/getAlphaInPercent';
 
 import { MsgGetTokenMatchNoMatch } from '../../../frameworks/messages/messages';
 import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../../frameworks/errors/errors';
@@ -159,9 +160,3 @@ function matchOther(
     throw new Error(error);
   }
 }
-
-const getAlphaInPercent = (color: string): string => {
-  const SECTIONED = color.split(',');
-  // @ts-ignore
-  return SECTIONED[SECTIONED.length - 1].replace(/ /gi, '').replace(')', '') * 100 + '%';
-};

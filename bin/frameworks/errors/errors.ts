@@ -50,6 +50,9 @@ export const ErrorFigmagicController = ErrorMessage('Error in FigmagicController
 export const ErrorFindShortenedNameMatchWrongType = ErrorMessage(
   'Arguments are not of string type!'
 );
+export const ErrorGetAlphaInPercent = ErrorMessage(
+  'Missing RGB(A) color string when calling getAlphaInPercent()!'
+);
 export const ErrorGetData = ErrorMessage(
   'Could not retrieve any data. Are you missing a valid API key?'
 );
@@ -292,6 +295,7 @@ export const ErrorToPascalCase = ErrorMessage(
   'Missing "str" argument when calling toPascalCase()!'
 );
 export const ErrorUpdateParsing = ErrorMessage('Error in updateParsing()!');
+export const ErrorValidateConfig = ErrorMessage('Error when validating config!');
 export const ErrorValidateConfigFileName = ErrorMessage(
   'Provided Figma file name in configuration is invalid!'
 );

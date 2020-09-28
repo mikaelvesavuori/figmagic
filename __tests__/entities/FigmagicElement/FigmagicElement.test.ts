@@ -31,7 +31,6 @@ describe('Success cases', () => {
     );
   });
 
-  // TODO: LOC 84,147-152,211,261,291
   test('It should return a flat Figmagic element when passing in valid token data (colors), configuration, and description', async () => {
     const USER_CONFIG_PATH = path.join(`\${process.cwd()}`, `testdata`, `testConfig`);
     const DESCRIPTION = `type=text\nplaceholder=Some placeholder text\n\nAn example of a Figmagic element description!`;

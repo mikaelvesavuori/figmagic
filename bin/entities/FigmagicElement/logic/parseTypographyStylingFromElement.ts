@@ -153,7 +153,7 @@ const getFiles = (path: string, outputFormatTokens: string): any => {
       lineHeights
     };
   } catch (error) {
-    throw new Error(error); // TODO: Add real error
+    throw new Error(error);
   }
 };
 

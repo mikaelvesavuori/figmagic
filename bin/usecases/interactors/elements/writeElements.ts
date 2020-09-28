@@ -1,11 +1,10 @@
-import * as fs from 'fs';
-
 import { Config } from '../../../contracts/Config';
 import { FigmagicElement } from '../../../contracts/FigmagicElement';
 import { WriteOperation } from '../../../contracts/Write';
 
 import { toPascalCase } from '../../../frameworks/string/toPascalCase';
 import { writeFile } from '../../../frameworks/filesystem/writeFile';
+import { checkIfExists } from '../../../frameworks/filesystem/checkIfExists';
 
 import { ErrorWriteElements } from '../../../frameworks/errors/errors';
 
@@ -18,11 +17,32 @@ export function writeElements(elements: any[], config: Config): void {
 
     elements.forEach((element) => {
       const FIXED_CONFIG = makeFixedConfig(element, config);
-      if (!config.skipFileGeneration.skipReact) writeComponent(FIXED_CONFIG);
-      if (!config.skipFileGeneration.skipStyled) writeStyled(FIXED_CONFIG);
-      if (!config.skipFileGeneration.skipCss) writeCss(FIXED_CONFIG);
-      if (!config.skipFileGeneration.skipStorybook) writeStorybook(FIXED_CONFIG);
-      if (!config.skipFileGeneration.skipDescription) writeDescription(FIXED_CONFIG);
+
+      if (!config.skipFileGeneration.skipReact) {
+        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.${FIXED_CONFIG.outputFormatElements}`;
+        writeFileHelper(
+          FIXED_CONFIG,
+          'component',
+          config.outputFormatElements,
+          checkIfExists(PATH)
+        );
+      }
+
+      if (!config.skipFileGeneration.skipStyled) {
+        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
+        writeFileHelper(FIXED_CONFIG, 'style', config.outputFormatElements, checkIfExists(PATH));
+      }
+
+      if (!config.skipFileGeneration.skipStorybook) {
+        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.stories.${FIXED_CONFIG.outputFormatStorybook}`;
+        writeFileHelper(FIXED_CONFIG, 'story', config.outputFormatStorybook, checkIfExists(PATH));
+      }
+
+      if (!config.skipFileGeneration.skipCss)
+        writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss);
+
+      if (!config.skipFileGeneration.skipDescription)
+        writeFileHelper(FIXED_CONFIG, 'description', config.outputFormatDescription);
     });
   } catch (error) {
     throw new Error(ErrorWriteElements);
@@ -73,89 +93,23 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
 };
 
 /**
- * @description Helper to write React component
+ * @description Helper to consolidate writing the different types of files.
+ * Undefined on "fileExists" simply means that it's not applicable to this file
  */
-const writeComponent = (config: WriteOperation): void => {
-  const FILE_EXISTS = fs.existsSync(
-    `${config.folder}/${config.fixedName}.${config.outputFormatElements}`
-  );
-
-  if (!FILE_EXISTS || config.forceUpdate)
+const writeFileHelper = (
+  config: WriteOperation,
+  type: string,
+  format: string,
+  fileExists: boolean | undefined = undefined
+): void => {
+  if (fileExists === false || config.forceUpdate)
     writeFile({
-      type: 'component',
+      type,
       file: config.html,
       path: config.folder,
       name: config.fixedName,
-      format: config.outputFormatElements,
+      format,
       metadata: config.metadata,
       templates: config.templates
     } as WriteOperation);
-};
-
-/**
- * @description Helper to write Styled Components file
- */
-const writeStyled = (config: WriteOperation): void => {
-  const FILE_EXISTS = fs.existsSync(
-    `${config.folder}/${config.fixedName}Styled.${config.outputFormatElements}`
-  );
-  if (!FILE_EXISTS || config.forceUpdate)
-    writeFile({
-      type: 'style',
-      file: config.css,
-      path: config.folder,
-      name: config.fixedName,
-      format: config.outputFormatElements,
-      metadata: config.metadata,
-      templates: config.templates
-    } as WriteOperation);
-};
-
-/**
- * @description Helper to write CSS file
- */
-const writeCss = (config: WriteOperation): void => {
-  writeFile({
-    type: 'css',
-    file: config.css,
-    path: config.folder,
-    name: config.name,
-    format: config.outputFormatCss,
-    metadata: config.metadata,
-    templates: config.templates
-  } as WriteOperation);
-};
-
-/**
- * @description Helper to write Storybook component
- */
-const writeStorybook = (config: WriteOperation): void => {
-  const FILE_EXISTS = fs.existsSync(
-    `${config.folder}/${config.fixedName}.stories.${config.outputFormatStorybook}`
-  );
-  if (!FILE_EXISTS || config.forceUpdate)
-    writeFile({
-      type: 'story',
-      file: config.css,
-      path: config.folder,
-      name: config.fixedName,
-      format: config.outputFormatStorybook,
-      metadata: config.metadata,
-      templates: config.templates
-    } as WriteOperation);
-};
-
-/**
- * @description Helper to write Markdown description
- */
-const writeDescription = (config: WriteOperation): void => {
-  writeFile({
-    type: 'description',
-    file: config.description,
-    path: config.folder,
-    name: config.name,
-    format: config.outputFormatDescription,
-    metadata: config.metadata,
-    templates: config.templates
-  } as WriteOperation);
 };

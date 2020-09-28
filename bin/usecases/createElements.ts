@@ -30,6 +30,6 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
 
     writeElements(ELEMENTS, config);
   } catch (error) {
-    throw new Error(error); // TODO: Add real error?
+    throw new Error(error);
   }
 }

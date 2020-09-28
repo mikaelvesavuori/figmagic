@@ -12,16 +12,23 @@ function writeElements(elements, config) {
             throw new Error(errors_1.ErrorWriteElements);
         elements.forEach((element) => {
             const FIXED_CONFIG = makeFixedConfig(element, config);
-            if (!config.skipFileGeneration.skipReact)
-                writeComponent(FIXED_CONFIG);
-            if (!config.skipFileGeneration.skipStyled)
-                writeStyled(FIXED_CONFIG);
+            if (!config.skipFileGeneration.skipReact) {
+                const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.${FIXED_CONFIG.outputFormatElements}`;
+                console.log('react path', PATH);
+                writeFileHelper(FIXED_CONFIG, 'component', config.outputFormatElements, checkIfExists(PATH));
+            }
+            if (!config.skipFileGeneration.skipStyled) {
+                const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
+                writeFileHelper(FIXED_CONFIG, 'style', config.outputFormatElements, checkIfExists(PATH));
+            }
             if (!config.skipFileGeneration.skipCss)
-                writeCss(FIXED_CONFIG);
-            if (!config.skipFileGeneration.skipStorybook)
-                writeStorybook(FIXED_CONFIG);
+                writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss);
+            if (!config.skipFileGeneration.skipStorybook) {
+                const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.stories.${FIXED_CONFIG.outputFormatStorybook}`;
+                writeFileHelper(FIXED_CONFIG, 'story', config.outputFormatStorybook, checkIfExists(PATH));
+            }
             if (!config.skipFileGeneration.skipDescription)
-                writeDescription(FIXED_CONFIG);
+                writeFileHelper(FIXED_CONFIG, 'description', config.outputFormatDescription);
         });
     }
     catch (error) {
@@ -66,65 +73,17 @@ const makeFixedConfig = (element, config) => {
         fixedName
     };
 };
-const writeComponent = (config) => {
-    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}.${config.outputFormatElements}`);
-    if (!FILE_EXISTS || config.forceUpdate)
+const checkIfExists = (path) => fs.existsSync(path);
+const writeFileHelper = (config, type, format, fileExists = undefined) => {
+    if (fileExists === false || config.forceUpdate)
         writeFile_1.writeFile({
-            type: 'component',
+            type,
             file: config.html,
             path: config.folder,
             name: config.fixedName,
-            format: config.outputFormatElements,
+            format,
             metadata: config.metadata,
             templates: config.templates
         });
-};
-const writeStyled = (config) => {
-    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}Styled.${config.outputFormatElements}`);
-    if (!FILE_EXISTS || config.forceUpdate)
-        writeFile_1.writeFile({
-            type: 'style',
-            file: config.css,
-            path: config.folder,
-            name: config.fixedName,
-            format: config.outputFormatElements,
-            metadata: config.metadata,
-            templates: config.templates
-        });
-};
-const writeCss = (config) => {
-    writeFile_1.writeFile({
-        type: 'css',
-        file: config.css,
-        path: config.folder,
-        name: config.name,
-        format: config.outputFormatCss,
-        metadata: config.metadata,
-        templates: config.templates
-    });
-};
-const writeStorybook = (config) => {
-    const FILE_EXISTS = fs.existsSync(`${config.folder}/${config.fixedName}.stories.${config.outputFormatStorybook}`);
-    if (!FILE_EXISTS || config.forceUpdate)
-        writeFile_1.writeFile({
-            type: 'story',
-            file: config.css,
-            path: config.folder,
-            name: config.fixedName,
-            format: config.outputFormatStorybook,
-            metadata: config.metadata,
-            templates: config.templates
-        });
-};
-const writeDescription = (config) => {
-    writeFile_1.writeFile({
-        type: 'description',
-        file: config.description,
-        path: config.folder,
-        name: config.name,
-        format: config.outputFormatDescription,
-        metadata: config.metadata,
-        templates: config.templates
-    });
 };
 //# sourceMappingURL=writeElements.js.map

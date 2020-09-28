@@ -1,5 +1,7 @@
 import { Config } from '../../../contracts/Config';
 
+import { ErrorValidateConfig } from '../../../frameworks/errors/errors';
+
 import {
   ErrorValidateConfigFileName,
   ErrorValidateConfigFontUnit,
@@ -21,7 +23,7 @@ import {
 } from '../../../frameworks/errors/errors';
 
 export function validateConfig(config: Config): boolean {
-  if (!config) throw new Error('validateConfig error'); // TODO: Add real error
+  if (!config) throw new Error(ErrorValidateConfig);
   try {
     validateFontUnit(config.fontUnit);
     validateLetterSpacingUnit(config.letterSpacingUnit);
