@@ -324,6 +324,7 @@ export const baseConfig: Config = {
   syncElements: false,
   syncGraphics: false,
   templates: {
+    templatePathGraphic: 'templates/graphic',
     templatePathReact: 'templates/react',
     templatePathStorybook: 'templates/story',
     templatePathStyled: 'templates/styled'

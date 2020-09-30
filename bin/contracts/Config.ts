@@ -31,10 +31,10 @@ export type Config = {
   syncGraphics: boolean;
   syncTokens: boolean;
   templates: {
+    templatePathGraphic: string;
     templatePathReact: string;
     templatePathStorybook: string;
     templatePathStyled: string;
-    templatePathGraphic: string;
   };
   token: string | null;
   url: string | null;

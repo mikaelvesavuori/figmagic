@@ -701,6 +701,32 @@ describe('Success cases', () => {
     });
   });
 
+  describe('Template path graphics', () => {
+    test('It should return template path for graphics (long-hand)', () => {
+      const templatePathGraphic = 'foo/graphic';
+      // @ts-ignore
+      expect(parseCliArgs(['--templatePathGraphic', templatePathGraphic])).toEqual(
+        expect.objectContaining({
+          templates: expect.objectContaining({
+            templatePathGraphic
+          })
+        })
+      );
+    });
+
+    test('It should return template path for graphics (short-hand)', () => {
+      const templatePathGraphic = 'foo/graphic';
+      // @ts-ignore
+      expect(parseCliArgs(['-tpgraphic', templatePathGraphic])).toEqual(
+        expect.objectContaining({
+          templates: expect.objectContaining({
+            templatePathGraphic
+          })
+        })
+      );
+    });
+  });
+
   describe('Token', () => {
     test('It should return "asdf" for token if passing "asdf" (long-hand)', () => {
       // @ts-ignore

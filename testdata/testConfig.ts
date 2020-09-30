@@ -31,10 +31,10 @@ export const testConfig = {
   syncGraphics: false,
   syncTokens: true,
   templates: {
+    templatePathGraphic: 'templates/graphic',
     templatePathReact: 'templates/react',
     templatePathStorybook: 'templates/story',
-    templatePathStyled: 'templates/styled',
-    templatePathGraphic: 'templates/graphic'
+    templatePathStyled: 'templates/styled'
   },
   token: '',
   url: '',

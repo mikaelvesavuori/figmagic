@@ -3,7 +3,8 @@ import {
   PrepStyledComponents,
   PrepCss,
   PrepStorybook,
-  PrepDescription
+  PrepDescription,
+  PrepGraphicComponent
 } from '../../../bin/contracts/PrepFile';
 
 import {
@@ -11,8 +12,11 @@ import {
   prepStyledComponents,
   prepCss,
   prepStorybook,
-  prepDescription
+  prepDescription,
+  prepGraphicComponent
 } from '../../../bin/frameworks/filesystem/prepFile';
+
+import { svgData } from '../../../testdata/svg/svg';
 
 describe('Failure cases', () => {
   describe('No input', () => {
@@ -40,6 +44,11 @@ describe('Failure cases', () => {
       // @ts-ignore
       expect(() => prepDescription()).toThrow();
     });
+
+    test('prepGraphicComponent should throw an error if no argument is provided', () => {
+      // @ts-ignore
+      expect(() => prepGraphicComponent()).toThrow();
+    });
   });
 
   describe('Incorrect input', () => {
@@ -66,6 +75,11 @@ describe('Failure cases', () => {
     test('prepDescription should throw an error if incorrect (empty) input is provided', () => {
       // @ts-ignore
       expect(() => prepDescription({})).toThrow();
+    });
+
+    test('prepGraphicComponent should throw an error if incorrect (empty) input is provided', () => {
+      // @ts-ignore
+      expect(() => prepGraphicComponent({})).toThrow();
     });
   });
 });
@@ -190,5 +204,28 @@ Description here.`;
     const expectedData = { fileContent: fileContent, filePath: 'ComponentName.description.md' };
 
     expect(prepDescription(data as PrepDescription)).toMatchObject(expectedData);
+  });
+
+  test('It should prepare a graphic component file based on the React template', () => {
+    const data = {
+      name: 'aaa',
+      filePath: 'ComponentName',
+      format: 'tsx',
+      templates: {
+        templatePathGraphic: 'templates/graphic'
+      },
+      file: svgData
+    };
+
+    const fileContent = `import React from 'react';
+
+const aaa = (props) => <svg width=\"55\" height=\"56\" viewBox=\"0 0 55 56\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M2.11131 28.0662L17.0333 51.499L52.1723 1.43805\" stroke=\"#219653\" stroke-width=\"5\"/>
+</svg>
+
+export default aaa;`;
+
+    const expectedData = { fileContent, filePath: 'ComponentName.tsx' };
+
+    expect(prepGraphicComponent(data as PrepGraphicComponent)).toMatchObject(expectedData);
   });
 });
