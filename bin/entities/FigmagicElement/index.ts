@@ -152,14 +152,19 @@ class FigmagicElement {
     }
   }
 
-  private handleNestedElements(): UpdatedCssAndImports {
+  private handleNestedElements(css = ``): UpdatedCssAndImports {
     try {
-      let css = ``;
       let imports: Record<string, unknown>[] = [];
 
       this.children?.forEach((el: Frame) => {
         if (!el.name) return;
         if (el.name[0] === '_') return;
+
+        // Support recursive logic for infinitely nested elements?
+        //if (el.children) {
+        //  const x = el.children.filter((c) => c.type === 'GROUP');
+        //  if (x.length > 0) this.handleNestedElements(css);
+        //}
 
         const MAIN_ELEMENT = el.children?.filter(
           (e: Frame) => e.type === 'RECTANGLE' && e.name[0] !== '_'

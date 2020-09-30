@@ -49,7 +49,14 @@ function getFileContentAndPath(getFileContentAndPathOperation) {
                     return prepFile_1.prepStorybook({ name, filePath, format, templates, text });
             },
             css: () => prepFile_1.prepCss({ name, filePath, format, imports, file }),
-            description: () => prepFile_1.prepDescription({ filePath, file, format })
+            description: () => prepFile_1.prepDescription({ filePath, file, format }),
+            graphic: () => prepFile_1.prepGraphicComponent({
+                name,
+                filePath,
+                format,
+                templates,
+                file
+            })
         };
         if (fileOperations.hasOwnProperty(type))
             return fileOperations[type]();

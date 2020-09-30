@@ -18,6 +18,7 @@ import {
   ErrorValidateConfigTemplatePathReact,
   ErrorValidateConfigTemplatePathStorybook,
   ErrorValidateConfigTemplatePathStyled,
+  ErrorValidateConfigTemplatePathGraphic,
   ErrorValidateConfigFolderName,
   ErrorValidateConfigOutputScaleGraphics
 } from '../../../frameworks/errors/errors';
@@ -45,6 +46,7 @@ export function validateConfig(config: Config): boolean {
     validateTemplatePathReact(config.templates.templatePathReact);
     validateTemplatePathStorybook(config.templates.templatePathStorybook);
     validateTemplatePathStyled(config.templates.templatePathStyled);
+    validateTemplatePathGraphic(config.templates.templatePathGraphic);
     return true;
   } catch (error) {
     throw new Error(error);
@@ -147,4 +149,9 @@ const validateTemplatePathStorybook = (path: string): boolean => {
 const validateTemplatePathStyled = (path: string): boolean => {
   if (path) return true;
   throw new Error(ErrorValidateConfigTemplatePathStyled);
+};
+
+const validateTemplatePathGraphic = (path: string): boolean => {
+  if (path) return true;
+  throw new Error(ErrorValidateConfigTemplatePathGraphic);
 };

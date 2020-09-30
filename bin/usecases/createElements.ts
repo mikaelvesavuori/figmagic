@@ -25,10 +25,16 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
     await refresh(config.outputFolderElements);
 
     const { components }: any = data;
+
     const ELEMENTS_PAGE = createPage(data.document.children, 'Elements');
     const ELEMENTS = processElements(ELEMENTS_PAGE, config, components);
-
     writeElements(ELEMENTS, config);
+
+    if (config.outputFormatGraphics === 'svg' && config.syncGraphics) {
+      const GRAPHICS_PAGE = createPage(data.document.children, 'Graphics');
+      const GRAPHICS = processElements(GRAPHICS_PAGE, config, components);
+      writeElements(GRAPHICS, config, true);
+    }
   } catch (error) {
     throw new Error(error);
   }

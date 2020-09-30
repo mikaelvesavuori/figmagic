@@ -1,10 +1,9 @@
 import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 
 import { getTokenMatch } from '../getTokenMatch';
+import { updateParsing } from './updateParsing';
 
 import { ErrorParseBorderColor } from '../../../../frameworks/errors/errors';
-
-import { updateParsing } from './updateParsing';
 
 type BorderColorParams = {
   colors: Record<string, unknown>;

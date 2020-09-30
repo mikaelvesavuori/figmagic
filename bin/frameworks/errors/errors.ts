@@ -11,6 +11,7 @@ export const ErrorCamelize = ErrorMessage('No string provided to camelize()!');
 export const ErrorCleanArrays = ErrorMessage(
   'Missing one or more of "classNames" and/or "classContent" when calling cleanArrays()!'
 );
+export const ErrorCleanSvgData = ErrorMessage('No data passed to cleanSvgData()!');
 export const ErrorConvertHexToRgba = ErrorMessage(
   'Missing one or more of red, green, blue and alpha in convertHexToRgba()!'
 );
@@ -95,6 +96,7 @@ export const ErrorGetPaddingY = ErrorMessage('Error when calling getPaddingY()!'
 export const ErrorGetTokenMatch = ErrorMessage(
   'Missing one or more of required arguments: "tokens", "tokenFileName", "property", and/or "expectedValue"!'
 );
+export const ErrorGetSvgFileData = ErrorMessage('Missing string when calling getSvgFileData()!');
 export const ErrorGetTokenMatchNoRemSize = ErrorMessage(
   'Missing required "remSize" argument for getTokenMatch() when converting to rem/em!'
 );
@@ -254,6 +256,9 @@ export const ErrorPrepFileStorybook = ErrorMessage(
 export const ErrorPrepFileStyledComponents = ErrorMessage(
   'Missing required arguments in type, when calling prepComponent()!'
 );
+export const ErrorPrepFileGraphicComponent = ErrorMessage(
+  'Missing required arguments in type, when calling prepGraphicComponent()!'
+);
 export const ErrorPrepareWrite = ErrorMessage('No templates provided to prepareWrite()!');
 export const ErrorProcessElements = ErrorMessage(
   'Missing one or more of required arguments: "elementsPage", "config", and/or "components"! Make sure you have a page called "Elements" in your Figma document.'
@@ -346,6 +351,9 @@ export const ErrorValidateConfigTemplatePathStorybook = ErrorMessage(
 );
 export const ErrorValidateConfigTemplatePathStyled = ErrorMessage(
   'Argument "templatePathStyled" cannot be empty!'
+);
+export const ErrorValidateConfigTemplatePathGraphic = ErrorMessage(
+  'Argument "templatePathGraphic" cannot be empty!'
 );
 export const ErrorWrite = ErrorMessage('Error while attempting to write file!');
 export const ErrorWriteBaseJson = ErrorMessage('Error while attempting to write Figma JSON!');

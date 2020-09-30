@@ -7,11 +7,10 @@ import { FigmaElement } from '../../../contracts/FigmaElement';
 import { ErrorProcessElements } from '../../../frameworks/errors/errors';
 
 /**
- * @description Process all elements from Figma page called "Elements"
+ * @description Process all elements from a given Figma page
  * 1. Filter out components
- * 2. Add description from Figma
- * 3. Parse elements (typography and styling)
- * 4. Return list of cleaned items
+ * 2. Parse elements (typography and styling)
+ * 3. Return list of cleaned items
  */
 export function processElements(
   elementsPage: any[],

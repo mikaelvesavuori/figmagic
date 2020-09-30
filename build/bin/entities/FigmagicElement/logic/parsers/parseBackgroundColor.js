@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseBackgroundColor = void 0;
 const getTokenMatch_1 = require("../getTokenMatch");
-const errors_1 = require("../../../../frameworks/errors/errors");
 const updateParsing_1 = require("./updateParsing");
+const errors_1 = require("../../../../frameworks/errors/errors");
 function parseBackgroundColor(css, imports, params) {
     try {
         if (!css || !imports || !params)

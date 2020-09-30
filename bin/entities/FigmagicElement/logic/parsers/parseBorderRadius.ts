@@ -1,10 +1,9 @@
 import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 
 import { getTokenMatch } from '../getTokenMatch';
+import { updateParsing } from './updateParsing';
 
 import { ErrorParseBorderRadius } from '../../../../frameworks/errors/errors';
-
-import { updateParsing } from './updateParsing';
 
 type BorderRadiusParams = {
   radii: Record<string, unknown>;

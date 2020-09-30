@@ -4,8 +4,10 @@ exports.writeElements = void 0;
 const toPascalCase_1 = require("../../../frameworks/string/toPascalCase");
 const writeFile_1 = require("../../../frameworks/filesystem/writeFile");
 const checkIfExists_1 = require("../../../frameworks/filesystem/checkIfExists");
+const getSvgFileData_1 = require("../../../frameworks/filesystem/getSvgFileData");
+const cleanSvgData_1 = require("../../../frameworks/string/cleanSvgData");
 const errors_1 = require("../../../frameworks/errors/errors");
-function writeElements(elements, config) {
+function writeElements(elements, config, isGeneratingGraphics = false) {
     try {
         if (!elements || !config)
             throw new Error(errors_1.ErrorWriteElements);
@@ -13,20 +15,23 @@ function writeElements(elements, config) {
             const FIXED_CONFIG = makeFixedConfig(element, config);
             if (!config.skipFileGeneration.skipReact) {
                 const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.${FIXED_CONFIG.outputFormatElements}`;
-                writeFileHelper(FIXED_CONFIG, 'component', config.outputFormatElements, checkIfExists_1.checkIfExists(PATH));
+                const TYPE = isGeneratingGraphics ? 'graphic' : 'component';
+                writeFileHelper(FIXED_CONFIG, TYPE, config.outputFormatElements, checkIfExists_1.checkIfExists(PATH));
             }
-            if (!config.skipFileGeneration.skipStyled) {
-                const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
-                writeFileHelper(FIXED_CONFIG, 'styled', config.outputFormatElements, checkIfExists_1.checkIfExists(PATH));
+            if (!isGeneratingGraphics) {
+                if (!config.skipFileGeneration.skipStorybook) {
+                    const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.stories.${FIXED_CONFIG.outputFormatStorybook}`;
+                    writeFileHelper(FIXED_CONFIG, 'story', config.outputFormatStorybook, checkIfExists_1.checkIfExists(PATH));
+                }
+                if (!config.skipFileGeneration.skipDescription)
+                    writeFileHelper(FIXED_CONFIG, 'description', config.outputFormatDescription);
+                if (!config.skipFileGeneration.skipStyled) {
+                    const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
+                    writeFileHelper(FIXED_CONFIG, 'styled', config.outputFormatElements, checkIfExists_1.checkIfExists(PATH));
+                }
+                if (!config.skipFileGeneration.skipCss)
+                    writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss);
             }
-            if (!config.skipFileGeneration.skipStorybook) {
-                const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.stories.${FIXED_CONFIG.outputFormatStorybook}`;
-                writeFileHelper(FIXED_CONFIG, 'story', config.outputFormatStorybook, checkIfExists_1.checkIfExists(PATH));
-            }
-            if (!config.skipFileGeneration.skipCss)
-                writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss);
-            if (!config.skipFileGeneration.skipDescription)
-                writeFileHelper(FIXED_CONFIG, 'description', config.outputFormatDescription);
         });
     }
     catch (error) {
@@ -44,6 +49,7 @@ const makeFixedConfig = (element, config) => {
     const outputFormatDescription = config.outputFormatDescription;
     const outputFormatElements = config.outputFormatElements;
     const outputFormatStorybook = config.outputFormatStorybook;
+    const outputFolderGraphics = config.outputFolderGraphics;
     const metadata = {
         dataType: null,
         html: element.html,
@@ -65,6 +71,7 @@ const makeFixedConfig = (element, config) => {
         outputFormatDescription,
         outputFormatElements,
         outputFormatStorybook,
+        outputFolderGraphics,
         metadata,
         templates,
         forceUpdate,
@@ -74,6 +81,10 @@ const makeFixedConfig = (element, config) => {
 const writeFileHelper = (config, type, format, fileExists = undefined) => {
     if (fileExists === false || config.forceUpdate) {
         const FILE_DATA = (() => {
+            if (type === 'graphic') {
+                const SVG_DATA = getSvgFileData_1.getSvgFileData(`./${config.outputFolderGraphics}/${config.name.toLowerCase()}.svg`);
+                return cleanSvgData_1.cleanSvgData(SVG_DATA);
+            }
             if (type === 'description')
                 return config.description;
             if (type === 'css')

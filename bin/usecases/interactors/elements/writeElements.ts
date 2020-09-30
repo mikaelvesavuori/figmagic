@@ -5,13 +5,15 @@ import { WriteOperation } from '../../../contracts/Write';
 import { toPascalCase } from '../../../frameworks/string/toPascalCase';
 import { writeFile } from '../../../frameworks/filesystem/writeFile';
 import { checkIfExists } from '../../../frameworks/filesystem/checkIfExists';
+import { getSvgFileData } from '../../../frameworks/filesystem/getSvgFileData';
+import { cleanSvgData } from '../../../frameworks/string/cleanSvgData';
 
 import { ErrorWriteElements } from '../../../frameworks/errors/errors';
 
 /**
  * @description Funnel function to write all the wanted files per element
  */
-export function writeElements(elements: any[], config: Config): void {
+export function writeElements(elements: any[], config: Config, isGeneratingGraphics = false): void {
   try {
     if (!elements || !config) throw new Error(ErrorWriteElements);
 
@@ -20,29 +22,27 @@ export function writeElements(elements: any[], config: Config): void {
 
       if (!config.skipFileGeneration.skipReact) {
         const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.${FIXED_CONFIG.outputFormatElements}`;
-        writeFileHelper(
-          FIXED_CONFIG,
-          'component',
-          config.outputFormatElements,
-          checkIfExists(PATH)
-        );
+        const TYPE = isGeneratingGraphics ? 'graphic' : 'component';
+        writeFileHelper(FIXED_CONFIG, TYPE, config.outputFormatElements, checkIfExists(PATH));
       }
 
-      if (!config.skipFileGeneration.skipStyled) {
-        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
-        writeFileHelper(FIXED_CONFIG, 'styled', config.outputFormatElements, checkIfExists(PATH));
+      if (!isGeneratingGraphics) {
+        if (!config.skipFileGeneration.skipStorybook) {
+          const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.stories.${FIXED_CONFIG.outputFormatStorybook}`;
+          writeFileHelper(FIXED_CONFIG, 'story', config.outputFormatStorybook, checkIfExists(PATH));
+        }
+
+        if (!config.skipFileGeneration.skipDescription)
+          writeFileHelper(FIXED_CONFIG, 'description', config.outputFormatDescription);
+
+        if (!config.skipFileGeneration.skipStyled) {
+          const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
+          writeFileHelper(FIXED_CONFIG, 'styled', config.outputFormatElements, checkIfExists(PATH));
+        }
+
+        if (!config.skipFileGeneration.skipCss)
+          writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss);
       }
-
-      if (!config.skipFileGeneration.skipStorybook) {
-        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.stories.${FIXED_CONFIG.outputFormatStorybook}`;
-        writeFileHelper(FIXED_CONFIG, 'story', config.outputFormatStorybook, checkIfExists(PATH));
-      }
-
-      if (!config.skipFileGeneration.skipCss)
-        writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss);
-
-      if (!config.skipFileGeneration.skipDescription)
-        writeFileHelper(FIXED_CONFIG, 'description', config.outputFormatDescription);
     });
   } catch (error) {
     throw new Error(ErrorWriteElements);
@@ -62,6 +62,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
   const outputFormatDescription = config.outputFormatDescription;
   const outputFormatElements = config.outputFormatElements;
   const outputFormatStorybook = config.outputFormatStorybook;
+  const outputFolderGraphics = config.outputFolderGraphics;
   const metadata = {
     dataType: null,
     html: element.html,
@@ -85,6 +86,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
     outputFormatDescription,
     outputFormatElements,
     outputFormatStorybook,
+    outputFolderGraphics,
     metadata,
     templates,
     forceUpdate,
@@ -104,6 +106,12 @@ const writeFileHelper = (
 ): void => {
   if (fileExists === false || config.forceUpdate) {
     const FILE_DATA = (() => {
+      if (type === 'graphic') {
+        const SVG_DATA = getSvgFileData(
+          `./${config.outputFolderGraphics}/${config.name.toLowerCase()}.svg`
+        );
+        return cleanSvgData(SVG_DATA);
+      }
       if (type === 'description') return config.description;
       if (type === 'css') return config.css;
       return config.html;

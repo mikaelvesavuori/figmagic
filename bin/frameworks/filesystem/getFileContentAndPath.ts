@@ -4,7 +4,8 @@ import {
   PrepCss,
   PrepDescription,
   PrepStorybook,
-  PrepStyledComponents
+  PrepStyledComponents,
+  PrepGraphicComponent
 } from '../../contracts/PrepFile';
 import { ProcessedToken } from '../../contracts/ProcessedToken';
 
@@ -13,7 +14,8 @@ import {
   prepStyledComponents,
   prepCss,
   prepStorybook,
-  prepDescription
+  prepDescription,
+  prepGraphicComponent
 } from './prepFile';
 
 import { createEnumStringOutOfObject } from '../../frameworks/string/createEnumStringOutOfObject';
@@ -96,7 +98,15 @@ export function getFileContentAndPath(
           return prepStorybook({ name, filePath, format, templates, text } as PrepStorybook);
       },
       css: () => prepCss({ name, filePath, format, imports, file } as PrepCss),
-      description: () => prepDescription({ filePath, file, format } as PrepDescription)
+      description: () => prepDescription({ filePath, file, format } as PrepDescription),
+      graphic: () =>
+        prepGraphicComponent({
+          name,
+          filePath,
+          format,
+          templates,
+          file
+        } as PrepGraphicComponent)
     };
 
     // @ts-ignore

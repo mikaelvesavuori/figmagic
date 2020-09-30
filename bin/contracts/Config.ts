@@ -34,6 +34,7 @@ export type Config = {
     templatePathReact: string;
     templatePathStorybook: string;
     templatePathStyled: string;
+    templatePathGraphic: string;
   };
   token: string | null;
   url: string | null;

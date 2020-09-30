@@ -5,5 +5,6 @@ export const acceptedFileTypes: string[] = [
   'styled',
   'css',
   'story',
-  'description'
+  'description',
+  'graphic'
 ];

@@ -38,3 +38,11 @@ export interface PrepDescription {
   file: string;
   format: string;
 }
+
+export interface PrepGraphicComponent {
+  name: string;
+  filePath: string;
+  format: string;
+  templates: Templates;
+  file: string;
+}

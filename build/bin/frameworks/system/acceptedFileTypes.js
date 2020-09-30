@@ -8,6 +8,7 @@ exports.acceptedFileTypes = [
     'styled',
     'css',
     'story',
-    'description'
+    'description',
+    'graphic'
 ];
 //# sourceMappingURL=acceptedFileTypes.js.map

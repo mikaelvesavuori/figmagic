@@ -4,7 +4,8 @@ import {
   PrepStyledComponents,
   PrepCss,
   PrepStorybook,
-  PrepDescription
+  PrepDescription,
+  PrepGraphicComponent
 } from '../../contracts/PrepFile';
 
 import { loadFile } from './loadFile';
@@ -15,7 +16,8 @@ import {
   ErrorPrepFileStyledComponents,
   ErrorPrepFileCss,
   ErrorPrepFileStorybook,
-  ErrorPrepFileDescription
+  ErrorPrepFileDescription,
+  ErrorPrepFileGraphicComponent
 } from '../errors/errors';
 
 /**
@@ -128,5 +130,28 @@ export const prepDescription = (data: PrepDescription): FileContentWithPath => {
     return { fileContent: FILE_CONTENT, filePath: `${filePath}.description.${format}` };
   } catch (error) {
     throw new Error(ErrorPrepFileDescription);
+  }
+};
+
+/**
+ * Prepare graphic component (element) to be written to file
+ */
+export const prepGraphicComponent = (data: PrepGraphicComponent): FileContentWithPath => {
+  try {
+    if (!data) throw new Error(ErrorPrepFileGraphicComponent);
+    if (!data.name || !data.filePath || !data.format || !data.templates)
+      throw new Error(ErrorPrepFileGraphicComponent);
+    const { name, filePath, format, templates, file } = data;
+
+    const PATH = `${templates.templatePathGraphic}.${format}`;
+
+    let template = loadFile(PATH) as string;
+    template = template.replace(/{{NAME}}/gi, name);
+    template = template.replace(/\s>/gi, '>');
+    template = template.replace(/{{SVG}}/gi, file);
+
+    return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
+  } catch (error) {
+    throw new Error(ErrorPrepFileGraphicComponent);
   }
 };

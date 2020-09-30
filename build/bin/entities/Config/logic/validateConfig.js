@@ -27,6 +27,7 @@ function validateConfig(config) {
         validateTemplatePathReact(config.templates.templatePathReact);
         validateTemplatePathStorybook(config.templates.templatePathStorybook);
         validateTemplatePathStyled(config.templates.templatePathStyled);
+        validateTemplatePathGraphic(config.templates.templatePathGraphic);
         return true;
     }
     catch (error) {
@@ -119,5 +120,10 @@ const validateTemplatePathStyled = (path) => {
     if (path)
         return true;
     throw new Error(errors_2.ErrorValidateConfigTemplatePathStyled);
+};
+const validateTemplatePathGraphic = (path) => {
+    if (path)
+        return true;
+    throw new Error(errors_2.ErrorValidateConfigTemplatePathGraphic);
 };
 //# sourceMappingURL=validateConfig.js.map

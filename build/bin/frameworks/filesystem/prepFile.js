@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.prepDescription = exports.prepStorybook = exports.prepCss = exports.prepStyledComponents = exports.prepComponent = void 0;
+exports.prepGraphicComponent = exports.prepDescription = exports.prepStorybook = exports.prepCss = exports.prepStyledComponents = exports.prepComponent = void 0;
 const loadFile_1 = require("./loadFile");
 const messages_1 = require("../messages/messages");
 const errors_1 = require("../errors/errors");
@@ -89,6 +89,24 @@ exports.prepDescription = (data) => {
     }
     catch (error) {
         throw new Error(errors_1.ErrorPrepFileDescription);
+    }
+};
+exports.prepGraphicComponent = (data) => {
+    try {
+        if (!data)
+            throw new Error(errors_1.ErrorPrepFileGraphicComponent);
+        if (!data.name || !data.filePath || !data.format || !data.templates)
+            throw new Error(errors_1.ErrorPrepFileGraphicComponent);
+        const { name, filePath, format, templates, file } = data;
+        const PATH = `${templates.templatePathGraphic}.${format}`;
+        let template = loadFile_1.loadFile(PATH);
+        template = template.replace(/{{NAME}}/gi, name);
+        template = template.replace(/\s>/gi, '>');
+        template = template.replace(/{{SVG}}/gi, file);
+        return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
+    }
+    catch (error) {
+        throw new Error(errors_1.ErrorPrepFileGraphicComponent);
     }
 };
 //# sourceMappingURL=prepFile.js.map

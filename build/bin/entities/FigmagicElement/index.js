@@ -104,9 +104,8 @@ class FigmagicElement {
                 this.addExtraProps(`type="${TYPE}" `);
         }
     }
-    handleNestedElements() {
+    handleNestedElements(css = ``) {
         try {
-            let css = ``;
             let imports = [];
             this.children?.forEach((el) => {
                 if (!el.name)

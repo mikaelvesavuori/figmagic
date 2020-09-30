@@ -35,7 +35,8 @@ export const baseConfig: Config = {
   templates: {
     templatePathReact: 'templates/react',
     templatePathStorybook: 'templates/story',
-    templatePathStyled: 'templates/styled'
+    templatePathStyled: 'templates/styled',
+    templatePathGraphic: 'templates/graphic'
   },
   token: '',
   url: '',

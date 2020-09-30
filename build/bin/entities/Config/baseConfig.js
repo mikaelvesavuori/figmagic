@@ -36,7 +36,8 @@ exports.baseConfig = {
     templates: {
         templatePathReact: 'templates/react',
         templatePathStorybook: 'templates/story',
-        templatePathStyled: 'templates/styled'
+        templatePathStyled: 'templates/styled',
+        templatePathGraphic: 'templates/graphic'
     },
     token: '',
     url: '',

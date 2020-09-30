@@ -126,6 +126,14 @@ function parseCliArgs(argsArray) {
             ...config.templates,
             templatePathStyled: val
         }),
+        '--templatePathGraphic': (val) => (config.templates = {
+            ...config.templates,
+            templatePathGraphic: val
+        }),
+        '-tpgraphic': (val) => (config.templates = {
+            ...config.templates,
+            templatePathGraphic: val
+        }),
         '--token': (val) => (config.token = val),
         '-t': (val) => (config.token = val),
         '--url': (val) => (config.url = val),

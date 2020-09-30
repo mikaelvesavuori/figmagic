@@ -15,9 +15,9 @@ export async function FigmagicController(config: Config, data: FigmaData): Promi
   try {
     if (!config || !data) throw new Error(ErrorFigmagicController);
 
+    if (config.syncGraphics) await createGraphics(config, data);
     if (config.syncTokens) await createTokens(config, data);
     if (config.syncElements) await createElements(config, data);
-    if (config.syncGraphics) await createGraphics(config, data);
     console.log(MsgJobComplete);
 
     return MsgJobComplete;

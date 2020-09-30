@@ -3,7 +3,7 @@ import { Templates } from './Templates';
 import { ProcessedToken } from './ProcessedToken';
 
 export type WriteOperation = {
-  type: 'raw' | 'token' | 'component' | 'styled' | 'css' | 'story' | 'description';
+  type: 'raw' | 'token' | 'component' | 'styled' | 'css' | 'story' | 'description' | 'graphic';
   file: string | ProcessedToken;
   path: string;
   name: string;
@@ -19,6 +19,7 @@ export type WriteOperation = {
   outputFormatGraphics?: 'svg' | 'png';
   outputFormatStorybook?: 'ts' | 'js';
   outputFormatTokens?: 'ts' | 'mjs' | 'js';
+  outputFolderGraphics?: 'string';
   fixedName?: string;
   forceUpdate?: string;
   css?: string;
@@ -26,7 +27,7 @@ export type WriteOperation = {
 };
 
 export type GetFileDataOperation = {
-  type: 'raw' | 'token' | 'component' | 'styled' | 'css' | 'story' | 'description';
+  type: 'raw' | 'token' | 'component' | 'styled' | 'css' | 'story' | 'description' | 'graphic';
   file: string | ProcessedToken;
   path: string;
   name: string;

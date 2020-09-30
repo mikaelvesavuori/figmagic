@@ -10,12 +10,12 @@ async function FigmagicController(config, data) {
     try {
         if (!config || !data)
             throw new Error(errors_1.ErrorFigmagicController);
+        if (config.syncGraphics)
+            await createGraphics_1.createGraphics(config, data);
         if (config.syncTokens)
             await createTokens_1.createTokens(config, data);
         if (config.syncElements)
             await createElements_1.createElements(config, data);
-        if (config.syncGraphics)
-            await createGraphics_1.createGraphics(config, data);
         console.log(messages_1.MsgJobComplete);
         return messages_1.MsgJobComplete;
     }

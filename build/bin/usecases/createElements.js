@@ -22,6 +22,11 @@ async function createElements(config, data) {
         const ELEMENTS_PAGE = createPage_1.createPage(data.document.children, 'Elements');
         const ELEMENTS = processElements_1.processElements(ELEMENTS_PAGE, config, components);
         writeElements_1.writeElements(ELEMENTS, config);
+        if (config.outputFormatGraphics === 'svg' && config.syncGraphics) {
+            const GRAPHICS_PAGE = createPage_1.createPage(data.document.children, 'Graphics');
+            const GRAPHICS = processElements_1.processElements(GRAPHICS_PAGE, config, components);
+            writeElements_1.writeElements(GRAPHICS, config, true);
+        }
     }
     catch (error) {
         throw new Error(error);
