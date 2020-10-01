@@ -14,6 +14,8 @@ export type Config = {
   outputFormatGraphics: 'svg' | 'png';
   outputFormatStorybook: 'ts' | 'js';
   outputFormatTokens: 'ts' | 'mjs' | 'js';
+  outputGraphicElements: boolean;
+  outputGraphicElementsMap: boolean;
   outputScaleGraphics: number;
   outputDataTypeToken: null | 'enum';
   recompileLocal: boolean;
@@ -57,6 +59,8 @@ export type ConfigDTO = {
   outputFormatGraphics?: 'svg' | 'png';
   outputFormatStorybook?: 'ts' | 'js';
   outputFormatTokens?: 'ts' | 'mjs' | 'js';
+  outputGraphicElements?: boolean;
+  outputGraphicElementsMap?: boolean;
   outputScaleGraphics?: number;
   outputDataTypeToken?: null | 'enum';
   recompileLocal?: boolean;

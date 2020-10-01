@@ -30,4 +30,24 @@ describe('Success cases', () => {
     expect(FILE_EXISTS).toBeTruthy();
     trash(CONFIG.outputFolderElements);
   });
+
+  test('It should write graphic elements and graphic elements map file', async () => {
+    const CONFIG = testConfig;
+    CONFIG.token = process.env.FIGMA_TOKEN || '';
+    CONFIG.url = process.env.FIGMA_URL || '';
+    CONFIG.syncGraphics = true;
+    CONFIG.outputFolderElements = '__test-graphic-elements__';
+    CONFIG.outputFormatGraphics = 'svg';
+    CONFIG.outputFormatElements = 'tsx';
+    CONFIG.outputGraphicElements = true;
+    CONFIG.outputGraphicElementsMap = true;
+    CONFIG.syncGraphics = true;
+    const DATA = figmaTestResponse;
+
+    // @ts-ignore
+    await createElements(CONFIG, DATA);
+    const FILE_EXISTS = fs.existsSync(`${CONFIG.outputFolderElements}/Graphics/index.tsx`);
+    expect(FILE_EXISTS).toBeTruthy();
+    trash(CONFIG.outputFolderElements);
+  });
 });

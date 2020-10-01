@@ -14,6 +14,8 @@ export const testConfig = {
   outputFormatGraphics: 'svg',
   outputFormatStorybook: 'js',
   outputFormatTokens: 'ts',
+  outputGraphicElements: false,
+  outputGraphicElementsMap: false,
   outputScaleGraphics: 1,
   outputDataTypeToken: null,
   recompileLocal: false,

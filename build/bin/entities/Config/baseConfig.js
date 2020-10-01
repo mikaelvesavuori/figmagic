@@ -17,6 +17,8 @@ exports.baseConfig = {
     outputFormatGraphics: 'svg',
     outputFormatStorybook: 'js',
     outputFormatTokens: 'ts',
+    outputGraphicElements: false,
+    outputGraphicElementsMap: false,
     outputScaleGraphics: 1,
     outputDataTypeToken: null,
     recompileLocal: false,
@@ -34,10 +36,10 @@ exports.baseConfig = {
     syncGraphics: false,
     syncTokens: true,
     templates: {
+        templatePathGraphic: 'templates/graphic',
         templatePathReact: 'templates/react',
         templatePathStorybook: 'templates/story',
-        templatePathStyled: 'templates/styled',
-        templatePathGraphic: 'templates/graphic'
+        templatePathStyled: 'templates/styled'
     },
     token: '',
     url: '',

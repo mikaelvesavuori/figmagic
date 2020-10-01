@@ -319,6 +319,46 @@ describe('Success cases', () => {
     });
   });
 
+  describe('Output graphic elements as React components', () => {
+    test('It should return "true" for outputGraphicElements if passing "--outputGraphicElements" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputGraphicElements'])).toEqual(
+        expect.objectContaining({
+          outputGraphicElements: true
+        })
+      );
+    });
+
+    test('It should return "true" for outputGraphicElements if passing "-oge" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-oge'])).toEqual(
+        expect.objectContaining({
+          outputGraphicElements: true
+        })
+      );
+    });
+  });
+
+  describe('Output map/index file for all graphic elements exported as React components', () => {
+    test('It should return "true" for outputGraphicElementsMap if passing "--outputGraphicElementsMap" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--outputGraphicElementsMap', 'ts'])).toEqual(
+        expect.objectContaining({
+          outputGraphicElementsMap: true
+        })
+      );
+    });
+
+    test('It should return "true" for outputGraphicElementsMap if passing "-ogm" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-ogm', 'ts'])).toEqual(
+        expect.objectContaining({
+          outputGraphicElementsMap: true
+        })
+      );
+    });
+  });
+
   describe('Output scale graphics', () => {
     test('It should return "2" for outputScaleGraphics if passing "2x" (long-hand)', () => {
       // @ts-ignore

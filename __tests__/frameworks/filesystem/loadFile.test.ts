@@ -33,26 +33,4 @@ describe('Success cases', () => {
       })
     );
   });
-
-  /*
-// DEACTIVATING THIS, AS IT BREAKS ON WINDOWS BUILDS (...?)
-
-test('It should return data from local file in raw format (not JSON-parsed)', () => {
-  const FILE = loadFile(path.join(`${process.cwd()}`, `testdata`, `figmagicrc`), true);
-
-  expect(FILE).toBe(`{
-  \"debugMode\": false,
-  \"fontUnit\": \"rem\",
-  \"figmaData\": \"figma.json\",
-  \"figmagicFolder\": \".figmagic\",
-  \"outputFolderTokens\": \"tokens\",
-  \"outputFormatTokens\": \"mjs\",
-  \"outputFolderGraphics\": \"graphics\",
-  \"outputFormatGraphics\": \"svg\",
-  \"outputScaleGraphics\": 1,
-  \"spacingUnit\": \"rem\",
-  \"usePostscriptFontNames\": false
-}`);
-});
-  */
 });

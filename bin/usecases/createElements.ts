@@ -4,6 +4,8 @@ import { Config } from '../contracts/Config';
 import { createPage } from './interactors/common/createPage';
 import { processElements } from './interactors/elements/processElements';
 import { writeElements } from './interactors/elements/writeElements';
+import { processGraphicElementsMap } from './interactors/elements/processGraphicElementsMap';
+import { writeGraphicElementsMap } from './interactors/elements/writeGraphicElementsMap';
 
 import { refresh } from '../frameworks/filesystem/refresh';
 
@@ -30,10 +32,27 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
     const ELEMENTS = processElements(ELEMENTS_PAGE, config, components);
     writeElements(ELEMENTS, config);
 
-    if (config.outputFormatGraphics === 'svg' && config.syncGraphics) {
+    /**
+     * Handle a bit of a special corner case: SVG graphics packed into React components.
+     */
+    if (
+      config.outputGraphicElements &&
+      config.outputFormatGraphics === 'svg' &&
+      config.syncGraphics
+    ) {
       const GRAPHICS_PAGE = createPage(data.document.children, 'Graphics');
       const GRAPHICS = processElements(GRAPHICS_PAGE, config, components);
       writeElements(GRAPHICS, config, true);
+
+      /**
+       * The user can also further choose to create an object that exports all graphical React components.
+       */
+      if (config.outputGraphicElementsMap) {
+        const FOLDER = `${config.outputFolderElements}/Graphics`;
+        const FILE_PATH = `${FOLDER}/index.${config.outputFormatElements}`;
+        const FILE_CONTENT = processGraphicElementsMap(GRAPHICS);
+        writeGraphicElementsMap(FOLDER, FILE_PATH, FILE_CONTENT);
+      }
     }
   } catch (error) {
     throw new Error(error);

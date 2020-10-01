@@ -272,6 +272,9 @@ export const ErrorProcessGraphics = ErrorMessage(
 export const ErrorProcessGraphicsImageError = ErrorMessage(
   'Error when fetching graphics from Figma API!'
 );
+export const ErrorProcessGraphicElementsMap = ErrorMessage(
+  'No graphics, or zero-length array, passed to processGraphicElementsMap()!'
+);
 export const ErrorProcessGraphicsNoImages = ErrorMessage('No images received from Figma API!');
 export const ErrorProcessNestedCss = ErrorMessage(
   'No "css" string provided to processNestedCss()!'
@@ -366,6 +369,9 @@ export const ErrorWriteFile = ErrorMessage(
 export const ErrorWriteFileWrongType = ErrorMessage('Provided invalid file type to writeFile()!');
 export const ErrorWriteGraphics = ErrorMessage(
   'Missing "fileList" and/or "config" argument when calling writeGraphics()!'
+);
+export const ErrorWriteGraphicElementsMap = ErrorMessage(
+  'Missing one or more of required arguments "folder", "filePath", and/or "fileContent" when calling writeGraphicElementsMap()!'
 );
 export const ErrorWriteTokens = ErrorMessage(
   'Less than one token provided to writeTokens()! Make sure you have a page called "Design Tokens" in your Figma document.'
