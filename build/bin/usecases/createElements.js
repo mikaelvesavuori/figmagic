@@ -31,7 +31,7 @@ async function createElements(config, data) {
             const GRAPHICS = processElements_1.processElements(GRAPHICS_PAGE, config, components);
             writeElements_1.writeElements(GRAPHICS, config, true);
             if (config.outputGraphicElementsMap) {
-                const FOLDER = `${config.outputFolderElements}/Graphics/`;
+                const FOLDER = `${config.outputFolderElements}/Graphics`;
                 const FILE_PATH = `${FOLDER}/index.${config.outputFormatElements}`;
                 const FILE_CONTENT = processGraphicElementsMap_1.processGraphicElementsMap(GRAPHICS);
                 writeGraphicElementsMap_1.writeGraphicElementsMap(FOLDER, FILE_PATH, FILE_CONTENT);

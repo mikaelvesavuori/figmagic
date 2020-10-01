@@ -78,7 +78,8 @@ describe('Success cases', () => {
         templates: {
           templatePathReact: 'templates/react',
           templatePathStorybook: 'templates/story',
-          templatePathStyled: 'templates/styled'
+          templatePathStyled: 'templates/styled',
+          templatePathGraphic: 'templates/graphic'
         }
       };
 
@@ -106,7 +107,8 @@ describe('Success cases', () => {
         templates: {
           templatePathReact: 'templates/react',
           templatePathStorybook: 'templates/story',
-          templatePathStyled: 'templates/styled'
+          templatePathStyled: 'templates/styled',
+          templatePathGraphic: 'templates/graphic'
         }
       };
 
