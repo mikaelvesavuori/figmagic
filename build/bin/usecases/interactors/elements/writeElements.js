@@ -82,6 +82,7 @@ const writeFileHelper = (config, type, format, fileExists = undefined) => {
     if (fileExists === false || config.forceUpdate) {
         const FILE_DATA = (() => {
             if (type === 'graphic') {
+                console.log('xxxxx', `./${config.outputFolderGraphics}/${config.name.toLowerCase()}.svg`);
                 const SVG_DATA = getSvgFileData_1.getSvgFileData(`./${config.outputFolderGraphics}/${config.name.toLowerCase()}.svg`);
                 return cleanSvgData_1.cleanSvgData(SVG_DATA);
             }

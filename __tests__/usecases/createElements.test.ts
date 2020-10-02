@@ -31,18 +31,22 @@ describe('Success cases', () => {
     trash(CONFIG.outputFolderElements);
   });
 
-  test('It should write graphic elements and graphic elements map file', async () => {
+  test('It should write graphic elements and check that graphic elements map file exists', async () => {
     const CONFIG = testConfig;
     CONFIG.token = process.env.FIGMA_TOKEN || '';
     CONFIG.url = process.env.FIGMA_URL || '';
+    CONFIG.syncTokens = false;
+    CONFIG.syncElements = false;
     CONFIG.syncGraphics = true;
     CONFIG.outputFolderElements = '__test-graphic-elements__';
+    CONFIG.outputFolderGraphics = 'testdata/svg';
     CONFIG.outputFormatGraphics = 'svg';
     CONFIG.outputFormatElements = 'tsx';
     CONFIG.outputGraphicElements = true;
     CONFIG.outputGraphicElementsMap = true;
     CONFIG.syncGraphics = true;
     const DATA = figmaTestResponse;
+    //`./${config.outputFolderGraphics}/${config.name.toLowerCase()}.svg`
 
     // @ts-ignore
     await createElements(CONFIG, DATA);
