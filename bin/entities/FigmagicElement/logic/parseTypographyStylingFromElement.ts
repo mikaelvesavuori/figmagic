@@ -2,6 +2,7 @@ import * as path from 'path';
 
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { UpdatedCssAndImports } from '../../../contracts/Imports';
+import { TypographyElement } from '../../../contracts/TypographyElement';
 
 import { getTokenMatch } from './getTokenMatch';
 import { getFileContents } from './getFileContents';
@@ -17,12 +18,16 @@ import {
  * @description Parse typography CSS from "element" (Figma component)
  */
 export function parseTypographyStylingFromElement(
-  textElement: Frame,
-  remSize: number,
-  outputFormatTokens: string,
-  letterSpacingUnit: string,
-  outputFolderTokens: string
+  typographyElement: TypographyElement
 ): UpdatedCssAndImports {
+  const {
+    textElement,
+    remSize,
+    outputFormatTokens,
+    letterSpacingUnit,
+    outputFolderTokens,
+    usePostscriptFontNames
+  } = typographyElement;
   try {
     if (!textElement || !remSize) throw new Error(ErrorParseTypographyStylingFromElement);
 
@@ -57,7 +62,8 @@ export function parseTypographyStylingFromElement(
         textElement,
         css,
         imports,
-        remSize
+        remSize,
+        usePostscriptFontNames
       } as CalcDataTypography,
       fontFamilies
     );
@@ -161,8 +167,11 @@ const getFontSize = (textElement: Frame): number | null => {
   return null;
 };
 
-const getFontFamily = (textElement: Frame): string | null => {
-  if (textElement.type === 'TEXT' && textElement.style) return textElement.style.fontPostScriptName;
+const getFontFamily = (textElement: Frame, usePostscriptFontNames = false): string | null => {
+  if (textElement.type === 'TEXT' && textElement.style)
+    return usePostscriptFontNames
+      ? textElement.style.fontPostScriptName
+      : textElement.style.fontFamily;
   return null;
 };
 
@@ -204,10 +213,11 @@ const getFontCase = (textElement: Frame): string | null => {
 };
 
 type CalcDataTypography = {
-  textElement: Frame;
   css: string;
   imports: Record<string, unknown>[];
   remSize: number;
+  textElement: Frame;
+  usePostscriptFontNames: boolean;
 };
 
 function calcFontColor(calcData: CalcDataTypography, colors: any) {
@@ -251,10 +261,10 @@ function calcFontSize(calcData: CalcDataTypography, fontSizes: any) {
 }
 
 function calcFontFamily(calcData: CalcDataTypography, fontFamilies: any) {
-  const { textElement, remSize, imports } = calcData;
+  const { textElement, remSize, usePostscriptFontNames, imports } = calcData;
   let { css } = calcData;
 
-  const FONT_FAMILY = getFontFamily(textElement);
+  const FONT_FAMILY = getFontFamily(textElement, usePostscriptFontNames);
   if (FONT_FAMILY) {
     const { updatedCss, updatedImports } = getTokenMatch(
       fontFamilies,

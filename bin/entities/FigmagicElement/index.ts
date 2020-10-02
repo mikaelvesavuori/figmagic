@@ -2,6 +2,7 @@ import { FigmaElement } from '../../contracts/FigmaElement';
 import { FRAME as Frame } from '../../contracts/Figma';
 import { Config } from '../../contracts/Config';
 import { UpdatedCssAndImports } from '../../contracts/Imports';
+import { TypographyElement } from '../../contracts/TypographyElement';
 
 import { parseCssFromElement } from './logic/parseCssFromElement';
 import { parseTypographyStylingFromElement } from './logic/parseTypographyStylingFromElement';
@@ -160,12 +161,6 @@ class FigmagicElement {
         if (!el.name) return;
         if (el.name[0] === '_') return;
 
-        // Support recursive logic for infinitely nested elements?
-        //if (el.children) {
-        //  const x = el.children.filter((c) => c.type === 'GROUP');
-        //  if (x.length > 0) this.handleNestedElements(css);
-        //}
-
         const MAIN_ELEMENT = el.children?.filter(
           (e: Frame) => e.type === 'RECTANGLE' && e.name[0] !== '_'
         )[0];
@@ -195,13 +190,14 @@ class FigmagicElement {
         imports = imports.concat(updatedImports);
 
         if (TEXT_ELEMENT) {
-          const { updatedCss, updatedImports } = parseTypographyStylingFromElement(
-            TEXT_ELEMENT,
-            this.config.remSize,
-            this.config.outputFormatTokens,
-            this.config.letterSpacingUnit,
-            this.config.outputFolderTokens
-          );
+          const { updatedCss, updatedImports } = parseTypographyStylingFromElement({
+            textElement: TEXT_ELEMENT,
+            remSize: this.config.remSize,
+            usePostscriptFontNames: this.config.usePostscriptFontNames,
+            outputFormatTokens: this.config.outputFormatTokens,
+            letterSpacingUnit: this.config.letterSpacingUnit,
+            outputFolderTokens: this.config.outputFolderTokens
+          } as TypographyElement);
           css += `\n.${FIXED_NAME} {\n${updatedCss}}`;
           imports = imports.concat(updatedImports);
           this.text = TEXT_ELEMENT.characters || '';
@@ -229,13 +225,14 @@ class FigmagicElement {
 
       // Set text styling
       if (TEXT_ELEMENT) {
-        const { updatedCss, updatedImports } = parseTypographyStylingFromElement(
-          TEXT_ELEMENT,
-          this.config.remSize,
-          this.config.outputFormatTokens,
-          this.config.letterSpacingUnit,
-          this.config.outputFolderTokens
-        );
+        const { updatedCss, updatedImports } = parseTypographyStylingFromElement({
+          textElement: TEXT_ELEMENT,
+          remSize: this.config.remSize,
+          usePostscriptFontNames: this.config.usePostscriptFontNames,
+          outputFormatTokens: this.config.outputFormatTokens,
+          letterSpacingUnit: this.config.letterSpacingUnit,
+          outputFolderTokens: this.config.outputFolderTokens
+        } as TypographyElement);
         css += updatedCss;
         imports = imports.concat(updatedImports);
         this.text = TEXT_ELEMENT.characters || '';

@@ -12,7 +12,7 @@ import {
 /**
  * @description Places all Figma fonts into a clean object
  */
-export function makeFontTokens(fontFrame: Frame, usePostscriptFontNames = true): FontTokens {
+export function makeFontTokens(fontFrame: Frame, usePostscriptFontNames = false): FontTokens {
   if (!fontFrame) throw new Error(ErrorMakeFontTokensNoFrame);
   if (!fontFrame.children) throw new Error(ErrorMakeFontTokensNoChildren);
 
@@ -30,7 +30,5 @@ function makeFontToken(
 ) {
   if (!item.name || !item.style) throw new Error(ErrorMakeFontTokensMissingProps);
   const NAME = camelize(item.name);
-  fonts[NAME] = usePostscriptFontNames
-    ? item.style.fontPostScriptName
-    : item.style.fontFamily.replace(' /g', '');
+  fonts[NAME] = usePostscriptFontNames ? item.style.fontPostScriptName : item.style.fontFamily; //.replace(' /g', '');
 }

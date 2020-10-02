@@ -1742,7 +1742,7 @@ export const validButtonFigmagicElement = {
   border-radius: \${radii.soft};
   color: \${colors.white};
   font-size: \${fontSizes.paragraph};
-  font-family: \${fontFamilies.bold};
+  font-family: \${fontFamilies.regular};
   font-weight: \${fontWeights.bold};
   line-height: \${lineHeights.xs};
   letter-spacing: \${letterSpacings.wide};

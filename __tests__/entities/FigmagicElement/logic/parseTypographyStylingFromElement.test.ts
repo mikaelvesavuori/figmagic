@@ -1,5 +1,7 @@
 import { parseTypographyStylingFromElement } from '../../../../bin/entities/FigmagicElement/logic/parseTypographyStylingFromElement';
 
+import { TypographyElement } from '../../../../bin/contracts/TypographyElement';
+
 import { cssTypographyElement } from '../../../../testdata/elements/cssTypographyElement';
 
 describe('Failure cases', () => {
@@ -9,15 +11,26 @@ describe('Failure cases', () => {
   });
 });
 
+const makeTypographyElement = (textElement: any): TypographyElement => {
+  return {
+    textElement,
+    remSize: 16,
+    outputFormatTokens: 'mjs',
+    letterSpacingUnit: 'em',
+    outputFolderTokens: 'tokens',
+    usePostscriptFontNames: false
+  };
+};
+
 describe('Success cases', () => {
   test('It should successfully return an object (MJS format), if given valid input', () => {
     expect(
       // @ts-ignore
-      parseTypographyStylingFromElement(cssTypographyElement, 16, 'mjs', 'em', 'tokens')
+      parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElement))
     ).toMatchObject({
       updatedCss: `color: rgba(0; 0; 0; 0);
 font-size: \${fontSizes.paragraph};
-font-family: \${fontFamilies.bold};
+font-family: \${fontFamilies.regular};
 font-weight: \${fontWeights.bold};
 line-height: \${lineHeights.xs};
 letter-spacing: \${letterSpacings.wide};
@@ -35,10 +48,10 @@ text-transform: uppercase;
 
     expect(
       // @ts-ignore
-      parseTypographyStylingFromElement(cssTypographyElementNoFill, 16, 'mjs', 'em', 'tokens')
+      parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElementNoFill))
     ).toMatchObject({
       updatedCss: `font-size: \${fontSizes.paragraph};
-font-family: \${fontFamilies.bold};
+font-family: \${fontFamilies.regular};
 font-weight: \${fontWeights.bold};
 line-height: \${lineHeights.xs};
 letter-spacing: \${letterSpacings.wide};
@@ -56,7 +69,7 @@ text-transform: uppercase;
 
     expect(
       // @ts-ignore
-      parseTypographyStylingFromElement(cssTypographyElementNoStyle, 16, 'mjs', 'em', 'tokens')
+      parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElementNoStyle))
     ).toMatchObject({
       updatedCss: `color: rgba(0; 0; 0; 0);\n`,
       updatedImports: []
@@ -70,17 +83,18 @@ text-transform: uppercase;
 
     expect(
       // @ts-ignore
-      parseTypographyStylingFromElement(cssTypographyElementNoPsName, 16, 'mjs', 'em', 'tokens')
+      parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElementNoPsName))
     ).toMatchObject({
       updatedCss: `color: rgba(0; 0; 0; 0);
 font-size: \${fontSizes.paragraph};
+font-family: \${fontFamilies.regular};
 font-weight: \${fontWeights.bold};
 line-height: \${lineHeights.xs};
 letter-spacing: \${letterSpacings.wide};
 text-align: center;
 text-transform: uppercase;
 `,
-      updatedImports: ['fontSizes', 'fontWeights', 'lineHeights', 'letterSpacings']
+      updatedImports: ['fontSizes', 'fontFamilies', 'fontWeights', 'lineHeights', 'letterSpacings']
     });
   });
 
@@ -92,22 +106,19 @@ text-transform: uppercase;
     expect(
       parseTypographyStylingFromElement(
         // @ts-ignore
-        cssTypographyElementLineHeightPercent,
-        16,
-        'mjs',
-        'em',
-        'tokens'
+        makeTypographyElement(cssTypographyElementLineHeightPercent)
       )
     ).toMatchObject({
       updatedCss: `color: rgba(0; 0; 0; 0);
 font-size: \${fontSizes.paragraph};
+font-family: \${fontFamilies.regular};
 font-weight: \${fontWeights.bold};
 line-height: \${lineHeights.s};
 letter-spacing: \${letterSpacings.wide};
 text-align: center;
 text-transform: uppercase;
 `,
-      updatedImports: ['fontSizes', 'fontWeights', 'lineHeights', 'letterSpacings']
+      updatedImports: ['fontSizes', 'fontFamilies', 'fontWeights', 'lineHeights', 'letterSpacings']
     });
   });
 
@@ -117,24 +128,18 @@ text-transform: uppercase;
     cssTypographyElementTitleCase.style.textCase = 'TITLE';
 
     expect(
-      parseTypographyStylingFromElement(
-        // @ts-ignore
-        cssTypographyElementTitleCase,
-        16,
-        'mjs',
-        'em',
-        'tokens'
-      )
+      parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElementTitleCase))
     ).toMatchObject({
       updatedCss: `color: rgba(0; 0; 0; 0);
 font-size: \${fontSizes.paragraph};
+font-family: \${fontFamilies.regular};
 font-weight: \${fontWeights.bold};
 line-height: \${lineHeights.s};
 letter-spacing: \${letterSpacings.wide};
 text-align: center;
 text-transform: capitalize;
 `,
-      updatedImports: ['fontSizes', 'fontWeights', 'lineHeights', 'letterSpacings']
+      updatedImports: ['fontSizes', 'fontFamilies', 'fontWeights', 'lineHeights', 'letterSpacings']
     });
   });
 });

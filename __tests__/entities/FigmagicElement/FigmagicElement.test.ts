@@ -21,7 +21,7 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should return a complete nested Figmagic element ("Button" example) and config when passing in valid token data (colors), configuration, and description', async () => {
-    const USER_CONFIG_PATH = path.join(`\${process.cwd()}`, `testdata`, `testConfig`);
+    const USER_CONFIG_PATH = path.join(`testdata`, `testConfig`);
     const DESCRIPTION =
       'type=text\nplaceholder=Some placeholder text\n\nAn example of a Figmagic element description!';
     const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);

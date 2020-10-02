@@ -124,7 +124,14 @@ class FigmagicElement {
                 css += `\n.${FIXED_NAME} {\n${updatedCss}}`;
                 imports = imports.concat(updatedImports);
                 if (TEXT_ELEMENT) {
-                    const { updatedCss, updatedImports } = parseTypographyStylingFromElement_1.parseTypographyStylingFromElement(TEXT_ELEMENT, this.config.remSize, this.config.outputFormatTokens, this.config.letterSpacingUnit, this.config.outputFolderTokens);
+                    const { updatedCss, updatedImports } = parseTypographyStylingFromElement_1.parseTypographyStylingFromElement({
+                        textElement: TEXT_ELEMENT,
+                        remSize: this.config.remSize,
+                        usePostscriptFontNames: this.config.usePostscriptFontNames,
+                        outputFormatTokens: this.config.outputFormatTokens,
+                        letterSpacingUnit: this.config.letterSpacingUnit,
+                        outputFolderTokens: this.config.outputFolderTokens
+                    });
                     css += `\n.${FIXED_NAME} {\n${updatedCss}}`;
                     imports = imports.concat(updatedImports);
                     this.text = TEXT_ELEMENT.characters || '';
@@ -146,7 +153,14 @@ class FigmagicElement {
             this.setPlaceholderText();
             this.setElementType();
             if (TEXT_ELEMENT) {
-                const { updatedCss, updatedImports } = parseTypographyStylingFromElement_1.parseTypographyStylingFromElement(TEXT_ELEMENT, this.config.remSize, this.config.outputFormatTokens, this.config.letterSpacingUnit, this.config.outputFolderTokens);
+                const { updatedCss, updatedImports } = parseTypographyStylingFromElement_1.parseTypographyStylingFromElement({
+                    textElement: TEXT_ELEMENT,
+                    remSize: this.config.remSize,
+                    usePostscriptFontNames: this.config.usePostscriptFontNames,
+                    outputFormatTokens: this.config.outputFormatTokens,
+                    letterSpacingUnit: this.config.letterSpacingUnit,
+                    outputFolderTokens: this.config.outputFolderTokens
+                });
                 css += updatedCss;
                 imports = imports.concat(updatedImports);
                 this.text = TEXT_ELEMENT.characters || '';

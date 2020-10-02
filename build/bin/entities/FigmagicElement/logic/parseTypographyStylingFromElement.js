@@ -7,7 +7,8 @@ const getTokenMatch_1 = require("./getTokenMatch");
 const getFileContents_1 = require("./getFileContents");
 const roundColorValue_1 = require("../../../frameworks/string/roundColorValue");
 const errors_1 = require("../../../frameworks/errors/errors");
-function parseTypographyStylingFromElement(textElement, remSize, outputFormatTokens, letterSpacingUnit, outputFolderTokens) {
+function parseTypographyStylingFromElement(typographyElement) {
+    const { textElement, remSize, outputFormatTokens, letterSpacingUnit, outputFolderTokens, usePostscriptFontNames } = typographyElement;
     try {
         if (!textElement || !remSize)
             throw new Error(errors_1.ErrorParseTypographyStylingFromElement);
@@ -26,7 +27,8 @@ function parseTypographyStylingFromElement(textElement, remSize, outputFormatTok
             textElement,
             css,
             imports,
-            remSize
+            remSize,
+            usePostscriptFontNames
         }, fontFamilies);
         css = FONT_FAMILY.css;
         imports = FONT_FAMILY.imports;
@@ -107,9 +109,11 @@ const getFontSize = (textElement) => {
         return parseFloat(textElement.style.fontSize);
     return null;
 };
-const getFontFamily = (textElement) => {
+const getFontFamily = (textElement, usePostscriptFontNames = false) => {
     if (textElement.type === 'TEXT' && textElement.style)
-        return textElement.style.fontPostScriptName;
+        return usePostscriptFontNames
+            ? textElement.style.fontPostScriptName
+            : textElement.style.fontFamily;
     return null;
 };
 const getFontWeight = (textElement) => {
@@ -173,9 +177,9 @@ function calcFontSize(calcData, fontSizes) {
     return { css, imports, fontSize: FONT_SIZE };
 }
 function calcFontFamily(calcData, fontFamilies) {
-    const { textElement, remSize, imports } = calcData;
+    const { textElement, remSize, usePostscriptFontNames, imports } = calcData;
     let { css } = calcData;
-    const FONT_FAMILY = getFontFamily(textElement);
+    const FONT_FAMILY = getFontFamily(textElement, usePostscriptFontNames);
     if (FONT_FAMILY) {
         const { updatedCss, updatedImports } = getTokenMatch_1.getTokenMatch(fontFamilies, 'fontFamilies', 'font-family', FONT_FAMILY, remSize);
         css += updatedCss;

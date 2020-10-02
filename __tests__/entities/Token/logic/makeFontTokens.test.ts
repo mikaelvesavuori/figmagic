@@ -44,9 +44,9 @@ describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {
     expect(makeFontTokens(fontFrame)).toEqual(
       expect.objectContaining({
-        light: 'HelveticaNeue',
-        medium: 'HelveticaNeue',
-        regular: 'HelveticaNeue'
+        light: 'Helvetica Neue',
+        medium: 'Helvetica Neue',
+        regular: 'Helvetica Neue'
       })
     );
   });
