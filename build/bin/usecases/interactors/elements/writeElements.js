@@ -43,7 +43,7 @@ const makeFixedConfig = (element, config) => {
     const html = element.html || ' ';
     const css = element.css || ' ';
     const description = element.description || ' ';
-    const name = toPascalCase_1.toPascalCase(element.name);
+    const name = toPascalCase_1.toPascalCase(element.name.split('/')[0]);
     const folder = `${config.outputFolderElements}/${name}`;
     const outputFormatCss = config.outputFormatCss;
     const outputFormatDescription = config.outputFormatDescription;
