@@ -26,6 +26,6 @@ export function getPaddingX(textElement: Frame, element: Frame): PaddingHorizont
       right: Math.round(PADDING_RIGHT)
     };
   } catch (error) {
-    throw new Error(ErrorGetPaddingX);
+    throw new Error(error);
   }
 }

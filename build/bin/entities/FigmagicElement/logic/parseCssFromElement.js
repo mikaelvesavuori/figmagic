@@ -50,7 +50,7 @@ function parseCssFromElement(layoutElement, textElement, remSize, outputFormatTo
         return { updatedCss: NEW_CSS, updatedImports: imports };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorParseCssFromElement);
+        throw new Error(error);
     }
 }
 exports.parseCssFromElement = parseCssFromElement;
@@ -73,7 +73,7 @@ const getFiles = (path, outputFormatToken) => {
         };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorGetFiles);
+        throw new Error(error);
     }
 };
 function calcPadding(calcData, spacing) {

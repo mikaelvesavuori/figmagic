@@ -19,6 +19,6 @@ export async function getDataRemote(token: string, url: string): Promise<any> {
     if (!data || data.status === 403) throw new Error(ErrorGetData);
     return data;
   } catch (error) {
-    throw new Error(ErrorGetDataNoTokenOrUrl);
+    throw new Error(error);
   }
 }

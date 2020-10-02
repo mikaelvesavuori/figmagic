@@ -15,7 +15,7 @@ exports.sliceOutObjectFromFile = (path) => {
         return JSON.parse(SLICED_DATA);
     }
     catch (error) {
-        throw new Error(errors_1.ErrorSliceOutObjectFromFile);
+        throw new Error(error);
     }
 };
 //# sourceMappingURL=sliceOutObjectFromFile.js.map

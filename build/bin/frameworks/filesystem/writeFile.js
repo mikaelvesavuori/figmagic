@@ -30,7 +30,7 @@ function writeFile(writeOperation) {
         write_1.write(filePath, fileContent);
     }
     catch (error) {
-        throw new Error(errors_1.ErrorWriteFile);
+        throw new Error(error);
     }
 }
 exports.writeFile = writeFile;

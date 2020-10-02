@@ -21,20 +21,24 @@ async function createElements(config, data) {
     try {
         await refresh_1.refresh(config.outputFolderElements);
         const { components } = data;
-        const ELEMENTS_PAGE = createPage_1.createPage(data.document.children, 'Elements');
-        const ELEMENTS = processElements_1.processElements(ELEMENTS_PAGE, config, components);
-        writeElements_1.writeElements(ELEMENTS, config);
+        handleElements({
+            children: data.document.children,
+            pageName: 'Elements',
+            config,
+            components
+        });
         if (config.outputGraphicElements &&
             config.outputFormatGraphics === 'svg' &&
             config.syncGraphics) {
-            const GRAPHICS_PAGE = createPage_1.createPage(data.document.children, 'Graphics');
-            const GRAPHICS = processElements_1.processElements(GRAPHICS_PAGE, config, components);
-            writeElements_1.writeElements(GRAPHICS, config, true);
+            const GRAPHICS = handleElements({
+                children: data.document.children,
+                pageName: 'Graphics',
+                config,
+                components,
+                isGeneratingGraphics: true
+            });
             if (config.outputGraphicElementsMap) {
-                const FOLDER = `${config.outputFolderElements}/Graphics`;
-                const FILE_PATH = `${FOLDER}/index.${config.outputFormatElements}`;
-                const FILE_CONTENT = processGraphicElementsMap_1.processGraphicElementsMap(GRAPHICS);
-                writeGraphicElementsMap_1.writeGraphicElementsMap(FOLDER, FILE_PATH, FILE_CONTENT);
+                handleGraphicElementsMap({ config, graphics: GRAPHICS });
             }
         }
     }
@@ -43,4 +47,18 @@ async function createElements(config, data) {
     }
 }
 exports.createElements = createElements;
+function handleElements(element) {
+    const { children, pageName, config, components, isGeneratingGraphics } = element;
+    const PAGE = createPage_1.createPage(children, pageName);
+    const ELEMENTS = processElements_1.processElements(PAGE, config, components);
+    writeElements_1.writeElements(ELEMENTS, config, isGeneratingGraphics);
+    return ELEMENTS;
+}
+function handleGraphicElementsMap(graphicElementsMap) {
+    const { config, graphics } = graphicElementsMap;
+    const FOLDER = `${config.outputFolderElements}/Graphics`;
+    const FILE_PATH = `${FOLDER}/index.${config.outputFormatElements}`;
+    const FILE_CONTENT = processGraphicElementsMap_1.processGraphicElementsMap(graphics);
+    writeGraphicElementsMap_1.writeGraphicElementsMap(FOLDER, FILE_PATH, FILE_CONTENT);
+}
 //# sourceMappingURL=createElements.js.map

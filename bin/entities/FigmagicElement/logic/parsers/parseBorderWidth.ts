@@ -30,6 +30,6 @@ export function parseBorderWidth(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(ErrorParseBorderWidth);
+    throw new Error(error);
   }
 }

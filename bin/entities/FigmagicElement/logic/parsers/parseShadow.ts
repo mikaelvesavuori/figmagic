@@ -31,6 +31,6 @@ export function parseShadow(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(ErrorParseShadow);
+    throw new Error(error);
   }
 }

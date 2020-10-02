@@ -34,6 +34,6 @@ export async function getData(
     if (!DATA) throw new Error(ErrorGetDataNoData);
     return DATA;
   } catch (error) {
-    throw new Error(ErrorGetData);
+    throw new Error(error);
   }
 }

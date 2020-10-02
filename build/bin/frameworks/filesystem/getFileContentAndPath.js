@@ -64,7 +64,7 @@ function getFileContentAndPath(getFileContentAndPathOperation) {
             throw new Error(errors_1.ErrorGetFileContentAndPathNoReturn);
     }
     catch (error) {
-        throw new Error(errors_1.ErrorGetFileContentAndPath);
+        throw new Error(error);
     }
 }
 exports.getFileContentAndPath = getFileContentAndPath;

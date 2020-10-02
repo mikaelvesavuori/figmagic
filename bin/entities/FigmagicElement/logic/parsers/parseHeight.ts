@@ -30,6 +30,6 @@ export function parseHeight(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(ErrorParseHeight);
+    throw new Error(error);
   }
 }

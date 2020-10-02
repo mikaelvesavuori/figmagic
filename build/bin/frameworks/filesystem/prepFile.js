@@ -22,7 +22,7 @@ exports.prepComponent = (data) => {
         return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorPrepFileComponent);
+        throw new Error(error);
     }
 };
 exports.prepStyledComponents = (data) => {
@@ -41,7 +41,7 @@ exports.prepStyledComponents = (data) => {
         return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorPrepFileStyledComponents);
+        throw new Error(error);
     }
 };
 exports.prepCss = (data) => {
@@ -56,7 +56,7 @@ exports.prepCss = (data) => {
         return { fileContent: FILE_CONTENT, filePath: `${filePath}${SUFFIX}.${format}` };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorPrepFileCss);
+        throw new Error(error);
     }
 };
 exports.prepStorybook = (data) => {
@@ -74,7 +74,7 @@ exports.prepStorybook = (data) => {
         return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorPrepFileStorybook);
+        throw new Error(error);
     }
 };
 exports.prepDescription = (data) => {
@@ -88,7 +88,7 @@ exports.prepDescription = (data) => {
         return { fileContent: FILE_CONTENT, filePath: `${filePath}.description.${format}` };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorPrepFileDescription);
+        throw new Error(error);
     }
 };
 exports.prepGraphicComponent = (data) => {
@@ -106,7 +106,7 @@ exports.prepGraphicComponent = (data) => {
         return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorPrepFileGraphicComponent);
+        throw new Error(error);
     }
 };
 //# sourceMappingURL=prepFile.js.map

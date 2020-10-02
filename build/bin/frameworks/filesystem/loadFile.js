@@ -14,7 +14,7 @@ function loadFile(path) {
         return isJsonString(DATA) ? JSON.parse(DATA) : DATA;
     }
     catch (error) {
-        throw new Error(errors_1.ErrorLoadFile(path));
+        throw new Error(error);
     }
 }
 exports.loadFile = loadFile;

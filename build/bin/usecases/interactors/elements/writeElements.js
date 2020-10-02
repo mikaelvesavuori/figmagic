@@ -35,7 +35,7 @@ function writeElements(elements, config, isGeneratingGraphics = false) {
         });
     }
     catch (error) {
-        throw new Error(errors_1.ErrorWriteElements);
+        throw new Error(error);
     }
 }
 exports.writeElements = writeElements;

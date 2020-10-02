@@ -19,7 +19,7 @@ async function getFromApi(figmaToken, figmaUrl, type = 'files') {
         });
     }
     catch (error) {
-        throw new Error(errors_1.ErrorGetFromApi);
+        throw new Error(error);
     }
 }
 exports.getFromApi = getFromApi;

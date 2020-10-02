@@ -18,7 +18,7 @@ function getPaddingX(textElement, element) {
         };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorGetPaddingX);
+        throw new Error(error);
     }
 }
 exports.getPaddingX = getPaddingX;

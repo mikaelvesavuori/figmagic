@@ -31,6 +31,6 @@ export function parseBorderColor(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(ErrorParseBorderColor);
+    throw new Error(error);
   }
 }

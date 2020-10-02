@@ -11,6 +11,7 @@ import { refresh } from '../frameworks/filesystem/refresh';
 
 import { MsgSyncElements } from '../frameworks/messages/messages';
 import { ErrorCreateElements } from '../frameworks/errors/errors';
+import { FigmagicElement } from '../contracts/FigmagicElement';
 
 /**
  * @description Use case for syncing (creating) React elements from Figma files
@@ -25,12 +26,13 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
 
   try {
     await refresh(config.outputFolderElements);
-
     const { components }: any = data;
-
-    const ELEMENTS_PAGE = createPage(data.document.children, 'Elements');
-    const ELEMENTS = processElements(ELEMENTS_PAGE, config, components);
-    writeElements(ELEMENTS, config);
+    handleElements({
+      children: data.document.children,
+      pageName: 'Elements',
+      config,
+      components
+    } as Element);
 
     /**
      * Handle a bit of a special corner case: SVG graphics packed into React components.
@@ -40,21 +42,55 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
       config.outputFormatGraphics === 'svg' &&
       config.syncGraphics
     ) {
-      const GRAPHICS_PAGE = createPage(data.document.children, 'Graphics');
-      const GRAPHICS = processElements(GRAPHICS_PAGE, config, components);
-      writeElements(GRAPHICS, config, true);
+      const GRAPHICS = handleElements({
+        children: data.document.children,
+        pageName: 'Graphics',
+        config,
+        components,
+        isGeneratingGraphics: true
+      });
 
       /**
        * The user can also further choose to create an object that exports all graphical React components.
        */
       if (config.outputGraphicElementsMap) {
-        const FOLDER = `${config.outputFolderElements}/Graphics`;
-        const FILE_PATH = `${FOLDER}/index.${config.outputFormatElements}`;
-        const FILE_CONTENT = processGraphicElementsMap(GRAPHICS);
-        writeGraphicElementsMap(FOLDER, FILE_PATH, FILE_CONTENT);
+        handleGraphicElementsMap({ config, graphics: GRAPHICS } as GraphicElementsMap);
       }
     }
   } catch (error) {
     throw new Error(error);
   }
 }
+
+function handleElements(element: Element): FigmagicElement[] {
+  const { children, pageName, config, components, isGeneratingGraphics } = element;
+
+  const PAGE = createPage(children, pageName);
+  const ELEMENTS = processElements(PAGE, config, components);
+  writeElements(ELEMENTS, config, isGeneratingGraphics);
+
+  return ELEMENTS;
+}
+
+function handleGraphicElementsMap(graphicElementsMap: GraphicElementsMap) {
+  const { config, graphics } = graphicElementsMap;
+
+  const FOLDER = `${config.outputFolderElements}/Graphics`;
+  const FILE_PATH = `${FOLDER}/index.${config.outputFormatElements}`;
+  const FILE_CONTENT = processGraphicElementsMap(graphics);
+
+  writeGraphicElementsMap(FOLDER, FILE_PATH, FILE_CONTENT);
+}
+
+type Element = {
+  children: any[];
+  pageName: any;
+  config: any;
+  components: any;
+  isGeneratingGraphics?: boolean;
+};
+
+type GraphicElementsMap = {
+  config: any;
+  graphics: any;
+};

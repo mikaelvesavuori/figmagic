@@ -13,7 +13,7 @@ async function refresh(path) {
         createFolder_1.createFolder(path);
     }
     catch (error) {
-        throw new Error(errors_1.ErrorRefresh);
+        throw new Error(error);
     }
 }
 exports.refresh = refresh;

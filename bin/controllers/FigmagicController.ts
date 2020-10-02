@@ -23,6 +23,6 @@ export async function FigmagicController(config: Config, data: FigmaData): Promi
 
     return MsgJobComplete;
   } catch (error) {
-    throw new Error(ErrorFigmagicController);
+    throw new Error(error);
   }
 }

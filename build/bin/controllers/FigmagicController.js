@@ -20,7 +20,7 @@ async function FigmagicController(config, data) {
         return messages_1.MsgJobComplete;
     }
     catch (error) {
-        throw new Error(errors_1.ErrorFigmagicController);
+        throw new Error(error);
     }
 }
 exports.FigmagicController = FigmagicController;

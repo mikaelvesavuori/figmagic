@@ -113,7 +113,7 @@ export function getFileContentAndPath(
     if (fileOperations.hasOwnProperty(type)) return fileOperations[type]();
     else throw new Error(ErrorGetFileContentAndPathNoReturn);
   } catch (error) {
-    throw new Error(ErrorGetFileContentAndPath);
+    throw new Error(error);
   }
 }
 

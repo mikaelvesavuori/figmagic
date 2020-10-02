@@ -11,7 +11,7 @@ function write(filePath, fileContent) {
         fs.writeFileSync(filePath, fileContent, 'utf-8');
     }
     catch (error) {
-        throw new Error(errors_1.ErrorWrite);
+        throw new Error(error);
     }
 }
 exports.write = write;

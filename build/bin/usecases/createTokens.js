@@ -18,7 +18,7 @@ async function createTokens(config, data) {
         writeTokens_1.writeTokens(processedTokens);
     }
     catch (error) {
-        throw new Error(errors_1.ErrorCreateTokens);
+        throw new Error(error);
     }
 }
 exports.createTokens = createTokens;

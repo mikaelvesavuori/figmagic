@@ -13,7 +13,7 @@ function getFileContents(filepath, filename, format) {
         return sliceOutObjectFromFile_1.sliceOutObjectFromFile(FILE);
     }
     catch (error) {
-        throw new Error(errors_1.ErrorGetFileContents);
+        throw new Error(error);
     }
 }
 exports.getFileContents = getFileContents;

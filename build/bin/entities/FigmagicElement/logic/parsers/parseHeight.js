@@ -13,7 +13,7 @@ function parseHeight(css, imports, params) {
         return updateParsing_1.updateParsing(css, updatedCss, imports, updatedImports);
     }
     catch (error) {
-        throw new Error(errors_1.ErrorParseHeight);
+        throw new Error(error);
     }
 }
 exports.parseHeight = parseHeight;

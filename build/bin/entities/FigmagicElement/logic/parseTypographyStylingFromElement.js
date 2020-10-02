@@ -60,7 +60,7 @@ function parseTypographyStylingFromElement(textElement, remSize, outputFormatTok
         return { updatedCss: NEW_CSS, updatedImports: imports };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorParseTypographyStylingFromElement);
+        throw new Error(error);
     }
 }
 exports.parseTypographyStylingFromElement = parseTypographyStylingFromElement;

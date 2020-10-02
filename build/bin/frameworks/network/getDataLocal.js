@@ -14,7 +14,7 @@ function getDataLocal(figmagicFolder, figmaData) {
         return loadFile_1.loadFile(path.join(`${figmagicFolder}`, `${figmaData}`));
     }
     catch (error) {
-        throw new Error(errors_1.ErrorGetDataLocal);
+        throw new Error(error);
     }
 }
 exports.getDataLocal = getDataLocal;

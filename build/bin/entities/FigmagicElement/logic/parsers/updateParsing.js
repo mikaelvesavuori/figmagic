@@ -11,7 +11,7 @@ function updateParsing(css, updatedCss, imports, updatedImports) {
         return { css: CSS, imports: IMPORTS };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorUpdateParsing);
+        throw new Error(error);
     }
 }
 exports.updateParsing = updateParsing;

@@ -21,6 +21,6 @@ export async function writeBaseJson(
     await refresh(figmagicFolder);
     write(`${figmagicFolder}/${figmaData}`, JSON.stringify(data));
   } catch (error) {
-    throw new Error(ErrorWriteBaseJson);
+    throw new Error(error);
   }
 }

@@ -22,7 +22,7 @@ async function getData(recompileLocal, figmagicFolder, figmaData, token, url) {
         return DATA;
     }
     catch (error) {
-        throw new Error(errors_1.ErrorGetData);
+        throw new Error(error);
     }
 }
 exports.getData = getData;

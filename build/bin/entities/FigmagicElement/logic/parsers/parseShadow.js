@@ -13,7 +13,7 @@ function parseShadow(css, imports, params) {
         return updateParsing_1.updateParsing(css, updatedCss, imports, updatedImports);
     }
     catch (error) {
-        throw new Error(errors_1.ErrorParseShadow);
+        throw new Error(error);
     }
 }
 exports.parseShadow = parseShadow;

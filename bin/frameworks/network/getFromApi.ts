@@ -25,6 +25,6 @@ export async function getFromApi(
         throw new Error(ErrorGetFromApi);
       });
   } catch (error) {
-    throw new Error(ErrorGetFromApi);
+    throw new Error(error);
   }
 }

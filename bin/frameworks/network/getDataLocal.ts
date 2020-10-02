@@ -19,6 +19,6 @@ export function getDataLocal(
     console.log(MsgSetDataFromLocal);
     return loadFile(path.join(`${figmagicFolder}`, `${figmaData}`));
   } catch (error) {
-    throw new Error(ErrorGetDataLocal);
+    throw new Error(error);
   }
 }

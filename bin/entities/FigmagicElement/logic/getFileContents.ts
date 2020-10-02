@@ -17,6 +17,6 @@ export function getFileContents(
     const FILE = path.join(`${process.cwd()}`, filepath, `${filename}.${format}`);
     return sliceOutObjectFromFile(FILE);
   } catch (error) {
-    throw new Error(ErrorGetFileContents);
+    throw new Error(error);
   }
 }

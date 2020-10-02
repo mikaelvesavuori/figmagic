@@ -31,6 +31,6 @@ export function processTokens(tokens: Frame[], config: Config): any {
 
     return PROCESSED_TOKENS;
   } catch (error) {
-    throw new Error(ErrorWriteTokens);
+    throw new Error(error);
   }
 }

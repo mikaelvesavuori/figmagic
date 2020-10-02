@@ -21,7 +21,7 @@ function getPaddingY(textElement, element) {
         };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorGetPaddingY);
+        throw new Error(error);
     }
 }
 exports.getPaddingY = getPaddingY;

@@ -16,6 +16,6 @@ export function updateParsing(
 
     return { css: CSS, imports: IMPORTS };
   } catch (error) {
-    throw new Error(ErrorUpdateParsing);
+    throw new Error(error);
   }
 }

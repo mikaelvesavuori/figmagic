@@ -20,7 +20,7 @@ function getShadow(element) {
         return `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
     }
     catch (error) {
-        throw new Error(errors_1.ErrorGetShadow);
+        throw new Error(error);
     }
 }
 exports.getShadow = getShadow;

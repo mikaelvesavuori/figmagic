@@ -12,7 +12,7 @@ function createFolder(dir) {
             fs.mkdirSync(dir, { recursive: true });
     }
     catch (error) {
-        throw new Error(errors_1.ErrorCreateFolder);
+        throw new Error(error);
     }
 }
 exports.createFolder = createFolder;

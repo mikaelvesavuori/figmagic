@@ -18,6 +18,6 @@ export function createPage(figmaPages: Frame[], matchingPageName: string): Frame
     if (PAGE.length > 0 && PAGE[0].children) return PAGE[0].children;
     return [];
   } catch (error) {
-    throw new Error(ErrorCreatePage);
+    throw new Error(error);
   }
 }

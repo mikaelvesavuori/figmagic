@@ -17,7 +17,7 @@ import { parseBorderRadius } from './parsers/parseBorderRadius';
 import { getShadow } from './parsers/getShadow';
 import { parseShadow } from './parsers/parseShadow';
 
-import { ErrorParseCssFromElement, ErrorGetFiles } from '../../../frameworks/errors/errors';
+import { ErrorParseCssFromElement } from '../../../frameworks/errors/errors';
 
 /**
  * @description Parse layout CSS from "element" (Figma component)
@@ -86,7 +86,7 @@ export function parseCssFromElement(
     const NEW_CSS = reduceDuplicates(css);
     return { updatedCss: NEW_CSS, updatedImports: imports };
   } catch (error) {
-    throw new Error(ErrorParseCssFromElement);
+    throw new Error(error);
   }
 }
 
@@ -119,7 +119,7 @@ const getFiles = (path: string, outputFormatToken: string): any => {
       spacing
     };
   } catch (error) {
-    throw new Error(ErrorGetFiles);
+    throw new Error(error);
   }
 };
 

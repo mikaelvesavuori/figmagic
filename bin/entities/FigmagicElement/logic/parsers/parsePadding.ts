@@ -35,6 +35,6 @@ export function parsePadding(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(ErrorParsePadding);
+    throw new Error(error);
   }
 }

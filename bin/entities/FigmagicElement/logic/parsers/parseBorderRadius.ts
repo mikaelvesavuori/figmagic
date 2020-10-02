@@ -31,6 +31,6 @@ export function parseBorderRadius(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(ErrorParseBorderRadius);
+    throw new Error(error);
   }
 }

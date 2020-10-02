@@ -42,7 +42,7 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
 
     return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
   } catch (error) {
-    throw new Error(ErrorPrepFileComponent);
+    throw new Error(error);
   }
 };
 
@@ -67,7 +67,7 @@ export const prepStyledComponents = (data: PrepStyledComponents): FileContentWit
 
     return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
   } catch (error) {
-    throw new Error(ErrorPrepFileStyledComponents);
+    throw new Error(error);
   }
 };
 
@@ -87,7 +87,7 @@ export const prepCss = (data: PrepCss): FileContentWithPath => {
 
     return { fileContent: FILE_CONTENT, filePath: `${filePath}${SUFFIX}.${format}` };
   } catch (error) {
-    throw new Error(ErrorPrepFileCss);
+    throw new Error(error);
   }
 };
 
@@ -111,7 +111,7 @@ export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
 
     return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
   } catch (error) {
-    throw new Error(ErrorPrepFileStorybook);
+    throw new Error(error);
   }
 };
 
@@ -129,7 +129,7 @@ export const prepDescription = (data: PrepDescription): FileContentWithPath => {
 
     return { fileContent: FILE_CONTENT, filePath: `${filePath}.description.${format}` };
   } catch (error) {
-    throw new Error(ErrorPrepFileDescription);
+    throw new Error(error);
   }
 };
 
@@ -152,6 +152,6 @@ export const prepGraphicComponent = (data: PrepGraphicComponent): FileContentWit
 
     return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
   } catch (error) {
-    throw new Error(ErrorPrepFileGraphicComponent);
+    throw new Error(error);
   }
 };

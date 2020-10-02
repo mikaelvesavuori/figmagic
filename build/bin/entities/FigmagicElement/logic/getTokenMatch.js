@@ -25,7 +25,7 @@ function getTokenMatch(tokens, tokenFileName, property, expectedValue, remSize) 
         return { updatedCss: css, updatedImports: imports };
     }
     catch (error) {
-        throw new Error(errors_1.ErrorGetTokenMatch);
+        throw new Error(error);
     }
 }
 exports.getTokenMatch = getTokenMatch;

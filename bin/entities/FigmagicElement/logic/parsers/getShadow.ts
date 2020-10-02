@@ -22,6 +22,6 @@ export function getShadow(element: Frame): string | null {
 
     return `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
   } catch (error) {
-    throw new Error(ErrorGetShadow);
+    throw new Error(error);
   }
 }

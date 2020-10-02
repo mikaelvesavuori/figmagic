@@ -12,6 +12,6 @@ export const sliceOutObjectFromFile = (path: string): Record<string, unknown> =>
     const SLICED_DATA = DATA.slice(DATA.indexOf('{'), DATA.indexOf('}') + 1);
     return JSON.parse(SLICED_DATA);
   } catch (error) {
-    throw new Error(ErrorSliceOutObjectFromFile);
+    throw new Error(error);
   }
 };

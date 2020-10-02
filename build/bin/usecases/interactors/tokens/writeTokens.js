@@ -10,7 +10,7 @@ function writeTokens(processedTokens) {
         processedTokens.forEach((token) => writeFile_1.writeFile(token));
     }
     catch (error) {
-        throw new Error(errors_1.ErrorWriteTokens);
+        throw new Error(error);
     }
 }
 exports.writeTokens = writeTokens;

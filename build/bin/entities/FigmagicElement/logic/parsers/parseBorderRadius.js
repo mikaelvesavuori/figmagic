@@ -13,7 +13,7 @@ function parseBorderRadius(css, imports, params) {
         return updateParsing_1.updateParsing(css, updatedCss, imports, updatedImports);
     }
     catch (error) {
-        throw new Error(errors_1.ErrorParseBorderRadius);
+        throw new Error(error);
     }
 }
 exports.parseBorderRadius = parseBorderRadius;

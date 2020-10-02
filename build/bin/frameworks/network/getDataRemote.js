@@ -16,7 +16,7 @@ async function getDataRemote(token, url) {
         return data;
     }
     catch (error) {
-        throw new Error(errors_1.ErrorGetDataNoTokenOrUrl);
+        throw new Error(error);
     }
 }
 exports.getDataRemote = getDataRemote;

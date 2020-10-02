@@ -22,7 +22,7 @@ async function downloadFile(url, path) {
         });
     }
     catch (error) {
-        throw new Error(errors_1.ErrorDownloadFile);
+        throw new Error(error);
     }
 }
 exports.downloadFile = downloadFile;

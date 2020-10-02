@@ -26,6 +26,6 @@ export async function createTokens(config: Config, data: FigmaData): Promise<voi
 
     writeTokens(processedTokens);
   } catch (error) {
-    throw new Error(ErrorCreateTokens);
+    throw new Error(error);
   }
 }

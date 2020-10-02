@@ -52,7 +52,7 @@ export function getTokenMatch(
 
     return { updatedCss: css, updatedImports: imports };
   } catch (error) {
-    throw new Error(ErrorGetTokenMatch);
+    throw new Error(error);
   }
 }
 

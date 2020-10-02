@@ -26,7 +26,7 @@ function processTokens(tokens, config) {
         return PROCESSED_TOKENS;
     }
     catch (error) {
-        throw new Error(errors_1.ErrorWriteTokens);
+        throw new Error(error);
     }
 }
 exports.processTokens = processTokens;

@@ -26,6 +26,6 @@ export function processElements(
     );
     return PARSED_ELEMENTS;
   } catch (error) {
-    throw new Error(ErrorProcessElements);
+    throw new Error(error);
   }
 }

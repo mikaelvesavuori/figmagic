@@ -13,7 +13,7 @@ export function loadFile(path: string): string | Record<string, unknown> {
     const DATA = fs.readFileSync(path, 'utf8');
     return isJsonString(DATA) ? JSON.parse(DATA) : DATA;
   } catch (error) {
-    throw new Error(ErrorLoadFile(path));
+    throw new Error(error);
   }
 }
 

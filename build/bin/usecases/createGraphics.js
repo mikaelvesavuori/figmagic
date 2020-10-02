@@ -18,7 +18,7 @@ async function createGraphics(config, data) {
         await writeGraphics_1.writeGraphics(fileList, config);
     }
     catch (error) {
-        throw new Error(errors_1.ErrorCreateGraphics);
+        throw new Error(error);
     }
 }
 exports.createGraphics = createGraphics;

@@ -33,6 +33,6 @@ export function parseBackgroundColor(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error) {
-    throw new Error(ErrorParseBackgroundColor);
+    throw new Error(error);
   }
 }

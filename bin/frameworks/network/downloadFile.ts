@@ -22,6 +22,6 @@ export async function downloadFile(url: string, path: string): Promise<void> {
       FILE.on('finish', () => resolve());
     });
   } catch (error) {
-    throw new Error(ErrorDownloadFile);
+    throw new Error(error);
   }
 }

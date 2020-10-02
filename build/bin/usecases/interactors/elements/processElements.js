@@ -12,7 +12,7 @@ function processElements(elementsPage, config, components) {
         return PARSED_ELEMENTS;
     }
     catch (error) {
-        throw new Error(errors_1.ErrorProcessElements);
+        throw new Error(error);
     }
 }
 exports.processElements = processElements;

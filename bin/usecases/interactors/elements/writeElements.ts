@@ -45,7 +45,7 @@ export function writeElements(elements: any[], config: Config, isGeneratingGraph
       }
     });
   } catch (error) {
-    throw new Error(ErrorWriteElements);
+    throw new Error(error);
   }
 }
 

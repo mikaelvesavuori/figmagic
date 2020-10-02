@@ -27,7 +27,7 @@ function prepareWrite(writeOperation) {
         return getFileContentAndPath_1.getFileContentAndPath(getFileDataOperation);
     }
     catch (error) {
-        throw new Error(errors_1.ErrorPrepareWrite);
+        throw new Error(error);
     }
 }
 exports.prepareWrite = prepareWrite;

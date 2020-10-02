@@ -13,7 +13,7 @@ function createPage(figmaPages, matchingPageName) {
         return [];
     }
     catch (error) {
-        throw new Error(errors_1.ErrorCreatePage);
+        throw new Error(error);
     }
 }
 exports.createPage = createPage;
