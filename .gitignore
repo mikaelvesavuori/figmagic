@@ -1,6 +1,7 @@
 # Ensure built files are included
 !build/
 
+.figmagicrc
 /.figmagic
 /figma
 /grid
