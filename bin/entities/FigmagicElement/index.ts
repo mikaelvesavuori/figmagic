@@ -217,7 +217,9 @@ class FigmagicElement {
       let css = `\n`;
       let imports: Record<string, unknown>[] = [];
 
-      const MAIN_ELEMENT = this.children?.filter((element: Frame) => element.name === this.name)[0];
+      const MAIN_ELEMENT = this.children?.filter(
+        (element: Frame) => element.name.toLowerCase() === this.name.toLowerCase()
+      )[0];
       const TEXT_ELEMENT = this.children?.filter((element: Frame) => element.type === 'TEXT')[0];
 
       this.setPlaceholderText();

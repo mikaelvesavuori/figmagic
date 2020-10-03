@@ -148,7 +148,12 @@ class FigmagicElement {
         try {
             let css = `\n`;
             let imports = [];
-            const MAIN_ELEMENT = this.children?.filter((element) => element.name === this.name)[0];
+            const MAIN_ELEMENT = (() => {
+                if (this.children?.length === 1 && this.children[0].type !== 'TEXT')
+                    return this.children[0];
+                else
+                    this.children?.filter((element) => element.name === this.name)[0];
+            })();
             const TEXT_ELEMENT = this.children?.filter((element) => element.type === 'TEXT')[0];
             this.setPlaceholderText();
             this.setElementType();
