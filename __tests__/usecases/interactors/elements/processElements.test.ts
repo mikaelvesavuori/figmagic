@@ -27,7 +27,7 @@ text-align: left;
         description: '\n# Sub\n\nTiny text snippets.',
         element: 'sub',
         extraProps: '',
-        html: '<sub>Microcopy</sub>',
+        html: '<sub></sub>',
         id: '2875:22',
         imports: ['colors', 'fontSizes', 'fontFamilies', 'fontWeights', 'lineHeights'],
         name: 'Microcopy',

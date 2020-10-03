@@ -27,23 +27,23 @@ class FigmagicElement {
     }
     init() {
         this.setElement();
+        this.setElementType();
+        this.setPlaceholderText();
+        this.setText();
         this.setDescription();
-        const html = ``;
-        const extraProps = ``;
-        const text = ``;
         const { updatedCss, updatedImports } = this.handleElements();
         this.setCss(updatedCss);
-        this.addHtml(html);
-        this.addExtraProps(extraProps);
-        this.addText(text);
         this.imports = [...new Set(updatedImports)];
     }
     handleElements() {
         try {
-            if (this.children?.every((a) => a.type === 'GROUP'))
-                return this.handleNestedElements();
+            const FILTERED_ELEMENTS = this.children
+                .filter((c) => c.name[0] !== ':')
+                .filter((c) => c.name[0] !== '_');
+            if (FILTERED_ELEMENTS?.every((a) => a.type === 'GROUP'))
+                return this.handleNestedElements(FILTERED_ELEMENTS);
             else
-                return this.handleFlatElements();
+                return this.handleFlatElements(FILTERED_ELEMENTS);
         }
         catch (error) {
             throw new Error(error);
@@ -52,17 +52,16 @@ class FigmagicElement {
     setCss(css) {
         this.css = css;
     }
-    addHtml(html) {
-        this.html += html;
-    }
     replaceHtml(match, replacement) {
         this.html = this.html.replace(match, replacement);
     }
     addExtraProps(extraProps) {
         this.extraProps += extraProps;
     }
-    addText(text) {
-        this.text += text;
+    setText() {
+        const TEXT_CHILD = this.children?.filter((c) => c.name === ':text')[0];
+        if (TEXT_CHILD && TEXT_CHILD.characters)
+            this.text = TEXT_CHILD.characters;
     }
     setElement() {
         const ELEMENT_TYPE = (() => {
@@ -72,7 +71,7 @@ class FigmagicElement {
             return 'div';
         })();
         const HTML = `<${ELEMENT_TYPE}>{{TEXT}}</${ELEMENT_TYPE}>`;
-        this.addHtml(HTML);
+        this.html = HTML;
         this.element = ELEMENT_TYPE;
     }
     setDescription() {
@@ -86,28 +85,21 @@ class FigmagicElement {
         }
     }
     setPlaceholderText() {
-        this.children?.forEach((child) => {
-            if ((child.type === 'TEXT' && child.name.toLowerCase() === 'placeholder') ||
-                (child.type === 'TEXT' && child.name.toLowerCase() === ':placeholder')) {
-                this.addExtraProps(`placeholder="${child.characters}"`);
-            }
-        });
+        const PLACEHOLDER_TEXT_CHILD = this.children?.filter((child) => child.name.toLowerCase() === ':placeholder')[0];
+        if (PLACEHOLDER_TEXT_CHILD)
+            this.addExtraProps(`placeholder="${PLACEHOLDER_TEXT_CHILD.characters}"`);
     }
     setElementType() {
-        if (this.description.match(/type=(.*)/)) {
-            const TYPE = (() => {
-                const _TYPE = this.description.match(/type=(.*)/);
-                if (_TYPE && _TYPE[1])
-                    return _TYPE[1];
-            })();
-            if (this.extraProps && !this.extraProps.includes(`type="${TYPE}`))
-                this.addExtraProps(`type="${TYPE}" `);
-        }
+        const TYPE = this.description.match(/type=(.*)/)?.[0];
+        if (TYPE)
+            this.addExtraProps(`type="${TYPE.split('type=')[1]}" `);
     }
-    handleNestedElements(css = ``) {
+    handleNestedElements(elements) {
+        console.log('NESTED', this.name);
         try {
+            let css = ``;
             let imports = [];
-            this.children?.forEach((el) => {
+            elements?.forEach((el) => {
                 if (!el.name)
                     return;
                 if (el.name[0] === '_')
@@ -116,8 +108,6 @@ class FigmagicElement {
                 if (!MAIN_ELEMENT)
                     throw new Error(errors_1.ErrorProcessElementsNoMainElement);
                 const TEXT_ELEMENT = el.children?.filter((e) => e.type === 'TEXT' && e.name[0] !== '_')[0];
-                this.setPlaceholderText();
-                this.setElementType();
                 const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
                 console.log(messages_1.MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
                 const { updatedCss, updatedImports } = parseCssFromElement_1.parseCssFromElement(MAIN_ELEMENT, TEXT_ELEMENT, this.config.remSize, this.config.outputFormatTokens, this.config.outputFolderTokens);
@@ -134,7 +124,6 @@ class FigmagicElement {
                     });
                     css += `\n.${FIXED_NAME} {\n${updatedCss}}`;
                     imports = imports.concat(updatedImports);
-                    this.text = TEXT_ELEMENT.characters || '';
                 }
             });
             const PROCESSED_CSS = processNestedCss_1.processNestedCss(css);
@@ -144,19 +133,13 @@ class FigmagicElement {
             throw new Error(error);
         }
     }
-    handleFlatElements() {
+    handleFlatElements(elements) {
         try {
             let css = `\n`;
             let imports = [];
-            const MAIN_ELEMENT = (() => {
-                if (this.children?.length === 1 && this.children[0].type !== 'TEXT')
-                    return this.children[0];
-                else
-                    this.children?.filter((element) => element.name === this.name)[0];
-            })();
-            const TEXT_ELEMENT = this.children?.filter((element) => element.type === 'TEXT')[0];
-            this.setPlaceholderText();
-            this.setElementType();
+            this.replaceHtml('{{TEXT}}', this.text || '');
+            const MAIN_ELEMENT = elements?.filter((element) => element.name.toLowerCase() === this.name.toLowerCase())[0];
+            const TEXT_ELEMENT = elements?.filter((element) => element.type === 'TEXT')[0];
             if (TEXT_ELEMENT) {
                 const { updatedCss, updatedImports } = parseTypographyStylingFromElement_1.parseTypographyStylingFromElement({
                     textElement: TEXT_ELEMENT,
@@ -170,7 +153,6 @@ class FigmagicElement {
                 imports = imports.concat(updatedImports);
                 this.text = TEXT_ELEMENT.characters || '';
             }
-            this.replaceHtml('{{TEXT}}', this.text || '');
             if (MAIN_ELEMENT) {
                 const { updatedCss, updatedImports } = this.processCssSelfnamedLayer(MAIN_ELEMENT, TEXT_ELEMENT);
                 const COMBINED_CSS = css + updatedCss;

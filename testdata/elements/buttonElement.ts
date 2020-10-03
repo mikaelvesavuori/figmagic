@@ -1765,7 +1765,7 @@ export const validButtonFigmagicElement = {
   description:
     'type=text\nplaceholder=Some placeholder text\n\nAn example of a Figmagic element description!',
   element: 'div',
-  extraProps: '',
+  extraProps: 'type="text" ',
   html: '<div>{{TEXT}}</div>',
   id: '3005:93',
   imports: [
@@ -1780,6 +1780,6 @@ export const validButtonFigmagicElement = {
     'letterSpacings'
   ],
   name: 'Button',
-  text: 'Normal',
+  text: '',
   type: 'COMPONENT'
 };

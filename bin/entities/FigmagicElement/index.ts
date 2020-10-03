@@ -59,27 +59,33 @@ class FigmagicElement {
 
   init(): void {
     this.setElement();
+    this.setElementType();
+    this.setPlaceholderText();
+    this.setText();
     this.setDescription();
 
-    const html = ``;
-    const extraProps = ``;
-    const text = ``;
-
     const { updatedCss, updatedImports } = this.handleElements();
-
     this.setCss(updatedCss);
-    this.addHtml(html);
-    this.addExtraProps(extraProps);
-    this.addText(text);
 
     // @ts-ignore
     this.imports = [...new Set(updatedImports)];
   }
 
+  /**
+   * @description Controller to funnel elements to the correct handler.
+   */
   private handleElements(): any {
     try {
-      if (this.children?.every((a: any) => a.type === 'GROUP')) return this.handleNestedElements();
-      else return this.handleFlatElements();
+      // Filter out meta layers (using ":") or hidden ones (using "_")
+      // @ts-ignore
+      const FILTERED_ELEMENTS = this.children
+        .filter((c) => c.name[0] !== ':')
+        .filter((c) => c.name[0] !== '_');
+
+      // If all the remaining elements/layers contain only groups, use the "nested" handler
+      if (FILTERED_ELEMENTS?.every((a: any) => a.type === 'GROUP'))
+        return this.handleNestedElements(FILTERED_ELEMENTS);
+      else return this.handleFlatElements(FILTERED_ELEMENTS);
     } catch (error) {
       throw new Error(error);
     }
@@ -87,10 +93,6 @@ class FigmagicElement {
 
   private setCss(css: string): void {
     this.css = css;
-  }
-
-  private addHtml(html: string): void {
-    this.html += html;
   }
 
   private replaceHtml(match: string, replacement: string): void {
@@ -101,10 +103,17 @@ class FigmagicElement {
     this.extraProps += extraProps;
   }
 
-  private addText(text: string): void {
-    this.text += text;
+  /**
+   * @description Try setting Figmagic element text to the characters of an element-root-level layer going by the name ":text".
+   */
+  private setText(): void {
+    const TEXT_CHILD = this.children?.filter((c) => c.name === ':text')[0];
+    if (TEXT_CHILD && TEXT_CHILD.characters) this.text = TEXT_CHILD.characters;
   }
 
+  /**
+   * @description Set the element type (i.e "div", "input"...).
+   */
   private setElement(): void {
     const ELEMENT_TYPE = (() => {
       const _ELEMENT = this.description.match(/element=(.*)/);
@@ -113,12 +122,12 @@ class FigmagicElement {
     })();
 
     const HTML = `<${ELEMENT_TYPE}>{{TEXT}}</${ELEMENT_TYPE}>`;
-    this.addHtml(HTML);
+    this.html = HTML;
     this.element = ELEMENT_TYPE;
   }
 
   /**
-   * @description Set description
+   * @description Set description for the Figmagic element. This is later outputted to the description file.
    */
   private setDescription(): void {
     let description = this.description;
@@ -131,33 +140,35 @@ class FigmagicElement {
     }
   }
 
+  /**
+   * @description Set element's placeholder text value, if we find an element-root-level layer going by the name ":placeholder".
+   */
   private setPlaceholderText(): void {
-    this.children?.forEach((child: Frame) => {
-      if (
-        (child.type === 'TEXT' && child.name.toLowerCase() === 'placeholder') ||
-        (child.type === 'TEXT' && child.name.toLowerCase() === ':placeholder')
-      ) {
-        this.addExtraProps(`placeholder="${child.characters}"`);
-      }
-    });
+    const PLACEHOLDER_TEXT_CHILD = this.children?.filter(
+      (child: Frame) => child.name.toLowerCase() === ':placeholder'
+    )[0];
+
+    if (PLACEHOLDER_TEXT_CHILD)
+      this.addExtraProps(`placeholder="${PLACEHOLDER_TEXT_CHILD.characters}"`);
   }
 
+  /**
+   * @description Set element type (such as "type=checkbox"). This attribute is specified by the designer in Figma's description box.
+   */
   private setElementType(): void {
-    if (this.description.match(/type=(.*)/)) {
-      const TYPE = (() => {
-        const _TYPE = this.description.match(/type=(.*)/);
-        if (_TYPE && _TYPE[1]) return _TYPE[1];
-      })();
-      if (this.extraProps && !this.extraProps.includes(`type="${TYPE}`))
-        this.addExtraProps(`type="${TYPE}" `);
-    }
+    const TYPE = this.description.match(/type=(.*)/)?.[0];
+    if (TYPE) this.addExtraProps(`type="${TYPE.split('type=')[1]}" `);
   }
 
-  private handleNestedElements(css = ``): UpdatedCssAndImports {
+  /**
+   * @description Handle nested, multi-level elements. To correctly calculate elements we need both a "main" (layout) element and a "text" element.
+   */
+  private handleNestedElements(elements: Frame[]): UpdatedCssAndImports {
     try {
+      let css = ``;
       let imports: Record<string, unknown>[] = [];
 
-      this.children?.forEach((el: Frame) => {
+      elements?.forEach((el: Frame) => {
         if (!el.name) return;
         if (el.name[0] === '_') return;
 
@@ -170,10 +181,8 @@ class FigmagicElement {
           (e: Frame) => e.type === 'TEXT' && e.name[0] !== '_'
         )[0];
 
-        this.setPlaceholderText();
-        this.setElementType();
-
-        const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, ''); // Clean names from any spaces
+        // Clean names from any spaces
+        const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
 
         // Parse layout CSS from element
         console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
@@ -186,7 +195,9 @@ class FigmagicElement {
           this.config.outputFolderTokens
         );
 
-        css += `\n.${FIXED_NAME} {\n${updatedCss}}`; // Add 'dot' selector
+        // Add 'dot' selector
+        css += `\n.${FIXED_NAME} {\n${updatedCss}}`;
+
         imports = imports.concat(updatedImports);
 
         if (TEXT_ELEMENT) {
@@ -200,7 +211,6 @@ class FigmagicElement {
           } as TypographyElement);
           css += `\n.${FIXED_NAME} {\n${updatedCss}}`;
           imports = imports.concat(updatedImports);
-          this.text = TEXT_ELEMENT.characters || '';
         }
       });
 
@@ -212,18 +222,20 @@ class FigmagicElement {
     }
   }
 
-  private handleFlatElements(): UpdatedCssAndImports {
+  /**
+   * @description Handle flat, single-layer elements. To correctly calculate elements we need both a "main" (layout) element and a "text" element.
+   */
+  private handleFlatElements(elements: Frame[]): UpdatedCssAndImports {
     try {
       let css = `\n`;
       let imports: Record<string, unknown>[] = [];
 
-      const MAIN_ELEMENT = this.children?.filter(
+      this.replaceHtml('{{TEXT}}', this.text || '');
+
+      const MAIN_ELEMENT = elements?.filter(
         (element: Frame) => element.name.toLowerCase() === this.name.toLowerCase()
       )[0];
-      const TEXT_ELEMENT = this.children?.filter((element: Frame) => element.type === 'TEXT')[0];
-
-      this.setPlaceholderText();
-      this.setElementType();
+      const TEXT_ELEMENT = elements?.filter((element: Frame) => element.type === 'TEXT')[0];
 
       // Set text styling
       if (TEXT_ELEMENT) {
@@ -240,10 +252,6 @@ class FigmagicElement {
         this.text = TEXT_ELEMENT.characters || '';
       }
 
-      this.replaceHtml('{{TEXT}}', this.text || '');
-
-      // Process CSS for any component that has a self-named layer
-      // This pattern is how we communicate that it's a layout element, e.g. input and not a H1
       if (MAIN_ELEMENT) {
         const { updatedCss, updatedImports } = this.processCssSelfnamedLayer(
           MAIN_ELEMENT,
@@ -265,6 +273,9 @@ class FigmagicElement {
     }
   }
 
+  /**
+   * @description Process CSS for any component that has a self-named layer. This pattern is how we communicate that it's a layout element, e.g. input and not a H1.
+   */
   private processCssSelfnamedLayer(
     layoutElement: Frame,
     textElement: Frame | null = null

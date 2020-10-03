@@ -39,7 +39,7 @@ describe('Success cases', () => {
     expect(makeFigmagicElement(flatSelectElement as Frame, CONFIG, DESCRIPTION)).toMatchObject({
       html: '<div></div>',
       id: '3009:80',
-      imports: ['colors', 'spacing', 'borderWidths', 'radii', 'shadows'],
+      imports: ['spacing', 'colors', 'borderWidths', 'radii', 'shadows'],
       text: '',
       type: 'COMPONENT'
     });

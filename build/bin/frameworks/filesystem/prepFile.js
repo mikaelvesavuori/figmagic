@@ -18,7 +18,7 @@ exports.prepComponent = (data) => {
         template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
         template = template.replace(/{{EXTRA_PROPS}}/gi, ` ${extraProps}`);
         template = template.replace(/\s>/gi, '>');
-        template = template.replace(/{{TEXT}}/gi, text);
+        template = template.replace(/{{TEXT}}/gi, text !== ' ' ? text : '');
         return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
     }
     catch (error) {
