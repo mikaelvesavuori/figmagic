@@ -1749,16 +1749,16 @@ export const validButtonFigmagicElement = {
   text-align: center;
   text-transform: uppercase;
 
-  &.Error {
-    background-color: \${colors.red};
+  &.Normal {
+    background-color: \${colors.blue1};
   }
 
   &.Warning {
     background-color: \${colors.orange};
   }
 
-  &.Normal {
-    background-color: \${colors.blue1};
+  &.Error {
+    background-color: \${colors.red};
   }
 
 `,

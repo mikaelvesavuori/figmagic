@@ -8,6 +8,9 @@ export const ErrorAddDescriptionToElements = ErrorMessage(
   'Missing elements and/or components in addDescriptionToElements()!'
 );
 export const ErrorCamelize = ErrorMessage('No string provided to camelize()!');
+export const ErrorCheckIfStringOnlyContainsReturnsOrSpaces = ErrorMessage(
+  'No string provided to checkIfStringOnlyContainsReturnsOrSpaces()!'
+);
 export const ErrorCleanArrays = ErrorMessage(
   'Missing one or more of "classNames" and/or "classContent" when calling cleanArrays()!'
 );

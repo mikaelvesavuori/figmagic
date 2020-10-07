@@ -1,21 +1,21 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "importHelpers": true,
-    "lib": ["esnext"],
     "module": "commonjs",
     "moduleResolution": "node",
+    "outDir": "build",
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "forceConsistentCasingInFileNames": true,
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "build",
     "removeComments": true,
     "sourceMap": true,
     "strict": true,
-    "strictFunctionTypes": true,
-    "target": "esnext"
+    "strictFunctionTypes": true
   },
   "include": ["./bin", "./index.ts"],
   "exclude": ["./templates/*", "./build"]

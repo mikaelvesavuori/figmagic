@@ -193,7 +193,7 @@ import notes from './colors.description.md';
 
 export default { title: 'colors', parameters: { notes } };
 
-export const colors = () => <colors>text</colors>;`;
+export const colorsRegular = () => <colors>text</colors>;`;
 
       expect(
         // @ts-ignore

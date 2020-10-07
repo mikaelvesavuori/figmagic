@@ -9,7 +9,7 @@ import { parseTypographyStylingFromElement } from './logic/parseTypographyStylin
 import { processNestedCss } from './logic/processNestedCss';
 
 import { MsgProcessElementsCreatingElement } from '../../frameworks/messages/messages';
-import { ErrorProcessElementsNoMainElement } from '../../frameworks/errors/errors';
+//import { ErrorProcessElementsNoMainElement } from '../../frameworks/errors/errors';
 
 /**
  * @description Factory function to create Figmagic element
@@ -76,14 +76,14 @@ class FigmagicElement {
    */
   private handleElements(): any {
     try {
-      // Filter out meta layers (using ":") or hidden ones (using "_")
+      // Filter out hidden elements (using "_")
       // @ts-ignore
       const FILTERED_ELEMENTS = this.children
-        .filter((c) => c.name[0] !== ':')
-        .filter((c) => c.name[0] !== '_');
+        //.filter((child) => child.name[0] !== ':')
+        .filter((child) => child.name[0] !== '_');
 
-      // If all the remaining elements/layers contain only groups, use the "nested" handler
-      if (FILTERED_ELEMENTS?.every((a: any) => a.type === 'GROUP'))
+      // If the remaining elements/layers contain any groups, use the nested elements handler
+      if (FILTERED_ELEMENTS?.some((element: Frame) => element.type === 'GROUP'))
         return this.handleNestedElements(FILTERED_ELEMENTS);
       else return this.handleFlatElements(FILTERED_ELEMENTS);
     } catch (error) {
@@ -168,50 +168,13 @@ class FigmagicElement {
       let css = ``;
       let imports: Record<string, unknown>[] = [];
 
-      elements?.forEach((el: Frame) => {
-        if (!el.name) return;
-        if (el.name[0] === '_') return;
-
-        const MAIN_ELEMENT = el.children?.filter(
-          (e: Frame) => e.type === 'RECTANGLE' && e.name[0] !== '_'
-        )[0];
-        if (!MAIN_ELEMENT) throw new Error(ErrorProcessElementsNoMainElement);
-
-        const TEXT_ELEMENT = el.children?.filter(
-          (e: Frame) => e.type === 'TEXT' && e.name[0] !== '_'
-        )[0];
-
-        // Clean names from any spaces
-        const FIXED_NAME = MAIN_ELEMENT.name.replace(/\s/gi, '');
-
-        // Parse layout CSS from element
-        console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
-
-        const { updatedCss, updatedImports } = parseCssFromElement(
-          MAIN_ELEMENT,
-          TEXT_ELEMENT as any,
-          this.config.remSize,
-          this.config.outputFormatTokens,
-          this.config.outputFolderTokens
-        );
-
-        // Add 'dot' selector
-        css += `\n.${FIXED_NAME} {\n${updatedCss}}`;
-
-        imports = imports.concat(updatedImports);
-
-        if (TEXT_ELEMENT) {
-          const { updatedCss, updatedImports } = parseTypographyStylingFromElement({
-            textElement: TEXT_ELEMENT,
-            remSize: this.config.remSize,
-            usePostscriptFontNames: this.config.usePostscriptFontNames,
-            outputFormatTokens: this.config.outputFormatTokens,
-            letterSpacingUnit: this.config.letterSpacingUnit,
-            outputFolderTokens: this.config.outputFolderTokens
-          } as TypographyElement);
-          css += `\n.${FIXED_NAME} {\n${updatedCss}}`;
-          imports = imports.concat(updatedImports);
-        }
+      const CHILD_ELEMENTS = elements.filter(
+        (el: Frame) => el.type === 'GROUP' && el.name[0] !== '_'
+      );
+      CHILD_ELEMENTS?.forEach((variant: Frame) => {
+        const PARSED_CSS = this.parseNestedCss(variant, this.config);
+        css += PARSED_CSS.css;
+        imports = imports.concat(PARSED_CSS.imports);
       });
 
       const PROCESSED_CSS = processNestedCss(css);
@@ -259,11 +222,9 @@ class FigmagicElement {
         );
 
         const COMBINED_CSS = css + updatedCss;
+        const PROCESSED_CSS = this.processCss(COMBINED_CSS);
 
-        let processedCss = Array.from(new Set(COMBINED_CSS.split(/\n/gi))).toString();
-        processedCss = processedCss.replace(/;,/gi, ';\n ');
-
-        css = processedCss;
+        css = PROCESSED_CSS;
         imports = imports.concat(updatedImports);
       }
 
@@ -271,6 +232,65 @@ class FigmagicElement {
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  /**
+   * @description TODO
+   */
+  private parseNestedCss(el: Frame, config: Config, id?: number) {
+    let css = `\n`;
+    let imports: Record<string, unknown>[] = [];
+    const ID = id || Math.round(Math.random() * 10000);
+
+    const MAIN_ELEMENT = el.children?.filter(
+      (e: Frame) => e.type === 'RECTANGLE' && e.name[0] !== '_'
+    )[0];
+
+    const TEXT_ELEMENT = el.children?.filter(
+      (e: Frame) => e.type === 'TEXT' && e.name[0] !== '_'
+    )[0];
+
+    if (!MAIN_ELEMENT && !TEXT_ELEMENT) throw new Error('Missing both main and text element!');
+
+    const FIXED_NAME = el.name.replace(/\s/gi, '');
+
+    const CHILD_ELEMENTS = el.children?.filter((child: Frame) => child.type === 'GROUP');
+    CHILD_ELEMENTS?.forEach((state: Frame) => {
+      const PARSED_CSS = this.parseNestedCss(state, config, ID);
+      css += PARSED_CSS.css;
+      imports = imports.concat(PARSED_CSS.imports);
+    });
+
+    if (MAIN_ELEMENT) {
+      console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
+
+      const { updatedCss, updatedImports } = parseCssFromElement(
+        MAIN_ELEMENT,
+        TEXT_ELEMENT as any,
+        config.remSize,
+        config.outputFormatTokens,
+        config.outputFolderTokens
+      );
+
+      css += `\n.${FIXED_NAME}__#${ID} {\n${updatedCss}}`;
+      imports = imports.concat(updatedImports);
+    }
+
+    if (TEXT_ELEMENT) {
+      const { updatedCss, updatedImports } = parseTypographyStylingFromElement({
+        textElement: TEXT_ELEMENT,
+        remSize: config.remSize,
+        usePostscriptFontNames: config.usePostscriptFontNames,
+        outputFormatTokens: config.outputFormatTokens,
+        letterSpacingUnit: config.letterSpacingUnit,
+        outputFolderTokens: config.outputFolderTokens
+      } as TypographyElement);
+
+      css += `\n.${FIXED_NAME}__#${ID} {\n${updatedCss}}`;
+      imports = imports.concat(updatedImports);
+    }
+
+    return { css, imports };
   }
 
   /**
@@ -304,5 +324,20 @@ class FigmagicElement {
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  /**
+   * @description Process CSS for flat elements
+   */
+  private processCss(css: string): string {
+    if (!css) throw new Error('Missing css when calling processCss()!'); // TODO: Add real error
+
+    let processedCss = Array.from(new Set(css.split(/\n/gi))).toString();
+    if (processedCss[0] === ',') processedCss = processedCss.slice(1, processedCss.length);
+    processedCss = `\n  ` + processedCss;
+    processedCss = processedCss.replace(/;,/gi, ';\n  ');
+    processedCss += `\n`;
+
+    return processedCss;
   }
 }

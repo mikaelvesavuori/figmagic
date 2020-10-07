@@ -184,7 +184,7 @@ import notes from './ComponentName.description.md';
 
 export default { title: 'ComponentName', parameters: { notes } };
 
-export const ComponentName = () => <ComponentName>Something here</ComponentName>;`;
+export const ComponentNameRegular = () => <ComponentName>Something here</ComponentName>;`;
 
     const expectedData = { fileContent: fileContent, filePath: 'ComponentName.stories.js' };
 
