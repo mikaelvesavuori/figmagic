@@ -53,7 +53,7 @@ exports.createElements = createElements;
 function handleElements(element) {
     const { children, pageName, config, components, isGeneratingGraphics } = element;
     const PAGE = createPage_1.createPage(children, pageName);
-    const ELEMENTS = processElements_1.processElements(PAGE, config, components);
+    const ELEMENTS = processElements_1.processElements(PAGE, config, components, isGeneratingGraphics || false);
     writeElements_1.writeElements(ELEMENTS, config, isGeneratingGraphics);
     return ELEMENTS;
 }

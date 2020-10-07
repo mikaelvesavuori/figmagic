@@ -15,14 +15,15 @@ import { ErrorProcessElements } from '../../../frameworks/errors/errors';
 export function processElements(
   elementsPage: any[],
   config: Config,
-  components: Record<string, any>
+  components: Record<string, any>,
+  isGraphicElement = false
 ): FigmagicElement[] {
   try {
     if (!elementsPage || !components || !config) throw new Error(ErrorProcessElements);
 
     const FILTERED_ELEMENTS = elementsPage.filter((element) => element.type === 'COMPONENT');
     const PARSED_ELEMENTS = FILTERED_ELEMENTS.map((element: FigmaElement) =>
-      makeFigmagicElement(element, config, components[element.id].description)
+      makeFigmagicElement(element, config, components[element.id].description, isGraphicElement)
     );
     return PARSED_ELEMENTS;
   } catch (error) {

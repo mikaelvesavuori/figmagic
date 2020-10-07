@@ -17,9 +17,10 @@ import { MsgProcessElementsCreatingElement } from '../../frameworks/messages/mes
 export const makeFigmagicElement = (
   element: FigmaElement,
   config: Config,
-  description = ''
+  description = '',
+  isGraphicElement = false
 ): FigmagicElement => {
-  return new FigmagicElement(element, config, description);
+  return new FigmagicElement(element, config, description, isGraphicElement);
 };
 
 class FigmagicElement {
@@ -27,6 +28,7 @@ class FigmagicElement {
   name: string;
   children?: Frame[];
   type: string;
+  isGraphicElement: boolean;
 
   config: Config;
   description: string;
@@ -37,7 +39,7 @@ class FigmagicElement {
   text: string | undefined;
   imports: string[];
 
-  constructor(element: FigmaElement, config: Config, description = '') {
+  constructor(element: FigmaElement, config: Config, description = '', isGraphicElement: boolean) {
     // Element
     this.id = element.id;
     this.name = element.name;
@@ -47,6 +49,7 @@ class FigmagicElement {
     // Metadata
     this.config = config;
     this.description = description;
+    this.isGraphicElement = isGraphicElement;
     this.element = ``;
     this.css = ``;
     this.html = ``;
@@ -64,11 +67,13 @@ class FigmagicElement {
     this.setText();
     this.setDescription();
 
-    const { updatedCss, updatedImports } = this.handleElements();
-    this.setCss(updatedCss);
-
-    // @ts-ignore
-    this.imports = [...new Set(updatedImports)];
+    // Graphic elements only need the scaffolding, not any of the CSS parsing/processing
+    if (!this.isGraphicElement) {
+      const { updatedCss, updatedImports } = this.handleElements();
+      this.setCss(updatedCss);
+      // @ts-ignore
+      this.imports = [...new Set(updatedImports)];
+    }
   }
 
   /**
@@ -195,9 +200,6 @@ class FigmagicElement {
 
       this.replaceHtml('{{TEXT}}', this.text || '');
 
-      console.log('INSIDE handleFlatElements', this.name);
-      console.log(elements);
-
       const MAIN_ELEMENT = elements?.filter(
         (element: Frame) => element.name.toLowerCase() === this.name.toLowerCase()
       )[0];
@@ -250,7 +252,7 @@ class FigmagicElement {
       (e: Frame) => e.type === 'TEXT' && e.name[0] !== '_'
     )[0];
 
-    if (!MAIN_ELEMENT && !TEXT_ELEMENT) throw new Error('Missing both main and text element!');
+    if (!MAIN_ELEMENT && !TEXT_ELEMENT) throw new Error('Missing both main and text element!'); //TODO: Move out error
 
     const FIXED_NAME = el.name.replace(/\s/gi, '');
 

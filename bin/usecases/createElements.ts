@@ -1,5 +1,6 @@
 import { FigmaData } from '../contracts/FigmaData';
 import { Config } from '../contracts/Config';
+import { Element, GraphicElementsMap } from '../contracts/Element';
 
 import { createPage } from './interactors/common/createPage';
 import { processElements } from './interactors/elements/processElements';
@@ -66,7 +67,7 @@ function handleElements(element: Element): FigmagicElement[] {
   const { children, pageName, config, components, isGeneratingGraphics } = element;
 
   const PAGE = createPage(children, pageName);
-  const ELEMENTS = processElements(PAGE, config, components);
+  const ELEMENTS = processElements(PAGE, config, components, isGeneratingGraphics || false);
   writeElements(ELEMENTS, config, isGeneratingGraphics);
 
   return ELEMENTS;
@@ -81,16 +82,3 @@ function handleGraphicElementsMap(graphicElementsMap: GraphicElementsMap) {
 
   writeGraphicElementsMap(FOLDER, FILE_PATH, FILE_CONTENT);
 }
-
-type Element = {
-  children: any[];
-  pageName: any;
-  config: any;
-  components: any;
-  isGeneratingGraphics?: boolean;
-};
-
-type GraphicElementsMap = {
-  config: any;
-  graphics: any;
-};

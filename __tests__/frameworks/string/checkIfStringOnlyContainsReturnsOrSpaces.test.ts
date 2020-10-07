@@ -41,20 +41,3 @@ describe('Success cases', () => {
     expect(checkIfStringOnlyContainsReturnsOrSpaces(TEST_6)).toBe(true);
   });
 });
-
-/*
-const x1 = str1.match(/\n/g);
-console.log(x1);
-const x2 = str2.match(/\n/g);
-console.log(x2);
-const x3 = str3.match(/\n/g);
-console.log(x3);
-const x4 = str4.match(/\n/g);
-console.log(x4);
-const x5 = str5.match(/\n/g);
-console.log(x5);
-const x6 = str6.match(/\n/g);
-console.log(x6);
-const x7 = str7.match(/\n/g);
-console.log(x7);
-*/

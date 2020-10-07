@@ -5,17 +5,18 @@ const parseCssFromElement_1 = require("./logic/parseCssFromElement");
 const parseTypographyStylingFromElement_1 = require("./logic/parseTypographyStylingFromElement");
 const processNestedCss_1 = require("./logic/processNestedCss");
 const messages_1 = require("../../frameworks/messages/messages");
-exports.makeFigmagicElement = (element, config, description = '') => {
-    return new FigmagicElement(element, config, description);
+exports.makeFigmagicElement = (element, config, description = '', isGraphicElement = false) => {
+    return new FigmagicElement(element, config, description, isGraphicElement);
 };
 class FigmagicElement {
-    constructor(element, config, description = '') {
+    constructor(element, config, description = '', isGraphicElement) {
         this.id = element.id;
         this.name = element.name;
         this.children = element.children;
         this.type = element.type;
         this.config = config;
         this.description = description;
+        this.isGraphicElement = isGraphicElement;
         this.element = ``;
         this.css = ``;
         this.html = ``;
@@ -30,9 +31,11 @@ class FigmagicElement {
         this.setPlaceholderText();
         this.setText();
         this.setDescription();
-        const { updatedCss, updatedImports } = this.handleElements();
-        this.setCss(updatedCss);
-        this.imports = [...new Set(updatedImports)];
+        if (!this.isGraphicElement) {
+            const { updatedCss, updatedImports } = this.handleElements();
+            this.setCss(updatedCss);
+            this.imports = [...new Set(updatedImports)];
+        }
     }
     handleElements() {
         try {
@@ -117,8 +120,6 @@ class FigmagicElement {
             let css = `\n`;
             let imports = [];
             this.replaceHtml('{{TEXT}}', this.text || '');
-            console.log('INSIDE handleFlatElements', this.name);
-            console.log(elements);
             const MAIN_ELEMENT = elements === null || elements === void 0 ? void 0 : elements.filter((element) => element.name.toLowerCase() === this.name.toLowerCase())[0];
             const TEXT_ELEMENT = elements === null || elements === void 0 ? void 0 : elements.filter((element) => element.type === 'TEXT')[0];
             if (TEXT_ELEMENT) {
