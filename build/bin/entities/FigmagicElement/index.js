@@ -25,6 +25,8 @@ class FigmagicElement {
         this.init();
     }
     init() {
+        console.log(this.name);
+        console.log(this.element);
         this.setElement();
         this.setElementType();
         this.setPlaceholderText();
@@ -102,7 +104,6 @@ class FigmagicElement {
                 css += PARSED_CSS.css;
                 imports = imports.concat(PARSED_CSS.imports);
             });
-            console.log(this.name);
             const PROCESSED_CSS = processNestedCss_1.processNestedCss(css);
             return { updatedCss: PROCESSED_CSS, updatedImports: imports };
         }
@@ -114,7 +115,6 @@ class FigmagicElement {
         try {
             let css = `\n`;
             let imports = [];
-            console.log('||| FLAT |||', elements);
             this.replaceHtml('{{TEXT}}', this.text || '');
             const MAIN_ELEMENT = elements?.filter((element) => element.name.toLowerCase() === this.name.toLowerCase())[0];
             const TEXT_ELEMENT = elements?.filter((element) => element.type === 'TEXT')[0];
@@ -150,6 +150,8 @@ class FigmagicElement {
         const ID = id || Math.round(Math.random() * 10000);
         const MAIN_ELEMENT = el.children?.filter((e) => e.type === 'RECTANGLE' && e.name[0] !== '_')[0];
         const TEXT_ELEMENT = el.children?.filter((e) => e.type === 'TEXT' && e.name[0] !== '_')[0];
+        console.log(this.name);
+        console.log(el);
         if (!MAIN_ELEMENT && !TEXT_ELEMENT)
             throw new Error('Missing both main and text element!');
         const FIXED_NAME = el.name.replace(/\s/gi, '');

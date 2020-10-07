@@ -98,7 +98,6 @@ function createCssString(intersections, uniqueValues) {
             nestingDepth++;
     });
     if (hasOpenBracketAtEnd(cssString)) {
-        console.log('//// hasOpenBracketAtEnd', cssString);
         const SPLIT_STRING = cssString.split(';');
         cssString = cssString.replace(SPLIT_STRING[SPLIT_STRING.length - 1], '\n');
     }
@@ -106,12 +105,7 @@ function createCssString(intersections, uniqueValues) {
     return cssString;
 }
 function hasOpenBracketAtEnd(str) {
-    const regexp = /{\n  }/gi;
-    const array = [...str.matchAll(regexp)];
-    if (array.length > 0) {
-        console.log('array', array);
-    }
-    return false;
+    return str.slice(str.length - 5, str.length).includes('{');
 }
 function getFixedClassName(className) {
     if (className.includes('.:'))

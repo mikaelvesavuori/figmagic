@@ -58,6 +58,8 @@ class FigmagicElement {
   }
 
   init(): void {
+    console.log(this.name);
+    console.log(this.element);
     this.setElement();
     this.setElementType();
     this.setPlaceholderText();
@@ -216,13 +218,10 @@ class FigmagicElement {
       }
 
       if (MAIN_ELEMENT) {
-        const { updatedCss, updatedImports } = this.processCssSelfnamedLayer(
-          MAIN_ELEMENT,
-          TEXT_ELEMENT
-        );
+        const { updatedCss, updatedImports } = this.parseFlatCss(MAIN_ELEMENT, TEXT_ELEMENT);
 
         const COMBINED_CSS = css + updatedCss;
-        const PROCESSED_CSS = this.processCss(COMBINED_CSS);
+        const PROCESSED_CSS = this.processFlatCss(COMBINED_CSS);
 
         css = PROCESSED_CSS;
         imports = imports.concat(updatedImports);
@@ -294,9 +293,9 @@ class FigmagicElement {
   }
 
   /**
-   * @description Process CSS for any component that has a self-named layer. This pattern is how we communicate that it's a layout element, e.g. input and not a H1.
+   * @description Process CSS for any "flat" elements
    */
-  private processCssSelfnamedLayer(
+  private parseFlatCss(
     layoutElement: Frame,
     textElement: Frame | null = null
   ): UpdatedCssAndImports {
@@ -329,8 +328,8 @@ class FigmagicElement {
   /**
    * @description Process CSS for flat elements
    */
-  private processCss(css: string): string {
-    if (!css) throw new Error('Missing css when calling processCss()!'); // TODO: Add real error
+  private processFlatCss(css: string): string {
+    if (!css) throw new Error('Missing CSS string when calling processCss()!'); // TODO: Add real error
 
     let processedCss = Array.from(new Set(css.split(/\n/gi))).toString();
     if (processedCss[0] === ',') processedCss = processedCss.slice(1, processedCss.length);

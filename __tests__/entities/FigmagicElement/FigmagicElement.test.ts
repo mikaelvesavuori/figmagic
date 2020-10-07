@@ -37,9 +37,19 @@ describe('Success cases', () => {
     const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
 
     expect(makeFigmagicElement(flatSelectElement as Frame, CONFIG, DESCRIPTION)).toMatchObject({
-      html: '<div></div>',
+      html: '<div>{{TEXT}}</div>',
       id: '3009:80',
-      imports: ['spacing', 'colors', 'borderWidths', 'radii', 'shadows'],
+      imports: [
+        'spacing',
+        'colors',
+        'borderWidths',
+        'radii',
+        'shadows',
+        'fontSizes',
+        'fontFamilies',
+        'fontWeights',
+        'lineHeights'
+      ],
       text: '',
       type: 'COMPONENT'
     });
