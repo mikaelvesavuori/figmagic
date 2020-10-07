@@ -32,6 +32,7 @@ describe('Success cases', () => {
   });
 
   /*
+  TODO: Fix this test
   test('It should write graphic elements and check that graphic elements map file exists', async () => {
     const CONFIG = testConfig;
     CONFIG.token = process.env.FIGMA_TOKEN || '';
@@ -55,5 +56,4 @@ describe('Success cases', () => {
     expect(FILE_EXISTS).toBeTruthy();
     trash(CONFIG.outputFolderElements);
   });
-  */
 });

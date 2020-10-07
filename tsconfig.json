@@ -3,7 +3,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "build",
-    "target": "esnext",
+    "target": "es6",
     "lib": ["esnext", "dom"],
     "esModuleInterop": true,
     "importHelpers": true,

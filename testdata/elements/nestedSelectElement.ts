@@ -1,4 +1,4 @@
-export const flatSelectElement = {
+export const nestedSelectElement = {
   id: '3009:80',
   name: 'Select',
   type: 'COMPONENT',

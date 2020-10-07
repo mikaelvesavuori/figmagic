@@ -1,46 +1,34 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createConfiguration = void 0;
+const tslib_1 = require("tslib");
 const parseCliArgs_1 = require("./parseCliArgs");
 const loadFile_1 = require("../../../frameworks/filesystem/loadFile");
 const messages_1 = require("../../../frameworks/messages/messages");
 const errors_1 = require("../../../frameworks/errors/errors");
-async function createConfiguration(baseConfig, userConfigPath, cliArgs) {
-    if (!baseConfig)
-        throw new Error(errors_1.ErrorCreateConfigurationNoDefault);
-    if (!userConfigPath)
-        throw new Error(errors_1.ErrorCreateConfiguration);
-    const DEFAULT_CONFIG = baseConfig;
-    let RC_CONFIG = {};
-    try {
-        const _RC_CONFIG = loadFile_1.loadFile(userConfigPath);
-        RC_CONFIG = _RC_CONFIG;
-    }
-    catch (e) { }
-    const ENV_CONFIG = {
-        token: process.env.FIGMA_TOKEN || '',
-        url: process.env.FIGMA_URL || ''
-    };
-    const CLI_CONFIG = parseCliArgs_1.parseCliArgs(cliArgs);
-    const CONFIG = {
-        ...DEFAULT_CONFIG,
-        ...RC_CONFIG,
-        ...ENV_CONFIG,
-        ...CLI_CONFIG,
-        templates: {
-            ...DEFAULT_CONFIG.templates,
-            ...RC_CONFIG.templates,
-            ...CLI_CONFIG.templates
-        },
-        skipFileGeneration: {
-            ...DEFAULT_CONFIG.skipFileGeneration,
-            ...RC_CONFIG.skipFileGeneration,
-            ...CLI_CONFIG.skipFileGeneration
+function createConfiguration(baseConfig, userConfigPath, cliArgs) {
+    return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        if (!baseConfig)
+            throw new Error(errors_1.ErrorCreateConfigurationNoDefault);
+        if (!userConfigPath)
+            throw new Error(errors_1.ErrorCreateConfiguration);
+        const DEFAULT_CONFIG = baseConfig;
+        let RC_CONFIG = {};
+        try {
+            const _RC_CONFIG = loadFile_1.loadFile(userConfigPath);
+            RC_CONFIG = _RC_CONFIG;
         }
-    };
-    if (CONFIG.debugMode === true)
-        printConfigs(ENV_CONFIG, CLI_CONFIG, RC_CONFIG, CONFIG);
-    return CONFIG;
+        catch (e) { }
+        const ENV_CONFIG = {
+            token: process.env.FIGMA_TOKEN || '',
+            url: process.env.FIGMA_URL || ''
+        };
+        const CLI_CONFIG = parseCliArgs_1.parseCliArgs(cliArgs);
+        const CONFIG = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG), RC_CONFIG), ENV_CONFIG), CLI_CONFIG), { templates: Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG.templates), RC_CONFIG.templates), CLI_CONFIG.templates), skipFileGeneration: Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG.skipFileGeneration), RC_CONFIG.skipFileGeneration), CLI_CONFIG.skipFileGeneration) });
+        if (CONFIG.debugMode === true)
+            printConfigs(ENV_CONFIG, CLI_CONFIG, RC_CONFIG, CONFIG);
+        return CONFIG;
+    });
 }
 exports.createConfiguration = createConfiguration;
 function printConfigs(envConfig, cliConfig, rcConfig, config) {

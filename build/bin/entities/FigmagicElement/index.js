@@ -25,8 +25,6 @@ class FigmagicElement {
         this.init();
     }
     init() {
-        console.log(this.name);
-        console.log(this.element);
         this.setElement();
         this.setElementType();
         this.setPlaceholderText();
@@ -40,7 +38,7 @@ class FigmagicElement {
         try {
             const FILTERED_ELEMENTS = this.children
                 .filter((child) => child.name[0] !== '_');
-            if (FILTERED_ELEMENTS?.some((element) => element.type === 'GROUP'))
+            if (FILTERED_ELEMENTS === null || FILTERED_ELEMENTS === void 0 ? void 0 : FILTERED_ELEMENTS.some((element) => element.type === 'GROUP'))
                 return this.handleNestedElements(FILTERED_ELEMENTS);
             else
                 return this.handleFlatElements(FILTERED_ELEMENTS);
@@ -59,7 +57,8 @@ class FigmagicElement {
         this.extraProps += extraProps;
     }
     setText() {
-        const TEXT_CHILD = this.children?.filter((c) => c.name === ':text')[0];
+        var _a;
+        const TEXT_CHILD = (_a = this.children) === null || _a === void 0 ? void 0 : _a.filter((c) => c.name === ':text')[0];
         if (TEXT_CHILD && TEXT_CHILD.characters)
             this.text = TEXT_CHILD.characters;
     }
@@ -85,12 +84,14 @@ class FigmagicElement {
         }
     }
     setPlaceholderText() {
-        const PLACEHOLDER_TEXT_CHILD = this.children?.filter((child) => child.name.toLowerCase() === ':placeholder')[0];
+        var _a;
+        const PLACEHOLDER_TEXT_CHILD = (_a = this.children) === null || _a === void 0 ? void 0 : _a.filter((child) => child.name.toLowerCase() === ':placeholder')[0];
         if (PLACEHOLDER_TEXT_CHILD)
             this.addExtraProps(`placeholder="${PLACEHOLDER_TEXT_CHILD.characters}"`);
     }
     setElementType() {
-        const TYPE = this.description.match(/type=(.*)/)?.[0];
+        var _a;
+        const TYPE = (_a = this.description.match(/type=(.*)/)) === null || _a === void 0 ? void 0 : _a[0];
         if (TYPE)
             this.addExtraProps(`type="${TYPE.split('type=')[1]}" `);
     }
@@ -99,7 +100,7 @@ class FigmagicElement {
             let css = ``;
             let imports = [];
             const CHILD_ELEMENTS = elements.filter((el) => el.type === 'GROUP' && el.name[0] !== '_');
-            CHILD_ELEMENTS?.forEach((variant) => {
+            CHILD_ELEMENTS === null || CHILD_ELEMENTS === void 0 ? void 0 : CHILD_ELEMENTS.forEach((variant) => {
                 const PARSED_CSS = this.parseNestedCss(variant, this.config);
                 css += PARSED_CSS.css;
                 imports = imports.concat(PARSED_CSS.imports);
@@ -116,8 +117,10 @@ class FigmagicElement {
             let css = `\n`;
             let imports = [];
             this.replaceHtml('{{TEXT}}', this.text || '');
-            const MAIN_ELEMENT = elements?.filter((element) => element.name.toLowerCase() === this.name.toLowerCase())[0];
-            const TEXT_ELEMENT = elements?.filter((element) => element.type === 'TEXT')[0];
+            console.log('INSIDE handleFlatElements', this.name);
+            console.log(elements);
+            const MAIN_ELEMENT = elements === null || elements === void 0 ? void 0 : elements.filter((element) => element.name.toLowerCase() === this.name.toLowerCase())[0];
+            const TEXT_ELEMENT = elements === null || elements === void 0 ? void 0 : elements.filter((element) => element.type === 'TEXT')[0];
             if (TEXT_ELEMENT) {
                 const { updatedCss, updatedImports } = parseTypographyStylingFromElement_1.parseTypographyStylingFromElement({
                     textElement: TEXT_ELEMENT,
@@ -132,9 +135,9 @@ class FigmagicElement {
                 this.text = TEXT_ELEMENT.characters || '';
             }
             if (MAIN_ELEMENT) {
-                const { updatedCss, updatedImports } = this.processCssSelfnamedLayer(MAIN_ELEMENT, TEXT_ELEMENT);
+                const { updatedCss, updatedImports } = this.parseFlatCss(MAIN_ELEMENT, TEXT_ELEMENT);
                 const COMBINED_CSS = css + updatedCss;
-                const PROCESSED_CSS = this.processCss(COMBINED_CSS);
+                const PROCESSED_CSS = this.processFlatCss(COMBINED_CSS);
                 css = PROCESSED_CSS;
                 imports = imports.concat(updatedImports);
             }
@@ -145,18 +148,17 @@ class FigmagicElement {
         }
     }
     parseNestedCss(el, config, id) {
+        var _a, _b, _c;
         let css = `\n`;
         let imports = [];
         const ID = id || Math.round(Math.random() * 10000);
-        const MAIN_ELEMENT = el.children?.filter((e) => e.type === 'RECTANGLE' && e.name[0] !== '_')[0];
-        const TEXT_ELEMENT = el.children?.filter((e) => e.type === 'TEXT' && e.name[0] !== '_')[0];
-        console.log(this.name);
-        console.log(el);
+        const MAIN_ELEMENT = (_a = el.children) === null || _a === void 0 ? void 0 : _a.filter((e) => e.type === 'RECTANGLE' && e.name[0] !== '_')[0];
+        const TEXT_ELEMENT = (_b = el.children) === null || _b === void 0 ? void 0 : _b.filter((e) => e.type === 'TEXT' && e.name[0] !== '_')[0];
         if (!MAIN_ELEMENT && !TEXT_ELEMENT)
             throw new Error('Missing both main and text element!');
         const FIXED_NAME = el.name.replace(/\s/gi, '');
-        const CHILD_ELEMENTS = el.children?.filter((child) => child.type === 'GROUP');
-        CHILD_ELEMENTS?.forEach((state) => {
+        const CHILD_ELEMENTS = (_c = el.children) === null || _c === void 0 ? void 0 : _c.filter((child) => child.type === 'GROUP');
+        CHILD_ELEMENTS === null || CHILD_ELEMENTS === void 0 ? void 0 : CHILD_ELEMENTS.forEach((state) => {
             const PARSED_CSS = this.parseNestedCss(state, config, ID);
             css += PARSED_CSS.css;
             imports = imports.concat(PARSED_CSS.imports);
@@ -181,7 +183,7 @@ class FigmagicElement {
         }
         return { css, imports };
     }
-    processCssSelfnamedLayer(layoutElement, textElement = null) {
+    parseFlatCss(layoutElement, textElement = null) {
         try {
             let css = ``;
             let imports = [];
@@ -198,9 +200,9 @@ class FigmagicElement {
             throw new Error(error);
         }
     }
-    processCss(css) {
+    processFlatCss(css) {
         if (!css)
-            throw new Error('Missing css when calling processCss()!');
+            throw new Error('Missing CSS string when calling processCss()!');
         let processedCss = Array.from(new Set(css.split(/\n/gi))).toString();
         if (processedCss[0] === ',')
             processedCss = processedCss.slice(1, processedCss.length);

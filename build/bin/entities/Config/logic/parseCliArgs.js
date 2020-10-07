@@ -50,54 +50,18 @@ function parseCliArgs(argsArray) {
         '-local': () => (config.recompileLocal = true),
         '--remSize': (val) => (config.remSize = parseInt(val)),
         '-rem': (val) => (config.remSize = parseInt(val)),
-        '--forceUpdate': () => (config.skipFileGeneration = {
-            ...config.skipFileGeneration,
-            forceUpdate: true
-        }),
-        '-force': () => (config.skipFileGeneration = {
-            ...config.skipFileGeneration,
-            forceUpdate: true
-        }),
-        '--skipCss': () => (config.skipFileGeneration = {
-            ...config.skipFileGeneration,
-            skipCss: true
-        }),
-        '-nocss': () => (config.skipFileGeneration = {
-            ...config.skipFileGeneration,
-            skipCss: true
-        }),
-        '--skipDescription': () => (config.skipFileGeneration = {
-            ...config.skipFileGeneration,
-            skipDescription: true
-        }),
-        '-nodesc': () => (config.skipFileGeneration = {
-            ...config.skipFileGeneration,
-            skipDescription: true
-        }),
-        '--skipReact': () => (config.skipFileGeneration = {
-            ...config.skipFileGeneration,
-            skipReact: true
-        }),
-        '-noreact': () => (config.skipFileGeneration = {
-            ...config.skipFileGeneration,
-            skipReact: true
-        }),
-        '--skipStorybook': () => (config.skipFileGeneration = {
-            ...config.skipFileGeneration,
-            skipStorybook: true
-        }),
-        '-nostory': () => (config.skipFileGeneration = {
-            ...config.skipFileGeneration,
-            skipStorybook: true
-        }),
-        '--skipStyled': () => (config.skipFileGeneration = {
-            ...config.skipFileGeneration,
-            skipStyled: true
-        }),
-        '-nostyled': () => (config.skipFileGeneration = {
-            ...config.skipFileGeneration,
-            skipStyled: true
-        }),
+        '--forceUpdate': () => (config.skipFileGeneration = Object.assign(Object.assign({}, config.skipFileGeneration), { forceUpdate: true })),
+        '-force': () => (config.skipFileGeneration = Object.assign(Object.assign({}, config.skipFileGeneration), { forceUpdate: true })),
+        '--skipCss': () => (config.skipFileGeneration = Object.assign(Object.assign({}, config.skipFileGeneration), { skipCss: true })),
+        '-nocss': () => (config.skipFileGeneration = Object.assign(Object.assign({}, config.skipFileGeneration), { skipCss: true })),
+        '--skipDescription': () => (config.skipFileGeneration = Object.assign(Object.assign({}, config.skipFileGeneration), { skipDescription: true })),
+        '-nodesc': () => (config.skipFileGeneration = Object.assign(Object.assign({}, config.skipFileGeneration), { skipDescription: true })),
+        '--skipReact': () => (config.skipFileGeneration = Object.assign(Object.assign({}, config.skipFileGeneration), { skipReact: true })),
+        '-noreact': () => (config.skipFileGeneration = Object.assign(Object.assign({}, config.skipFileGeneration), { skipReact: true })),
+        '--skipStorybook': () => (config.skipFileGeneration = Object.assign(Object.assign({}, config.skipFileGeneration), { skipStorybook: true })),
+        '-nostory': () => (config.skipFileGeneration = Object.assign(Object.assign({}, config.skipFileGeneration), { skipStorybook: true })),
+        '--skipStyled': () => (config.skipFileGeneration = Object.assign(Object.assign({}, config.skipFileGeneration), { skipStyled: true })),
+        '-nostyled': () => (config.skipFileGeneration = Object.assign(Object.assign({}, config.skipFileGeneration), { skipStyled: true })),
         '--spacingUnit': (val) => (config.spacingUnit = val.toLowerCase()),
         '-s': (val) => (config.spacingUnit = val.toLowerCase()),
         '--syncElements': () => (config.syncElements = true),
@@ -106,38 +70,14 @@ function parseCliArgs(argsArray) {
         '-sg': () => (config.syncGraphics = true),
         '--syncTokens': () => (config.syncTokens = true),
         '-st': () => (config.syncTokens = true),
-        '--templatePathReact': (val) => (config.templates = {
-            ...config.templates,
-            templatePathReact: val
-        }),
-        '-tpreact': (val) => (config.templates = {
-            ...config.templates,
-            templatePathReact: val
-        }),
-        '--templatePathStorybook': (val) => (config.templates = {
-            ...config.templates,
-            templatePathStorybook: val
-        }),
-        '-tpstory': (val) => (config.templates = {
-            ...config.templates,
-            templatePathStorybook: val
-        }),
-        '--templatePathStyled': (val) => (config.templates = {
-            ...config.templates,
-            templatePathStyled: val
-        }),
-        '-tpstyled': (val) => (config.templates = {
-            ...config.templates,
-            templatePathStyled: val
-        }),
-        '--templatePathGraphic': (val) => (config.templates = {
-            ...config.templates,
-            templatePathGraphic: val
-        }),
-        '-tpgraphic': (val) => (config.templates = {
-            ...config.templates,
-            templatePathGraphic: val
-        }),
+        '--templatePathReact': (val) => (config.templates = Object.assign(Object.assign({}, config.templates), { templatePathReact: val })),
+        '-tpreact': (val) => (config.templates = Object.assign(Object.assign({}, config.templates), { templatePathReact: val })),
+        '--templatePathStorybook': (val) => (config.templates = Object.assign(Object.assign({}, config.templates), { templatePathStorybook: val })),
+        '-tpstory': (val) => (config.templates = Object.assign(Object.assign({}, config.templates), { templatePathStorybook: val })),
+        '--templatePathStyled': (val) => (config.templates = Object.assign(Object.assign({}, config.templates), { templatePathStyled: val })),
+        '-tpstyled': (val) => (config.templates = Object.assign(Object.assign({}, config.templates), { templatePathStyled: val })),
+        '--templatePathGraphic': (val) => (config.templates = Object.assign(Object.assign({}, config.templates), { templatePathGraphic: val })),
+        '-tpgraphic': (val) => (config.templates = Object.assign(Object.assign({}, config.templates), { templatePathGraphic: val })),
         '--token': (val) => (config.token = val),
         '-t': (val) => (config.token = val),
         '--url': (val) => (config.url = val),

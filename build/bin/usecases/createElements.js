@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createElements = void 0;
+const tslib_1 = require("tslib");
 const createPage_1 = require("./interactors/common/createPage");
 const processElements_1 = require("./interactors/elements/processElements");
 const writeElements_1 = require("./interactors/elements/writeElements");
@@ -9,42 +10,44 @@ const writeGraphicElementsMap_1 = require("./interactors/elements/writeGraphicEl
 const refresh_1 = require("../frameworks/filesystem/refresh");
 const messages_1 = require("../frameworks/messages/messages");
 const errors_1 = require("../frameworks/errors/errors");
-async function createElements(config, data) {
-    try {
-        if (!config || !data)
-            throw new Error(errors_1.ErrorCreateElements);
-        console.log(messages_1.MsgSyncElements);
-    }
-    catch (error) {
-        throw new Error(error);
-    }
-    try {
-        await refresh_1.refresh(config.outputFolderElements);
-        const { components } = data;
-        handleElements({
-            children: data.document.children,
-            pageName: 'Elements',
-            config,
-            components
-        });
-        if (config.outputGraphicElements &&
-            config.outputFormatGraphics === 'svg' &&
-            config.syncGraphics) {
-            const GRAPHICS = handleElements({
+function createElements(config, data) {
+    return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        try {
+            if (!config || !data)
+                throw new Error(errors_1.ErrorCreateElements);
+            console.log(messages_1.MsgSyncElements);
+        }
+        catch (error) {
+            throw new Error(error);
+        }
+        try {
+            yield refresh_1.refresh(config.outputFolderElements);
+            const { components } = data;
+            handleElements({
                 children: data.document.children,
-                pageName: 'Graphics',
+                pageName: 'Elements',
                 config,
-                components,
-                isGeneratingGraphics: true
+                components
             });
-            if (config.outputGraphicElementsMap) {
-                handleGraphicElementsMap({ config, graphics: GRAPHICS });
+            if (config.outputGraphicElements &&
+                config.outputFormatGraphics === 'svg' &&
+                config.syncGraphics) {
+                const GRAPHICS = handleElements({
+                    children: data.document.children,
+                    pageName: 'Graphics',
+                    config,
+                    components,
+                    isGeneratingGraphics: true
+                });
+                if (config.outputGraphicElementsMap) {
+                    handleGraphicElementsMap({ config, graphics: GRAPHICS });
+                }
             }
         }
-    }
-    catch (error) {
-        throw new Error(error);
-    }
+        catch (error) {
+            throw new Error(error);
+        }
+    });
 }
 exports.createElements = createElements;
 function handleElements(element) {

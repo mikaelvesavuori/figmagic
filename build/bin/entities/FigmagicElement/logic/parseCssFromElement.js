@@ -86,10 +86,7 @@ function calcPadding(calcData, spacing) {
         ? getPaddingX_1.getPaddingX(textElement, layoutElement)
         : null;
     if (PADDING_Y && PADDING_X) {
-        const PADDING = {
-            ...PADDING_Y,
-            ...PADDING_X
-        };
+        const PADDING = Object.assign(Object.assign({}, PADDING_Y), PADDING_X);
         const PARSED_PADDING = parsePadding_1.parsePadding(css, imports, {
             padding: PADDING,
             spacing,

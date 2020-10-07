@@ -14,25 +14,28 @@ const checkIfExists_1 = require("./bin/frameworks/filesystem/checkIfExists");
 const configToInit_1 = require("./bin/frameworks/system/configToInit");
 const messages_1 = require("./bin/frameworks/messages/messages");
 const RC_FILE = '.figmagicrc';
-async function main() {
-    try {
-        dotenv.config();
-        const [, , ...CLI_ARGS] = process.argv;
-        if (CLI_ARGS[0]?.toLowerCase() === 'init')
-            initConfig(configToInit_1.configToInit);
-        else {
-            const USER_CONFIG_PATH = path.join(`${process.cwd()}`, RC_FILE);
-            const CONFIG = await index_1.makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
-            const { recompileLocal, figmagicFolder, figmaData, token, url } = CONFIG;
-            const DATA = await getData_1.getData(recompileLocal, figmagicFolder, figmaData, token, url);
-            if (!recompileLocal)
-                await writeBaseJson_1.writeBaseJson(figmagicFolder, figmaData, DATA);
-            await FigmagicController_1.FigmagicController(CONFIG, DATA);
+function main() {
+    var _a;
+    return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        try {
+            dotenv.config();
+            const [, , ...CLI_ARGS] = process.argv;
+            if (((_a = CLI_ARGS[0]) === null || _a === void 0 ? void 0 : _a.toLowerCase()) === 'init')
+                initConfig(configToInit_1.configToInit);
+            else {
+                const USER_CONFIG_PATH = path.join(`${process.cwd()}`, RC_FILE);
+                const CONFIG = yield index_1.makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
+                const { recompileLocal, figmagicFolder, figmaData, token, url } = CONFIG;
+                const DATA = yield getData_1.getData(recompileLocal, figmagicFolder, figmaData, token, url);
+                if (!recompileLocal)
+                    yield writeBaseJson_1.writeBaseJson(figmagicFolder, figmaData, DATA);
+                yield FigmagicController_1.FigmagicController(CONFIG, DATA);
+            }
         }
-    }
-    catch (error) {
-        console.error(`${colors_1.colors.FgRed}${error}`);
-    }
+        catch (error) {
+            console.error(`${colors_1.colors.FgRed}${error}`);
+        }
+    });
 }
 function initConfig(file) {
     const FILE_EXISTS = checkIfExists_1.checkIfExists(RC_FILE);

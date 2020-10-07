@@ -58,8 +58,6 @@ class FigmagicElement {
   }
 
   init(): void {
-    console.log(this.name);
-    console.log(this.element);
     this.setElement();
     this.setElementType();
     this.setPlaceholderText();
@@ -196,6 +194,9 @@ class FigmagicElement {
       let imports: Record<string, unknown>[] = [];
 
       this.replaceHtml('{{TEXT}}', this.text || '');
+
+      console.log('INSIDE handleFlatElements', this.name);
+      console.log(elements);
 
       const MAIN_ELEMENT = elements?.filter(
         (element: Frame) => element.name.toLowerCase() === this.name.toLowerCase()
