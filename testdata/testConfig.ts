@@ -38,7 +38,7 @@ export const testConfig = {
     templatePathStorybook: 'templates/story',
     templatePathStyled: 'templates/styled'
   },
-  token: '***',
-  url: '***',
+  token: '',
+  url: '',
   usePostscriptFontNames: false
 };

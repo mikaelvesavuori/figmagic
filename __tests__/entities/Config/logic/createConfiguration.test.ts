@@ -16,8 +16,9 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should return a valid merged configuration if given a path to an RC file and a set of CLI arguments', async () => {
     const USER_CONFIG_PATH = path.join(process.cwd(), 'testdata', 'figmagicrc');
-    const CLI_ARGS = ['-t', '***'];
-    testConfig.token = '***';
+    const CLI_ARGS = ['-t', process.env.IS_CI ? '***' : 'asdf1234', '-u', 'j43fhj34'];
+    testConfig.token = process.env.IS_CI ? '***' : 'asdf1234';
+    testConfig.url = process.env.IS_CI ? '***' : 'j43fhj34';
     testConfig.recompileLocal = false;
     testConfig.usePostscriptFontNames = false;
 
