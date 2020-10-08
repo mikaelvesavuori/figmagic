@@ -66,6 +66,7 @@ jobs:
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
+          IS_CI: true
       - run: npm install -g
       - run: npm run figmagic
         env:
