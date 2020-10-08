@@ -118,6 +118,7 @@ export default colors;`,
   });
 
   describe('Components', () => {
+    // TODO: Test fails inexplicably on Windows?
     test('It should return valid data for components', () => {
       const fileContent = `import React from 'react';
 import PropTypes from 'prop-types';

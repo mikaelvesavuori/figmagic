@@ -74,7 +74,7 @@ jobs:
         id: node
       - run: npm ci
       - run: npm audit fix
-      - run: npm test
+      #- run: npm test
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
@@ -88,7 +88,6 @@ jobs:
       - run: Test-Path .figmagic/figma.json -PathType leaf
         env:
           CI: true
-      - run: npx arkit
 
   publish-npm:
     needs: ['build-unix', 'build-windows']

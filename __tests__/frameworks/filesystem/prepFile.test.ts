@@ -85,6 +85,7 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
+  // TODO: Test fails inexplicably on Windows?
   test('It should prepare a Component file based on the React template', () => {
     const data = {
       name: 'aaa',
