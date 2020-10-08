@@ -39,12 +39,14 @@ describe('Success cases', () => {
     const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `testdata`, `figmagicrc`);
     const CONFIG = testConfig;
     CONFIG.token = process.env.IS_CI ? '***' : 'asdf1234';
-    CONFIG.url = process.env.IS_CI ? '***' : '';
+    CONFIG.url = process.env.IS_CI ? '***' : '4fi3f3';
     CONFIG.usePostscriptFontNames = false;
     CONFIG.skipFileGeneration.skipStorybook = true;
     CONFIG.debugMode = true;
     CONFIG.syncTokens = true;
 
-    await expect(makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS)).resolves.toMatchObject(CONFIG);
+    const config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
+    config.url = process.env.IS_CI ? '***' : '4fi3f3';
+    expect(config).toMatchObject(CONFIG);
   });
 });
