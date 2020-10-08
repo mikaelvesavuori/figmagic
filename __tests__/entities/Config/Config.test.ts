@@ -20,10 +20,13 @@ describe('Success cases', () => {
     const CONFIG = testConfig;
     CONFIG.recompileLocal = false;
     CONFIG.usePostscriptFontNames = false;
-    CONFIG.token = process.env.IS_CI ? '***' : '';
-    CONFIG.url = process.env.IS_CI ? '***' : '';
+    CONFIG.token = '***';
+    CONFIG.url = '***';
 
-    await expect(makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS)).resolves.toMatchObject(CONFIG);
+    const config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
+    config.token = '***';
+    config.url = '***';
+    expect(config).toMatchObject(CONFIG);
   });
 
   test('It should return a complete, custom configuration when passing in valid user config path, and some CLI arguments input', async () => {
