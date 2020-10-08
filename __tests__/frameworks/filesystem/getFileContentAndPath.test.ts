@@ -119,7 +119,7 @@ export default colors;`,
 
   describe('Components', () => {
     test('It should return valid data for components', () => {
-      const FILE_CONTENT = `import React from 'react';
+      const fileContent = `import React from 'react';
 import PropTypes from 'prop-types';
 
 import colorsStyled from './colorsStyled';
@@ -134,7 +134,7 @@ export default colors;`;
         // @ts-ignore
         getFileContentAndPath(getFileContentAndPathOperationComponent)
       ).toMatchObject({
-        fileContent: FILE_CONTENT,
+        fileContent: fileContent,
         filePath: 'tokens/colors.mjs'
       });
     });
