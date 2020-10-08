@@ -1727,8 +1727,8 @@ export const validButtonFigmagicElement = {
       templatePathStorybook: 'templates/story',
       templatePathStyled: 'templates/styled'
     },
-    token: '',
-    url: '',
+    token: '***',
+    url: '***',
     usePostscriptFontNames: false
   },
   css: `

@@ -27,6 +27,8 @@ describe('Success cases', () => {
     const DESCRIPTION =
       'type=text\nplaceholder=Some placeholder text\n\nAn example of a Figmagic element description!';
     const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
+    CONFIG.token = '***';
+    CONFIG.url = '***';
 
     expect(makeFigmagicElement(buttonElement as Frame, CONFIG, DESCRIPTION)).toMatchObject(
       validButtonFigmagicElement

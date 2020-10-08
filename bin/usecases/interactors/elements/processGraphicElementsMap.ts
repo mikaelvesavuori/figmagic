@@ -1,5 +1,4 @@
-import { FigmagicElement } from '../../../contracts/FigmagicElement';
-import { Config } from '../../../contracts/Config';
+import { Graphic } from '../../../contracts/Graphic';
 
 import { ErrorProcessGraphicElementsMap } from '../../../frameworks/errors/errors';
 /**
@@ -25,8 +24,4 @@ export function processGraphicElementsMap(graphics: any[]): any {
   } catch (error) {
     throw new Error(error);
   }
-}
-
-interface Graphic extends FigmagicElement {
-  config: Config;
 }

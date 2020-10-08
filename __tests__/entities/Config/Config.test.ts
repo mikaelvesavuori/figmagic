@@ -19,6 +19,8 @@ describe('Success cases', () => {
     const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `testdata`, `figmagicrc`);
     testConfig.recompileLocal = false;
     testConfig.usePostscriptFontNames = false;
+    testConfig.token = '***';
+    testConfig.url = '***';
 
     await expect(makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS)).resolves.toMatchObject(
       testConfig
@@ -26,9 +28,9 @@ describe('Success cases', () => {
   });
 
   test('It should return a complete, custom configuration when passing in valid user config path, and some CLI arguments input', async () => {
-    const CLI_ARGS: any[] = ['--debug', '--skipStorybook', '-t', 'some-RANDOM-t0k3n'];
+    const CLI_ARGS: any[] = ['--debug', '--skipStorybook', '-t', '***'];
     const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `testdata`, `figmagicrc`);
-    testConfig.token = 'some-RANDOM-t0k3n';
+    testConfig.token = '***';
     testConfig.usePostscriptFontNames = false;
     testConfig.skipFileGeneration.skipStorybook = true;
     testConfig.debugMode = true;
