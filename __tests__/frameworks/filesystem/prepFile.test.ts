@@ -103,7 +103,7 @@ import PropTypes from 'prop-types';
 
 import aaaStyled from './aaaStyled';
 
-const aaa = props => <aaaStyled qqq>fff{props.children}</aaaStyled>;
+const aaa = (props) => <aaaStyled qqq>{props.children ? props.children : \"fff\"}</aaaStyled>;
 
 aaa.propTypes = {};
 
@@ -128,9 +128,6 @@ export default aaa;`;
     const fileContent = `import styled from 'styled-components';
 
 import aaaCss from './aaaCss';
-
-// Do your regular imports like:
-// import fontSizes from 'tokens/fontSizes';
 
 // Extend the below as needed
 const aaaStyled = styled.div\`
@@ -220,7 +217,7 @@ Description here.`;
 
     const fileContent = `import React from 'react';
 
-const aaa = (props) => <svg width=\"55\" height=\"56\" viewBox=\"0 0 55 56\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M2.11131 28.0662L17.0333 51.499L52.1723 1.43805\" stroke=\"#219653\" stroke-width=\"5\"/>
+const aaa = (): any => <svg width=\"55\" height=\"56\" viewBox=\"0 0 55 56\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M2.11131 28.0662L17.0333 51.499L52.1723 1.43805\" stroke=\"#219653\" stroke-width=\"5\"/>
 </svg>
 
 export default aaa;`;

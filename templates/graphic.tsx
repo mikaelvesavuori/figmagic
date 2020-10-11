@@ -1,5 +1,5 @@
 import React from 'react';
 
-const {{NAME}} = (props) => {{SVG}}
+const {{NAME}} = (): any => {{SVG}}
 
 export default {{NAME}};

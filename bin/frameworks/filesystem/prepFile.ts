@@ -34,11 +34,12 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
     const PATH = `${templates.templatePathReact}.${format}`;
 
     let template = loadFile(PATH) as string;
-    template = template.replace(/{{NAME}}/gi, name);
-    template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
-    template = template.replace(/{{EXTRA_PROPS}}/gi, ` ${extraProps}`);
-    template = template.replace(/\s>/gi, '>');
-    template = template.replace(/{{TEXT}}/gi, text !== ' ' ? text : '');
+    template = template
+      .replace(/{{NAME}}/gi, name)
+      .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`)
+      .replace(/{{EXTRA_PROPS}}/gi, ` ${extraProps}`)
+      .replace(/\s>/gi, '>')
+      .replace(/{{TEXT}}/gi, text !== ' ' ? text : '');
 
     return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
   } catch (error) {
@@ -61,9 +62,11 @@ export const prepStyledComponents = (data: PrepStyledComponents): FileContentWit
     const PATH = `${templates.templatePathStyled}.${format}`;
 
     let template = loadFile(PATH) as string;
-    template = template.replace(/{{ELEMENT}}/gi, element);
-    template = template.replace(/{{NAME_CSS}}/gi, `${name}Css`);
-    template = template.replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
+    template = template
+      .replace(/{{NAME}}/gi, name)
+      .replace(/{{ELEMENT}}/gi, element)
+      .replace(/{{NAME_CSS}}/gi, `${name}Css`)
+      .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
 
     return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
   } catch (error) {
@@ -106,8 +109,7 @@ export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
     const PATH = `${templates.templatePathStorybook}.${format}`;
 
     let template = loadFile(PATH) as string;
-    template = template.replace(/{{NAME}}/gi, name);
-    template = template.replace(/{{TEXT}}/gi, text);
+    template = template.replace(/{{NAME}}/gi, name).replace(/{{TEXT}}/gi, text);
 
     return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
   } catch (error) {
@@ -146,9 +148,10 @@ export const prepGraphicComponent = (data: PrepGraphicComponent): FileContentWit
     const PATH = `${templates.templatePathGraphic}.${format}`;
 
     let template = loadFile(PATH) as string;
-    template = template.replace(/{{NAME}}/gi, name);
-    template = template.replace(/\s>/gi, '>');
-    template = template.replace(/{{SVG}}/gi, file);
+    template = template
+      .replace(/{{NAME}}/gi, name)
+      .replace(/\s>/gi, '>')
+      .replace(/{{SVG}}/gi, file);
 
     return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
   } catch (error) {

@@ -125,7 +125,7 @@ import PropTypes from 'prop-types';
 
 import colorsStyled from './colorsStyled';
 
-const colors = props => <colorsStyled >text{props.children}</colorsStyled>;
+const colors = (props) => <colorsStyled >{props.children ? props.children : \"text\"}</colorsStyled>;
 
 colors.propTypes = {};
 
@@ -146,9 +146,6 @@ export default colors;`;
       const fileContent = `import styled from 'styled-components';
 
 import colorsCss from './colorsCss';
-
-// Do your regular imports like:
-// import fontSizes from 'tokens/fontSizes';
 
 // Extend the below as needed
 const colorsStyled = styled.div\`
