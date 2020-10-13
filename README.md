@@ -52,7 +52,7 @@ Local usage is possible by installing Figmagic as a developer dependency (under 
 
 ### Create configuration file (.figmagicrc)
 
-Run `figmagic init` to initialize a basic `.figmagicrc` file. It's ready to use for Element Sync, which can only be done if your configuration points to valid code generation templates. You'll see that the config will point `templates.templatePath{Graphic|React|Styled|Storybook}` to `./node_modules/figmagic/templates/{graphic|react|styled|story}`. Read more under the **User Settings** section.
+Run `figmagic init` to initialize a basic `.figmagicrc` file. It's ready to use for Element Sync, which can only be done if your configuration points to valid code generation templates. You'll see that the config will point `templates.templatePath{Graphic|React|Styled|Storybook}` to `./node_modules/figmagic/templates/{graphic|react|styled|story}`. Read more under the [Configuration file section](#configuration-file-figmagicrc).
 
 ### Running Figmagic
 
@@ -85,7 +85,7 @@ Folder names below follow their default naming. The naming is possible to change
 - `elements` will contain the generated code
 - `graphics` will contain graphics
 
-For a more complete description of the code structure, see the [Code structure section](https://github.com/mikaelvesavuori/figmagic/tree/feature/v4#code-structure).
+For a more complete description of the code structure, see the [Code structure section](#code-structure).
 
 ## Preparing Figma for Figmagic usage
 
@@ -98,7 +98,7 @@ Go to [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%9
 Your structure needs to correspond to the following:
 
 - A Page needs to exist, called `Design tokens`. Without this page, you can't really do much with Figmagic.
-- Further, inside the `Design tokens` page, **frames** need to exist. Name them `Colors`, `Font sizes`, `Font families`, `Font weights`, `Line heights`, and `Spacing` – exact casing is not important, however the **spelling is important!** For a full list of token types, see [the Design Tokens section](https://github.com/mikaelvesavuori/figmagic/tree/feature/v4#design-tokens).
+- Further, inside the `Design tokens` page, **frames** need to exist. Name them `Colors`, `Font sizes`, `Font families`, `Font weights`, `Line heights`, and `Spacing` – exact casing is not important, however the **spelling is important!** For a full list of token types, see [the types of design tokens Figmagic can extract](#the-types-of-design-tokens-figmagic-can-extract).
 - All items on a page need to be contained within one or more frames.
 - Want element syncing? Then create an "Elements" page and place any components there. For the generation to work correctly, you need to stay within the limits specified above.
 
