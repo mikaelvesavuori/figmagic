@@ -8,19 +8,19 @@ Figmagic assumes that an element can have **typography** and **layout**. These a
 
 You can do simple **flat** elements or **nested** ones, where you want “stateful” behavior like being invalid or disabled. Open and inspect some of the elements in the [Figmagic template]() to see both patterns! You can make nested elements as deep as you want, but Figmagic will currently only generate code based on the first nesting layer. If making a nested element, code will be generated according to one subclass per nested group.
 
-![Nesting: Button, Normal](docs/nesting-normal.png)
+![Nesting: Button, Normal](nesting-normal.png)
 
 _Nesting: Button. "Normal" state. Notice how the underscore is blocking ":disabled" and ":hover"._
 
-![Nesting: Button, Warning](docs/nesting-warning.png)
+![Nesting: Button, Warning](nesting-warning.png)
 
 _Nesting: Button. "Warning" state._
 
-![Nesting: Button, Error](docs/nesting-error.png)
+![Nesting: Button, Error](nesting-error.png)
 
 _Nesting: Button. "Error" state._
 
-![Nesting: Generated code](docs/nesting-code.png)
+![Nesting: Generated code](nesting-code.png)
 
 _Nesting: Generated code. Notice how the nested group names became CSS classes. Only the differences in those layers were promoted to their own class, eliminating redundant code._
 
@@ -39,7 +39,7 @@ You should definitely still continue to layout your elements/components as they 
 - On the first generation (when Figmagic does not find anything in your element output folder) it will normally generate all 5 file types (React, Storybook, Styled Components, CSS, Markdown description). When updating, it will not normally regenerate the React, Storybook or Styled Components file. This is to ensure that they have stability and that you don't risk anything when you pull fresh.
 - You can write `element=`, `type=`, `placeholder=` in Figma's component description field to set those values in the generated HTML. Type and placeholder becomes React properties, and element defines the actual element type.
 
-![Nesting: Button, Normal](docs/component-desc-field.png)
+![Nesting: Button, Normal](component-desc-field.png)
 
 _Setting what the Figma component ("element", in Figmagic terms as far as we are interested) should generate in HTML terms. Also, notice how we are typing out the description for our Markdown file which can be used in, for example, Storybook._
 
@@ -49,7 +49,7 @@ _Setting what the Figma component ("element", in Figmagic terms as far as we are
 
 For specifics on how to do any CLI or RC file configuration, see documentation below.
 
-![Figma Document Structure: Elements](docs/project-structure-elements.png)
+![Figma Document Structure: Elements](project-structure-elements.png)
 
 _How a Figmagic project could be structured with elements_
 
@@ -57,7 +57,7 @@ _How a Figmagic project could be structured with elements_
 
 First and foremost:
 
-![Example of flat element](docs/sometimes-you-have-to-fake.png)
+![Example of flat element](sometimes-you-have-to-fake.png)
 
 _Element Sync will not solve all of your issues and you will have to creatively work around some of the current limitations in Figmagic. For example, in the case above the check is not in the actual component, as it would not be correctly picked up by Figmagic. In this case, we want to communicate design and intent to developers, but not break the code, thus moving the check out and leaving the rest in. That should solve a lot of the boilerplate work, at least, but the check needs to be added manually afterwards. Assume that you will always need to do some work! Just that it should be a lot less than without Figmagic :)_
 
@@ -66,7 +66,7 @@ _Element Sync will not solve all of your issues and you will have to creatively 
 - CSS class name will be taken from the layout element's name. Same story for pseudo-element naming (such as ”:checked”).
 - Flat (non-nested) elements should have the layout element using the Component name (such as ”Slider”), else it will fail.
 
-![Example of flat element](docs/flat-element.png)
+![Example of flat element](flat-element.png)
 
 _Flat elements should be enough for most basic use cases. Don't forget to name the layout layer to the same name as your Figma component or it will break during generation!_
 
@@ -81,11 +81,11 @@ _Flat elements should be enough for most basic use cases. Don't forget to name t
 - Layer order matters in nested elements! It will always pick the first layout or text element it finds.
 - Currently only a single layout element per group/nested layer will be picked up.
 
-![Nesting: Button, Normal](docs/single-layer-support-only.png)
+![Nesting: Button, Normal](single-layer-support-only.png)
 
 _As of version 3.0, having more than one layout element in the same nesting group will conflict. Try to use a pattern where non-standard layout is blocked from code generation with an underscore._
 
-![Nesting: Button, Normal](docs/add-underscore-to-block.png)
+![Nesting: Button, Normal](add-underscore-to-block.png)
 
 _Prefixing with an underscore means we can avoid the conflict, but still clearly communicate intended behavior and style._
 
