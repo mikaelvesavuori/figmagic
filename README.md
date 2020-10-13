@@ -63,7 +63,7 @@ First of all, get your Figma API token and Figma URL:
 
 Pass in your Figma API token and Figma URL by either:
 
-- Stepping into your project directory (where you want Figmagic to run), and add or replace **FIGMA_URL** and **FIGMA_TOKEN** in .env with your own file ID and API token key.
+- Stepping into your project directory (where you want Figmagic to run), and add or replace **FIGMA_URL** and **FIGMA_TOKEN** in a `.env` file with your own file ID and API token key.
 - Passing in API token and URL through the CLI, like this `figmagic --token {TOKEN} --url {URL}` (substitute curly braces for your actual values)
 - Setting them in `.figmagicrc` under `token` and `url`. This is discouraged since you will display these values in clear text and you probably don't want that.
 
@@ -87,7 +87,7 @@ Folder names below follow their default naming. The naming is possible to change
 
 For a more complete description of the code structure, see the [Code structure section](https://github.com/mikaelvesavuori/figmagic/tree/feature/v4#code-structure).
 
-## Figma setup
+## Preparing Figma for Figmagic usage
 
 ### Easy solution: Copy the public Figmagic design system template from Figma Community
 
@@ -110,7 +110,7 @@ See a template design system at [https://www.figma.com/community/file/8210944514
 
 _How a Figmagic project should be structured in regards to tokens_
 
-## Design Tokens
+## What are Design Tokens?
 
 Design tokens are the abstract but shared elements from which your design system is built.
 
@@ -121,6 +121,8 @@ Tokens offer a form of “contract” between a designer’s intent and its fulf
 However: You may still want to add written guidance for usage. It’s just that the tokens should be able to be consumed without understanding anything specific about them.
 
 You should bind tokens to Figma styles whenever and wherever possible to simplify your own design work, but make sure that those are also represented in the **Tokens** page, as this page is where a developer will pick up tokens with Figmagic.
+
+### The types of design tokens Figmagic can extract
 
 You can currently extract design tokens for:
 
@@ -167,7 +169,9 @@ _The "Heading L" font token is composed of values that are also represented in t
 
 Whatever suits you! As long as you remember that what Figmagic fetches are those single (unidimensional) values from each design item/token it should all work. I've seen that Figma styles make the "contract" between tokens and their day-to-day workflow with designers a lot easier. Again though, Figmagic does not use those values; think of them as a convenient glue.
 
-## Token Sync
+## Configuring Figmagic
+
+### Token Sync
 
 **By default this is turned on. You will need to have a page named "Design tokens", where your tokens lay within named frames.**
 
@@ -175,7 +179,7 @@ Tokens are the "bread and butter" of Figmagic. Without tokens, Figmagic cannot c
 
 This is activated by default, but it's now possible to deactivate it if you have very specific reasons to do so.
 
-## Graphics Sync
+### Graphics Sync
 
 **By default this is turned off. Pass in `--syncGraphics` as a flag to sync them or enable that in your configuration file. You will need to have a page named "Graphics", where your components lay directly on the artboard.**
 
@@ -183,7 +187,7 @@ Graphics can be exported in multiple formats with Figmagic. Instead of doing man
 
 Again, please look at the template at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens) for reference.
 
-## Element Sync
+### Element Sync
 
 **This is also turned off by default. Pass in `--syncElements` or enable it in your configuration file to generate code from your Figma components.**
 
@@ -193,7 +197,7 @@ You can do simple **flat** elements or **nested** ones, where you want “statef
 
 _If you need more information and guidance on this, see the dedicated documentation section at [Figmagic Element Sync](docs/elements.md)._
 
-## User settings
+### How user settings are propagated
 
 There are several ways in which you can provide Figmagic with knowledge about how you want it to parse your tokens.
 You can combine them, but beware of the below prioritization chart (from lowest to highest):
@@ -206,7 +210,7 @@ If possible, stick to one way of providing settings.
 
 Non-provided values will fall back to defaults outlined in `bin/meta/config.mjs`.
 
-### Configuration file `.figmagicrc`
+### Configuration file (`.figmagicrc`)
 
 You can use a JSON-formated configuration file at the root of a project to use its settings. Figmagic will pick up the path by assessing the current working directory and looking at a `.figmagicrc` file there. If it finds it, it will use it.
 
