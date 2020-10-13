@@ -8,7 +8,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/1a609622737c6c48225c/maintainability)](https://codeclimate.com/github/mikaelvesavuori/figmagic/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1a609622737c6c48225c/test_coverage)](https://codeclimate.com/github/mikaelvesavuori/figmagic/test_coverage)
 
-Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents. Inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo).
+#### _Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents. Originally inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo)._
 
 Figmagic promotes a structured way of assembling design systems. Following the primary principle of atomic design, Figmagic wants you to build from the bottom up, beginning with decomposing the tokens. Tokens shape elements, which form components, that are ordered in compositions, which get presented in views... You know the drill, though I am switching Brad Frost's nomenclature into something more front-end friendly.
 
@@ -18,7 +18,7 @@ Figmagic does not aim at completely removing designers or developers: It just ai
 
 **Please note:** Figmagic requires that your document structure is identical to what I show in the template at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens).
 
-Figmagic is compiled to ES6, so you should have Node 10 or later for it to work.
+Figmagic is compiled from Typescript to ES6, so you should have Node 10 or later for it to work on your machine.
 
 _Built initially as an internal handoff tool for [Humblebee](https://www.humblebee.se)._
 
@@ -50,7 +50,7 @@ Local usage is possible by installing Figmagic as a developer dependency (under 
 }
 ```
 
-### Recommended: Create configuration file (.figmagicrc)
+### Create configuration file (.figmagicrc)
 
 Run `figmagic init` to initialize a basic `.figmagicrc` file. It's ready to use for Element Sync, which can only be done if your configuration points to valid code generation templates. You'll see that the config will point `templates.templatePath{Graphic|React|Styled|Storybook}` to `./node_modules/figmagic/templates/{graphic|react|styled|story}`. Read more under the **User Settings** section.
 
@@ -64,7 +64,7 @@ First of all, get your Figma API token and Figma URL:
 Pass in your Figma API token and Figma URL by either:
 
 - Stepping into your project directory (where you want Figmagic to run), and add or replace **FIGMA_URL** and **FIGMA_TOKEN** in .env with your own file ID and API token key.
-- Passing in API token and URL through the CLI, like this `figmagic --token {TOKEN} --url {URL}` without the curly braces
+- Passing in API token and URL through the CLI, like this `figmagic --token {TOKEN} --url {URL}` (substitute curly braces for your actual values)
 - Setting them in `.figmagicrc` under `token` and `url`. This is discouraged since you will display these values in clear text and you probably don't want that.
 
 Then:
@@ -78,14 +78,18 @@ When running `figmagic`, files will be moved with the Node module [trash](https:
 
 #### Folders
 
-- `.figmagic` (default folder name) will contain the extracted Figma JSON
-- `tokens` (default folder name) will contain the token files (in `.mjs` or `.js` format)
-- `elements` (default folder name) will contain the generated code (in `.jsx` or `.js` format)
-- `graphics` (default folder name) will contain graphics (in `.svg`, `.jpg` or `.png` format)
+Folder names below follow their default naming. The naming is possible to change via configuration.
+
+- `.figmagic` will contain the extracted JSON retrieved from Figma's API
+- `tokens` will contain the token files
+- `elements` will contain the generated code
+- `graphics` will contain graphics
+
+For a more complete description of the code structure, see the [Code structure section](https://github.com/mikaelvesavuori/figmagic/tree/feature/v4#code-structure).
 
 ## Figma setup
 
-### Easy solution: Copy the public Figma template
+### Easy solution: Copy the public Figmagic design system template from Figma Community
 
 Go to [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens) and make your own copy. Go at it by using the document ID as the **FIGMA_URL** or start copying in your own work.
 
@@ -94,7 +98,7 @@ Go to [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%9
 Your structure needs to correspond to the following:
 
 - A Page needs to exist, called `Design tokens`. Without this page, you can't really do much with Figmagic.
-- Further, inside the `Design tokens` page, **frames** need to exist. Name them `Colors`, `Font sizes`, `Font families`, `Font weights`, `Line heights`, and `Spacing` – exact casing is not important, however the **spelling is important!**
+- Further, inside the `Design tokens` page, **frames** need to exist. Name them `Colors`, `Font sizes`, `Font families`, `Font weights`, `Line heights`, and `Spacing` – exact casing is not important, however the **spelling is important!** For a full list of token types, see [the Design Tokens section](https://github.com/mikaelvesavuori/figmagic/tree/feature/v4#design-tokens).
 - All items on a page need to be contained within one or more frames.
 - Want element syncing? Then create an "Elements" page and place any components there. For the generation to work correctly, you need to stay within the limits specified above.
 
@@ -139,6 +143,30 @@ You can currently extract design tokens for:
 
 A typical use-case for the generated documents is to feed the extracted values into CSS systems that support external values (such as Styled Components, Emotion, Styled System, any other CSS-in-JS libraries, or maybe even Sass).
 
+## Working with Figmagic as a designer
+
+### Figma styles
+
+Figma styles became publicly available in June 2018 and are incredibly valuable for designers to create single-sources-of-truth when it comes to design values (tokens). When using Figmagic though, the thinking and usage is a bit different from how Figma styles work.
+
+#### Unidimensional or multidimensional values
+
+A Figma style is multidimensional: It contains any number of properties wrapped into one style, acting as kind of a package. This is handy in a design environment and is practical from a user standpoint. The user doesn't have to think too hard about storing "redundant" values that are the same in another component, such as N number of units for line height: They are all taken care of.
+
+Figmagic instead expresses tokens as instances of every individual value, thus being _unidimensional_ – meaning they store only one value per item. Examples could be sets of line heights, font weights, or font sizes, each one individually specified. What this entails for they developer and designer, is that values can be used and mixed as pleased in any number of contexts, not becoming bound to one specific context such as a certain kind of heading. For a developer this is good because we would rather just map out the definitive values for something, onto a component (a "context" so to speak).
+
+Because of this difference, the appropriate way to structure a Figmagic-compatible Figma design document is to display one or more items/tokens in the respective frames that correspond to the accepted token types (line height, font size...) where each item has only one key property that's changed in-between them (such as one text using size 48, the next using size 40...), since those items are what Figmagic loops through when creating your code tokens.
+
+One of the major deviations from this principle is "Fonts" where you can specify more properties than one. However, then those need to individually match other typographical tokens you might have, such as line heights.
+
+![Nesting: Button, Normal](docs/composing-font-from-multiple-tokens.png)
+
+_The "Heading L" font token is composed of values that are also represented in the "lesser" uni-dimensional tokens: displayed here are "Line Height S" (135% line height), "H1" (size 48), and "Font Bold" (Bold font style). Setting this font as a Figma Style will make your life as a designer much easier as your apply the text style to things. Auto-generating code with Figmagic will also work just fine, since the individual values are respected._
+
+#### OK, but should I use Figma styles (also) when using Figmagic?
+
+Whatever suits you! As long as you remember that what Figmagic fetches are those single (unidimensional) values from each design item/token it should all work. I've seen that Figma styles make the "contract" between tokens and their day-to-day workflow with designers a lot easier. Again though, Figmagic does not use those values; think of them as a convenient glue.
+
 ## Token Sync
 
 **By default this is turned on. You will need to have a page named "Design tokens", where your tokens lay within named frames.**
@@ -155,7 +183,7 @@ Graphics can be exported in multiple formats with Figmagic. Instead of doing man
 
 Again, please look at the template at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens) for reference.
 
-# Element Sync
+## Element Sync
 
 **This is also turned off by default. Pass in `--syncElements` or enable it in your configuration file to generate code from your Figma components.**
 
@@ -187,7 +215,7 @@ An example file is provided in Figmagic—you can find it in the root of the pro
 Below is a complete set of what you can configure, together with the defaults.
 
 ```
-export const baseConfig: Config = {
+{
   debugMode: false,
   fontUnit: 'rem',
   letterSpacingUnit: 'em',
@@ -361,7 +389,7 @@ Default is `null`, and will then be taken from local `.env` file if not explicit
 
 `figmagic [--remSize | -rem] [number]`
 
-Default is `16`. **Note that from the CLI you must specify the REM size like `16p` (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `.figmagicrc`.**.
+Default is `16`. **Note that from the CLI you must specify the REM size like `16p` (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `.figmagicrc`**.
 
 #### Force update all elements
 
@@ -479,30 +507,6 @@ Default is `null`, and will then be taken from local `.env` file if not explicit
 
 Default is `false`, i.e. common name.
 
-## Working with Figmagic as a designer
-
-### Figma styles
-
-Figma styles became publicly available in June 2018 and are incredibly valuable for designers to create single-sources-of-truth when it comes to design values (tokens). When using Figmagic though, the thinking and usage is a bit different from how Figma styles work.
-
-#### Unidimensional or multidimensional values
-
-A Figma style is multidimensional: It contains any number of properties wrapped into one style, acting as kind of a package. This is handy in a design environment and is practical from a user standpoint. The user doesn't have to think too hard about storing "redundant" values that are the same in another component, such as N number of units for line height: They are all taken care of.
-
-Figmagic instead expresses tokens as instances of every individual value, thus being _unidimensional_ – meaning they store only one value per item. Examples could be sets of line heights, font weights, or font sizes, each one individually specified. What this entails for they developer and designer, is that values can be used and mixed as pleased in any number of contexts, not becoming bound to one specific context such as a certain kind of heading. For a developer this is good because we would rather just map out the definitive values for something, onto a component (a "context" so to speak).
-
-Because of this difference, the appropriate way to structure a Figmagic-compatible Figma design document is to display one or more items/tokens in the respective frames that correspond to the accepted token types (line height, font size...) where each item has only one key property that's changed in-between them (such as one text using size 48, the next using size 40...), since those items are what Figmagic loops through when creating your code tokens.
-
-One of the major deviations from this principle is "Fonts" where you can specify more properties than one. However, then those need to individually match other typographical tokens you might have, such as line heights.
-
-![Nesting: Button, Normal](docs/composing-font-from-multiple-tokens.png)
-
-_The "Heading L" font token is composed of values that are also represented in the "lesser" uni-dimensional tokens: displayed here are "Line Height S" (135% line height), "H1" (size 48), and "Font Bold" (Bold font style). Setting this font as a Figma Style will make your life as a designer much easier as your apply the text style to things. Auto-generating code with Figmagic will also work just fine, since the individual values are respected._
-
-#### OK, but should I use Figma styles (also) when using Figmagic?
-
-Whatever suits you! As long as you remember that what Figmagic fetches are those single (unidimensional) values from each design item/token it should all work. I've seen that Figma styles make the "contract" between tokens and their day-to-day workflow with designers a lot easier. Again though, Figmagic does not use those values; think of them as a convenient glue.
-
 ## Token formatting and conversions
 
 ### Font families
@@ -570,13 +574,13 @@ Default: numbers (whole numbers, i.e. integers).
 
 - `__tests__/`: Tests, structured similarly to the `bin` folder source code
 - `.github/`: GitHub files for CI and issue template
-- `.vscode/: Visual Studio Code configuration
+- `.vscode/`: Visual Studio Code configuration
 - `bin/`: Source code
 - `bin/contracts`: Types and interfaces
 - `bin/controllers`: Controllers
 - `bin/entities`: Entities (DDD-style), this is where most of the logic will be contained
 - `bin/frameworks`: Non-domain functionality, like string manipulation and downloading files etc.
-- `bin/usecases`: Where the application "features" are orchestrated (as per Clean Architecture)
+- `bin/usecases`: Where the application "features" are orchestrated, as per [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - `build/`: ES6-compiled code (this is the code that consumers of the Figmagic binary actually use)
 - `docs/`: Documentation, mostly images and screen shots
 - `templates/`: Files that are used as templates for code generation
@@ -591,4 +595,4 @@ Default: numbers (whole numbers, i.e. integers).
 
 ### Want to add or rethink something in Figmagic?
 
-You are welcome to contribute to the project! Pull requests, as well as issues or plain messages, work fine. For pull requests, please refer to the contribution guidelines in `CONTRIBUTING.md`.
+You are welcome to contribute to the project! Pull requests, as well as issues or plain messages, work fine. For pull requests, please refer to the contribution guidelines in [`CONTRIBUTING.md`](CONTRIBUTING.md).

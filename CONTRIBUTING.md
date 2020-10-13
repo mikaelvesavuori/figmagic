@@ -46,6 +46,6 @@ import {
 
 ### Documentation
 
-- Document your code with JSDoc at the start of your code. Since Figmagic uses Typescript, add "description" and "param" documentation; more than that is not needed.
+- Document your code with JSDoc at the start of your code. Since Figmagic uses Typescript, add "description" documentation; more than that is not needed.
 - Add any inline comments as needed for anything that is not self-evident.
 - Update the README with any user-facing changes, such as new CLI commands or arguments.
