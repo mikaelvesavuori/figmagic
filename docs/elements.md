@@ -1,7 +1,5 @@
 # Figmagic Element Sync
 
-**This is also turned off by default. Pass in `--syncElements` or enable it in your configuration file to generate code from your Figma components.**
-
 Elements are named so because they are primarily meant to help scaffold anything that maps to standard HTML elements like input, button, h1, and form. With scaffolding we mean that these elements can be generated as code in a shape that is fitting for continued development. Elements are a good entrypoint both for design and for code generation, since they are relatively simple and as a concept map to HTML which is based on using tags ("elements").
 
 Figmagic assumes that an element can have **typography** and **layout**. These are communicated through a text-layer (for typography) and a non-text layer (such as a styled rectangle) for layout.
