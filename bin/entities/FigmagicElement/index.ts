@@ -83,9 +83,7 @@ class FigmagicElement {
     try {
       // Filter out hidden elements (using "_")
       // @ts-ignore
-      const FILTERED_ELEMENTS = this.children
-        //.filter((child) => child.name[0] !== ':')
-        .filter((child) => child.name[0] !== '_');
+      const FILTERED_ELEMENTS = this.children.filter((child) => child.name[0] !== '_');
 
       // If the remaining elements/layers contain any groups, use the nested elements handler
       if (FILTERED_ELEMENTS?.some((element: Frame) => element.type === 'GROUP'))
@@ -252,7 +250,7 @@ class FigmagicElement {
       (e: Frame) => e.type === 'TEXT' && e.name[0] !== '_'
     )[0];
 
-    if (!MAIN_ELEMENT && !TEXT_ELEMENT) throw new Error('Missing both main and text element!'); //TODO: Move out error
+    if (!MAIN_ELEMENT && !TEXT_ELEMENT) throw new Error('Missing both main and text element!');
 
     const FIXED_NAME = el.name.replace(/\s/gi, '');
 

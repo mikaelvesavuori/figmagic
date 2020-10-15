@@ -23,7 +23,7 @@ function makeColorToken(item, colors) {
     const R = roundColorValue_1.roundColorValue(item.fills[0].color.r, 255);
     const G = roundColorValue_1.roundColorValue(item.fills[0].color.g, 255);
     const B = roundColorValue_1.roundColorValue(item.fills[0].color.b, 255);
-    const A = roundColorValue_1.roundColorValue(item.opacity ? item.opacity : item.fills[0].color.a, 1);
+    const A = roundColorValue_1.roundColorValue(item.fills[0].opacity ? item.fills[0].opacity : item.fills[0].color.a, 1);
     const NAME = camelize_1.camelize(item.name);
     colors[NAME] = `rgba(${R}, ${G}, ${B}, ${A})`;
 }

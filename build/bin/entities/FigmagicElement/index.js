@@ -39,8 +39,7 @@ class FigmagicElement {
     }
     handleElements() {
         try {
-            const FILTERED_ELEMENTS = this.children
-                .filter((child) => child.name[0] !== '_');
+            const FILTERED_ELEMENTS = this.children.filter((child) => child.name[0] !== '_');
             if (FILTERED_ELEMENTS === null || FILTERED_ELEMENTS === void 0 ? void 0 : FILTERED_ELEMENTS.some((element) => element.type === 'GROUP'))
                 return this.handleNestedElements(FILTERED_ELEMENTS);
             else

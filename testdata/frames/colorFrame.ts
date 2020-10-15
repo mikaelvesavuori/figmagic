@@ -30,7 +30,8 @@ export const colorFrame: Frame = {
             g: 0.8117647171020508,
             b: 0.5921568870544434,
             a: 1
-          }
+          },
+          opacity: 0.65
         }
       ],
       strokes: [],
@@ -688,7 +689,8 @@ export const colorFrameOpacity: Frame = {
             g: 0.8117647171020508,
             b: 0.5921568870544434,
             a: 1
-          }
+          },
+          opacity: 0.65
         }
       ],
       strokes: [],
