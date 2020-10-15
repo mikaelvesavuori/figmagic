@@ -47,7 +47,7 @@ describe('Success cases', () => {
             gray5: 'rgba(242, 242, 242, 1)',
             green1: 'rgba(33, 150, 83, 1)',
             green2: 'rgba(39, 174, 96, 1)',
-            green3: 'rgba(111, 207, 151, 1)',
+            green3: 'rgba(111, 207, 151, 0.65)',
             neon: 'rgba(228, 255, 193, 1)',
             orange: 'rgba(242, 153, 74, 1)',
             red: 'rgba(235, 87, 87, 1)',
