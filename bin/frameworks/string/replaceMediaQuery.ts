@@ -16,13 +16,13 @@ export function replaceMediaQuery(str: string, match: string): string {
   const SLICE_START = match.length + 1;
   const SLICE_LENGTH = SLICE_START + 6;
   const QUERY = str.slice(INDEX, INDEX + SLICE_LENGTH);
-  const SIZE = QUERY.slice(SLICE_START, SLICE_LENGTH);
+  let size = QUERY.slice(SLICE_START, SLICE_LENGTH);
   const REMAINDER = QUERY.replace(match, '');
 
   // If match was too greedy
-  SIZE.replace(/![0-9]/gi, '').trim();
+  size = size.replace(/![0-9]/gi, '').trim();
 
   return str
-    .replace(match, `@media query and (${QUERY_TYPE}-width: ${SIZE}px) {`)
+    .replace(match, `@media query and (${QUERY_TYPE}-width: ${size}px) {`)
     .replace(REMAINDER, '');
 }

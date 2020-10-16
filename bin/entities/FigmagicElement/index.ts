@@ -138,7 +138,6 @@ class FigmagicElement {
       const INDEX = this.description.indexOf('description=');
       const MARKER_LENGTH = 12; // "description=" is 12 characters
       description = description.slice(INDEX + MARKER_LENGTH, description.length);
-      description.replace(/^\s*\n/gm, '');
       this.description = description;
     }
   }
