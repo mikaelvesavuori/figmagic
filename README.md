@@ -6,7 +6,6 @@
 [![DeepScan grade](https://deepscan.io/api/teams/6692/projects/8785/branches/111253/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=6692&pid=8785&bid=111253)
 [![codecov](https://codecov.io/gh/mikaelvesavuori/figmagic/branch/master/graph/badge.svg)](https://codecov.io/gh/mikaelvesavuori/figmagic)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1a609622737c6c48225c/maintainability)](https://codeclimate.com/github/mikaelvesavuori/figmagic/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/1a609622737c6c48225c/test_coverage)](https://codeclimate.com/github/mikaelvesavuori/figmagic/test_coverage)
 
 #### _Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents. Originally inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo)._
 
