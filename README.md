@@ -98,17 +98,17 @@ Go to [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%9
 Your structure needs to correspond to the following:
 
 - A Page needs to exist, called `Design tokens`. Without this page, you can't really do much with Figmagic.
-- Further, inside the `Design tokens` page, **frames** need to exist. Name them `Colors`, `Font sizes`, `Font families`, `Font weights`, `Line heights`, and `Spacing` – exact casing is not important, however the **spelling is important!** For a full list of token types, see [the types of design tokens Figmagic can extract](#the-types-of-design-tokens-figmagic-can-extract).
+- Further, inside the `Design tokens` page, **frames** need to exist. You can have any number of supported token frame. For starters, name them `Colors`, `Font sizes`, `Font families`, `Font weights`, `Line heights`, and `Spacing` – exact casing is not important, however the **spelling is important!** For a full list of token types, see [the types of design tokens Figmagic can extract](#the-types-of-design-tokens-figmagic-can-extract).
 - All items on a page need to be contained within one or more frames.
 - Want element syncing? Then create an "Elements" page and place any components there. For the generation to work correctly, you need to stay within the limits specified above.
 
-See a template design system at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens). Feel free to simply copy-paste it or base your own work around it.
+See a template design system at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-template-4.0](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-template-4.0). Feel free to simply copy-paste it or base your own work around it.
 
 **Note:** Refer to the document structure in the image below and in the template linked above.
 
 ![Figma Document Structure: Tokens](docs/project-structure-tokens.png)
 
-_How a Figmagic project should be structured in regards to tokens_
+_How a Figmagic project could be structured in regards to tokens, if you want to support all currently available token types._
 
 ## What are Design Tokens?
 
