@@ -1,4 +1,4 @@
-name: CI, testing, coverage, and publishing to NPM (master branch)
+name: Master
 
 on:
   push:

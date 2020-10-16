@@ -1,4 +1,4 @@
-name: CI and testing (feature branch)
+name: Feature
 
 on:
   push:
