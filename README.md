@@ -209,7 +209,7 @@ You can combine them, but beware of the below prioritization chart (from lowest 
 
 If possible, stick to one way of providing settings.
 
-Non-provided values will fall back to defaults outlined in `bin/meta/config.mjs`.
+Non-provided values will fall back to defaults outlined in `bin/entities/Config/baseConfig.ts`.
 
 ### Configuration file (`.figmagicrc`)
 
