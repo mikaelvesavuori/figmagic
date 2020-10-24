@@ -7,6 +7,9 @@ function ErrorMessage(str: string): string {
 export const ErrorAddDescriptionToElements = ErrorMessage(
   'Missing elements and/or components in addDescriptionToElements()!'
 );
+export const ErrorCalculateDegree2Point = ErrorMessage(
+  'Missing point1 and/or point2 in calculateDegree2Point!'
+);
 export const ErrorCamelize = ErrorMessage('No string provided to camelize()!');
 export const ErrorCheckIfStringOnlyContainsReturnsOrSpaces = ErrorMessage(
   'No string provided to checkIfStringOnlyContainsReturnsOrSpaces()!'
@@ -40,7 +43,11 @@ export const ErrorCreateImportStringFromList = ErrorMessage(
 export const ErrorCreateImportStringFromListZeroLength = ErrorMessage(
   'Provided "importArray" is zero-length when calling createImportStringFromList()!'
 );
+export const ErrorCreateLinearGradientString = ErrorMessage(
+  'Missing fills and gradientHandlePositions in createLinearGradientString!'
+);
 export const ErrorCreatePage = ErrorMessage('No pages provided to createPage()!');
+export const ErrorCreateSolidColorString = ErrorMessage('Missing fills in createSolidColorString!');
 export const ErrorCreateTokens = ErrorMessage(
   'Missing required arguments when calling createTokens()!'
 );

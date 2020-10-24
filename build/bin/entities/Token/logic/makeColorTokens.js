@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.makeColorTokens = void 0;
 const camelize_1 = require("../../../frameworks/string/camelize");
-const roundColorValue_1 = require("../../../frameworks/string/roundColorValue");
+const createSolidColorString_1 = require("../../../frameworks/string/createSolidColorString");
+const createLinearGradientString_1 = require("../../../frameworks/string/createLinearGradientString");
 const errors_1 = require("../../../frameworks/errors/errors");
 function makeColorTokens(colorFrame) {
     if (!colorFrame)
@@ -18,13 +19,13 @@ exports.makeColorTokens = makeColorTokens;
 function makeColorToken(item, colors) {
     if (!item.fills)
         throw new Error(errors_1.ErrorMakeColorTokensNoFills);
-    if (!item.fills[0].color)
+    if (!item.fills[0])
         throw new Error(errors_1.ErrorMakeColorTokensNoFills);
-    const R = roundColorValue_1.roundColorValue(item.fills[0].color.r, 255);
-    const G = roundColorValue_1.roundColorValue(item.fills[0].color.g, 255);
-    const B = roundColorValue_1.roundColorValue(item.fills[0].color.b, 255);
-    const A = roundColorValue_1.roundColorValue(item.fills[0].opacity ? item.fills[0].opacity : item.fills[0].color.a, 1);
     const NAME = camelize_1.camelize(item.name);
-    colors[NAME] = `rgba(${R}, ${G}, ${B}, ${A})`;
+    const FILLS = item.fills[0];
+    if (FILLS.type === 'SOLID')
+        colors[NAME] = createSolidColorString_1.createSolidColorString(FILLS);
+    else if (FILLS.type === 'GRADIENT_LINEAR')
+        colors[NAME] = createLinearGradientString_1.createLinearGradientString(FILLS);
 }
 //# sourceMappingURL=makeColorTokens.js.map

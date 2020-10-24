@@ -51,7 +51,7 @@ padding-bottom: 17.25rem;
 padding-left: -0.0625rem;
 padding-right: 0.0625rem;
 height: 147;
-background: linear-gradient(rgba(255; 255; 255; 255) 20%; rgba(43; 83; 144; 252) 45%; rgba(1; 10; 23; 194) 73%);
+background: linear-gradient(180deg; rgba(255; 255; 255; 1) 20%; rgba(43; 83; 144; 0.99) 45%; rgba(1; 10; 23; 0.76) 73%);
 border-width: \${borderWidths.hairline};
 border-color: \${colors.blue2};
 border-radius: \${radii.soft};

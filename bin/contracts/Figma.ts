@@ -271,7 +271,7 @@ export type Paint = {
 
   // For gradient paints
   blendMode?: BlendMode;
-  gradientHandlePositions?: Vector;
+  gradientHandlePositions?: Vector | Vector[];
   ColorStop?: ColorStop[];
 
   // For image paints

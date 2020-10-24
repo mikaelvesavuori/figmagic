@@ -1,4 +1,42 @@
-// Linear three-stop gradient
+// CASE 1: Straight top to bottom
+// Figma: 180deg
+export const points1 = [
+  { x: 0.6099999707823762, y: -2.9449529013574207e-15 },
+  { x: 0.6100001227481604, y: 0.9999999999998526 },
+  { x: 0.4707413387674773, y: 1.322659118399788e-7 }
+];
+
+// CASE 2: Straight left to right
+// Figma: 90deg
+export const points2 = [
+  { x: 3.72528847700239e-9, y: 0.4999999068677403 },
+  { x: 1.0000000037252892, y: 0.4999999457504578 },
+  { x: 6.484332825112274e-8, y: 3.624999976716937 }
+];
+
+// CASE 3: Angled, left side slightly outside
+// Figma: 100.94deg
+export const points3 = [
+  { x: -0.05500000361017854, y: -0.07499998851399958 },
+  { x: 0.8349999654132898, y: 1.0000000875526958 },
+  { x: -0.5924999506533186, y: 2.7062498236941313 }
+];
+
+// CASE 4: Angled, top left to bottom right
+// Figma: 99.09deg
+export const points4 = [
+  { x: -4.440892098500626e-16, y: -4.440892098500626e-16 },
+  { x: 0.9999999999999996, y: 0.9999999999999996 },
+  { x: -0.13925864133912744, y: 0.8703664030574445 }
+];
+
+// CASE 5: Slight angle
+// Figma: 94.92deg
+export const points5 = [
+  { x: 1.1923141501890555e-9, y: 0.46250000199776703 },
+  { x: 0.9999999962747097, y: 0.9999999979976564 },
+  { x: -0.07485151035527872, y: 1.3328662853320894 }
+];
 
 export const gradientHandlePositions = [
   { x: 0.5, y: -3.0616171314629196e-17 },
@@ -6,6 +44,7 @@ export const gradientHandlePositions = [
   { x: 0, y: 0 }
 ];
 
+// Linear three-stop gradient
 export const gradientStops = [
   { color: { r: 1, g: 1, b: 1, a: 1 }, position: 0.1979166716337204 },
   {
