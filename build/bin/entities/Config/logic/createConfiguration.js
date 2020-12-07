@@ -4,6 +4,7 @@ exports.createConfiguration = void 0;
 const tslib_1 = require("tslib");
 const parseCliArgs_1 = require("./parseCliArgs");
 const loadFile_1 = require("../../../frameworks/filesystem/loadFile");
+const getFigmaDocumentId_1 = require("../../../frameworks/string/getFigmaDocumentId");
 const messages_1 = require("../../../frameworks/messages/messages");
 const errors_1 = require("../../../frameworks/errors/errors");
 function createConfiguration(baseConfig, userConfigPath, cliArgs) {
@@ -21,7 +22,7 @@ function createConfiguration(baseConfig, userConfigPath, cliArgs) {
         catch (e) { }
         const ENV_CONFIG = {
             token: process.env.FIGMA_TOKEN || '',
-            url: process.env.FIGMA_URL || ''
+            url: process.env.FIGMA_URL ? getFigmaDocumentId_1.getFigmaDocumentId(process.env.FIGMA_URL) : ''
         };
         const CLI_CONFIG = parseCliArgs_1.parseCliArgs(cliArgs);
         const CONFIG = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG), RC_CONFIG), ENV_CONFIG), CLI_CONFIG), { templates: Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG.templates), RC_CONFIG.templates), CLI_CONFIG.templates), skipFileGeneration: Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG.skipFileGeneration), RC_CONFIG.skipFileGeneration), CLI_CONFIG.skipFileGeneration) });
