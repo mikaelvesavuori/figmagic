@@ -1,6 +1,7 @@
 import { parseCliArgs } from './parseCliArgs';
 
 import { loadFile } from '../../../frameworks/filesystem/loadFile';
+import { getFigmaDocumentId } from '../../../frameworks/string/getFigmaDocumentId';
 
 import {
   MsgConfigDebugEnv,
@@ -46,7 +47,7 @@ export async function createConfiguration(
   // Env var configuration
   const ENV_CONFIG = {
     token: process.env.FIGMA_TOKEN || '',
-    url: process.env.FIGMA_URL || ''
+    url: process.env.FIGMA_URL ? getFigmaDocumentId(process.env.FIGMA_URL) : ''
   };
 
   // CLI arguments configuration

@@ -76,6 +76,9 @@ export const ErrorGetDataNoTokenOrUrl = ErrorMessage(
   'Missing token and/or URL when attempting to get remote data!'
 );
 export const ErrorGetDescription = ErrorMessage('Missing element in getDescription()!');
+export const ErrorGetFigmaDocumentId = ErrorMessage(
+  'Missing URL when calling getFigmaDocumentId()!'
+);
 export const ErrorGetFileContentAndPath = ErrorMessage(
   'Missing argument in getFileContentAndPath()!'
 );
