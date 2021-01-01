@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getImports = exports.getExtraProps = exports.getText = exports.getElement = void 0;
 const createImportStringFromList_1 = require("../string/createImportStringFromList");
-exports.getElement = (metadata) => {
+const getElement = (metadata) => {
     if (metadata) {
         if (metadata.element)
             return metadata.element;
@@ -12,7 +12,8 @@ exports.getElement = (metadata) => {
     else
         return 'div';
 };
-exports.getText = (metadata) => {
+exports.getElement = getElement;
+const getText = (metadata) => {
     if (metadata) {
         if (metadata.text)
             return metadata.text;
@@ -22,7 +23,8 @@ exports.getText = (metadata) => {
     else
         return '';
 };
-exports.getExtraProps = (metadata) => {
+exports.getText = getText;
+const getExtraProps = (metadata) => {
     if (metadata) {
         if (metadata.extraProps)
             return metadata.extraProps;
@@ -32,7 +34,8 @@ exports.getExtraProps = (metadata) => {
     else
         return '';
 };
-exports.getImports = (metadata) => {
+exports.getExtraProps = getExtraProps;
+const getImports = (metadata) => {
     if (metadata) {
         if (metadata.imports) {
             if (metadata.imports.length > 0)
@@ -46,4 +49,5 @@ exports.getImports = (metadata) => {
     else
         return '';
 };
+exports.getImports = getImports;
 //# sourceMappingURL=getDataHelpers.js.map

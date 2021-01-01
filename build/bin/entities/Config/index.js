@@ -5,11 +5,12 @@ const tslib_1 = require("tslib");
 const baseConfig_1 = require("./baseConfig");
 const createConfiguration_1 = require("./logic/createConfiguration");
 const validateConfig_1 = require("./logic/validateConfig");
-exports.makeConfiguration = (userConfigPath, ...cliArgs) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+const makeConfiguration = (userConfigPath, ...cliArgs) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     const CONFIGURATION = new Configuration(userConfigPath, cliArgs);
     yield CONFIGURATION.createConfig();
     return CONFIGURATION.getConfig();
 });
+exports.makeConfiguration = makeConfiguration;
 class Configuration {
     constructor(userConfigPath, cliArgs) {
         this.config = baseConfig_1.baseConfig;

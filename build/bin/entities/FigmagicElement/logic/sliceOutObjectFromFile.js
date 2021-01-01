@@ -4,7 +4,7 @@ exports.sliceOutObjectFromFile = void 0;
 const tslib_1 = require("tslib");
 const fs = tslib_1.__importStar(require("fs"));
 const errors_1 = require("../../../frameworks/errors/errors");
-exports.sliceOutObjectFromFile = (path) => {
+const sliceOutObjectFromFile = (path) => {
     try {
         if (!path)
             throw new Error(errors_1.ErrorSliceOutObjectFromFile);
@@ -18,4 +18,5 @@ exports.sliceOutObjectFromFile = (path) => {
         throw new Error(error);
     }
 };
+exports.sliceOutObjectFromFile = sliceOutObjectFromFile;
 //# sourceMappingURL=sliceOutObjectFromFile.js.map

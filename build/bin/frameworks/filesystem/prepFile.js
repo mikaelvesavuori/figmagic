@@ -4,7 +4,7 @@ exports.prepGraphicComponent = exports.prepDescription = exports.prepStorybook =
 const loadFile_1 = require("./loadFile");
 const messages_1 = require("../messages/messages");
 const errors_1 = require("../errors/errors");
-exports.prepComponent = (data) => {
+const prepComponent = (data) => {
     try {
         if (!data)
             throw new Error(errors_1.ErrorPrepFileComponent);
@@ -26,7 +26,8 @@ exports.prepComponent = (data) => {
         throw new Error(error);
     }
 };
-exports.prepStyledComponents = (data) => {
+exports.prepComponent = prepComponent;
+const prepStyledComponents = (data) => {
     try {
         if (!data)
             throw new Error(errors_1.ErrorPrepFileStyledComponents);
@@ -47,7 +48,8 @@ exports.prepStyledComponents = (data) => {
         throw new Error(error);
     }
 };
-exports.prepCss = (data) => {
+exports.prepStyledComponents = prepStyledComponents;
+const prepCss = (data) => {
     try {
         if (!data)
             throw new Error(errors_1.ErrorPrepFileCss);
@@ -62,7 +64,8 @@ exports.prepCss = (data) => {
         throw new Error(error);
     }
 };
-exports.prepStorybook = (data) => {
+exports.prepCss = prepCss;
+const prepStorybook = (data) => {
     try {
         if (!data)
             throw new Error(errors_1.ErrorPrepFileStorybook);
@@ -79,7 +82,8 @@ exports.prepStorybook = (data) => {
         throw new Error(error);
     }
 };
-exports.prepDescription = (data) => {
+exports.prepStorybook = prepStorybook;
+const prepDescription = (data) => {
     try {
         if (!data)
             throw new Error(errors_1.ErrorPrepFileDescription);
@@ -93,7 +97,8 @@ exports.prepDescription = (data) => {
         throw new Error(error);
     }
 };
-exports.prepGraphicComponent = (data) => {
+exports.prepDescription = prepDescription;
+const prepGraphicComponent = (data) => {
     try {
         if (!data)
             throw new Error(errors_1.ErrorPrepFileGraphicComponent);
@@ -112,4 +117,5 @@ exports.prepGraphicComponent = (data) => {
         throw new Error(error);
     }
 };
+exports.prepGraphicComponent = prepGraphicComponent;
 //# sourceMappingURL=prepFile.js.map

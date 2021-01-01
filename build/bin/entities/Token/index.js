@@ -19,7 +19,8 @@ const makeDelayTokens_1 = require("./logic/makeDelayTokens");
 const makeEasingTokens_1 = require("./logic/makeEasingTokens");
 const ignoreElementsKeywords_1 = require("../../frameworks/system/ignoreElementsKeywords");
 const errors_1 = require("../../frameworks/errors/errors");
-exports.makeToken = (token, tokenName, config) => new Token(token, tokenName, config);
+const makeToken = (token, tokenName, config) => new Token(token, tokenName, config);
+exports.makeToken = makeToken;
 class Token {
     constructor(token, tokenName, config) {
         this.getChildren = (frame) => {

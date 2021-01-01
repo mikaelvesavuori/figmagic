@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getIds = void 0;
 const errors_1 = require("../../../frameworks/errors/errors");
-exports.getIds = (graphicsPage) => {
+const getIds = (graphicsPage) => {
     if (!graphicsPage)
         throw new Error(errors_1.ErrorGetIds);
     if (!(graphicsPage.length > 0))
@@ -13,4 +13,5 @@ exports.getIds = (graphicsPage) => {
         return { id: item.id, name: item.name };
     });
 };
+exports.getIds = getIds;
 //# sourceMappingURL=getIds.js.map

@@ -5,9 +5,10 @@ const parseCssFromElement_1 = require("./logic/parseCssFromElement");
 const parseTypographyStylingFromElement_1 = require("./logic/parseTypographyStylingFromElement");
 const processNestedCss_1 = require("./logic/processNestedCss");
 const messages_1 = require("../../frameworks/messages/messages");
-exports.makeFigmagicElement = (element, config, description = '', isGraphicElement = false) => {
+const makeFigmagicElement = (element, config, description = '', isGraphicElement = false) => {
     return new FigmagicElement(element, config, description, isGraphicElement);
 };
+exports.makeFigmagicElement = makeFigmagicElement;
 class FigmagicElement {
     constructor(element, config, description = '', isGraphicElement) {
         this.id = element.id;
