@@ -209,6 +209,56 @@ export const lineHeightFrame: Frame = {
       layoutVersion: 1,
       characterStyleOverrides: [],
       styleOverrideTable: {}
+    },
+    {
+      id: '2605:24',
+      name: 'AUTO',
+      type: 'TEXT',
+      blendMode: 'PASS_THROUGH',
+      absoluteBoundingBox: {
+        x: 1192,
+        y: 403,
+        width: 95,
+        height: 53
+      },
+      constraints: {
+        vertical: 'TOP',
+        horizontal: 'LEFT'
+      },
+      fills: [
+        {
+          blendMode: 'NORMAL',
+          type: 'SOLID',
+          color: {
+            r: 0,
+            g: 0,
+            b: 0,
+            a: 1
+          }
+        }
+      ],
+      strokes: [],
+      strokeWeight: 0,
+      strokeAlign: 'OUTSIDE',
+      effects: [],
+      characters: 'Line Height L\nLine Height L',
+      style: {
+        fontFamily: 'Helvetica Neue',
+        fontPostScriptName: 'HelveticaNeue',
+        fontWeight: 400,
+        paragraphSpacing: 1,
+        textAutoResize: 'WIDTH_AND_HEIGHT',
+        fontSize: 16,
+        textAlignHorizontal: 'LEFT',
+        textAlignVertical: 'TOP',
+        letterSpacing: 0,
+        lineHeightPx: 18.75,
+        lineHeightPercent: 100,
+        lineHeightUnit: 'INTRINSIC_%'
+      },
+      layoutVersion: 1,
+      characterStyleOverrides: [],
+      styleOverrideTable: {}
     }
   ],
   absoluteBoundingBox: {
@@ -263,17 +313,6 @@ export const lineHeightFrameNoNameStyle = {
     {
       nameMismatch: 'Something',
       styleMismatch: {}
-    }
-  ]
-};
-
-export const lineHeightFrameNoLineHeightPercentFontSize = {
-  children: [
-    {
-      name: 'Something',
-      style: {
-        lineHeightPercentFontSizeMismatch: 100
-      }
     }
   ]
 };

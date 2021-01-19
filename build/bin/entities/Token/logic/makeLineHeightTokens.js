@@ -9,20 +9,31 @@ function makeLineHeightTokens(lineHeightFrame, remSize) {
         throw new Error(errors_1.ErrorMakeLineHeightTokensNoFrame);
     if (!lineHeightFrame.children)
         throw new Error(errors_1.ErrorMakeLineHeightTokensNoChildren);
-    const lineHeights = {};
     const TOKENS = lineHeightFrame.children;
-    TOKENS.forEach((item) => makeLineHeightToken(item, lineHeights, remSize));
+    const lineHeights = TOKENS.reduce((tokensDictionary, item) => {
+        try {
+            const { name, value } = makeLineHeightToken(item, remSize);
+            tokensDictionary[name] = value;
+        }
+        catch (error) {
+            console.error(error);
+        }
+        return tokensDictionary;
+    }, {});
     return lineHeights;
 }
 exports.makeLineHeightTokens = makeLineHeightTokens;
-function makeLineHeightToken(item, lineHeights, remSize) {
+function makeLineHeightToken(item, remSize) {
     if (!item.name || !item.style)
         throw new Error(errors_1.ErrorMakeLineHeightTokensMissingProps);
-    if (!item.style.lineHeightPercentFontSize)
-        throw new Error(errors_1.ErrorMakeLineHeightTokensMissingPercent);
     const NAME = camelize_1.camelize(item.name);
-    const LINE_HEIGHT = normalizeUnits_1.normalizeUnits(item.style.lineHeightPercentFontSize, 'percent', 'unitless', remSize);
-    const lineHeight = parseFloat(LINE_HEIGHT).toFixed(2);
-    lineHeights[NAME] = lineHeight;
+    const LINE_HEIGHT = typeof item.style.lineHeightPercentFontSize !== 'undefined'
+        ? parseFloat(normalizeUnits_1.normalizeUnits(item.style.lineHeightPercentFontSize, 'percent', 'unitless', remSize)).toFixed(2)
+        :
+            'normal';
+    return {
+        name: NAME,
+        value: LINE_HEIGHT
+    };
 }
 //# sourceMappingURL=makeLineHeightTokens.js.map
