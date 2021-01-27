@@ -143,7 +143,7 @@ describe('Success cases', () => {
     expect(processTokens([lineHeightFrame], baseConfig)).toEqual(
       expect.arrayContaining([
         {
-          file: { l: '1.65', m: '1.45', s: '1.35', xs: '1.00' },
+          file: { l: '1.65', m: '1.45', s: '1.35', xs: '1.00', auto: 'normal' },
           format: 'ts',
           name: 'lineHeights',
           path: 'tokens',

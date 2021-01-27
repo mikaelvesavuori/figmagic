@@ -7,8 +7,7 @@ import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 import {
   ErrorMakeLineHeightTokensNoFrame,
   ErrorMakeLineHeightTokensNoChildren,
-  ErrorMakeLineHeightTokensMissingProps,
-  ErrorMakeLineHeightTokensMissingPercent
+  ErrorMakeLineHeightTokensMissingProps
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -18,26 +17,48 @@ export function makeLineHeightTokens(lineHeightFrame: Frame, remSize: number): L
   if (!lineHeightFrame) throw new Error(ErrorMakeLineHeightTokensNoFrame);
   if (!lineHeightFrame.children) throw new Error(ErrorMakeLineHeightTokensNoChildren);
 
-  const lineHeights: Record<string, unknown> = {};
   const TOKENS = lineHeightFrame.children;
-  TOKENS.forEach((item: Frame) => makeLineHeightToken(item, lineHeights, remSize));
+
+  const lineHeights = TOKENS.reduce<Record<string, unknown>>((tokensDictionary, item: Frame) => {
+    try {
+      const { name, value } = makeLineHeightToken(item, remSize);
+      tokensDictionary[name] = value;
+    } catch (error) {
+      console.error(error);
+    }
+
+    return tokensDictionary;
+  }, {});
 
   return lineHeights;
 }
 
-function makeLineHeightToken(item: Frame, lineHeights: Record<string, unknown>, remSize: number) {
+interface Token {
+  name: string;
+  value: string | number;
+}
+
+/**
+ * @description Compute a line-height value based on a Figma Frame object
+ *
+ * @note Figma allows for a non-CSS "Auto" value that would result in the CSS "normal" keyword.
+ * @see https://help.figma.com/hc/en-us/articles/360040449893-Line-height-behavior
+ * @see https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#values
+ */
+function makeLineHeightToken(item: Frame, remSize: number): Token {
   if (!item.name || !item.style) throw new Error(ErrorMakeLineHeightTokensMissingProps);
-  if (!item.style.lineHeightPercentFontSize)
-    throw new Error(ErrorMakeLineHeightTokensMissingPercent);
 
   const NAME = camelize(item.name);
-  const LINE_HEIGHT: string = normalizeUnits(
-    item.style.lineHeightPercentFontSize,
-    'percent',
-    'unitless',
-    remSize
-  );
+  const LINE_HEIGHT: string =
+    typeof item.style.lineHeightPercentFontSize !== 'undefined'
+      ? parseFloat(
+          normalizeUnits(item.style.lineHeightPercentFontSize, 'percent', 'unitless', remSize)
+        ).toFixed(2)
+      : // Assuming this means Figma's "Auto" line-height was used, fallback to CSS "normal" keyword
+        'normal';
 
-  const lineHeight = parseFloat(LINE_HEIGHT).toFixed(2);
-  lineHeights[NAME] = lineHeight;
+  return {
+    name: NAME,
+    value: LINE_HEIGHT
+  };
 }
