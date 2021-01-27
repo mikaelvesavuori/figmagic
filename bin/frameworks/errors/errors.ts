@@ -190,9 +190,6 @@ export const ErrorMakeLetterSpacingTokensNoChildren = ErrorMessage(
 export const ErrorMakeLetterSpacingTokensNoFrame = ErrorMessage(
   'No frame for makeLetterSpacingTokens()!'
 );
-export const ErrorMakeLineHeightTokensMissingProps = ErrorMessage(
-  'Missing "name" or "style" properties in line heights frame!'
-);
 export const ErrorMakeLineHeightTokensNoChildren = ErrorMessage(
   'Line heights frame has no children!'
 );

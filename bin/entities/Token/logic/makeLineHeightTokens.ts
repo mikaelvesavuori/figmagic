@@ -6,8 +6,7 @@ import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 
 import {
   ErrorMakeLineHeightTokensNoFrame,
-  ErrorMakeLineHeightTokensNoChildren,
-  ErrorMakeLineHeightTokensMissingProps
+  ErrorMakeLineHeightTokensNoChildren
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -46,8 +45,6 @@ interface Token {
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#values
  */
 function makeLineHeightToken(item: Frame, remSize: number): Token {
-  if (!item.name || !item.style) throw new Error(ErrorMakeLineHeightTokensMissingProps);
-
   const NAME = camelize(item.name);
   const LINE_HEIGHT: string =
     typeof item.style.lineHeightPercentFontSize !== 'undefined'
