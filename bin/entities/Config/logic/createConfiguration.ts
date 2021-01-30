@@ -42,7 +42,6 @@ export async function createConfiguration(
   try {
     const _RC_CONFIG = loadFile(userConfigPath);
     RC_CONFIG = _RC_CONFIG as Config;
-    console.log('RC_CONFIG', RC_CONFIG);
   } catch (e) {} // eslint-disable-line no-empty
 
   // Env var configuration
