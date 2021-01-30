@@ -42,12 +42,17 @@ export async function createConfiguration(
   try {
     const _RC_CONFIG = loadFile(userConfigPath);
     RC_CONFIG = _RC_CONFIG as Config;
+    console.log('RC_CONFIG', RC_CONFIG);
   } catch (e) {} // eslint-disable-line no-empty
 
   // Env var configuration
   const ENV_CONFIG = {
-    token: process.env.FIGMA_TOKEN || '',
-    url: process.env.FIGMA_URL ? getFigmaDocumentId(process.env.FIGMA_URL) : ''
+    token: process.env.FIGMA_TOKEN || RC_CONFIG.token || '',
+    url: process.env.FIGMA_URL
+      ? getFigmaDocumentId(process.env.FIGMA_URL)
+      : RC_CONFIG.url
+      ? getFigmaDocumentId(RC_CONFIG.url)
+      : ''
   };
 
   // CLI arguments configuration

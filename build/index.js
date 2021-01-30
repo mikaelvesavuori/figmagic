@@ -25,6 +25,7 @@ function main() {
             else {
                 const USER_CONFIG_PATH = path.join(`${process.cwd()}`, RC_FILE);
                 const CONFIG = yield index_1.makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
+                console.log(CONFIG);
                 const { recompileLocal, figmagicFolder, figmaData, token, url } = CONFIG;
                 const DATA = yield getData_1.getData(recompileLocal, figmagicFolder, figmaData, token, url);
                 if (!recompileLocal)

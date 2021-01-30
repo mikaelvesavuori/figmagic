@@ -18,11 +18,16 @@ function createConfiguration(baseConfig, userConfigPath, cliArgs) {
         try {
             const _RC_CONFIG = loadFile_1.loadFile(userConfigPath);
             RC_CONFIG = _RC_CONFIG;
+            console.log('RC_CONFIG', RC_CONFIG);
         }
         catch (e) { }
         const ENV_CONFIG = {
-            token: process.env.FIGMA_TOKEN || '',
-            url: process.env.FIGMA_URL ? getFigmaDocumentId_1.getFigmaDocumentId(process.env.FIGMA_URL) : ''
+            token: process.env.FIGMA_TOKEN || RC_CONFIG.token || '',
+            url: process.env.FIGMA_URL
+                ? getFigmaDocumentId_1.getFigmaDocumentId(process.env.FIGMA_URL)
+                : RC_CONFIG.url
+                    ? getFigmaDocumentId_1.getFigmaDocumentId(RC_CONFIG.url)
+                    : ''
         };
         const CLI_CONFIG = parseCliArgs_1.parseCliArgs(cliArgs);
         const CONFIG = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG), RC_CONFIG), ENV_CONFIG), CLI_CONFIG), { templates: Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG.templates), RC_CONFIG.templates), CLI_CONFIG.templates), skipFileGeneration: Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG.skipFileGeneration), RC_CONFIG.skipFileGeneration), CLI_CONFIG.skipFileGeneration) });

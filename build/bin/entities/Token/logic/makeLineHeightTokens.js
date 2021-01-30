@@ -24,8 +24,6 @@ function makeLineHeightTokens(lineHeightFrame, remSize) {
 }
 exports.makeLineHeightTokens = makeLineHeightTokens;
 function makeLineHeightToken(item, remSize) {
-    if (!item.name || !item.style)
-        throw new Error(errors_1.ErrorMakeLineHeightTokensMissingProps);
     const NAME = camelize_1.camelize(item.name);
     const LINE_HEIGHT = typeof item.style.lineHeightPercentFontSize !== 'undefined'
         ? parseFloat(normalizeUnits_1.normalizeUnits(item.style.lineHeightPercentFontSize, 'percent', 'unitless', remSize)).toFixed(2)
