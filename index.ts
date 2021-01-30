@@ -37,8 +37,6 @@ async function main(): Promise<void> {
       const USER_CONFIG_PATH = path.join(`${process.cwd()}`, RC_FILE);
       const CONFIG: Config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
 
-      console.log(CONFIG);
-
       // Get data
       const { recompileLocal, figmagicFolder, figmaData, token, url } = CONFIG;
       const DATA: FigmaData = await getData(recompileLocal, figmagicFolder, figmaData, token, url);
