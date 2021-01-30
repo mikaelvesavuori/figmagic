@@ -18,7 +18,6 @@ function createConfiguration(baseConfig, userConfigPath, cliArgs) {
         try {
             const _RC_CONFIG = loadFile_1.loadFile(userConfigPath);
             RC_CONFIG = _RC_CONFIG;
-            console.log('RC_CONFIG', RC_CONFIG);
         }
         catch (e) { }
         const ENV_CONFIG = {
