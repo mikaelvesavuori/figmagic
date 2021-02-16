@@ -34,4 +34,10 @@ describe('Success cases', () => {
       expect.objectContaining({ l: '1.65', m: '1.45', s: '1.35', xs: '1.00', auto: 'normal' })
     );
   });
+
+  test('It should round values to a given precision', () => {
+    expect(makeLineHeightTokens(lineHeightFrame, 16, 3)).toEqual(
+      expect.objectContaining({ l: '1.650', m: '1.450', s: '1.350', xs: '1.000', auto: 'normal' })
+    );
+  });
 });

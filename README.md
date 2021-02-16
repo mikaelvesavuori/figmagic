@@ -263,6 +263,7 @@ Below is a complete set of what you can configure, together with the defaults.
     templatePathStyled: 'templates/styled'
   },
   token: '',
+  unitlessPrecision: 2,
   url: '',
   usePostscriptFontNames: false
 };
@@ -508,6 +509,12 @@ Default is `null`, and will then be taken from local `.env` file if not explicit
 
 Default is `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
 
+#### Pass in unitless precision
+
+`figmagic [--unitlessPrecision | -up] [number]`
+
+Defines the precision (decimals) for unitless values (rounded using `.toFixed()` internally). Default is `2`.
+
 #### Set font family name to be Postscript name instead of "common name"
 
 `figmagic [--usePostscriptFontNames | -ps]`
@@ -552,6 +559,8 @@ Default: `rem` units. Can be set to `rem` or `em`.
 ### Line heights
 
 Unitless.
+
+2 decimals numbered values by default. Precision can be configured with `unitlessPrecision` (see config)
 
 ### Colors
 

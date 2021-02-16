@@ -12,7 +12,11 @@ import {
 /**
  * @description Places all Figma line heights into a clean object
  */
-export function makeLineHeightTokens(lineHeightFrame: Frame, remSize: number): LineHeightTokens {
+export function makeLineHeightTokens(
+  lineHeightFrame: Frame,
+  remSize: number,
+  unitlessPrecision?: number
+): LineHeightTokens {
   if (!lineHeightFrame) throw new Error(ErrorMakeLineHeightTokensNoFrame);
   if (!lineHeightFrame.children) throw new Error(ErrorMakeLineHeightTokensNoChildren);
 
@@ -20,7 +24,7 @@ export function makeLineHeightTokens(lineHeightFrame: Frame, remSize: number): L
 
   const lineHeights = TOKENS.reduce<Record<string, unknown>>((tokensDictionary, item: Frame) => {
     try {
-      const { name, value } = makeLineHeightToken(item, remSize);
+      const { name, value } = makeLineHeightToken(item, remSize, unitlessPrecision);
       tokensDictionary[name] = value;
     } catch (error) {
       console.error(error);
@@ -44,13 +48,13 @@ interface Token {
  * @see https://help.figma.com/hc/en-us/articles/360040449893-Line-height-behavior
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#values
  */
-function makeLineHeightToken(item: Frame, remSize: number): Token {
+function makeLineHeightToken(item: Frame, remSize: number, unitlessPrecision = 2): Token {
   const NAME = camelize(item.name);
   const LINE_HEIGHT: string =
     typeof item.style.lineHeightPercentFontSize !== 'undefined'
       ? parseFloat(
           normalizeUnits(item.style.lineHeightPercentFontSize, 'percent', 'unitless', remSize)
-        ).toFixed(2)
+        ).toFixed(unitlessPrecision)
       : // Assuming this means Figma's "Auto" line-height was used, fallback to CSS "normal" keyword
         'normal';
 

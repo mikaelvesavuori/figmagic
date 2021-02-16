@@ -2,6 +2,10 @@ import { Config } from '../../../contracts/Config';
 
 import { ErrorParseCliArgs } from '../../../frameworks/errors/errors';
 
+interface CliArguments {
+  [key: string]: (val: string) => unknown;
+}
+
 /**
  * @description Parse CLI arguments and return config object
  */
@@ -9,7 +13,7 @@ export function parseCliArgs(argsArray: string[]): Config {
   if (!argsArray) throw new Error(ErrorParseCliArgs);
   if (argsArray.length === 0) return {} as Config;
 
-  const cliArguments = {
+  const cliArguments: CliArguments = {
     '--debug': () => (config.debugMode = true),
     '-d': () => (config.debugMode = true),
     '--fontUnit': (val: string) => (config.fontUnit = val.toLowerCase()),
@@ -162,6 +166,8 @@ export function parseCliArgs(argsArray: string[]): Config {
       }),
     '--token': (val: string) => (config.token = val),
     '-t': (val: string) => (config.token = val),
+    '--unitlessPrecision': (val: string) => (config.unitlessPrecision = parseInt(val, 10)),
+    '-up': (val: string) => (config.unitlessPrecision = parseInt(val, 10)),
     '--url': (val: string) => (config.url = val),
     '-u': (val: string) => (config.url = val),
     '--usePostscriptFontNames': () => (config.usePostscriptFontNames = true),
@@ -169,12 +175,10 @@ export function parseCliArgs(argsArray: string[]): Config {
   };
 
   const config: any = {};
-  const args = {};
-  // @ts-ignore
-  argsArray.forEach((arg: string) => (args[arg] = arg));
-  Object.keys(args).forEach((arg: string, index: number) => {
-    // @ts-ignore
-    if (cliArguments.hasOwnProperty(arg)) cliArguments[arg](argsArray[index + 1]);
+  argsArray.forEach((arg: string, index: number) => {
+    if (cliArguments.hasOwnProperty(arg)) {
+      cliArguments[arg](argsArray[index + 1]);
+    }
   });
 
   return config as Config;

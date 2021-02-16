@@ -39,6 +39,7 @@ export type Config = {
     templatePathStyled: string;
   };
   token: string | null;
+  unitlessPrecision: number;
   url: string | null;
   usePostscriptFontNames: boolean;
 };
@@ -83,6 +84,7 @@ export type ConfigDTO = {
     templatePathStyled?: string;
   };
   token?: string | null;
+  unitlessPrecision?: number;
   url?: string | null;
   usePostscriptFontNames?: boolean;
 };

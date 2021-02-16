@@ -80,17 +80,18 @@ function parseCliArgs(argsArray) {
         '-tpgraphic': (val) => (config.templates = Object.assign(Object.assign({}, config.templates), { templatePathGraphic: val })),
         '--token': (val) => (config.token = val),
         '-t': (val) => (config.token = val),
+        '--unitlessPrecision': (val) => (config.unitlessPrecision = parseInt(val, 10)),
+        '-up': (val) => (config.unitlessPrecision = parseInt(val, 10)),
         '--url': (val) => (config.url = val),
         '-u': (val) => (config.url = val),
         '--usePostscriptFontNames': () => (config.usePostscriptFontNames = true),
         '-ps': () => (config.usePostscriptFontNames = true)
     };
     const config = {};
-    const args = {};
-    argsArray.forEach((arg) => (args[arg] = arg));
-    Object.keys(args).forEach((arg, index) => {
-        if (cliArguments.hasOwnProperty(arg))
+    argsArray.forEach((arg, index) => {
+        if (cliArguments.hasOwnProperty(arg)) {
             cliArguments[arg](argsArray[index + 1]);
+        }
     });
     return config;
 }

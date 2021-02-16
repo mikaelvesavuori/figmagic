@@ -41,6 +41,7 @@ export const baseConfig: Config = {
     templatePathStyled: 'templates/styled'
   },
   token: '',
+  unitlessPrecision: 2,
   url: '',
   usePostscriptFontNames: false
 };
