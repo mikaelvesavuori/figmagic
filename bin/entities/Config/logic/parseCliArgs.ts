@@ -19,6 +19,12 @@ export function parseCliArgs(argsArray: string[]): Config {
   const setConfigValue = <ValueType = unknown>(key: keyof Config, value: ValueType): void => {
     config[key] = value;
   };
+  const setConfigChildValue = (key: keyof Config, childKey: string, value: unknown): void => {
+    config[key] = {
+      ...config[key],
+      [childKey]: value
+    };
+  };
 
   const cliArguments: CliArguments = {
     '--debug': () => setConfigValue('debugMode', true),
@@ -67,68 +73,20 @@ export function parseCliArgs(argsArray: string[]): Config {
     '-tokentype': (val: string) => setConfigValue('outputDataTypeToken', val.toLowerCase()),
     '--recompileLocal': () => setConfigValue('recompileLocal', true),
     '-local': () => setConfigValue('recompileLocal', true),
-    '--remSize': (val: string) => setConfigValue('remSize', parseInt(val)),
-    '-rem': (val: string) => setConfigValue('remSize', parseInt(val)),
-    '--forceUpdate': () =>
-      setConfigValue('skipFileGeneration', {
-        ...config.skipFileGeneration,
-        forceUpdate: true
-      }),
-    '-force': () =>
-      setConfigValue('skipFileGeneration', {
-        ...config.skipFileGeneration,
-        forceUpdate: true
-      }),
-    '--skipCss': () =>
-      setConfigValue('skipFileGeneration', {
-        ...config.skipFileGeneration,
-        skipCss: true
-      }),
-    '-nocss': () =>
-      setConfigValue('skipFileGeneration', {
-        ...config.skipFileGeneration,
-        skipCss: true
-      }),
-    '--skipDescription': () =>
-      setConfigValue('skipFileGeneration', {
-        ...config.skipFileGeneration,
-        skipDescription: true
-      }),
-    '-nodesc': () =>
-      setConfigValue('skipFileGeneration', {
-        ...config.skipFileGeneration,
-        skipDescription: true
-      }),
-    '--skipReact': () =>
-      setConfigValue('skipFileGeneration', {
-        ...config.skipFileGeneration,
-        skipReact: true
-      }),
-    '-noreact': () =>
-      setConfigValue('skipFileGeneration', {
-        ...config.skipFileGeneration,
-        skipReact: true
-      }),
-    '--skipStorybook': () =>
-      setConfigValue('skipFileGeneration', {
-        ...config.skipFileGeneration,
-        skipStorybook: true
-      }),
-    '-nostory': () =>
-      setConfigValue('skipFileGeneration', {
-        ...config.skipFileGeneration,
-        skipStorybook: true
-      }),
-    '--skipStyled': () =>
-      setConfigValue('skipFileGeneration', {
-        ...config.skipFileGeneration,
-        skipStyled: true
-      }),
-    '-nostyled': () =>
-      setConfigValue('skipFileGeneration', {
-        ...config.skipFileGeneration,
-        skipStyled: true
-      }),
+    '--remSize': (val: string) => setConfigValue('remSize', parseInt(val, 10)),
+    '-rem': (val: string) => setConfigValue('remSize', parseInt(val, 10)),
+    '--forceUpdate': () => setConfigChildValue('skipFileGeneration', 'forceUpdate', true),
+    '-force': () => setConfigChildValue('skipFileGeneration', 'forceUpdate', true),
+    '--skipCss': () => setConfigChildValue('skipFileGeneration', 'skipCss', true),
+    '-nocss': () => setConfigChildValue('skipFileGeneration', 'skipCss', true),
+    '--skipDescription': () => setConfigChildValue('skipFileGeneration', 'skipDescription', true),
+    '-nodesc': () => setConfigChildValue('skipFileGeneration', 'skipDescription', true),
+    '--skipReact': () => setConfigChildValue('skipFileGeneration', 'skipReact', true),
+    '-noreact': () => setConfigChildValue('skipFileGeneration', 'skipReact', true),
+    '--skipStorybook': () => setConfigChildValue('skipFileGeneration', 'skipStorybook', true),
+    '-nostory': () => setConfigChildValue('skipFileGeneration', 'skipStorybook', true),
+    '--skipStyled': () => setConfigChildValue('skipFileGeneration', 'skipStyled', true),
+    '-nostyled': () => setConfigChildValue('skipFileGeneration', 'skipStyled', true),
     '--spacingUnit': (val: string) => setConfigValue('spacingUnit', val.toLowerCase()),
     '-s': (val: string) => setConfigValue('spacingUnit', val.toLowerCase()),
     '--syncElements': () => setConfigValue('syncElements', true),
@@ -138,45 +96,17 @@ export function parseCliArgs(argsArray: string[]): Config {
     '--syncTokens': () => setConfigValue('syncTokens', true),
     '-st': () => setConfigValue('syncTokens', true),
     '--templatePathReact': (val: string) =>
-      setConfigValue('templates', {
-        ...config.templates,
-        templatePathReact: val
-      }),
-    '-tpreact': (val: string) =>
-      setConfigValue('templates', {
-        ...config.templates,
-        templatePathReact: val
-      }),
+      setConfigChildValue('templates', 'templatePathReact', val),
+    '-tpreact': (val: string) => setConfigChildValue('templates', 'templatePathReact', val),
     '--templatePathStorybook': (val: string) =>
-      setConfigValue('templates', {
-        ...config.templates,
-        templatePathStorybook: val
-      }),
-    '-tpstory': (val: string) =>
-      setConfigValue('templates', {
-        ...config.templates,
-        templatePathStorybook: val
-      }),
+      setConfigChildValue('templates', 'templatePathStorybook', val),
+    '-tpstory': (val: string) => setConfigChildValue('templates', 'templatePathStorybook', val),
     '--templatePathStyled': (val: string) =>
-      setConfigValue('templates', {
-        ...config.templates,
-        templatePathStyled: val
-      }),
-    '-tpstyled': (val: string) =>
-      setConfigValue('templates', {
-        ...config.templates,
-        templatePathStyled: val
-      }),
+      setConfigChildValue('templates', 'templatePathStyled', val),
+    '-tpstyled': (val: string) => setConfigChildValue('templates', 'templatePathStyled', val),
     '--templatePathGraphic': (val: string) =>
-      setConfigValue('templates', {
-        ...config.templates,
-        templatePathGraphic: val
-      }),
-    '-tpgraphic': (val: string) =>
-      setConfigValue('templates', {
-        ...config.templates,
-        templatePathGraphic: val
-      }),
+      setConfigChildValue('templates', 'templatePathGraphic', val),
+    '-tpgraphic': (val: string) => setConfigChildValue('templates', 'templatePathGraphic', val),
     '--token': (val: string) => setConfigValue('token', val),
     '-t': (val: string) => setConfigValue('token', val),
     '--unitlessPrecision': (val: string) => setConfigValue('unitlessPrecision', parseInt(val, 10)),

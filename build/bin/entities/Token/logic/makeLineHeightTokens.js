@@ -10,7 +10,7 @@ function makeLineHeightTokens(lineHeightFrame, remSize, unitlessPrecision) {
     if (!lineHeightFrame.children)
         throw new Error(errors_1.ErrorMakeLineHeightTokensNoChildren);
     const TOKENS = lineHeightFrame.children;
-    const lineHeights = TOKENS.reduce((tokensDictionary, item) => {
+    return TOKENS.reduce((tokensDictionary, item) => {
         try {
             const { name, value } = makeLineHeightToken(item, remSize, unitlessPrecision);
             tokensDictionary[name] = value;
@@ -20,7 +20,6 @@ function makeLineHeightTokens(lineHeightFrame, remSize, unitlessPrecision) {
         }
         return tokensDictionary;
     }, {});
-    return lineHeights;
 }
 exports.makeLineHeightTokens = makeLineHeightTokens;
 function makeLineHeightToken(item, remSize, unitlessPrecision = 2) {

@@ -22,7 +22,7 @@ export function makeLineHeightTokens(
 
   const TOKENS = lineHeightFrame.children;
 
-  const lineHeights = TOKENS.reduce<Record<string, unknown>>((tokensDictionary, item: Frame) => {
+  return TOKENS.reduce<LineHeightTokens>((tokensDictionary, item: Frame) => {
     try {
       const { name, value } = makeLineHeightToken(item, remSize, unitlessPrecision);
       tokensDictionary[name] = value;
@@ -32,8 +32,6 @@ export function makeLineHeightTokens(
 
     return tokensDictionary;
   }, {});
-
-  return lineHeights;
 }
 
 interface Token {
