@@ -79,6 +79,7 @@ export type ConfigDTO = {
   syncGraphics?: boolean;
   syncTokens?: boolean;
   templates?: {
+    templatePathGraphic?: string;
     templatePathReact?: string;
     templatePathStorybook?: string;
     templatePathStyled?: string;
