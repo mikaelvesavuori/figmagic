@@ -2,6 +2,10 @@ import { Config } from '../../../contracts/Config';
 
 import { ErrorParseCliArgs } from '../../../frameworks/errors/errors';
 
+interface CliArguments {
+  [key: string]: (val: string) => unknown;
+}
+
 /**
  * @description Parse CLI arguments and return config object
  */
@@ -9,172 +13,114 @@ export function parseCliArgs(argsArray: string[]): Config {
   if (!argsArray) throw new Error(ErrorParseCliArgs);
   if (argsArray.length === 0) return {} as Config;
 
-  const cliArguments = {
-    '--debug': () => (config.debugMode = true),
-    '-d': () => (config.debugMode = true),
-    '--fontUnit': (val: string) => (config.fontUnit = val.toLowerCase()),
-    '-fu': (val: string) => (config.fontUnit = val.toLowerCase()),
-    '--letterSpacingUnit': (val: string) => (config.letterSpacingUnit = val.toLowerCase()),
-    '-lsu': (val: string) => (config.letterSpacingUnit = val.toLowerCase()),
-    '--opacitiesUnit': (val: string) => (config.opacitiesUnit = val.toLowerCase()),
-    '-ou': (val: string) => (config.opacitiesUnit = val.toLowerCase()),
-    '--figmaData': (val: string) => (config.figmaData = val),
-    '-data': (val: string) => (config.figmaData = val),
-    '--figmagicFolder': (val: string) => (config.figmagicFolder = val),
-    '-base': (val: string) => (config.figmagicFolder = val),
-    '--outputFolderElements': (val: string) => (config.outputFolderElements = val),
-    '-elements': (val: string) => (config.outputFolderElements = val),
-    '--outputFolderGraphics': (val: string) => (config.outputFolderGraphics = val),
-    '-graphics': (val: string) => (config.outputFolderGraphics = val),
-    '--outputFolderTokens': (val: string) => (config.outputFolderTokens = val),
-    '-tokens': (val: string) => (config.outputFolderTokens = val),
-    '--outputFormatCss': (val: string) => (config.outputFormatCss = val.toLowerCase()),
-    '-fc': (val: string) => (config.outputFormatCss = val.toLowerCase()),
-    '--outputFormatDesc': (val: string) => (config.outputFormatDescription = val.toLowerCase()),
-    '-fd': (val: string) => (config.outputFormatDescription = val.toLowerCase()),
-    '--outputFormatElements': (val: string) => (config.outputFormatElements = val.toLowerCase()),
-    '-fe': (val: string) => (config.outputFormatElements = val.toLowerCase()),
-    '--outputFormatGraphics': (val: string) => (config.outputFormatGraphics = val.toLowerCase()),
-    '-fg': (val: string) => (config.outputFormatGraphics = val.toLowerCase()),
-    '--outputFormatStorybook': (val: string) => (config.outputFormatStorybook = val.toLowerCase()),
-    '-fs': (val: string) => (config.outputFormatStorybook = val.toLowerCase()),
-    '--outputFormatTokens': (val: string) => (config.outputFormatTokens = val.toLowerCase()),
-    '-ft': (val: string) => (config.outputFormatTokens = val.toLowerCase()),
-    '--outputGraphicElements': () => (config.outputGraphicElements = true),
-    '-oge': () => (config.outputGraphicElements = true),
-    '--outputGraphicElementsMap': () => (config.outputGraphicElementsMap = true),
-    '-ogm': () => (config.outputGraphicElementsMap = true),
-    '--outputScaleGraphics': (val: string) => (config.outputScaleGraphics = parseInt(val)),
-    '-scale': (val: string) => (config.outputScaleGraphics = parseInt(val)),
-    '--outputDataTypeToken': (val: string) => (config.outputDataTypeToken = val.toLowerCase()),
-    '-tokentype': (val: string) => (config.outputDataTypeToken = val.toLowerCase()),
-    '--recompileLocal': () => (config.recompileLocal = true),
-    '-local': () => (config.recompileLocal = true),
-    '--remSize': (val: string) => (config.remSize = parseInt(val)),
-    '-rem': (val: string) => (config.remSize = parseInt(val)),
-    '--forceUpdate': () =>
-      (config.skipFileGeneration = {
-        ...config.skipFileGeneration,
-        forceUpdate: true
-      }),
-    '-force': () =>
-      (config.skipFileGeneration = {
-        ...config.skipFileGeneration,
-        forceUpdate: true
-      }),
-    '--skipCss': () =>
-      (config.skipFileGeneration = {
-        ...config.skipFileGeneration,
-        skipCss: true
-      }),
-    '-nocss': () =>
-      (config.skipFileGeneration = {
-        ...config.skipFileGeneration,
-        skipCss: true
-      }),
-    '--skipDescription': () =>
-      (config.skipFileGeneration = {
-        ...config.skipFileGeneration,
-        skipDescription: true
-      }),
-    '-nodesc': () =>
-      (config.skipFileGeneration = {
-        ...config.skipFileGeneration,
-        skipDescription: true
-      }),
-    '--skipReact': () =>
-      (config.skipFileGeneration = {
-        ...config.skipFileGeneration,
-        skipReact: true
-      }),
-    '-noreact': () =>
-      (config.skipFileGeneration = {
-        ...config.skipFileGeneration,
-        skipReact: true
-      }),
-    '--skipStorybook': () =>
-      (config.skipFileGeneration = {
-        ...config.skipFileGeneration,
-        skipStorybook: true
-      }),
-    '-nostory': () =>
-      (config.skipFileGeneration = {
-        ...config.skipFileGeneration,
-        skipStorybook: true
-      }),
-    '--skipStyled': () =>
-      (config.skipFileGeneration = {
-        ...config.skipFileGeneration,
-        skipStyled: true
-      }),
-    '-nostyled': () =>
-      (config.skipFileGeneration = {
-        ...config.skipFileGeneration,
-        skipStyled: true
-      }),
-    '--spacingUnit': (val: string) => (config.spacingUnit = val.toLowerCase()),
-    '-s': (val: string) => (config.spacingUnit = val.toLowerCase()),
-    '--syncElements': () => (config.syncElements = true),
-    '-se': () => (config.syncElements = true),
-    '--syncGraphics': () => (config.syncGraphics = true),
-    '-sg': () => (config.syncGraphics = true),
-    '--syncTokens': () => (config.syncTokens = true),
-    '-st': () => (config.syncTokens = true),
-    '--templatePathReact': (val: string) =>
-      (config.templates = {
-        ...config.templates,
-        templatePathReact: val
-      }),
-    '-tpreact': (val: string) =>
-      (config.templates = {
-        ...config.templates,
-        templatePathReact: val
-      }),
-    '--templatePathStorybook': (val: string) =>
-      (config.templates = {
-        ...config.templates,
-        templatePathStorybook: val
-      }),
-    '-tpstory': (val: string) =>
-      (config.templates = {
-        ...config.templates,
-        templatePathStorybook: val
-      }),
-    '--templatePathStyled': (val: string) =>
-      (config.templates = {
-        ...config.templates,
-        templatePathStyled: val
-      }),
-    '-tpstyled': (val: string) =>
-      (config.templates = {
-        ...config.templates,
-        templatePathStyled: val
-      }),
-    '--templatePathGraphic': (val: string) =>
-      (config.templates = {
-        ...config.templates,
-        templatePathGraphic: val
-      }),
-    '-tpgraphic': (val: string) =>
-      (config.templates = {
-        ...config.templates,
-        templatePathGraphic: val
-      }),
-    '--token': (val: string) => (config.token = val),
-    '-t': (val: string) => (config.token = val),
-    '--url': (val: string) => (config.url = val),
-    '-u': (val: string) => (config.url = val),
-    '--usePostscriptFontNames': () => (config.usePostscriptFontNames = true),
-    '-ps': () => (config.usePostscriptFontNames = true)
+  // deep partial Config type
+  const config: any = {};
+
+  const setConfigValue = <ValueType = unknown>(key: keyof Config, value: ValueType): void => {
+    config[key] = value;
+  };
+  const setConfigChildValue = (key: keyof Config, childKey: string, value: unknown): void => {
+    config[key] = {
+      ...config[key],
+      [childKey]: value
+    };
   };
 
-  const config: any = {};
-  const args = {};
-  // @ts-ignore
-  argsArray.forEach((arg: string) => (args[arg] = arg));
-  Object.keys(args).forEach((arg: string, index: number) => {
-    // @ts-ignore
-    if (cliArguments.hasOwnProperty(arg)) cliArguments[arg](argsArray[index + 1]);
+  const cliArguments: CliArguments = {
+    '--debug': () => setConfigValue('debugMode', true),
+    '-d': () => setConfigValue('debugMode', true),
+    '--fontUnit': (val: string) => setConfigValue('fontUnit', val.toLowerCase()),
+    '-fu': (val: string) => setConfigValue('fontUnit', val.toLowerCase()),
+    '--letterSpacingUnit': (val: string) => setConfigValue('letterSpacingUnit', val.toLowerCase()),
+    '-lsu': (val: string) => setConfigValue('letterSpacingUnit', val.toLowerCase()),
+    '--opacitiesUnit': (val: string) => setConfigValue('opacitiesUnit', val.toLowerCase()),
+    '-ou': (val: string) => setConfigValue('opacitiesUnit', val.toLowerCase()),
+    '--figmaData': (val: string) => setConfigValue('figmaData', val),
+    '-data': (val: string) => setConfigValue('figmaData', val),
+    '--figmagicFolder': (val: string) => setConfigValue('figmagicFolder', val),
+    '-base': (val: string) => setConfigValue('figmagicFolder', val),
+    '--outputFolderElements': (val: string) => setConfigValue('outputFolderElements', val),
+    '-elements': (val: string) => setConfigValue('outputFolderElements', val),
+    '--outputFolderGraphics': (val: string) => setConfigValue('outputFolderGraphics', val),
+    '-graphics': (val: string) => setConfigValue('outputFolderGraphics', val),
+    '--outputFolderTokens': (val: string) => setConfigValue('outputFolderTokens', val),
+    '-tokens': (val: string) => setConfigValue('outputFolderTokens', val),
+    '--outputFormatCss': (val: string) => setConfigValue('outputFormatCss', val.toLowerCase()),
+    '-fc': (val: string) => setConfigValue('outputFormatCss', val.toLowerCase()),
+    '--outputFormatDesc': (val: string) =>
+      setConfigValue('outputFormatDescription', val.toLowerCase()),
+    '-fd': (val: string) => setConfigValue('outputFormatDescription', val.toLowerCase()),
+    '--outputFormatElements': (val: string) =>
+      setConfigValue('outputFormatElements', val.toLowerCase()),
+    '-fe': (val: string) => setConfigValue('outputFormatElements', val.toLowerCase()),
+    '--outputFormatGraphics': (val: string) =>
+      setConfigValue('outputFormatGraphics', val.toLowerCase()),
+    '-fg': (val: string) => setConfigValue('outputFormatGraphics', val.toLowerCase()),
+    '--outputFormatStorybook': (val: string) =>
+      setConfigValue('outputFormatStorybook', val.toLowerCase()),
+    '-fs': (val: string) => setConfigValue('outputFormatStorybook', val.toLowerCase()),
+    '--outputFormatTokens': (val: string) =>
+      setConfigValue('outputFormatTokens', val.toLowerCase()),
+    '-ft': (val: string) => setConfigValue('outputFormatTokens', val.toLowerCase()),
+    '--outputGraphicElements': () => setConfigValue('outputGraphicElements', true),
+    '-oge': () => setConfigValue('outputGraphicElements', true),
+    '--outputGraphicElementsMap': () => setConfigValue('outputGraphicElementsMap', true),
+    '-ogm': () => setConfigValue('outputGraphicElementsMap', true),
+    '--outputScaleGraphics': (val: string) => setConfigValue('outputScaleGraphics', parseInt(val)),
+    '-scale': (val: string) => setConfigValue('outputScaleGraphics', parseInt(val)),
+    '--outputDataTypeToken': (val: string) =>
+      setConfigValue('outputDataTypeToken', val.toLowerCase()),
+    '-tokentype': (val: string) => setConfigValue('outputDataTypeToken', val.toLowerCase()),
+    '--recompileLocal': () => setConfigValue('recompileLocal', true),
+    '-local': () => setConfigValue('recompileLocal', true),
+    '--remSize': (val: string) => setConfigValue('remSize', parseInt(val, 10)),
+    '-rem': (val: string) => setConfigValue('remSize', parseInt(val, 10)),
+    '--forceUpdate': () => setConfigChildValue('skipFileGeneration', 'forceUpdate', true),
+    '-force': () => setConfigChildValue('skipFileGeneration', 'forceUpdate', true),
+    '--skipCss': () => setConfigChildValue('skipFileGeneration', 'skipCss', true),
+    '-nocss': () => setConfigChildValue('skipFileGeneration', 'skipCss', true),
+    '--skipDescription': () => setConfigChildValue('skipFileGeneration', 'skipDescription', true),
+    '-nodesc': () => setConfigChildValue('skipFileGeneration', 'skipDescription', true),
+    '--skipReact': () => setConfigChildValue('skipFileGeneration', 'skipReact', true),
+    '-noreact': () => setConfigChildValue('skipFileGeneration', 'skipReact', true),
+    '--skipStorybook': () => setConfigChildValue('skipFileGeneration', 'skipStorybook', true),
+    '-nostory': () => setConfigChildValue('skipFileGeneration', 'skipStorybook', true),
+    '--skipStyled': () => setConfigChildValue('skipFileGeneration', 'skipStyled', true),
+    '-nostyled': () => setConfigChildValue('skipFileGeneration', 'skipStyled', true),
+    '--spacingUnit': (val: string) => setConfigValue('spacingUnit', val.toLowerCase()),
+    '-s': (val: string) => setConfigValue('spacingUnit', val.toLowerCase()),
+    '--syncElements': () => setConfigValue('syncElements', true),
+    '-se': () => setConfigValue('syncElements', true),
+    '--syncGraphics': () => setConfigValue('syncGraphics', true),
+    '-sg': () => setConfigValue('syncGraphics', true),
+    '--syncTokens': () => setConfigValue('syncTokens', true),
+    '-st': () => setConfigValue('syncTokens', true),
+    '--templatePathReact': (val: string) =>
+      setConfigChildValue('templates', 'templatePathReact', val),
+    '-tpreact': (val: string) => setConfigChildValue('templates', 'templatePathReact', val),
+    '--templatePathStorybook': (val: string) =>
+      setConfigChildValue('templates', 'templatePathStorybook', val),
+    '-tpstory': (val: string) => setConfigChildValue('templates', 'templatePathStorybook', val),
+    '--templatePathStyled': (val: string) =>
+      setConfigChildValue('templates', 'templatePathStyled', val),
+    '-tpstyled': (val: string) => setConfigChildValue('templates', 'templatePathStyled', val),
+    '--templatePathGraphic': (val: string) =>
+      setConfigChildValue('templates', 'templatePathGraphic', val),
+    '-tpgraphic': (val: string) => setConfigChildValue('templates', 'templatePathGraphic', val),
+    '--token': (val: string) => setConfigValue('token', val),
+    '-t': (val: string) => setConfigValue('token', val),
+    '--unitlessPrecision': (val: string) => setConfigValue('unitlessPrecision', parseInt(val, 10)),
+    '-up': (val: string) => setConfigValue('unitlessPrecision', parseInt(val, 10)),
+    '--url': (val: string) => setConfigValue('url', val),
+    '-u': (val: string) => setConfigValue('url', val),
+    '--usePostscriptFontNames': () => setConfigValue('usePostscriptFontNames', true),
+    '-ps': () => setConfigValue('usePostscriptFontNames', true)
+  };
+
+  argsArray.forEach((arg: string, index: number) => {
+    if (cliArguments.hasOwnProperty(arg)) {
+      cliArguments[arg](argsArray[index + 1]);
+    }
   });
 
   return config as Config;

@@ -787,6 +787,26 @@ describe('Success cases', () => {
     });
   });
 
+  describe('Unitless Precision', () => {
+    test('It should return "3" for url if passing "3" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--unitlessPrecision', '3'])).toEqual(
+        expect.objectContaining({
+          unitlessPrecision: 3
+        })
+      );
+    });
+
+    test('It should return "4" for url if passing "4" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-up', '4'])).toEqual(
+        expect.objectContaining({
+          unitlessPrecision: 4
+        })
+      );
+    });
+  });
+
   describe('URL', () => {
     test('It should return "abc123" for url if passing "abc123" (long-hand)', () => {
       // @ts-ignore

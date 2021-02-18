@@ -39,6 +39,7 @@ export type Config = {
     templatePathStyled: string;
   };
   token: string | null;
+  unitlessPrecision: number;
   url: string | null;
   usePostscriptFontNames: boolean;
 };
@@ -78,11 +79,13 @@ export type ConfigDTO = {
   syncGraphics?: boolean;
   syncTokens?: boolean;
   templates?: {
+    templatePathGraphic?: string;
     templatePathReact?: string;
     templatePathStorybook?: string;
     templatePathStyled?: string;
   };
   token?: string | null;
+  unitlessPrecision?: number;
   url?: string | null;
   usePostscriptFontNames?: boolean;
 };

@@ -62,7 +62,7 @@ class Token {
                         throw new Error(errors_1.ErrorExtractTokensNoConfig);
                     return makeLetterSpacingTokens_1.makeLetterSpacingTokens(frame, config.letterSpacingUnit);
                 },
-                lineheights: () => makeLineHeightTokens_1.makeLineHeightTokens(frame, config.remSize),
+                lineheights: () => makeLineHeightTokens_1.makeLineHeightTokens(frame, config.remSize, config.unitlessPrecision),
                 mediaqueries: () => makeMediaQueryTokens_1.makeMediaQueryTokens(frame),
                 opacities: () => {
                     if (!config)
