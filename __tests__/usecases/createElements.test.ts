@@ -29,7 +29,7 @@ describe('Success cases', () => {
     await createElements(CONFIG, DATA);
     const FILE_EXISTS = fs.existsSync(CONFIG.outputFolderElements);
     expect(FILE_EXISTS).toBeTruthy();
-    trash(CONFIG.outputFolderElements);
+    await trash(CONFIG.outputFolderElements);
   });
 
   test('It should write graphic elements and check that graphic elements map file exists', async () => {
@@ -51,6 +51,6 @@ describe('Success cases', () => {
     await createElements(CONFIG, DATA);
     const FILE_EXISTS = fs.existsSync(`${CONFIG.outputFolderElements}/Graphics/index.tsx`);
     expect(FILE_EXISTS).toBeTruthy();
-    trash(CONFIG.outputFolderElements);
+    await trash(CONFIG.outputFolderElements);
   });
 });

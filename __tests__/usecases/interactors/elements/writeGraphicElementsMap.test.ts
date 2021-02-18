@@ -13,7 +13,7 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should asdasdasdasd', () => {
+  test('It should asdasdasdasd', async () => {
     const FOLDER = '__test-write-graphic-elements-map__';
     const FILE_PATH = `${FOLDER}/index.tsx`;
     const FILE_CONTENTS = `import More from './elements/More';
@@ -27,6 +27,6 @@ export const Graphics = {
     const FILE_EXISTS = fs.existsSync(FILE_PATH);
     expect(FILE_EXISTS).toBe(true);
 
-    trash(FOLDER);
+    await trash(FOLDER);
   });
 });

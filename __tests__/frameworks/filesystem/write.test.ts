@@ -19,6 +19,6 @@ describe('Success cases', () => {
     const DISK_CONTENTS = fs.readFileSync(FILE_PATH, { encoding: 'utf-8' });
     expect(DISK_CONTENTS).toBe(FILE_CONTENT);
 
-    trash(FILE_PATH);
+    await trash(FILE_PATH);
   });
 });

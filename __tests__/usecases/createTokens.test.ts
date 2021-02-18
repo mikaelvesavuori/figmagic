@@ -36,6 +36,6 @@ describe('Failure cases', () => {
       // @ts-ignore
       createTokens(CONFIG, DATA)
     ).rejects.toThrowError();
-    trash(CONFIG.outputFolderTokens);
+    await trash(CONFIG.outputFolderTokens);
   });
 });

@@ -21,7 +21,7 @@ describe('Failure cases', () => {
     CONFIG.outputFolderGraphics = '__test-graphics__';
     // @ts-ignore
     await expect(createGraphics(CONFIG, DATA)).rejects.toThrowError();
-    trash(CONFIG.outputFolderGraphics);
+    await trash(CONFIG.outputFolderGraphics);
   });
 });
 
@@ -39,6 +39,6 @@ describe('Success cases', () => {
     await createGraphics(CONFIG, DATA);
     const FILE_EXISTS = fs.existsSync(CONFIG.outputFolderGraphics);
     expect(FILE_EXISTS).toBeTruthy();
-    trash(CONFIG.outputFolderGraphics);
+    await trash(CONFIG.outputFolderGraphics);
   });
 });

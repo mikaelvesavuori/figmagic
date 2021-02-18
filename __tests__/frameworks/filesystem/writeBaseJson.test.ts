@@ -33,6 +33,6 @@ describe('Success cases', () => {
     await writeBaseJson(testFolder, testFile, { data: 'something' });
     const fileContent = fs.readFileSync(path, { encoding: 'utf-8' });
     expect(fileContent).toBe(`{"data":"something"}`);
-    trash(testFolder);
+    await trash(testFolder);
   });
 });
