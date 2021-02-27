@@ -121,7 +121,7 @@ export function getFileContentAndPath(
  * @description Get file data string for tokens using enum data type
  */
 const getTokenEnumString = (file: string | ProcessedToken, name: string, format: string) => {
-  const EXPORT = format !== 'js' ? `export default ${name}` : `module.exports = ${name}`;
+  const EXPORT = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
   return `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
     file
   )}\n}\n\n${EXPORT};`;
@@ -131,7 +131,9 @@ const getTokenEnumString = (file: string | ProcessedToken, name: string, format:
  * @description Get file data string for tokens using null/no data type
  */
 const getTokenString = (file: string | ProcessedToken, name: string, format: string) => {
-  const EXPORT = format !== 'js' ? `export default ${name}` : `module.exports = ${name}`;
+  if (format === 'json') return `${JSON.stringify(file, null, ' ')}`;
+
+  const EXPORT = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
   return `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
     file,
     null,

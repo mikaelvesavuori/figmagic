@@ -1,23 +1,23 @@
 export type Config = {
   debugMode: boolean;
-  fontUnit: 'rem' | 'em';
-  letterSpacingUnit: 'em' | 'px';
-  opacitiesUnit: 'float' | 'percent';
+  fontUnit: FontUnits;
+  letterSpacingUnit: LetterSpacingUnits;
+  opacitiesUnit: OpacitiesUnits;
   figmaData: string;
   figmagicFolder: string;
   outputFolderElements: string;
   outputFolderGraphics: string;
   outputFolderTokens: string;
-  outputFormatCss: 'ts' | 'mjs' | 'js';
-  outputFormatDescription: 'md' | 'txt';
-  outputFormatElements: 'tsx' | 'jsx' | 'mjs' | 'js';
-  outputFormatGraphics: 'svg' | 'png';
-  outputFormatStorybook: 'ts' | 'js';
-  outputFormatTokens: 'ts' | 'mjs' | 'js';
+  outputFormatCss: OutputFormatCss;
+  outputFormatDescription: OutputFormatDescription;
+  outputFormatElements: OutputFormatElements;
+  outputFormatGraphics: OutputFormatGraphics;
+  outputFormatStorybook: OutputFormatStorybook;
+  outputFormatTokens: OutputFormatTokens;
   outputGraphicElements: boolean;
   outputGraphicElementsMap: boolean;
   outputScaleGraphics: number;
-  outputDataTypeToken: null | 'enum';
+  outputDataTypeToken: OutputDataTypeToken;
   recompileLocal: boolean;
   remSize: number;
   skipFileGeneration: {
@@ -28,7 +28,7 @@ export type Config = {
     skipStorybook: boolean;
     skipStyled: boolean;
   };
-  spacingUnit: 'rem' | 'em';
+  spacingUnit: SpacingUnit;
   syncElements: boolean;
   syncGraphics: boolean;
   syncTokens: boolean;
@@ -46,24 +46,24 @@ export type Config = {
 
 export type ConfigDTO = {
   debugMode?: boolean;
-  fontUnit?: 'rem' | 'em';
-  letterSpacingUnit?: 'em' | 'px';
-  opacitiesUnit?: 'float' | 'percent';
+  fontUnit?: FontUnits;
+  letterSpacingUnit?: LetterSpacingUnits;
+  opacitiesUnit?: OpacitiesUnits;
   figmaData?: string;
   figmagicFolder?: string;
   outputFolderElements?: string;
   outputFolderGraphics?: string;
   outputFolderTokens?: string;
-  outputFormatCss?: 'ts' | 'mjs' | 'js';
-  outputFormatDescription?: 'md' | 'txt';
-  outputFormatElements?: 'tsx' | 'jsx';
-  outputFormatGraphics?: 'svg' | 'png';
-  outputFormatStorybook?: 'ts' | 'js';
-  outputFormatTokens?: 'ts' | 'mjs' | 'js';
+  outputFormatCss?: OutputFormatCss;
+  outputFormatDescription?: OutputFormatDescription;
+  outputFormatElements?: OutputFormatElements;
+  outputFormatGraphics?: OutputFormatGraphics;
+  outputFormatStorybook?: OutputFormatStorybook;
+  outputFormatTokens?: OutputFormatTokens;
   outputGraphicElements?: boolean;
   outputGraphicElementsMap?: boolean;
   outputScaleGraphics?: number;
-  outputDataTypeToken?: null | 'enum';
+  outputDataTypeToken?: OutputDataTypeToken;
   recompileLocal?: boolean;
   remSize?: number;
   skipFileGeneration?: {
@@ -74,7 +74,7 @@ export type ConfigDTO = {
     skipStorybook?: boolean;
     skipStyled?: boolean;
   };
-  spacingUnit?: 'rem' | 'em';
+  spacingUnit?: SpacingUnit;
   syncElements?: boolean;
   syncGraphics?: boolean;
   syncTokens?: boolean;
@@ -89,3 +89,15 @@ export type ConfigDTO = {
   url?: string | null;
   usePostscriptFontNames?: boolean;
 };
+
+export type FontUnits = 'rem' | 'em';
+export type LetterSpacingUnits = 'em' | 'px';
+export type OpacitiesUnits = 'float' | 'percent';
+export type OutputFormatCss = 'ts' | 'mjs' | 'js';
+export type OutputFormatDescription = 'md' | 'txt';
+export type OutputFormatElements = 'tsx' | 'jsx';
+export type OutputFormatGraphics = 'svg' | 'png';
+export type OutputFormatStorybook = 'ts' | 'js';
+export type OutputFormatTokens = 'ts' | 'mjs' | 'js' | 'json';
+export type OutputDataTypeToken = null | 'enum';
+export type SpacingUnit = 'rem' | 'em';

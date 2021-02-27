@@ -2,8 +2,17 @@ import { Metadata } from './Metadata';
 import { Templates } from './Templates';
 import { ProcessedToken } from './ProcessedToken';
 
+import {
+  OutputFormatCss,
+  OutputFormatDescription,
+  OutputFormatElements,
+  OutputFormatGraphics,
+  OutputFormatStorybook,
+  OutputFormatTokens
+} from './Config';
+
 export type WriteOperation = {
-  type: 'raw' | 'token' | 'component' | 'styled' | 'css' | 'story' | 'description' | 'graphic';
+  type: FileType;
   file: string | ProcessedToken;
   path: string;
   name: string;
@@ -13,12 +22,12 @@ export type WriteOperation = {
 
   description?: string;
   folder?: string;
-  outputFormatCss?: 'ts' | 'mjs' | 'js';
-  outputFormatDescription?: 'md' | 'txt';
-  outputFormatElements?: 'tsx' | 'jsx';
-  outputFormatGraphics?: 'svg' | 'png';
-  outputFormatStorybook?: 'ts' | 'js';
-  outputFormatTokens?: 'ts' | 'mjs' | 'js';
+  outputFormatCss?: OutputFormatCss;
+  outputFormatDescription?: OutputFormatDescription;
+  outputFormatElements?: OutputFormatElements;
+  outputFormatGraphics?: OutputFormatGraphics;
+  outputFormatStorybook?: OutputFormatStorybook;
+  outputFormatTokens?: OutputFormatTokens;
   outputFolderGraphics?: 'string';
   fixedName?: string;
   forceUpdate?: string;
@@ -27,7 +36,7 @@ export type WriteOperation = {
 };
 
 export type GetFileDataOperation = {
-  type: 'raw' | 'token' | 'component' | 'styled' | 'css' | 'story' | 'description' | 'graphic';
+  type: FileType;
   file: string | ProcessedToken;
   path: string;
   name: string;
@@ -44,3 +53,13 @@ export type FileContentWithPath = {
   fileContent: string;
   filePath: string;
 };
+
+type FileType =
+  | 'raw'
+  | 'token'
+  | 'component'
+  | 'styled'
+  | 'css'
+  | 'story'
+  | 'description'
+  | 'graphic';

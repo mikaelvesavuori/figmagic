@@ -69,11 +69,13 @@ function getFileContentAndPath(getFileContentAndPathOperation) {
 }
 exports.getFileContentAndPath = getFileContentAndPath;
 const getTokenEnumString = (file, name, format) => {
-    const EXPORT = format !== 'js' ? `export default ${name}` : `module.exports = ${name}`;
+    const EXPORT = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
     return `// ${messages_1.MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject_1.createEnumStringOutOfObject(file)}\n}\n\n${EXPORT};`;
 };
 const getTokenString = (file, name, format) => {
-    const EXPORT = format !== 'js' ? `export default ${name}` : `module.exports = ${name}`;
+    if (format === 'json')
+        return `${JSON.stringify(file, null, ' ')}`;
+    const EXPORT = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
     return `// ${messages_1.MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(file, null, ' ')}\n\n${EXPORT};`;
 };
 const checkIfFieldsExist = (getFileContentAndPathOperation) => {

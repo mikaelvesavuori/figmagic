@@ -362,7 +362,7 @@ Default is `js`.
 
 #### Switch token file format
 
-`figmagic [--outputFormatTokens | -ft] [ts|mjs|js]`
+`figmagic [--outputFormatTokens | -ft] [ts|mjs|js|json]`
 
 Default is `ts`.
 

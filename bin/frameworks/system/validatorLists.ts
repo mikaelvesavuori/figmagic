@@ -6,6 +6,6 @@ export const validOutputFormatDescList = ['md', 'txt'];
 export const validOutputFormatElementsList = ['tsx', 'jsx', 'mjs', 'js'];
 export const validOutputFormatGraphicsList = ['svg', 'png'];
 export const validOutputFormatStorybookList = ['ts', 'js'];
-export const validOutputFormatTokensList = ['ts', 'mjs', 'js'];
+export const validOutputFormatTokensList = ['ts', 'mjs', 'js', 'json'];
 export const validOutputDataTypeTokenList = ['enum', 'null', null, undefined];
 export const validSpacingUnitList = ['rem', 'em'];

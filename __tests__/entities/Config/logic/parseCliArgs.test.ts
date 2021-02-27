@@ -584,7 +584,7 @@ describe('Success cases', () => {
   });
 
   describe('Spacing unit', () => {
-    test('It should return "em" for outputFormatTokens if passing "em" (long-hand)', () => {
+    test('It should return "em" for spacingUnit if passing "em" (long-hand)', () => {
       // @ts-ignore
       expect(parseCliArgs(['--spacingUnit', 'em'])).toEqual(
         expect.objectContaining({
@@ -593,7 +593,7 @@ describe('Success cases', () => {
       );
     });
 
-    test('It should return "em" for outputFormatTokens if passing "em" (short-hand)', () => {
+    test('It should return "em" for spacingUnit if passing "em" (short-hand)', () => {
       // @ts-ignore
       expect(parseCliArgs(['-s', 'em'])).toEqual(
         expect.objectContaining({

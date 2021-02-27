@@ -1,9 +1,11 @@
 import { FRAME as Frame } from './Figma';
 
+import { LetterSpacingUnits, OutputFormatTokens } from './Config';
+
 export type TypographyElement = {
-  letterSpacingUnit: 'em' | 'px';
+  letterSpacingUnit: LetterSpacingUnits;
   outputFolderTokens: string;
-  outputFormatTokens: 'ts' | 'mjs' | 'js';
+  outputFormatTokens: OutputFormatTokens;
   remSize: number;
   textElement: Frame;
   usePostscriptFontNames: boolean;
