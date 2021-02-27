@@ -25,13 +25,15 @@ export async function getData(
     if (recompileLocal && (!figmagicFolder || !figmaData))
       throw new Error(ErrorGetDataNoTokenOrUrl);
 
-    const DATA = (async () => {
+    const _DATA = (async () => {
       if (recompileLocal) return getDataLocal(figmagicFolder, figmaData);
       else if (token && url) return await getDataRemote(token, url);
       throw new Error(ErrorGetDataFailedLocalAndRemote);
     })();
 
-    if (!DATA) throw new Error(ErrorGetDataNoData);
+    const DATA = await _DATA;
+
+    if (!DATA.document) throw Error(ErrorGetDataNoData);
     return DATA;
   } catch (error) {
     throw new Error(error);

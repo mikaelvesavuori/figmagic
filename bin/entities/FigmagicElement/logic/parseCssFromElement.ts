@@ -103,13 +103,13 @@ const reduceDuplicates = (str: string) =>
     .toString()
     .replace(/,/gi, ';');
 
-const getFiles = (path: string, outputFormatToken: string): any => {
+const getFiles = (filePath: string, outputFormatToken: string): any => {
   try {
-    const borderWidths = getFileContents(path, 'borderWidths', outputFormatToken);
-    const colors = getFileContents(path, 'colors', outputFormatToken);
-    const radii = getFileContents(path, 'radii', outputFormatToken);
-    const shadows = getFileContents(path, 'shadows', outputFormatToken);
-    const spacing = getFileContents(path, 'spacing', outputFormatToken);
+    const borderWidths = getFileContents(filePath, 'borderWidths', outputFormatToken);
+    const colors = getFileContents(filePath, 'colors', outputFormatToken);
+    const radii = getFileContents(filePath, 'radii', outputFormatToken);
+    const shadows = getFileContents(filePath, 'shadows', outputFormatToken);
+    const spacing = getFileContents(filePath, 'spacing', outputFormatToken);
 
     return {
       borderWidths,

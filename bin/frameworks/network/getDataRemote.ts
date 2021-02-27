@@ -1,5 +1,3 @@
-//import { FigmaData } from '../../contracts/FigmaData';
-
 import { getFromApi } from './getFromApi';
 
 import { ErrorGetData, ErrorGetDataNoTokenOrUrl } from '../errors/errors';

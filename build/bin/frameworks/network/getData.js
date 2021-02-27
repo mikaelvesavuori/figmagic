@@ -12,15 +12,16 @@ function getData(recompileLocal, figmagicFolder, figmaData, token, url) {
                 throw new Error(errors_1.ErrorGetData);
             if (recompileLocal && (!figmagicFolder || !figmaData))
                 throw new Error(errors_1.ErrorGetDataNoTokenOrUrl);
-            const DATA = (() => tslib_1.__awaiter(this, void 0, void 0, function* () {
+            const _DATA = (() => tslib_1.__awaiter(this, void 0, void 0, function* () {
                 if (recompileLocal)
                     return getDataLocal_1.getDataLocal(figmagicFolder, figmaData);
                 else if (token && url)
                     return yield getDataRemote_1.getDataRemote(token, url);
                 throw new Error(errors_1.ErrorGetDataFailedLocalAndRemote);
             }))();
-            if (!DATA)
-                throw new Error(errors_1.ErrorGetDataNoData);
+            const DATA = yield _DATA;
+            if (!DATA.document)
+                throw Error(errors_1.ErrorGetDataNoData);
             return DATA;
         }
         catch (error) {

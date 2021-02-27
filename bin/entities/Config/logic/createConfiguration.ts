@@ -47,11 +47,7 @@ export async function createConfiguration(
   // Env var configuration
   const ENV_CONFIG = {
     token: process.env.FIGMA_TOKEN || RC_CONFIG.token || '',
-    url: process.env.FIGMA_URL
-      ? getFigmaDocumentId(process.env.FIGMA_URL)
-      : RC_CONFIG.url
-      ? getFigmaDocumentId(RC_CONFIG.url)
-      : ''
+    url: getEnvUrl(process.env.FIGMA_URL, RC_CONFIG.url)
   };
 
   // CLI arguments configuration
@@ -106,3 +102,11 @@ function printConfigs(
   console.log(MsgConfigDebugFinal);
   console.log(config);
 }
+
+const getEnvUrl = (processEnvUrl: string | undefined, rcConfigUrl: string | undefined) => {
+  return processEnvUrl
+    ? getFigmaDocumentId(processEnvUrl)
+    : rcConfigUrl
+    ? getFigmaDocumentId(rcConfigUrl)
+    : '';
+};

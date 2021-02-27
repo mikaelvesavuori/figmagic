@@ -22,11 +22,7 @@ function createConfiguration(baseConfig, userConfigPath, cliArgs) {
         catch (e) { }
         const ENV_CONFIG = {
             token: process.env.FIGMA_TOKEN || RC_CONFIG.token || '',
-            url: process.env.FIGMA_URL
-                ? getFigmaDocumentId_1.getFigmaDocumentId(process.env.FIGMA_URL)
-                : RC_CONFIG.url
-                    ? getFigmaDocumentId_1.getFigmaDocumentId(RC_CONFIG.url)
-                    : ''
+            url: getEnvUrl(process.env.FIGMA_URL, RC_CONFIG.url)
         };
         const CLI_CONFIG = parseCliArgs_1.parseCliArgs(cliArgs);
         const CONFIG = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG), RC_CONFIG), ENV_CONFIG), CLI_CONFIG), { templates: Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG.templates), RC_CONFIG.templates), CLI_CONFIG.templates), skipFileGeneration: Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG.skipFileGeneration), RC_CONFIG.skipFileGeneration), CLI_CONFIG.skipFileGeneration) });
@@ -46,4 +42,11 @@ function printConfigs(envConfig, cliConfig, rcConfig, config) {
     console.log(messages_1.MsgConfigDebugFinal);
     console.log(config);
 }
+const getEnvUrl = (processEnvUrl, rcConfigUrl) => {
+    return processEnvUrl
+        ? getFigmaDocumentId_1.getFigmaDocumentId(processEnvUrl)
+        : rcConfigUrl
+            ? getFigmaDocumentId_1.getFigmaDocumentId(rcConfigUrl)
+            : '';
+};
 //# sourceMappingURL=createConfiguration.js.map

@@ -120,14 +120,14 @@ export function parseTypographyStylingFromElement(
   }
 }
 
-const getFiles = (path: string, outputFormatTokens: string): any => {
+const getFiles = (filePath: string, outputFormatTokens: string): any => {
   try {
-    const colors = getFileContents(path, 'colors', outputFormatTokens);
-    const fontFamilies = getFileContents(path, 'fontFamilies', outputFormatTokens);
-    const fontSizes = getFileContents(path, 'fontSizes', outputFormatTokens);
-    const fontWeights = getFileContents(path, 'fontWeights', outputFormatTokens);
-    const letterSpacings = getFileContents(path, 'letterSpacings', outputFormatTokens);
-    const lineHeights = getFileContents(path, 'lineHeights', outputFormatTokens);
+    const colors = getFileContents(filePath, 'colors', outputFormatTokens);
+    const fontFamilies = getFileContents(filePath, 'fontFamilies', outputFormatTokens);
+    const fontSizes = getFileContents(filePath, 'fontSizes', outputFormatTokens);
+    const fontWeights = getFileContents(filePath, 'fontWeights', outputFormatTokens);
+    const letterSpacings = getFileContents(filePath, 'letterSpacings', outputFormatTokens);
+    const lineHeights = getFileContents(filePath, 'lineHeights', outputFormatTokens);
 
     return {
       colors,

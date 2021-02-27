@@ -57,13 +57,13 @@ exports.parseCssFromElement = parseCssFromElement;
 const reduceDuplicates = (str) => Array.from(new Set(str.split(/;/gi)))
     .toString()
     .replace(/,/gi, ';');
-const getFiles = (path, outputFormatToken) => {
+const getFiles = (filePath, outputFormatToken) => {
     try {
-        const borderWidths = getFileContents_1.getFileContents(path, 'borderWidths', outputFormatToken);
-        const colors = getFileContents_1.getFileContents(path, 'colors', outputFormatToken);
-        const radii = getFileContents_1.getFileContents(path, 'radii', outputFormatToken);
-        const shadows = getFileContents_1.getFileContents(path, 'shadows', outputFormatToken);
-        const spacing = getFileContents_1.getFileContents(path, 'spacing', outputFormatToken);
+        const borderWidths = getFileContents_1.getFileContents(filePath, 'borderWidths', outputFormatToken);
+        const colors = getFileContents_1.getFileContents(filePath, 'colors', outputFormatToken);
+        const radii = getFileContents_1.getFileContents(filePath, 'radii', outputFormatToken);
+        const shadows = getFileContents_1.getFileContents(filePath, 'shadows', outputFormatToken);
+        const spacing = getFileContents_1.getFileContents(filePath, 'spacing', outputFormatToken);
         return {
             borderWidths,
             colors,

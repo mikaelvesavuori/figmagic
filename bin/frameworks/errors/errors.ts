@@ -71,7 +71,9 @@ export const ErrorGetDataFailedLocalAndRemote = ErrorMessage(
   'Failed to get local and/or remote data in getData()!'
 );
 export const ErrorGetDataLocal = ErrorMessage('Missing arguments when calling getDataLocal()!');
-export const ErrorGetDataNoData = ErrorMessage('No data retrieved...');
+export const ErrorGetDataNoData = ErrorMessage(
+  'No data retrieved. Verify that your Figma document ID ("Figma URL") is correct.'
+);
 export const ErrorGetDataNoTokenOrUrl = ErrorMessage(
   'Missing token and/or URL when attempting to get remote data!'
 );

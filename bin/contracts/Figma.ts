@@ -304,12 +304,6 @@ export type FrameOffset = {
   node_offset: Vector;
 };
 
-/*
-type Gradients = {
-  ColorStop: ColorStop[];
-};
-*/
-
 export type ColorStop = {
   color: Color;
   position: string;

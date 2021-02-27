@@ -116,7 +116,6 @@ function createCssString(intersections: any[], uniqueValues: any[]): string {
 
   // Setup so we can handle nesting and spacing
   let nestingDepth = 0;
-  //const SPACES = getSpacing(nestingDepth);
 
   // Put shared, intersecting values at top
   let cssString = `\n`;

@@ -9,7 +9,6 @@ import { parseTypographyStylingFromElement } from './logic/parseTypographyStylin
 import { processNestedCss } from './logic/processNestedCss';
 
 import { MsgProcessElementsCreatingElement } from '../../frameworks/messages/messages';
-//import { ErrorProcessElementsNoMainElement } from '../../frameworks/errors/errors';
 
 /**
  * @description Factory function to create Figmagic element
