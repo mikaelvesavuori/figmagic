@@ -177,6 +177,8 @@ Whatever suits you! As long as you remember that what Figmagic fetches are those
 
 Tokens are the "bread and butter" of Figmagic. Without tokens, Figmagic cannot create elements. And even without elements, tokens provide the core experience to help you run a competent design system with code.
 
+In case you want to skip generating tokens for a given frame, you can just add a leading underscore to the frame name.
+
 This is activated by default, but it's now possible to deactivate it if you have very specific reasons to do so.
 
 ### Graphics Sync

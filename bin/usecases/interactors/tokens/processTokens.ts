@@ -22,6 +22,10 @@ export function processTokens(tokens: Frame[], config: Config): any {
 
     tokens.forEach((token) => {
       const TOKEN_NAME = camelize(token.name);
+
+      // Skip any design token frames that begin with an underscore
+      if (token.type.toUpperCase() === 'FRAME' && token.name[0] === '_') return;
+
       if (acceptedTokenTypes.includes(TOKEN_NAME.toLowerCase())) {
         const _TOKEN = makeToken(token, TOKEN_NAME, config);
         const WRITE_OP = _TOKEN.getWriteOperation();

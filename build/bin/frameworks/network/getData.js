@@ -20,7 +20,9 @@ function getData(recompileLocal, figmagicFolder, figmaData, token, url) {
                 throw new Error(errors_1.ErrorGetDataFailedLocalAndRemote);
             }))();
             const DATA = yield _DATA;
-            if (!DATA.document)
+            if (!recompileLocal && !DATA.document)
+                throw Error(errors_1.ErrorGetDataNoData);
+            if (recompileLocal && !DATA)
                 throw Error(errors_1.ErrorGetDataNoData);
             return DATA;
         }

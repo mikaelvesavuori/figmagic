@@ -33,7 +33,9 @@ export async function getData(
 
     const DATA = await _DATA;
 
-    if (!DATA.document) throw Error(ErrorGetDataNoData);
+    if (!recompileLocal && !DATA.document) throw Error(ErrorGetDataNoData);
+    if (recompileLocal && !DATA) throw Error(ErrorGetDataNoData);
+
     return DATA;
   } catch (error) {
     throw new Error(error);
