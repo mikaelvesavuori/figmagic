@@ -14,13 +14,13 @@ function processTokens(tokens, config) {
         if (!config)
             throw new Error(errors_1.ErrorWriteTokensNoSettings);
         const PROCESSED_TOKENS = [];
-        tokens.forEach((token) => {
-            const TOKEN_NAME = camelize_1.camelize(token.name);
-            if (token.type.toUpperCase() === 'FRAME' && token.name[0] === '_')
+        tokens.forEach((tokenFrame) => {
+            const TOKEN_NAME = camelize_1.camelize(tokenFrame.name);
+            if (tokenFrame.type.toUpperCase() === 'FRAME' && TOKEN_NAME[0] === '_')
                 return;
-            if (acceptedTokenTypes_1.acceptedTokenTypes.includes(TOKEN_NAME.toLowerCase())) {
-                const _TOKEN = index_1.makeToken(token, TOKEN_NAME, config);
-                const WRITE_OP = _TOKEN.getWriteOperation();
+            if (acceptedTokenTypes_1.acceptedTokenTypes.includes(TOKEN_NAME.toLowerCase()) && TOKEN_NAME[0] !== '_') {
+                const TOKEN = index_1.makeToken(tokenFrame, TOKEN_NAME, config);
+                const WRITE_OP = TOKEN.getWriteOperation();
                 if (WRITE_OP)
                     PROCESSED_TOKENS.push(WRITE_OP);
             }

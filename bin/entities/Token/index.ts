@@ -62,7 +62,7 @@ class Token {
         for (let i = 0; i < ignoreElementsKeywords.length; i++) {
           const keywordToIgnore = ignoreElementsKeywords[i];
 
-          if (item.name.toLowerCase().indexOf(keywordToIgnore) >= 0) {
+          if (item.name.toLowerCase().indexOf(keywordToIgnore) >= 0 || item.name[0] === '_') {
             shouldInclude = false;
             break;
           }
