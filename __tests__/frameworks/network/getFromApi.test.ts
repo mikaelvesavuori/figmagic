@@ -13,7 +13,7 @@ describe('Failure cases', () => {
 
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
-    await expect(getFromApi()).rejects.toThrowError();
+    await expect(getFromApi()).resolves.toMatchObject({ err: 'Invalid token', status: 403 });
   });
 
   test('It should not find data, given a token but invalid URL', async () => {
@@ -23,6 +23,7 @@ describe('Failure cases', () => {
   });
 
   test('It should find valid data (assuming the base document ID to be "0:0") when passed valid token and URL', async () => {
+    // @ts-ignore
     const DATA = await getFromApi(process.env.FIGMA_TOKEN, process.env.FIGMA_URL);
     expect(DATA.document.id).toEqual('0:0');
   });

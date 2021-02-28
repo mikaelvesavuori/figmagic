@@ -8,13 +8,11 @@ import { ErrorGetFromApi } from '../errors/errors';
  * @description Get data from the Figma API
  */
 export async function getFromApi(
-  figmaToken: string | undefined | null,
-  figmaUrl: string | undefined | null,
+  figmaToken: string,
+  figmaUrl: string,
   type = 'files'
 ): Promise<ImageResponse> {
   try {
-    if (!figmaToken || !figmaUrl) throw new Error(ErrorGetFromApi);
-
     return await fetch(`https://api.figma.com/v1/${type}/${figmaUrl}`, {
       headers: {
         'X-Figma-Token': figmaToken
