@@ -19,6 +19,7 @@ export function writeElements(elements: any[], config: Config, isGeneratingGraph
 
     elements.forEach((element) => {
       const FIXED_CONFIG = makeFixedConfig(element, config);
+      // TODO REFACTOR: writeFileHelper() should take fewer params since we are already passing in fixed config...?
 
       if (!config.skipFileGeneration.skipReact) {
         const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.${FIXED_CONFIG.outputFormatElements}`;
@@ -62,7 +63,9 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
   const outputFormatDescription = config.outputFormatDescription;
   const outputFormatElements = config.outputFormatElements;
   const outputFormatStorybook = config.outputFormatStorybook;
+  const outputFolderElements = config.outputFolderElements;
   const outputFolderGraphics = config.outputFolderGraphics;
+  const outputFolderTokens = config.outputFolderTokens;
   const metadata = {
     dataType: null,
     html: element.html,
@@ -86,7 +89,9 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
     outputFormatDescription,
     outputFormatElements,
     outputFormatStorybook,
+    outputFolderElements,
     outputFolderGraphics,
+    outputFolderTokens,
     metadata,
     templates,
     forceUpdate,
@@ -123,6 +128,9 @@ const writeFileHelper = (
       path: config.folder,
       name: config.fixedName,
       format,
+      outputFolderElements: config.outputFolderElements,
+      outputFolderGraphics: config.outputFolderGraphics,
+      outputFolderTokens: config.outputFolderTokens,
       metadata: config.metadata,
       templates: config.templates
     } as WriteOperation);

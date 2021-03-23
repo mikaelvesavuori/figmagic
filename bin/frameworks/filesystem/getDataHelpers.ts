@@ -24,10 +24,14 @@ export const getExtraProps = (metadata: undefined | null | Record<string, any>):
   } else return '';
 };
 
-export const getImports = (metadata: undefined | null | Record<string, any>): string => {
+export const getImports = (
+  metadata: undefined | null | Record<string, any>,
+  outputFolderTokens: string | undefined
+): string => {
   if (metadata) {
     if (metadata.imports) {
-      if (metadata.imports.length > 0) return createImportStringFromList(metadata.imports);
+      if (metadata.imports.length > 0)
+        return createImportStringFromList(metadata.imports, outputFolderTokens);
       else return '';
     } else return '';
   } else return '';

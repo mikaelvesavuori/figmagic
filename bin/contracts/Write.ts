@@ -28,7 +28,9 @@ export type WriteOperation = {
   outputFormatGraphics?: OutputFormatGraphics;
   outputFormatStorybook?: OutputFormatStorybook;
   outputFormatTokens?: OutputFormatTokens;
-  outputFolderGraphics?: 'string';
+  outputFolderElements?: string;
+  outputFolderGraphics?: string;
+  outputFolderTokens?: string;
   fixedName?: string;
   forceUpdate?: string;
   css?: string;

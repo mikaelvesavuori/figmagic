@@ -10,7 +10,7 @@ function writeFile(writeOperation) {
     try {
         if (!writeOperation)
             throw new Error(errors_1.ErrorWriteFile);
-        const { type, file, path, name, format, metadata, templates } = writeOperation;
+        const { type, file, path, name, format, outputFolderTokens, metadata, templates } = writeOperation;
         if (!file || !path || !name || !type)
             throw new Error(errors_1.ErrorWriteFile);
         const TYPE = typeof type === 'string' ? type.toLowerCase() : 'null';
@@ -23,6 +23,7 @@ function writeFile(writeOperation) {
             path,
             name,
             format,
+            outputFolderTokens,
             metadata,
             templates
         };

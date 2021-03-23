@@ -12,7 +12,16 @@ export function prepareWrite(writeOperation: WriteOperation): any {
   try {
     if (!writeOperation) throw new Error(ErrorWriteFile);
 
-    const { type, file, path, name, format, metadata, templates } = writeOperation;
+    const {
+      type,
+      file,
+      path,
+      name,
+      format,
+      outputFolderTokens,
+      metadata,
+      templates
+    } = writeOperation;
 
     if ((type === 'css' || type === 'story' || type === 'component') && !templates)
       throw new Error(ErrorPrepareWrite);
@@ -21,11 +30,11 @@ export function prepareWrite(writeOperation: WriteOperation): any {
       type,
       file,
       path,
-      name: name.replace('//g', ''),
+      name: name.replace('/ /g', ''),
       format,
       text: getText(metadata),
       element: getElement(metadata),
-      imports: getImports(metadata),
+      imports: getImports(metadata, outputFolderTokens),
       extraProps: getExtraProps(metadata),
       metadata,
       templates

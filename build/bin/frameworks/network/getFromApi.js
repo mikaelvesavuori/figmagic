@@ -7,7 +7,6 @@ const errors_1 = require("../errors/errors");
 function getFromApi(figmaToken, figmaUrl, type = 'files') {
     return tslib_1.__awaiter(this, void 0, void 0, function* () {
         try {
-            console.log(`Calling getFromApi with...\nToken: ${figmaToken}\nURL: ${figmaUrl}`);
             return yield node_fetch_1.default(`https://api.figma.com/v1/${type}/${figmaUrl}`, {
                 headers: {
                     'X-Figma-Token': figmaToken

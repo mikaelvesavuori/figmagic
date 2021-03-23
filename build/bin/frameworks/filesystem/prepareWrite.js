@@ -8,18 +8,18 @@ function prepareWrite(writeOperation) {
     try {
         if (!writeOperation)
             throw new Error(errors_1.ErrorWriteFile);
-        const { type, file, path, name, format, metadata, templates } = writeOperation;
+        const { type, file, path, name, format, outputFolderTokens, metadata, templates } = writeOperation;
         if ((type === 'css' || type === 'story' || type === 'component') && !templates)
             throw new Error(errors_1.ErrorPrepareWrite);
         const getFileDataOperation = {
             type,
             file,
             path,
-            name: name.replace('//g', ''),
+            name: name.replace('/ /g', ''),
             format,
             text: getDataHelpers_1.getText(metadata),
             element: getDataHelpers_1.getElement(metadata),
-            imports: getDataHelpers_1.getImports(metadata),
+            imports: getDataHelpers_1.getImports(metadata, outputFolderTokens),
             extraProps: getDataHelpers_1.getExtraProps(metadata),
             metadata,
             templates

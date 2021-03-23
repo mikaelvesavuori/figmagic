@@ -42,11 +42,11 @@ describe('Success cases', () => {
     });
 
     test('getImports should return "div" if provided metadata without "element" field', () => {
-      expect(getImports({})).toBe('');
+      expect(getImports({}, 'tokens')).toBe('');
     });
 
     test('getImports should return "div" element if provided metadata with zero-length "imports" field', () => {
-      expect(getImports({ imports: [] })).toBe('');
+      expect(getImports({ imports: [] }, 'tokens')).toBe('');
     });
   });
 
@@ -64,7 +64,7 @@ describe('Success cases', () => {
     });
 
     test('getImports should return metadata element if provided metadata with "imports" field', () => {
-      expect(getImports({ imports: [{}] })).toBeTruthy();
+      expect(getImports({ imports: [{}] }, 'tokens')).toBeTruthy();
     });
   });
 });

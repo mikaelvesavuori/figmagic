@@ -35,11 +35,11 @@ const getExtraProps = (metadata) => {
         return '';
 };
 exports.getExtraProps = getExtraProps;
-const getImports = (metadata) => {
+const getImports = (metadata, outputFolderTokens) => {
     if (metadata) {
         if (metadata.imports) {
             if (metadata.imports.length > 0)
-                return createImportStringFromList_1.createImportStringFromList(metadata.imports);
+                return createImportStringFromList_1.createImportStringFromList(metadata.imports, outputFolderTokens);
             else
                 return '';
         }
