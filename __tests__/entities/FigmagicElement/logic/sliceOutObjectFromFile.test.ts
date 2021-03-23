@@ -8,9 +8,9 @@ describe('Failure cases', () => {
     }).toThrowError();
   });
 
-  test('It should throw an error if attempting to get file contents for non-existing file', () => {
+  test('It should return "undefined" if attempting to get file contents for non-existing file', () => {
     const FILE_PATH = '__test-getFileContents__/testfile001.mjs';
-    expect(() => sliceOutObjectFromFile(FILE_PATH)).toThrowError();
+    expect(sliceOutObjectFromFile(FILE_PATH)).toBe(undefined);
   });
 });
 

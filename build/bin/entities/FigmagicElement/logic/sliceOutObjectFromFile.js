@@ -5,9 +5,9 @@ const tslib_1 = require("tslib");
 const fs = tslib_1.__importStar(require("fs"));
 const errors_1 = require("../../../frameworks/errors/errors");
 const sliceOutObjectFromFile = (path) => {
+    if (!path)
+        throw new Error(errors_1.ErrorSliceOutObjectFromFile);
     try {
-        if (!path)
-            throw new Error(errors_1.ErrorSliceOutObjectFromFile);
         const DATA = fs.readFileSync(path, 'utf8');
         if (!DATA)
             throw new Error(errors_1.ErrorSliceOutObjectFromFile);
@@ -15,7 +15,7 @@ const sliceOutObjectFromFile = (path) => {
         return JSON.parse(SLICED_DATA);
     }
     catch (error) {
-        throw new Error(error);
+        return;
     }
 };
 exports.sliceOutObjectFromFile = sliceOutObjectFromFile;

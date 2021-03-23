@@ -11,7 +11,7 @@ export function getFileContents(
   filepath: string,
   filename: string,
   format: string
-): Record<string, unknown> {
+): Record<string, unknown> | void {
   try {
     if (!filepath || !filename || !format) throw new Error(ErrorGetFileContents);
     const FILE = path.join(`${process.cwd()}`, filepath, `${filename}.${format}`);

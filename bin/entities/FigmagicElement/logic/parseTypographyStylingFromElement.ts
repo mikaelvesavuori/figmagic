@@ -225,7 +225,7 @@ function calcFontColor(calcData: CalcDataTypography, colors: any) {
   let { css } = calcData;
 
   const FONT_COLOR = getFontColor(textElement);
-  if (FONT_COLOR) {
+  if (FONT_COLOR && colors) {
     const { updatedCss, updatedImports } = getTokenMatch(
       colors,
       'colors',
@@ -245,7 +245,7 @@ function calcFontSize(calcData: CalcDataTypography, fontSizes: any) {
   let { css } = calcData;
 
   const FONT_SIZE: number | null = getFontSize(textElement);
-  if (FONT_SIZE) {
+  if (FONT_SIZE && fontSizes) {
     const { updatedCss, updatedImports } = getTokenMatch(
       fontSizes,
       'fontSizes',
@@ -265,7 +265,7 @@ function calcFontFamily(calcData: CalcDataTypography, fontFamilies: any) {
   let { css } = calcData;
 
   const FONT_FAMILY = getFontFamily(textElement, usePostscriptFontNames);
-  if (FONT_FAMILY) {
+  if (FONT_FAMILY && fontFamilies) {
     const { updatedCss, updatedImports } = getTokenMatch(
       fontFamilies,
       'fontFamilies',
@@ -285,7 +285,7 @@ function calcFontWeight(calcData: CalcDataTypography, fontWeights: any) {
   let { css } = calcData;
 
   const FONT_WEIGHT = getFontWeight(textElement);
-  if (FONT_WEIGHT) {
+  if (FONT_WEIGHT && fontWeights) {
     const { updatedCss, updatedImports } = getTokenMatch(
       fontWeights,
       'fontWeights',
@@ -305,7 +305,7 @@ function calcFontLineHeight(calcData: CalcDataTypography, lineHeights: any) {
   let { css } = calcData;
 
   const FONT_LINE_HEIGHT = getFontLineHeight(textElement);
-  if (FONT_LINE_HEIGHT) {
+  if (FONT_LINE_HEIGHT && lineHeights) {
     const { updatedCss, updatedImports } = getTokenMatch(
       lineHeights,
       'lineHeights',
@@ -330,7 +330,7 @@ function calcLetterSpacing(
   let { css } = calcData;
 
   const LETTER_SPACING: number | null = getFontLetterSpacing(textElement);
-  if (LETTER_SPACING && fontSize) {
+  if (LETTER_SPACING && fontSize && letterSpacings) {
     const SIZE = LETTER_SPACING / fontSize;
     const SIZE_STRING = `${SIZE}${letterSpacingUnit}`;
 
