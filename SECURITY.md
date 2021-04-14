@@ -6,7 +6,8 @@ These versions of Figmagic are currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 3.0.x   | :white_check_mark: |
+| 4.x.x   | :white_check_mark: |
+| 3.0.x   | :x: |
 | 2.x.x   | :x:                |
 | 1.x.x   | :x:                |
 | 0.x.x   | :x:                |
