@@ -262,6 +262,13 @@ export const mockedLetterSpacingFrame = {
         fontSize: 24,
         letterSpacing: 8
       }
+    },
+    {
+      name: 'style3',
+      style: {
+        fontSize: 16,
+        letterSpacing: 0.008
+      }
     }
   ]
 };

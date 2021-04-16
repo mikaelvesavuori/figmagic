@@ -58,7 +58,7 @@ export function makeLetterSpacingTokens(
          * Dividing the value by the current FONT_SIZE will give the %-based em value.
          * Ex: if the letterSpacing value is 1.28 and FONT_SIZE is 32, em value should be 1.28 / 32 = 0.04em.
          */
-        const valueCalc = Math.round((1000 * LETTER_SPACING_VALUE_IN_PX) / FONT_SIZE) / 1000;
+        const valueCalc = Math.round((10000 * LETTER_SPACING_VALUE_IN_PX) / FONT_SIZE) / 10000;
         value = `${valueCalc}em`;
         break;
     }
