@@ -39,9 +39,8 @@ function createElements(config, data) {
                     components,
                     isGeneratingGraphics: true
                 });
-                if (config.outputGraphicElementsMap) {
+                if (config.outputGraphicElementsMap)
                     handleGraphicElementsMap({ config, graphics: GRAPHICS });
-                }
             }
         }
         catch (error) {

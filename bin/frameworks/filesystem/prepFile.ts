@@ -84,7 +84,6 @@ export const prepCss = (data: PrepCss): FileContentWithPath => {
       throw new Error(ErrorPrepFileCss);
 
     const { name, filePath, format, imports, file } = data;
-    //console.log('CSS imports', imports);
 
     const SUFFIX = 'Css';
     const FILE_CONTENT = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
