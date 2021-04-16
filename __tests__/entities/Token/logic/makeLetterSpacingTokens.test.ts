@@ -52,7 +52,8 @@ test('It should handle a conversion between px and em units', () => {
   expect(makeLetterSpacingTokens(mockedLetterSpacingFrame, 'px')).toEqual(
     expect.objectContaining({
       style1: '2px',
-      style2: '8px'
+      style2: '8px',
+      style3: '0.008px'
     })
   );
   // Ask for "em" values: should be a converted value based on the relative font-size
@@ -60,7 +61,8 @@ test('It should handle a conversion between px and em units', () => {
   expect(makeLetterSpacingTokens(mockedLetterSpacingFrame, 'em')).toEqual(
     expect.objectContaining({
       style1: '0.125em', // 2px out of 16px = 0.125em
-      style2: '0.333em' // 8px out of 24px = 0.33em
+      style2: '0.3333em', // 8px out of 24px = 0.33em
+      style3: '0.0005em' // 0.008px out of 16px = 0.0005em
     })
   );
 });

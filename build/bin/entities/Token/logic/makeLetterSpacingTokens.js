@@ -27,7 +27,7 @@ function makeLetterSpacingTokens(letterSpacingFrame, letterSpacingUnit) {
                 if (!FONT_SIZE) {
                     throw new Error(errors_1.ErrorMakeLetterSpacingTokensMissingProps);
                 }
-                const valueCalc = Math.round((1000 * LETTER_SPACING_VALUE_IN_PX) / FONT_SIZE) / 1000;
+                const valueCalc = Math.round((10000 * LETTER_SPACING_VALUE_IN_PX) / FONT_SIZE) / 10000;
                 value = `${valueCalc}em`;
                 break;
         }
