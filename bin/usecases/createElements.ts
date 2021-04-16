@@ -54,9 +54,8 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
       /**
        * The user can also further choose to create an object that exports all graphical React components.
        */
-      if (config.outputGraphicElementsMap) {
+      if (config.outputGraphicElementsMap)
         handleGraphicElementsMap({ config, graphics: GRAPHICS } as GraphicElementsMap);
-      }
     }
   } catch (error) {
     throw new Error(error);
