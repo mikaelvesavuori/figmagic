@@ -1,0 +1,17 @@
+export declare type Tokens = Record<string, unknown>;
+export declare type BorderWidthTokens = Tokens;
+export declare type ColorTokens = Tokens;
+export declare type DelayTokens = Tokens;
+export declare type DurationTokens = Tokens;
+export declare type EasingTokens = Tokens;
+export declare type FontSizeTokens = Tokens;
+export declare type FontTokens = Tokens;
+export declare type FontWeightTokens = Tokens;
+export declare type LetterSpacingTokens = Tokens;
+export declare type LineHeightTokens = Tokens;
+export declare type MediaQueryTokens = Tokens;
+export declare type OpacityTokens = Tokens;
+export declare type RadiusTokens = Tokens;
+export declare type ShadowTokens = Tokens;
+export declare type SpacingTokens = Tokens;
+export declare type ZindexTokens = Tokens;

@@ -1,0 +1,11 @@
+export declare const validFontUnitList: string[];
+export declare const validLetterSpacingUnitList: string[];
+export declare const validOpacitiesUnitList: string[];
+export declare const validOutputFormatCssList: string[];
+export declare const validOutputFormatDescList: string[];
+export declare const validOutputFormatElementsList: string[];
+export declare const validOutputFormatGraphicsList: string[];
+export declare const validOutputFormatStorybookList: string[];
+export declare const validOutputFormatTokensList: string[];
+export declare const validOutputDataTypeTokenList: (string | null | undefined)[];
+export declare const validSpacingUnitList: string[];

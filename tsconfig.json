@@ -5,6 +5,7 @@
     "outDir": "build",
     "target": "es6",
     "lib": ["esnext", "dom"],
+    "declaration": true,
     "esModuleInterop": true,
     "importHelpers": true,
     "forceConsistentCasingInFileNames": true,

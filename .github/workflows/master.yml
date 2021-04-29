@@ -2,11 +2,8 @@ name: master
 
 on:
   push:
-    branches:
-      - 'master'
-  pull_request:
-    branches:
-      - 'master'
+    tags:
+      - "v*"
 
 jobs:
   build-unix:
@@ -99,8 +96,8 @@ jobs:
           node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: npm ci
-      - run: git config --global user.email "mikaelvesavuori@gmail.com"
-      - run: git config --global user.name "Mikael Vesavuori"
+      - run: git config --global user.email ${{ secrets.GIT_EMAIL }}
+      - run: git config --global user.name ${{ secrets.GIT_NAME }}
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
