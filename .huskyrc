@@ -1,5 +1,0 @@
-{
-  "hooks": {
-    "pre-commit": "echo Running pre-commit linting... && npm run lint && echo Running pre-commit testing... && npm test && echo Running pre-commit JS build... && npm run build"
-  }
-}

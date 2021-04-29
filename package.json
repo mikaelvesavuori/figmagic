@@ -81,7 +81,7 @@
     "licenses": "npx license-compliance --production --allow 'MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;Unlicense;CC0-1.0'",
     "licenses:checker": "npx license-compatibility-checker",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "prepare": "npm run snyk-protect && husky install"
   },
   "snyk": true
 }
