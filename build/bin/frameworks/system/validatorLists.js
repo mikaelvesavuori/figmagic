@@ -11,5 +11,5 @@ exports.validOutputFormatGraphicsList = ['svg', 'png'];
 exports.validOutputFormatStorybookList = ['ts', 'js'];
 exports.validOutputFormatTokensList = ['ts', 'mjs', 'js', 'json'];
 exports.validOutputDataTypeTokenList = ['enum', 'null', null, undefined];
-exports.validSpacingUnitList = ['rem', 'em'];
+exports.validSpacingUnitList = ['rem', 'em', 'px'];
 //# sourceMappingURL=validatorLists.js.map

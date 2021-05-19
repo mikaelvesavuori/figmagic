@@ -440,7 +440,7 @@ Default is `false`. Skip creating Styled Components file when syncing elements.
 
 #### Switch spacing unit
 
-`figmagic [--spacingUnit | -s] [rem|em]`
+`figmagic [--spacingUnit | -s] [rem|em|px]`
 
 Default is `rem`.
 

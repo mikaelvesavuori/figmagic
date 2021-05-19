@@ -40,6 +40,10 @@ function makeSpacingToken(
     throw new Error(ErrorMakeSpacingTokensNoFrame);
 
   const WIDTH: number = item.absoluteBoundingBox.width;
-  const NORMALIZED_UNIT = normalizeUnits(WIDTH, 'px', spacingUnit, remSize);
-  spacings[NAME] = NORMALIZED_UNIT;
+  const UNIT = (() => {
+    if (spacingUnit === 'px') return WIDTH + spacingUnit;
+    else return normalizeUnits(WIDTH, 'px', spacingUnit, remSize);
+  })();
+
+  spacings[NAME] = UNIT;
 }

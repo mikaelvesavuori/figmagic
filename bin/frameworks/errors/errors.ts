@@ -353,7 +353,7 @@ export const ErrorValidateConfigOutputScaleGraphics = ErrorMessage(
   'Argument "outputScaleGraphics" is invalid!'
 );
 export const ErrorValidateConfigSpacingUnit = ErrorMessage(
-  'Received unrecognized "spacingUnit" argument, it must be "rem" (default) or "em".'
+  'Received unrecognized "spacingUnit" argument, it must be "rem" (default), "em" or "px".'
 );
 export const ErrorValidateConfigTemplatePathReact = ErrorMessage(
   'Argument "templatePathReact" cannot be empty!'

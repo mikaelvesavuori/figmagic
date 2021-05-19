@@ -1,5 +1,6 @@
 # Ensure built files are included
 !build/
+/__graphics__
 
 .figmagicrc
 /.figmagic

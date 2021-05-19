@@ -26,7 +26,7 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should return valid JSON for spacing elements, using "rem" spacing conversion and standard 16 size', () => {
+  test('Given valid input and "rem" for unit, it should return a valid and correct set of spacing tokens', () => {
     expect(makeSpacingTokens(spacingFrame, 'rem', 16)).toEqual(
       expect.objectContaining({
         big: '3rem',
@@ -35,6 +35,32 @@ describe('Success cases', () => {
         medium: '2rem',
         small: '1rem',
         tiny: '0.5rem'
+      })
+    );
+  });
+
+  test('Given valid input and "em" for unit, it should return a valid and correct set of spacing tokens', () => {
+    expect(makeSpacingTokens(spacingFrame, 'em', 16)).toEqual(
+      expect.objectContaining({
+        big: '3em',
+        huge: '6em',
+        large: '4em',
+        medium: '2em',
+        small: '1em',
+        tiny: '0.5em'
+      })
+    );
+  });
+
+  test('Given valid input and "px" for unit, it should return a valid and correct set of spacing tokens', () => {
+    expect(makeSpacingTokens(spacingFrame, 'px', 16)).toEqual(
+      expect.objectContaining({
+        big: '48px',
+        huge: '96px',
+        large: '64px',
+        medium: '32px',
+        small: '16px',
+        tiny: '8px'
       })
     );
   });

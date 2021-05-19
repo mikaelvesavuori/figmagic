@@ -98,4 +98,4 @@ export declare type OutputFormatGraphics = 'svg' | 'png';
 export declare type OutputFormatStorybook = 'ts' | 'js';
 export declare type OutputFormatTokens = 'ts' | 'mjs' | 'js' | 'json';
 export declare type OutputDataTypeToken = null | 'enum';
-export declare type SpacingUnit = 'rem' | 'em';
+export declare type SpacingUnit = 'rem' | 'em' | 'px';

@@ -22,7 +22,12 @@ function makeSpacingToken(item, spacings, spacingUnit, remSize) {
     if (!item.absoluteBoundingBox || !item.absoluteBoundingBox.width)
         throw new Error(errors_1.ErrorMakeSpacingTokensNoFrame);
     const WIDTH = item.absoluteBoundingBox.width;
-    const NORMALIZED_UNIT = normalizeUnits_1.normalizeUnits(WIDTH, 'px', spacingUnit, remSize);
-    spacings[NAME] = NORMALIZED_UNIT;
+    const UNIT = (() => {
+        if (spacingUnit === 'px')
+            return WIDTH + spacingUnit;
+        else
+            return normalizeUnits_1.normalizeUnits(WIDTH, 'px', spacingUnit, remSize);
+    })();
+    spacings[NAME] = UNIT;
 }
 //# sourceMappingURL=makeSpacingTokens.js.map

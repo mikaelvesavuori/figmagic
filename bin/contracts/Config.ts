@@ -100,4 +100,4 @@ export type OutputFormatGraphics = 'svg' | 'png';
 export type OutputFormatStorybook = 'ts' | 'js';
 export type OutputFormatTokens = 'ts' | 'mjs' | 'js' | 'json';
 export type OutputDataTypeToken = null | 'enum';
-export type SpacingUnit = 'rem' | 'em';
+export type SpacingUnit = 'rem' | 'em' | 'px';
