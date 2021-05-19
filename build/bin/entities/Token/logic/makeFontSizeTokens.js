@@ -22,7 +22,12 @@ function makeFontSizeToken(item, fontSizes, remSize, fontUnit) {
     if (!item.style.fontSize)
         throw new Error(errors_1.ErrorMakeFontSizeTokensMissingSize);
     const NAME = camelize_1.camelize(item.name);
-    const FONT_SIZE = item.style.fontSize / remSize + fontUnit;
+    const FONT_SIZE = (() => {
+        if (fontUnit === 'px')
+            return item.style.fontSize + fontUnit;
+        else
+            return item.style.fontSize / remSize + fontUnit;
+    })();
     fontSizes[NAME] = FONT_SIZE;
 }
 //# sourceMappingURL=makeFontSizeTokens.js.map

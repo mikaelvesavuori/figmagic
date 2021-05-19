@@ -44,7 +44,7 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should return a complete object when passing in valid input', () => {
+  test('Given valid input and "rem" for unit, it should return a valid and correct set of font size tokens ', () => {
     expect(makeFontSizeTokens(fontSizeFrame, 'rem', 16)).toEqual(
       expect.objectContaining({
         h1: '3rem',
@@ -55,6 +55,36 @@ describe('Success cases', () => {
         h6: '1.125rem',
         paragraph: '1rem',
         sub: '0.75rem'
+      })
+    );
+  });
+
+  test('Given valid input and "em" for unit, it should return a valid and correct set of font size tokens ', () => {
+    expect(makeFontSizeTokens(fontSizeFrame, 'em', 16)).toEqual(
+      expect.objectContaining({
+        h1: '3em',
+        h2: '2.5em',
+        h3: '2em',
+        h4: '1.625em',
+        h5: '1.25em',
+        h6: '1.125em',
+        paragraph: '1em',
+        sub: '0.75em'
+      })
+    );
+  });
+
+  test('Given valid input and "px" for unit, it should return a valid and correct set of font size tokens ', () => {
+    expect(makeFontSizeTokens(fontSizeFrame, 'px', 16)).toEqual(
+      expect.objectContaining({
+        h1: '48px',
+        h2: '40px',
+        h3: '32px',
+        h4: '26px',
+        h5: '20px',
+        h6: '18px',
+        paragraph: '16px',
+        sub: '12px'
       })
     );
   });

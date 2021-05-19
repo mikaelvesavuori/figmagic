@@ -1,4 +1,4 @@
-export const validFontUnitList = ['rem', 'em'];
+export const validFontUnitList = ['rem', 'em', 'px'];
 export const validLetterSpacingUnitList = ['em', 'px'];
 export const validOpacitiesUnitList = ['float', 'percent'];
 export const validOutputFormatCssList = ['ts', 'mjs', 'js'];

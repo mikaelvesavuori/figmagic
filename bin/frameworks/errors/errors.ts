@@ -320,10 +320,10 @@ export const ErrorValidateConfigFolderName = ErrorMessage(
   'Provided Figma folder name in configuration is invalid!'
 );
 export const ErrorValidateConfigFontUnit = ErrorMessage(
-  'Received unrecognized "fontUnit" argument, it must be "rem" (default) or "em".'
+  'Received unrecognized "fontUnit" argument, it must be "rem" (default), "em" or "px".'
 );
 export const ErrorValidateConfigLetterSpacingUnit = ErrorMessage(
-  'Received unrecognized "letterSpacingUnit" argument, it must be "em" (default), "px".'
+  'Received unrecognized "letterSpacingUnit" argument, it must be "em" (default) or "px".'
 );
 export const ErrorValidateConfigOpacitiesUnit = ErrorMessage(
   'Received unrecognized "opacitiesUnit" argument, it must be "float" (default) or "percent".'

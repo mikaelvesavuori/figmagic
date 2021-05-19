@@ -88,7 +88,7 @@ export declare type ConfigDTO = {
     url?: string | null;
     usePostscriptFontNames?: boolean;
 };
-export declare type FontUnits = 'rem' | 'em';
+export declare type FontUnits = 'rem' | 'em' | 'px';
 export declare type LetterSpacingUnits = 'em' | 'px';
 export declare type OpacitiesUnits = 'float' | 'percent';
 export declare type OutputFormatCss = 'ts' | 'mjs' | 'js';

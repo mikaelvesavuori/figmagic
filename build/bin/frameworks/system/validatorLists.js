@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validSpacingUnitList = exports.validOutputDataTypeTokenList = exports.validOutputFormatTokensList = exports.validOutputFormatStorybookList = exports.validOutputFormatGraphicsList = exports.validOutputFormatElementsList = exports.validOutputFormatDescList = exports.validOutputFormatCssList = exports.validOpacitiesUnitList = exports.validLetterSpacingUnitList = exports.validFontUnitList = void 0;
-exports.validFontUnitList = ['rem', 'em'];
+exports.validFontUnitList = ['rem', 'em', 'px'];
 exports.validLetterSpacingUnitList = ['em', 'px'];
 exports.validOpacitiesUnitList = ['float', 'percent'];
 exports.validOutputFormatCssList = ['ts', 'mjs', 'js'];

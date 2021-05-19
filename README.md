@@ -284,7 +284,7 @@ Default is `false`.
 
 #### Switch font unit
 
-`figmagic [--fontUnit | -fu] [rem|em]`
+`figmagic [--fontUnit | -fu] [rem|em|px]`
 
 Default is `rem`.
 

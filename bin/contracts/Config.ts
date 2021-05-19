@@ -90,7 +90,7 @@ export type ConfigDTO = {
   usePostscriptFontNames?: boolean;
 };
 
-export type FontUnits = 'rem' | 'em';
+export type FontUnits = 'rem' | 'em' | 'px';
 export type LetterSpacingUnits = 'em' | 'px';
 export type OpacitiesUnits = 'float' | 'percent';
 export type OutputFormatCss = 'ts' | 'mjs' | 'js';
