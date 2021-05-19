@@ -40,6 +40,6 @@ function makeFontSizeToken(
   if (!item.style.fontSize) throw new Error(ErrorMakeFontSizeTokensMissingSize);
 
   const NAME = camelize(item.name);
-  const FONT_SIZE = ((item.style.fontSize as unknown) as number) / remSize + fontUnit;
+  const FONT_SIZE = (item.style.fontSize as unknown as number) / remSize + fontUnit;
   fontSizes[NAME] = FONT_SIZE;
 }

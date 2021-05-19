@@ -15,16 +15,8 @@ export function writeFile(writeOperation: WriteOperation): void {
   try {
     if (!writeOperation) throw new Error(ErrorWriteFile);
 
-    const {
-      type,
-      file,
-      path,
-      name,
-      format,
-      outputFolderTokens,
-      metadata,
-      templates
-    } = writeOperation;
+    const { type, file, path, name, format, outputFolderTokens, metadata, templates } =
+      writeOperation;
     if (!file || !path || !name || !type) throw new Error(ErrorWriteFile);
 
     const TYPE: any = typeof type === 'string' ? type.toLowerCase() : 'null';

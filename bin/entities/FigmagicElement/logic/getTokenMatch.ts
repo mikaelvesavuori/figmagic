@@ -96,7 +96,7 @@ function matchPadding(
       }
     });
 
-    imports.push((tokenFileName as unknown) as Imports);
+    imports.push(tokenFileName as unknown as Imports);
 
     return { css, imports };
   } catch (error) {
@@ -139,7 +139,7 @@ function matchOther(
 
       if (IS_TOKEN_MATCH) {
         css += `${property}: \${${tokenFileName}.${token[0]}};\n`;
-        imports.push((tokenFileName as unknown) as Imports);
+        imports.push(tokenFileName as unknown as Imports);
         foundMatch = true;
       }
     });

@@ -12,16 +12,8 @@ export function prepareWrite(writeOperation: WriteOperation): any {
   try {
     if (!writeOperation) throw new Error(ErrorWriteFile);
 
-    const {
-      type,
-      file,
-      path,
-      name,
-      format,
-      outputFolderTokens,
-      metadata,
-      templates
-    } = writeOperation;
+    const { type, file, path, name, format, outputFolderTokens, metadata, templates } =
+      writeOperation;
 
     if ((type === 'css' || type === 'story' || type === 'component') && !templates)
       throw new Error(ErrorPrepareWrite);
