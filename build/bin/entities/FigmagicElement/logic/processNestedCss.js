@@ -30,9 +30,11 @@ function cleanArrays(classNames, classContent) {
             .filter((item) => item)
             .filter((item) => item !== '}');
         const TYPOGRAPHY = classContent[index + 1]
-            .split(/\n/gi)
-            .filter((item) => item)
-            .filter((item) => item !== '}');
+            ? classContent[index + 1]
+                .split(/\n/gi)
+                .filter((item) => item)
+                .filter((item) => item !== '}')
+            : [];
         const css = [...LAYOUT, ...TYPOGRAPHY];
         CLASSES.push({
             className: classNames[index],

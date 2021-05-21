@@ -50,9 +50,11 @@ function cleanArrays(classNames: RegExpMatchArray | null, classContent: string[]
       .filter((item: string) => item !== '}');
 
     const TYPOGRAPHY = classContent[index + 1]
-      .split(/\n/gi)
-      .filter((item: string) => item)
-      .filter((item: string) => item !== '}');
+      ? classContent[index + 1]
+          .split(/\n/gi)
+          .filter((item: string) => item)
+          .filter((item: string) => item !== '}')
+      : [];
 
     const css = [...LAYOUT, ...TYPOGRAPHY];
 
