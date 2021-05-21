@@ -8,10 +8,12 @@ const messages_1 = require("../../../frameworks/messages/messages");
 const errors_1 = require("../../../frameworks/errors/errors");
 function getTokenMatch(tokens, tokenFileName, property, expectedValue, remSize) {
     try {
-        if (!tokens || !tokenFileName || !property || !expectedValue)
+        if (!tokenFileName || !property || !expectedValue)
             throw new Error(errors_1.ErrorGetTokenMatch);
         let css = ``;
         let imports = [];
+        if (!tokens)
+            return { updatedCss: css, updatedImports: imports };
         if (property === 'padding') {
             const PADDING_MATCH = matchPadding(expectedValue, remSize, tokens, tokenFileName, property, css, imports);
             css = PADDING_MATCH.css;

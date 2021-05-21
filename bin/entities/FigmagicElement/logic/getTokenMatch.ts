@@ -17,11 +17,11 @@ export function getTokenMatch(
   remSize: number
 ): TokenMatch {
   try {
-    if (!tokens || !tokenFileName || !property || !expectedValue)
-      throw new Error(ErrorGetTokenMatch);
+    if (!tokenFileName || !property || !expectedValue) throw new Error(ErrorGetTokenMatch);
 
     let css = ``;
     let imports: Imports[] = [];
+    if (!tokens) return { updatedCss: css, updatedImports: imports };
 
     // Padding requires both X and Y dimensions/values so requires a bit more noodling
     if (property === 'padding') {

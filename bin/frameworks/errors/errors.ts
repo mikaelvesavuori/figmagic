@@ -109,7 +109,7 @@ export const ErrorGetIntersectingValues = ErrorMessage(
 export const ErrorGetPaddingX = ErrorMessage('Error when calling getPaddingX()!');
 export const ErrorGetPaddingY = ErrorMessage('Error when calling getPaddingY()!');
 export const ErrorGetTokenMatch = ErrorMessage(
-  'Missing one or more of required arguments: "tokens", "tokenFileName", "property", and/or "expectedValue"!'
+  'Missing one or more of required arguments: "tokenFileName", "property", and/or "expectedValue"!'
 );
 export const ErrorGetSvgFileData = ErrorMessage('Missing string when calling getSvgFileData()!');
 export const ErrorGetTokenMatchNoRemSize = ErrorMessage(
