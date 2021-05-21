@@ -8,7 +8,7 @@ import { writeTokens } from './interactors/tokens/writeTokens';
 
 import { refresh } from '../frameworks/filesystem/refresh';
 
-import { MsgWriteTokens } from '../frameworks/messages/messages';
+import { MsgWriteTokens, MsgNoTokensFound } from '../frameworks/messages/messages';
 import { ErrorCreateTokens } from '../frameworks/errors/errors';
 
 /**
@@ -24,7 +24,8 @@ export async function createTokens(config: Config, data: FigmaData): Promise<voi
     const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
     const processedTokens = processTokens(tokensPage, config);
 
-    writeTokens(processedTokens);
+    if (processedTokens && processedTokens.length > 0) writeTokens(processedTokens);
+    else console.warn(MsgNoTokensFound);
   } catch (error) {
     throw new Error(error);
   }

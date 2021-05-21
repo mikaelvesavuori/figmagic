@@ -7,16 +7,15 @@ import { FRAME as Frame } from '../../../contracts/Figma';
 import { camelize } from '../../../frameworks/string/camelize';
 import { acceptedTokenTypes } from '../../../frameworks/system/acceptedTokenTypes';
 
-import { ErrorWriteTokens, ErrorWriteTokensNoSettings } from '../../../frameworks/errors/errors';
+import { ErrorWriteTokensNoSettings } from '../../../frameworks/errors/errors';
 
 /**
  * @description Process tokens (before writing them to file; handled in another function)
  */
 export function processTokens(tokens: Frame[], config: Config): any {
   try {
-    if (!tokens) throw new Error(ErrorWriteTokens);
-    if (!(tokens.length > 0)) throw new Error(ErrorWriteTokens);
     if (!config) throw new Error(ErrorWriteTokensNoSettings);
+    if (!tokens) return;
 
     const PROCESSED_TOKENS: WriteOperation[] = [];
 

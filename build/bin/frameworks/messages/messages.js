@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MsgWriteTokens = exports.MsgWriteBaseFile = exports.MsgSyncGraphics = exports.MsgSyncElements = exports.MsgSetDataFromLocal = exports.MsgSetDataFromApi = exports.MsgProcessElementsCreatingElement = exports.MsgJobCompleteInitStopped = exports.MsgJobCompleteInit = exports.MsgJobComplete = exports.MsgGetTokenMatchNoMatch = exports.MsgGeneratedFileWarning = exports.MsgDownloadFileWritingFile = exports.MsgConfigDebugRc = exports.MsgConfigDebugFinal = exports.MsgConfigDebugEnv = exports.MsgConfigDebugCli = void 0;
+exports.MsgNoTokensFound = exports.MsgWriteTokens = exports.MsgWriteBaseFile = exports.MsgSyncGraphics = exports.MsgSyncElements = exports.MsgSetDataFromLocal = exports.MsgSetDataFromApi = exports.MsgProcessElementsCreatingElement = exports.MsgJobCompleteInitStopped = exports.MsgJobCompleteInit = exports.MsgJobComplete = exports.MsgGetTokenMatchNoMatch = exports.MsgGeneratedFileWarning = exports.MsgDownloadFileWritingFile = exports.MsgConfigDebugRc = exports.MsgConfigDebugFinal = exports.MsgConfigDebugEnv = exports.MsgConfigDebugCli = void 0;
 const colors_1 = require("../system/colors");
 function Message(str, warn) {
     if (warn)
@@ -30,4 +30,5 @@ exports.MsgSyncElements = Message(`\nAttempting to parse elements...\n`, true);
 exports.MsgSyncGraphics = Message(`\nGetting images from Figma API...`, true);
 exports.MsgWriteBaseFile = Message(`\nWriting Figma base file...`, true);
 exports.MsgWriteTokens = Message(`\nWriting design tokens...`, true);
+exports.MsgNoTokensFound = Message(`No design tokens found! Do you have a "Design tokens" page in Figma and token frames in it?\nRead more at https://github.com/mikaelvesavuori/figmagic#preparing-figma-for-figmagic-usage`, true);
 //# sourceMappingURL=messages.js.map

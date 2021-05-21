@@ -53,3 +53,8 @@ export const MsgSyncElements = Message(`\nAttempting to parse elements...\n`, tr
 export const MsgSyncGraphics = Message(`\nGetting images from Figma API...`, true);
 export const MsgWriteBaseFile = Message(`\nWriting Figma base file...`, true);
 export const MsgWriteTokens = Message(`\nWriting design tokens...`, true);
+
+export const MsgNoTokensFound = Message(
+  `No design tokens found! Do you have a "Design tokens" page in Figma and token frames in it?\nRead more at https://github.com/mikaelvesavuori/figmagic#preparing-figma-for-figmagic-usage`,
+  true
+);

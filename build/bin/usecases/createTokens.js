@@ -17,7 +17,10 @@ function createTokens(config, data) {
             yield refresh_1.refresh(config.outputFolderTokens);
             const tokensPage = createPage_1.createPage(data.document.children, 'Design Tokens');
             const processedTokens = processTokens_1.processTokens(tokensPage, config);
-            writeTokens_1.writeTokens(processedTokens);
+            if (processedTokens && processedTokens.length > 0)
+                writeTokens_1.writeTokens(processedTokens);
+            else
+                console.warn(messages_1.MsgNoTokensFound);
         }
         catch (error) {
             throw new Error(error);

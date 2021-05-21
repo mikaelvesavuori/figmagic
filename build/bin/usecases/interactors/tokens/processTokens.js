@@ -7,12 +7,10 @@ const acceptedTokenTypes_1 = require("../../../frameworks/system/acceptedTokenTy
 const errors_1 = require("../../../frameworks/errors/errors");
 function processTokens(tokens, config) {
     try {
-        if (!tokens)
-            throw new Error(errors_1.ErrorWriteTokens);
-        if (!(tokens.length > 0))
-            throw new Error(errors_1.ErrorWriteTokens);
         if (!config)
             throw new Error(errors_1.ErrorWriteTokensNoSettings);
+        if (!tokens)
+            return;
         const PROCESSED_TOKENS = [];
         tokens.forEach((tokenFrame) => {
             const TOKEN_NAME = camelize_1.camelize(tokenFrame.name);

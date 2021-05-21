@@ -15,3 +15,4 @@ export declare const MsgSyncElements: string;
 export declare const MsgSyncGraphics: string;
 export declare const MsgWriteBaseFile: string;
 export declare const MsgWriteTokens: string;
+export declare const MsgNoTokensFound: string;
