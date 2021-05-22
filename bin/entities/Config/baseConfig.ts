@@ -43,5 +43,6 @@ export const baseConfig: Config = {
   token: '',
   unitlessPrecision: 2,
   url: '',
-  usePostscriptFontNames: false
+  usePostscriptFontNames: false,
+  versionName: null
 };

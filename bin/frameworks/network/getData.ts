@@ -18,7 +18,8 @@ export async function getData(
   figmagicFolder: string,
   figmaData: string,
   token: string | null,
-  url: string | null
+  url: string | null,
+  versionName: string | null
 ): Promise<FigmaData> {
   try {
     if (!recompileLocal && (!token || !url)) throw new Error(ErrorGetData);
@@ -27,7 +28,7 @@ export async function getData(
 
     const _DATA = (async () => {
       if (recompileLocal) return getDataLocal(figmagicFolder, figmaData);
-      else if (token && url) return await getDataRemote(token, url);
+      else if (token && url) return await getDataRemote(token, url, versionName);
       throw new Error(ErrorGetDataFailedLocalAndRemote);
     })();
 

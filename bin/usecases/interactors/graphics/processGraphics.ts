@@ -21,7 +21,7 @@ import {
 export async function processGraphics(graphicsPage: Frame[], config: Config): Promise<FileList[]> {
   if (!graphicsPage) throw new Error(ErrorProcessGraphics);
 
-  const { token, url, outputFormatGraphics, outputScaleGraphics } = config;
+  const { token, url, outputFormatGraphics, outputScaleGraphics, versionName } = config;
   if (!token) throw new Error(ErrorProcessGraphics);
   if (graphicsPage.length === 0 || !graphicsPage[0].children) throw new Error(ErrorProcessGraphics);
 
@@ -29,7 +29,7 @@ export async function processGraphics(graphicsPage: Frame[], config: Config): Pr
   const SETTINGS = `&scale=${outputScaleGraphics}&format=${outputFormatGraphics}`;
   const URL = `${url}?ids=${getIdString(IDS)}${SETTINGS}`;
 
-  const IMAGE_RESPONSE: ImageResponse = await getFromApi(token, URL, 'images');
+  const IMAGE_RESPONSE: ImageResponse = await getFromApi(token, URL, versionName, 'images');
   if (IMAGE_RESPONSE.err) throw new Error(ErrorProcessGraphicsImageError);
   if (!IMAGE_RESPONSE.images) throw new Error(ErrorProcessGraphicsNoImages);
 

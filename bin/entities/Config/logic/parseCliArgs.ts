@@ -114,7 +114,9 @@ export function parseCliArgs(argsArray: string[]): Config {
     '--url': (val: string) => setConfigValue('url', val),
     '-u': (val: string) => setConfigValue('url', val),
     '--usePostscriptFontNames': () => setConfigValue('usePostscriptFontNames', true),
-    '-ps': () => setConfigValue('usePostscriptFontNames', true)
+    '-ps': () => setConfigValue('usePostscriptFontNames', true),
+    '--versionName': (val: string) => setConfigValue('versionName', val),
+    '-v': (val: string) => setConfigValue('versionName', val)
   };
 
   argsArray.forEach((arg: string, index: number) => {

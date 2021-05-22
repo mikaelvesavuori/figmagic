@@ -5,7 +5,7 @@ const tslib_1 = require("tslib");
 const getDataLocal_1 = require("./getDataLocal");
 const getDataRemote_1 = require("./getDataRemote");
 const errors_1 = require("../errors/errors");
-function getData(recompileLocal, figmagicFolder, figmaData, token, url) {
+function getData(recompileLocal, figmagicFolder, figmaData, token, url, versionName) {
     return tslib_1.__awaiter(this, void 0, void 0, function* () {
         try {
             if (!recompileLocal && (!token || !url))
@@ -16,7 +16,7 @@ function getData(recompileLocal, figmagicFolder, figmaData, token, url) {
                 if (recompileLocal)
                     return getDataLocal_1.getDataLocal(figmagicFolder, figmaData);
                 else if (token && url)
-                    return yield getDataRemote_1.getDataRemote(token, url);
+                    return yield getDataRemote_1.getDataRemote(token, url, versionName);
                 throw new Error(errors_1.ErrorGetDataFailedLocalAndRemote);
             }))();
             const DATA = yield _DATA;

@@ -42,6 +42,7 @@ export type Config = {
   unitlessPrecision: number;
   url: string | null;
   usePostscriptFontNames: boolean;
+  versionName: string | null;
 };
 
 export type ConfigDTO = {
@@ -88,6 +89,7 @@ export type ConfigDTO = {
   unitlessPrecision?: number;
   url?: string | null;
   usePostscriptFontNames?: boolean;
+  versionName?: string | null;
 };
 
 export type FontUnits = 'rem' | 'em' | 'px';

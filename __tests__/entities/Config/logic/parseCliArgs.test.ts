@@ -847,6 +847,26 @@ describe('Success cases', () => {
     });
   });
 
+  describe('Use Postscript font names', () => {
+    test('It should return "Version 4.1.0" for versionName if passing "Version 4.1.0" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--versionName', 'Version 4.1.0'])).toEqual(
+        expect.objectContaining({
+          versionName: 'Version 4.1.0'
+        })
+      );
+    });
+
+    test('It should return "Version 4.1.0" for versionName if passing "Version 4.1.0" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-v', 'Version 4.1.0'])).toEqual(
+        expect.objectContaining({
+          versionName: 'Version 4.1.0'
+        })
+      );
+    });
+  });
+
   /**
    * Odd cases
    */

@@ -44,6 +44,7 @@ exports.baseConfig = {
     token: '',
     unitlessPrecision: 2,
     url: '',
-    usePostscriptFontNames: false
+    usePostscriptFontNames: false,
+    versionName: null
 };
 //# sourceMappingURL=baseConfig.js.map

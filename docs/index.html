@@ -255,49 +255,50 @@
 				<p>Since this is a configuration file, you&#39;ll need to be careful to write it correctly or you may end up with failures and errors.</p>
 				<p>Below is a complete set of what you can configure, together with the defaults.</p>
 				<pre><code><span style="color: #000000">{</span>
-<span style="color: #000000">  debugMode: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  fontUnit: </span><span style="color: #A31515">&#039;rem&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  letterSpacingUnit: </span><span style="color: #A31515">&#039;em&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  opacitiesUnit: </span><span style="color: #A31515">&#039;float&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  figmaData: </span><span style="color: #A31515">&#039;figma.json&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  figmagicFolder: </span><span style="color: #A31515">&#039;.figmagic&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputFolderElements: </span><span style="color: #A31515">&#039;elements&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputFolderGraphics: </span><span style="color: #A31515">&#039;graphics&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputFolderTokens: </span><span style="color: #A31515">&#039;tokens&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputFormatCss: </span><span style="color: #A31515">&#039;ts&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputFormatDescription: </span><span style="color: #A31515">&#039;md&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputFormatElements: </span><span style="color: #A31515">&#039;tsx&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputFormatGraphics: </span><span style="color: #A31515">&#039;svg&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputFormatStorybook: </span><span style="color: #A31515">&#039;js&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputFormatTokens: </span><span style="color: #A31515">&#039;ts&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputGraphicElements: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputGraphicElementsMap: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputScaleGraphics: </span><span style="color: #098658">1</span><span style="color: #000000">,</span>
-<span style="color: #000000">  outputDataTypeToken: </span><span style="color: #0000FF">null</span><span style="color: #000000">,</span>
-<span style="color: #000000">  recompileLocal: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  remSize: </span><span style="color: #098658">16</span><span style="color: #000000">,</span>
-<span style="color: #000000">  skipFileGeneration: {</span>
-<span style="color: #000000">    forceUpdate: </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
-<span style="color: #000000">    skipCss: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    skipDescription: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    skipReact: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    skipStorybook: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    skipStyled: </span><span style="color: #0000FF">false</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;debugMode&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;fontUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;rem&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;letterSpacingUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;em&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;opacitiesUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;float&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;figmaData&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;figma.json&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;figmagicFolder&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;.figmagic&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFolderElements&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;elements&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFolderGraphics&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;graphics&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFolderTokens&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;tokens&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatCss&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;ts&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatDescription&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;md&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatElements&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;tsx&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatGraphics&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;svg&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatStorybook&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;js&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatTokens&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;ts&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputGraphicElements&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputGraphicElementsMap&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputScaleGraphics&quot;</span><span style="color: #000000">: </span><span style="color: #098658">1</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputDataTypeToken&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">null</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;recompileLocal&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;remSize&quot;</span><span style="color: #000000">: </span><span style="color: #098658">16</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;skipFileGeneration&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;forceUpdate&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipCss&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipDescription&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipReact&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipStorybook&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipStyled&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span>
 <span style="color: #000000">  },</span>
-<span style="color: #000000">  spacingUnit: </span><span style="color: #A31515">&#039;rem&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  syncElements: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  syncGraphics: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  syncTokens: </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
-<span style="color: #000000">  templates: {</span>
-<span style="color: #000000">    templatePathGraphic: </span><span style="color: #A31515">&#039;templates/graphic&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    templatePathReact: </span><span style="color: #A31515">&#039;templates/react&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    templatePathStorybook: </span><span style="color: #A31515">&#039;templates/story&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    templatePathStyled: </span><span style="color: #A31515">&#039;templates/styled&#039;</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;spacingUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;rem&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;syncElements&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;syncGraphics&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;syncTokens&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;templates&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;templatePathGraphic&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;templates/graphic&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;templatePathReact&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;templates/react&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;templatePathStorybook&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;templates/story&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;templatePathStyled&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;templates/styled&quot;</span>
 <span style="color: #000000">  },</span>
-<span style="color: #000000">  token: </span><span style="color: #A31515">&#039;&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  unitlessPrecision: </span><span style="color: #098658">2</span><span style="color: #000000">,</span>
-<span style="color: #000000">  url: </span><span style="color: #A31515">&#039;&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  usePostscriptFontNames: </span><span style="color: #0000FF">false</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;token&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;unitlessPrecision&quot;</span><span style="color: #000000">: </span><span style="color: #098658">2</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;url&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;usePostscriptFontNames&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;versionName&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">null</span>
 <span style="color: #000000">};</span>
 </code></pre>
 				<a href="#cli-arguments" id="cli-arguments" style="color: inherit; text-decoration: none;">
@@ -506,6 +507,11 @@
 				</a>
 				<p><code>figmagic [--usePostscriptFontNames | -ps]</code></p>
 				<p>Default is <code>false</code>, i.e. common name.</p>
+				<a href="#use-a-versioned-figma-document" id="use-a-versioned-figma-document" style="color: inherit; text-decoration: none;">
+					<h4>Use a versioned Figma document</h4>
+				</a>
+				<p><code>figmagic [--versionName | -v]</code></p>
+				<p>Default is <code>null</code> which will resolve to the latest version. The value you specify here is the name of the version in the Figma file&#39;s <strong>Version history</strong>.</p>
 				<a href="#templates-used-for-code-generation" id="templates-used-for-code-generation" style="color: inherit; text-decoration: none;">
 					<h2>Templates used for code generation</h2>
 				</a>

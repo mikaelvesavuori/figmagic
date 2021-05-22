@@ -226,49 +226,50 @@ Below is a complete set of what you can configure, together with the defaults.
 
 ```
 {
-  debugMode: false,
-  fontUnit: 'rem',
-  letterSpacingUnit: 'em',
-  opacitiesUnit: 'float',
-  figmaData: 'figma.json',
-  figmagicFolder: '.figmagic',
-  outputFolderElements: 'elements',
-  outputFolderGraphics: 'graphics',
-  outputFolderTokens: 'tokens',
-  outputFormatCss: 'ts',
-  outputFormatDescription: 'md',
-  outputFormatElements: 'tsx',
-  outputFormatGraphics: 'svg',
-  outputFormatStorybook: 'js',
-  outputFormatTokens: 'ts',
-  outputGraphicElements: false,
-  outputGraphicElementsMap: false,
-  outputScaleGraphics: 1,
-  outputDataTypeToken: null,
-  recompileLocal: false,
-  remSize: 16,
-  skipFileGeneration: {
-    forceUpdate: true,
-    skipCss: false,
-    skipDescription: false,
-    skipReact: false,
-    skipStorybook: false,
-    skipStyled: false
+  "debugMode": false,
+  "fontUnit": "rem",
+  "letterSpacingUnit": "em",
+  "opacitiesUnit": "float",
+  "figmaData": "figma.json",
+  "figmagicFolder": ".figmagic",
+  "outputFolderElements": "elements",
+  "outputFolderGraphics": "graphics",
+  "outputFolderTokens": "tokens",
+  "outputFormatCss": "ts",
+  "outputFormatDescription": "md",
+  "outputFormatElements": "tsx",
+  "outputFormatGraphics": "svg",
+  "outputFormatStorybook": "js",
+  "outputFormatTokens": "ts",
+  "outputGraphicElements": false,
+  "outputGraphicElementsMap": false,
+  "outputScaleGraphics": 1,
+  "outputDataTypeToken": null,
+  "recompileLocal": false,
+  "remSize": 16,
+  "skipFileGeneration": {
+    "forceUpdate": true,
+    "skipCss": false,
+    "skipDescription": false,
+    "skipReact": false,
+    "skipStorybook": false,
+    "skipStyled": false
   },
-  spacingUnit: 'rem',
-  syncElements: false,
-  syncGraphics: false,
-  syncTokens: true,
-  templates: {
-    templatePathGraphic: 'templates/graphic',
-    templatePathReact: 'templates/react',
-    templatePathStorybook: 'templates/story',
-    templatePathStyled: 'templates/styled'
+  "spacingUnit": "rem",
+  "syncElements": false,
+  "syncGraphics": false,
+  "syncTokens": true,
+  "templates": {
+    "templatePathGraphic": "templates/graphic",
+    "templatePathReact": "templates/react",
+    "templatePathStorybook": "templates/story",
+    "templatePathStyled": "templates/styled"
   },
-  token: '',
-  unitlessPrecision: 2,
-  url: '',
-  usePostscriptFontNames: false
+  "token": "",
+  "unitlessPrecision": 2,
+  "url": "",
+  "usePostscriptFontNames": false,
+  "versionName": null
 };
 ```
 
@@ -523,6 +524,12 @@ Defines the precision (decimals) for unitless values (rounded using `.toFixed()`
 `figmagic [--usePostscriptFontNames | -ps]`
 
 Default is `false`, i.e. common name.
+
+#### Use a versioned Figma document
+
+`figmagic [--versionName | -v]`
+
+Default is `null` which will resolve to the latest version. The value you specify here is the name of the version in the Figma file's **Version history**.
 
 ## Templates used for code generation
 

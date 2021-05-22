@@ -11,7 +11,7 @@ function processGraphics(graphicsPage, config) {
     return tslib_1.__awaiter(this, void 0, void 0, function* () {
         if (!graphicsPage)
             throw new Error(errors_1.ErrorProcessGraphics);
-        const { token, url, outputFormatGraphics, outputScaleGraphics } = config;
+        const { token, url, outputFormatGraphics, outputScaleGraphics, versionName } = config;
         if (!token)
             throw new Error(errors_1.ErrorProcessGraphics);
         if (graphicsPage.length === 0 || !graphicsPage[0].children)
@@ -19,7 +19,7 @@ function processGraphics(graphicsPage, config) {
         const IDS = getIds_1.getIds(graphicsPage);
         const SETTINGS = `&scale=${outputScaleGraphics}&format=${outputFormatGraphics}`;
         const URL = `${url}?ids=${getIdString_1.getIdString(IDS)}${SETTINGS}`;
-        const IMAGE_RESPONSE = yield getFromApi_1.getFromApi(token, URL, 'images');
+        const IMAGE_RESPONSE = yield getFromApi_1.getFromApi(token, URL, versionName, 'images');
         if (IMAGE_RESPONSE.err)
             throw new Error(errors_1.ErrorProcessGraphicsImageError);
         if (!IMAGE_RESPONSE.images)

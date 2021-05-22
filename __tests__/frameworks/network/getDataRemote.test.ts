@@ -22,4 +22,11 @@ describe('Success cases', () => {
       getDataRemote(process.env.FIGMA_TOKEN, process.env.FIGMA_URL)
     ).resolves.toBeTruthy();
   });
+
+  test('It should get API data given valid URL and token and a named version', async () => {
+    await expect(
+      // @ts-ignore
+      getDataRemote(process.env.FIGMA_TOKEN, process.env.FIGMA_URL, 'Version 4.1.0')
+    ).resolves.toBeTruthy();
+  });
 });

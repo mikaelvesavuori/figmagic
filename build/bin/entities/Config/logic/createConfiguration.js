@@ -28,6 +28,7 @@ function createConfiguration(baseConfig, userConfigPath, cliArgs) {
         const CONFIG = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG), RC_CONFIG), ENV_CONFIG), CLI_CONFIG), { templates: Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG.templates), RC_CONFIG.templates), CLI_CONFIG.templates), skipFileGeneration: Object.assign(Object.assign(Object.assign({}, DEFAULT_CONFIG.skipFileGeneration), RC_CONFIG.skipFileGeneration), CLI_CONFIG.skipFileGeneration) });
         if (CONFIG.debugMode === true)
             printConfigs(ENV_CONFIG, CLI_CONFIG, RC_CONFIG, CONFIG);
+        console.log('CONFIG', CONFIG);
         return CONFIG;
     });
 }

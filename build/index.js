@@ -25,8 +25,8 @@ function main() {
             else {
                 const USER_CONFIG_PATH = path.join(`${process.cwd()}`, RC_FILE);
                 const CONFIG = yield index_1.makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
-                const { recompileLocal, figmagicFolder, figmaData, token, url } = CONFIG;
-                const DATA = yield getData_1.getData(recompileLocal, figmagicFolder, figmaData, token, url);
+                const { recompileLocal, figmagicFolder, figmaData, token, url, versionName } = CONFIG;
+                const DATA = yield getData_1.getData(recompileLocal, figmagicFolder, figmaData, token, url, versionName);
                 if (!recompileLocal)
                     yield writeBaseJson_1.writeBaseJson(figmagicFolder, figmaData, DATA);
                 yield FigmagicController_1.FigmagicController(CONFIG, DATA);

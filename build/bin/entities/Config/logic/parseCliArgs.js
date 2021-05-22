@@ -92,7 +92,9 @@ function parseCliArgs(argsArray) {
         '--url': (val) => setConfigValue('url', val),
         '-u': (val) => setConfigValue('url', val),
         '--usePostscriptFontNames': () => setConfigValue('usePostscriptFontNames', true),
-        '-ps': () => setConfigValue('usePostscriptFontNames', true)
+        '-ps': () => setConfigValue('usePostscriptFontNames', true),
+        '--versionName': (val) => setConfigValue('versionName', val),
+        '-v': (val) => setConfigValue('versionName', val)
     };
     argsArray.forEach((arg, index) => {
         if (cliArguments.hasOwnProperty(arg)) {

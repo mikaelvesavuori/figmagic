@@ -42,6 +42,7 @@ export declare type Config = {
     unitlessPrecision: number;
     url: string | null;
     usePostscriptFontNames: boolean;
+    versionName: string | null;
 };
 export declare type ConfigDTO = {
     debugMode?: boolean;
@@ -87,6 +88,7 @@ export declare type ConfigDTO = {
     unitlessPrecision?: number;
     url?: string | null;
     usePostscriptFontNames?: boolean;
+    versionName?: string | null;
 };
 export declare type FontUnits = 'rem' | 'em' | 'px';
 export declare type LetterSpacingUnits = 'em' | 'px';
