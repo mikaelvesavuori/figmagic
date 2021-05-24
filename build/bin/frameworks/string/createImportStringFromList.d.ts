@@ -1,1 +1,1 @@
-export declare function createImportStringFromList(importArray: any[], outputFolderTokens?: string): string;
+export declare function createImportStringFromList(importArray: any[], outputFolderTokens?: string, tokensRelativeImportPrefix?: string): string;

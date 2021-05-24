@@ -31,6 +31,7 @@ export type WriteOperation = {
   outputFolderElements?: string;
   outputFolderGraphics?: string;
   outputFolderTokens?: string;
+  tokensRelativeImportPrefix?: string;
   fixedName?: string;
   forceUpdate?: string;
   css?: string;

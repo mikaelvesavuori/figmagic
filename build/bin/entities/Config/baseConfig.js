@@ -42,6 +42,7 @@ exports.baseConfig = {
         templatePathStyled: 'templates/styled'
     },
     token: '',
+    tokensRelativeImportPrefix: '',
     unitlessPrecision: 2,
     url: '',
     usePostscriptFontNames: false,

@@ -81,7 +81,7 @@ export async function createConfiguration(
 
   if (CONFIG.debugMode === true) printConfigs(ENV_CONFIG, CLI_CONFIG, RC_CONFIG, CONFIG);
 
-  console.log('CONFIG', CONFIG);
+  console.log(CONFIG);
 
   return CONFIG;
 }

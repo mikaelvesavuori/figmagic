@@ -87,6 +87,8 @@ function parseCliArgs(argsArray) {
         '-tpgraphic': (val) => setConfigChildValue('templates', 'templatePathGraphic', val),
         '--token': (val) => setConfigValue('token', val),
         '-t': (val) => setConfigValue('token', val),
+        '--tokensRelativeImportPrefix': (val) => setConfigValue('tokensRelativeImportPrefix', val),
+        '-tip': (val) => setConfigValue('tokensRelativeImportPrefix', val),
         '--unitlessPrecision': (val) => setConfigValue('unitlessPrecision', parseInt(val, 10)),
         '-up': (val) => setConfigValue('unitlessPrecision', parseInt(val, 10)),
         '--url': (val) => setConfigValue('url', val),

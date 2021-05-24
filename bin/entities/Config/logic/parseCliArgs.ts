@@ -109,6 +109,9 @@ export function parseCliArgs(argsArray: string[]): Config {
     '-tpgraphic': (val: string) => setConfigChildValue('templates', 'templatePathGraphic', val),
     '--token': (val: string) => setConfigValue('token', val),
     '-t': (val: string) => setConfigValue('token', val),
+    '--tokensRelativeImportPrefix': (val: string) =>
+      setConfigValue('tokensRelativeImportPrefix', val),
+    '-tip': (val: string) => setConfigValue('tokensRelativeImportPrefix', val),
     '--unitlessPrecision': (val: string) => setConfigValue('unitlessPrecision', parseInt(val, 10)),
     '-up': (val: string) => setConfigValue('unitlessPrecision', parseInt(val, 10)),
     '--url': (val: string) => setConfigValue('url', val),

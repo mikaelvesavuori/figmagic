@@ -787,6 +787,26 @@ describe('Success cases', () => {
     });
   });
 
+  describe('Token', () => {
+    test('It should return "asdf" for token if passing "asdf" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--tokensRelativeImportPrefix', '../../'])).toEqual(
+        expect.objectContaining({
+          tokensRelativeImportPrefix: '../../'
+        })
+      );
+    });
+
+    test('It should return "asdf" for token if passing "asdf" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-tip', '../../'])).toEqual(
+        expect.objectContaining({
+          tokensRelativeImportPrefix: '../../'
+        })
+      );
+    });
+  });
+
   describe('Unitless Precision', () => {
     test('It should return "3" for url if passing "3" (long-hand)', () => {
       // @ts-ignore

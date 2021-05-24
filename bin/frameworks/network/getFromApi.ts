@@ -38,8 +38,6 @@ export async function getFromApi(
         }
       })();
 
-      console.log('---> requestedVersionId', requestedVersionId);
-
       endpoint = `https://api.figma.com/v1/${type}/${figmaUrl}?version=${requestedVersionId}`;
     }
 

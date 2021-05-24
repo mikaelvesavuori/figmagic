@@ -66,6 +66,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
   const outputFolderElements = config.outputFolderElements;
   const outputFolderGraphics = config.outputFolderGraphics;
   const outputFolderTokens = config.outputFolderTokens;
+  const tokensRelativeImportPrefix = config.tokensRelativeImportPrefix;
   const metadata = {
     dataType: null,
     html: element.html,
@@ -92,6 +93,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
     outputFolderElements,
     outputFolderGraphics,
     outputFolderTokens,
+    tokensRelativeImportPrefix,
     metadata,
     templates,
     forceUpdate,
@@ -131,6 +133,7 @@ const writeFileHelper = (
       outputFolderElements: config.outputFolderElements,
       outputFolderGraphics: config.outputFolderGraphics,
       outputFolderTokens: config.outputFolderTokens,
+      tokensRelativeImportPrefix: config.tokensRelativeImportPrefix,
       metadata: config.metadata,
       templates: config.templates
     } as WriteOperation);

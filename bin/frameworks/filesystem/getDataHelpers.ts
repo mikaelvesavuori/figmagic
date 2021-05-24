@@ -26,13 +26,18 @@ export const getExtraProps = (metadata: undefined | null | Record<string, any>):
 
 export const getImports = (
   metadata: undefined | null | Record<string, any>,
-  outputFolderTokens: string | undefined
+  outputFolderTokens?: string | undefined,
+  tokensRelativeImportPrefix?: string | undefined
 ): string => {
   if (metadata) {
     if (metadata.imports) {
-      if (metadata.imports.length > 0)
-        return createImportStringFromList(metadata.imports, outputFolderTokens);
-      else return '';
+      if (metadata.imports.length > 0) {
+        return createImportStringFromList(
+          metadata.imports,
+          outputFolderTokens,
+          tokensRelativeImportPrefix
+        );
+      } else return '';
     } else return '';
   } else return '';
 };

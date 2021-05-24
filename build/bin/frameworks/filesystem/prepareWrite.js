@@ -8,7 +8,8 @@ function prepareWrite(writeOperation) {
     try {
         if (!writeOperation)
             throw new Error(errors_1.ErrorWriteFile);
-        const { type, file, path, name, format, outputFolderTokens, metadata, templates } = writeOperation;
+        const { type, file, path, name, format, outputFolderTokens, tokensRelativeImportPrefix, metadata, templates } = writeOperation;
+        console.log('writeOperation', writeOperation);
         if ((type === 'css' || type === 'story' || type === 'component') && !templates)
             throw new Error(errors_1.ErrorPrepareWrite);
         const getFileDataOperation = {
@@ -19,7 +20,7 @@ function prepareWrite(writeOperation) {
             format,
             text: getDataHelpers_1.getText(metadata),
             element: getDataHelpers_1.getElement(metadata),
-            imports: getDataHelpers_1.getImports(metadata, outputFolderTokens),
+            imports: getDataHelpers_1.getImports(metadata, outputFolderTokens, tokensRelativeImportPrefix),
             extraProps: getDataHelpers_1.getExtraProps(metadata),
             metadata,
             templates

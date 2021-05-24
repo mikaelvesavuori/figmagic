@@ -12,8 +12,19 @@ export function prepareWrite(writeOperation: WriteOperation): any {
   try {
     if (!writeOperation) throw new Error(ErrorWriteFile);
 
-    const { type, file, path, name, format, outputFolderTokens, metadata, templates } =
-      writeOperation;
+    const {
+      type,
+      file,
+      path,
+      name,
+      format,
+      outputFolderTokens,
+      tokensRelativeImportPrefix,
+      metadata,
+      templates
+    } = writeOperation;
+
+    console.log('writeOperation', writeOperation);
 
     if ((type === 'css' || type === 'story' || type === 'component') && !templates)
       throw new Error(ErrorPrepareWrite);
@@ -26,7 +37,7 @@ export function prepareWrite(writeOperation: WriteOperation): any {
       format,
       text: getText(metadata),
       element: getElement(metadata),
-      imports: getImports(metadata, outputFolderTokens),
+      imports: getImports(metadata, outputFolderTokens, tokensRelativeImportPrefix),
       extraProps: getExtraProps(metadata),
       metadata,
       templates

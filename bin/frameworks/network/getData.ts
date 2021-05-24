@@ -19,7 +19,7 @@ export async function getData(
   figmaData: string,
   token: string | null,
   url: string | null,
-  versionName: string | null
+  versionName?: string | null
 ): Promise<FigmaData> {
   try {
     if (!recompileLocal && (!token || !url)) throw new Error(ErrorGetData);

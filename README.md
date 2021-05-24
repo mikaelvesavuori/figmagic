@@ -507,6 +507,12 @@ Default is `templates/styled`.
 
 Default is `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
 
+#### Set relative import path for tokens (for CSS)
+
+`figmagic [--tokensRelativeImportPrefix | -tip] [path]`
+
+Default is `''` (effectively just blank or the same folder). Use this so CSS files can import tokens from the correct location, for example to resolve something like `../../tokens/colors.ts` you would pass in `../../` and `tokens` would be whatever your `outputFolderTokens` value is.
+
 #### Pass in Figma URL
 
 `figmagic [--url | -u] [url_id]`

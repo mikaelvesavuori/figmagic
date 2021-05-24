@@ -492,6 +492,11 @@
 				</a>
 				<p><code>figmagic [--token | -t] [token]</code></p>
 				<p>Default is <code>null</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<a href="#set-relative-import-path-for-tokens-for-css" id="set-relative-import-path-for-tokens-for-css" style="color: inherit; text-decoration: none;">
+					<h4>Set relative import path for tokens (for CSS)</h4>
+				</a>
+				<p><code>figmagic [--tokensRelativeImportPrefix | -tip] [path]</code></p>
+				<p>Default is <code>&#39;&#39;</code> (effectively just blank or the same folder). Use this so CSS files can import tokens from the correct location, for example to resolve something like <code>../../tokens/colors.ts</code> you would pass in <code>../../</code> and <code>tokens</code> would be whatever your <code>outputFolderTokens</code> value is.</p>
 				<a href="#pass-in-figma-url" id="pass-in-figma-url" style="color: inherit; text-decoration: none;">
 					<h4>Pass in Figma URL</h4>
 				</a>

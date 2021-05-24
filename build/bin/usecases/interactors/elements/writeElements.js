@@ -52,6 +52,7 @@ const makeFixedConfig = (element, config) => {
     const outputFolderElements = config.outputFolderElements;
     const outputFolderGraphics = config.outputFolderGraphics;
     const outputFolderTokens = config.outputFolderTokens;
+    const tokensRelativeImportPrefix = config.tokensRelativeImportPrefix;
     const metadata = {
         dataType: null,
         html: element.html,
@@ -76,6 +77,7 @@ const makeFixedConfig = (element, config) => {
         outputFolderElements,
         outputFolderGraphics,
         outputFolderTokens,
+        tokensRelativeImportPrefix,
         metadata,
         templates,
         forceUpdate,
@@ -104,6 +106,7 @@ const writeFileHelper = (config, type, format, fileExists = undefined) => {
             outputFolderElements: config.outputFolderElements,
             outputFolderGraphics: config.outputFolderGraphics,
             outputFolderTokens: config.outputFolderTokens,
+            tokensRelativeImportPrefix: config.tokensRelativeImportPrefix,
             metadata: config.metadata,
             templates: config.templates
         });

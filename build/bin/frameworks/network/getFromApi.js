@@ -26,7 +26,6 @@ function getFromApi(figmaToken, figmaUrl, versionName, type = 'files') {
                         }
                     }
                 })();
-                console.log('---> requestedVersionId', requestedVersionId);
                 endpoint = `https://api.figma.com/v1/${type}/${figmaUrl}?version=${requestedVersionId}`;
             }
             return yield node_fetch_1.default(endpoint, {
