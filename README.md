@@ -46,7 +46,7 @@ Local usage is possible by installing Figmagic as a developer dependency (under 
 
 ```
 "scripts": {
-  "figmagic": "node ./node_modules/figmagic/build/index.js"
+  "figmagic": "npx figmagic"
 }
 ```
 
