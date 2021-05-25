@@ -23,14 +23,18 @@ function writeElements(elements, config, isGeneratingGraphics = false) {
                     const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.stories.${FIXED_CONFIG.outputFormatStorybook}`;
                     writeFileHelper(FIXED_CONFIG, 'story', config.outputFormatStorybook, checkIfExists_1.checkIfExists(PATH));
                 }
-                if (!config.skipFileGeneration.skipDescription)
-                    writeFileHelper(FIXED_CONFIG, 'description', config.outputFormatDescription);
+                if (!config.skipFileGeneration.skipDescription) {
+                    const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.description.${FIXED_CONFIG.outputFormatDescription}`;
+                    writeFileHelper(FIXED_CONFIG, 'description', config.outputFormatDescription, checkIfExists_1.checkIfExists(PATH));
+                }
                 if (!config.skipFileGeneration.skipStyled) {
                     const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
                     writeFileHelper(FIXED_CONFIG, 'styled', config.outputFormatElements, checkIfExists_1.checkIfExists(PATH));
                 }
-                if (!config.skipFileGeneration.skipCss)
-                    writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss);
+                if (!config.skipFileGeneration.skipCss) {
+                    const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Css.${FIXED_CONFIG.outputFormatCss}`;
+                    writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss, checkIfExists_1.checkIfExists(PATH));
+                }
             }
         });
     }
@@ -52,6 +56,7 @@ const makeFixedConfig = (element, config) => {
     const outputFolderElements = config.outputFolderElements;
     const outputFolderGraphics = config.outputFolderGraphics;
     const outputFolderTokens = config.outputFolderTokens;
+    const overwrite = config.overwrite;
     const tokensRelativeImportPrefix = config.tokensRelativeImportPrefix;
     const metadata = {
         dataType: null,
@@ -77,6 +82,7 @@ const makeFixedConfig = (element, config) => {
         outputFolderElements,
         outputFolderGraphics,
         outputFolderTokens,
+        overwrite,
         tokensRelativeImportPrefix,
         metadata,
         templates,
@@ -84,8 +90,10 @@ const makeFixedConfig = (element, config) => {
         fixedName
     };
 };
-const writeFileHelper = (config, type, format, fileExists = undefined) => {
-    if (fileExists === false || config.forceUpdate) {
+const writeFileHelper = (config, type, format, fileExists) => {
+    const shouldOverwrite = config.overwrite[type] || false;
+    const forceUpdate = config.forceUpdate;
+    if (!fileExists || shouldOverwrite || forceUpdate) {
         const FILE_DATA = (() => {
             if (type === 'graphic') {
                 const SVG_DATA = getSvgFileData_1.getSvgFileData(`./${config.outputFolderGraphics}/${config.name.toLowerCase()}.svg`);

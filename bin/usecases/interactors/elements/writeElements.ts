@@ -33,16 +33,25 @@ export function writeElements(elements: any[], config: Config, isGeneratingGraph
           writeFileHelper(FIXED_CONFIG, 'story', config.outputFormatStorybook, checkIfExists(PATH));
         }
 
-        if (!config.skipFileGeneration.skipDescription)
-          writeFileHelper(FIXED_CONFIG, 'description', config.outputFormatDescription);
+        if (!config.skipFileGeneration.skipDescription) {
+          const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.description.${FIXED_CONFIG.outputFormatDescription}`;
+          writeFileHelper(
+            FIXED_CONFIG,
+            'description',
+            config.outputFormatDescription,
+            checkIfExists(PATH)
+          );
+        }
 
         if (!config.skipFileGeneration.skipStyled) {
           const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
           writeFileHelper(FIXED_CONFIG, 'styled', config.outputFormatElements, checkIfExists(PATH));
         }
 
-        if (!config.skipFileGeneration.skipCss)
-          writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss);
+        if (!config.skipFileGeneration.skipCss) {
+          const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Css.${FIXED_CONFIG.outputFormatCss}`;
+          writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss, checkIfExists(PATH));
+        }
       }
     });
   } catch (error) {
@@ -66,7 +75,9 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
   const outputFolderElements = config.outputFolderElements;
   const outputFolderGraphics = config.outputFolderGraphics;
   const outputFolderTokens = config.outputFolderTokens;
+  const overwrite = config.overwrite;
   const tokensRelativeImportPrefix = config.tokensRelativeImportPrefix;
+
   const metadata = {
     dataType: null,
     html: element.html,
@@ -93,6 +104,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
     outputFolderElements,
     outputFolderGraphics,
     outputFolderTokens,
+    overwrite,
     tokensRelativeImportPrefix,
     metadata,
     templates,
@@ -103,15 +115,18 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
 
 /**
  * @description Helper to consolidate writing the different types of files.
- * Undefined on "fileExists" simply means that it's not applicable to this file
  */
 const writeFileHelper = (
   config: WriteOperation,
   type: string,
   format: string,
-  fileExists: boolean | undefined = undefined
+  fileExists?: boolean | undefined
 ): void => {
-  if (fileExists === false || config.forceUpdate) {
+  // @ts-ignore
+  const shouldOverwrite = config.overwrite[type] || false;
+  const forceUpdate = config.forceUpdate;
+
+  if (!fileExists || shouldOverwrite || forceUpdate) {
     const FILE_DATA = (() => {
       if (type === 'graphic') {
         const SVG_DATA = getSvgFileData(

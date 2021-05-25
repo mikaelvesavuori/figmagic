@@ -21,7 +21,7 @@ function createElements(config, data) {
             throw new Error(error);
         }
         try {
-            yield refresh_1.refresh(config.outputFolderElements);
+            yield refresh_1.refresh(config.outputFolderElements, false);
             const { components } = data;
             handleElements({
                 children: data.document.children,

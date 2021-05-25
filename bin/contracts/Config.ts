@@ -18,6 +18,7 @@ export type Config = {
   outputGraphicElementsMap: boolean;
   outputScaleGraphics: number;
   outputDataTypeToken: OutputDataTypeToken;
+  overwrite: Overwrite;
   recompileLocal: boolean;
   remSize: number;
   skipFileGeneration: {
@@ -66,6 +67,14 @@ export type ConfigDTO = {
   outputGraphicElementsMap?: boolean;
   outputScaleGraphics?: number;
   outputDataTypeToken?: OutputDataTypeToken;
+  overwrite?: {
+    css: boolean;
+    description: boolean;
+    graphic: boolean;
+    react: boolean;
+    storybook: boolean;
+    styled: boolean;
+  };
   recompileLocal?: boolean;
   remSize?: number;
   skipFileGeneration?: {
@@ -92,6 +101,15 @@ export type ConfigDTO = {
   url?: string | null;
   usePostscriptFontNames?: boolean;
   versionName?: string | null;
+};
+
+export type Overwrite = {
+  css: boolean;
+  description: boolean;
+  graphic: boolean;
+  react: boolean;
+  storybook: boolean;
+  styled: boolean;
 };
 
 export type FontUnits = 'rem' | 'em' | 'px';

@@ -24,8 +24,6 @@ export function prepareWrite(writeOperation: WriteOperation): any {
       templates
     } = writeOperation;
 
-    console.log('writeOperation', writeOperation);
-
     if ((type === 'css' || type === 'story' || type === 'component') && !templates)
       throw new Error(ErrorPrepareWrite);
 

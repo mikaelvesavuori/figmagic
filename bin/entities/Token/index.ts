@@ -123,7 +123,8 @@ class Token {
       file: processedToken,
       path: this.config.outputFolderTokens,
       name: tokenName,
-      format: this.config.outputFormatTokens
+      format: this.config.outputFormatTokens,
+      overwrite: this.config.overwrite
     };
   };
 

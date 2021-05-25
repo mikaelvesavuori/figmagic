@@ -20,6 +20,14 @@ export const baseConfig: Config = {
   outputGraphicElementsMap: false,
   outputScaleGraphics: 1,
   outputDataTypeToken: null,
+  overwrite: {
+    css: false,
+    description: false,
+    graphic: false,
+    react: false,
+    storybook: false,
+    styled: false
+  },
   recompileLocal: false,
   remSize: 16,
   skipFileGeneration: {

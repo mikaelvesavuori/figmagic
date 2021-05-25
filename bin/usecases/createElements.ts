@@ -26,7 +26,7 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
   }
 
   try {
-    await refresh(config.outputFolderElements);
+    await refresh(config.outputFolderElements, false);
     const { components }: any = data;
     handleElements({
       children: data.document.children,

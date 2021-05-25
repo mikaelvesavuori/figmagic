@@ -57,7 +57,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'colors',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -78,7 +86,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'spacing',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -96,7 +112,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'fontFamilies',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -119,7 +143,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'fontSizes',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -133,7 +165,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'fontWeights',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -147,7 +187,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'lineHeights',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -161,7 +209,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'borderWidths',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -175,7 +231,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'letterSpacings',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -189,7 +253,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'opacities',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -213,7 +285,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'mediaQueries',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -227,7 +307,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'radii',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -246,7 +334,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'shadows',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -260,7 +356,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'zIndices',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -269,7 +373,21 @@ describe('Success cases', () => {
   test('It should return data when passed valid Z index frame and valid settings, ignoring an element including an "ignored" keyword', () => {
     expect(processTokens([zIndicesFrameWithIgnoreKeyword], baseConfig)).toEqual(
       expect.arrayContaining([
-        { file: { regular: 0 }, format: 'ts', name: 'zIndices', path: 'tokens', type: 'token' }
+        {
+          file: { regular: 0 },
+          format: 'ts',
+          name: 'zIndices',
+          path: 'tokens',
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
+        }
       ])
     );
   });
@@ -282,7 +400,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'durations',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -296,7 +422,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'delays',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );
@@ -314,7 +448,15 @@ describe('Success cases', () => {
           format: 'ts',
           name: 'easings',
           path: 'tokens',
-          type: 'token'
+          type: 'token',
+          overwrite: {
+            css: false,
+            description: false,
+            graphic: false,
+            react: false,
+            storybook: false,
+            styled: false
+          }
         }
       ])
     );

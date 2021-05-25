@@ -9,7 +9,6 @@ function prepareWrite(writeOperation) {
         if (!writeOperation)
             throw new Error(errors_1.ErrorWriteFile);
         const { type, file, path, name, format, outputFolderTokens, tokensRelativeImportPrefix, metadata, templates } = writeOperation;
-        console.log('writeOperation', writeOperation);
         if ((type === 'css' || type === 'story' || type === 'component') && !templates)
             throw new Error(errors_1.ErrorPrepareWrite);
         const getFileDataOperation = {

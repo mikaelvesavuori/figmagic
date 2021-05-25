@@ -22,6 +22,7 @@ export function writeFile(writeOperation: WriteOperation): void {
       name,
       format,
       outputFolderTokens,
+      overwrite,
       tokensRelativeImportPrefix,
       metadata,
       templates
@@ -41,6 +42,7 @@ export function writeFile(writeOperation: WriteOperation): void {
       name,
       format,
       outputFolderTokens,
+      overwrite,
       tokensRelativeImportPrefix,
       metadata,
       templates
