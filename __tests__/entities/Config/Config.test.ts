@@ -9,8 +9,12 @@ describe('Success cases', () => {
     const CLI_ARGS: any[] = [];
     const USER_CONFIG_PATH = '';
     const CONFIG = testConfig;
+    CONFIG.token = '***';
+    CONFIG.url = '***';
 
     const config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
+    config.token = '***';
+    config.url = '***';
     expect(config).toMatchObject(CONFIG);
   });
 
