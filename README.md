@@ -245,6 +245,14 @@ Below is a complete set of what you can configure, together with the defaults.
   "outputGraphicElementsMap": false,
   "outputScaleGraphics": 1,
   "outputDataTypeToken": null,
+  "overwrite": {
+    "css": false,
+    "description": false,
+    "graphic": false,
+    "react": false,
+    "storybook": false,
+    "styled": false
+  },
   "recompileLocal": false,
   "remSize": 16,
   "skipFileGeneration": {
@@ -390,6 +398,10 @@ Default is `1`. **Note that from the CLI you must specify the scale size like `3
 `figmagic [--outputDataTypeToken | -tokentype] [null | enum]`
 
 Default is `null`. Currently the only valid non-null value is `enum`.
+
+#### Overwrite files
+
+This is not currently possible to adjust from the CLI.
 
 #### Recompile data from local Figma JSON file
 
