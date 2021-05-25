@@ -357,7 +357,7 @@ Default is `svg`.
 
 #### Switch Storybook file format
 
-`figmagic [--outputFormatStorybook | -fs] [ts|js]`
+`figmagic [--outputFormatStorybook | -fs] [ts|js|mdx]`
 
 Default is `js`.
 

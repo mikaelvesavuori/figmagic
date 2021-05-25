@@ -1,0 +1,23 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs/blocks';
+
+import {{NAME}} from './{{NAME}}';
+
+import {{NAME}}Description from './{{NAME}}.description.md';
+
+<Meta
+  title="{{NAME}}"
+  component={{{NAME}}}
+  argTypes={{ }}
+/>
+
+<ButtonDescription />
+
+<Canvas>
+  <Story name="{{NAME}}" height="400px">
+    {(args) => <{{NAME}} {...args} />}
+  </Story>
+</Canvas>
+
+## ArgsTable
+
+<ArgsTable of={{{NAME}}} />

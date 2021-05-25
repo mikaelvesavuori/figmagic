@@ -344,7 +344,7 @@ export const ErrorValidateConfigOutputFormatGraphics = ErrorMessage(
   'Received unrecognized "outputFormatGraphics" arguments, it must be "svg" (default) or "png".'
 );
 export const ErrorValidateConfigOutputFormatStorybook = ErrorMessage(
-  'Received unrecognized "outputFormatStorybook" arguments, it must be "js" (default) or "ts".'
+  'Received unrecognized "outputFormatStorybook" arguments, it must be "js" (default), "ts" or "mdx".'
 );
 export const ErrorValidateConfigOutputFormatTokens = ErrorMessage(
   'Received unrecognized "outputFormatTokens" arguments, it must be "ts" (default), "mjs" or "js".'
