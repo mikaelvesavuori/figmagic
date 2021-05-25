@@ -6,7 +6,6 @@ export declare const ErrorCleanArrays: string;
 export declare const ErrorCleanSvgData: string;
 export declare const ErrorConvertHexToRgba: string;
 export declare const ErrorConvertRgbaToHex: string;
-export declare const ErrorCreateConfiguration: string;
 export declare const ErrorCreateConfigurationNoDefault: string;
 export declare const ErrorCreateCssString: string;
 export declare const ErrorCreateElements: string;

@@ -10,10 +10,7 @@ import {
   MsgConfigDebugFinal
 } from '../../../frameworks/messages/messages';
 
-import {
-  ErrorCreateConfiguration,
-  ErrorCreateConfigurationNoDefault
-} from '../../../frameworks/errors/errors';
+import { ErrorCreateConfigurationNoDefault } from '../../../frameworks/errors/errors';
 
 import { Config } from '../../../contracts/Config';
 
@@ -32,17 +29,18 @@ export async function createConfiguration(
   cliArgs: string[]
 ): Promise<Config> {
   if (!baseConfig) throw new Error(ErrorCreateConfigurationNoDefault);
-  if (!userConfigPath) throw new Error(ErrorCreateConfiguration);
 
   const DEFAULT_CONFIG: Config = baseConfig;
 
   // RC file configuration
   let RC_CONFIG: any = {};
 
-  try {
-    const _RC_CONFIG = loadFile(userConfigPath);
-    RC_CONFIG = _RC_CONFIG as Config;
-  } catch (e) {} // eslint-disable-line no-empty
+  if (userConfigPath && userConfigPath !== '') {
+    try {
+      const _RC_CONFIG = loadFile(userConfigPath);
+      RC_CONFIG = _RC_CONFIG as Config;
+    } catch (e) {} // eslint-disable-line no-empty
+  }
 
   // Env var configuration
   const ENV_CONFIG = {

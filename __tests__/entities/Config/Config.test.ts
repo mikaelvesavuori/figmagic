@@ -4,16 +4,16 @@ import { makeConfiguration } from '../../../bin/entities/Config/index';
 
 import { testConfig } from '../../../testdata/testConfig';
 
-describe('Failure cases', () => {
-  test('It should throw an error if called without a user config path', async () => {
+describe('Success cases', () => {
+  test('It should use default/base configuration if called without a user config path', async () => {
     const CLI_ARGS: any[] = [];
     const USER_CONFIG_PATH = '';
+    const CONFIG = testConfig;
 
-    await expect(makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS)).rejects.toThrowError();
+    const config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
+    expect(config).toMatchObject(CONFIG);
   });
-});
 
-describe('Success cases', () => {
   test('It should return a complete, default configuration when passing in valid user config path, but no CLI arguments input', async () => {
     const CLI_ARGS: any[] = [];
     const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `testdata`, `figmagicrc`);

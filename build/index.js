@@ -27,7 +27,7 @@ function main() {
             if (((_a = CLI_ARGS[0]) === null || _a === void 0 ? void 0 : _a.toLowerCase()) === 'init')
                 initConfig(configToInit_1.configToInit, RC_FILES[0]);
             else {
-                const USER_CONFIG_PATH = path.join(`${process.cwd()}`, configFilePath);
+                const USER_CONFIG_PATH = configFilePath ? path.join(`${process.cwd()}`, configFilePath) : '';
                 const CONFIG = yield index_1.makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
                 const { recompileLocal, figmagicFolder, figmaData, token, url, versionName } = CONFIG;
                 const DATA = yield getData_1.getData(recompileLocal, figmagicFolder, figmaData, token, url, versionName);

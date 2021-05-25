@@ -24,7 +24,6 @@ export const ErrorConvertHexToRgba = ErrorMessage(
 export const ErrorConvertRgbaToHex = ErrorMessage(
   'Missing color value (as string, like "rgba(123,123,123,0.05) when calling convertRgbaToHex()!'
 );
-export const ErrorCreateConfiguration = ErrorMessage('No path provided to createConfiguration()!');
 export const ErrorCreateConfigurationNoDefault = ErrorMessage(
   'No default configuration provided to createConfiguration()!'
 );

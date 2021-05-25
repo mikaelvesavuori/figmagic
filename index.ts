@@ -39,7 +39,7 @@ async function main(): Promise<void> {
     if (CLI_ARGS[0]?.toLowerCase() === 'init') initConfig(configToInit, RC_FILES[0]);
     // User wants to run Figmagic
     else {
-      const USER_CONFIG_PATH = path.join(`${process.cwd()}`, configFilePath);
+      const USER_CONFIG_PATH = configFilePath ? path.join(`${process.cwd()}`, configFilePath) : '';
       const CONFIG: Config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
 
       // Get data

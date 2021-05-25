@@ -11,15 +11,15 @@ function createConfiguration(baseConfig, userConfigPath, cliArgs) {
     return tslib_1.__awaiter(this, void 0, void 0, function* () {
         if (!baseConfig)
             throw new Error(errors_1.ErrorCreateConfigurationNoDefault);
-        if (!userConfigPath)
-            throw new Error(errors_1.ErrorCreateConfiguration);
         const DEFAULT_CONFIG = baseConfig;
         let RC_CONFIG = {};
-        try {
-            const _RC_CONFIG = loadFile_1.loadFile(userConfigPath);
-            RC_CONFIG = _RC_CONFIG;
+        if (userConfigPath && userConfigPath !== '') {
+            try {
+                const _RC_CONFIG = loadFile_1.loadFile(userConfigPath);
+                RC_CONFIG = _RC_CONFIG;
+            }
+            catch (e) { }
         }
-        catch (e) { }
         const ENV_CONFIG = {
             token: process.env.FIGMA_TOKEN || RC_CONFIG.token || '',
             url: getEnvUrl(process.env.FIGMA_URL, RC_CONFIG.url)
