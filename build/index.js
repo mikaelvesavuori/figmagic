@@ -13,7 +13,6 @@ const colors_1 = require("./bin/frameworks/system/colors");
 const checkIfExists_1 = require("./bin/frameworks/filesystem/checkIfExists");
 const configToInit_1 = require("./bin/frameworks/system/configToInit");
 const messages_1 = require("./bin/frameworks/messages/messages");
-const errors_1 = require("./bin/frameworks/errors/errors");
 const RC_FILES = ['figmagic.json', '.figmagicrc'];
 function main() {
     var _a;
@@ -28,8 +27,6 @@ function main() {
             if (((_a = CLI_ARGS[0]) === null || _a === void 0 ? void 0 : _a.toLowerCase()) === 'init')
                 initConfig(configToInit_1.configToInit, RC_FILES[0]);
             else {
-                if (!configFilePath)
-                    throw new Error(errors_1.ErrorNoConfigFound);
                 const USER_CONFIG_PATH = path.join(`${process.cwd()}`, configFilePath);
                 const CONFIG = yield index_1.makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
                 const { recompileLocal, figmagicFolder, figmaData, token, url, versionName } = CONFIG;

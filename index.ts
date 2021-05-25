@@ -18,7 +18,6 @@ import { checkIfExists } from './bin/frameworks/filesystem/checkIfExists';
 import { configToInit } from './bin/frameworks/system/configToInit';
 
 import { MsgJobCompleteInit, MsgJobCompleteInitStopped } from './bin/frameworks/messages/messages';
-import { ErrorNoConfigFound } from './bin/frameworks/errors/errors';
 
 const RC_FILES = ['figmagic.json', '.figmagicrc'];
 
@@ -40,8 +39,6 @@ async function main(): Promise<void> {
     if (CLI_ARGS[0]?.toLowerCase() === 'init') initConfig(configToInit, RC_FILES[0]);
     // User wants to run Figmagic
     else {
-      if (!configFilePath) throw new Error(ErrorNoConfigFound);
-
       const USER_CONFIG_PATH = path.join(`${process.cwd()}`, configFilePath);
       const CONFIG: Config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
 

@@ -1,4 +1,3 @@
-export declare const ErrorNoConfigFound: string;
 export declare const ErrorAddDescriptionToElements: string;
 export declare const ErrorCalculateDegree2Point: string;
 export declare const ErrorCamelize: string;
