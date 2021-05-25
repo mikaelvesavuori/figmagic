@@ -99,7 +99,7 @@ Go to [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%9
 
 Your structure needs to correspond to the following:
 
-- A Page needs to exist, called `Design tokens`. Without this page, you can't really do much with Figmagic.
+- A Page needs to exist, called `Design tokens`. Without this page you can't really do much with Figmagic.
 - Further, inside the `Design tokens` page, **frames** need to exist. You can have any number of supported token frame. For starters, name them `Colors`, `Font sizes`, `Font families`, `Font weights`, `Line heights`, and `Spacing` – exact casing is not important, however the **spelling is important!** For a full list of token types, see [the types of design tokens Figmagic can extract](#the-types-of-design-tokens-figmagic-can-extract).
 - All items on a page need to be contained within one or more frames.
 - Want element syncing? Then create an "Elements" page and place any components there. For the generation to work correctly, you need to stay within the limits specified above.
