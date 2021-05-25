@@ -37,7 +37,7 @@ async function main(): Promise<void> {
 
     // User wants to init a configuration...
     const [, , ...CLI_ARGS] = process.argv;
-    if (CLI_ARGS[0]?.toLowerCase() === 'init') initConfig(configToInit, configFilePath);
+    if (CLI_ARGS[0]?.toLowerCase() === 'init') initConfig(configToInit, RC_FILES[0]);
     // User wants to run Figmagic
     else {
       if (!configFilePath) throw new Error(ErrorNoConfigFound);

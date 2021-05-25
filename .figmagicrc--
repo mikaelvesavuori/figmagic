@@ -1,0 +1,17 @@
+{
+  "templates": {
+    "templatePathGraphic": "./templates/graphic",
+    "templatePathReact": "./templates/react",
+    "templatePathStorybook": "./templates/story",
+    "templatePathStyled": "./templates/styled"
+  },
+  "syncElements": true,
+  "overwrite": {
+    "css": true,
+    "story": true
+  },
+  "skipFileGeneration": {
+    "forceUpdate": false
+  },
+  "outputFormatStorybook": "mdx"
+}

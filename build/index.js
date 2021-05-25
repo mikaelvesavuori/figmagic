@@ -26,7 +26,7 @@ function main() {
             })[0];
             const [, , ...CLI_ARGS] = process.argv;
             if (((_a = CLI_ARGS[0]) === null || _a === void 0 ? void 0 : _a.toLowerCase()) === 'init')
-                initConfig(configToInit_1.configToInit, configFilePath);
+                initConfig(configToInit_1.configToInit, RC_FILES[0]);
             else {
                 if (!configFilePath)
                     throw new Error(errors_1.ErrorNoConfigFound);

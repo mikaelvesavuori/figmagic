@@ -19,7 +19,7 @@ export const MsgConfigDebugFinal = Message(
   true
 );
 export const MsgConfigDebugRc = Message(
-  `USER: .figmagicrc configuration (Highest priority)\n`,
+  `USER: figmagic.json/.figmagicrc configuration (Highest priority)\n`,
   true
 );
 export const MsgDownloadFileWritingFile = (path: string): string =>
@@ -35,10 +35,10 @@ export const MsgGetTokenMatchNoMatch = Message(
 );
 export const MsgJobComplete = SuccessMessage(`\nFigmagic completed operations successfully!\n`);
 export const MsgJobCompleteInit = SuccessMessage(
-  `\nFigmagic created a base configuration (.figmagicrc) for you.\n`
+  `\nFigmagic created a base configuration (figmagic.json) for you.\n`
 );
 export const MsgJobCompleteInitStopped = Message(
-  `\nFigmagic tried to create a base configuration for you, but one already existed at .figmagicrc...\n`,
+  `\nFigmagic tried to create a base configuration for you, but one already existed at figmagic.json...\n`,
   true
 );
 

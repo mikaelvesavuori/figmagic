@@ -21,7 +21,7 @@ import { Config } from '../../../contracts/Config';
  * @description Create Figmagic configuration object.
  *
  * Prioritization:
- * 1. User-provided configuration through `.figmagicrc`
+ * 1. User-provided configuration through `figmagic.json` or `.figmagicrc`
  * 2. Command-line arguments and flags
  * 3. Environment variables from `.env`
  * Non-provided values should fall back to defaults outlined in `bin/entities/Config/baseConfig.ts`

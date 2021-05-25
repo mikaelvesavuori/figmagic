@@ -101,10 +101,10 @@
 <span style="color: #000000">  </span><span style="color: #A31515">&quot;figmagic&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;npx figmagic&quot;</span>
 <span style="color: #000000">}</span>
 </code></pre>
-				<a href="#create-configuration-file-figmagicrc" id="create-configuration-file-figmagicrc" style="color: inherit; text-decoration: none;">
-					<h3>Create configuration file (.figmagicrc)</h3>
+				<a href="#create-configuration-file-figmagicjson-or-figmagicrc" id="create-configuration-file-figmagicjson-or-figmagicrc" style="color: inherit; text-decoration: none;">
+					<h3>Create configuration file (<code>figmagic.json</code> or <code>.figmagicrc</code>)</h3>
 				</a>
-				<p>Run <code>figmagic init</code> to initialize a basic <code>.figmagicrc</code> file. As long as you provide your Figma token and document ID/URL, the new generated file is ready to use for Element Sync which can only be done if your configuration points to valid code generation templates (which the generated one does). You&#39;ll see that the config will point <code>templates.templatePath{Graphic|React|Styled|Storybook}</code> to <code>./node_modules/figmagic/templates/{graphic|react|styled|story}</code>. Read more under the <a href="#configuration-file-figmagicrc">Configuration file section</a>.</p>
+				<p>Run <code>figmagic init</code> to initialize a basic configuration file, either named <code>figmagic.json</code> or <code>.figmagicrc</code> file. As long as you provide your Figma token and document ID/URL, the new generated file is ready to use for Element Sync which can only be done if your configuration points to valid code generation templates (which the generated one does). You&#39;ll see that the config will point <code>templates.templatePath{Graphic|React|Styled|Storybook}</code> to <code>./node_modules/figmagic/templates/{graphic|react|styled|story}</code>. Read more under the <a href="#configuration-file-figmagicrc">Configuration file section</a>.</p>
 				<a href="#running-figmagic" id="running-figmagic" style="color: inherit; text-decoration: none;">
 					<h3>Running Figmagic</h3>
 				</a>
@@ -117,7 +117,7 @@
 				<ul>
 					<li>Stepping into your project directory (where you want Figmagic to run), and add or replace <strong>FIGMA_URL</strong> and <strong>FIGMA_TOKEN</strong> in a <code>.env</code> file with your own file ID (i.e. similar to <code>821094451476848226</code>) or full Figma URL (i.e. similar to <code>https://www.figma.com/file/821094451476848226/Figmagic-%E2%80%94-Design-System-template-4.0</code>) and API token key.</li>
 					<li>Passing in API token and URL through the CLI, like this <code>figmagic --token {TOKEN} --url {URL}</code> (substitute curly braces for your actual values)</li>
-					<li>Setting them in <code>.figmagicrc</code> under <code>token</code> and <code>url</code>. This is discouraged since you will display these values in clear text and you probably don&#39;t want that.</li>
+					<li>Setting them in <code>figmagic.json</code>/<code>.figmagicrc</code> under <code>token</code> and <code>url</code>. This is discouraged since you will display these values in clear text and you probably don&#39;t want that.</li>
 				</ul>
 				<p>Then:</p>
 				<ul>
@@ -241,17 +241,17 @@
 				<p>There are several ways in which you can provide Figmagic with knowledge about how you want it to parse your tokens.
 				You can combine them, but beware of the below prioritization chart (from lowest to highest):</p>
 				<ol>
-					<li>User-provided configuration from <code>.figmagicrc</code> file</li>
+					<li>User-provided configuration from <code>figmagic.json</code>/<code>.figmagicrc</code> file</li>
 					<li>Environment variables (also loaded from <code>.env</code> file using <code>dotenv</code>)</li>
 					<li>Command-line arguments and flags</li>
 				</ol>
 				<p>If possible, stick to one way of providing settings.</p>
 				<p>Non-provided values will fall back to defaults outlined in <code>bin/entities/Config/baseConfig.ts</code>.</p>
-				<a href="#configuration-file-figmagicrc" id="configuration-file-figmagicrc" style="color: inherit; text-decoration: none;">
-					<h3>Configuration file (<code>.figmagicrc</code>)</h3>
+				<a href="#configuration-file-figmagicjson-or-figmagicrc" id="configuration-file-figmagicjson-or-figmagicrc" style="color: inherit; text-decoration: none;">
+					<h3>Configuration file (<code>figmagic.json</code> or <code>.figmagicrc</code>)</h3>
 				</a>
-				<p>You can use a JSON-formated configuration file at the root of a project to use its settings. Figmagic will pick up the path by assessing the current working directory and looking for a <code>.figmagicrc</code> file there. If it finds it, it will use it.</p>
-				<p>An example file is provided in Figmagic—you can find it in the root of the project. The file is named <code>figmagicrc</code>, just add the leading dot and place the file in your own project folder to use it.</p>
+				<p>You can use a JSON-formated configuration file at the root of a project to use its settings. Figmagic will pick up the path by assessing the current working directory and looking for either a <code>figmagic.json</code> or <code>.figmagicrc</code> file there. If it finds it, it will use it.</p>
+				<p>An example file is provided in Figmagic—you can find it in the root of the project. The file is named <code>figmagicrc</code>, just add the leading dot and place the file in your own project folder to use it. To use it as JSON, add <code>json</code> as the file ending.</p>
 				<p>Since this is a configuration file, you&#39;ll need to be careful to write it correctly or you may end up with failures and errors.</p>
 				<p>Below is a complete set of what you can configure, together with the defaults.</p>
 				<pre><code><span style="color: #000000">{</span>
@@ -402,7 +402,7 @@
 					<h4>Set output scale of graphics</h4>
 				</a>
 				<p><code>figmagic [--outputScaleGraphics | -scale] [number]</code></p>
-				<p>Default is <code>1</code>. <strong>Note that from the CLI you must specify the scale size like <code>3x</code> (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through <code>.figmagicrc</code></strong>.</p>
+				<p>Default is <code>1</code>. <strong>Note that from the CLI you must specify the scale size like <code>3x</code> (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through <code>figmagic.json</code> or <code>.figmagicrc</code></strong>.</p>
 				<a href="#set-output-token-data-type" id="set-output-token-data-type" style="color: inherit; text-decoration: none;">
 					<h4>Set output token data type</h4>
 				</a>
@@ -421,7 +421,7 @@
 					<h4>Set REM size</h4>
 				</a>
 				<p><code>figmagic [--remSize | -rem] [number]</code></p>
-				<p>Default is <code>16</code>. <strong>Note that from the CLI you must specify the REM size like <code>16p</code> (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through <code>.figmagicrc</code></strong>.</p>
+				<p>Default is <code>16</code>. <strong>Note that from the CLI you must specify the REM size like <code>16p</code> (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through <code>figmagic.json</code> or <code>.figmagicrc</code></strong>.</p>
 				<a href="#force-update-all-elements" id="force-update-all-elements" style="color: inherit; text-decoration: none;">
 					<h4>Force update all elements</h4>
 				</a>
@@ -480,25 +480,25 @@
 				</a>
 				<p><code>figmagic [--templatePathGraphic | -tpgraphic] [path]</code></p>
 				<p>Default is <code>templates/graphic</code>.</p>
-				<p><strong>Your local .figmagicrc file must have a block with <code>templates.templatePathGraphic</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/graphic</code></strong>.</p>
+				<p><strong>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathGraphic</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/graphic</code></strong>.</p>
 				<a href="#set-path-to-react-template" id="set-path-to-react-template" style="color: inherit; text-decoration: none;">
 					<h4>Set path to React template</h4>
 				</a>
 				<p><code>figmagic [--templatePathReact | -tpreact] [path]</code></p>
 				<p>Default is <code>templates/react</code>.</p>
-				<p><strong>Your local .figmagicrc file must have a block with <code>templates.templatePathReact</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/react</code></strong>.</p>
+				<p><strong>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathReact</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/react</code></strong>.</p>
 				<a href="#set-path-to-storybook-template" id="set-path-to-storybook-template" style="color: inherit; text-decoration: none;">
 					<h4>Set path to Storybook template</h4>
 				</a>
 				<p><code>figmagic [--templatePathStorybook | -tpstory] [path]</code></p>
 				<p>Default is <code>templates/story</code>.</p>
-				<p><strong>Your local .figmagicrc file must have a block with <code>templates.templatePathStory</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/story</code></strong>.</p>
+				<p><strong>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathStory</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/story</code></strong>.</p>
 				<a href="#set-path-to-styled-components-template" id="set-path-to-styled-components-template" style="color: inherit; text-decoration: none;">
 					<h4>Set path to Styled Components template</h4>
 				</a>
 				<p><code>figmagic [--templatePathStyled | -tpstyled] [path]</code></p>
 				<p>Default is <code>templates/styled</code>.</p>
-				<p><strong>Your local .figmagicrc file must have a block with <code>templates.templatePathStyled</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/styled</code></strong>.</p>
+				<p><strong>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathStyled</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/styled</code></strong>.</p>
 				<a href="#pass-in-figma-api-token" id="pass-in-figma-api-token" style="color: inherit; text-decoration: none;">
 					<h4>Pass in Figma API token</h4>
 				</a>
@@ -541,7 +541,7 @@
 				</ul>
 				<p>These four types have support for a variety of formats that differ a bit between each type.</p>
 				<p>Figmagic comes with a set of templates for several file formats. In case you want to customize these, you should respect and keep any substitution tags that exist in the original files; removing them may cause your templates to function incorrectly. For example, the React template includes a substitution tag called <code>{{NAME_STYLED}}</code> which will be changed to your adjusted element name with a &quot;Styled&quot; suffix. Removing it would make your generated code useless as-is.</p>
-				<p>The recommended way of adding and using your own templates would be to copy-paste any/all existing templates from Figmagic into your project, pointing the <code>.figmagicrc</code> configuration to your local copies, and then modifying them as needed.</p>
+				<p>The recommended way of adding and using your own templates would be to copy-paste any/all existing templates from Figmagic into your project, pointing the configuration file to your local copies, and then modifying them as needed.</p>
 				<a href="#token-formatting-and-conversions" id="token-formatting-and-conversions" style="color: inherit; text-decoration: none;">
 					<h2>Token formatting and conversions</h2>
 				</a>

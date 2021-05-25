@@ -50,9 +50,9 @@ Local usage is possible by installing Figmagic as a developer dependency (under 
 }
 ```
 
-### Create configuration file (.figmagicrc)
+### Create configuration file (`figmagic.json` or `.figmagicrc`)
 
-Run `figmagic init` to initialize a basic `.figmagicrc` file. As long as you provide your Figma token and document ID/URL, the new generated file is ready to use for Element Sync which can only be done if your configuration points to valid code generation templates (which the generated one does). You'll see that the config will point `templates.templatePath{Graphic|React|Styled|Storybook}` to `./node_modules/figmagic/templates/{graphic|react|styled|story}`. Read more under the [Configuration file section](#configuration-file-figmagicrc).
+Run `figmagic init` to initialize a basic configuration file, either named `figmagic.json` or `.figmagicrc` file. As long as you provide your Figma token and document ID/URL, the new generated file is ready to use for Element Sync which can only be done if your configuration points to valid code generation templates (which the generated one does). You'll see that the config will point `templates.templatePath{Graphic|React|Styled|Storybook}` to `./node_modules/figmagic/templates/{graphic|react|styled|story}`. Read more under the [Configuration file section](#configuration-file-figmagicrc).
 
 ### Running Figmagic
 
@@ -65,7 +65,7 @@ Pass in your Figma API token and Figma URL by either:
 
 - Stepping into your project directory (where you want Figmagic to run), and add or replace **FIGMA_URL** and **FIGMA_TOKEN** in a `.env` file with your own file ID (i.e. similar to `821094451476848226`) or full Figma URL (i.e. similar to `https://www.figma.com/file/821094451476848226/Figmagic-%E2%80%94-Design-System-template-4.0`) and API token key.
 - Passing in API token and URL through the CLI, like this `figmagic --token {TOKEN} --url {URL}` (substitute curly braces for your actual values)
-- Setting them in `.figmagicrc` under `token` and `url`. This is discouraged since you will display these values in clear text and you probably don't want that.
+- Setting them in `figmagic.json`/`.figmagicrc` under `token` and `url`. This is discouraged since you will display these values in clear text and you probably don't want that.
 
 Then:
 
@@ -206,7 +206,7 @@ _If you need more information and guidance on this, see the dedicated documentat
 There are several ways in which you can provide Figmagic with knowledge about how you want it to parse your tokens.
 You can combine them, but beware of the below prioritization chart (from lowest to highest):
 
-1. User-provided configuration from `.figmagicrc` file
+1. User-provided configuration from `figmagic.json`/`.figmagicrc` file
 2. Environment variables (also loaded from `.env` file using `dotenv`)
 3. Command-line arguments and flags
 
@@ -214,11 +214,11 @@ If possible, stick to one way of providing settings.
 
 Non-provided values will fall back to defaults outlined in `bin/entities/Config/baseConfig.ts`.
 
-### Configuration file (`.figmagicrc`)
+### Configuration file (`figmagic.json` or `.figmagicrc`)
 
-You can use a JSON-formated configuration file at the root of a project to use its settings. Figmagic will pick up the path by assessing the current working directory and looking for a `.figmagicrc` file there. If it finds it, it will use it.
+You can use a JSON-formated configuration file at the root of a project to use its settings. Figmagic will pick up the path by assessing the current working directory and looking for either a `figmagic.json` or `.figmagicrc` file there. If it finds it, it will use it.
 
-An example file is provided in Figmagic—you can find it in the root of the project. The file is named `figmagicrc`, just add the leading dot and place the file in your own project folder to use it.
+An example file is provided in Figmagic—you can find it in the root of the project. The file is named `figmagicrc`, just add the leading dot and place the file in your own project folder to use it. To use it as JSON, add `json` as the file ending.
 
 Since this is a configuration file, you'll need to be careful to write it correctly or you may end up with failures and errors.
 
@@ -391,7 +391,7 @@ Default is `false`.
 
 `figmagic [--outputScaleGraphics | -scale] [number]`
 
-Default is `1`. **Note that from the CLI you must specify the scale size like `3x` (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `.figmagicrc`**.
+Default is `1`. **Note that from the CLI you must specify the scale size like `3x` (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `figmagic.json` or `.figmagicrc`**.
 
 #### Set output token data type
 
@@ -413,7 +413,7 @@ Default is `null`, and will then be taken from local `.env` file if not explicit
 
 `figmagic [--remSize | -rem] [number]`
 
-Default is `16`. **Note that from the CLI you must specify the REM size like `16p` (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `.figmagicrc`**.
+Default is `16`. **Note that from the CLI you must specify the REM size like `16p` (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `figmagic.json` or `.figmagicrc`**.
 
 #### Force update all elements
 
@@ -487,7 +487,7 @@ Use this when you want to sync tokens in your "Design tokens" page in Figma. Use
 
 Default is `templates/graphic`.
 
-**Your local .figmagicrc file must have a block with `templates.templatePathGraphic` that specifies a valid path, such as `./node_modules/figmagic/templates/graphic`**.
+**Your local `figmagic.json` or `.figmagicrc` file must have a block with `templates.templatePathGraphic` that specifies a valid path, such as `./node_modules/figmagic/templates/graphic`**.
 
 #### Set path to React template
 
@@ -495,7 +495,7 @@ Default is `templates/graphic`.
 
 Default is `templates/react`.
 
-**Your local .figmagicrc file must have a block with `templates.templatePathReact` that specifies a valid path, such as `./node_modules/figmagic/templates/react`**.
+**Your local `figmagic.json` or `.figmagicrc` file must have a block with `templates.templatePathReact` that specifies a valid path, such as `./node_modules/figmagic/templates/react`**.
 
 #### Set path to Storybook template
 
@@ -503,7 +503,7 @@ Default is `templates/react`.
 
 Default is `templates/story`.
 
-**Your local .figmagicrc file must have a block with `templates.templatePathStory` that specifies a valid path, such as `./node_modules/figmagic/templates/story`**.
+**Your local `figmagic.json` or `.figmagicrc` file must have a block with `templates.templatePathStory` that specifies a valid path, such as `./node_modules/figmagic/templates/story`**.
 
 #### Set path to Styled Components template
 
@@ -511,7 +511,7 @@ Default is `templates/story`.
 
 Default is `templates/styled`.
 
-**Your local .figmagicrc file must have a block with `templates.templatePathStyled` that specifies a valid path, such as `./node_modules/figmagic/templates/styled`**.
+**Your local `figmagic.json` or `.figmagicrc` file must have a block with `templates.templatePathStyled` that specifies a valid path, such as `./node_modules/figmagic/templates/styled`**.
 
 #### Pass in Figma API token
 
@@ -562,7 +562,7 @@ These four types have support for a variety of formats that differ a bit between
 
 Figmagic comes with a set of templates for several file formats. In case you want to customize these, you should respect and keep any substitution tags that exist in the original files; removing them may cause your templates to function incorrectly. For example, the React template includes a substitution tag called `{{NAME_STYLED}}` which will be changed to your adjusted element name with a "Styled" suffix. Removing it would make your generated code useless as-is.
 
-The recommended way of adding and using your own templates would be to copy-paste any/all existing templates from Figmagic into your project, pointing the `.figmagicrc` configuration to your local copies, and then modifying them as needed.
+The recommended way of adding and using your own templates would be to copy-paste any/all existing templates from Figmagic into your project, pointing the configuration file to your local copies, and then modifying them as needed.
 
 ## Token formatting and conversions
 

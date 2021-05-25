@@ -55,11 +55,9 @@ You can prefix your layer/group with `:` to set/communicate a pseudo-selector (l
 
 A `_` (underscore) makes anything prefixed with it ignored during the generation step. Use this for meta-information, redlines or other things you might need to communicate your design, but which should not affect the code generation.
 
-
 ![Nesting: Button, Normal](add-underscore-to-block.png)
 
 _Prefixing with an underscore means we can avoid the conflict, but still clearly communicate intended behavior and style._
-
 
 ### Tip: Redlines
 
@@ -67,8 +65,8 @@ _Prefixing with an underscore means we can avoid the conflict, but still clearly
 
 ## Details
 
-- You can provide your own templates through `.figmagicrc` or the CLI; for expected shape see `/templates` in the Figmagic source code.
-- You can skip code generation for any of the 5 generated file types through CLI or `.figmagicrc`.
+- You can provide your own templates through `.figmagicrc`/`.figmagicrc` or the CLI; for expected shape see `/templates` in the Figmagic source code.
+- You can skip code generation for any of the 5 generated file types through CLI or `.figmagicrc`/`.figmagicrc`.
 - You can pass in `--forceUpdate` to force all generated files to be updated.
 
 For specifics on how to do any CLI or RC file configuration, see documentation below.
