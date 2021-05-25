@@ -18,8 +18,9 @@ import { checkIfExists } from './bin/frameworks/filesystem/checkIfExists';
 import { configToInit } from './bin/frameworks/system/configToInit';
 
 import { MsgJobCompleteInit, MsgJobCompleteInitStopped } from './bin/frameworks/messages/messages';
+import { ErrorNoConfigFound } from './bin/frameworks/errors/errors';
 
-const RC_FILE = '.figmagicrc';
+const RC_FILES = ['figmagic.json', '.figmagicrc'];
 
 /**
  * @description Initialize and setup Figmagic (environment; configuration; data) before handing over to the controller
@@ -29,12 +30,19 @@ async function main(): Promise<void> {
     // Setup environment and user configuration
     dotenv.config();
 
+    // Use first valid match for configuration file
+    const configFilePath: any = RC_FILES.filter((configFile: string) => {
+      if (checkIfExists(configFile)) return configFile;
+    })[0];
+
     // User wants to init a configuration...
     const [, , ...CLI_ARGS] = process.argv;
-    if (CLI_ARGS[0]?.toLowerCase() === 'init') initConfig(configToInit);
+    if (CLI_ARGS[0]?.toLowerCase() === 'init') initConfig(configToInit, configFilePath);
     // User wants to run Figmagic
     else {
-      const USER_CONFIG_PATH = path.join(`${process.cwd()}`, RC_FILE);
+      if (!configFilePath) throw new Error(ErrorNoConfigFound);
+
+      const USER_CONFIG_PATH = path.join(`${process.cwd()}`, configFilePath);
       const CONFIG: Config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
 
       // Get data
@@ -62,10 +70,10 @@ async function main(): Promise<void> {
 /**
  * @description Handle basic configuration initialization
  */
-function initConfig(file: any) {
-  const FILE_EXISTS = checkIfExists(RC_FILE);
+function initConfig(file: any, configFilePath: string) {
+  const FILE_EXISTS = checkIfExists(configFilePath);
   if (!FILE_EXISTS) {
-    write(RC_FILE, JSON.stringify(file, null, ' '));
+    write(configFilePath, JSON.stringify(file, null, ' '));
     console.log(MsgJobCompleteInit);
     return;
   }

@@ -3,6 +3,7 @@
 /__graphics__
 
 .figmagicrc
+figmagic.json
 /.figmagic
 /figma
 /grid

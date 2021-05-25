@@ -4,6 +4,8 @@ function ErrorMessage(str: string): string {
   return `${colors.FgRed}${str}${colors.Reset}`;
 }
 
+export const ErrorNoConfigFound = ErrorMessage('Unable to find a valid configuration file!');
+
 export const ErrorAddDescriptionToElements = ErrorMessage(
   'Missing elements and/or components in addDescriptionToElements()!'
 );
