@@ -40,7 +40,15 @@ describe('Failure cases', () => {
       file: JSON.stringify(payload),
       path: './',
       name: name,
-      format: 'invalid'
+      format: 'invalid',
+      overwrite: {
+        css: false,
+        description: false,
+        graphic: false,
+        react: false,
+        storybook: false,
+        styled: false
+      }
     };
 
     expect(() => writeFile(writeOp)).toThrowError();
@@ -55,7 +63,15 @@ describe('Failure cases', () => {
       file: JSON.stringify(payload),
       path: './',
       name: name,
-      format: 'css'
+      format: 'css',
+      overwrite: {
+        css: false,
+        description: false,
+        graphic: false,
+        react: false,
+        storybook: false,
+        styled: false
+      }
     };
 
     expect(() => writeFile(writeOp)).toThrowError();
@@ -80,6 +96,14 @@ describe('Success cases', () => {
           templatePathStorybook: 'templates/story',
           templatePathStyled: 'templates/styled',
           templatePathGraphic: 'templates/graphic'
+        },
+        overwrite: {
+          css: false,
+          description: false,
+          graphic: false,
+          react: false,
+          storybook: false,
+          styled: false
         }
       };
 
@@ -109,6 +133,14 @@ describe('Success cases', () => {
           templatePathStorybook: 'templates/story',
           templatePathStyled: 'templates/styled',
           templatePathGraphic: 'templates/graphic'
+        },
+        overwrite: {
+          css: false,
+          description: false,
+          graphic: false,
+          react: false,
+          storybook: false,
+          styled: false
         }
       };
 
