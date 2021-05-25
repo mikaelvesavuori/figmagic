@@ -52,6 +52,8 @@ Local usage is possible by installing Figmagic as a developer dependency (under 
 
 ### Create configuration file (`figmagic.json` or `.figmagicrc`)
 
+Figmagic can be run without any configuration. You will always need to specify your Figma API token and Figma document ID, though! However, it's highly recommended to add a configuration: it's easy and gives you a ton of possibilities to optimize for your own needs.
+
 Run `figmagic init` to initialize a basic configuration file, either named `figmagic.json` or `.figmagicrc` file. As long as you provide your Figma token and document ID/URL, the new generated file is ready to use for Element Sync which can only be done if your configuration points to valid code generation templates (which the generated one does). You'll see that the config will point `templates.templatePath{Graphic|React|Styled|Storybook}` to `./node_modules/figmagic/templates/{graphic|react|styled|story}`. Read more under the [Configuration file section](#configuration-file-figmagicrc).
 
 ### Running Figmagic
