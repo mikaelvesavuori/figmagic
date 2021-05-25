@@ -21,7 +21,14 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should write files to disk, when given a valid configuration and a set of elements', async () => {
-    writeElements(elements, baseConfig);
+    const config = baseConfig;
+    baseConfig.templates = {
+      templatePathGraphic: 'templates/graphic',
+      templatePathReact: 'templates/react',
+      templatePathStorybook: 'templates/story',
+      templatePathStyled: 'templates/styled'
+    };
+    writeElements(elements, config);
     const FILE_EXISTS = fs.existsSync(TEMP_FOLDER);
     expect(FILE_EXISTS).toBeTruthy();
     await trash(TEMP_FOLDER);

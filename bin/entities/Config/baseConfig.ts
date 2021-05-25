@@ -43,10 +43,10 @@ export const baseConfig: Config = {
   syncGraphics: false,
   syncTokens: true,
   templates: {
-    templatePathGraphic: 'templates/graphic',
-    templatePathReact: 'templates/react',
-    templatePathStorybook: 'templates/story',
-    templatePathStyled: 'templates/styled'
+    templatePathGraphic: './node_modules/figmagic/templates/graphic',
+    templatePathReact: './node_modules/figmagic/templates/react',
+    templatePathStorybook: './node_modules/figmagic/templates/story',
+    templatePathStyled: './node_modules/figmagic/templates/styled'
   },
   token: '',
   tokensRelativeImportPrefix: '',

@@ -23,6 +23,12 @@ describe('Success cases', () => {
     CONFIG.token = process.env.FIGMA_TOKEN || '';
     CONFIG.url = process.env.FIGMA_URL || '';
     CONFIG.outputFolderElements = '__test-elements-success__';
+    CONFIG.templates = {
+      templatePathGraphic: 'templates/graphic',
+      templatePathReact: 'templates/react',
+      templatePathStorybook: 'templates/story',
+      templatePathStyled: 'templates/styled'
+    };
     const DATA = figmaTestResponse;
 
     // @ts-ignore

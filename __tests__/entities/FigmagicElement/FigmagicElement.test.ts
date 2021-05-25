@@ -29,6 +29,12 @@ describe('Success cases', () => {
     const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
     CONFIG.token = '***';
     CONFIG.url = '***';
+    CONFIG.templates = {
+      templatePathGraphic: 'templates/graphic',
+      templatePathReact: 'templates/react',
+      templatePathStorybook: 'templates/story',
+      templatePathStyled: 'templates/styled'
+    };
 
     expect(makeFigmagicElement(buttonElement as Frame, CONFIG, DESCRIPTION)).toMatchObject(
       validButtonFigmagicElement
