@@ -41,6 +41,7 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
       template = template
         .replace(/{{NAME}}/gi, name)
         .replace('>{children ? children : "{{TEXT}}"}</{{NAME_STYLED}}>', ' />')
+        .replace('>{props.children ? props.children : "{{TEXT}}"}</{{NAME_STYLED}}>', ' />')
         .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
     else
       template = template
@@ -49,7 +50,10 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
         .replace(/\s>/gi, '>')
         .replace(/{{TEXT}}/gi, text !== ' ' ? text : '');
 
-    template = template.replace(/{{EXTRA_PROPS}}/gi, props).replace(' >', '>');
+    template = template
+      .replace(/{{EXTRA_PROPS}}/gi, props)
+      .replace(' >', '>')
+      .replace('  ', ' ');
 
     return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
   } catch (error) {
