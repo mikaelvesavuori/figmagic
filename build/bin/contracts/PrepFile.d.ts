@@ -6,6 +6,7 @@ export interface PrepComponent {
     templates: Templates;
     text: string;
     extraProps: string;
+    element: string;
 }
 export interface PrepStyledComponents {
     name: string;

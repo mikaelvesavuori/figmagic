@@ -31,7 +31,8 @@ function getFileContentAndPath(getFileContentAndPathOperation) {
                         format,
                         templates,
                         text,
-                        extraProps
+                        extraProps,
+                        element
                     });
             },
             styled: () => {

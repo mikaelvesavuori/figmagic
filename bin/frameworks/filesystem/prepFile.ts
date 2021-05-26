@@ -10,6 +10,8 @@ import {
 
 import { loadFile } from './loadFile';
 
+import { checkIfVoidElement } from '../system/checkIfVoidElement';
+
 import { MsgGeneratedFileWarning } from '../messages/messages';
 import {
   ErrorPrepFileComponent,
@@ -26,20 +28,30 @@ import {
 export const prepComponent = (data: PrepComponent): FileContentWithPath => {
   try {
     if (!data) throw new Error(ErrorPrepFileComponent);
-    if (!data.name || !data.filePath || !data.format || !data.templates)
+    if (!data.name || !data.filePath || !data.format || !data.templates || !data.element)
       throw new Error(ErrorPrepFileComponent);
-    const { name, filePath, format, templates, text, extraProps } = data;
+    const { name, filePath, format, templates, text, extraProps, element } = data;
+    const props = extraProps === '' || extraProps === ' ' ? `${extraProps}` : ` ${extraProps}`;
 
     const SUFFIX = 'Styled';
     const PATH = `${templates.templatePathReact}.${format}`;
 
+    console.log('checkIfVoidElement', checkIfVoidElement(element));
+
     let template = loadFile(PATH) as string;
-    template = template
-      .replace(/{{NAME}}/gi, name)
-      .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`)
-      .replace(/{{EXTRA_PROPS}}/gi, ` ${extraProps}`)
-      .replace(/\s>/gi, '>')
-      .replace(/{{TEXT}}/gi, text !== ' ' ? text : '');
+    if (checkIfVoidElement(element))
+      template = template
+        .replace(/{{NAME}}/gi, name)
+        .replace('>{children ? children : "{{TEXT}}"}</{{NAME_STYLED}}>', ' />')
+        .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
+    else
+      template = template
+        .replace(/{{NAME}}/gi, name)
+        .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`)
+        .replace(/\s>/gi, '>')
+        .replace(/{{TEXT}}/gi, text !== ' ' ? text : '');
+
+    template = template.replace(/{{EXTRA_PROPS}}/gi, props).replace(' >', '>');
 
     return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
   } catch (error) {

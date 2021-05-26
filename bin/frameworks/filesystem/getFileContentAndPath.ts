@@ -80,7 +80,8 @@ export function getFileContentAndPath(
             format,
             templates,
             text,
-            extraProps
+            extraProps,
+            element
           } as PrepComponent);
       },
       styled: () => {

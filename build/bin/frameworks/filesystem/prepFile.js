@@ -2,24 +2,33 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.prepGraphicComponent = exports.prepDescription = exports.prepStorybook = exports.prepCss = exports.prepStyledComponents = exports.prepComponent = void 0;
 const loadFile_1 = require("./loadFile");
+const checkIfVoidElement_1 = require("../system/checkIfVoidElement");
 const messages_1 = require("../messages/messages");
 const errors_1 = require("../errors/errors");
 const prepComponent = (data) => {
     try {
         if (!data)
             throw new Error(errors_1.ErrorPrepFileComponent);
-        if (!data.name || !data.filePath || !data.format || !data.templates)
+        if (!data.name || !data.filePath || !data.format || !data.templates || !data.element)
             throw new Error(errors_1.ErrorPrepFileComponent);
-        const { name, filePath, format, templates, text, extraProps } = data;
+        const { name, filePath, format, templates, text, extraProps, element } = data;
+        const props = extraProps === '' || extraProps === ' ' ? `${extraProps}` : ` ${extraProps}`;
         const SUFFIX = 'Styled';
         const PATH = `${templates.templatePathReact}.${format}`;
+        console.log('checkIfVoidElement', checkIfVoidElement_1.checkIfVoidElement(element));
         let template = loadFile_1.loadFile(PATH);
-        template = template
-            .replace(/{{NAME}}/gi, name)
-            .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`)
-            .replace(/{{EXTRA_PROPS}}/gi, ` ${extraProps}`)
-            .replace(/\s>/gi, '>')
-            .replace(/{{TEXT}}/gi, text !== ' ' ? text : '');
+        if (checkIfVoidElement_1.checkIfVoidElement(element))
+            template = template
+                .replace(/{{NAME}}/gi, name)
+                .replace('>{children ? children : "{{TEXT}}"}</{{NAME_STYLED}}>', ' />')
+                .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
+        else
+            template = template
+                .replace(/{{NAME}}/gi, name)
+                .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`)
+                .replace(/\s>/gi, '>')
+                .replace(/{{TEXT}}/gi, text !== ' ' ? text : '');
+        template = template.replace(/{{EXTRA_PROPS}}/gi, props).replace(' >', '>');
         return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
     }
     catch (error) {

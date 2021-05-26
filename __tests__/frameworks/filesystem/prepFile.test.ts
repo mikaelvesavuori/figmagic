@@ -95,7 +95,8 @@ describe('Success cases', () => {
         templatePathReact: 'templates/react'
       },
       text: 'fff',
-      extraProps: 'qqq'
+      extraProps: 'qqq',
+      element: 'div'
     };
 
     const fileContent = `import React from 'react';
