@@ -15,7 +15,6 @@ const prepComponent = (data) => {
         const props = extraProps === '' || extraProps === ' ' ? `${extraProps}` : ` ${extraProps}`;
         const SUFFIX = 'Styled';
         const PATH = `${templates.templatePathReact}.${format}`;
-        console.log('checkIfVoidElement', checkIfVoidElement_1.checkIfVoidElement(element));
         let template = loadFile_1.loadFile(PATH);
         if (checkIfVoidElement_1.checkIfVoidElement(element))
             template = template

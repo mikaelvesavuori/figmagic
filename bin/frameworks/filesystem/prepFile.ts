@@ -36,8 +36,6 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
     const SUFFIX = 'Styled';
     const PATH = `${templates.templatePathReact}.${format}`;
 
-    console.log('checkIfVoidElement', checkIfVoidElement(element));
-
     let template = loadFile(PATH) as string;
     if (checkIfVoidElement(element))
       template = template
