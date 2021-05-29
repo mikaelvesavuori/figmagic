@@ -15,6 +15,7 @@ export declare const ErrorCreateGraphics: string;
 export declare const ErrorCreateImportStringFromList: string;
 export declare const ErrorCreateImportStringFromListZeroLength: string;
 export declare const ErrorCreateLinearGradientString: string;
+export declare const ErrorCreateRadialGradientString: string;
 export declare const ErrorCreatePage: string;
 export declare const ErrorCreateSolidColorString: string;
 export declare const ErrorCreateTokens: string;

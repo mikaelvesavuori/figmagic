@@ -4,6 +4,7 @@ exports.makeColorTokens = void 0;
 const camelize_1 = require("../../../frameworks/string/camelize");
 const createSolidColorString_1 = require("../../../frameworks/string/createSolidColorString");
 const createLinearGradientString_1 = require("../../../frameworks/string/createLinearGradientString");
+const createRadialGradientString_1 = require("../../../frameworks/string/createRadialGradientString");
 const errors_1 = require("../../../frameworks/errors/errors");
 function makeColorTokens(colorFrame) {
     if (!colorFrame)
@@ -27,5 +28,7 @@ function makeColorToken(item, colors) {
         colors[NAME] = createSolidColorString_1.createSolidColorString(FILLS);
     else if (FILLS.type === 'GRADIENT_LINEAR')
         colors[NAME] = createLinearGradientString_1.createLinearGradientString(FILLS);
+    else if (FILLS.type === 'GRADIENT_RADIAL')
+        colors[NAME] = createRadialGradientString_1.createRadialGradientString(FILLS);
 }
 //# sourceMappingURL=makeColorTokens.js.map

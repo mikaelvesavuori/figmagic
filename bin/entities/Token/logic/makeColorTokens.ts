@@ -4,6 +4,7 @@ import { ColorTokens } from '../../../contracts/Tokens';
 import { camelize } from '../../../frameworks/string/camelize';
 import { createSolidColorString } from '../../../frameworks/string/createSolidColorString';
 import { createLinearGradientString } from '../../../frameworks/string/createLinearGradientString';
+import { createRadialGradientString } from '../../../frameworks/string/createRadialGradientString';
 
 import {
   ErrorMakeColorTokensNoFrame,
@@ -35,4 +36,5 @@ function makeColorToken(item: Frame, colors: Record<string, unknown>) {
 
   if (FILLS.type === 'SOLID') colors[NAME] = createSolidColorString(FILLS);
   else if (FILLS.type === 'GRADIENT_LINEAR') colors[NAME] = createLinearGradientString(FILLS);
+  else if (FILLS.type === 'GRADIENT_RADIAL') colors[NAME] = createRadialGradientString(FILLS);
 }

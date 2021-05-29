@@ -104,7 +104,7 @@ _Flat elements should be enough for most basic use cases. Don't forget to name t
 
 #### Incomplete list of things that are not yet supported
 
-- Gradients (Linear Gradient is the only gradient type which is currently supported)
+- Gradients (Linear and Radial Gradients are the only gradient types which are currently supported)
 - Layout constraints
 - Layout grid
 - Images

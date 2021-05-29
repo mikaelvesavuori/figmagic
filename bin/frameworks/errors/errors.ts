@@ -45,6 +45,9 @@ export const ErrorCreateImportStringFromListZeroLength = ErrorMessage(
 export const ErrorCreateLinearGradientString = ErrorMessage(
   'Missing fills and gradientHandlePositions in createLinearGradientString!'
 );
+export const ErrorCreateRadialGradientString = ErrorMessage(
+  'Missing fills and gradientHandlePositions in createRadialGradientString!'
+);
 export const ErrorCreatePage = ErrorMessage('No pages provided to createPage()!');
 export const ErrorCreateSolidColorString = ErrorMessage('Missing fills in createSolidColorString!');
 export const ErrorCreateTokens = ErrorMessage(
