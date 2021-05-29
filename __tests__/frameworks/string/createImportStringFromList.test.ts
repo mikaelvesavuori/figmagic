@@ -7,6 +7,13 @@ describe('Failure cases', () => {
       createImportStringFromList();
     }).toThrow();
   });
+
+  test('It should throw an error if zero-length array is provided', () => {
+    expect(() => {
+      // @ts-ignore
+      createImportStringFromList([]);
+    }).toThrow();
+  });
 });
 
 describe('Success cases', () => {
@@ -33,5 +40,19 @@ import fontFamilies from 'tokens/fontFamilies';
 import fontWeights from 'tokens/fontWeights';
 import lineHeights from 'tokens/lineHeights';
 `);
+  });
+
+  test('It should correctly handle a custom value for "outputFolderTokens"', () => {
+    expect(createImportStringFromList(['spacing'], 'src/tokens')).toBe(
+      `import spacing from 'src/tokens/spacing';
+`
+    );
+  });
+
+  test('It should correctly handle a custom value for "outputFolderTokens" and "tokensRelativeImportPrefix"', () => {
+    expect(createImportStringFromList(['spacing'], 'src/tokens', '../../')).toBe(
+      `import spacing from '../../src/tokens/spacing';
+`
+    );
   });
 });
