@@ -10,7 +10,23 @@ export function createRadialGradientString(fills: Paint): string {
   if (!fills) throw new Error(ErrorCreateRadialGradientString);
   if (!fills.gradientHandlePositions) throw new Error(ErrorCreateRadialGradientString);
 
-  let str = `radial-gradient(circle, `;
+  const position = (() => {
+    // @ts-ignore
+    const pos1 = fills.gradientHandlePositions[0];
+    // @ts-ignore
+    const pos2 = fills.gradientHandlePositions[1];
+    // @ts-ignore
+    const pos3 = fills.gradientHandlePositions[2];
+
+    const start = (pos1.x * 100 - pos3.x * 100).toFixed(1);
+    const end = (pos2.y * 100 - pos1.y * 100).toFixed(1);
+    const x = (pos1.x * 100).toFixed(1);
+    const y = (pos1.y * 100).toFixed(1);
+
+    return `${start}% ${end}% at ${x}% ${y}%`;
+  })();
+
+  let str = `radial-gradient(${position}, `;
 
   const GRADIENT_STOPS = fills.gradientStops ? fills.gradientStops : null;
   if (!GRADIENT_STOPS) throw new Error();

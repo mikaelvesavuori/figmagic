@@ -44,6 +44,18 @@ export const gradientHandlePositions = [
   { x: 0, y: 0 }
 ];
 
+export const gradientHandlePositionsRadialThreeStop = [
+  { x: 0.5, y: 0.49999999999999994 },
+  { x: 0.5, y: 0.9999999999999999 },
+  { x: 0, y: 0.5 }
+];
+
+export const gradientHandlePositionsRadialFourStop = [
+  { x: 0.11499996389261546, y: -0.26000005073247534 },
+  { x: 1.6100000469720972, y: 1.559999962324166 },
+  { x: -1.6005737052199653, y: 1.1492210605869864 }
+];
+
 // Linear three-stop gradient
 export const gradientStops = [
   { color: { r: 1, g: 1, b: 1, a: 1 }, position: 0.1979166716337204 },
@@ -64,5 +76,76 @@ export const gradientStops = [
       a: 0.7599999904632568
     },
     position: 0.734375
+  }
+];
+
+// Radial three-stop gradient
+export const gradientStopsRadialThreeStop = [
+  {
+    color: {
+      r: 0.07923609018325806,
+      g: 0.6791666746139526,
+      b: 0.24721664190292358,
+      a: 1
+    },
+    position: 0
+  },
+  {
+    color: {
+      r: 0.26283931732177734,
+      g: 0.00822913646697998,
+      b: 0.987500011920929,
+      a: 0.5222289562225342
+    },
+    position: 0.47777101397514343
+  },
+  {
+    color: {
+      r: 0.07923609018325806,
+      g: 0.6791666746139526,
+      b: 0.24721664190292358,
+      a: 0
+    },
+    position: 1
+  }
+];
+
+// Radial four-stop gradient
+export const gradientStopsRadialFourStop = [
+  {
+    color: {
+      r: 0.6410416960716248,
+      g: 0.7497000098228455,
+      b: 0.8500000238418579,
+      a: 1
+    },
+    position: 0
+  },
+  {
+    color: {
+      r: 0.35032910108566284,
+      g: 0.2771237790584564,
+      b: 0.5623772740364075,
+      a: 0.5070183873176575
+    },
+    position: 0.2760416567325592
+  },
+  {
+    color: {
+      r: 0.8125,
+      g: 0.17604166269302368,
+      b: 0.17604166269302368,
+      a: 0.5222289562225342
+    },
+    position: 0.6927083134651184
+  },
+  {
+    color: {
+      r: 0.1302604228258133,
+      g: 0.17083333432674408,
+      b: 0.14162084460258484,
+      a: 0
+    },
+    position: 1
   }
 ];

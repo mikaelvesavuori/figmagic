@@ -1,6 +1,11 @@
 import { createRadialGradientString } from '../../../bin/frameworks/string/createRadialGradientString';
 
-import { gradientStops, gradientHandlePositions } from '../../../testdata/gradient';
+import {
+  gradientStopsRadialThreeStop,
+  gradientStopsRadialFourStop,
+  gradientHandlePositionsRadialThreeStop,
+  gradientHandlePositionsRadialFourStop
+} from '../../../testdata/gradient';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
@@ -12,14 +17,25 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should successfully process a three-stop linear gradient', () => {
+  test('It should successfully process a three-stop radial gradient', () => {
     expect(
       createRadialGradientString({
-        gradientStops,
-        gradientHandlePositions
+        gradientStops: gradientStopsRadialThreeStop,
+        gradientHandlePositions: gradientHandlePositionsRadialThreeStop
       })
     ).toBe(
-      'radial-gradient(circle, rgba(255, 255, 255, 1) 20%, rgba(43, 83, 144, 0.99) 45%, rgba(1, 10, 23, 0.76) 73%)'
+      'radial-gradient(50.0% 50.0% at 50.0% 50.0%, rgba(20, 173, 63, 1) 0%, rgba(67, 2, 252, 0.52) 48%, rgba(20, 173, 63, 0) 100%)'
+    );
+  });
+
+  test('It should successfully process a bigger four-stop radial gradient', () => {
+    expect(
+      createRadialGradientString({
+        gradientStops: gradientStopsRadialFourStop,
+        gradientHandlePositions: gradientHandlePositionsRadialFourStop
+      })
+    ).toBe(
+      'radial-gradient(171.6% 182.0% at 11.5% -26.0%, rgba(163, 191, 217, 1) 0%, rgba(89, 71, 143, 0.51) 28%, rgba(207, 45, 45, 0.52) 69%, rgba(33, 44, 36, 0) 100%)'
     );
   });
 });
