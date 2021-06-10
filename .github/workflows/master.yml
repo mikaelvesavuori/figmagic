@@ -40,10 +40,16 @@ jobs:
           CI: true
       - run: npx arkit
 
-      - name: Send coverage report with Codecov
-        uses: codecov/codecov-action@v1
-        id: coverage
-      - run: bash <(curl -s https://codecov.io/bash) -f jest-coverage/clover.xml
+      - name: Download and validate Codecov script
+        run: |
+          curl -fLso codecov https://codecov.io/bash;
+          VERSION=$(grep -o 'VERSION=\"[0-9\.]*\"' codecov | cut -d'"' -f2);
+          for i in 1 256 512
+          do
+            shasum -a $i -c --ignore-missing <(curl -s "https://raw.githubusercontent.com/codecov/codecov-bash/${VERSION}/SHA${i}SUM")
+          done
+      - name: Upload coverage reports to Codecov
+        run: bash ./codecov -f jest-coverage/clover.xml
 
       - name: Send coverage report with Code Climate
         uses: paambaati/codeclimate-action@v2.7.4
