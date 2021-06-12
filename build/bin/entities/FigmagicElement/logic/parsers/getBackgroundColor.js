@@ -7,7 +7,7 @@ const errors_1 = require("../../../../frameworks/errors/errors");
 function getBackgroundColor(element) {
     if (!element)
         throw new Error(errors_1.ErrorGetBackgroundColor);
-    if (!element.fills || !element.fills[0] || !element.fills[0].type)
+    if (!element.fills || !element.fills[0] || !element.fills[0].type || element.type === 'TEXT')
         return null;
     const FILLS = element.fills[0];
     if (FILLS.type === 'SOLID')
