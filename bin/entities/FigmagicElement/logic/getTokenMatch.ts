@@ -147,10 +147,19 @@ function matchOther(
     // Write expected value as-is, since we couldn't match it to a token
     if (!foundMatch) {
       let notFoundMessage = `${MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`;
+
+      // Handle colors since these need more verbose output
       if (property === 'color' || property === 'background-color')
         notFoundMessage += ` (HEX: ${convertRgbaToHex(
           expectedValue as string
         )}, ${getAlphaInPercent(expectedValue as string)})`;
+
+      // Height needs to add the px value or it becomes useless
+      if (property === 'height') {
+        notFoundMessage += `px`;
+        expectedValue += `px`;
+      }
+
       console.log(notFoundMessage);
       css += `${property}: ${expectedValue};\n`;
     }

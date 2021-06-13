@@ -96,6 +96,10 @@ function matchOther(expectedValue, remSize, tokens, tokenFileName, property, css
             let notFoundMessage = `${messages_1.MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`;
             if (property === 'color' || property === 'background-color')
                 notFoundMessage += ` (HEX: ${convertRgbaToHex_1.convertRgbaToHex(expectedValue)}, ${getAlphaInPercent_1.getAlphaInPercent(expectedValue)})`;
+            if (property === 'height') {
+                notFoundMessage += `px`;
+                expectedValue += `px`;
+            }
             console.log(notFoundMessage);
             css += `${property}: ${expectedValue};\n`;
         }
