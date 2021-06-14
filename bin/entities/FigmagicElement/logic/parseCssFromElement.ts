@@ -104,7 +104,7 @@ type CalcData = {
 const reduceDuplicates = (str: string) =>
   Array.from(new Set(str.split(/;/gi)))
     .toString()
-    .replace(/,/gi, ';');
+    .replace(/,\n/gi, ';\n');
 
 const getFiles = (filePath: string, outputFormatToken: string): any => {
   try {

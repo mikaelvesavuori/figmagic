@@ -9,7 +9,7 @@ function getBorderColor(element) {
     if (!(element.strokes && element.strokes.length > 0 && element.strokes[0].type === 'SOLID'))
         return null;
     if (!element.strokes[0].color)
-        throw new Error('asdf');
+        throw new Error(errors_1.ErrorGetBorderColor);
     const R = roundColorValue_1.roundColorValue(element.strokes[0].color.r);
     const G = roundColorValue_1.roundColorValue(element.strokes[0].color.g);
     const B = roundColorValue_1.roundColorValue(element.strokes[0].color.b);

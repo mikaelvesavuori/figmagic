@@ -89,7 +89,7 @@ const getFiles = (filePath, outputFormatTokens) => {
 };
 const reduceCssDuplicates = (css) => Array.from(new Set(css.split(/;/gi)))
     .toString()
-    .replace(/,/gi, ';');
+    .replace(/,\n/gi, ';\n');
 const getFontColor = (textElement) => {
     if (textElement.fills) {
         if (textElement.fills[0] && textElement.fills[0].type === 'SOLID') {

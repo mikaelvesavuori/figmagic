@@ -28,7 +28,7 @@ describe('Success cases', () => {
       // @ts-ignore
       parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElement))
     ).toMatchObject({
-      updatedCss: `color: rgba(0; 0; 0; 0);
+      updatedCss: `color: rgba(0, 0, 0, 0);
 font-size: \${fontSizes.paragraph};
 font-family: \${fontFamilies.regular};
 font-weight: \${fontWeights.bold};
@@ -71,7 +71,7 @@ text-transform: uppercase;
       // @ts-ignore
       parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElementNoStyle))
     ).toMatchObject({
-      updatedCss: `color: rgba(0; 0; 0; 0);\n`,
+      updatedCss: `color: rgba(0, 0, 0, 0);\n`,
       updatedImports: []
     });
   });
@@ -85,7 +85,7 @@ text-transform: uppercase;
       // @ts-ignore
       parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElementNoPsName))
     ).toMatchObject({
-      updatedCss: `color: rgba(0; 0; 0; 0);
+      updatedCss: `color: rgba(0, 0, 0, 0);
 font-size: \${fontSizes.paragraph};
 font-family: \${fontFamilies.regular};
 font-weight: \${fontWeights.bold};
@@ -109,7 +109,7 @@ text-transform: uppercase;
         makeTypographyElement(cssTypographyElementLineHeightPercent)
       )
     ).toMatchObject({
-      updatedCss: `color: rgba(0; 0; 0; 0);
+      updatedCss: `color: rgba(0, 0, 0, 0);
 font-size: \${fontSizes.paragraph};
 font-family: \${fontFamilies.regular};
 font-weight: \${fontWeights.bold};
@@ -130,7 +130,7 @@ text-transform: uppercase;
     expect(
       parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElementTitleCase))
     ).toMatchObject({
-      updatedCss: `color: rgba(0; 0; 0; 0);
+      updatedCss: `color: rgba(0, 0, 0, 0);
 font-size: \${fontSizes.paragraph};
 font-family: \${fontFamilies.regular};
 font-weight: \${fontWeights.bold};

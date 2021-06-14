@@ -58,7 +58,7 @@ function parseCssFromElement(layoutElement, textElement, remSize, outputFormatTo
 exports.parseCssFromElement = parseCssFromElement;
 const reduceDuplicates = (str) => Array.from(new Set(str.split(/;/gi)))
     .toString()
-    .replace(/,/gi, ';');
+    .replace(/,\n/gi, ';\n');
 const getFiles = (filePath, outputFormatToken) => {
     try {
         const borderWidths = getFileContents_1.getFileContents(filePath, 'borderWidths', outputFormatToken);

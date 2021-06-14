@@ -145,7 +145,7 @@ const getFiles = (filePath: string, outputFormatTokens: string): any => {
 const reduceCssDuplicates = (css: string) =>
   Array.from(new Set(css.split(/;/gi)))
     .toString()
-    .replace(/,/gi, ';');
+    .replace(/,\n/gi, ';\n');
 
 const getFontColor = (textElement: Frame) => {
   if (textElement.fills) {

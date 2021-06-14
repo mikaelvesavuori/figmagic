@@ -26,9 +26,9 @@ width: 100%;
 padding-top: 33.8125rem;
 padding-bottom: -33.8125rem;
 height: \${spacing.big};
-background-color: rgba(0; 0; 0; 0);
+background-color: rgba(0, 0, 0, 0);
 border-width: \${borderWidths.hairline};
-border-color: rgba(0; 0; 0; 0);
+border-color: rgba(0, 0, 0, 0);
 border-radius: \${radii.soft};
 `,
       updatedImports: ['spacing', 'spacing', 'borderWidths', 'radii']
@@ -51,7 +51,7 @@ padding-bottom: 17.25rem;
 padding-left: -0.0625rem;
 padding-right: 0.0625rem;
 height: 147px;
-background: linear-gradient(180deg; rgba(255; 255; 255; 1) 20%; rgba(43; 83; 144; 0.99) 45%; rgba(1; 10; 23; 0.76) 73%);
+background: linear-gradient(180deg, rgba(255, 255, 255, 1) 20%, rgba(43, 83, 144, 0.99) 45%, rgba(1, 10, 23, 0.76) 73%);
 border-width: \${borderWidths.hairline};
 border-color: \${colors.blue2};
 border-radius: \${radii.soft};
