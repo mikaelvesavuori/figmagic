@@ -38,6 +38,8 @@ export function parseCssFromElement(
 
     // Add defaults
     let css = `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
+
+    // Assume all images are full bleed
     if (layoutElement.fills && layoutElement.fills.some((fill) => fill['type'] === 'IMAGE'))
       css += `object-fit: cover;\n`;
 

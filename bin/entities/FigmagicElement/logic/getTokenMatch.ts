@@ -155,7 +155,7 @@ function matchOther(
         )}, ${getAlphaInPercent(expectedValue as string)})`;
 
       // Height needs to add the px value or it becomes useless
-      if (property === 'height') {
+      if (property === 'height' || property === 'font-size') {
         notFoundMessage += `px`;
         expectedValue += `px`;
       }
