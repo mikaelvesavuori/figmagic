@@ -37,7 +37,11 @@ export function parseCssFromElement(
     const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputFormatToken);
 
     // Add defaults
+    console.log('layoutElement', layoutElement);
     let css = `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
+    if (layoutElement.fills && layoutElement.fills.some((fill) => fill['type'] === 'IMAGE'))
+      css += `object-fit: cover;\n`;
+
     let imports: any = [];
 
     const padding = calcPadding(
