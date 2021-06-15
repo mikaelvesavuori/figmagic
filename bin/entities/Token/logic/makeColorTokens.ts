@@ -8,8 +8,7 @@ import { createRadialGradientString } from '../../../frameworks/string/createRad
 
 import {
   ErrorMakeColorTokensNoFrame,
-  ErrorMakeColorTokensNoChildren,
-  ErrorMakeColorTokensNoFills
+  ErrorMakeColorTokensNoChildren
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -21,15 +20,16 @@ export function makeColorTokens(colorFrame: Frame): ColorTokens {
 
   const colors: Record<string, unknown> = {};
   const TOKENS = colorFrame.children;
+  console.log('!!!!');
   TOKENS.forEach((item: Frame) => makeColorToken(item, colors));
+  console.log('TOKENS', TOKENS);
 
   return colors;
 }
 
 function makeColorToken(item: Frame, colors: Record<string, unknown>) {
   // @ts-ignore
-  if (!item.fills) throw new Error(ErrorMakeColorTokensNoFills);
-  if (!item.fills[0]) throw new Error(ErrorMakeColorTokensNoFills);
+  if (!item.fills || item.fills.length === 0) return null;
 
   const NAME = camelize(item.name);
   const FILLS = item.fills[0];

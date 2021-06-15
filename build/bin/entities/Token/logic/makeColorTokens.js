@@ -13,15 +13,15 @@ function makeColorTokens(colorFrame) {
         throw new Error(errors_1.ErrorMakeColorTokensNoChildren);
     const colors = {};
     const TOKENS = colorFrame.children;
+    console.log('!!!!');
     TOKENS.forEach((item) => makeColorToken(item, colors));
+    console.log('TOKENS', TOKENS);
     return colors;
 }
 exports.makeColorTokens = makeColorTokens;
 function makeColorToken(item, colors) {
-    if (!item.fills)
-        throw new Error(errors_1.ErrorMakeColorTokensNoFills);
-    if (!item.fills[0])
-        throw new Error(errors_1.ErrorMakeColorTokensNoFills);
+    if (!item.fills || item.fills.length === 0)
+        return null;
     const NAME = camelize_1.camelize(item.name);
     const FILLS = item.fills[0];
     if (FILLS.type === 'SOLID')

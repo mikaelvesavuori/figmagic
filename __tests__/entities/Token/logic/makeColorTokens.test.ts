@@ -1,23 +1,12 @@
 import { makeColorTokens } from '../../../../bin/entities/Token/logic/makeColorTokens';
 
-import {
-  colorFrame,
-  colorFrameOpacity,
-  colorFrameInvalid
-} from '../../../../testdata/frames/colorFrame';
+import { colorFrame, colorFrameOpacity } from '../../../../testdata/frames/colorFrame';
 
 describe('Failure cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
     expect(() => {
       // @ts-ignore
       makeColorTokens({});
-    }).toThrow();
-  });
-
-  test('It should throw an error if frame has "color" property but not "color.fills"', () => {
-    expect(() => {
-      // @ts-ignore
-      makeColorTokens(colorFrameInvalid);
     }).toThrow();
   });
 
