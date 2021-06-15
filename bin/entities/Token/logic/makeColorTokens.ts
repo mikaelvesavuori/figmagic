@@ -20,9 +20,7 @@ export function makeColorTokens(colorFrame: Frame): ColorTokens {
 
   const colors: Record<string, unknown> = {};
   const TOKENS = colorFrame.children;
-  console.log('!!!!');
   TOKENS.forEach((item: Frame) => makeColorToken(item, colors));
-  console.log('TOKENS', TOKENS);
 
   return colors;
 }

@@ -13,9 +13,7 @@ function makeColorTokens(colorFrame) {
         throw new Error(errors_1.ErrorMakeColorTokensNoChildren);
     const colors = {};
     const TOKENS = colorFrame.children;
-    console.log('!!!!');
     TOKENS.forEach((item) => makeColorToken(item, colors));
-    console.log('TOKENS', TOKENS);
     return colors;
 }
 exports.makeColorTokens = makeColorTokens;
