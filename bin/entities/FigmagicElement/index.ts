@@ -129,16 +129,26 @@ class FigmagicElement {
   }
 
   /**
-   * @description Set description for the Figmagic element. This is later outputted to the description file.
+   * @description Set description for the Figmagic element. This is later output to the description file.
    */
   private setDescription(): void {
     let description = this.description;
-    if (this.description.match(/description=(.*)/)) {
-      const INDEX = this.description.indexOf('description=');
-      const MARKER_LENGTH = 12; // "description=" is 12 characters
-      description = description.slice(INDEX + MARKER_LENGTH, description.length);
-      this.description = description;
+
+    // Remove the element reference, if it exists
+    if (description.match(/element=(.*)/)) {
+      const _match = description.match(/element=(.*)/);
+      const match = _match ? _match[0] : null;
+      if (match) description = description.replace(match, '');
     }
+
+    // Clean up description
+    if (description.match(/description=(.*)/)) {
+      const _match = description.match(/description=(.*)/);
+      const match = _match ? _match[0] : null;
+      if (match) description = description.replace(match, '');
+    }
+
+    this.description = description;
   }
 
   /**

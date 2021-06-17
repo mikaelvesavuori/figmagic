@@ -24,7 +24,7 @@ font-weight: \${fontWeights.regular};
 line-height: \${lineHeights.xs};
 text-align: left;
 `,
-        description: '\n# Sub\n\nTiny text snippets.',
+        description: '\n\n# Sub\n\nTiny text snippets.',
         element: 'sub',
         extraProps: '',
         html: '<sub></sub>',

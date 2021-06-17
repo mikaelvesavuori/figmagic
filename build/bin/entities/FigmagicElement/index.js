@@ -78,12 +78,19 @@ class FigmagicElement {
     }
     setDescription() {
         let description = this.description;
-        if (this.description.match(/description=(.*)/)) {
-            const INDEX = this.description.indexOf('description=');
-            const MARKER_LENGTH = 12;
-            description = description.slice(INDEX + MARKER_LENGTH, description.length);
-            this.description = description;
+        if (description.match(/element=(.*)/)) {
+            const _match = description.match(/element=(.*)/);
+            const match = _match ? _match[0] : null;
+            if (match)
+                description = description.replace(match, '');
         }
+        if (description.match(/description=(.*)/)) {
+            const _match = description.match(/description=(.*)/);
+            const match = _match ? _match[0] : null;
+            if (match)
+                description = description.replace(match, '');
+        }
+        this.description = description;
     }
     setPlaceholderText() {
         var _a;
