@@ -8,7 +8,7 @@ interface {{NAME}}Props {
 }
 
 const {{NAME}}: React.FC<{{NAME}}Props> = ({ children }) => (
-  <{{NAME_STYLED}}{{EXTRA_PROPS}}>{children ? children : "{{TEXT}}"}</{{NAME_STYLED}}>
+  <{{NAME_STYLED}}{{EXTRA_PROPS}} {...props}>{children ? children : "{{TEXT}}"}</{{NAME_STYLED}}>
 );
 
 export default {{NAME}};

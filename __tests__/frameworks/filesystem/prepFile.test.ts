@@ -104,7 +104,7 @@ import PropTypes from 'prop-types';
 
 import aaaStyled from './aaaStyled';
 
-const aaa = (props) => <aaaStyled qqq>{props.children ? props.children : \"fff\"}</aaaStyled>;
+const aaa = (props) => <aaaStyled qqq {...props}>{props.children ? props.children : \"fff\"}</aaaStyled>;
 
 aaa.propTypes = {};
 

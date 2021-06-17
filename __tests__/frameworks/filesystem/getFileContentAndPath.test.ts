@@ -125,7 +125,7 @@ import PropTypes from 'prop-types';
 
 import colorsStyled from './colorsStyled';
 
-const colors = (props) => <colorsStyled>{props.children ? props.children : \"text\"}</colorsStyled>;
+const colors = (props) => <colorsStyled {...props}>{props.children ? props.children : \"text\"}</colorsStyled>;
 
 colors.propTypes = {};
 
