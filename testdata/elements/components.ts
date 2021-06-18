@@ -122,7 +122,6 @@ export const components = {
     description:
       'element=input\n' +
       'type=text\n' +
-      'placeholder=Placeholder text\n' +
       'description=\n' +
       '# Input (text)\n' +
       '\n' +

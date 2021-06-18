@@ -398,8 +398,7 @@ export const figmaTestResponse = {
           },
           {
             id: '3022:98',
-            name:
-              'Graphics can be exported in multiple formats with Figmagic. Instead of doing manual hand-overs, just tell your developer(s) that there have been updates to the graphics and let them pull the latest versions from your Figma document.',
+            name: 'Graphics can be exported in multiple formats with Figmagic. Instead of doing manual hand-overs, just tell your developer(s) that there have been updates to the graphics and let them pull the latest versions from your Figma document.',
             type: 'TEXT',
             blendMode: 'PASS_THROUGH',
             absoluteBoundingBox: {
@@ -5150,8 +5149,7 @@ export const figmaTestResponse = {
       },
       {
         id: '2874:83',
-        name:
-          'Design tokens are the abstract but shared elements from which your design system is built. Design tokens express any of the individual values that you build from: such as colors, spacing, and typographic features. Tokens offer a form of “contract” between a designer’s intent and its fulfillment by developers. This means that both sides agree to avoid by all means anything that’s not codified also as a token. For example, avoiding spacing values that are not also available as a token.It’s similar in many ways to old-school styleguides, but tokens should only ever communicate strict, hard values. Styleguides can tend to be context-sensitive and full of explanation—tokens must communicate without context or explanation. However: You may still want to add written guidance for usage. It’s just that the tokens should be able to be consumed without understanding anything specific about them. You should bind tokens to Figma styles whenever and wherever possible to simplify your own design work, but make sure that those are also represented here, as this page is where a developer will pick up tokens with Figmagic.',
+        name: 'Design tokens are the abstract but shared elements from which your design system is built. Design tokens express any of the individual values that you build from: such as colors, spacing, and typographic features. Tokens offer a form of “contract” between a designer’s intent and its fulfillment by developers. This means that both sides agree to avoid by all means anything that’s not codified also as a token. For example, avoiding spacing values that are not also available as a token.It’s similar in many ways to old-school styleguides, but tokens should only ever communicate strict, hard values. Styleguides can tend to be context-sensitive and full of explanation—tokens must communicate without context or explanation. However: You may still want to add written guidance for usage. It’s just that the tokens should be able to be consumed without understanding anything specific about them. You should bind tokens to Figma styles whenever and wherever possible to simplify your own design work, but make sure that those are also represented here, as this page is where a developer will pick up tokens with Figmagic.',
         type: 'TEXT',
         blendMode: 'PASS_THROUGH',
         absoluteBoundingBox: {
@@ -5589,7 +5587,6 @@ export const figmaTestResponse = {
       description:
         'element=input\n' +
         'type=text\n' +
-        'placeholder=Placeholder text\n' +
         'description=\n' +
         '# Input (text)\n' +
         '\n' +

@@ -134,18 +134,26 @@ class FigmagicElement {
   private setDescription(): void {
     let description = this.description;
 
-    // Remove the element reference, if it exists
+    const handleMatch = (regexMatch: any, currentDescription: string) => {
+      const match = regexMatch ? regexMatch[0] : null;
+      if (match) return currentDescription.replace(match, '');
+      return currentDescription;
+    };
+
     if (description.match(/element=(.*)/)) {
-      const _match = description.match(/element=(.*)/);
-      const match = _match ? _match[0] : null;
-      if (match) description = description.replace(match, '');
+      const regexMatch = description.match(/element=(.*)/);
+      description = handleMatch(regexMatch, description);
+    }
+
+    if (description.match(/type=(.*)/)) {
+      const regexMatch = description.match(/type=(.*)/);
+      description = handleMatch(regexMatch, description);
     }
 
     // Clean up description
     if (description.match(/description=(.*)/)) {
-      const _match = description.match(/description=(.*)/);
-      const match = _match ? _match[0] : null;
-      if (match) description = description.replace(match, '');
+      const regexMatch = description.match(/description=(.*)/);
+      description = handleMatch(regexMatch, description);
     }
 
     this.description = description;

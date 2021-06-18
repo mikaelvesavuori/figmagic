@@ -41,7 +41,6 @@ You can write use the following descriptors in Figma's component description fie
 - `description={DESCRIPTION}`: defines the text description that will be output to text/markdown. Example: `description=This is an input element with three variants`.
 - `element={ELEMENT}`: defines the actual generated element type. Example: `element=input`.
 - `type={TYPE}`: becomes an element property. Useful for complex elements like `input`. Example: `type=checkbox`.
-- `placeholder={PLACEHOLDER}`: become text in placeholder property. Example: `placeholder=This is some placeholder text in an input box`.
 
 ![Nesting: Button, Normal](component-desc-field.png)
 

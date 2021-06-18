@@ -78,17 +78,23 @@ class FigmagicElement {
     }
     setDescription() {
         let description = this.description;
-        if (description.match(/element=(.*)/)) {
-            const _match = description.match(/element=(.*)/);
-            const match = _match ? _match[0] : null;
+        const handleMatch = (regexMatch, currentDescription) => {
+            const match = regexMatch ? regexMatch[0] : null;
             if (match)
-                description = description.replace(match, '');
+                return currentDescription.replace(match, '');
+            return currentDescription;
+        };
+        if (description.match(/element=(.*)/)) {
+            const regexMatch = description.match(/element=(.*)/);
+            description = handleMatch(regexMatch, description);
+        }
+        if (description.match(/type=(.*)/)) {
+            const regexMatch = description.match(/type=(.*)/);
+            description = handleMatch(regexMatch, description);
         }
         if (description.match(/description=(.*)/)) {
-            const _match = description.match(/description=(.*)/);
-            const match = _match ? _match[0] : null;
-            if (match)
-                description = description.replace(match, '');
+            const regexMatch = description.match(/description=(.*)/);
+            description = handleMatch(regexMatch, description);
         }
         this.description = description;
     }

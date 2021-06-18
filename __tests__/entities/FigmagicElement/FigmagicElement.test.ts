@@ -24,8 +24,7 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should return a complete nested Figmagic element ("Button" example) and config when passing in valid token data (colors), configuration, and description', async () => {
     const USER_CONFIG_PATH = path.join(`testdata`, `testConfig`);
-    const DESCRIPTION =
-      'type=text\nplaceholder=Some placeholder text\n\nAn example of a Figmagic element description!';
+    const DESCRIPTION = '\nAn example of a Figmagic element description!';
     const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
     CONFIG.token = '***';
     CONFIG.url = '***';
@@ -43,7 +42,7 @@ describe('Success cases', () => {
 
   test('It should return a nested Figmagic element when passing in valid token data (colors), configuration, and description', async () => {
     const USER_CONFIG_PATH = path.join(`\${process.cwd()}`, `testdata`, `testConfig`);
-    const DESCRIPTION = `type=text\nplaceholder=Some placeholder text\n\nAn example of a Figmagic element description!`;
+    const DESCRIPTION = `type=text\n\nAn example of a Figmagic element description!`;
     const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
 
     expect(makeFigmagicElement(nestedSelectElement as Frame, CONFIG, DESCRIPTION)).toMatchObject({
@@ -67,7 +66,7 @@ describe('Success cases', () => {
 
   test('It should return a flat Figmagic element (only text element passed in) when passing in valid token data (colors), configuration, and description', async () => {
     const USER_CONFIG_PATH = path.join(`\${process.cwd()}`, `testdata`, `testConfig`);
-    const DESCRIPTION = `type=text\nplaceholder=Some placeholder text\n\nAn example of a Figmagic element description!`;
+    const DESCRIPTION = `\nAn example of a Figmagic element description!`;
     const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
 
     expect(makeFigmagicElement(flatH1Element as Frame, CONFIG, DESCRIPTION)).toMatchObject({
@@ -81,7 +80,7 @@ describe('Success cases', () => {
 
   test('It should return a flat Figmagic element (both layout and text element passed in) when passing in valid token data (colors), configuration, and description', async () => {
     const USER_CONFIG_PATH = path.join(`\${process.cwd()}`, `testdata`, `testConfig`);
-    const DESCRIPTION = `type=text\nplaceholder=Some placeholder text\n\nAn example of a Figmagic element description!`;
+    const DESCRIPTION = `type=text\n\nAn example of a Figmagic element description!`;
     const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
 
     expect(makeFigmagicElement(flatSliderElement as Frame, CONFIG, DESCRIPTION)).toMatchObject({
