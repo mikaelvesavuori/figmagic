@@ -29,7 +29,6 @@ function makeLineHeightToken(item, remSize, unitlessPrecision = 2, lineHeightUni
         ? Math.round(item.style.lineHeightPx * 1000) / 1000
         : 0;
     let value = '0';
-    console.log({ lineHeightUnit });
     switch (lineHeightUnit) {
         case 'px':
             value = `${LINE_HEIGHT_VALUE_IN_PX}px`;

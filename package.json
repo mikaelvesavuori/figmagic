@@ -14,7 +14,7 @@
     "type": "git",
     "url": "https://github.com/mikaelvesavuori/figmagic.git"
   },
-  "version": "4.2.19",
+  "version": "4.2.20",
   "author": "Mikael Vesavuori",
   "contributors": [
     {
@@ -36,6 +36,10 @@
     {
       "name": "Stanko",
       "url": "https://github.com/Stanko"
+    },
+    {
+      "name": "opauloh",
+      "url": "https://github.com/opauloh"
     }
   ],
   "license": "MIT",
