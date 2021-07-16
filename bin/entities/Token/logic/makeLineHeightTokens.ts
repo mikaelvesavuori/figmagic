@@ -65,7 +65,7 @@ function makeLineHeightToken(
       : 0;
 
   let value = '0';
-  console.log({ lineHeightUnit });
+
   switch (lineHeightUnit) {
     case 'px':
       value = `${LINE_HEIGHT_VALUE_IN_PX}px`;
