@@ -40,4 +40,39 @@ describe('Success cases', () => {
       expect.objectContaining({ l: '1.650', m: '1.450', s: '1.350', xs: '1.000', auto: 'normal' })
     );
   });
+  test('It should handle a conversion between px, rem, and em units', () => {
+    // Ask for "px" values: should be the value provided by Figma with the unit
+    // @ts-ignore
+    expect(makeLineHeightTokens(lineHeightFrame, 16, undefined, 'px')).toEqual(
+      expect.objectContaining({
+        auto: '18.75px',
+        l: '26.4px',
+        m: '23.2px',
+        s: '21.6px',
+        xs: '16px'
+      })
+    );
+    // Ask for "em" values: should be a converted value based on the relative font-size
+    // @ts-ignore
+    expect(makeLineHeightTokens(lineHeightFrame, 16, undefined, 'em')).toEqual(
+      expect.objectContaining({
+        auto: '1.1719em',
+        l: '1.65em',
+        m: '1.45em',
+        s: '1.35em',
+        xs: '1em'
+      })
+    );
+    // Ask for "rem" values: should be a converted value based on the remSize
+    // @ts-ignore
+    expect(makeLineHeightTokens(lineHeightFrame, 16, undefined, 'rem')).toEqual(
+      expect.objectContaining({
+        auto: '1.1719rem',
+        l: '1.65rem',
+        m: '1.45rem',
+        s: '1.35rem',
+        xs: '1rem'
+      })
+    );
+  });
 });

@@ -9,6 +9,7 @@ function validateConfig(config) {
     try {
         validateFontUnit(config.fontUnit);
         validateLetterSpacingUnit(config.letterSpacingUnit);
+        validLineHeightUnit(config.lineHeightUnit);
         validateOpacitiesUnit(config.opacitiesUnit);
         validateFileName(config.figmaData);
         validateFolderName(config.figmagicFolder);
@@ -45,6 +46,11 @@ const validateLetterSpacingUnit = (unit) => {
     if (validatorLists_1.validLetterSpacingUnitList.includes(unit))
         return true;
     throw new Error(errors_2.ErrorValidateConfigLetterSpacingUnit);
+};
+const validLineHeightUnit = (unit) => {
+    if (validatorLists_1.validLineHeightUnitList.includes(unit))
+        return true;
+    throw new Error(errors_2.ErrorValidateConfigLineHeightUnit);
 };
 const validateOpacitiesUnit = (unit) => {
     if (validatorLists_1.validOpacitiesUnitList.includes(unit))

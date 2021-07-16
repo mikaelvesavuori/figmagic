@@ -231,6 +231,7 @@ Below is a complete set of what you can configure, together with the defaults.
   "debugMode": false,
   "fontUnit": "rem",
   "letterSpacingUnit": "em",
+  "lineHeightUnit": "unitless",
   "opacitiesUnit": "float",
   "figmaData": "figma.json",
   "figmagicFolder": ".figmagic",
@@ -304,6 +305,12 @@ Default is `rem`.
 `figmagic [--letterSpacingUnit | -lsu] [em|px]`
 
 Default is `em`.
+
+#### Switch line-height unit
+
+`figmagic [--lineHeightUnit | -lhu] [unitless|em|px|rem]`
+
+Default is `unitless`.
 
 #### Switch opacities unit
 

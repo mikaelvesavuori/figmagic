@@ -1,5 +1,6 @@
 export declare const validFontUnitList: string[];
 export declare const validLetterSpacingUnitList: string[];
+export declare const validLineHeightUnitList: string[];
 export declare const validOpacitiesUnitList: string[];
 export declare const validOutputFormatCssList: string[];
 export declare const validOutputFormatDescList: string[];

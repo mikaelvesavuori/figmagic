@@ -2,6 +2,7 @@ export const testConfig = {
   debugMode: false,
   fontUnit: 'rem',
   letterSpacingUnit: 'em',
+  lineHeightUnit: 'unitless',
   opacitiesUnit: 'float',
   figmaData: 'figma.json',
   figmagicFolder: '.figmagic',

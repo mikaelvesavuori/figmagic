@@ -1,5 +1,6 @@
 export const validFontUnitList = ['rem', 'em', 'px'];
 export const validLetterSpacingUnitList = ['em', 'px'];
+export const validLineHeightUnitList = ['unitless', 'em', 'px', 'rem'];
 export const validOpacitiesUnitList = ['float', 'percent'];
 export const validOutputFormatCssList = ['ts', 'mjs', 'js'];
 export const validOutputFormatDescList = ['md', 'txt'];

@@ -6,6 +6,7 @@ import {
   ErrorValidateConfigFileName,
   ErrorValidateConfigFontUnit,
   ErrorValidateConfigLetterSpacingUnit,
+  ErrorValidateConfigLineHeightUnit,
   ErrorValidateConfigOpacitiesUnit,
   ErrorValidateConfigOutputDataTypeToken,
   ErrorValidateConfigOutputFormatCss,
@@ -48,6 +49,14 @@ describe('Failure cases', () => {
 
     // @ts-ignore
     expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigLetterSpacingUnit);
+  });
+
+  test('It should invalidate a configuration when given invalid line height unit', () => {
+    const TEST_CONFIG = { ...testConfig };
+    TEST_CONFIG.lineHeightUnit = 'xxxxx';
+
+    // @ts-ignore
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigLineHeightUnit);
   });
 
   test('It should invalidate a configuration when given invalid opacity unit', () => {

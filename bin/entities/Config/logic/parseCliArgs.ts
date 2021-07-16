@@ -33,6 +33,8 @@ export function parseCliArgs(argsArray: string[]): Config {
     '-fu': (val: string) => setConfigValue('fontUnit', val.toLowerCase()),
     '--letterSpacingUnit': (val: string) => setConfigValue('letterSpacingUnit', val.toLowerCase()),
     '-lsu': (val: string) => setConfigValue('letterSpacingUnit', val.toLowerCase()),
+    '--lineHeightUnit': (val: string) => setConfigValue('lineHeightUnit', val.toLowerCase()),
+    '--lhu': (val: string) => setConfigValue('lineHeightUnit', val.toLowerCase()),
     '--opacitiesUnit': (val: string) => setConfigValue('opacitiesUnit', val.toLowerCase()),
     '-ou': (val: string) => setConfigValue('opacitiesUnit', val.toLowerCase()),
     '--figmaData': (val: string) => setConfigValue('figmaData', val),

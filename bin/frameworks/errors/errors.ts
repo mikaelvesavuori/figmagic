@@ -187,6 +187,9 @@ export const ErrorMakeFontWeightTokensNoFrame = ErrorMessage(
 export const ErrorMakeLetterSpacingTokensMissingProps = ErrorMessage(
   'Missing "name" or "style" properties in letter spacing frame!'
 );
+export const ErrorMakeLineHeightTokensMissingProps = ErrorMessage(
+  'Missing "name" or "style" properties in line height frame!'
+);
 export const ErrorMakeLetterSpacingTokensNoChildren = ErrorMessage(
   'Letter Spacing frame has no children!'
 );
@@ -325,6 +328,9 @@ export const ErrorValidateConfigFontUnit = ErrorMessage(
 );
 export const ErrorValidateConfigLetterSpacingUnit = ErrorMessage(
   'Received unrecognized "letterSpacingUnit" argument, it must be "em" (default) or "px".'
+);
+export const ErrorValidateConfigLineHeightUnit = ErrorMessage(
+  'Received unrecognized "lineHeightUnit" argument, it must be "unitless" (default), "em", "rem" or "px".'
 );
 export const ErrorValidateConfigOpacitiesUnit = ErrorMessage(
   'Received unrecognized "opacitiesUnit" argument, it must be "float" (default) or "percent".'

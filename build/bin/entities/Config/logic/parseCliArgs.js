@@ -21,6 +21,8 @@ function parseCliArgs(argsArray) {
         '-fu': (val) => setConfigValue('fontUnit', val.toLowerCase()),
         '--letterSpacingUnit': (val) => setConfigValue('letterSpacingUnit', val.toLowerCase()),
         '-lsu': (val) => setConfigValue('letterSpacingUnit', val.toLowerCase()),
+        '--lineHeightUnit': (val) => setConfigValue('lineHeightUnit', val.toLowerCase()),
+        '--lhu': (val) => setConfigValue('lineHeightUnit', val.toLowerCase()),
         '--opacitiesUnit': (val) => setConfigValue('opacitiesUnit', val.toLowerCase()),
         '-ou': (val) => setConfigValue('opacitiesUnit', val.toLowerCase()),
         '--figmaData': (val) => setConfigValue('figmaData', val),

@@ -6,6 +6,7 @@ import {
   ErrorValidateConfigFileName,
   ErrorValidateConfigFontUnit,
   ErrorValidateConfigLetterSpacingUnit,
+  ErrorValidateConfigLineHeightUnit,
   ErrorValidateConfigOpacitiesUnit,
   ErrorValidateConfigOutputDataTypeToken,
   ErrorValidateConfigOutputFormatCss,
@@ -28,6 +29,7 @@ export function validateConfig(config: Config): boolean {
   try {
     validateFontUnit(config.fontUnit);
     validateLetterSpacingUnit(config.letterSpacingUnit);
+    validLineHeightUnit(config.lineHeightUnit);
     validateOpacitiesUnit(config.opacitiesUnit);
     validateFileName(config.figmaData);
     validateFolderName(config.figmagicFolder);
@@ -55,6 +57,7 @@ export function validateConfig(config: Config): boolean {
 import {
   validFontUnitList,
   validLetterSpacingUnitList,
+  validLineHeightUnitList,
   validOpacitiesUnitList,
   validOutputFormatCssList,
   validOutputFormatDescList,
@@ -74,6 +77,11 @@ const validateFontUnit = (unit: string): boolean => {
 const validateLetterSpacingUnit = (unit: string): boolean => {
   if (validLetterSpacingUnitList.includes(unit)) return true;
   throw new Error(ErrorValidateConfigLetterSpacingUnit);
+};
+
+const validLineHeightUnit = (unit: string): boolean => {
+  if (validLineHeightUnitList.includes(unit)) return true;
+  throw new Error(ErrorValidateConfigLineHeightUnit);
 };
 
 const validateOpacitiesUnit = (unit: string): boolean => {
