@@ -94,7 +94,13 @@ class Token {
         if (!config) throw new Error(ErrorExtractTokensNoConfig);
         return makeLetterSpacingTokens(frame, config.letterSpacingUnit);
       },
-      lineheights: () => makeLineHeightTokens(frame, config.remSize, config.unitlessPrecision),
+      lineheights: () =>
+        makeLineHeightTokens(
+          frame,
+          config.remSize,
+          config.unitlessPrecision,
+          config.lineHeightUnit
+        ),
       mediaqueries: () => makeMediaQueryTokens(frame),
       opacities: () => {
         if (!config) throw new Error(ErrorExtractTokensNoConfig);

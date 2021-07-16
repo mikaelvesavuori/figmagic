@@ -2,6 +2,7 @@ export type Config = {
   debugMode: boolean;
   fontUnit: FontUnits;
   letterSpacingUnit: LetterSpacingUnits;
+  lineHeightUnit: LineHeightUnits;
   opacitiesUnit: OpacitiesUnits;
   figmaData: string;
   figmagicFolder: string;
@@ -51,6 +52,7 @@ export type ConfigDTO = {
   debugMode?: boolean;
   fontUnit?: FontUnits;
   letterSpacingUnit?: LetterSpacingUnits;
+  lineHeightUnit: LineHeightUnits;
   opacitiesUnit?: OpacitiesUnits;
   figmaData?: string;
   figmagicFolder?: string;
@@ -114,6 +116,7 @@ export type Overwrite = {
 
 export type FontUnits = 'rem' | 'em' | 'px';
 export type LetterSpacingUnits = 'em' | 'px';
+export type LineHeightUnits = 'unitless' | 'px' | 'rem' | 'em';
 export type OpacitiesUnits = 'float' | 'percent';
 export type OutputFormatCss = 'ts' | 'mjs' | 'js';
 export type OutputFormatDescription = 'md' | 'txt';
