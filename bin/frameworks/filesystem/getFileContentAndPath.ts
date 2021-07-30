@@ -135,11 +135,12 @@ const getTokenString = (file: string | ProcessedToken, name: string, format: str
   if (format === 'json') return `${JSON.stringify(file, null, ' ')}`;
 
   const EXPORT = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
+  const CONST_ASSERTION = format === 'ts' ? ' as const' : '';
   return `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
     file,
     null,
     ' '
-  )}\n\n${EXPORT};`;
+  )}${CONST_ASSERTION}\n\n${EXPORT};`;
 };
 
 /**
