@@ -77,7 +77,8 @@ const getTokenString = (file, name, format) => {
     if (format === 'json')
         return `${JSON.stringify(file, null, ' ')}`;
     const EXPORT = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
-    return `// ${messages_1.MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(file, null, ' ')}\n\n${EXPORT};`;
+    const CONST_ASSERTION = format === 'ts' ? ' as const' : '';
+    return `// ${messages_1.MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(file, null, ' ')}${CONST_ASSERTION}\n\n${EXPORT};`;
 };
 const checkIfFieldsExist = (getFileContentAndPathOperation) => {
     if (!getFileContentAndPathOperation.type ||
