@@ -6,14 +6,12 @@ dotenv.config();
 
 describe('Failure cases', () => {
   test('It should throw an error when receiving invalid token and/or URL', async () => {
-    expect(await getFromApi('asdf', 'asdf')).toEqual(
-      expect.objectContaining({ err: 'Invalid token', status: 403 })
-    );
+    await expect(getFromApi('asdf', 'asdf')).rejects.toThrowError();
   });
 
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
-    await expect(getFromApi()).resolves.toMatchObject({ err: 'Invalid token', status: 403 });
+    await expect(getFromApi()).rejects.toThrowError();
   });
 
   test('It should not find data, given a token but invalid URL', async () => {

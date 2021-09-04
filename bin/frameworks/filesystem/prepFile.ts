@@ -56,7 +56,7 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
       .replace('  ', ' ');
 
     return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 };
@@ -83,7 +83,7 @@ export const prepStyledComponents = (data: PrepStyledComponents): FileContentWit
       .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
 
     return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 };
@@ -103,7 +103,7 @@ export const prepCss = (data: PrepCss): FileContentWithPath => {
     const FILE_CONTENT = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
 
     return { fileContent: FILE_CONTENT, filePath: `${filePath}${SUFFIX}.${format}` };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 };
@@ -126,7 +126,7 @@ export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
     template = template.replace(/{{NAME}}/gi, name).replace(/{{TEXT}}/gi, text);
 
     return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 };
@@ -144,7 +144,7 @@ export const prepDescription = (data: PrepDescription): FileContentWithPath => {
     const FILE_CONTENT = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
 
     return { fileContent: FILE_CONTENT, filePath: `${filePath}.description.${format}` };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 };
@@ -168,7 +168,7 @@ export const prepGraphicComponent = (data: PrepGraphicComponent): FileContentWit
       .replace(/{{SVG}}/gi, file);
 
     return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 };

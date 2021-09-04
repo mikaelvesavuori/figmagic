@@ -20,7 +20,7 @@ export async function writeBaseJson(
   try {
     await refresh(figmagicFolder);
     write(`${figmagicFolder}/${figmaData}`, JSON.stringify(data));
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

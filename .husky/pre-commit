@@ -1,9 +1,9 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run lint
 npm test
-npm run docs
 npm run licenses
+npm run lint
 npm run build
+npm run docs
 git add .

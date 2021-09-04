@@ -51,7 +51,7 @@ export function getTokenMatch(
     }
 
     return { updatedCss: css, updatedImports: imports };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }
@@ -99,7 +99,7 @@ function matchPadding(
     imports.push(tokenFileName as unknown as Imports);
 
     return { css, imports };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }
@@ -165,7 +165,7 @@ function matchOther(
     }
 
     return { css, imports };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

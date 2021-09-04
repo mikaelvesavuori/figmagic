@@ -50,7 +50,7 @@ export function writeFile(writeOperation: WriteOperation): void {
 
     const { filePath, fileContent } = prepareWrite(prepareWriteOperation);
     write(filePath, fileContent);
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

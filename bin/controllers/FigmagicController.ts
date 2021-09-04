@@ -22,7 +22,7 @@ export async function FigmagicController(config: Config, data: FigmaData): Promi
     console.log(MsgJobComplete);
 
     return MsgJobComplete;
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

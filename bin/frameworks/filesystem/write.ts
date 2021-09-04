@@ -9,7 +9,7 @@ export function write(filePath: string, fileContent: string): void {
   try {
     if (!filePath || !fileContent) throw new Error(ErrorWrite);
     fs.writeFileSync(filePath, fileContent, 'utf-8');
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

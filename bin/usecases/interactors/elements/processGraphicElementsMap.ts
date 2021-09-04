@@ -21,7 +21,7 @@ export function processGraphicElementsMap(graphics: any[]): any {
     });
 
     return imports + `export const Graphics = {\n${exports}};\n`;
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

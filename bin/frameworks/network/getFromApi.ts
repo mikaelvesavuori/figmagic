@@ -1,8 +1,9 @@
-import fetch from 'node-fetch';
+import { request } from './request';
 
 import { ImageResponse } from '../../contracts/ImageResponse';
 
 import { ErrorGetFromApi } from '../errors/errors';
+import { isJsonString } from '../filesystem/isJsonString';
 
 /**
  * @description Get data from the Figma API
@@ -13,44 +14,42 @@ export async function getFromApi(
   versionName?: string | null,
   type = 'files'
 ): Promise<ImageResponse> {
+  if (!figmaToken || !figmaUrl) throw new Error(ErrorGetFromApi);
   try {
-    let endpoint = `https://api.figma.com/v1/${type}/${figmaUrl}`;
+    let endpoint = `/v1/${type}/${figmaUrl}`;
 
     if (versionName) {
-      const versions = await fetch(`https://api.figma.com/v1/${type}/${figmaUrl}/versions`, {
-        headers: {
-          'X-Figma-Token': figmaToken
-        }
-      })
-        .then((res) => res.json())
+      const versions = await request(`/v1/${type}/${figmaUrl}/versions`, figmaToken)
+        .then((res) => {
+          if (isJsonString(res)) return JSON.parse(res);
+          else return res;
+        })
         .catch(() => {
           throw new Error(ErrorGetFromApi);
         });
 
-      const requestedVersion = versions.versions.filter(
-        (_version: any) => _version.label === versionName
-      );
-      const requestedVersionId = (() => {
-        if (requestedVersion && requestedVersion.length > 0) {
-          if (requestedVersion[0].id) {
-            return requestedVersion[0].id;
+      if (versions.versions) {
+        const requestedVersion = versions.versions.filter(
+          (_version: any) => _version.label === versionName
+        );
+        const requestedVersionId = (() => {
+          if (requestedVersion && requestedVersion.length > 0) {
+            if (requestedVersion[0].id) {
+              return requestedVersion[0].id;
+            }
           }
-        }
-      })();
+        })();
 
-      endpoint = `https://api.figma.com/v1/${type}/${figmaUrl}?version=${requestedVersionId}`;
+        endpoint = `/v1/${type}/${figmaUrl}?version=${requestedVersionId}`;
+      }
     }
 
-    return await fetch(endpoint, {
-      headers: {
-        'X-Figma-Token': figmaToken
-      }
-    })
-      .then((res) => res.json())
+    return await request(endpoint, figmaToken)
+      .then((res) => res)
       .catch(() => {
         throw new Error(ErrorGetFromApi);
       });
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

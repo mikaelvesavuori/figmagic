@@ -26,7 +26,6 @@ describe('Success cases', () => {
     const PATH = `${TEMP_FOLDER}/${fileList[0].file}`;
     const FILE_EXISTS = fs.existsSync(PATH);
     expect(FILE_EXISTS).toBeTruthy();
-    await trash(TEMP_FOLDER);
   });
 });
 
@@ -38,6 +37,9 @@ describe('Success cases', () => {
     const PATH = `${TEMP_FOLDER}/${fileList[1].file}`;
     const FILE_EXISTS = fs.existsSync(PATH);
     expect(FILE_EXISTS).toBeTruthy();
-    await trash(TEMP_FOLDER);
   });
+});
+
+afterAll(async () => {
+  await trash(TEMP_FOLDER);
 });

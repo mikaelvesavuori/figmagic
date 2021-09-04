@@ -48,7 +48,7 @@ class Token {
 
       frame.children = this.getChildren(frame);
       return this.getTokens(frame, tokenName.toLowerCase(), config);
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
   }

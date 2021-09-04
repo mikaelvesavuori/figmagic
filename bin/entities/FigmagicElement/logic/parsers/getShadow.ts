@@ -21,7 +21,7 @@ export function getShadow(element: Frame): string | null {
     const A = roundColorValue(DROP_SHADOW.color.a, 1);
 
     return `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

@@ -30,7 +30,7 @@ export function parseShadow(
     );
 
     return updateParsing(css, updatedCss, imports, updatedImports);
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

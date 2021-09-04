@@ -115,7 +115,7 @@ export function parseTypographyStylingFromElement(
     const NEW_CSS = reduceCssDuplicates(css);
 
     return { updatedCss: NEW_CSS, updatedImports: imports };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }
@@ -137,7 +137,7 @@ const getFiles = (filePath: string, outputFormatTokens: string): any => {
       letterSpacings,
       lineHeights
     };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 };

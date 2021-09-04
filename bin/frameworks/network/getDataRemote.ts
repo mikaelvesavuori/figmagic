@@ -18,9 +18,9 @@ export async function getDataRemote(
     let data = null;
     data = await getFromApi(token, url, versionName);
 
-    if (!data || data.status === 403) throw new Error(ErrorGetData);
+    if (!data || data.status === 403) throw Error(ErrorGetData);
     return data;
-  } catch (error) {
-    throw new Error(error);
+  } catch (error: any) {
+    throw Error(error);
   }
 }

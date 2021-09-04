@@ -33,7 +33,7 @@ export function processTokens(tokens: Frame[], config: Config): any {
     });
 
     return PROCESSED_TOKENS;
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

@@ -30,13 +30,13 @@ class Configuration {
 
     try {
       config = await createConfiguration(this.baseConfiguration, this.userConfigPath, this.cliArgs);
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
 
     try {
       validateConfig(config);
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
 

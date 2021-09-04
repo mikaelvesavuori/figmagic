@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 
+import { isJsonString } from '../filesystem/isJsonString';
 import { ErrorLoadFile } from '../errors/errors';
 
 /**
@@ -12,20 +13,7 @@ export function loadFile(path: string): string | Record<string, unknown> {
 
     const DATA = fs.readFileSync(path, 'utf8');
     return isJsonString(DATA) ? JSON.parse(DATA) : DATA;
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }
-
-/**
- * @description Check if JSON is really a string
- * @see https://stackoverflow.com/questions/3710204/how-to-check-if-a-string-is-a-valid-json-string-in-javascript-without-using-try
- */
-const isJsonString = (str: string): Record<string, unknown> | boolean => {
-  try {
-    JSON.parse(str);
-  } catch (e) {
-    return false;
-  }
-  return true;
-};

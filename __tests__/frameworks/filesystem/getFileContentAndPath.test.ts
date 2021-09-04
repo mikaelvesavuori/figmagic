@@ -102,7 +102,7 @@ const colors = {
  \"gray1\": \"rgba(79, 79, 79, 1)\",
  \"white\": \"rgba(255, 255, 255, 1)\",
  \"black\": \"rgba(51, 51, 51, 1)\"
-} as const
+} as const;
 
 export default colors;`,
         filePath: 'tokens/colors.ts'

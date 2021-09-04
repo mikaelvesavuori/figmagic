@@ -1,1 +1,0 @@
-{"version":3,"file":"configToInit.js","sourceRoot":"","sources":["../../../../bin/frameworks/system/configToInit.ts"],"names":[],"mappings":";;;AAAa,QAAA,YAAY,GAAG;IAC1B,SAAS,EAAE;QACT,mBAAmB,EAAE,2CAA2C;QAChE,iBAAiB,EAAE,yCAAyC;QAC5D,qBAAqB,EAAE,yCAAyC;QAChE,kBAAkB,EAAE,0CAA0C;KAC/D;CACF,CAAC"}

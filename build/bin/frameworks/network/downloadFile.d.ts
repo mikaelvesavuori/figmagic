@@ -1,1 +1,1 @@
-export declare function downloadFile(url: string, path: string): Promise<void>;
+export declare function downloadFile(url: string, filePath: string): Promise<void>;

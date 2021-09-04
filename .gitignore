@@ -1,10 +1,11 @@
 # Ensure built files are included
 !build/
-/__graphics__
 
+# Generated files
 .figmagicrc
 figmagic.json
 /.figmagic
+/.webpack
 /figma
 /grid
 /tokens
@@ -12,11 +13,16 @@ figmagic.json
 /elements
 /components
 /stories
+
+# Files generated from tests
 /jest-coverage
 **/jest-coverage
 /__testing
 /__test-*
+/__graphics__
+__*__.*
 
+# No Yarn stuff
 yarn.lock
 
 ### Node ###

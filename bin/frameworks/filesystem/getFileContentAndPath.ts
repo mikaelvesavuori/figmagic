@@ -113,7 +113,7 @@ export function getFileContentAndPath(
     // @ts-ignore
     if (fileOperations.hasOwnProperty(type)) return fileOperations[type]();
     else throw new Error(ErrorGetFileContentAndPathNoReturn);
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }
@@ -135,7 +135,7 @@ const getTokenString = (file: string | ProcessedToken, name: string, format: str
   if (format === 'json') return `${JSON.stringify(file, null, ' ')}`;
 
   const EXPORT = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
-  const CONST_ASSERTION = format === 'ts' ? ' as const' : '';
+  const CONST_ASSERTION = format === 'ts' ? ' as const;' : '';
   return `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
     file,
     null,

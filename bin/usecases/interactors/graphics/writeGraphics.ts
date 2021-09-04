@@ -16,11 +16,14 @@ export async function writeGraphics(fileList: any[], config: Config): Promise<vo
     createFolder(outputFolderGraphics);
 
     await Promise.all(
-      fileList.map(
-        async (file) => await downloadFile(file.url, `${outputFolderGraphics}/${file.file}`)
-      )
+      fileList.map(async (file) => {
+        return new Promise(async (resolve) => {
+          await downloadFile(file.url, `${outputFolderGraphics}/${file.file}`);
+          resolve('');
+        });
+      })
     );
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(ErrorWriteGraphics);
   }
 }

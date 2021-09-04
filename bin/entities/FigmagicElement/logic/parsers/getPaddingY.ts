@@ -28,7 +28,7 @@ export function getPaddingY(textElement: Frame, element: Frame): PaddingVertical
       top: Math.round(PADDING_TOP),
       bottom: Math.round(PADDING_BOTTOM)
     };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

@@ -1,1 +1,0 @@
-{"version":3,"file":"cleanSvgData.js","sourceRoot":"","sources":["../../../../bin/frameworks/string/cleanSvgData.ts"],"names":[],"mappings":";;;AAAA,2DAAmE;AAEnE,SAAgB,YAAY,CAAC,OAAe;IAC1C,IAAI,CAAC,OAAO;QAAE,MAAM,IAAI,KAAK,CAAC,0BAAiB,CAAC,CAAC;IACjD,OAAO,OAAO,CAAC,OAAO,CAAC,gBAAgB,EAAE,EAAE,CAAC,CAAC,OAAO,CAAC,iBAAiB,EAAE,EAAE,CAAC,CAAC;AAC9E,CAAC;AAHD,oCAGC"}

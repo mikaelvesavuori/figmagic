@@ -24,7 +24,7 @@ export async function createGraphics(config: Config, data: FigmaData): Promise<v
     const fileList = await processGraphics(graphicsPage, config);
 
     await writeGraphics(fileList, config);
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

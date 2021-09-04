@@ -15,7 +15,7 @@ export function writeGraphicElementsMap(
     if (!folder || !filePath || !fileContent) throw new Error(ErrorWriteGraphicElementsMap);
     createFolder(folder);
     write(filePath, fileContent);
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

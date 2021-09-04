@@ -21,7 +21,7 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
   try {
     if (!config || !data) throw new Error(ErrorCreateElements);
     console.log(MsgSyncElements);
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 
@@ -57,7 +57,7 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
       if (config.outputGraphicElementsMap)
         handleGraphicElementsMap({ config, graphics: GRAPHICS } as GraphicElementsMap);
     }
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

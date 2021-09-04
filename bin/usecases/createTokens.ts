@@ -26,7 +26,7 @@ export async function createTokens(config: Config, data: FigmaData): Promise<voi
 
     if (processedTokens && processedTokens.length > 0) writeTokens(processedTokens);
     else console.warn(MsgNoTokensFound);
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

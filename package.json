@@ -1,21 +1,24 @@
 {
   "name": "figmagic",
+  "version": "4.3.0-alpha.0",
   "description": "Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents. Inspired by Salesforce Theo.",
-  "keywords": [
-    "figma",
-    "figma api",
-    "design tokens",
-    "tokens",
-    "design system",
-    "salesforce theo"
-  ],
   "homepage": "https://www.figmagic.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/mikaelvesavuori/figmagic.git"
   },
-  "version": "4.2.21",
   "author": "Mikael Vesavuori",
+  "keywords": [
+    "figma",
+    "figma api",
+    "design tokens",
+    "tokens",
+    "design system"
+  ],
+  "license": "MIT",
+  "bin": {
+    "figmagic": "build/index.js"
+  },
   "contributors": [
     {
       "name": "Victor",
@@ -46,20 +49,30 @@
       "url": "https://github.com/Peeja"
     }
   ],
-  "license": "MIT",
+  "scripts": {
+    "figmagic": "node build/index.js",
+    "build": "rm -rf build && npx webpack",
+    "test": "jest __tests__ --collectCoverage",
+    "lint": "eslint './bin/**/*.ts' --quiet --fix",
+    "docs": "npx typedoc bin && npx arkit",
+    "licenses": "npx license-compliance --direct --allow 'MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;Unlicense;CC0-1.0'",
+    "licenses:checker": "npx license-compatibility-checker",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect && husky install"
+  },
   "devDependencies": {
     "@babel/core": "7",
     "@babel/preset-env": "7",
     "@babel/preset-typescript": "7",
     "@types/jest": "latest",
     "@types/node": "latest",
-    "@types/node-fetch": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
-    "arkit": "latest",
-    "eslint": "latest",
-    "eslint-config-prettier": "latest",
-    "eslint-plugin-prettier": "latest",
+    "arkit": "1",
+    "babel-loader": "8",
+    "eslint": "7",
+    "eslint-config-prettier": "8",
+    "eslint-plugin-prettier": "4",
     "husky": "6",
     "jest": "27",
     "license-compatibility-checker": "latest",
@@ -68,28 +81,17 @@
     "pretty-quick": "latest",
     "snyk": "latest",
     "ts-jest": "27",
+    "ts-loader": "9",
+    "tslib": "2",
     "typedoc": "latest",
-    "typescript": "4"
+    "typescript": "4",
+    "webpack": "5",
+    "webpack-cli": "4",
+    "webpack-shebang-plugin": "^1.1.6"
   },
   "dependencies": {
     "dotenv": "latest",
-    "node-fetch": "latest",
-    "trash": "latest",
-    "tslib": "latest"
-  },
-  "bin": {
-    "figmagic": "build/index.js"
-  },
-  "scripts": {
-    "figmagic": "node build/index.js",
-    "build": "rm -rf build && tsc",
-    "test": "jest __tests__ --collectCoverage",
-    "lint": "eslint './bin/**/*.ts' --quiet --fix",
-    "docs": "npx typedoc bin && npx arkit",
-    "licenses": "npx license-compliance --production --allow 'MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;Unlicense;CC0-1.0'",
-    "licenses:checker": "npx license-compatibility-checker",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect && husky install"
+    "trash": "latest"
   },
   "snyk": true
 }

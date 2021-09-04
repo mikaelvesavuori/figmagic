@@ -17,7 +17,7 @@ export function createPage(figmaPages: Frame[], matchingPageName: string): Frame
 
     if (PAGE.length > 0 && PAGE[0].children) return PAGE[0].children;
     return [];
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

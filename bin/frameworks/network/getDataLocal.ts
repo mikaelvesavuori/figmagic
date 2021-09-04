@@ -18,7 +18,7 @@ export function getDataLocal(
     if (!figmagicFolder || !figmaData) throw new Error(ErrorGetDataLocal);
     console.log(MsgSetDataFromLocal);
     return loadFile(path.join(`${figmagicFolder}`, `${figmaData}`));
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

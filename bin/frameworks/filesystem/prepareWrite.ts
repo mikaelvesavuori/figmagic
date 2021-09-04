@@ -42,7 +42,7 @@ export function prepareWrite(writeOperation: WriteOperation): any {
     };
 
     return getFileContentAndPath(getFileDataOperation);
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

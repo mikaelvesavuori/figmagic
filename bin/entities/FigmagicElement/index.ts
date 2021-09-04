@@ -88,7 +88,7 @@ class FigmagicElement {
       if (FILTERED_ELEMENTS?.some((element: Frame) => element.type === 'GROUP'))
         return this.handleNestedElements(FILTERED_ELEMENTS);
       else return this.handleFlatElements(FILTERED_ELEMENTS);
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
   }
@@ -199,7 +199,7 @@ class FigmagicElement {
       const PROCESSED_CSS = processNestedCss(css);
 
       return { updatedCss: PROCESSED_CSS, updatedImports: imports };
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
   }
@@ -245,7 +245,7 @@ class FigmagicElement {
       }
 
       return { updatedCss: css, updatedImports: imports };
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
   }
@@ -337,7 +337,7 @@ class FigmagicElement {
       }
 
       return { updatedCss: css, updatedImports: imports };
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
   }

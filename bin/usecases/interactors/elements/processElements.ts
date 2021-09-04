@@ -26,7 +26,7 @@ export function processElements(
       makeFigmagicElement(element, config, components[element.id].description, isGraphicElement)
     );
     return PARSED_ELEMENTS;
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

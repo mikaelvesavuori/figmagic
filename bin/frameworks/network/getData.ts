@@ -38,7 +38,7 @@ export async function getData(
     if (recompileLocal && !DATA) throw Error(ErrorGetDataNoData);
 
     return DATA;
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

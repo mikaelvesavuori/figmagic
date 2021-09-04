@@ -90,7 +90,7 @@ export function parseCssFromElement(
 
     const NEW_CSS = reduceDuplicates(css);
     return { updatedCss: NEW_CSS, updatedImports: imports };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }
@@ -123,7 +123,7 @@ const getFiles = (filePath: string, outputFormatToken: string): any => {
       shadows,
       spacing
     };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 };

@@ -50,7 +50,7 @@ export function validateConfig(config: Config): boolean {
     validateTemplatePathStyled(config.templates.templatePathStyled);
     validateTemplatePathGraphic(config.templates.templatePathGraphic);
     return true;
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

@@ -3,6 +3,8 @@ import trash from 'trash';
 
 import { writeBaseJson } from '../../../bin/frameworks/filesystem/writeBaseJson';
 
+const TEST_FOLDER = '__test-writeBaseJson';
+
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
@@ -27,12 +29,14 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should write the base Figma file', async () => {
-    const testFolder = '__test-writeBaseJson';
     const testFile = '__test-writeBaseJson.txt';
-    const path = `${testFolder}/${testFile}`;
-    await writeBaseJson(testFolder, testFile, { data: 'something' });
+    const path = `${TEST_FOLDER}/${testFile}`;
+    await writeBaseJson(TEST_FOLDER, testFile, { data: 'something' });
     const fileContent = fs.readFileSync(path, { encoding: 'utf-8' });
     expect(fileContent).toBe(`{"data":"something"}`);
-    await trash(testFolder);
   });
+});
+
+afterAll(async () => {
+  await trash(TEST_FOLDER);
 });

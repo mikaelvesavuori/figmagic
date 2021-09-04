@@ -15,7 +15,7 @@ export function updateParsing(
     const IMPORTS = updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports;
 
     return { css: CSS, imports: IMPORTS };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }

@@ -29,7 +29,7 @@ export function makeLineHeightTokens(
     try {
       const { name, value } = makeLineHeightToken(item, remSize, unitlessPrecision, lineHeightUnit);
       tokensDictionary[name] = value;
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
     }
 

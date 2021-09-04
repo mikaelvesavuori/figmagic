@@ -9,7 +9,7 @@ export function createFolder(dir: string): void {
   try {
     if (!dir) throw new Error(ErrorCreateFolder);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error);
   }
 }
