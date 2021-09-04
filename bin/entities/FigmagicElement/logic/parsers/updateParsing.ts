@@ -9,13 +9,13 @@ export function updateParsing(
   updatedImports: any[] | null
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports) throw new Error(ErrorUpdateParsing);
+    if (!css || !imports) throw Error(ErrorUpdateParsing);
 
     const CSS = updatedCss ? (css += updatedCss) : css;
     const IMPORTS = updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports;
 
     return { css: CSS, imports: IMPORTS };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

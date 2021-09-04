@@ -25,7 +25,7 @@ import {
 } from '../../../frameworks/errors/errors';
 
 export function validateConfig(config: Config): boolean {
-  if (!config) throw new Error(ErrorValidateConfig);
+  if (!config) throw Error(ErrorValidateConfig);
   try {
     validateFontUnit(config.fontUnit);
     validateLetterSpacingUnit(config.letterSpacingUnit);
@@ -51,7 +51,7 @@ export function validateConfig(config: Config): boolean {
     validateTemplatePathGraphic(config.templates.templatePathGraphic);
     return true;
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }
 import {
@@ -71,95 +71,95 @@ import {
 
 const validateFontUnit = (unit: string): boolean => {
   if (validFontUnitList.includes(unit)) return true;
-  throw new Error(ErrorValidateConfigFontUnit);
+  throw Error(ErrorValidateConfigFontUnit);
 };
 
 const validateLetterSpacingUnit = (unit: string): boolean => {
   if (validLetterSpacingUnitList.includes(unit)) return true;
-  throw new Error(ErrorValidateConfigLetterSpacingUnit);
+  throw Error(ErrorValidateConfigLetterSpacingUnit);
 };
 
 const validLineHeightUnit = (unit: string): boolean => {
   if (validLineHeightUnitList.includes(unit)) return true;
-  throw new Error(ErrorValidateConfigLineHeightUnit);
+  throw Error(ErrorValidateConfigLineHeightUnit);
 };
 
 const validateOpacitiesUnit = (unit: string): boolean => {
   if (validOpacitiesUnitList.includes(unit)) return true;
-  throw new Error(ErrorValidateConfigOpacitiesUnit);
+  throw Error(ErrorValidateConfigOpacitiesUnit);
 };
 
 const validateFileName = (filename: string): boolean => {
   if (filename) return true;
-  throw new Error(ErrorValidateConfigFileName);
+  throw Error(ErrorValidateConfigFileName);
 };
 
 const validateFolderName = (filename: string): boolean => {
   if (filename) return true;
-  throw new Error(ErrorValidateConfigFolderName);
+  throw Error(ErrorValidateConfigFolderName);
 };
 
 const validateOutputFormatCss = (format: string): boolean => {
   if (validOutputFormatCssList.includes(format)) return true;
-  throw new Error(ErrorValidateConfigOutputFormatCss);
+  throw Error(ErrorValidateConfigOutputFormatCss);
 };
 
 const validateOutputFormatDesc = (format: string): boolean => {
   if (validOutputFormatDescList.includes(format)) return true;
-  throw new Error(ErrorValidateConfigOutputFormatDesc);
+  throw Error(ErrorValidateConfigOutputFormatDesc);
 };
 
 const validateOutputFormatElements = (format: string): boolean => {
   if (validOutputFormatElementsList.includes(format)) return true;
-  throw new Error(ErrorValidateConfigOutputFormatElements);
+  throw Error(ErrorValidateConfigOutputFormatElements);
 };
 
 const validateOutputFormatGraphics = (format: string): boolean => {
   if (validOutputFormatGraphicsList.includes(format)) return true;
-  throw new Error(ErrorValidateConfigOutputFormatGraphics);
+  throw Error(ErrorValidateConfigOutputFormatGraphics);
 };
 
 const validateOutputFormatStorybook = (format: string): boolean => {
   if (validOutputFormatStorybookList.includes(format)) return true;
-  throw new Error(ErrorValidateConfigOutputFormatStorybook);
+  throw Error(ErrorValidateConfigOutputFormatStorybook);
 };
 
 const validateOutputFormatTokens = (format: string): boolean => {
   if (validOutputFormatTokensList.includes(format)) return true;
-  throw new Error(ErrorValidateConfigOutputFormatTokens);
+  throw Error(ErrorValidateConfigOutputFormatTokens);
 };
 
 const validateOutputScaleGraphics = (scale: number): boolean => {
   if (scale && typeof scale === 'number' && scale > 0) return true;
-  throw new Error(ErrorValidateConfigOutputScaleGraphics);
+  throw Error(ErrorValidateConfigOutputScaleGraphics);
 };
 
 const validateOutputDataTypeToken = (format: string | 'enum' | null): boolean => {
   if (!format || validOutputDataTypeTokenList.includes(format)) return true;
-  throw new Error(ErrorValidateConfigOutputDataTypeToken);
+  throw Error(ErrorValidateConfigOutputDataTypeToken);
 };
 
 const validateSpacingUnit = (unit: string): boolean => {
   if (validSpacingUnitList.includes(unit)) return true;
-  throw new Error(ErrorValidateConfigSpacingUnit);
+  throw Error(ErrorValidateConfigSpacingUnit);
 };
 
 const validateTemplatePathReact = (path: string): boolean => {
   if (path) return true;
-  throw new Error(ErrorValidateConfigTemplatePathReact);
+  throw Error(ErrorValidateConfigTemplatePathReact);
 };
 
 const validateTemplatePathStorybook = (path: string): boolean => {
   if (path) return true;
-  throw new Error(ErrorValidateConfigTemplatePathStorybook);
+  throw Error(ErrorValidateConfigTemplatePathStorybook);
 };
 
 const validateTemplatePathStyled = (path: string): boolean => {
   if (path) return true;
-  throw new Error(ErrorValidateConfigTemplatePathStyled);
+  throw Error(ErrorValidateConfigTemplatePathStyled);
 };
 
 const validateTemplatePathGraphic = (path: string): boolean => {
   if (path) return true;
-  throw new Error(ErrorValidateConfigTemplatePathGraphic);
+  throw Error(ErrorValidateConfigTemplatePathGraphic);
 };

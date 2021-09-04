@@ -4,7 +4,7 @@ import { ErrorCamelize } from '../errors/errors';
  * @description Camel-case transform a string
  */
 export function camelize(str: string): string {
-  if (!str) throw new Error(ErrorCamelize);
+  if (!str) throw Error(ErrorCamelize);
 
   return (
     str

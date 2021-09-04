@@ -17,7 +17,7 @@ export function parseBorderRadius(
   params: BorderRadiusParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error(ErrorParseBorderRadius);
+    if (!css || !imports || !params) throw Error(ErrorParseBorderRadius);
 
     const { radii, borderRadius, remSize } = params;
 
@@ -31,6 +31,6 @@ export function parseBorderRadius(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

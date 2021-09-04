@@ -10,7 +10,7 @@ interface CliArguments {
  * @description Parse CLI arguments and return config object
  */
 export function parseCliArgs(argsArray: string[]): Config {
-  if (!argsArray) throw new Error(ErrorParseCliArgs);
+  if (!argsArray) throw Error(ErrorParseCliArgs);
   if (argsArray.length === 0) return {} as Config;
 
   // deep partial Config type

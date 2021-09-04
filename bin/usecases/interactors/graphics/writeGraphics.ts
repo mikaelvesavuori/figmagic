@@ -10,7 +10,7 @@ import { ErrorWriteGraphics } from '../../../frameworks/errors/errors';
  */
 export async function writeGraphics(fileList: any[], config: Config): Promise<void> {
   try {
-    if (!fileList || !config) throw new Error(ErrorWriteGraphics);
+    if (!fileList || !config) throw Error(ErrorWriteGraphics);
 
     const { outputFolderGraphics } = config;
     createFolder(outputFolderGraphics);
@@ -24,6 +24,6 @@ export async function writeGraphics(fileList: any[], config: Config): Promise<vo
       })
     );
   } catch (error: any) {
-    throw new Error(ErrorWriteGraphics);
+    throw Error(ErrorWriteGraphics);
   }
 }

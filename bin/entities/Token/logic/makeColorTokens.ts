@@ -15,8 +15,8 @@ import {
  * @description Places all Figma color frames into a clean object
  */
 export function makeColorTokens(colorFrame: Frame): ColorTokens {
-  if (!colorFrame) throw new Error(ErrorMakeColorTokensNoFrame);
-  if (!colorFrame.children) throw new Error(ErrorMakeColorTokensNoChildren);
+  if (!colorFrame) throw Error(ErrorMakeColorTokensNoFrame);
+  if (!colorFrame.children) throw Error(ErrorMakeColorTokensNoChildren);
 
   const colors: Record<string, unknown> = {};
   const TOKENS = colorFrame.children;

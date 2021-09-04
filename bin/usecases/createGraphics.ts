@@ -15,7 +15,7 @@ import { ErrorCreateGraphics } from '../frameworks/errors/errors';
  */
 export async function createGraphics(config: Config, data: FigmaData): Promise<void> {
   try {
-    if (!config || !data) throw new Error(ErrorCreateGraphics);
+    if (!config || !data) throw Error(ErrorCreateGraphics);
     console.log(MsgSyncGraphics);
 
     await refresh(config.outputFolderGraphics);
@@ -25,6 +25,6 @@ export async function createGraphics(config: Config, data: FigmaData): Promise<v
 
     await writeGraphics(fileList, config);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

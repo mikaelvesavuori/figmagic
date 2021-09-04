@@ -19,19 +19,19 @@ import {
  * @description Download all image assets from Figma page
  */
 export async function processGraphics(graphicsPage: Frame[], config: Config): Promise<FileList[]> {
-  if (!graphicsPage) throw new Error(ErrorProcessGraphics);
+  if (!graphicsPage) throw Error(ErrorProcessGraphics);
 
   const { token, url, outputFormatGraphics, outputScaleGraphics, versionName } = config;
-  if (!token) throw new Error(ErrorProcessGraphics);
-  if (graphicsPage.length === 0 || !graphicsPage[0].children) throw new Error(ErrorProcessGraphics);
+  if (!token) throw Error(ErrorProcessGraphics);
+  if (graphicsPage.length === 0 || !graphicsPage[0].children) throw Error(ErrorProcessGraphics);
 
   const IDS = getIds(graphicsPage);
   const SETTINGS = `&scale=${outputScaleGraphics}&format=${outputFormatGraphics}`;
   const URL = `${url}?ids=${getIdString(IDS)}${SETTINGS}`;
 
   const IMAGE_RESPONSE: ImageResponse = await getFromApi(token, URL, versionName, 'images');
-  if (IMAGE_RESPONSE.err) throw new Error(ErrorProcessGraphicsImageError);
-  if (!IMAGE_RESPONSE.images) throw new Error(ErrorProcessGraphicsNoImages);
+  if (IMAGE_RESPONSE.err) throw Error(ErrorProcessGraphicsImageError);
+  if (!IMAGE_RESPONSE.images) throw Error(ErrorProcessGraphicsNoImages);
 
   return getFileList(IMAGE_RESPONSE, IDS, outputFormatGraphics);
 }

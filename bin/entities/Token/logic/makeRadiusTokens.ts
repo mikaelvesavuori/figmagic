@@ -14,8 +14,8 @@ import {
  * @description Places all Figma radii into a clean object
  */
 export function makeRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTokens {
-  if (!radiusFrame) throw new Error(ErrorMakeRadiusTokensNoFrame);
-  if (!radiusFrame.children) throw new Error(ErrorMakeRadiusTokensNoChildren);
+  if (!radiusFrame) throw Error(ErrorMakeRadiusTokensNoFrame);
+  if (!radiusFrame.children) throw Error(ErrorMakeRadiusTokensNoChildren);
 
   const cornerRadii: Record<string, unknown> = {};
   const TOKENS = radiusFrame.children;
@@ -25,7 +25,7 @@ export function makeRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTok
 }
 
 function makeRadiusToken(item: Frame, cornerRadii: Record<string, unknown>, remSize: number) {
-  if (!item.name) throw new Error(ErrorMakeRadiusTokensMissingProps);
+  if (!item.name) throw Error(ErrorMakeRadiusTokensMissingProps);
   const NAME: string = camelize(item.name);
   const CORNER_RADIUS: string = item.cornerRadius
     ? normalizeUnits(item.cornerRadius, 'cornerRadius', 'adjustedRadius', remSize)

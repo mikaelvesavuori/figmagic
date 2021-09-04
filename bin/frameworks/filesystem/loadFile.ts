@@ -8,12 +8,12 @@ import { ErrorLoadFile } from '../errors/errors';
  */
 export function loadFile(path: string): string | Record<string, unknown> {
   try {
-    if (!path) throw new Error(ErrorLoadFile(path));
-    if (!fs.existsSync(path)) throw new Error(ErrorLoadFile(path));
+    if (!path) throw Error(ErrorLoadFile(path));
+    if (!fs.existsSync(path)) throw Error(ErrorLoadFile(path));
 
     const DATA = fs.readFileSync(path, 'utf8');
     return isJsonString(DATA) ? JSON.parse(DATA) : DATA;
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

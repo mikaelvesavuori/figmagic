@@ -29,7 +29,7 @@ export function parseTypographyStylingFromElement(
     usePostscriptFontNames
   } = typographyElement;
   try {
-    if (!textElement || !remSize) throw new Error(ErrorParseTypographyStylingFromElement);
+    if (!textElement || !remSize) throw Error(ErrorParseTypographyStylingFromElement);
 
     const PATH = process.env.IS_TEST ? path.join('testdata', 'tokens') : outputFolderTokens;
 
@@ -116,7 +116,7 @@ export function parseTypographyStylingFromElement(
 
     return { updatedCss: NEW_CSS, updatedImports: imports };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }
 
@@ -138,7 +138,7 @@ const getFiles = (filePath: string, outputFormatTokens: string): any => {
       lineHeights
     };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 };
 
@@ -150,7 +150,7 @@ const reduceCssDuplicates = (css: string) =>
 const getFontColor = (textElement: Frame) => {
   if (textElement.fills) {
     if (textElement.fills[0] && textElement.fills[0].type === 'SOLID') {
-      if (!textElement.fills[0].color) throw new Error(ErrorGetFontColor);
+      if (!textElement.fills[0].color) throw Error(ErrorGetFontColor);
       const R = roundColorValue(textElement.fills[0].color.r);
       const G = roundColorValue(textElement.fills[0].color.g);
       const B = roundColorValue(textElement.fills[0].color.b);

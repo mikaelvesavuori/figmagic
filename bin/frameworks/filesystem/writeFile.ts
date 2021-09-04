@@ -13,7 +13,7 @@ import { ErrorWriteFile, ErrorWriteFileWrongType } from '../errors/errors';
  */
 export function writeFile(writeOperation: WriteOperation): void {
   try {
-    if (!writeOperation) throw new Error(ErrorWriteFile);
+    if (!writeOperation) throw Error(ErrorWriteFile);
 
     const {
       type,
@@ -27,11 +27,11 @@ export function writeFile(writeOperation: WriteOperation): void {
       metadata,
       templates
     } = writeOperation;
-    if (!file || !path || !name || !type) throw new Error(ErrorWriteFile);
+    if (!file || !path || !name || !type) throw Error(ErrorWriteFile);
 
     const TYPE: any = typeof type === 'string' ? type.toLowerCase() : 'null';
 
-    if (!acceptedFileTypes.includes(TYPE)) throw new Error(ErrorWriteFileWrongType);
+    if (!acceptedFileTypes.includes(TYPE)) throw Error(ErrorWriteFileWrongType);
 
     createFolder(path);
 
@@ -51,6 +51,6 @@ export function writeFile(writeOperation: WriteOperation): void {
     const { filePath, fileContent } = prepareWrite(prepareWriteOperation);
     write(filePath, fileContent);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

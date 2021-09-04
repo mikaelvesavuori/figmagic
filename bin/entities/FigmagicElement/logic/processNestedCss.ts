@@ -15,7 +15,7 @@ import {
  * at the top, while unique values get sorted under their respective CSS classes.
  */
 export function processNestedCss(css: string): string {
-  if (!css) throw new Error(ErrorProcessNestedCss);
+  if (!css) throw Error(ErrorProcessNestedCss);
 
   // Match or split by CSS class name, like ".ButtonWarning {"
   const CLASS_NAMES: RegExpMatchArray | null = css.match(/\..* {/gi);
@@ -33,7 +33,7 @@ export function processNestedCss(css: string): string {
  * @description Collate/package array objects for easier handling in later steps
  */
 function cleanArrays(classNames: RegExpMatchArray | null, classContent: string[]): any {
-  if (!classNames || !classContent) throw new Error(ErrorCleanArrays);
+  if (!classNames || !classContent) throw Error(ErrorCleanArrays);
 
   const CLASSES: any[] = [];
 
@@ -71,7 +71,7 @@ function cleanArrays(classNames: RegExpMatchArray | null, classContent: string[]
  * @description Get all shared/common/intersecting values across all "classes". These will then need to float to the top of the CSS document.
  */
 function getIntersectingValues(arrays: any[]): any[] {
-  if (!arrays) throw new Error(ErrorGetIntersectingValues);
+  if (!arrays) throw Error(ErrorGetIntersectingValues);
 
   const CSS_ARRAYS = arrays.map((a) => a.css);
   const REDUCED_VALUES = CSS_ARRAYS.reduce((prev, curr) =>
@@ -86,7 +86,7 @@ function getIntersectingValues(arrays: any[]): any[] {
  * @description Get any unique values and collect them in arrays per class
  */
 function getUniqueValues(arrays: any[], intersections: any[]): any[] {
-  if (!arrays || !intersections) throw new Error(ErrorGetUniqueValues);
+  if (!arrays || !intersections) throw Error(ErrorGetUniqueValues);
 
   // Get unique values
   const CSS_ARRAYS: any[] = arrays.map((arr) => arr.css);
@@ -111,7 +111,7 @@ function getUniqueValues(arrays: any[], intersections: any[]): any[] {
  * @description Create CSS string literal
  */
 function createCssString(intersections: any[], uniqueValues: any[]): string {
-  if (!intersections || !uniqueValues) throw new Error(ErrorCreateCssString);
+  if (!intersections || !uniqueValues) throw Error(ErrorCreateCssString);
 
   // Fix order, which has become reversed at this stage
   uniqueValues.reverse();

@@ -14,8 +14,8 @@ import {
  * @description Places all Figma shadows into a clean object
  */
 export function makeShadowTokens(shadowFrame: Frame): ShadowTokens {
-  if (!shadowFrame) throw new Error(ErrorMakeShadowTokensNoFrame);
-  if (!shadowFrame.children) throw new Error(ErrorMakeShadowTokensNoChildren);
+  if (!shadowFrame) throw Error(ErrorMakeShadowTokensNoFrame);
+  if (!shadowFrame.children) throw Error(ErrorMakeShadowTokensNoChildren);
 
   const shadows: Record<string, unknown> = {};
   const TOKENS = shadowFrame.children;
@@ -25,7 +25,7 @@ export function makeShadowTokens(shadowFrame: Frame): ShadowTokens {
 }
 
 function makeShadowToken(item: Frame, shadows: Record<string, unknown>) {
-  if (!item.name || !item.effects) throw new Error(ErrorMakeShadowTokensMissingProps);
+  if (!item.name || !item.effects) throw Error(ErrorMakeShadowTokensMissingProps);
 
   const NAME = camelize(item.name);
 

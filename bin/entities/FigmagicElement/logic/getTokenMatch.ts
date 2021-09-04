@@ -17,7 +17,7 @@ export function getTokenMatch(
   remSize: number
 ): TokenMatch {
   try {
-    if (!tokenFileName || !property || !expectedValue) throw new Error(ErrorGetTokenMatch);
+    if (!tokenFileName || !property || !expectedValue) throw Error(ErrorGetTokenMatch);
 
     let css = ``;
     let imports: Imports[] = [];
@@ -52,7 +52,7 @@ export function getTokenMatch(
 
     return { updatedCss: css, updatedImports: imports };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }
 
@@ -73,7 +73,7 @@ function matchPadding(
       let foundMatch = false;
 
       if (expectedValue[key]) {
-        if (!remSize) throw new Error(ErrorGetTokenMatchNoRemSize);
+        if (!remSize) throw Error(ErrorGetTokenMatchNoRemSize);
         const parsedValue =
           typeof expectedValue[key] !== 'number'
             ? parseFloat(expectedValue[key] as string)
@@ -100,7 +100,7 @@ function matchPadding(
 
     return { css, imports };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }
 
@@ -166,6 +166,6 @@ function matchOther(
 
     return { css, imports };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

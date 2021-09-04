@@ -14,13 +14,13 @@ export async function writeBaseJson(
   figmaData: string,
   data: FigmaData | Record<string, unknown>
 ): Promise<void> {
-  if (!figmagicFolder || !figmaData || !data) throw new Error(ErrorWriteBaseJson);
+  if (!figmagicFolder || !figmaData || !data) throw Error(ErrorWriteBaseJson);
 
   console.log(MsgWriteBaseFile);
   try {
     await refresh(figmagicFolder);
     write(`${figmagicFolder}/${figmaData}`, JSON.stringify(data));
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

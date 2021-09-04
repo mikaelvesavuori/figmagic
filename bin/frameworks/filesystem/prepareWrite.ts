@@ -10,7 +10,7 @@ import { ErrorPrepareWrite, ErrorWriteFile } from '../errors/errors';
  */
 export function prepareWrite(writeOperation: WriteOperation): any {
   try {
-    if (!writeOperation) throw new Error(ErrorWriteFile);
+    if (!writeOperation) throw Error(ErrorWriteFile);
 
     const {
       type,
@@ -25,7 +25,7 @@ export function prepareWrite(writeOperation: WriteOperation): any {
     } = writeOperation;
 
     if ((type === 'css' || type === 'story' || type === 'component') && !templates)
-      throw new Error(ErrorPrepareWrite);
+      throw Error(ErrorPrepareWrite);
 
     const getFileDataOperation: GetFileDataOperation = {
       type,
@@ -43,6 +43,6 @@ export function prepareWrite(writeOperation: WriteOperation): any {
 
     return getFileContentAndPath(getFileDataOperation);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

@@ -89,7 +89,7 @@ class FigmagicElement {
         return this.handleNestedElements(FILTERED_ELEMENTS);
       else return this.handleFlatElements(FILTERED_ELEMENTS);
     } catch (error: any) {
-      throw new Error(error);
+      throw Error(error);
     }
   }
 
@@ -200,7 +200,7 @@ class FigmagicElement {
 
       return { updatedCss: PROCESSED_CSS, updatedImports: imports };
     } catch (error: any) {
-      throw new Error(error);
+      throw Error(error);
     }
   }
 
@@ -246,7 +246,7 @@ class FigmagicElement {
 
       return { updatedCss: css, updatedImports: imports };
     } catch (error: any) {
-      throw new Error(error);
+      throw Error(error);
     }
   }
 
@@ -266,7 +266,7 @@ class FigmagicElement {
       (e: Frame) => e.type === 'TEXT' && e.name[0] !== '_'
     )[0];
 
-    if (!MAIN_ELEMENT && !TEXT_ELEMENT) throw new Error('Missing both main and text element!');
+    if (!MAIN_ELEMENT && !TEXT_ELEMENT) throw Error('Missing both main and text element!');
 
     const FIXED_NAME = el.name.replace(/\s/gi, '');
 
@@ -338,7 +338,7 @@ class FigmagicElement {
 
       return { updatedCss: css, updatedImports: imports };
     } catch (error: any) {
-      throw new Error(error);
+      throw Error(error);
     }
   }
 
@@ -346,7 +346,7 @@ class FigmagicElement {
    * @description Process CSS for flat elements
    */
   private processFlatCss(css: string): string {
-    if (!css) throw new Error('Missing CSS string when calling processCss()!'); // TODO: Add real error
+    if (!css) throw Error('Missing CSS string when calling processCss()!'); // TODO: Add real error
 
     let processedCss = Array.from(new Set(css.split(/\n/gi))).toString();
     if (processedCss[0] === ',') processedCss = processedCss.slice(1, processedCss.length);

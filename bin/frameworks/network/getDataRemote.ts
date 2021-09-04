@@ -12,7 +12,7 @@ export async function getDataRemote(
   versionName?: string | null
 ): Promise<any> {
   try {
-    if (!token || !url) throw new Error(ErrorGetDataNoTokenOrUrl);
+    if (!token || !url) throw Error(ErrorGetDataNoTokenOrUrl);
     console.log(MsgSetDataFromApi);
 
     let data = null;

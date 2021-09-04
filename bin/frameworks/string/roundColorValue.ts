@@ -4,7 +4,7 @@ import { ErrorRoundColorValue } from '../errors/errors';
  * @description Round color values so they are whole integers
  */
 export function roundColorValue(quantity = 0.0, scale = 255): number {
-  if (scale < 0 || scale > 255) throw new Error(ErrorRoundColorValue);
+  if (scale < 0 || scale > 255) throw Error(ErrorRoundColorValue);
 
   // Set bounds
   const MIN_VALUE = 0.0;

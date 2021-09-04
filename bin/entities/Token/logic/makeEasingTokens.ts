@@ -13,8 +13,8 @@ import {
  * @description Places all Figma easings into a clean object
  */
 export function makeEasingTokens(easingFrame: Frame): EasingTokens {
-  if (!easingFrame) throw new Error(ErrorMakeEasingTokensNoFrame);
-  if (!easingFrame.children) throw new Error(ErrorMakeEasingTokensNoChildren);
+  if (!easingFrame) throw Error(ErrorMakeEasingTokensNoFrame);
+  if (!easingFrame.children) throw Error(ErrorMakeEasingTokensNoChildren);
 
   const easings: Record<string, unknown> = {};
   const TOKENS = easingFrame.children;
@@ -24,7 +24,7 @@ export function makeEasingTokens(easingFrame: Frame): EasingTokens {
 }
 
 function makeEasingToken(item: Frame, easings: Record<string, unknown>) {
-  if (!item.name || !item.characters) throw new Error(ErrorMakeEasingTokensMissingProps);
+  if (!item.name || !item.characters) throw Error(ErrorMakeEasingTokensMissingProps);
   const NAME = camelize(item.name);
   easings[NAME] = item.characters.trim();
 }

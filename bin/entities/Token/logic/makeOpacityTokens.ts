@@ -17,13 +17,13 @@ export function makeOpacityTokens(
   opacitiesFrame: Frame,
   opacitiesUnit: 'float' | 'percent'
 ): OpacityTokens {
-  if (!opacitiesFrame) throw new Error(ErrorMakeOpacityTokensNoFrame);
-  if (!opacitiesFrame.children) throw new Error(ErrorMakeOpacityTokensNoChildren);
+  if (!opacitiesFrame) throw Error(ErrorMakeOpacityTokensNoFrame);
+  if (!opacitiesFrame.children) throw Error(ErrorMakeOpacityTokensNoChildren);
 
   const TOKENS = opacitiesFrame.children;
 
   const opacityTokens = TOKENS.reduce((tokens: { [index: string]: any }, item: Frame) => {
-    if (!item.name) throw new Error(ErrorMakeOpacityTokensMissingProps);
+    if (!item.name) throw Error(ErrorMakeOpacityTokensMissingProps);
 
     // Note: Figma API does not provide an opacity value if its 100%. We will assume it defaults to 1 if undefined.
     const NAME = camelize(item.name);

@@ -8,13 +8,13 @@ import { ErrorCreateLinearGradientString } from '../../frameworks/errors/errors'
  * @description Create an RGBA-based CSS linear gradient string
  */
 export function createLinearGradientString(fills: Paint): string {
-  if (!fills) throw new Error(ErrorCreateLinearGradientString);
-  if (!fills.gradientHandlePositions) throw new Error(ErrorCreateLinearGradientString);
+  if (!fills) throw Error(ErrorCreateLinearGradientString);
+  if (!fills.gradientHandlePositions) throw Error(ErrorCreateLinearGradientString);
 
   let str = `linear-gradient(`;
 
   const GRADIENT_STOPS = fills.gradientStops ? fills.gradientStops : null;
-  if (!GRADIENT_STOPS) throw new Error();
+  if (!GRADIENT_STOPS) throw Error();
 
   const DEGREE = calculateDegree(fills.gradientHandlePositions);
   if (DEGREE) str += `${DEGREE}deg, `;

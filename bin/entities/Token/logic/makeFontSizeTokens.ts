@@ -19,9 +19,9 @@ export function makeFontSizeTokens(
   fontUnit: string,
   remSize: number
 ): FontSizeTokens {
-  if (!fontSizeFrame) throw new Error(ErrorMakeFontSizeTokensNoFrame);
-  if (!fontSizeFrame.children) throw new Error(ErrorMakeFontSizeTokensNoChildren);
-  if (!fontUnit || !remSize) throw new Error(ErrorMakeFontSizeTokensNoSizing);
+  if (!fontSizeFrame) throw Error(ErrorMakeFontSizeTokensNoFrame);
+  if (!fontSizeFrame.children) throw Error(ErrorMakeFontSizeTokensNoChildren);
+  if (!fontUnit || !remSize) throw Error(ErrorMakeFontSizeTokensNoSizing);
 
   const fontSizes: Record<string, unknown> = {};
   const TOKENS = fontSizeFrame.children;
@@ -36,8 +36,8 @@ function makeFontSizeToken(
   remSize: number,
   fontUnit: string
 ) {
-  if (!item.name || !item.style) throw new Error(ErrorMakeFontSizeTokensMissingProps);
-  if (!item.style.fontSize) throw new Error(ErrorMakeFontSizeTokensMissingSize);
+  if (!item.name || !item.style) throw Error(ErrorMakeFontSizeTokensMissingProps);
+  if (!item.style.fontSize) throw Error(ErrorMakeFontSizeTokensMissingSize);
 
   const NAME = camelize(item.name);
   const FONT_SIZE = (() => {

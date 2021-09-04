@@ -27,9 +27,9 @@ import {
  */
 export const prepComponent = (data: PrepComponent): FileContentWithPath => {
   try {
-    if (!data) throw new Error(ErrorPrepFileComponent);
+    if (!data) throw Error(ErrorPrepFileComponent);
     if (!data.name || !data.filePath || !data.format || !data.templates || !data.element)
-      throw new Error(ErrorPrepFileComponent);
+      throw Error(ErrorPrepFileComponent);
     const { name, filePath, format, templates, text, extraProps, element } = data;
     const props = extraProps === '' || extraProps === ' ' ? `${extraProps}` : ` ${extraProps}`;
 
@@ -57,7 +57,7 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
 
     return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 };
 
@@ -66,9 +66,9 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
  */
 export const prepStyledComponents = (data: PrepStyledComponents): FileContentWithPath => {
   try {
-    if (!data) throw new Error(ErrorPrepFileStyledComponents);
+    if (!data) throw Error(ErrorPrepFileStyledComponents);
     if (!data.name || !data.filePath || !data.format || !data.templates || !data.element)
-      throw new Error(ErrorPrepFileStyledComponents);
+      throw Error(ErrorPrepFileStyledComponents);
 
     const { name, filePath, format, templates, element } = data;
 
@@ -84,7 +84,7 @@ export const prepStyledComponents = (data: PrepStyledComponents): FileContentWit
 
     return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 };
 
@@ -93,9 +93,8 @@ export const prepStyledComponents = (data: PrepStyledComponents): FileContentWit
  */
 export const prepCss = (data: PrepCss): FileContentWithPath => {
   try {
-    if (!data) throw new Error(ErrorPrepFileCss);
-    if (!data.name || !data.filePath || !data.format || !data.file)
-      throw new Error(ErrorPrepFileCss);
+    if (!data) throw Error(ErrorPrepFileCss);
+    if (!data.name || !data.filePath || !data.format || !data.file) throw Error(ErrorPrepFileCss);
 
     const { name, filePath, format, imports, file } = data;
 
@@ -104,7 +103,7 @@ export const prepCss = (data: PrepCss): FileContentWithPath => {
 
     return { fileContent: FILE_CONTENT, filePath: `${filePath}${SUFFIX}.${format}` };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 };
 
@@ -113,9 +112,9 @@ export const prepCss = (data: PrepCss): FileContentWithPath => {
  */
 export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
   try {
-    if (!data) throw new Error(ErrorPrepFileStorybook);
+    if (!data) throw Error(ErrorPrepFileStorybook);
     if (!data.name || !data.filePath || !data.format || !data.templates || !data.text)
-      throw new Error(ErrorPrepFileStorybook);
+      throw Error(ErrorPrepFileStorybook);
 
     const { name, filePath, format, templates, text } = data;
 
@@ -127,7 +126,7 @@ export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
 
     return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 };
 
@@ -136,8 +135,8 @@ export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
  */
 export const prepDescription = (data: PrepDescription): FileContentWithPath => {
   try {
-    if (!data) throw new Error(ErrorPrepFileDescription);
-    if (!data.filePath || !data.file || !data.format) throw new Error(ErrorPrepFileDescription);
+    if (!data) throw Error(ErrorPrepFileDescription);
+    if (!data.filePath || !data.file || !data.format) throw Error(ErrorPrepFileDescription);
 
     const { filePath, file, format } = data;
 
@@ -145,7 +144,7 @@ export const prepDescription = (data: PrepDescription): FileContentWithPath => {
 
     return { fileContent: FILE_CONTENT, filePath: `${filePath}.description.${format}` };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 };
 
@@ -154,9 +153,9 @@ export const prepDescription = (data: PrepDescription): FileContentWithPath => {
  */
 export const prepGraphicComponent = (data: PrepGraphicComponent): FileContentWithPath => {
   try {
-    if (!data) throw new Error(ErrorPrepFileGraphicComponent);
+    if (!data) throw Error(ErrorPrepFileGraphicComponent);
     if (!data.name || !data.filePath || !data.format || !data.templates)
-      throw new Error(ErrorPrepFileGraphicComponent);
+      throw Error(ErrorPrepFileGraphicComponent);
     const { name, filePath, format, templates, file } = data;
 
     const PATH = `${templates.templatePathGraphic}.${format}`;
@@ -169,6 +168,6 @@ export const prepGraphicComponent = (data: PrepGraphicComponent): FileContentWit
 
     return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 };

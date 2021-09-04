@@ -15,10 +15,10 @@ export function getDataLocal(
   figmaData: string
 ): Record<string, unknown> | string | FigmaData {
   try {
-    if (!figmagicFolder || !figmaData) throw new Error(ErrorGetDataLocal);
+    if (!figmagicFolder || !figmaData) throw Error(ErrorGetDataLocal);
     console.log(MsgSetDataFromLocal);
     return loadFile(path.join(`${figmagicFolder}`, `${figmaData}`));
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

@@ -17,7 +17,7 @@ export function parseBorderColor(
   params: BorderColorParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error(ErrorParseBorderColor);
+    if (!css || !imports || !params) throw Error(ErrorParseBorderColor);
 
     const { colors, borderColor, remSize } = params;
 
@@ -31,6 +31,6 @@ export function parseBorderColor(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

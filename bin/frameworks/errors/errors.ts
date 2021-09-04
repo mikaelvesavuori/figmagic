@@ -122,7 +122,7 @@ export const ErrorGetUniqueValues = ErrorMessage(
 );
 export const ErrorHandleNestedElements = ErrorMessage('Missing element in handleNestedElements()!');
 export const ErrorLoadFile = (path: string): string => {
-  if (!path) throw new Error('No string passed to ErrorLoadFile!');
+  if (!path) throw Error('No string passed to ErrorLoadFile!');
   return ErrorMessage(`Could not find file: ${path}!`);
 };
 export const ErrorGetBackgroundColor = ErrorMessage('Error in getBackgroundColor()!');

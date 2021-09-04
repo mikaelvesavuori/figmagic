@@ -11,7 +11,7 @@ import { ErrorDownloadFile } from '../errors/errors';
  */
 export async function downloadFile(url: string, filePath: string): Promise<void> {
   try {
-    if (!url || !filePath) throw new Error(ErrorDownloadFile);
+    if (!url || !filePath) throw Error(ErrorDownloadFile);
 
     return new Promise((resolve, reject) => {
       const req = https.get(url, (resp) => {
@@ -24,6 +24,6 @@ export async function downloadFile(url: string, filePath: string): Promise<void>
       req.on('end', () => resolve()).on('error', (error) => reject(error));
     });
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

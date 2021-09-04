@@ -44,12 +44,12 @@ class Token {
 
   private extractTokens(frame: Frame, tokenName: string, config: Config): ProcessedToken {
     try {
-      if (!frame || !tokenName) throw new Error(ErrorExtractTokens);
+      if (!frame || !tokenName) throw Error(ErrorExtractTokens);
 
       frame.children = this.getChildren(frame);
       return this.getTokens(frame, tokenName.toLowerCase(), config);
     } catch (error: any) {
-      throw new Error(error);
+      throw Error(error);
     }
   }
 
@@ -82,16 +82,16 @@ class Token {
       durations: () => makeDurationTokens(frame),
       easings: () => makeEasingTokens(frame),
       fontfamilies: () => {
-        if (!config) throw new Error(ErrorExtractTokensNoConfig);
+        if (!config) throw Error(ErrorExtractTokensNoConfig);
         return makeFontTokens(frame, config.usePostscriptFontNames);
       },
       fontsizes: () => {
-        if (!config) throw new Error(ErrorExtractTokensNoConfig);
+        if (!config) throw Error(ErrorExtractTokensNoConfig);
         return makeFontSizeTokens(frame, config.fontUnit, config.remSize);
       },
       fontweights: () => makeFontWeightTokens(frame),
       letterspacings: () => {
-        if (!config) throw new Error(ErrorExtractTokensNoConfig);
+        if (!config) throw Error(ErrorExtractTokensNoConfig);
         return makeLetterSpacingTokens(frame, config.letterSpacingUnit);
       },
       lineheights: () =>
@@ -103,17 +103,17 @@ class Token {
         ),
       mediaqueries: () => makeMediaQueryTokens(frame),
       opacities: () => {
-        if (!config) throw new Error(ErrorExtractTokensNoConfig);
+        if (!config) throw Error(ErrorExtractTokensNoConfig);
         return makeOpacityTokens(frame, config.opacitiesUnit);
       },
       radii: () => makeRadiusTokens(frame, config.remSize),
       shadows: () => makeShadowTokens(frame),
       spacing: () => {
-        if (!config) throw new Error(ErrorExtractTokensNoConfig);
+        if (!config) throw Error(ErrorExtractTokensNoConfig);
         return makeSpacingTokens(frame, config.spacingUnit, config.remSize);
       },
       spacings: () => {
-        if (!config) throw new Error(ErrorExtractTokensNoConfig);
+        if (!config) throw Error(ErrorExtractTokensNoConfig);
         return makeSpacingTokens(frame, config.spacingUnit, config.remSize);
       },
       zindices: () => makeZindexTokens(frame)

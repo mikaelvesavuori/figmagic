@@ -16,7 +16,7 @@ import { ErrorCreateTokens } from '../frameworks/errors/errors';
  */
 export async function createTokens(config: Config, data: FigmaData): Promise<void> {
   try {
-    if (!config || !data) throw new Error(ErrorCreateTokens);
+    if (!config || !data) throw Error(ErrorCreateTokens);
     console.log(MsgWriteTokens);
 
     await refresh(config.outputFolderTokens);
@@ -27,6 +27,6 @@ export async function createTokens(config: Config, data: FigmaData): Promise<voi
     if (processedTokens && processedTokens.length > 0) writeTokens(processedTokens);
     else console.warn(MsgNoTokensFound);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

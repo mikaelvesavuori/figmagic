@@ -3,7 +3,7 @@ import { ErrorConvertRgbaToHex } from '../../frameworks/errors/errors';
 // @see https://stackoverflow.com/questions/15898740/how-to-convert-rgba-to-a-transparency-adjusted-hex
 
 export function convertRgbaToHex(color: string): string {
-  if (!color) throw new Error(ErrorConvertRgbaToHex);
+  if (!color) throw Error(ErrorConvertRgbaToHex);
 
   const VALUES: any = color
     .replace(/rgba?\(/, '')

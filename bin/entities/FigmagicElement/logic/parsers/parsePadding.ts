@@ -17,7 +17,7 @@ export function parsePadding(
   params: PaddingParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error(ErrorParsePadding);
+    if (!css || !imports || !params) throw Error(ErrorParsePadding);
     const { padding, spacing, remSize } = params;
 
     if (!(padding && Object.keys(padding).length > 0)) return { css, imports };
@@ -35,6 +35,6 @@ export function parsePadding(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

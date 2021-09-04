@@ -17,7 +17,7 @@ export function parseBorderWidth(
   params: BorderWidthParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error(ErrorParseBorderWidth);
+    if (!css || !imports || !params) throw Error(ErrorParseBorderWidth);
     const { borderWidths, borderWidth, remSize } = params;
 
     const { updatedCss, updatedImports } = getTokenMatch(
@@ -30,6 +30,6 @@ export function parseBorderWidth(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

@@ -13,8 +13,8 @@ import {
  * @description Places all Figma delays into a clean object
  */
 export function makeDelayTokens(delayFrame: Frame): DelayTokens {
-  if (!delayFrame) throw new Error(ErrorMakeDelayTokensNoFrame);
-  if (!delayFrame.children) throw new Error(ErrorMakeDelayTokensNoChildren);
+  if (!delayFrame) throw Error(ErrorMakeDelayTokensNoFrame);
+  if (!delayFrame.children) throw Error(ErrorMakeDelayTokensNoChildren);
 
   const delays: Record<string, unknown> = {};
   const TOKENS = delayFrame.children;
@@ -24,7 +24,7 @@ export function makeDelayTokens(delayFrame: Frame): DelayTokens {
 }
 
 function makeDelayToken(item: Frame, delays: Record<string, unknown>) {
-  if (!item.name || !item.characters) throw new Error(ErrorMakeDelayTokensMissingProps);
+  if (!item.name || !item.characters) throw Error(ErrorMakeDelayTokensMissingProps);
   const NAME = camelize(item.name);
   delays[NAME] = parseFloat(item.characters);
 }

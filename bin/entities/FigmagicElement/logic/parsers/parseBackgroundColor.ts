@@ -17,7 +17,7 @@ export function parseBackgroundColor(
   params: BackgroundColorParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error(ErrorParseBackgroundColor);
+    if (!css || !imports || !params) throw Error(ErrorParseBackgroundColor);
 
     const { colors, backgroundColor, remSize } = params;
 
@@ -33,6 +33,6 @@ export function parseBackgroundColor(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

@@ -12,7 +12,7 @@ export const getFileList = (
   ids: any[],
   outputFormatGraphics: string
 ): FileList[] => {
-  if (!imageResponse || !ids || !outputFormatGraphics) throw new Error(ErrorGetFileList);
+  if (!imageResponse || !ids || !outputFormatGraphics) throw Error(ErrorGetFileList);
 
   return Object.entries(imageResponse.images).map((image) => {
     const MATCH = ids.filter((id) => id.id === image[0]);

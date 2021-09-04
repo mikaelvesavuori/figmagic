@@ -14,7 +14,7 @@ import { ErrorWriteTokensNoSettings } from '../../../frameworks/errors/errors';
  */
 export function processTokens(tokens: Frame[], config: Config): any {
   try {
-    if (!config) throw new Error(ErrorWriteTokensNoSettings);
+    if (!config) throw Error(ErrorWriteTokensNoSettings);
     if (!tokens) return;
 
     const PROCESSED_TOKENS: WriteOperation[] = [];
@@ -34,6 +34,6 @@ export function processTokens(tokens: Frame[], config: Config): any {
 
     return PROCESSED_TOKENS;
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

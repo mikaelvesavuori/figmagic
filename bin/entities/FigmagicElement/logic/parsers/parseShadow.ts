@@ -17,7 +17,7 @@ export function parseShadow(
   params: ShadowParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error(ErrorParseShadow);
+    if (!css || !imports || !params) throw Error(ErrorParseShadow);
 
     const { shadows, shadow, remSize } = params;
 
@@ -31,6 +31,6 @@ export function parseShadow(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

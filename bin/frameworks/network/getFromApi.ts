@@ -14,7 +14,7 @@ export async function getFromApi(
   versionName?: string | null,
   type = 'files'
 ): Promise<ImageResponse> {
-  if (!figmaToken || !figmaUrl) throw new Error(ErrorGetFromApi);
+  if (!figmaToken || !figmaUrl) throw Error(ErrorGetFromApi);
   try {
     let endpoint = `/v1/${type}/${figmaUrl}`;
 
@@ -25,7 +25,7 @@ export async function getFromApi(
           else return res;
         })
         .catch(() => {
-          throw new Error(ErrorGetFromApi);
+          throw Error(ErrorGetFromApi);
         });
 
       if (versions.versions) {
@@ -47,9 +47,9 @@ export async function getFromApi(
     return await request(endpoint, figmaToken)
       .then((res) => res)
       .catch(() => {
-        throw new Error(ErrorGetFromApi);
+        throw Error(ErrorGetFromApi);
       });
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

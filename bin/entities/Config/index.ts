@@ -31,13 +31,13 @@ class Configuration {
     try {
       config = await createConfiguration(this.baseConfiguration, this.userConfigPath, this.cliArgs);
     } catch (error: any) {
-      throw new Error(error);
+      throw Error(error);
     }
 
     try {
       validateConfig(config);
     } catch (error: any) {
-      throw new Error(error);
+      throw Error(error);
     }
 
     this.config = config;

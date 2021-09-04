@@ -7,7 +7,7 @@ import { ErrorCreatePage } from '../../../frameworks/errors/errors';
  */
 export function createPage(figmaPages: Frame[], matchingPageName: string): Frame[] {
   try {
-    if (!figmaPages || !(figmaPages.length > 0)) throw new Error(ErrorCreatePage);
+    if (!figmaPages || !(figmaPages.length > 0)) throw Error(ErrorCreatePage);
 
     const PAGE = figmaPages.filter(
       (page) =>
@@ -18,6 +18,6 @@ export function createPage(figmaPages: Frame[], matchingPageName: string): Frame
     if (PAGE.length > 0 && PAGE[0].children) return PAGE[0].children;
     return [];
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

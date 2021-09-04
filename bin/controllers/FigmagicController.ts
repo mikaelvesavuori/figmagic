@@ -13,7 +13,7 @@ import { ErrorFigmagicController } from '../frameworks/errors/errors';
  */
 export async function FigmagicController(config: Config, data: FigmaData): Promise<string> {
   try {
-    if (!config || !data) throw new Error(ErrorFigmagicController);
+    if (!config || !data) throw Error(ErrorFigmagicController);
 
     if (config.syncGraphics) await createGraphics(config, data);
     if (config.syncTokens) await createTokens(config, data);
@@ -23,6 +23,6 @@ export async function FigmagicController(config: Config, data: FigmaData): Promi
 
     return MsgJobComplete;
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

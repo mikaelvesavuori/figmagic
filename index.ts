@@ -60,7 +60,7 @@ async function main(): Promise<void> {
       await FigmagicController(CONFIG, DATA);
     }
   } catch (error: any) {
-    console.error(`${colors.FgRed}${error}`);
+    console.error(`${colors.FgRed}${error.message}`);
   }
 }
 

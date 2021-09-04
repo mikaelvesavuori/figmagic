@@ -6,7 +6,7 @@ import { ErrorGetShadow } from '../../../../frameworks/errors/errors';
 
 export function getShadow(element: Frame): string | null {
   try {
-    if (!element) throw new Error(ErrorGetShadow);
+    if (!element) throw Error(ErrorGetShadow);
     if (!(element.effects && element.effects[0] && element.effects[0].type === 'DROP_SHADOW'))
       return null;
 
@@ -22,6 +22,6 @@ export function getShadow(element: Frame): string | null {
 
     return `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

@@ -6,8 +6,8 @@ import { ErrorProcessGraphicElementsMap } from '../../../frameworks/errors/error
  */
 export function processGraphicElementsMap(graphics: any[]): any {
   try {
-    if (!graphics) throw new Error(ErrorProcessGraphicElementsMap);
-    if (!(graphics.length > 0)) throw new Error(ErrorProcessGraphicElementsMap);
+    if (!graphics) throw Error(ErrorProcessGraphicElementsMap);
+    if (!(graphics.length > 0)) throw Error(ErrorProcessGraphicElementsMap);
 
     let imports = '';
     graphics.forEach((graphic: Graphic) => {
@@ -22,6 +22,6 @@ export function processGraphicElementsMap(graphics: any[]): any {
 
     return imports + `export const Graphics = {\n${exports}};\n`;
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

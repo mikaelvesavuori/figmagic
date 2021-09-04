@@ -41,9 +41,9 @@ export function getFileContentAndPath(
   | PrepStorybook
   | PrepDescription {
   try {
-    if (!getFileContentAndPathOperation) throw new Error(ErrorGetFileContentAndPath);
+    if (!getFileContentAndPathOperation) throw Error(ErrorGetFileContentAndPath);
     if (!checkIfFieldsExist(getFileContentAndPathOperation))
-      throw new Error(ErrorGetFileContentAndPathMissingFields);
+      throw Error(ErrorGetFileContentAndPathMissingFields);
 
     const {
       type,
@@ -112,9 +112,9 @@ export function getFileContentAndPath(
 
     // @ts-ignore
     if (fileOperations.hasOwnProperty(type)) return fileOperations[type]();
-    else throw new Error(ErrorGetFileContentAndPathNoReturn);
+    else throw Error(ErrorGetFileContentAndPathNoReturn);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }
 

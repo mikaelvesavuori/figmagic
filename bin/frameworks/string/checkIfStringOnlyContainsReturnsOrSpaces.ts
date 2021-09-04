@@ -4,7 +4,7 @@ import { ErrorCheckIfStringOnlyContainsReturnsOrSpaces } from '../../../bin/fram
  * @description TODO
  */
 export function checkIfStringOnlyContainsReturnsOrSpaces(str: string): boolean {
-  if (!str) throw new Error(ErrorCheckIfStringOnlyContainsReturnsOrSpaces);
+  if (!str) throw Error(ErrorCheckIfStringOnlyContainsReturnsOrSpaces);
 
   const HAS_RETURNS = str.match(/\n/gi);
   const HAS_SPACES = str.match(/ /gi);

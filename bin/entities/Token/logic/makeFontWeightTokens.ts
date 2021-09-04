@@ -14,8 +14,8 @@ import {
  * @description Places all Figma font weights into a clean object
  */
 export function makeFontWeightTokens(fontWeightFrame: Frame): FontWeightTokens {
-  if (!fontWeightFrame) throw new Error(ErrorMakeFontWeightTokensNoFrame);
-  if (!fontWeightFrame.children) throw new Error(ErrorMakeFontWeightTokensNoChildren);
+  if (!fontWeightFrame) throw Error(ErrorMakeFontWeightTokensNoFrame);
+  if (!fontWeightFrame.children) throw Error(ErrorMakeFontWeightTokensNoChildren);
 
   const fontWeights: Record<string, unknown> = {};
   const TOKENS = fontWeightFrame.children;
@@ -25,8 +25,8 @@ export function makeFontWeightTokens(fontWeightFrame: Frame): FontWeightTokens {
 }
 
 function makeFontWeightToken(item: Frame, fontWeights: Record<string, unknown>) {
-  if (!item.name || !item.style) throw new Error(ErrorMakeFontWeightTokensMissingProps);
-  if (!item.style.fontWeight) throw new Error(ErrorMakeFontWeightTokensMissingWeight);
+  if (!item.name || !item.style) throw Error(ErrorMakeFontWeightTokensMissingProps);
+  if (!item.style.fontWeight) throw Error(ErrorMakeFontWeightTokensMissingWeight);
 
   const NAME = camelize(item.name);
   fontWeights[NAME] = item.style.fontWeight;

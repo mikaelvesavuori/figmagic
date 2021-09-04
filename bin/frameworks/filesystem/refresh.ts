@@ -10,11 +10,11 @@ import { ErrorRefresh } from '../errors/errors';
 //@ts-ignore
 export async function refresh(path: string, trashExistingFolder = true): Promise<void> {
   try {
-    if (!path) throw new Error(ErrorRefresh);
+    if (!path) throw Error(ErrorRefresh);
 
     //if (trashExistingFolder) await trash([`./${path}`]); // TODO
     createFolder(path);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

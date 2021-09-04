@@ -15,7 +15,7 @@ import { ErrorWriteElements } from '../../../frameworks/errors/errors';
  */
 export function writeElements(elements: any[], config: Config, isGeneratingGraphics = false): void {
   try {
-    if (!elements || !config) throw new Error(ErrorWriteElements);
+    if (!elements || !config) throw Error(ErrorWriteElements);
 
     elements.forEach((element) => {
       const FIXED_CONFIG = makeFixedConfig(element, config);
@@ -55,7 +55,7 @@ export function writeElements(elements: any[], config: Config, isGeneratingGraph
       }
     });
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }
 

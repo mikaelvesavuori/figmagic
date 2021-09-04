@@ -11,8 +11,8 @@ export function createImportStringFromList(
   outputFolderTokens = 'tokens',
   tokensRelativeImportPrefix = ''
 ): string {
-  if (!importArray) throw new Error(ErrorCreateImportStringFromList);
-  if (!(importArray.length > 0)) throw new Error(ErrorCreateImportStringFromListZeroLength);
+  if (!importArray) throw Error(ErrorCreateImportStringFromList);
+  if (!(importArray.length > 0)) throw Error(ErrorCreateImportStringFromListZeroLength);
 
   let importString = ``;
 

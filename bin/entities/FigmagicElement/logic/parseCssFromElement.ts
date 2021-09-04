@@ -31,7 +31,7 @@ export function parseCssFromElement(
 ): UpdatedCssAndImports {
   try {
     if (!layoutElement || !remSize || !outputFormatToken || !outputFolderTokens)
-      throw new Error(ErrorParseCssFromElement);
+      throw Error(ErrorParseCssFromElement);
 
     const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : outputFolderTokens;
     const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputFormatToken);
@@ -91,7 +91,7 @@ export function parseCssFromElement(
     const NEW_CSS = reduceDuplicates(css);
     return { updatedCss: NEW_CSS, updatedImports: imports };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }
 
@@ -124,7 +124,7 @@ const getFiles = (filePath: string, outputFormatToken: string): any => {
       spacing
     };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 };
 

@@ -28,7 +28,7 @@ export async function createConfiguration(
   userConfigPath: string,
   cliArgs: string[]
 ): Promise<Config> {
-  if (!baseConfig) throw new Error(ErrorCreateConfigurationNoDefault);
+  if (!baseConfig) throw Error(ErrorCreateConfigurationNoDefault);
 
   const DEFAULT_CONFIG: Config = baseConfig;
 

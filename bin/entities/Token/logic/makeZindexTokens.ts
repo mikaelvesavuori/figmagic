@@ -13,8 +13,8 @@ import {
  * @description Places all Figma Z indices into a clean object
  */
 export function makeZindexTokens(zIndexFrame: Frame): ZindexTokens {
-  if (!zIndexFrame) throw new Error(ErrorMakeZindexTokensNoFrame);
-  if (!zIndexFrame.children) throw new Error(ErrorMakeZindexTokensNoChildren);
+  if (!zIndexFrame) throw Error(ErrorMakeZindexTokensNoFrame);
+  if (!zIndexFrame.children) throw Error(ErrorMakeZindexTokensNoChildren);
 
   const zIndex: Record<string, unknown> = {};
   const TOKENS = zIndexFrame.children;
@@ -24,7 +24,7 @@ export function makeZindexTokens(zIndexFrame: Frame): ZindexTokens {
 }
 
 function makeZindexToken(item: Frame, zIndex: Record<string, unknown>) {
-  if (!item.name || !item.characters) throw new Error(ErrorMakeZindexTokensMissingProps);
+  if (!item.name || !item.characters) throw Error(ErrorMakeZindexTokensMissingProps);
   const NAME = camelize(item.name);
   zIndex[NAME] = parseInt(item.characters);
 }

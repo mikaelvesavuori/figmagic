@@ -18,9 +18,9 @@ export function makeSpacingTokens(
   spacingUnit: string,
   remSize: number
 ): SpacingTokens {
-  if (!spacingFrame) throw new Error(ErrorMakeSpacingTokensNoFrame);
-  if (!spacingFrame.children) throw new Error(ErrorMakeSpacingTokensNoChildren);
-  if (!spacingUnit || !remSize) throw new Error(ErrorMakeSpacingTokensNoUnits);
+  if (!spacingFrame) throw Error(ErrorMakeSpacingTokensNoFrame);
+  if (!spacingFrame.children) throw Error(ErrorMakeSpacingTokensNoChildren);
+  if (!spacingUnit || !remSize) throw Error(ErrorMakeSpacingTokensNoUnits);
 
   const spacings: Record<string, unknown> = {};
   const TOKENS = spacingFrame.children;
@@ -37,7 +37,7 @@ function makeSpacingToken(
 ) {
   const NAME: string = camelize(item.name);
   if (!item.absoluteBoundingBox || !item.absoluteBoundingBox.width)
-    throw new Error(ErrorMakeSpacingTokensNoFrame);
+    throw Error(ErrorMakeSpacingTokensNoFrame);
 
   const WIDTH: number = item.absoluteBoundingBox.width;
   const UNIT = (() => {

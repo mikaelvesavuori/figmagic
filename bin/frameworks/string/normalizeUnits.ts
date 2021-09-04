@@ -13,7 +13,7 @@ export function normalizeUnits(
   newUnit: string,
   remSize?: number
 ): string {
-  if (!value || !currentUnit || !newUnit) throw new Error(ErrorNormalizeUnits);
+  if (!value || !currentUnit || !newUnit) throw Error(ErrorNormalizeUnits);
 
   let rootSize = undefined;
   let unitSize = undefined;
@@ -26,7 +26,7 @@ export function normalizeUnits(
 
   // Set new unit
   if (newUnit === 'rem' || newUnit === 'em') {
-    if (!remSize) throw new Error(ErrorNormalizeUnitsNoRemSize);
+    if (!remSize) throw Error(ErrorNormalizeUnitsNoRemSize);
     unitSize = remSize;
   }
 
@@ -35,8 +35,7 @@ export function normalizeUnits(
   // Add px to corner radius
   if (currentUnit === 'cornerRadius' && newUnit === 'adjustedRadius') return `${value}px`;
 
-  if (rootSize === undefined || unitSize === undefined)
-    throw new Error(ErrorNormalizeUnitsUndefined);
+  if (rootSize === undefined || unitSize === undefined) throw Error(ErrorNormalizeUnitsUndefined);
 
   if (newUnit === 'unitless') return `${unitSize}`;
   else {

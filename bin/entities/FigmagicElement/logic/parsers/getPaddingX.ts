@@ -12,7 +12,7 @@ export function getPaddingX(textElement: Frame, element: Frame): PaddingHorizont
     if (!textElement || !element) return null;
 
     if (!textElement.absoluteBoundingBox || !element.absoluteBoundingBox)
-      throw new Error(ErrorGetPaddingX);
+      throw Error(ErrorGetPaddingX);
 
     const PARENT_WIDTH = element.absoluteBoundingBox.width;
     const TEXT_WIDTH = textElement.absoluteBoundingBox.width;
@@ -26,6 +26,6 @@ export function getPaddingX(textElement: Frame, element: Frame): PaddingHorizont
       right: Math.round(PADDING_RIGHT)
     };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

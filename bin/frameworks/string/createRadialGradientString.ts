@@ -7,8 +7,8 @@ import { ErrorCreateRadialGradientString } from '../../frameworks/errors/errors'
  * @description Create an RGBA-based CSS radial gradient string
  */
 export function createRadialGradientString(fills: Paint): string {
-  if (!fills) throw new Error(ErrorCreateRadialGradientString);
-  if (!fills.gradientHandlePositions) throw new Error(ErrorCreateRadialGradientString);
+  if (!fills) throw Error(ErrorCreateRadialGradientString);
+  if (!fills.gradientHandlePositions) throw Error(ErrorCreateRadialGradientString);
 
   const position = (() => {
     // @ts-ignore
@@ -29,7 +29,7 @@ export function createRadialGradientString(fills: Paint): string {
   let str = `radial-gradient(${position}, `;
 
   const GRADIENT_STOPS = fills.gradientStops ? fills.gradientStops : null;
-  if (!GRADIENT_STOPS) throw new Error();
+  if (!GRADIENT_STOPS) throw Error();
 
   GRADIENT_STOPS.forEach((fill: Paint, index: number) => {
     const R = roundColorValue(fill.color?.r, 255);

@@ -20,8 +20,8 @@ export function makeLineHeightTokens(
   unitlessPrecision?: number,
   lineHeightUnit?: LineHeightUnits
 ): LineHeightTokens {
-  if (!lineHeightFrame) throw new Error(ErrorMakeLineHeightTokensNoFrame);
-  if (!lineHeightFrame.children) throw new Error(ErrorMakeLineHeightTokensNoChildren);
+  if (!lineHeightFrame) throw Error(ErrorMakeLineHeightTokensNoFrame);
+  if (!lineHeightFrame.children) throw Error(ErrorMakeLineHeightTokensNoChildren);
 
   const TOKENS = lineHeightFrame.children;
 
@@ -72,7 +72,7 @@ function makeLineHeightToken(
       break;
     case 'em':
       if (!FONT_SIZE) {
-        throw new Error(ErrorMakeLineHeightTokensMissingProps);
+        throw Error(ErrorMakeLineHeightTokensMissingProps);
       }
       /**
        * Dividing the value by the current FONT_SIZE will give the %-based em value.

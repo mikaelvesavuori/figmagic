@@ -17,7 +17,7 @@ export function parseHeight(
   params: HeightParams
 ): ParsedElementMetadataInterface {
   try {
-    if (!css || !imports || !params) throw new Error(ErrorParseHeight);
+    if (!css || !imports || !params) throw Error(ErrorParseHeight);
     const { spacing, height, remSize } = params;
 
     const { updatedCss, updatedImports } = getTokenMatch(
@@ -30,6 +30,6 @@ export function parseHeight(
 
     return updateParsing(css, updatedCss, imports, updatedImports);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

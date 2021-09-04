@@ -19,10 +19,10 @@ import { FigmagicElement } from '../contracts/FigmagicElement';
  */
 export async function createElements(config: Config, data: FigmaData): Promise<void> {
   try {
-    if (!config || !data) throw new Error(ErrorCreateElements);
+    if (!config || !data) throw Error(ErrorCreateElements);
     console.log(MsgSyncElements);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 
   try {
@@ -58,7 +58,7 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
         handleGraphicElementsMap({ config, graphics: GRAPHICS } as GraphicElementsMap);
     }
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }
 

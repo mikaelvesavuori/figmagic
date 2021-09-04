@@ -24,13 +24,13 @@ export function makeLetterSpacingTokens(
   letterSpacingFrame: Frame,
   letterSpacingUnit: string
 ): LetterSpacingTokens {
-  if (!letterSpacingFrame) throw new Error(ErrorMakeLetterSpacingTokensNoFrame);
-  if (!letterSpacingFrame.children) throw new Error(ErrorMakeLetterSpacingTokensNoChildren);
+  if (!letterSpacingFrame) throw Error(ErrorMakeLetterSpacingTokensNoFrame);
+  if (!letterSpacingFrame.children) throw Error(ErrorMakeLetterSpacingTokensNoChildren);
 
   const TOKENS = letterSpacingFrame.children;
 
   const letterSpacings = TOKENS.reduce((tokens: { [index: string]: any }, item: Frame) => {
-    if (!item.name || !item.style) throw new Error(ErrorMakeLetterSpacingTokensMissingProps);
+    if (!item.name || !item.style) throw Error(ErrorMakeLetterSpacingTokensMissingProps);
 
     const NAME = camelize(item.name);
 
@@ -52,7 +52,7 @@ export function makeLetterSpacingTokens(
       case 'em':
       default:
         if (!FONT_SIZE) {
-          throw new Error(ErrorMakeLetterSpacingTokensMissingProps);
+          throw Error(ErrorMakeLetterSpacingTokensMissingProps);
         }
         /**
          * Dividing the value by the current FONT_SIZE will give the %-based em value.

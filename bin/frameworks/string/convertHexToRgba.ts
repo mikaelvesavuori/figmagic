@@ -6,7 +6,7 @@ import { ErrorConvertHexToRgba } from '../errors/errors';
  * @description Convert hex color to RGBA
  */
 export function convertHexToRgba(r: number, g: number, b: number, a: number): string {
-  if (!r || !g || !b || !a) throw new Error(ErrorConvertHexToRgba);
+  if (!r || !g || !b || !a) throw Error(ErrorConvertHexToRgba);
 
   const R = roundColorValue(r, 255);
   const G = roundColorValue(g, 255);

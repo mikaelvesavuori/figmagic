@@ -16,7 +16,7 @@ export function getPaddingY(textElement: Frame, element: Frame): PaddingVertical
       !textElement.absoluteBoundingBox ||
       !textElement.absoluteBoundingBox.height
     )
-      throw new Error(ErrorGetPaddingY);
+      throw Error(ErrorGetPaddingY);
 
     const PARENT_HEIGHT = element.absoluteBoundingBox.height;
     const TEXT_HEIGHT = textElement.absoluteBoundingBox.height;
@@ -29,6 +29,6 @@ export function getPaddingY(textElement: Frame, element: Frame): PaddingVertical
       bottom: Math.round(PADDING_BOTTOM)
     };
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

@@ -13,8 +13,8 @@ import {
  * @description Places all Figma durations into a clean object
  */
 export function makeDurationTokens(durationFrame: Frame): DurationTokens {
-  if (!durationFrame) throw new Error(ErrorMakeDurationTokensNoFrame);
-  if (!durationFrame.children) throw new Error(ErrorMakeDurationTokensNoChildren);
+  if (!durationFrame) throw Error(ErrorMakeDurationTokensNoFrame);
+  if (!durationFrame.children) throw Error(ErrorMakeDurationTokensNoChildren);
 
   const durations: Record<string, unknown> = {};
   const TOKENS = durationFrame.children;
@@ -24,7 +24,7 @@ export function makeDurationTokens(durationFrame: Frame): DurationTokens {
 }
 
 function makeDurationToken(item: Frame, durations: Record<string, unknown>) {
-  if (!item.name || !item.characters) throw new Error(ErrorMakeDurationTokensMissingProps);
+  if (!item.name || !item.characters) throw Error(ErrorMakeDurationTokensMissingProps);
   const NAME = camelize(item.name);
   durations[NAME] = parseFloat(item.characters);
 }

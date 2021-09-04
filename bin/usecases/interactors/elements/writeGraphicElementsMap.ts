@@ -12,10 +12,10 @@ export function writeGraphicElementsMap(
   fileContent: string
 ): void {
   try {
-    if (!folder || !filePath || !fileContent) throw new Error(ErrorWriteGraphicElementsMap);
+    if (!folder || !filePath || !fileContent) throw Error(ErrorWriteGraphicElementsMap);
     createFolder(folder);
     write(filePath, fileContent);
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

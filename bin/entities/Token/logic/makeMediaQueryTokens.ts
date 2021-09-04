@@ -13,8 +13,8 @@ import {
  * @description Places all Figma media queries into a clean object
  */
 export function makeMediaQueryTokens(mediaQueryFrame: Frame): MediaQueryTokens {
-  if (!mediaQueryFrame) throw new Error(ErrorSetupMediaQueryTokensNoFrame);
-  if (!mediaQueryFrame.children) throw new Error(ErrorSetupMediaQueryTokensNoChildren);
+  if (!mediaQueryFrame) throw Error(ErrorSetupMediaQueryTokensNoFrame);
+  if (!mediaQueryFrame.children) throw Error(ErrorSetupMediaQueryTokensNoChildren);
 
   const mediaQueries: Record<string, unknown> = {};
   const TOKENS = mediaQueryFrame.children;
@@ -24,8 +24,7 @@ export function makeMediaQueryTokens(mediaQueryFrame: Frame): MediaQueryTokens {
 }
 
 function makeMediaQueryToken(item: Frame, mediaQueries: Record<string, unknown>) {
-  if (!item.name || !item.absoluteBoundingBox)
-    throw new Error(ErrorSetupMediaQueryTokensMissingProps);
+  if (!item.name || !item.absoluteBoundingBox) throw Error(ErrorSetupMediaQueryTokensMissingProps);
 
   const NAME = camelize(item.name);
   mediaQueries[NAME] = `${item.absoluteBoundingBox.width}px`;

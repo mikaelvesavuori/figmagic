@@ -7,9 +7,9 @@ import { ErrorWrite } from '../errors/errors';
  */
 export function write(filePath: string, fileContent: string): void {
   try {
-    if (!filePath || !fileContent) throw new Error(ErrorWrite);
+    if (!filePath || !fileContent) throw Error(ErrorWrite);
     fs.writeFileSync(filePath, fileContent, 'utf-8');
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }

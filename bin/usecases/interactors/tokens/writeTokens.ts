@@ -9,9 +9,9 @@ import { ErrorWriteTokens } from '../../../frameworks/errors/errors';
  */
 export function writeTokens(processedTokens: WriteOperation[]): void {
   try {
-    if (!processedTokens) throw new Error(ErrorWriteTokens);
+    if (!processedTokens) throw Error(ErrorWriteTokens);
     processedTokens.forEach((token) => writeFile(token));
   } catch (error: any) {
-    throw new Error(error);
+    throw Error(error);
   }
 }
