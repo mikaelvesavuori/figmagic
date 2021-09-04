@@ -54,7 +54,12 @@ async function main(): Promise<void> {
       );
 
       // Write new JSON base data, unless user explicitly opts out
-      if (!recompileLocal) await writeBaseJson(figmagicFolder, figmaData, DATA);
+      if (!recompileLocal)
+        await writeBaseJson(
+          { figmagicFolder: figmagicFolder, refreshType: 'soft' }, // TODO: Add to configuration
+          figmaData,
+          DATA
+        );
 
       // Run the controller
       await FigmagicController(CONFIG, DATA);

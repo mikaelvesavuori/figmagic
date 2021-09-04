@@ -25,7 +25,7 @@ export function makeOpacityTokens(
   const opacityTokens = TOKENS.reduce((tokens: { [index: string]: any }, item: Frame) => {
     if (!item.name) throw Error(ErrorMakeOpacityTokensMissingProps);
 
-    // Note: Figma API does not provide an opacity value if its 100%. We will assume it defaults to 1 if undefined.
+    // Note: Figma API does not provide an opacity value if it's 100%. We will assume it defaults to 1 if undefined.
     const NAME = camelize(item.name);
     const OPACITY = (() => {
       let opacity: string | number = 1;

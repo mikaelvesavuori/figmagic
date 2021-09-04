@@ -36,7 +36,7 @@ module.exports = {
       },
       {
         test: /\.ts?$/,
-        use: 'ts-loader',
+        loader: 'ts-loader',
         exclude: [path.resolve(__dirname, 'node_modules')]
       }
     ]

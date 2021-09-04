@@ -1,7 +1,7 @@
 import { ErrorCheckIfStringOnlyContainsReturnsOrSpaces } from '../../../bin/frameworks/errors/errors';
 
 /**
- * @description TODO
+ * @description Helper to see if a string has no actual content, i.e. only returns or spaces.
  */
 export function checkIfStringOnlyContainsReturnsOrSpaces(str: string): boolean {
   if (!str) throw Error(ErrorCheckIfStringOnlyContainsReturnsOrSpaces);

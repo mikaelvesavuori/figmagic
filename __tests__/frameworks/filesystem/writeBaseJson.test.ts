@@ -31,7 +31,9 @@ describe('Success cases', () => {
   test('It should write the base Figma file', async () => {
     const testFile = '__test-writeBaseJson.txt';
     const path = `${TEST_FOLDER}/${testFile}`;
-    await writeBaseJson(TEST_FOLDER, testFile, { data: 'something' });
+    await writeBaseJson({ figmagicFolder: TEST_FOLDER, refreshType: 'hard' }, testFile, {
+      data: 'something'
+    });
     const fileContent = fs.readFileSync(path, { encoding: 'utf-8' });
     expect(fileContent).toBe(`{"data":"something"}`);
   });

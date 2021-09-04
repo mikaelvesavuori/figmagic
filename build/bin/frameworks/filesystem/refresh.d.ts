@@ -1,1 +1,2 @@
-export declare function refresh(path: string, trashExistingFolder?: boolean): Promise<void>;
+import { RefreshType } from '../../contracts/Refresh';
+export declare function refresh(folderPath: string, refreshType: RefreshType, trashExistingFolder?: boolean): void;

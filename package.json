@@ -84,6 +84,7 @@
     "prettier": "latest",
     "pretty-quick": "latest",
     "snyk": "latest",
+    "trash": "7",
     "ts-jest": "27",
     "ts-loader": "9",
     "tslib": "2",
@@ -94,8 +95,7 @@
     "webpack-shebang-plugin": "1"
   },
   "dependencies": {
-    "dotenv": "latest",
-    "trash": "latest"
+    "dotenv": "10"
   },
   "snyk": true
 }

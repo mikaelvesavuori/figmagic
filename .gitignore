@@ -4,7 +4,7 @@
 # Generated files
 .figmagicrc
 figmagic.json
-/.figmagic
+/.figmagic*
 /.webpack
 /figma
 /grid

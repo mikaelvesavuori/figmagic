@@ -19,7 +19,7 @@ export async function createTokens(config: Config, data: FigmaData): Promise<voi
     if (!config || !data) throw Error(ErrorCreateTokens);
     console.log(MsgWriteTokens);
 
-    await refresh(config.outputFolderTokens);
+    refresh(config.outputFolderTokens, 'soft'); // TODO: Add to configuration
 
     const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
     const processedTokens = processTokens(tokensPage, config);
