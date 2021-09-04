@@ -17,7 +17,7 @@ export function makeZindexTokens(zIndexFrame: Frame): ZindexTokens {
   if (!zIndexFrame.children) throw Error(ErrorMakeZindexTokensNoChildren);
 
   const zIndex: Record<string, unknown> = {};
-  const TOKENS = zIndexFrame.children;
+  const TOKENS = zIndexFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeZindexToken(item, zIndex));
 
   return zIndex;

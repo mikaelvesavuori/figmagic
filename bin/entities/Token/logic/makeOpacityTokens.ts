@@ -20,7 +20,7 @@ export function makeOpacityTokens(
   if (!opacitiesFrame) throw Error(ErrorMakeOpacityTokensNoFrame);
   if (!opacitiesFrame.children) throw Error(ErrorMakeOpacityTokensNoChildren);
 
-  const TOKENS = opacitiesFrame.children;
+  const TOKENS = opacitiesFrame.children.reverse();
 
   const opacityTokens = TOKENS.reduce((tokens: { [index: string]: any }, item: Frame) => {
     if (!item.name) throw Error(ErrorMakeOpacityTokensMissingProps);

@@ -18,7 +18,7 @@ export function makeRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTok
   if (!radiusFrame.children) throw Error(ErrorMakeRadiusTokensNoChildren);
 
   const cornerRadii: Record<string, unknown> = {};
-  const TOKENS = radiusFrame.children;
+  const TOKENS = radiusFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeRadiusToken(item, cornerRadii, remSize));
 
   return cornerRadii;

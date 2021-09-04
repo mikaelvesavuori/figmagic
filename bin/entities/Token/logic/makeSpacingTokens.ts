@@ -23,7 +23,7 @@ export function makeSpacingTokens(
   if (!spacingUnit || !remSize) throw Error(ErrorMakeSpacingTokensNoUnits);
 
   const spacings: Record<string, unknown> = {};
-  const TOKENS = spacingFrame.children;
+  const TOKENS = spacingFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeSpacingToken(item, spacings, spacingUnit, remSize));
 
   return spacings;

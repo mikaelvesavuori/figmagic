@@ -17,7 +17,7 @@ export function makeBorderWidthTokens(borderWidthFrame: Frame): BorderWidthToken
   if (!borderWidthFrame.children) throw Error(ErrorMakeBorderWidthTokensNoChildren);
 
   const borderWidths: Record<string, unknown> = {};
-  const TOKENS = borderWidthFrame.children;
+  const TOKENS = borderWidthFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeBorderWidthToken(item, borderWidths));
 
   return borderWidths;

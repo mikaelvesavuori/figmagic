@@ -23,7 +23,7 @@ export function makeLineHeightTokens(
   if (!lineHeightFrame) throw Error(ErrorMakeLineHeightTokensNoFrame);
   if (!lineHeightFrame.children) throw Error(ErrorMakeLineHeightTokensNoChildren);
 
-  const TOKENS = lineHeightFrame.children;
+  const TOKENS = lineHeightFrame.children.reverse();
 
   return TOKENS.reduce<LineHeightTokens>((tokensDictionary, item: Frame) => {
     try {

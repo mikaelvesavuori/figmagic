@@ -18,7 +18,7 @@ export function makeShadowTokens(shadowFrame: Frame): ShadowTokens {
   if (!shadowFrame.children) throw Error(ErrorMakeShadowTokensNoChildren);
 
   const shadows: Record<string, unknown> = {};
-  const TOKENS = shadowFrame.children;
+  const TOKENS = shadowFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeShadowToken(item, shadows));
 
   return shadows;
@@ -29,15 +29,16 @@ function makeShadowToken(item: Frame, shadows: Record<string, unknown>) {
 
   const NAME = camelize(item.name);
 
-  const EFFECTS = item.effects.map((effect) => {
+  let effects = item.effects.map((effect) => {
     if (effect.type === 'DROP_SHADOW') return effect;
     return null;
   });
+  effects = effects.reverse();
 
   shadows[NAME] = ``;
 
-  if (EFFECTS.length > 0) {
-    EFFECTS.forEach((effect, index) => {
+  if (effects.length > 0) {
+    effects.forEach((effect, index) => {
       if (effect) {
         const X = effect.offset.x;
         const Y = effect.offset.y;
@@ -48,7 +49,7 @@ function makeShadowToken(item: Frame, shadows: Record<string, unknown>) {
         const A = roundColorValue(effect.color.a, 1);
 
         shadows[NAME] += `${X}px ${Y}px ${RADIUS}px rgba(${R}, ${G}, ${B}, ${A})`;
-        if (index !== EFFECTS.length - 1) shadows[NAME] += `, `;
+        if (index !== effects.length - 1) shadows[NAME] += `, `;
       }
     });
   }

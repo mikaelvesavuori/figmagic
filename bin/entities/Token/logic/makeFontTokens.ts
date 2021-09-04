@@ -17,7 +17,7 @@ export function makeFontTokens(fontFrame: Frame, usePostscriptFontNames = false)
   if (!fontFrame.children) throw Error(ErrorMakeFontTokensNoChildren);
 
   const fonts: Record<string, unknown> = {};
-  const TOKENS = fontFrame.children;
+  const TOKENS = fontFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeFontToken(item, fonts, usePostscriptFontNames));
 
   return fonts;

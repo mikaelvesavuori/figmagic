@@ -17,7 +17,7 @@ export function makeDurationTokens(durationFrame: Frame): DurationTokens {
   if (!durationFrame.children) throw Error(ErrorMakeDurationTokensNoChildren);
 
   const durations: Record<string, unknown> = {};
-  const TOKENS = durationFrame.children;
+  const TOKENS = durationFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeDurationToken(item, durations));
 
   return durations;

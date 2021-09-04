@@ -17,7 +17,7 @@ export function makeMediaQueryTokens(mediaQueryFrame: Frame): MediaQueryTokens {
   if (!mediaQueryFrame.children) throw Error(ErrorSetupMediaQueryTokensNoChildren);
 
   const mediaQueries: Record<string, unknown> = {};
-  const TOKENS = mediaQueryFrame.children;
+  const TOKENS = mediaQueryFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeMediaQueryToken(item, mediaQueries));
 
   return mediaQueries;

@@ -17,7 +17,7 @@ export function makeDelayTokens(delayFrame: Frame): DelayTokens {
   if (!delayFrame.children) throw Error(ErrorMakeDelayTokensNoChildren);
 
   const delays: Record<string, unknown> = {};
-  const TOKENS = delayFrame.children;
+  const TOKENS = delayFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeDelayToken(item, delays));
 
   return delays;

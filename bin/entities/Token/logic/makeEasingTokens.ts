@@ -17,7 +17,7 @@ export function makeEasingTokens(easingFrame: Frame): EasingTokens {
   if (!easingFrame.children) throw Error(ErrorMakeEasingTokensNoChildren);
 
   const easings: Record<string, unknown> = {};
-  const TOKENS = easingFrame.children;
+  const TOKENS = easingFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeEasingToken(item, easings));
 
   return easings;

@@ -24,7 +24,7 @@ export function makeFontSizeTokens(
   if (!fontUnit || !remSize) throw Error(ErrorMakeFontSizeTokensNoSizing);
 
   const fontSizes: Record<string, unknown> = {};
-  const TOKENS = fontSizeFrame.children;
+  const TOKENS = fontSizeFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeFontSizeToken(item, fontSizes, remSize, fontUnit));
 
   return fontSizes;

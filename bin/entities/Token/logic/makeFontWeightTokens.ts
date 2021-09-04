@@ -18,7 +18,7 @@ export function makeFontWeightTokens(fontWeightFrame: Frame): FontWeightTokens {
   if (!fontWeightFrame.children) throw Error(ErrorMakeFontWeightTokensNoChildren);
 
   const fontWeights: Record<string, unknown> = {};
-  const TOKENS = fontWeightFrame.children;
+  const TOKENS = fontWeightFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeFontWeightToken(item, fontWeights));
 
   return fontWeights;

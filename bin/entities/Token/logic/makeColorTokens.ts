@@ -19,7 +19,7 @@ export function makeColorTokens(colorFrame: Frame): ColorTokens {
   if (!colorFrame.children) throw Error(ErrorMakeColorTokensNoChildren);
 
   const colors: Record<string, unknown> = {};
-  const TOKENS = colorFrame.children;
+  const TOKENS = colorFrame.children.reverse();
   TOKENS.forEach((item: Frame) => makeColorToken(item, colors));
 
   return colors;
