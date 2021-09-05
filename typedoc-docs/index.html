@@ -70,16 +70,30 @@
 					<p>Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.</p>
 				</blockquote>
 				<p>🏕️ Kumbaya, friends. Figmagic automates the world into a better place, but does not attempt to completely remove designers or developers: It just aims to move them closer, while eliminating most of the tedious busywork that has grown around front-end development.</p>
+				<p><em>Built initially as an internal handoff tool for <a href="https://www.humblebee.se">Humblebee</a>.</em></p>
 				<hr>
+				<a href="#psa-version-430-introduces-new-handling-of-trashedreplaced-files" id="psa-version-430-introduces-new-handling-of-trashedreplaced-files" style="color: inherit; text-decoration: none;">
+					<h2>PSA: Version <code>4.3.0</code> introduces new handling of trashed/replaced files</h2>
+				</a>
+				<p>Previous versions in the 4.0 series have been using <a href="https://github.com/sindresorhus/trash"><code>trash</code></a> to handle files that need to be replaced. In <code>4.3.0</code> this is no longer the case, and there is now instead a configuration choice you can make to adapt to your needs.</p>
+				<p><strong>The default uses a local soft delete by moving folders into <code>./figmagic-trash</code> – that&#39;s why you might be surprised by seeing it added.</strong></p>
+				<p>Read more under the <a href="#refresh-type"><code>refreshType</code></a> listing.</p>
+				<hr>
+				<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
+					<h2>Requirements</h2>
+				</a>
 				<p><strong>Please note:</strong> Figmagic requires that your document structure follows the conventions in this document; a full setup can be seen in the template at <a href="https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens">https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens</a>.</p>
 				<p>Figmagic is compiled from Typescript to ES6, so you should have Node 12 or later (Node 14 and newer recommended) for it to work on your machine.</p>
-				<p><em>Built initially as an internal handoff tool for <a href="https://www.humblebee.se">Humblebee</a>.</em></p>
+				<hr>
+				<a href="#introduction" id="introduction" style="color: inherit; text-decoration: none;">
+					<h2>Introduction</h2>
+				</a>
 				<a href="#figmagic-promotes-a-structured-way-of-assembling-design-systems" id="figmagic-promotes-a-structured-way-of-assembling-design-systems" style="color: inherit; text-decoration: none;">
-					<h2>Figmagic promotes a structured way of assembling design systems</h2>
+					<h3>Figmagic promotes a structured way of assembling design systems</h3>
 				</a>
 				<p>Figmagic is a very straightforward, super-flexible command-line tool that helps you do three things well:</p>
 				<a href="#1-output-design-tokens" id="1-output-design-tokens" style="color: inherit; text-decoration: none;">
-					<h3>1. Output design tokens</h3>
+					<h4>1. Output design tokens</h4>
 				</a>
 				<p>Outputting and using <strong>design tokens</strong> aids in designing with a structured approach. These tokens are completely platform agnostic when output into JSON, or for most web developers, more readily useable in various supported flavors of JavaScript (TS, JS, MJS). It&#39;s web-oriented but works well with React Native too.</p>
 				<p>A basic set of tokens can look like this:</p>
@@ -97,17 +111,17 @@
 				<p>You use these tokens like so, <code>color: ${colors.blue};</code>, to shape and specify your coded components, web sites, apps, and what have you, instead of hard-coding every single value.</p>
 				<p><strong>This way, you decouple implementation from data. You can now easily drive changes as <em>design choices</em> through Figma instead of as <em>code changes</em>.</strong></p>
 				<a href="#2-output-graphics" id="2-output-graphics" style="color: inherit; text-decoration: none;">
-					<h3>2. Output graphics</h3>
+					<h4>2. Output graphics</h4>
 				</a>
 				<p>Say goodbye to ever manually exporting graphics from Figma again. Grab your graphics as PNG, SVG, as React components with inlined SVG, or as objects that export all graphics from a single file.</p>
 				<a href="#3-generate-react-components" id="3-generate-react-components" style="color: inherit; text-decoration: none;">
-					<h3>3. Generate React components</h3>
+					<h4>3. Generate React components</h4>
 				</a>
 				<p>Figmagic also allows you to generate React components from Figma components that follow a specific formal structure. It&#39;s best at fairly low-level components that you can piece together to make more complex organisms on your own. You can significantly cut down on boilerplate churn and scaffolding time with Figmagic.</p>
 				<p>And, no, the code does not actually suck! This was my own biggest gripe with services promising this functionality, so I knew it had to be good, or at least tolerable. Therefore Figmagic supports things like actually using your own tokens (so we can cut down on hard-coded garbage, unless matches aren&#39;t found) and you can completely customize the number of related generated files.</p>
 				<p>While not perfect, it&#39;s definitely better than many things I&#39;ve seen, made by big companies. All of this is explained later here in the docs.</p>
 				<a href="#the-arguments" id="the-arguments" style="color: inherit; text-decoration: none;">
-					<h3>The arguments</h3>
+					<h4>The arguments</h4>
 				</a>
 				<p>Here are a few reasons you&#39;d want to use Figmagic rather than anything similar:</p>
 				<ul>
@@ -515,7 +529,7 @@
 				<p><strong>Default</strong>: <code>soft</code>.</p>
 				<p>This defines how overwritten files will be &quot;refreshed&quot; when starting Figmagic operations.</p>
 				<ul>
-					<li>In <code>soft</code> mode, the previous folder is renamed and placed in a Figmagic-created trash folder (<code>./figmagic-trash/</code>) with an added ISO 8601 timestamp.</li>
+					<li>In <code>soft</code> mode, the previous folder is renamed and placed in a Figmagic-created trash folder (<code>./figmagic-trash/</code>) with an added <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> timestamp (i.e. <code>2021-09-05</code>) and hour-minute-second indicator.</li>
 					<li>In <code>hard</code> mode, Node&#39;s <code>fs</code> module is used to erase the folder with no way of retrieving the old folder.</li>
 				</ul>
 				<hr>

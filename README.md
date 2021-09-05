@@ -11,19 +11,35 @@
 
 🏕️ Kumbaya, friends. Figmagic automates the world into a better place, but does not attempt to completely remove designers or developers: It just aims to move them closer, while eliminating most of the tedious busywork that has grown around front-end development.
 
+_Built initially as an internal handoff tool for [Humblebee](https://www.humblebee.se)._
+
 ---
+
+## PSA: Version `4.3.0` introduces new handling of trashed/replaced files
+
+Previous versions in the 4.0 series have been using [`trash`](https://github.com/sindresorhus/trash) to handle files that need to be replaced. In `4.3.0` this is no longer the case, and there is now instead a configuration choice you can make to adapt to your needs.
+
+**The default uses a local soft delete by moving folders into `./figmagic-trash` – that's why you might be surprised by seeing it added.**
+
+Read more under the [`refreshType`](#refresh-type) listing.
+
+---
+
+## Requirements
 
 **Please note:** Figmagic requires that your document structure follows the conventions in this document; a full setup can be seen in the template at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens).
 
 Figmagic is compiled from Typescript to ES6, so you should have Node 12 or later (Node 14 and newer recommended) for it to work on your machine.
 
-_Built initially as an internal handoff tool for [Humblebee](https://www.humblebee.se)._
+---
 
-## Figmagic promotes a structured way of assembling design systems
+## Introduction
+
+### Figmagic promotes a structured way of assembling design systems
 
 Figmagic is a very straightforward, super-flexible command-line tool that helps you do three things well:
 
-### 1. Output design tokens
+#### 1. Output design tokens
 
 Outputting and using **design tokens** aids in designing with a structured approach. These tokens are completely platform agnostic when output into JSON, or for most web developers, more readily useable in various supported flavors of JavaScript (TS, JS, MJS). It's web-oriented but works well with React Native too.
 
@@ -46,11 +62,11 @@ You use these tokens like so, `color: ${colors.blue};`, to shape and specify you
 
 **This way, you decouple implementation from data. You can now easily drive changes as _design choices_ through Figma instead of as _code changes_.**
 
-### 2. Output graphics
+#### 2. Output graphics
 
 Say goodbye to ever manually exporting graphics from Figma again. Grab your graphics as PNG, SVG, as React components with inlined SVG, or as objects that export all graphics from a single file.
 
-### 3. Generate React components
+#### 3. Generate React components
 
 Figmagic also allows you to generate React components from Figma components that follow a specific formal structure. It's best at fairly low-level components that you can piece together to make more complex organisms on your own. You can significantly cut down on boilerplate churn and scaffolding time with Figmagic.
 
@@ -58,7 +74,7 @@ And, no, the code does not actually suck! This was my own biggest gripe with ser
 
 While not perfect, it's definitely better than many things I've seen, made by big companies. All of this is explained later here in the docs.
 
-### The arguments
+#### The arguments
 
 Here are a few reasons you'd want to use Figmagic rather than anything similar:
 
@@ -540,7 +556,7 @@ This is not currently possible to adjust from the CLI.
 
 This defines how overwritten files will be "refreshed" when starting Figmagic operations.
 
-- In `soft` mode, the previous folder is renamed and placed in a Figmagic-created trash folder (`./figmagic-trash/`) with an added ISO 8601 timestamp.
+- In `soft` mode, the previous folder is renamed and placed in a Figmagic-created trash folder (`./figmagic-trash/`) with an added [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp (i.e. `2021-09-05`) and hour-minute-second indicator.
 - In `hard` mode, Node's `fs` module is used to erase the folder with no way of retrieving the old folder.
 
 ---
