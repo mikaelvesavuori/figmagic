@@ -667,7 +667,7 @@ Default: numbers (whole numbers, i.e. integers).
 
 ### Arkit map
 
-![Arkit code structure map](arkit.svg)
+![Arkit code structure map](images/arkit.svg)
 
 ## Contribution
 
