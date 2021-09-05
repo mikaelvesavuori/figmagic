@@ -1,4 +1,4 @@
-//import trash from 'trash';
+import trash from 'trash';
 import * as fs from 'fs';
 
 import { downloadFile } from '../../../bin/frameworks/network/downloadFile';
@@ -34,5 +34,5 @@ describe('Success cases', () => {
 });
 
 afterAll(async () => {
-  //await trash(FILENAME);
+  await trash(FILENAME);
 });
