@@ -32,22 +32,25 @@ jobs:
         run: |
           npm ci --ignore-scripts
           npm audit fix
-          npm test
+          npm install -g
+
+      - name: Test
+        run: npm test
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
           IS_CI: true
+
+      - name: Run, then check for files
         run: |
-          npm install -g
           npm run figmagic
-        env:
-          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
-          FIGMA_URL: ${{ secrets.FIGMA_URL }}
-        run: |
           \[ -d .figmagic \]
           \[ -f .figmagic/figma.json \]
         env:
-          CI: true
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_URL: ${{ secrets.FIGMA_URL }}
+
+      - name: Create Arkit diagram
         run: npx arkit
 
       - name: Download and validate Codecov script
@@ -79,28 +82,38 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-        id: node
-      - run: |
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+
+      - name: Install dependencies
+        run: |
           npm ci --ignore-scripts
           npm audit fix
-      # run: npm test
+          npm install -g
+
+      - name: Test
+        run: npm test
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
           IS_CI: true
-      - run: npm install -g
-      - run: npm run figmagic
-        env:
-          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
-          FIGMA_URL: ${{ secrets.FIGMA_URL }}
-      - run: |
+
+      - name: Run, then check for files
+        run: |
+          npm run figmagic
           Test-Path .figmagic
           Test-Path .figmagic/figma.json -PathType leaf
         env:
-          CI: true
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_URL: ${{ secrets.FIGMA_URL }}
 
   publish-npm:
     needs: ['build-unix', 'build-windows']
