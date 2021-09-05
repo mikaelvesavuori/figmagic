@@ -90,12 +90,12 @@ jobs:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
           IS_CI: true
-        run: npm install -g
-        run: npm run figmagic
+      - run: npm install -g
+      - run: npm run figmagic
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
-        run: |
+      - run: |
           Test-Path .figmagic
           Test-Path .figmagic/figma.json -PathType leaf
         env:
@@ -106,11 +106,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-        run: |
+      - run: |
           npm ci --ignore-scripts
           git config --global user.email ${{ secrets.GIT_EMAIL }}
           git config --global user.name ${{ secrets.GIT_NAME }}

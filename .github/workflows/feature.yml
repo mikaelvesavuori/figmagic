@@ -71,7 +71,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
         id: node
-        run: |
+      - run: |
           npm ci --ignore-scripts
           npm audit fix
       # run: npm test
@@ -79,12 +79,13 @@ jobs:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
           IS_CI: true
-        run: npm install -g
-        run: npm run figmagic
+      - run: |
+          npm install -g
+          npm run figmagic
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
-        run: |
+      - run: |
           Test-Path .figmagic
           Test-Path .figmagic/figma.json -PathType leaf
         env:
