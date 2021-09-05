@@ -13,32 +13,41 @@ jobs:
         os: ['ubuntu-latest', 'macos-latest']
         node-version: [14.x]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        id: checkout
+      - uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-        id: node
-      - run: npm ci
-      - run: npm audit fix
-      - run: npm test
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+
+      - name: Install dependencies
+        run: |
+          npm ci --ignore-scripts
+          npm audit fix
+          npm test
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
           IS_CI: true
-      - run: npm install -g
-      - run: npm run figmagic
+        run: |
+          npm install -g
+          npm run figmagic
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
-      - run: \[ -d .figmagic \]
-      - run: \[ -f .figmagic/figma.json \]
+        run: |
+          \[ -d .figmagic \]
+          \[ -f .figmagic/figma.json \]
         env:
           CI: true
-      - run: npx arkit
+        run: npx arkit
 
       - name: Download and validate Codecov script
         run: |
@@ -70,25 +79,27 @@ jobs:
         uses: actions/checkout@v2
         id: checkout
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
         id: node
-      - run: npm ci
-      - run: npm audit fix
-      #- run: npm test
+        run: |
+          npm ci --ignore-scripts
+          npm audit fix
+      # run: npm test
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
           IS_CI: true
-      - run: npm install -g
-      - run: npm run figmagic
+        run: npm install -g
+        run: npm run figmagic
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
-      - run: Test-Path .figmagic
-      - run: Test-Path .figmagic/figma.json -PathType leaf
+        run: |
+          Test-Path .figmagic
+          Test-Path .figmagic/figma.json -PathType leaf
         env:
           CI: true
 
@@ -101,9 +112,10 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: git config --global user.email ${{ secrets.GIT_EMAIL }}
-      - run: git config --global user.name ${{ secrets.GIT_NAME }}
-      - run: npm publish
+        run: |
+          npm ci --ignore-scripts
+          git config --global user.email ${{ secrets.GIT_EMAIL }}
+          git config --global user.name ${{ secrets.GIT_NAME }}
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
