@@ -29,7 +29,7 @@ jobs:
           restore-keys: npm-
 
       - name: Install dependencies
-      - run: |
+        run: |
           npm ci --ignore-scripts
           npm audit fix
           npm test
@@ -37,18 +37,18 @@ jobs:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
           IS_CI: true
-      - run: |
+        run: |
           npm install -g
           npm run figmagic
         env:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
-      - run: |
+        run: |
           \[ -d .figmagic \]
           \[ -f .figmagic/figma.json \]
         env:
           CI: true
-      - run: npx arkit
+        run: npx arkit
 
       - name: Download and validate Codecov script
         run: |
