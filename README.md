@@ -9,7 +9,7 @@
 
 > Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.
 
-Figmagic does not aim at completely removing designers or developers: It just aims to move them closer, while eliminating most of the tedious busywork that has grown around front-end development.
+🏕️ Kumbaya, friends. Figmagic automates the world into a better place, but does not attempt to completely remove designers or developers: It just aims to move them closer, while eliminating most of the tedious busywork that has grown around front-end development.
 
 ---
 
@@ -185,7 +185,7 @@ You should bind tokens to Figma styles whenever and wherever possible to simplif
 
 You can currently extract design tokens for:
 
-- Colors
+- Colors (including linear and radial gradients, though note: linear gradients which are not using straight angles will get an incorrect calculation)
 - Font Sizes
 - Spacing
 - Font Weights
@@ -195,7 +195,7 @@ You can currently extract design tokens for:
 - Z Indices
 - Radii
 - Border Widths
-- Shadows (currently supports single/multiple Drop Shadows)
+- Shadows (currently supports single/multiple Drop Shadows; see caveat below)
 - Opacities
 - Durations (for animations)
 - Delays (for animations)
@@ -203,6 +203,14 @@ You can currently extract design tokens for:
 - Media Queries
 
 A typical use-case for the generated documents is to feed the extracted values into CSS systems that support external values (such as Styled Components, Emotion, Styled System, any other CSS-in-JS libraries, or maybe even Sass).
+
+#### Note on shadows
+
+From [alehar9320](https://github.com/alehar9320) commenting on [issue 111](https://github.com/mikaelvesavuori/figmagic/issues/111):
+
+> Figma calls everything Drop-shadow, while translating the design into box-shadow or drop-shadow CSS dependent upon whether it's a ~ shape or a vector graphic. See [blog post](https://www.figma.com/blog/behind-the-feature-shadow-spread/) from the Figma developer who built the feature.
+
+> This means that if Figmagic is used to define shadow tokens, it should be recommended to only have one drop-shadow definition per rectangle. To maintain compatibility with both drop-shadow and box-shadow CSS. The exception would be if there is a clear distinction between tokens to be used with box-shadow and drop-shadow. As [_drop-shadow_ can only accept a single shadow parameter](<https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/drop-shadow()>). Any token that has two values will simply be incompatible with drop-shadow.
 
 ## Working with Figmagic as a designer
 

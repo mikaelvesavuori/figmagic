@@ -1,7 +1,7 @@
 {
   "name": "figmagic",
-  "version": "4.3.0-alpha.1",
-  "description": "Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents. Inspired by Salesforce Theo.",
+  "version": "4.3.0",
+  "description": "Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.",
   "homepage": "https://www.figmagic.com",
   "repository": {
     "type": "git",
@@ -10,10 +10,13 @@
   "author": "Mikael Vesavuori",
   "keywords": [
     "figma",
-    "figma api",
-    "design tokens",
+    "figma-api",
     "tokens",
-    "design system"
+    "ux",
+    "design-tokens",
+    "design-system",
+    "design-systems",
+    "design-specs"
   ],
   "license": "MIT",
   "bin": {
