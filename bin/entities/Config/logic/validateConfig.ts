@@ -28,31 +28,31 @@ import {
 export function validateConfig(config: Config): boolean {
   if (!config) throw Error(ErrorValidateConfig);
 
-  validateFileName(config.figmaData);
-  validateFolderName(config.figmagicFolder);
-  validateFolderName(config.outputFolderElements);
-  validateFolderName(config.outputFolderGraphics);
-  validateFolderName(config.outputFolderTokens);
-  validateFontUnit(config.fontUnit);
-  validateLetterSpacingUnit(config.letterSpacingUnit);
-  validateOpacitiesUnit(config.opacitiesUnit);
-  validateOutputDataTypeToken(config.outputDataTypeToken);
-  validateOutputFormatCss(config.outputFormatCss);
-  validateOutputFormatDesc(config.outputFormatDescription);
-  validateOutputFormatElements(config.outputFormatElements);
-  validateOutputFormatGraphics(config.outputFormatGraphics);
-  validateOutputFormatStorybook(config.outputFormatStorybook);
-  validateOutputFormatTokens(config.outputFormatTokens);
-  validateOutputScaleGraphics(config.outputScaleGraphics);
-  validateRefreshType(config.refreshType);
-  validateSpacingUnit(config.spacingUnit);
-  validateTemplatePathGraphic(config.templates.templatePathGraphic);
-  validateTemplatePathReact(config.templates.templatePathReact);
-  validateTemplatePathStorybook(config.templates.templatePathStorybook);
-  validateTemplatePathStyled(config.templates.templatePathStyled);
-  validLineHeightUnit(config.lineHeightUnit);
-
   try {
+    validateFileName(config.figmaData);
+    validateFolderName(config.figmagicFolder);
+    validateFolderName(config.outputFolderElements);
+    validateFolderName(config.outputFolderGraphics);
+    validateFolderName(config.outputFolderTokens);
+    validateFontUnit(config.fontUnit);
+    validateLetterSpacingUnit(config.letterSpacingUnit);
+    validateOpacitiesUnit(config.opacitiesUnit);
+    validateOutputDataTypeToken(config.outputDataTypeToken);
+    validateOutputFormatCss(config.outputFormatCss);
+    validateOutputFormatDesc(config.outputFormatDescription);
+    validateOutputFormatElements(config.outputFormatElements);
+    validateOutputFormatGraphics(config.outputFormatGraphics);
+    validateOutputFormatStorybook(config.outputFormatStorybook);
+    validateOutputFormatTokens(config.outputFormatTokens);
+    validateOutputScaleGraphics(config.outputScaleGraphics);
+    validateRefreshType(config.refreshType);
+    validateSpacingUnit(config.spacingUnit);
+    validateTemplatePathGraphic(config.templates.templatePathGraphic);
+    validateTemplatePathReact(config.templates.templatePathReact);
+    validateTemplatePathStorybook(config.templates.templatePathStorybook);
+    validateTemplatePathStyled(config.templates.templatePathStyled);
+    validLineHeightUnit(config.lineHeightUnit);
+
     return true;
   } catch (error: any) {
     throw Error(error);
