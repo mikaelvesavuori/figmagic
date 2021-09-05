@@ -1,3 +1,5 @@
+import { RefreshType } from './Refresh';
+
 export type Config = {
   debugMode: boolean;
   fontUnit: FontUnits;
@@ -21,6 +23,7 @@ export type Config = {
   outputDataTypeToken: OutputDataTypeToken;
   overwrite: Overwrite;
   recompileLocal: boolean;
+  refreshType: RefreshType;
   remSize: number;
   skipFileGeneration: {
     forceUpdate: boolean;

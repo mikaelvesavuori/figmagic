@@ -1,3 +1,4 @@
+import { RefreshType } from './Refresh';
 export declare type Config = {
     debugMode: boolean;
     fontUnit: FontUnits;
@@ -21,6 +22,7 @@ export declare type Config = {
     outputDataTypeToken: OutputDataTypeToken;
     overwrite: Overwrite;
     recompileLocal: boolean;
+    refreshType: RefreshType;
     remSize: number;
     skipFileGeneration: {
         forceUpdate: boolean;

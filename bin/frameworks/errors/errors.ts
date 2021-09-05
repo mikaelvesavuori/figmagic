@@ -356,6 +356,9 @@ export const ErrorValidateConfigOutputFormatStorybook = ErrorMessage(
 export const ErrorValidateConfigOutputFormatTokens = ErrorMessage(
   'Received unrecognized "outputFormatTokens" arguments, it must be "ts" (default), "mjs" or "js".'
 );
+export const ErrorValidateConfigRefreshType = ErrorMessage(
+  'Received unrecognized "refreshType" argument, it must be "soft" (default), or "hard".'
+);
 export const ErrorValidateConfigOutputScaleGraphics = ErrorMessage(
   'Argument "outputScaleGraphics" is invalid!'
 );

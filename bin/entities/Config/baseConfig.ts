@@ -30,6 +30,7 @@ export const baseConfig: Config = {
     styled: false
   },
   recompileLocal: false,
+  refreshType: 'soft',
   remSize: 16,
   skipFileGeneration: {
     forceUpdate: true,

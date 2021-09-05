@@ -1,6 +1,6 @@
 {
   "name": "figmagic",
-  "version": "4.3.0-alpha.0",
+  "version": "4.3.0-alpha.1",
   "description": "Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents. Inspired by Salesforce Theo.",
   "homepage": "https://www.figmagic.com",
   "repository": {
@@ -50,15 +50,16 @@
     }
   ],
   "files": [
-    "build/*.js",
-    "build/*LICENSE*.txt"
+    "build/index.js",
+    "build/index.js.LICENSE.txt"
   ],
   "scripts": {
     "figmagic": "node build/index.js",
+    "clean": "rm -rf .figmagic-trash/",
     "build": "rm -rf build && npx webpack",
     "test": "jest __tests__ --collectCoverage",
     "lint": "eslint './bin/**/*.ts' --quiet --fix",
-    "docs": "npx typedoc bin && npx arkit",
+    "docs": "npx typedoc && npx arkit",
     "licenses": "npx license-compliance --direct --allow 'MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;Unlicense;CC0-1.0'",
     "licenses:checker": "npx license-compatibility-checker",
     "snyk-protect": "snyk protect",
@@ -87,7 +88,6 @@
     "trash": "7",
     "ts-jest": "27",
     "ts-loader": "9",
-    "tslib": "2",
     "typedoc": "latest",
     "typescript": "4",
     "webpack": "5",

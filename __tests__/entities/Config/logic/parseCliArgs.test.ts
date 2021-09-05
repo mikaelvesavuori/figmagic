@@ -419,6 +419,26 @@ describe('Success cases', () => {
     });
   });
 
+  describe('Refresh type', () => {
+    test('It should return "hard" for remSize if passing "hard" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--refreshType', 'hard'])).toEqual(
+        expect.objectContaining({
+          refreshType: 'hard'
+        })
+      );
+    });
+
+    test('It should return "hard" for remSize if passing "hard" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-rf', 'hard'])).toEqual(
+        expect.objectContaining({
+          refreshType: 'hard'
+        })
+      );
+    });
+  });
+
   describe('REM size', () => {
     test('It should return "16" for remSize if passing "16p" (long-hand)', () => {
       // @ts-ignore

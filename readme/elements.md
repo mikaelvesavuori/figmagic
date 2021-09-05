@@ -16,19 +16,19 @@ Figmagic lets you style elements through **typography** and/or **layout** layers
 
 The name of the React component will be taken from the component name. Subclasses and pseudo-selectors will be named by their group name.
 
-![Nesting: Button, Normal](nesting-normal.png)
+![Nesting: Button, Normal](../images/nesting-normal.png)
 
 _Nesting: Button. "Normal" state. Notice how the underscore is blocking ":disabled" and ":hover"._
 
-![Nesting: Button, Warning](nesting-warning.png)
+![Nesting: Button, Warning](../images/nesting-warning.png)
 
 _Nesting: Button. "Warning" state._
 
-![Nesting: Button, Error](nesting-error.png)
+![Nesting: Button, Error](../images/nesting-error.png)
 
 _Nesting: Button. "Error" state._
 
-![Nesting: Generated code](nesting-code.png)
+![Nesting: Generated code](../images/nesting-code.png)
 
 _Nesting: Generated code. Notice how the nested group names became CSS classes. Only the differences in those layers were promoted to their own class, eliminating redundant code._
 
@@ -42,7 +42,7 @@ You can write use the following descriptors in Figma's component description fie
 - `element={ELEMENT}`: defines the actual generated element type. Example: `element=input`.
 - `type={TYPE}`: becomes an element property. Useful for complex elements like `input`. Example: `type=checkbox`.
 
-![Nesting: Button, Normal](component-desc-field.png)
+![Nesting: Button, Normal](../images/component-desc-field.png)
 
 _Setting what the Figma component should generate in HTML terms. Also, notice how we are typing out the description for our Markdown file which can be used in, for example, Storybook._
 
@@ -54,7 +54,7 @@ You can prefix your layer/group with `:` to set/communicate a pseudo-selector (l
 
 A `_` (underscore) makes anything prefixed with it ignored during the generation step. Use this for meta-information, redlines or other things you might need to communicate your design, but which should not affect the code generation.
 
-![Nesting: Button, Normal](add-underscore-to-block.png)
+![Nesting: Button, Normal](../images/add-underscore-to-block.png)
 
 _Prefixing with an underscore means we can avoid the conflict, but still clearly communicate intended behavior and style._
 
@@ -70,7 +70,7 @@ _Prefixing with an underscore means we can avoid the conflict, but still clearly
 
 For specifics on how to do any CLI or RC file configuration, see documentation below.
 
-![Figma Document Structure: Elements](project-structure-elements.png)
+![Figma Document Structure: Elements](../images/project-structure-elements.png)
 
 _How a Figmagic project could be structured with elements_
 
@@ -78,14 +78,14 @@ _How a Figmagic project could be structured with elements_
 
 First and foremost:
 
-![Example of flat element](sometimes-you-have-to-fake.png)
+![Example of flat element](../images/sometimes-you-have-to-fake.png)
 
 _Element Sync will not solve all of your issues and you will have to creatively work around some of the current limitations in Figmagic._
 For example, in the case above the check is not in the actual component, as it would not be correctly picked up by Figmagic. In this case, we want to communicate design and intent to developers, but not break the code, thus moving the check out and leaving the rest in. That should solve a lot of the boilerplate work, at least, but the check needs to be added manually afterwards. Assume that you will always need to do some work! Just that it should be a lot less than without Figmagic :)
 
 ### Flat elements
 
-![Example of flat element](flat-element.png)
+![Example of flat element](../images/flat-element.png)
 
 _Flat elements should be enough for most basic use cases. Don't forget to name the layout layer to the same name as your Figma component or it will break during generation!_
 

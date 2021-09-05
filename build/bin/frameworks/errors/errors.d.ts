@@ -155,6 +155,7 @@ export declare const ErrorValidateConfigOutputFormatElements: string;
 export declare const ErrorValidateConfigOutputFormatGraphics: string;
 export declare const ErrorValidateConfigOutputFormatStorybook: string;
 export declare const ErrorValidateConfigOutputFormatTokens: string;
+export declare const ErrorValidateConfigRefreshType: string;
 export declare const ErrorValidateConfigOutputScaleGraphics: string;
 export declare const ErrorValidateConfigSpacingUnit: string;
 export declare const ErrorValidateConfigTemplatePathReact: string;

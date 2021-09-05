@@ -1,0 +1,1074 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>figmagic</title>
+	<meta name="description" content="Documentation for figmagic">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">figmagic</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>figmagic</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p><img src="images/cover.png" alt="Figmagic cover art"></p>
+				<a href="#figmagic" id="figmagic" style="color: inherit; text-decoration: none;">
+					<h1>Figmagic</h1>
+				</a>
+				<p><img src="https://github.com/mikaelvesavuori/figmagic/workflows/master/badge.svg" alt="Build Status">
+					<a href="https://sonarcloud.io/dashboard?id=mikaelvesavuori_figmagic"><img src="https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_figmagic&metric=alert_status" alt="Quality Gate Status"></a>
+					<a href="https://codecov.io/gh/mikaelvesavuori/figmagic"><img src="https://codecov.io/gh/mikaelvesavuori/figmagic/branch/master/graph/badge.svg" alt="codecov"></a>
+				<a href="https://codeclimate.com/github/mikaelvesavuori/figmagic/maintainability"><img src="https://api.codeclimate.com/v1/badges/1a609622737c6c48225c/maintainability" alt="Maintainability"></a></p>
+				<a href="#generate-design-tokens-export-graphics-and-extract-design-token-driven-react-components-from-your-figma-documents-originally-inspired-by-salesforce-theo" id="generate-design-tokens-export-graphics-and-extract-design-token-driven-react-components-from-your-figma-documents-originally-inspired-by-salesforce-theo" style="color: inherit; text-decoration: none;">
+					<h4><em>Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents. Originally inspired by <a href="https://github.com/salesforce-ux/theo">Salesforce Theo</a>.</em></h4>
+				</a>
+				<p>Figmagic promotes a structured way of assembling design systems. Following the primary principle of atomic design, Figmagic wants you to build from the bottom up, beginning with decomposing the tokens. Tokens shape elements, which form components, that are ordered in compositions, which get presented in views... You know the drill, though I am switching Brad Frost&#39;s nomenclature into something more front-end friendly.</p>
+				<p>When it comes to code generation, Figmagic tries to do this in a better way. Instead of over-eagerly promoting hardcoded code generation from huge and complex components, Figmagic tries to competently, or at least &quot;mostly-right&quot;, handle automation for things that should not be too context-dependent or manual input-heavy. Code should also be as close to &quot;normal&quot; as possible—meaning that generated code binds values to tokens and not some random px values as other platforms do. All of this can happen because Figmagic assumes a way of working that respects standard CSS and HTML: no magic trickery! Figmagic avoids some of the cognitive and technical overhead by introducing a concept called <strong>Elements</strong>, which are Figmagic-compliant components that can be output into code. By composing larger components out of simple Elements, code generation is made much more manageable while also promoting much more structured design.</p>
+				<p>Figmagic does not aim at completely removing designers or developers: It just aims to move them closer, while eliminating any of the tedious busywork that has grown around front-end development.</p>
+				<p><strong>Please note:</strong> Figmagic requires that your document structure is identical to what I show in the template at <a href="https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens">https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens</a>.</p>
+				<p>Figmagic is compiled from Typescript to ES6, so you should have Node 10 or later for it to work on your machine.</p>
+				<p><em>Built initially as an internal handoff tool for <a href="https://www.humblebee.se">Humblebee</a>.</em></p>
+				<a href="#example-project" id="example-project" style="color: inherit; text-decoration: none;">
+					<h2>Example project</h2>
+				</a>
+				<p>An example project—using React, Styled Components and Storybook—is available at <a href="https://github.com/mikaelvesavuori/figmagic-example">https://github.com/mikaelvesavuori/figmagic-example</a>.</p>
+				<p>Note that this demo is not meant to fully style and do all of the things in the Figma document. I wanted to straddle a middle-of-the-road solution where I did the least work possible to get it working with React and style only a few of the most obvious and helpful elements, like setting disabled state on the button and checkbox.</p>
+				<p><img src="images/demo.png" alt="Figmagic Example Demo"></p>
+				<p><em>Figmagic Example Demo: On the left is a big Figma component assembled of a number of &quot;Elements&quot;, Figmagic-compliant components that can be output into code. On the right is the React-composed version of those after just a few minutes of coding and closing elements correctly.</em></p>
+				<a href="#using-figmagic" id="using-figmagic" style="color: inherit; text-decoration: none;">
+					<h2>Using Figmagic</h2>
+				</a>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h3>Installation</h3>
+				</a>
+				<a href="#global-recommended" id="global-recommended" style="color: inherit; text-decoration: none;">
+					<h4>Global (recommended)</h4>
+				</a>
+				<p>Run <code>npm install -g figmagic</code> or <code>yarn global add figmagic</code>.</p>
+				<a href="#local" id="local" style="color: inherit; text-decoration: none;">
+					<h4>Local</h4>
+				</a>
+				<p>Local usage is possible by installing Figmagic as a developer dependency (under <code>devDependencies</code>) with <code>npm install figmagic -D</code> or <code>yarn add figmagic -D</code>, then using a script pointing to the local version, like so:</p>
+				<pre><code><span style="color: #A31515">&quot;scripts&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;figmagic&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;npx figmagic&quot;</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#create-configuration-file-figmagicjson-or-figmagicrc" id="create-configuration-file-figmagicjson-or-figmagicrc" style="color: inherit; text-decoration: none;">
+					<h3>Create configuration file (<code>figmagic.json</code> or <code>.figmagicrc</code>)</h3>
+				</a>
+				<p>Figmagic can be run without any configuration. You will always need to specify your Figma API token and Figma document ID, though! However, it&#39;s highly recommended to add a configuration: it&#39;s easy and gives you a ton of possibilities to optimize for your own needs.</p>
+				<p>Run <code>figmagic init</code> to initialize a basic configuration file, either named <code>figmagic.json</code> or <code>.figmagicrc</code> file. As long as you provide your Figma token and document ID/URL, the new generated file is ready to use for Element Sync which can only be done if your configuration points to valid code generation templates (which the generated one does). You&#39;ll see that the config will point <code>templates.templatePath{Graphic|React|Styled|Storybook}</code> to <code>./node_modules/figmagic/templates/{graphic|react|styled|story}</code>. Read more under the <a href="#configuration-file-figmagicrc">Configuration file section</a>.</p>
+				<a href="#running-figmagic" id="running-figmagic" style="color: inherit; text-decoration: none;">
+					<h3>Running Figmagic</h3>
+				</a>
+				<p>First of all, get your Figma API token and Figma URL:</p>
+				<ul>
+					<li>Get your file ID by right-clicking your Figma tab inside of the app and click <code>Copy Link</code>—the first, long junk-looking bit is the ID.</li>
+					<li>For more on API keys, <a href="https://www.figma.com/developers/docs">go to Figma&#39;s developer docs</a>.</li>
+				</ul>
+				<p>Pass in your Figma API token and Figma URL by either:</p>
+				<ul>
+					<li>Stepping into your project directory (where you want Figmagic to run), and add or replace <strong>FIGMA_URL</strong> and <strong>FIGMA_TOKEN</strong> in a <code>.env</code> file with your own file ID (i.e. similar to <code>821094451476848226</code>) or full Figma URL (i.e. similar to <code>https://www.figma.com/file/821094451476848226/Figmagic-%E2%80%94-Design-System-template-4.0</code>) and API token key.</li>
+					<li>Passing in API token and URL through the CLI, like this <code>figmagic --token {TOKEN} --url {URL}</code> (substitute curly braces for your actual values)</li>
+					<li>Setting them in <code>figmagic.json</code>/<code>.figmagicrc</code> under <code>token</code> and <code>url</code>. This is discouraged since you will display these values in clear text and you probably don&#39;t want that.</li>
+				</ul>
+				<p>Then:</p>
+				<ul>
+					<li>Run <code>figmagic</code></li>
+					<li>You should now have a folder with the raw JSON dump (default: <code>/.figmagic</code>) and a folder with tokens (default: <code>/tokens</code>) in the root</li>
+				</ul>
+				<a href="#overwritten-files-are-moved-to-trash" id="overwritten-files-are-moved-to-trash" style="color: inherit; text-decoration: none;">
+					<h4>Overwritten files are moved to trash</h4>
+				</a>
+				<p>When running <code>figmagic</code>, files will be moved with the Node module <a href="https://github.com/sindresorhus/trash">trash</a> (multi-platform) into your OS&#39;s trash can. Thus, you can recover anything <em>unintentionally</em> overwritten.</p>
+				<a href="#folders" id="folders" style="color: inherit; text-decoration: none;">
+					<h4>Folders</h4>
+				</a>
+				<p>Folder names below follow their default naming. The naming is possible to change via configuration.</p>
+				<ul>
+					<li><code>.figmagic</code> will contain the extracted JSON retrieved from Figma&#39;s API</li>
+					<li><code>tokens</code> will contain the token files</li>
+					<li><code>elements</code> will contain the generated code</li>
+					<li><code>graphics</code> will contain graphics</li>
+				</ul>
+				<p>For a more complete description of the code structure, see the <a href="#code-structure">Code structure section</a>.</p>
+				<a href="#preparing-figma-for-figmagic-usage" id="preparing-figma-for-figmagic-usage" style="color: inherit; text-decoration: none;">
+					<h2>Preparing Figma for Figmagic usage</h2>
+				</a>
+				<a href="#easy-solution-copy-the-public-figmagic-design-system-template-from-figma-community" id="easy-solution-copy-the-public-figmagic-design-system-template-from-figma-community" style="color: inherit; text-decoration: none;">
+					<h3>Easy solution: Copy the public Figmagic design system template from Figma Community</h3>
+				</a>
+				<p>Go to <a href="https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens">https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens</a> and make your own copy. Go at it by using the document ID as the <strong>FIGMA_URL</strong> or start copying in your own work.</p>
+				<a href="#less-easy-solution-start-from-scratch" id="less-easy-solution-start-from-scratch" style="color: inherit; text-decoration: none;">
+					<h3>Less easy solution: Start from scratch</h3>
+				</a>
+				<p>Your structure needs to correspond to the following:</p>
+				<ul>
+					<li>A Page needs to exist, called <code>Design tokens</code>. Without this page you can&#39;t really do much with Figmagic.</li>
+					<li>Further, inside the <code>Design tokens</code> page, <strong>frames</strong> need to exist. You can have any number of supported token frame. For starters, name them <code>Colors</code>, <code>Font sizes</code>, <code>Font families</code>, <code>Font weights</code>, <code>Line heights</code>, and <code>Spacing</code> – exact casing is not important, however the <strong>spelling is important!</strong> For a full list of token types, see <a href="#the-types-of-design-tokens-figmagic-can-extract">the types of design tokens Figmagic can extract</a>.</li>
+					<li>All items on a page need to be contained within one or more frames.</li>
+					<li>Want element syncing? Then create an &quot;Elements&quot; page and place any components there. For the generation to work correctly, you need to stay within the limits specified above.</li>
+				</ul>
+				<p>See a template design system at <a href="https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-template-4.0">https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-template-4.0</a>. Feel free to simply copy-paste it or base your own work around it.</p>
+				<p><strong>Note:</strong> Refer to the document structure in the image below and in the template linked above.</p>
+				<p><img src="images/project-structure-tokens.png" alt="Figma Document Structure: Tokens"></p>
+				<p><em>How a Figmagic project could be structured in regards to tokens, if you want to support all currently available token types.</em></p>
+				<a href="#what-are-design-tokens" id="what-are-design-tokens" style="color: inherit; text-decoration: none;">
+					<h2>What are Design Tokens?</h2>
+				</a>
+				<p>Design tokens are the abstract but shared elements from which your design system is built.</p>
+				<p>Design tokens express any of the individual values that you build from, such as colors, spacing, and typographic features.</p>
+				<p>Tokens offer a form of “contract” between a designer’s intent and its fulfillment by developers. This means that both sides agree to avoid by all means anything that’s not codified also as a token. For example, avoiding spacing values that are not also available as a token. It’s similar in many ways to old-school styleguides, but tokens should only ever communicate strict, hard values. Styleguides can tend to be context-sensitive and full of explanation—tokens must communicate without context or explanation.</p>
+				<p>However: You may still want to add written guidance for usage. It’s just that the tokens should be able to be consumed without understanding anything specific about them.</p>
+				<p>You should bind tokens to Figma styles whenever and wherever possible to simplify your own design work, but make sure that those are also represented in the <strong>Tokens</strong> page, as this page is where a developer will pick up tokens with Figmagic.</p>
+				<a href="#the-types-of-design-tokens-figmagic-can-extract" id="the-types-of-design-tokens-figmagic-can-extract" style="color: inherit; text-decoration: none;">
+					<h3>The types of design tokens Figmagic can extract</h3>
+				</a>
+				<p>You can currently extract design tokens for:</p>
+				<ul>
+					<li>Colors</li>
+					<li>Font Sizes</li>
+					<li>Spacing</li>
+					<li>Font Weights</li>
+					<li>Line Heights</li>
+					<li>Font Families</li>
+					<li>Letter Spacings</li>
+					<li>Z Indices</li>
+					<li>Radii</li>
+					<li>Border Widths</li>
+					<li>Shadows (currently supports single/multiple Drop Shadows)</li>
+					<li>Opacities</li>
+					<li>Durations (for animations)</li>
+					<li>Delays (for animations)</li>
+					<li>Easing functions (for animations)</li>
+					<li>Media Queries</li>
+				</ul>
+				<p>A typical use-case for the generated documents is to feed the extracted values into CSS systems that support external values (such as Styled Components, Emotion, Styled System, any other CSS-in-JS libraries, or maybe even Sass).</p>
+				<a href="#working-with-figmagic-as-a-designer" id="working-with-figmagic-as-a-designer" style="color: inherit; text-decoration: none;">
+					<h2>Working with Figmagic as a designer</h2>
+				</a>
+				<a href="#figma-styles" id="figma-styles" style="color: inherit; text-decoration: none;">
+					<h3>Figma styles</h3>
+				</a>
+				<p>Figma styles became publicly available in June 2018 and are incredibly valuable for designers to create single-sources-of-truth when it comes to design values (tokens). When using Figmagic though, the thinking and usage is a bit different from how Figma styles work.</p>
+				<a href="#unidimensional-or-multidimensional-values" id="unidimensional-or-multidimensional-values" style="color: inherit; text-decoration: none;">
+					<h4>Unidimensional or multidimensional values</h4>
+				</a>
+				<p>A Figma style is multidimensional: It contains any number of properties wrapped into one style, acting as kind of a package. This is handy in a design environment and is practical from a user standpoint. The user doesn&#39;t have to think too hard about storing &quot;redundant&quot; values that are the same in another component, such as N number of units for line height: They are all taken care of.</p>
+				<p>Figmagic instead expresses tokens as instances of every individual value, thus being <em>unidimensional</em> – meaning they store only one value per item. Examples could be sets of line heights, font weights, or font sizes, each one individually specified. What this entails for they developer and designer, is that values can be used and mixed as pleased in any number of contexts, not becoming bound to one specific context such as a certain kind of heading. For a developer this is good because we would rather just map out the definitive values for something, onto a component (a &quot;context&quot; so to speak).</p>
+				<p>Because of this difference, the appropriate way to structure a Figmagic-compatible Figma design document is to display one or more items/tokens in the respective frames that correspond to the accepted token types (line height, font size...) where each item has only one key property that&#39;s changed in-between them (such as one text using size 48, the next using size 40...), since those items are what Figmagic loops through when creating your code tokens.</p>
+				<p>One of the major deviations from this principle is &quot;Fonts&quot; where you can specify more properties than one. However, then those need to individually match other typographical tokens you might have, such as line heights.</p>
+				<p><img src="images/composing-font-from-multiple-tokens.png" alt="Nesting: Button, Normal"></p>
+				<p><em>The &quot;Heading L&quot; font token is composed of values that are also represented in the &quot;lesser&quot; uni-dimensional tokens: displayed here are &quot;Line Height S&quot; (135% line height), &quot;H1&quot; (size 48), and &quot;Font Bold&quot; (Bold font style). Setting this font as a Figma Style will make your life as a designer much easier as your apply the text style to things. Auto-generating code with Figmagic will also work just fine, since the individual values are respected.</em></p>
+				<a href="#ok-but-should-i-use-figma-styles-also-when-using-figmagic" id="ok-but-should-i-use-figma-styles-also-when-using-figmagic" style="color: inherit; text-decoration: none;">
+					<h4>OK, but should I use Figma styles (also) when using Figmagic?</h4>
+				</a>
+				<p>Whatever suits you! As long as you remember that what Figmagic fetches are those single (unidimensional) values from each design item/token it should all work. I&#39;ve seen that Figma styles make the &quot;contract&quot; between tokens and their day-to-day workflow with designers a lot easier. Again though, Figmagic does not use those values; think of them as a convenient glue.</p>
+				<a href="#configuring-figmagic" id="configuring-figmagic" style="color: inherit; text-decoration: none;">
+					<h2>Configuring Figmagic</h2>
+				</a>
+				<a href="#token-sync" id="token-sync" style="color: inherit; text-decoration: none;">
+					<h3>Token Sync</h3>
+				</a>
+				<p><strong>By default this is turned on. You will need to have a page named &quot;Design tokens&quot;, where your tokens lay within named frames.</strong></p>
+				<p>Tokens are the &quot;bread and butter&quot; of Figmagic. Without tokens, Figmagic cannot create elements. And even without elements, tokens provide the core experience to help you run a competent design system with code.</p>
+				<p>In case you want to skip generating tokens for a given frame, you can just add a leading underscore to the frame name. You can also skip individual items by naming them <code>ignore</code> or adding a leading underscore.</p>
+				<p>This is activated by default, but it&#39;s now possible to deactivate it if you have very specific reasons to do so.</p>
+				<a href="#graphics-sync" id="graphics-sync" style="color: inherit; text-decoration: none;">
+					<h3>Graphics Sync</h3>
+				</a>
+				<p><strong>By default this is turned off. Pass in <code>--syncGraphics</code> as a flag to sync them or enable that in your configuration file. You will need to have a page named &quot;Graphics&quot;, where your components lay directly on the artboard.</strong></p>
+				<p>Graphics can be exported in multiple formats with Figmagic. Instead of doing manual hand-overs, just tell your developer(s) that there have been updates to the graphics and let them pull the latest versions from your Figma document.</p>
+				<p>Again, please look at the template at <a href="https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens">https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens</a> for reference.</p>
+				<a href="#element-sync" id="element-sync" style="color: inherit; text-decoration: none;">
+					<h3>Element Sync</h3>
+				</a>
+				<p><strong>This is also turned off by default. Pass in <code>--syncElements</code> or enable it in your configuration file to generate code from your Figma components.</strong></p>
+				<p><em>Upcoming versions of Figmagic may attempt to support <a href="https://help.figma.com/hc/en-us/articles/360055471353-Prepare-for-Variants">Figma Variants</a>, but that will have to be publicly released first, and then vetted against what Figmagic can generate before I commit to supporting that model. Until then, the existing mental model of &quot;Elements&quot; will continue to be used.</em></p>
+				<p>Elements are named so because they are primarily meant to help scaffold anything that maps to standard HTML elements like input, button, h1, and form. With scaffolding we mean that these elements can be generated as code in a shape that is fitting for continued development. Elements are a good entry-point both for design and for code generation, since they are relatively simple and as a concept map to HTML, which in turn is based on tags (&quot;elements&quot;).</p>
+				<p>Elements are generated by parsing your structured Figma components into either &quot;flat&quot; or &quot;nested&quot; varieties. Any values, say a height of 48px and a specific blue color, will try to be derived from your relevant tokens. <strong>Therefore, without tokens, elements cannot be generated!</strong> In this example, maybe the height will map to a spacing token that uses 48px (mapping to <code>3rem</code> where 3 x 16 = 48, with 16 being the root REM value) and the color might be mapped to a color in your color tokens.</p>
+				<p><em>If you need more information and guidance on this, see the dedicated documentation section at <a href="images/elements.md">Figmagic Element Sync</a>.</em></p>
+				<a href="#how-user-settings-are-propagated" id="how-user-settings-are-propagated" style="color: inherit; text-decoration: none;">
+					<h3>How user settings are propagated</h3>
+				</a>
+				<p>There are several ways in which you can provide Figmagic with knowledge about how you want it to parse your tokens.
+				You can combine them, but beware of the below prioritization chart (from lowest to highest):</p>
+				<ol>
+					<li>User-provided configuration from <code>figmagic.json</code>/<code>.figmagicrc</code> file</li>
+					<li>Environment variables (also loaded from <code>.env</code> file using <code>dotenv</code>)</li>
+					<li>Command-line arguments and flags</li>
+				</ol>
+				<p>If possible, stick to one way of providing settings.</p>
+				<p>Non-provided values will fall back to defaults outlined in <code>bin/entities/Config/baseConfig.ts</code>.</p>
+				<a href="#configuration-file-figmagicjson-or-figmagicrc" id="configuration-file-figmagicjson-or-figmagicrc" style="color: inherit; text-decoration: none;">
+					<h3>Configuration file (<code>figmagic.json</code> or <code>.figmagicrc</code>)</h3>
+				</a>
+				<p>You can use a JSON-formated configuration file at the root of a project to use its settings. Figmagic will pick up the path by assessing the current working directory and looking for either a <code>figmagic.json</code> or <code>.figmagicrc</code> file there. If it finds it, it will use it.</p>
+				<p>An example file is provided in Figmagic—you can find it in the root of the project. The file is named <code>figmagicrc</code>, just add the leading dot and place the file in your own project folder to use it. To use it as JSON, add <code>json</code> as the file ending.</p>
+				<p>Since this is a configuration file, you&#39;ll need to be careful to write it correctly or you may end up with failures and errors.</p>
+				<p>Below is a complete set of what you can configure, together with the defaults.</p>
+				<pre><code><span style="color: #000000">{</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;debugMode&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;fontUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;rem&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;letterSpacingUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;em&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;lineHeightUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;unitless&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;opacitiesUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;float&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;figmaData&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;figma.json&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;figmagicFolder&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;.figmagic&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFolderElements&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;elements&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFolderGraphics&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;graphics&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFolderTokens&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;tokens&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatCss&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;ts&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatDescription&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;md&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatElements&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;tsx&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatGraphics&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;svg&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatStorybook&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;js&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatTokens&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;ts&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputGraphicElements&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputGraphicElementsMap&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputScaleGraphics&quot;</span><span style="color: #000000">: </span><span style="color: #098658">1</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputDataTypeToken&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">null</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;overwrite&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;css&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;description&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;graphic&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;react&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;storybook&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;styled&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;recompileLocal&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;refreshType&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;soft&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;remSize&quot;</span><span style="color: #000000">: </span><span style="color: #098658">16</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;skipFileGeneration&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;forceUpdate&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipCss&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipDescription&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipReact&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipStorybook&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipStyled&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;spacingUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;rem&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;syncElements&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;syncGraphics&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;syncTokens&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;templates&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;templatePathGraphic&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;templates/graphic&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;templatePathReact&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;templates/react&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;templatePathStorybook&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;templates/story&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&quot;templatePathStyled&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;templates/styled&quot;</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;token&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;unitlessPrecision&quot;</span><span style="color: #000000">: </span><span style="color: #098658">2</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;url&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;usePostscriptFontNames&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">&quot;versionName&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">null</span>
+<span style="color: #000000">};</span>
+</code></pre>
+				<a href="#cli-arguments" id="cli-arguments" style="color: inherit; text-decoration: none;">
+					<h3>CLI arguments</h3>
+				</a>
+				<p>Run these in your command line environment of choice.</p>
+				<a href="#toggle-debug-mode" id="toggle-debug-mode" style="color: inherit; text-decoration: none;">
+					<h4>Toggle debug mode</h4>
+				</a>
+				<p><code>figmagic [--debug | -d]</code></p>
+				<p>Default is <code>false</code>.</p>
+				<a href="#switch-font-unit" id="switch-font-unit" style="color: inherit; text-decoration: none;">
+					<h4>Switch font unit</h4>
+				</a>
+				<p><code>figmagic [--fontUnit | -fu] [rem|em|px]</code></p>
+				<p>Default is <code>rem</code>.</p>
+				<a href="#switch-letter-spacing-unit" id="switch-letter-spacing-unit" style="color: inherit; text-decoration: none;">
+					<h4>Switch letter-spacing unit</h4>
+				</a>
+				<p><code>figmagic [--letterSpacingUnit | -lsu] [em|px]</code></p>
+				<p>Default is <code>em</code>.</p>
+				<a href="#switch-line-height-unit" id="switch-line-height-unit" style="color: inherit; text-decoration: none;">
+					<h4>Switch line-height unit</h4>
+				</a>
+				<p><code>figmagic [--lineHeightUnit | -lhu] [unitless|em|px|rem]</code></p>
+				<p>Default is <code>unitless</code>.</p>
+				<a href="#switch-opacities-unit" id="switch-opacities-unit" style="color: inherit; text-decoration: none;">
+					<h4>Switch opacities unit</h4>
+				</a>
+				<p><code>figmagic [--opacitiesUnit | -ou] [float|percent]</code></p>
+				<p>Default is <code>float</code>.</p>
+				<a href="#set-output-file-name" id="set-output-file-name" style="color: inherit; text-decoration: none;">
+					<h4>Set output file name</h4>
+				</a>
+				<p><code>figmagic [--figmaData | -file] [filename]</code></p>
+				<p>Default is <code>figma.json</code>.</p>
+				<a href="#set-figma-base-file-output-folder" id="set-figma-base-file-output-folder" style="color: inherit; text-decoration: none;">
+					<h4>Set Figma base file output folder</h4>
+				</a>
+				<p><code>figmagic [--figmagicFolder | -base] [folder]</code></p>
+				<p>Default is <code>.figmagic</code>.</p>
+				<a href="#set-elements-output-folder" id="set-elements-output-folder" style="color: inherit; text-decoration: none;">
+					<h4>Set elements output folder</h4>
+				</a>
+				<p><code>figmagic [--outputFolderElements | -elements] [folder]</code></p>
+				<p>Default is <code>elements</code>.</p>
+				<a href="#set-graphics-output-folder" id="set-graphics-output-folder" style="color: inherit; text-decoration: none;">
+					<h4>Set graphics output folder</h4>
+				</a>
+				<p><code>figmagic [--outputFolderGraphics | -graphics] [folder]</code></p>
+				<p>Default is <code>graphics</code>.</p>
+				<a href="#set-token-output-folder" id="set-token-output-folder" style="color: inherit; text-decoration: none;">
+					<h4>Set token output folder</h4>
+				</a>
+				<p><code>figmagic [--outputFolderTokens | -tokens] [folder]</code></p>
+				<p>Default is <code>tokens</code>.</p>
+				<a href="#switch-css-file-format" id="switch-css-file-format" style="color: inherit; text-decoration: none;">
+					<h4>Switch CSS file format</h4>
+				</a>
+				<p><code>figmagic [--outputFormatCss | -fc] [ts|mjs|js]</code></p>
+				<p>Default is <code>ts</code>.</p>
+				<a href="#switch-description-file-format" id="switch-description-file-format" style="color: inherit; text-decoration: none;">
+					<h4>Switch description file format</h4>
+				</a>
+				<p><code>figmagic [--outputFormatDesc | -fd] [md|txt]</code></p>
+				<p>Default is <code>md</code>.</p>
+				<a href="#switch-elements-file-format" id="switch-elements-file-format" style="color: inherit; text-decoration: none;">
+					<h4>Switch elements file format</h4>
+				</a>
+				<p><code>figmagic [--outputFormatElements | -fe] [tsx|jsx|mjs|js]</code></p>
+				<p>Default is <code>tsx</code>.</p>
+				<a href="#switch-graphics-file-format" id="switch-graphics-file-format" style="color: inherit; text-decoration: none;">
+					<h4>Switch graphics file format</h4>
+				</a>
+				<p><code>figmagic [--outputFormatGraphics | -fg] [svg|png]</code></p>
+				<p>Default is <code>svg</code>.</p>
+				<a href="#switch-storybook-file-format" id="switch-storybook-file-format" style="color: inherit; text-decoration: none;">
+					<h4>Switch Storybook file format</h4>
+				</a>
+				<p><code>figmagic [--outputFormatStorybook | -fs] [ts|js|mdx]</code></p>
+				<p>Default is <code>js</code>.</p>
+				<a href="#switch-token-file-format" id="switch-token-file-format" style="color: inherit; text-decoration: none;">
+					<h4>Switch token file format</h4>
+				</a>
+				<p><code>figmagic [--outputFormatTokens | -ft] [ts|mjs|js|json]</code></p>
+				<p>Default is <code>ts</code>.</p>
+				<a href="#output-graphics-as-wrapped-react-elements" id="output-graphics-as-wrapped-react-elements" style="color: inherit; text-decoration: none;">
+					<h4>Output graphics as wrapped React elements</h4>
+				</a>
+				<p><code>figmagic [--outputGraphicElements | -oge]</code></p>
+				<p>Default is <code>false</code>.</p>
+				<a href="#output-graphics-elements-map" id="output-graphics-elements-map" style="color: inherit; text-decoration: none;">
+					<h4>Output graphics elements map</h4>
+				</a>
+				<p><code>figmagic [--outputGraphicElementsMap | -ogm]</code></p>
+				<p>Default is <code>false</code>.</p>
+				<a href="#set-output-scale-of-graphics" id="set-output-scale-of-graphics" style="color: inherit; text-decoration: none;">
+					<h4>Set output scale of graphics</h4>
+				</a>
+				<p><code>figmagic [--outputScaleGraphics | -scale] [number]</code></p>
+				<p>Default is <code>1</code>. <strong>Note that from the CLI you must specify the scale size like <code>3x</code> (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through <code>figmagic.json</code> or <code>.figmagicrc</code></strong>.</p>
+				<a href="#set-output-token-data-type" id="set-output-token-data-type" style="color: inherit; text-decoration: none;">
+					<h4>Set output token data type</h4>
+				</a>
+				<p><code>figmagic [--outputDataTypeToken | -tokentype] [null | enum]</code></p>
+				<p>Default is <code>null</code>. Currently the only valid non-null value is <code>enum</code>.</p>
+				<a href="#overwrite-files" id="overwrite-files" style="color: inherit; text-decoration: none;">
+					<h4>Overwrite files</h4>
+				</a>
+				<p>This is not currently possible to adjust from the CLI.</p>
+				<a href="#recompile-data-from-local-figma-json-file" id="recompile-data-from-local-figma-json-file" style="color: inherit; text-decoration: none;">
+					<h4>Recompile data from local Figma JSON file</h4>
+				</a>
+				<p><code>figmagic [--recompileLocal | -local]</code></p>
+				<p>Default is <code>null</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<a href="#refresh-type" id="refresh-type" style="color: inherit; text-decoration: none;">
+					<h4>Refresh type</h4>
+				</a>
+				<p><code>figmagic [--refreshType | -rf] [&#39;soft&#39; | &#39;hard&#39;]</code></p>
+				<p>Default is <code>soft</code>. This defines how overwritten files will be &quot;refreshed&quot; when starting Figmagic operations.</p>
+				<p>In <code>soft</code> mode, the previous folder is renamed and placed in a Figmagic-created trash folder (<code>./figmagic-trash/</code>) with an added ISO 8601 timestamp.</p>
+				<p>In <code>hard</code> mode, Node&#39;s <code>fs</code> module is used to erase the folder with no way of retrieving the old folder.</p>
+				<a href="#set-rem-size" id="set-rem-size" style="color: inherit; text-decoration: none;">
+					<h4>Set REM size</h4>
+				</a>
+				<p><code>figmagic [--remSize | -rem] [number]</code></p>
+				<p>Default is <code>16</code>. <strong>Note that from the CLI you must specify the REM size like <code>16p</code> (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through <code>figmagic.json</code> or <code>.figmagicrc</code></strong>.</p>
+				<a href="#force-update-all-elements" id="force-update-all-elements" style="color: inherit; text-decoration: none;">
+					<h4>Force update all elements</h4>
+				</a>
+				<p><code>figmagic [--forceUpdate | -force]</code></p>
+				<p>Default is <code>true</code>. Forces all elements and file types to be regenerated.</p>
+				<a href="#skip-file-generation-css" id="skip-file-generation-css" style="color: inherit; text-decoration: none;">
+					<h4>Skip file generation: CSS</h4>
+				</a>
+				<p><code>figmagic [--skipCss | -nocss]</code></p>
+				<p>Default is <code>false</code>. Skip creating CSS file when syncing elements.</p>
+				<a href="#skip-file-generation-markdown-description" id="skip-file-generation-markdown-description" style="color: inherit; text-decoration: none;">
+					<h4>Skip file generation: Markdown description</h4>
+				</a>
+				<p><code>figmagic [--skipDescription | -nodesc]</code></p>
+				<p>Default is <code>false</code>. Skip creating Markdown file when syncing elements.</p>
+				<a href="#skip-file-generation-react" id="skip-file-generation-react" style="color: inherit; text-decoration: none;">
+					<h4>Skip file generation: React</h4>
+				</a>
+				<p><code>figmagic [--skipReact | -noreact]</code></p>
+				<p>Default is <code>false</code>. Skip creating React file when syncing elements.</p>
+				<a href="#skip-file-generation-storybook" id="skip-file-generation-storybook" style="color: inherit; text-decoration: none;">
+					<h4>Skip file generation: Storybook</h4>
+				</a>
+				<p><code>figmagic [--skipStorybook | -nostory]</code></p>
+				<p>Default is <code>false</code>. Skip creating Storybook file when syncing elements.</p>
+				<a href="#skip-file-generation-styled-components" id="skip-file-generation-styled-components" style="color: inherit; text-decoration: none;">
+					<h4>Skip file generation: Styled Components</h4>
+				</a>
+				<p><code>figmagic [--skipStyled | -nostyled]</code></p>
+				<p>Default is <code>false</code>. Skip creating Styled Components file when syncing elements.</p>
+				<a href="#switch-spacing-unit" id="switch-spacing-unit" style="color: inherit; text-decoration: none;">
+					<h4>Switch spacing unit</h4>
+				</a>
+				<p><code>figmagic [--spacingUnit | -s] [rem|em|px]</code></p>
+				<p>Default is <code>rem</code>.</p>
+				<a href="#sync-elements" id="sync-elements" style="color: inherit; text-decoration: none;">
+					<h4>Sync elements</h4>
+				</a>
+				<p><code>figmagic [--syncElements | -se]</code></p>
+				<p>Default is <code>false</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<p>Use this when you want to sync elements in your &quot;Elements&quot; page in Figma.</p>
+				<a href="#sync-graphics" id="sync-graphics" style="color: inherit; text-decoration: none;">
+					<h4>Sync graphics</h4>
+				</a>
+				<p><code>figmagic [--syncGraphics | -sg]</code></p>
+				<p>Default is <code>false</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<p>Use this when you want to sync graphics in your &quot;Graphics&quot; page in Figma. Use the RC configuration file to pass in options. Default format will be SVG.</p>
+				<a href="#sync-tokens" id="sync-tokens" style="color: inherit; text-decoration: none;">
+					<h4>Sync tokens</h4>
+				</a>
+				<p><code>figmagic [--syncTokens | -st]</code></p>
+				<p>Default is <code>true</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<p>Use this when you want to sync tokens in your &quot;Design tokens&quot; page in Figma. Use the RC configuration file to pass in options.</p>
+				<a href="#set-path-to-graphics-template" id="set-path-to-graphics-template" style="color: inherit; text-decoration: none;">
+					<h4>Set path to graphics template</h4>
+				</a>
+				<p><code>figmagic [--templatePathGraphic | -tpgraphic] [path]</code></p>
+				<p>Default is <code>templates/graphic</code>.</p>
+				<p><strong>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathGraphic</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/graphic</code></strong>.</p>
+				<a href="#set-path-to-react-template" id="set-path-to-react-template" style="color: inherit; text-decoration: none;">
+					<h4>Set path to React template</h4>
+				</a>
+				<p><code>figmagic [--templatePathReact | -tpreact] [path]</code></p>
+				<p>Default is <code>templates/react</code>.</p>
+				<p><strong>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathReact</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/react</code></strong>.</p>
+				<a href="#set-path-to-storybook-template" id="set-path-to-storybook-template" style="color: inherit; text-decoration: none;">
+					<h4>Set path to Storybook template</h4>
+				</a>
+				<p><code>figmagic [--templatePathStorybook | -tpstory] [path]</code></p>
+				<p>Default is <code>templates/story</code>.</p>
+				<p><strong>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathStory</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/story</code></strong>.</p>
+				<a href="#set-path-to-styled-components-template" id="set-path-to-styled-components-template" style="color: inherit; text-decoration: none;">
+					<h4>Set path to Styled Components template</h4>
+				</a>
+				<p><code>figmagic [--templatePathStyled | -tpstyled] [path]</code></p>
+				<p>Default is <code>templates/styled</code>.</p>
+				<p><strong>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathStyled</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/styled</code></strong>.</p>
+				<a href="#pass-in-figma-api-token" id="pass-in-figma-api-token" style="color: inherit; text-decoration: none;">
+					<h4>Pass in Figma API token</h4>
+				</a>
+				<p><code>figmagic [--token | -t] [token]</code></p>
+				<p>Default is <code>null</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<a href="#set-relative-import-path-for-tokens-for-css" id="set-relative-import-path-for-tokens-for-css" style="color: inherit; text-decoration: none;">
+					<h4>Set relative import path for tokens (for CSS)</h4>
+				</a>
+				<p><code>figmagic [--tokensRelativeImportPrefix | -tip] [path]</code></p>
+				<p>Default is <code>&#39;&#39;</code> (effectively just blank or the same folder). Use this so CSS files can import tokens from the correct location, for example to resolve something like <code>../../tokens/colors.ts</code> you would pass in <code>../../</code> and <code>tokens</code> would be whatever your <code>outputFolderTokens</code> value is.</p>
+				<a href="#pass-in-figma-url" id="pass-in-figma-url" style="color: inherit; text-decoration: none;">
+					<h4>Pass in Figma URL</h4>
+				</a>
+				<p><code>figmagic [--url | -u] [url_id]</code></p>
+				<p>Default is <code>null</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<a href="#pass-in-unitless-precision" id="pass-in-unitless-precision" style="color: inherit; text-decoration: none;">
+					<h4>Pass in unitless precision</h4>
+				</a>
+				<p><code>figmagic [--unitlessPrecision | -up] [number]</code></p>
+				<p>Defines the precision (decimals) for unitless values (rounded using <code>.toFixed()</code> internally). Default is <code>2</code>.</p>
+				<a href="#set-font-family-name-to-be-postscript-name-instead-of-quotcommon-namequot" id="set-font-family-name-to-be-postscript-name-instead-of-quotcommon-namequot" style="color: inherit; text-decoration: none;">
+					<h4>Set font family name to be Postscript name instead of &quot;common name&quot;</h4>
+				</a>
+				<p><code>figmagic [--usePostscriptFontNames | -ps]</code></p>
+				<p>Default is <code>false</code>, i.e. common name.</p>
+				<a href="#use-a-versioned-figma-document" id="use-a-versioned-figma-document" style="color: inherit; text-decoration: none;">
+					<h4>Use a versioned Figma document</h4>
+				</a>
+				<p><code>figmagic [--versionName | -v]</code></p>
+				<p>Default is <code>null</code> which will resolve to the latest version. The value you specify here is the name of the version in the Figma file&#39;s <strong>Version history</strong>.</p>
+				<a href="#templates-used-for-code-generation" id="templates-used-for-code-generation" style="color: inherit; text-decoration: none;">
+					<h2>Templates used for code generation</h2>
+				</a>
+				<p>Starting with Figmagic version 4.0, four types of generated files have customizable templates:</p>
+				<ul>
+					<li>Graphic elements</li>
+					<li>React elements</li>
+					<li>Storybook files</li>
+					<li>Styled Components (React) files</li>
+				</ul>
+				<p>These four types have support for a variety of formats that differ a bit between each type.</p>
+				<p>Figmagic comes with a set of templates for several file formats. In case you want to customize these, you should respect and keep any substitution tags that exist in the original files; removing them may cause your templates to function incorrectly. For example, the React template includes a substitution tag called <code>{{NAME_STYLED}}</code> which will be changed to your adjusted element name with a &quot;Styled&quot; suffix. Removing it would make your generated code useless as-is.</p>
+				<p>The recommended way of adding and using your own templates would be to copy-paste any/all existing templates from Figmagic into your project, pointing the configuration file to your local copies, and then modifying them as needed.</p>
+				<a href="#token-formatting-and-conversions" id="token-formatting-and-conversions" style="color: inherit; text-decoration: none;">
+					<h2>Token formatting and conversions</h2>
+				</a>
+				<a href="#font-families" id="font-families" style="color: inherit; text-decoration: none;">
+					<h3>Font families</h3>
+				</a>
+				<p>The font family name, either as its common name (as picked up by Figma; spaces are removed) or its Postscript name (eg. FiraSans-Regular).</p>
+				<p>Default: Common name.</p>
+				<p><strong>Note</strong>: In previous versions of Figmagic the Postscript font family name was used.</p>
+				<a href="#font-weights" id="font-weights" style="color: inherit; text-decoration: none;">
+					<h3>Font weights</h3>
+				</a>
+				<p>Typical font weight values like <code>200</code>, <code>300</code> etc.</p>
+				<a href="#font-sizes" id="font-sizes" style="color: inherit; text-decoration: none;">
+					<h3>Font sizes</h3>
+				</a>
+				<p>Units based on global font size (base 16px).</p>
+				<p>Default: <code>rem</code> units. Can be set to <code>rem</code> or <code>em</code>.</p>
+				<a href="#line-heights" id="line-heights" style="color: inherit; text-decoration: none;">
+					<h3>Line heights</h3>
+				</a>
+				<p>Unitless.</p>
+				<p>2 decimals numbered values by default. Precision can be configured with <code>unitlessPrecision</code> (see config)</p>
+				<a href="#colors" id="colors" style="color: inherit; text-decoration: none;">
+					<h3>Colors</h3>
+				</a>
+				<p>RGBA colors.</p>
+				<a href="#spacing" id="spacing" style="color: inherit; text-decoration: none;">
+					<h3>Spacing</h3>
+				</a>
+				<p>Default: <code>rem</code> units. Can be set to <code>rem</code> or <code>em</code>.</p>
+				<a href="#border-widths" id="border-widths" style="color: inherit; text-decoration: none;">
+					<h3>Border widths</h3>
+				</a>
+				<p>Default: <code>px</code> units.</p>
+				<a href="#letter-spacings" id="letter-spacings" style="color: inherit; text-decoration: none;">
+					<h3>Letter spacings</h3>
+				</a>
+				<p>Default: <code>em</code> units.</p>
+				<a href="#media-queries" id="media-queries" style="color: inherit; text-decoration: none;">
+					<h3>Media queries</h3>
+				</a>
+				<p>Default: <code>px</code> units.</p>
+				<a href="#opacities" id="opacities" style="color: inherit; text-decoration: none;">
+					<h3>Opacities</h3>
+				</a>
+				<p>Typical 2 decimals numbered values between 0 and 1 like <code>0</code> or <code>0.65</code>.
+				Can be set to <code>percent</code> to have them converted to <code>%</code> strings instead like <code>0%</code> or <code>65%</code>.</p>
+				<a href="#radii" id="radii" style="color: inherit; text-decoration: none;">
+					<h3>Radii</h3>
+				</a>
+				<p>Default: <code>px</code> units.</p>
+				<a href="#shadows" id="shadows" style="color: inherit; text-decoration: none;">
+					<h3>Shadows</h3>
+				</a>
+				<p>Default: <code>px</code> units for three values (horizontal offset, vertical offset, blur) and RGBA for the color.</p>
+				<a href="#z-indices" id="z-indices" style="color: inherit; text-decoration: none;">
+					<h3>Z indices</h3>
+				</a>
+				<p>Default: numbers (whole numbers, i.e. integers).</p>
+				<a href="#code-structure" id="code-structure" style="color: inherit; text-decoration: none;">
+					<h2>Code structure</h2>
+				</a>
+				<a href="#figmagic-source-code-structure" id="figmagic-source-code-structure" style="color: inherit; text-decoration: none;">
+					<h3>Figmagic source code structure</h3>
+				</a>
+				<ul>
+					<li><code>__tests__/</code>: Tests, structured similarly to the <code>bin</code> folder source code</li>
+					<li><code>.github/</code>: GitHub files for CI and issue template</li>
+					<li><code>.vscode/</code>: Visual Studio Code configuration</li>
+					<li><code>bin/</code>: Source code</li>
+					<li><code>bin/contracts</code>: Types and interfaces</li>
+					<li><code>bin/controllers</code>: Controllers</li>
+					<li><code>bin/entities</code>: Entities (DDD-style), this is where most of the logic will be contained</li>
+					<li><code>bin/frameworks</code>: Non-domain functionality, like string manipulation and downloading files etc.</li>
+					<li><code>bin/usecases</code>: Where the application &quot;features&quot; are orchestrated, as per <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">Clean Architecture</a></li>
+					<li><code>build/</code>: ES6-compiled code (this is the code that consumers of the Figmagic binary actually use)</li>
+					<li><code>images/</code>: Documentation, mostly images and screen shots</li>
+					<li><code>templates/</code>: Files that are used as templates for code generation</li>
+					<li><code>testdata/</code>: Most of the tests point to stored test data which is stored in this folder</li>
+					<li><code>index.ts</code>: The file that initializes and sets up everything required to run Figmagic</li>
+				</ul>
+				<a href="#arkit-map" id="arkit-map" style="color: inherit; text-decoration: none;">
+					<h3>Arkit map</h3>
+				</a>
+				<p><img src="arkit.svg" alt="Arkit code structure map"></p>
+				<a href="#contribution" id="contribution" style="color: inherit; text-decoration: none;">
+					<h2>Contribution</h2>
+				</a>
+				<a href="#want-to-add-or-rethink-something-in-figmagic" id="want-to-add-or-rethink-something-in-figmagic" style="color: inherit; text-decoration: none;">
+					<h3>Want to add or rethink something in Figmagic?</h3>
+				</a>
+				<p>You are welcome to contribute to the project! Pull requests, as well as issues or plain messages, work fine. For pull requests, please refer to the contribution guidelines in <a href="CONTRIBUTING.md"><code>CONTRIBUTING.md</code></a>.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Modules</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_Config.html">contracts/<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_Css.html">contracts/<wbr>Css</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_Element.html">contracts/<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_Figma.html">contracts/<wbr>Figma</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_FigmaData.html">contracts/<wbr>Figma<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_FigmaElement.html">contracts/<wbr>Figma<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_FigmagicElement.html">contracts/<wbr>Figmagic<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_FileList.html">contracts/<wbr>File<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_Graphic.html">contracts/<wbr>Graphic</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_ImageResponse.html">contracts/<wbr>Image<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_Imports.html">contracts/<wbr>Imports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_Metadata.html">contracts/<wbr>Metadata</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_ParsedElementMetadataInterface.html">contracts/<wbr>Parsed<wbr>Element<wbr>Metadata<wbr>Interface</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_PrepFile.html">contracts/<wbr>Prep<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_ProcessedToken.html">contracts/<wbr>Processed<wbr>Token</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_Refresh.html">contracts/<wbr>Refresh</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_Templates.html">contracts/<wbr>Templates</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_TextElement.html">contracts/<wbr>Text<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_TokenMatch.html">contracts/<wbr>Token<wbr>Match</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_Tokens.html">contracts/<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_TypographyElement.html">contracts/<wbr>Typography<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/contracts_Write.html">contracts/<wbr>Write</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/controllers_FigmagicController.html">controllers/<wbr>Figmagic<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Config.html">entities/<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Config_baseConfig.html">entities/<wbr>Config/base<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Config_logic_createConfiguration.html">entities/<wbr>Config/logic/create<wbr>Configuration</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Config_logic_parseCliArgs.html">entities/<wbr>Config/logic/parse<wbr>Cli<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Config_logic_validateConfig.html">entities/<wbr>Config/logic/validate<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement.html">entities/<wbr>Figmagic<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_getFileContents.html">entities/<wbr>Figmagic<wbr>Element/logic/get<wbr>File<wbr>Contents</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_getTokenMatch.html">entities/<wbr>Figmagic<wbr>Element/logic/get<wbr>Token<wbr>Match</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parseCssFromElement.html">entities/<wbr>Figmagic<wbr>Element/logic/parse<wbr>Css<wbr>From<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parseTypographyStylingFromElement.html">entities/<wbr>Figmagic<wbr>Element/logic/parse<wbr>Typography<wbr>Styling<wbr>From<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_getBackgroundColor.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/get<wbr>Background<wbr>Color</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_getBorderColor.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/get<wbr>Border<wbr>Color</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_getPaddingX.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/get<wbr>PaddingX</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_getPaddingY.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/get<wbr>PaddingY</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_getShadow.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/get<wbr>Shadow</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_parseBackgroundColor.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/parse<wbr>Background<wbr>Color</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_parseBorderColor.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/parse<wbr>Border<wbr>Color</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_parseBorderRadius.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/parse<wbr>Border<wbr>Radius</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_parseBorderWidth.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/parse<wbr>Border<wbr>Width</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_parseHeight.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/parse<wbr>Height</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_parsePadding.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/parse<wbr>Padding</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_parseShadow.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/parse<wbr>Shadow</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_parsers_updateParsing.html">entities/<wbr>Figmagic<wbr>Element/logic/parsers/update<wbr>Parsing</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_processNestedCss.html">entities/<wbr>Figmagic<wbr>Element/logic/process<wbr>Nested<wbr>Css</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_FigmagicElement_logic_sliceOutObjectFromFile.html">entities/<wbr>Figmagic<wbr>Element/logic/slice<wbr>Out<wbr>Object<wbr>From<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token.html">entities/<wbr>Token</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeBorderWidthTokens.html">entities/<wbr>Token/logic/make<wbr>Border<wbr>Width<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeColorTokens.html">entities/<wbr>Token/logic/make<wbr>Color<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeDelayTokens.html">entities/<wbr>Token/logic/make<wbr>Delay<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeDurationTokens.html">entities/<wbr>Token/logic/make<wbr>Duration<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeEasingTokens.html">entities/<wbr>Token/logic/make<wbr>Easing<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeFontSizeTokens.html">entities/<wbr>Token/logic/make<wbr>Font<wbr>Size<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeFontTokens.html">entities/<wbr>Token/logic/make<wbr>Font<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeFontWeightTokens.html">entities/<wbr>Token/logic/make<wbr>Font<wbr>Weight<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeLetterSpacingTokens.html">entities/<wbr>Token/logic/make<wbr>Letter<wbr>Spacing<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeLineHeightTokens.html">entities/<wbr>Token/logic/make<wbr>Line<wbr>Height<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeMediaQueryTokens.html">entities/<wbr>Token/logic/make<wbr>Media<wbr>Query<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeOpacityTokens.html">entities/<wbr>Token/logic/make<wbr>Opacity<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeRadiusTokens.html">entities/<wbr>Token/logic/make<wbr>Radius<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeShadowTokens.html">entities/<wbr>Token/logic/make<wbr>Shadow<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeSpacingTokens.html">entities/<wbr>Token/logic/make<wbr>Spacing<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/entities_Token_logic_makeZindexTokens.html">entities/<wbr>Token/logic/make<wbr>Zindex<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_errors_errors.html">frameworks/errors/errors</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_checkIfExists.html">frameworks/filesystem/check<wbr>IfExists</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_createFolder.html">frameworks/filesystem/create<wbr>Folder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_getDataHelpers.html">frameworks/filesystem/get<wbr>Data<wbr>Helpers</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_getFileContentAndPath.html">frameworks/filesystem/get<wbr>File<wbr>Content<wbr>And<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_getSvgFileData.html">frameworks/filesystem/get<wbr>Svg<wbr>File<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_isJsonString.html">frameworks/filesystem/is<wbr>Json<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_loadFile.html">frameworks/filesystem/load<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_prepFile.html">frameworks/filesystem/prep<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_prepareWrite.html">frameworks/filesystem/prepare<wbr>Write</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_refresh.html">frameworks/filesystem/refresh</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_write.html">frameworks/filesystem/write</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_writeBaseJson.html">frameworks/filesystem/write<wbr>Base<wbr>Json</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_filesystem_writeFile.html">frameworks/filesystem/write<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_messages_messages.html">frameworks/messages/messages</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_network_downloadFile.html">frameworks/network/download<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_network_getData.html">frameworks/network/get<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_network_getDataLocal.html">frameworks/network/get<wbr>Data<wbr>Local</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_network_getDataRemote.html">frameworks/network/get<wbr>Data<wbr>Remote</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_network_getFromApi.html">frameworks/network/get<wbr>From<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_network_request.html">frameworks/network/request</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_calculateDegree2Point.html">frameworks/string/calculate<wbr>Degree2<wbr>Point</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_camelize.html">frameworks/string/camelize</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_checkIfStringOnlyContainsReturnsOrSpaces.html">frameworks/string/check<wbr>IfString<wbr>Only<wbr>Contains<wbr>Returns<wbr>OrSpaces</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_cleanSvgData.html">frameworks/string/clean<wbr>Svg<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_convertHexToRgba.html">frameworks/string/convert<wbr>Hex<wbr>ToRgba</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_convertRgbaToHex.html">frameworks/string/convert<wbr>Rgba<wbr>ToHex</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_createEnumStringOutOfObject.html">frameworks/string/create<wbr>Enum<wbr>String<wbr>Out<wbr>OfObject</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_createImportStringFromList.html">frameworks/string/create<wbr>Import<wbr>String<wbr>From<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_createLinearGradientString.html">frameworks/string/create<wbr>Linear<wbr>Gradient<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_createRadialGradientString.html">frameworks/string/create<wbr>Radial<wbr>Gradient<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_createSolidColorString.html">frameworks/string/create<wbr>Solid<wbr>Color<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_getAlphaInPercent.html">frameworks/string/get<wbr>Alpha<wbr>InPercent</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_getFigmaDocumentId.html">frameworks/string/get<wbr>Figma<wbr>Document<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_getId.html">frameworks/string/get<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_normalizeUnits.html">frameworks/string/normalize<wbr>Units</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_removeAllIds.html">frameworks/string/remove<wbr>All<wbr>Ids</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_replaceMediaQuery.html">frameworks/string/replace<wbr>Media<wbr>Query</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_roundColorValue.html">frameworks/string/round<wbr>Color<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_roundNumber.html">frameworks/string/round<wbr>Number</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_string_toPascalCase.html">frameworks/string/to<wbr>Pascal<wbr>Case</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_system_acceptedFileTypes.html">frameworks/system/accepted<wbr>File<wbr>Types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_system_acceptedTokenTypes.html">frameworks/system/accepted<wbr>Token<wbr>Types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_system_checkIfVoidElement.html">frameworks/system/check<wbr>IfVoid<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_system_colors.html">frameworks/system/colors</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_system_configToInit.html">frameworks/system/config<wbr>ToInit</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_system_ignoreElementsKeywords.html">frameworks/system/ignore<wbr>Elements<wbr>Keywords</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/frameworks_system_validatorLists.html">frameworks/system/validator<wbr>Lists</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_createElements.html">usecases/create<wbr>Elements</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_createGraphics.html">usecases/create<wbr>Graphics</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_createTokens.html">usecases/create<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_interactors_common_createPage.html">usecases/interactors/common/create<wbr>Page</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_interactors_elements_processElements.html">usecases/interactors/elements/process<wbr>Elements</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_interactors_elements_processGraphicElementsMap.html">usecases/interactors/elements/process<wbr>Graphic<wbr>Elements<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_interactors_elements_writeElements.html">usecases/interactors/elements/write<wbr>Elements</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_interactors_elements_writeGraphicElementsMap.html">usecases/interactors/elements/write<wbr>Graphic<wbr>Elements<wbr>Map</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_interactors_graphics_getFileList.html">usecases/interactors/graphics/get<wbr>File<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_interactors_graphics_getIdString.html">usecases/interactors/graphics/get<wbr>IdString</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_interactors_graphics_getIds.html">usecases/interactors/graphics/get<wbr>Ids</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_interactors_graphics_processGraphics.html">usecases/interactors/graphics/process<wbr>Graphics</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_interactors_graphics_writeGraphics.html">usecases/interactors/graphics/write<wbr>Graphics</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_interactors_tokens_processTokens.html">usecases/interactors/tokens/process<wbr>Tokens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/usecases_interactors_tokens_writeTokens.html">usecases/interactors/tokens/write<wbr>Tokens</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

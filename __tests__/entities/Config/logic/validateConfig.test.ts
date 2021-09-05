@@ -4,6 +4,7 @@ import { testConfig } from '../../../../testdata/testConfig';
 
 import {
   ErrorValidateConfigFileName,
+  ErrorValidateConfigFolderName,
   ErrorValidateConfigFontUnit,
   ErrorValidateConfigLetterSpacingUnit,
   ErrorValidateConfigLineHeightUnit,
@@ -14,12 +15,12 @@ import {
   ErrorValidateConfigOutputFormatGraphics,
   ErrorValidateConfigOutputFormatStorybook,
   ErrorValidateConfigOutputFormatTokens,
+  ErrorValidateConfigOutputScaleGraphics,
   ErrorValidateConfigSpacingUnit,
+  ErrorValidateConfigTemplatePathGraphic,
   ErrorValidateConfigTemplatePathReact,
   ErrorValidateConfigTemplatePathStorybook,
-  ErrorValidateConfigTemplatePathStyled,
-  ErrorValidateConfigFolderName,
-  ErrorValidateConfigOutputScaleGraphics
+  ErrorValidateConfigTemplatePathStyled
 } from '../../../../bin/frameworks/errors/errors';
 
 describe('Success cases', () => {
@@ -156,6 +157,7 @@ describe('Failure cases', () => {
     const testConfigReact = testConfig;
     // @ts-ignore
     testConfigReact.templates = {
+      templatePathGraphic: 'something',
       templatePathReact: '',
       templatePathStorybook: 'something',
       templatePathStyled: 'something'
@@ -171,6 +173,7 @@ describe('Failure cases', () => {
     const testConfigStorybook = testConfig;
     // @ts-ignore
     testConfigStorybook.templates = {
+      templatePathGraphic: 'something',
       templatePathReact: 'something',
       templatePathStorybook: '',
       templatePathStyled: 'something'
@@ -186,6 +189,7 @@ describe('Failure cases', () => {
     const testConfigStyled = testConfig;
     // @ts-ignore
     testConfigStyled.templates = {
+      templatePathGraphic: 'something',
       templatePathReact: 'something',
       templatePathStorybook: 'something',
       templatePathStyled: ''
@@ -194,6 +198,22 @@ describe('Failure cases', () => {
     // @ts-ignore
     expect(() => validateConfig(testConfigStyled)).toThrowError(
       ErrorValidateConfigTemplatePathStyled
+    );
+  });
+
+  test('It should invalidate a configuration when given no template path for graphics', () => {
+    const testConfigGraphics = testConfig;
+    // @ts-ignore
+    testConfigGraphics.templates = {
+      templatePathGraphic: '',
+      templatePathReact: 'something',
+      templatePathStorybook: 'something',
+      templatePathStyled: 'something'
+    };
+
+    // @ts-ignore
+    expect(() => validateConfig(testConfigGraphics)).toThrowError(
+      ErrorValidateConfigTemplatePathGraphic
     );
   });
 });

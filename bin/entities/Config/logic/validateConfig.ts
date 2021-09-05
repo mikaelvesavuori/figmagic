@@ -4,6 +4,7 @@ import { ErrorValidateConfig } from '../../../frameworks/errors/errors';
 
 import {
   ErrorValidateConfigFileName,
+  ErrorValidateConfigFolderName,
   ErrorValidateConfigFontUnit,
   ErrorValidateConfigLetterSpacingUnit,
   ErrorValidateConfigLineHeightUnit,
@@ -15,40 +16,43 @@ import {
   ErrorValidateConfigOutputFormatGraphics,
   ErrorValidateConfigOutputFormatStorybook,
   ErrorValidateConfigOutputFormatTokens,
+  ErrorValidateConfigOutputScaleGraphics,
   ErrorValidateConfigSpacingUnit,
+  ErrorValidateConfigTemplatePathGraphic,
   ErrorValidateConfigTemplatePathReact,
   ErrorValidateConfigTemplatePathStorybook,
   ErrorValidateConfigTemplatePathStyled,
-  ErrorValidateConfigTemplatePathGraphic,
-  ErrorValidateConfigFolderName,
-  ErrorValidateConfigOutputScaleGraphics
+  ErrorValidateConfigRefreshType
 } from '../../../frameworks/errors/errors';
 
 export function validateConfig(config: Config): boolean {
   if (!config) throw Error(ErrorValidateConfig);
+
+  validateFileName(config.figmaData);
+  validateFolderName(config.figmagicFolder);
+  validateFolderName(config.outputFolderElements);
+  validateFolderName(config.outputFolderGraphics);
+  validateFolderName(config.outputFolderTokens);
+  validateFontUnit(config.fontUnit);
+  validateLetterSpacingUnit(config.letterSpacingUnit);
+  validateOpacitiesUnit(config.opacitiesUnit);
+  validateOutputDataTypeToken(config.outputDataTypeToken);
+  validateOutputFormatCss(config.outputFormatCss);
+  validateOutputFormatDesc(config.outputFormatDescription);
+  validateOutputFormatElements(config.outputFormatElements);
+  validateOutputFormatGraphics(config.outputFormatGraphics);
+  validateOutputFormatStorybook(config.outputFormatStorybook);
+  validateOutputFormatTokens(config.outputFormatTokens);
+  validateOutputScaleGraphics(config.outputScaleGraphics);
+  validateRefreshType(config.refreshType);
+  validateSpacingUnit(config.spacingUnit);
+  validateTemplatePathGraphic(config.templates.templatePathGraphic);
+  validateTemplatePathReact(config.templates.templatePathReact);
+  validateTemplatePathStorybook(config.templates.templatePathStorybook);
+  validateTemplatePathStyled(config.templates.templatePathStyled);
+  validLineHeightUnit(config.lineHeightUnit);
+
   try {
-    validateFontUnit(config.fontUnit);
-    validateLetterSpacingUnit(config.letterSpacingUnit);
-    validLineHeightUnit(config.lineHeightUnit);
-    validateOpacitiesUnit(config.opacitiesUnit);
-    validateFileName(config.figmaData);
-    validateFolderName(config.figmagicFolder);
-    validateFolderName(config.outputFolderElements);
-    validateFolderName(config.outputFolderGraphics);
-    validateFolderName(config.outputFolderTokens);
-    validateOutputFormatCss(config.outputFormatCss);
-    validateOutputFormatDesc(config.outputFormatDescription);
-    validateOutputFormatElements(config.outputFormatElements);
-    validateOutputFormatGraphics(config.outputFormatGraphics);
-    validateOutputFormatStorybook(config.outputFormatStorybook);
-    validateOutputFormatTokens(config.outputFormatTokens);
-    validateOutputScaleGraphics(config.outputScaleGraphics);
-    validateOutputDataTypeToken(config.outputDataTypeToken);
-    validateSpacingUnit(config.spacingUnit);
-    validateTemplatePathReact(config.templates.templatePathReact);
-    validateTemplatePathStorybook(config.templates.templatePathStorybook);
-    validateTemplatePathStyled(config.templates.templatePathStyled);
-    validateTemplatePathGraphic(config.templates.templatePathGraphic);
     return true;
   } catch (error: any) {
     throw Error(error);
@@ -66,6 +70,7 @@ import {
   validOutputFormatStorybookList,
   validOutputFormatTokensList,
   validOutputDataTypeTokenList,
+  validRefreshTypeList,
   validSpacingUnitList
 } from '../../../frameworks/system/validatorLists';
 
@@ -162,4 +167,9 @@ const validateTemplatePathStyled = (path: string): boolean => {
 const validateTemplatePathGraphic = (path: string): boolean => {
   if (path) return true;
   throw Error(ErrorValidateConfigTemplatePathGraphic);
+};
+
+const validateRefreshType = (format: string): boolean => {
+  if (validRefreshTypeList.includes(format)) return true;
+  throw Error(ErrorValidateConfigRefreshType);
 };
