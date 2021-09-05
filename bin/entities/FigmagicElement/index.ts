@@ -251,7 +251,7 @@ class FigmagicElement {
   }
 
   /**
-   * @description TODO
+   * @description Process CSS for any nested elements (i.e. grouped in groups, in Figma)
    */
   private parseNestedCss(el: Frame, config: Config, id?: number) {
     let css = `\n`;

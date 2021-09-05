@@ -112,6 +112,51 @@ const BG_ELEMENT = {
   rectangleCornerRadii: [8, 8, 8, 8]
 };
 
+const LINEAR_GRADIENT_ELEMENT = {
+  id: '3227:778',
+  name: 'Blue 4',
+  type: 'RECTANGLE',
+  blendMode: 'PASS_THROUGH',
+  absoluteBoundingBox: { x: 468, y: 282, width: 100, height: 40 },
+  constraints: { vertical: 'TOP', horizontal: 'LEFT' },
+  fills: [
+    {
+      opacity: 0.800000011920929,
+      blendMode: 'NORMAL',
+      type: 'GRADIENT_LINEAR',
+      gradientHandlePositions: [
+        { x: 1.6829973346702458e-9, y: 0.4499999024131663 },
+        { x: 1.0000000016829973, y: 0.4499999024131663 },
+        { x: 2.014016540107928e-9, y: 0.12255282472897211 }
+      ],
+      gradientStops: [
+        {
+          color: {
+            r: 0.24597221612930298,
+            g: 0.6398308873176575,
+            b: 0.7666666507720947,
+            a: 0.949999988079071
+          },
+          position: 0.09375
+        },
+        {
+          color: {
+            r: 0.33725491166114807,
+            g: 0.800000011920929,
+            b: 0.9490196108818054,
+            a: 0.019999999552965164
+          },
+          position: 0.9375
+        }
+      ]
+    }
+  ],
+  strokes: [],
+  strokeWeight: 1,
+  strokeAlign: 'INSIDE',
+  effects: []
+};
+
 describe('Get padding Y', () => {
   describe('Failure cases', () => {
     test('It should throw an error if called without arguments', () => {
@@ -173,8 +218,7 @@ describe('Parse padding', () => {
       expect(
         parsePadding('border-width: 10px;\n', ['border-widths'], PADDING_PARAMS)
       ).toMatchObject({
-        css:
-          'border-width: 10px;\npadding-left: ${spacing.small};\npadding-right: ${spacing.small};\n',
+        css: 'border-width: 10px;\npadding-left: ${spacing.small};\npadding-right: ${spacing.small};\n',
         imports: undefined
       });
     });
@@ -207,8 +251,7 @@ border-style: solid;`;
     test('It should parse height, matching to a corresponding spacing token value', () => {
       // @ts-ignore
       expect(parseHeight(CSS, [], HEIGHT_PARAMS)).toMatchObject({
-        css:
-          'width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\nwidth: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;height: ${spacing.big};\n',
+        css: 'width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\nwidth: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;height: ${spacing.big};\n',
         imports: undefined
       });
     });
@@ -234,13 +277,12 @@ describe('Get background color', () => {
       expect(getBackgroundColor(BG_ELEMENT)).toBe('rgba(189, 189, 189, 1)');
     });
 
-    // TODO: Add test
-    /*
     test('It should get background color (linear gradient)', () => {
       // @ts-ignore
-      expect(getBackgroundColor(BG_ELEMENT)).toBe('asdf');
+      expect(getBackgroundColor(LINEAR_GRADIENT_ELEMENT)).toBe(
+        'linear-gradient(90deg, rgba(63, 163, 195, 0.95) 9%, rgba(86, 204, 242, 0.02) 94%)'
+      );
     });
-    */
   });
 });
 

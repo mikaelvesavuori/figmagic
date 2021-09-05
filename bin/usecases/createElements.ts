@@ -26,7 +26,15 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
   }
 
   try {
-    refresh(config.outputFolderElements, 'soft', false); // TODO: Add to configuration
+    const {
+      outputFolderElements,
+      outputFormatGraphics,
+      outputGraphicElements,
+      syncGraphics,
+      refreshType
+    } = config;
+
+    refresh(outputFolderElements, refreshType, false);
     const { components }: any = data;
     handleElements({
       children: data.document.children,
@@ -38,11 +46,7 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
     /**
      * Handle a bit of a special corner case: SVG graphics packed into React components.
      */
-    if (
-      config.outputGraphicElements &&
-      config.outputFormatGraphics === 'svg' &&
-      config.syncGraphics
-    ) {
+    if (outputGraphicElements && outputFormatGraphics === 'svg' && syncGraphics) {
       const GRAPHICS = handleElements({
         children: data.document.children,
         pageName: 'Graphics',

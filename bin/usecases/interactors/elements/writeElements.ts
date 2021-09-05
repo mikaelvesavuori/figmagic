@@ -19,7 +19,7 @@ export function writeElements(elements: any[], config: Config, isGeneratingGraph
 
     elements.forEach((element) => {
       const FIXED_CONFIG = makeFixedConfig(element, config);
-      // TODO REFACTOR: writeFileHelper() should take fewer params since we are already passing in fixed config...?
+      // TODO Refactor: writeFileHelper() should take fewer params since we are already passing in fixed config...?
 
       if (!config.skipFileGeneration.skipReact) {
         const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.${FIXED_CONFIG.outputFormatElements}`;
