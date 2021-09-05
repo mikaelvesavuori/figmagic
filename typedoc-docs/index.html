@@ -66,15 +66,63 @@
 					<a href="https://sonarcloud.io/dashboard?id=mikaelvesavuori_figmagic"><img src="https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_figmagic&metric=alert_status" alt="Quality Gate Status"></a>
 					<a href="https://codecov.io/gh/mikaelvesavuori/figmagic"><img src="https://codecov.io/gh/mikaelvesavuori/figmagic/branch/master/graph/badge.svg" alt="codecov"></a>
 				<a href="https://codeclimate.com/github/mikaelvesavuori/figmagic/maintainability"><img src="https://api.codeclimate.com/v1/badges/1a609622737c6c48225c/maintainability" alt="Maintainability"></a></p>
-				<a href="#generate-design-tokens-export-graphics-and-extract-design-token-driven-react-components-from-your-figma-documents-originally-inspired-by-salesforce-theo" id="generate-design-tokens-export-graphics-and-extract-design-token-driven-react-components-from-your-figma-documents-originally-inspired-by-salesforce-theo" style="color: inherit; text-decoration: none;">
-					<h4><em>Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents. Originally inspired by <a href="https://github.com/salesforce-ux/theo">Salesforce Theo</a>.</em></h4>
-				</a>
-				<p>Figmagic promotes a structured way of assembling design systems. Following the primary principle of atomic design, Figmagic wants you to build from the bottom up, beginning with decomposing the tokens. Tokens shape elements, which form components, that are ordered in compositions, which get presented in views... You know the drill, though I am switching Brad Frost&#39;s nomenclature into something more front-end friendly.</p>
-				<p>When it comes to code generation, Figmagic tries to do this in a better way. Instead of over-eagerly promoting hardcoded code generation from huge and complex components, Figmagic tries to competently, or at least &quot;mostly-right&quot;, handle automation for things that should not be too context-dependent or manual input-heavy. Code should also be as close to &quot;normal&quot; as possible—meaning that generated code binds values to tokens and not some random px values as other platforms do. All of this can happen because Figmagic assumes a way of working that respects standard CSS and HTML: no magic trickery! Figmagic avoids some of the cognitive and technical overhead by introducing a concept called <strong>Elements</strong>, which are Figmagic-compliant components that can be output into code. By composing larger components out of simple Elements, code generation is made much more manageable while also promoting much more structured design.</p>
-				<p>Figmagic does not aim at completely removing designers or developers: It just aims to move them closer, while eliminating any of the tedious busywork that has grown around front-end development.</p>
-				<p><strong>Please note:</strong> Figmagic requires that your document structure is identical to what I show in the template at <a href="https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens">https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens</a>.</p>
-				<p>Figmagic is compiled from Typescript to ES6, so you should have Node 10 or later for it to work on your machine.</p>
+				<blockquote>
+					<p>Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.</p>
+				</blockquote>
+				<p>Figmagic does not aim at completely removing designers or developers: It just aims to move them closer, while eliminating most of the tedious busywork that has grown around front-end development.</p>
+				<hr>
+				<p><strong>Please note:</strong> Figmagic requires that your document structure follows the conventions in this document; a full setup can be seen in the template at <a href="https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens">https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens</a>.</p>
+				<p>Figmagic is compiled from Typescript to ES6, so you should have Node 12 or later (Node 14 and newer recommended) for it to work on your machine.</p>
 				<p><em>Built initially as an internal handoff tool for <a href="https://www.humblebee.se">Humblebee</a>.</em></p>
+				<a href="#figmagic-promotes-a-structured-way-of-assembling-design-systems" id="figmagic-promotes-a-structured-way-of-assembling-design-systems" style="color: inherit; text-decoration: none;">
+					<h2>Figmagic promotes a structured way of assembling design systems</h2>
+				</a>
+				<p>Figmagic is a very straightforward, super-flexible command-line tool that helps you do three things well:</p>
+				<a href="#1-output-design-tokens" id="1-output-design-tokens" style="color: inherit; text-decoration: none;">
+					<h3>1. Output design tokens</h3>
+				</a>
+				<p>Outputting and using <strong>design tokens</strong> aids in designing with a structured approach. These tokens are completely platform agnostic when output into JSON, or for most web developers, more readily useable in various supported flavors of JavaScript (TS, JS, MJS). It&#39;s web-oriented but works well with React Native too.</p>
+				<p>A basic set of tokens can look like this:</p>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">tokens</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #001080">colors:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">blue:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;rgba(20, 20, 255, 1)&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">warmWhite:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;rgba(240, 240, 240, 1)&#039;</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #001080">spacing:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">small:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;1rem&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">medium:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;1.5rem&#039;</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">};</span>
+</code></pre>
+				<p>You use these tokens like so, <code>color: ${colors.blue};</code>, to shape and specify your coded components, web sites, apps, and what have you, instead of hard-coding every single value.</p>
+				<p><strong>This way, you decouple implementation from data. You can now easily drive changes as <em>design choices</em> through Figma instead of as <em>code changes</em>.</strong></p>
+				<a href="#2-output-graphics" id="2-output-graphics" style="color: inherit; text-decoration: none;">
+					<h3>2. Output graphics</h3>
+				</a>
+				<p>Say goodbye to ever manually exporting graphics from Figma again. Grab your graphics as PNG, SVG, as React components with inlined SVG, or as objects that export all graphics from a single file.</p>
+				<a href="#3-generate-react-components" id="3-generate-react-components" style="color: inherit; text-decoration: none;">
+					<h3>3. Generate React components</h3>
+				</a>
+				<p>Figmagic also allows you to generate React components from Figma components that follow a specific formal structure. It&#39;s best at fairly low-level components that you can piece together to make more complex organisms on your own. You can significantly cut down on boilerplate churn and scaffolding time with Figmagic.</p>
+				<p>And, no, the code does not actually suck! This was my own biggest gripe with services promising this functionality, so I knew it had to be good, or at least tolerable. Therefore Figmagic supports things like actually using your own tokens (so we can cut down on hard-coded garbage, unless matches aren&#39;t found) and you can completely customize the number of related generated files.</p>
+				<p>While not perfect, it&#39;s definitely better than many things I&#39;ve seen, made by big companies. All of this is explained later here in the docs.</p>
+				<a href="#the-arguments" id="the-arguments" style="color: inherit; text-decoration: none;">
+					<h3>The arguments</h3>
+				</a>
+				<p>Here are a few reasons you&#39;d want to use Figmagic rather than anything similar:</p>
+				<ul>
+					<li>In Figmagic, design tokens are a first-class concept since day 1</li>
+					<li>Figmagic is designer-driven, since Figma is seen as the source of truth</li>
+					<li>Figmagic is automatable and very lightweight (~40kb compressed), with only a single external dependency (<code>dotenv</code>)</li>
+					<li>Figmagic is developer-friendly and makes very few assumptions on your use and/or setup and supports a range of output formats plus that it&#39;s extensible through custom templates if you need something completely different</li>
+					<li>Figmagic is open-sourced under the MIT license and has a long track record of very short implementation cycles for new features/fixes</li>
+					<li>Generated React components bind to any token values you&#39;ve defined so these are equally useful as starter code or as code you continually output</li>
+				</ul>
+				<a href="#additional-documentation-sources" id="additional-documentation-sources" style="color: inherit; text-decoration: none;">
+					<h2>Additional documentation sources</h2>
+				</a>
+				<p>The Figmagic developer docs are auto-generated on every push and can be found at the <a href="https://docs.figmagic.com">dedicated documentation site</a>.</p>
+				<p>For deeper information pertaining to Figmagic Elements and syncing them, see <a href="readme/elements.md">the dedicated README page</a>.</p>
 				<a href="#example-project" id="example-project" style="color: inherit; text-decoration: none;">
 					<h2>Example project</h2>
 				</a>
@@ -163,10 +211,12 @@
 				<a href="#what-are-design-tokens" id="what-are-design-tokens" style="color: inherit; text-decoration: none;">
 					<h2>What are Design Tokens?</h2>
 				</a>
-				<p>Design tokens are the abstract but shared elements from which your design system is built.</p>
-				<p>Design tokens express any of the individual values that you build from, such as colors, spacing, and typographic features.</p>
-				<p>Tokens offer a form of “contract” between a designer’s intent and its fulfillment by developers. This means that both sides agree to avoid by all means anything that’s not codified also as a token. For example, avoiding spacing values that are not also available as a token. It’s similar in many ways to old-school styleguides, but tokens should only ever communicate strict, hard values. Styleguides can tend to be context-sensitive and full of explanation—tokens must communicate without context or explanation.</p>
-				<p>However: You may still want to add written guidance for usage. It’s just that the tokens should be able to be consumed without understanding anything specific about them.</p>
+				<p>Design tokens are the <em><strong>abstract and shared elements</strong></em> from which your design system is built.</p>
+				<p>Design tokens <em><strong>express any of the individual values that you build from</strong></em>, such as colors, spacing, and typographic features.</p>
+				<p>Tokens offer a form of “contract” between a designer’s intent and its fulfillment by developers. This means that both sides agree to treat the individual parts of a complete design through the tokens that represent those values. As a format, they are super easy to read and understand and are adaptable for consumption by many types of systems or applications. That’s very important as you start doing cross-platform apps and things like that.</p>
+				<p><img src="images/design-tokens.png" alt="Design tokens"></p>
+				<p>Tokens ensure that values are not <a href="https://en.wikipedia.org/wiki/Magic_number_(programming)">magic numbers</a> or ”just picked at random”. This makes communication precise and effortless. Creating actual code for components, even complex ones, also becomes a lot less of a bore, since what you are doing is just pointing stuff like padding, Z indices, and anything else to their token representations.</p>
+				<p><em>However: You may still want to add written guidance for usage. It’s just that the tokens should be able to be consumed without understanding anything specific about them.</em></p>
 				<p>You should bind tokens to Figma styles whenever and wherever possible to simplify your own design work, but make sure that those are also represented in the <strong>Tokens</strong> page, as this page is where a developer will pick up tokens with Figmagic.</p>
 				<a href="#the-types-of-design-tokens-figmagic-can-extract" id="the-types-of-design-tokens-figmagic-can-extract" style="color: inherit; text-decoration: none;">
 					<h3>The types of design tokens Figmagic can extract</h3>
@@ -254,295 +304,352 @@
 				<p>An example file is provided in Figmagic—you can find it in the root of the project. The file is named <code>figmagicrc</code>, just add the leading dot and place the file in your own project folder to use it. To use it as JSON, add <code>json</code> as the file ending.</p>
 				<p>Since this is a configuration file, you&#39;ll need to be careful to write it correctly or you may end up with failures and errors.</p>
 				<p>Below is a complete set of what you can configure, together with the defaults.</p>
-				<pre><code><span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;debugMode&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;fontUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;rem&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;letterSpacingUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;em&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;lineHeightUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;unitless&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;opacitiesUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;float&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;figmaData&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;figma.json&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;figmagicFolder&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;.figmagic&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFolderElements&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;elements&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFolderGraphics&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;graphics&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFolderTokens&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;tokens&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatCss&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;ts&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatDescription&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;md&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatElements&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;tsx&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatGraphics&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;svg&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatStorybook&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;js&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputFormatTokens&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;ts&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputGraphicElements&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputGraphicElementsMap&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputScaleGraphics&quot;</span><span style="color: #000000">: </span><span style="color: #098658">1</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;outputDataTypeToken&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">null</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;overwrite&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;css&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;description&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;graphic&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;react&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;storybook&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;styled&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span>
-<span style="color: #000000">  },</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;recompileLocal&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;refreshType&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;soft&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;remSize&quot;</span><span style="color: #000000">: </span><span style="color: #098658">16</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;skipFileGeneration&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;forceUpdate&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipCss&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipDescription&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipReact&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipStorybook&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;skipStyled&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span>
-<span style="color: #000000">  },</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;spacingUnit&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;rem&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;syncElements&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;syncGraphics&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;syncTokens&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;templates&quot;</span><span style="color: #000000">: {</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;templatePathGraphic&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;templates/graphic&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;templatePathReact&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;templates/react&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;templatePathStorybook&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;templates/story&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #A31515">&quot;templatePathStyled&quot;</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;templates/styled&quot;</span>
-<span style="color: #000000">  },</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;token&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;unitlessPrecision&quot;</span><span style="color: #000000">: </span><span style="color: #098658">2</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;url&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;usePostscriptFontNames&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #A31515">&quot;versionName&quot;</span><span style="color: #000000">: </span><span style="color: #0000FF">null</span>
-<span style="color: #000000">};</span>
+				<pre><code class="language-json5">{
+  &quot;debugMode&quot;: false,
+  &quot;fontUnit&quot;: &quot;rem&quot;,
+  &quot;letterSpacingUnit&quot;: &quot;em&quot;,
+  &quot;lineHeightUnit&quot;: &quot;unitless&quot;,
+  &quot;opacitiesUnit&quot;: &quot;float&quot;,
+  &quot;figmaData&quot;: &quot;figma.json&quot;,
+  &quot;figmagicFolder&quot;: &quot;.figmagic&quot;,
+  &quot;outputFolderElements&quot;: &quot;elements&quot;,
+  &quot;outputFolderGraphics&quot;: &quot;graphics&quot;,
+  &quot;outputFolderTokens&quot;: &quot;tokens&quot;,
+  &quot;outputFormatCss&quot;: &quot;ts&quot;,
+  &quot;outputFormatDescription&quot;: &quot;md&quot;,
+  &quot;outputFormatElements&quot;: &quot;tsx&quot;,
+  &quot;outputFormatGraphics&quot;: &quot;svg&quot;,
+  &quot;outputFormatStorybook&quot;: &quot;js&quot;,
+  &quot;outputFormatTokens&quot;: &quot;ts&quot;,
+  &quot;outputGraphicElements&quot;: false,
+  &quot;outputGraphicElementsMap&quot;: false,
+  &quot;outputScaleGraphics&quot;: 1,
+  &quot;outputDataTypeToken&quot;: null,
+  &quot;overwrite&quot;: {
+    &quot;css&quot;: false,
+    &quot;description&quot;: false,
+    &quot;graphic&quot;: false,
+    &quot;react&quot;: false,
+    &quot;storybook&quot;: false,
+    &quot;styled&quot;: false
+  },
+  &quot;recompileLocal&quot;: false,
+  &quot;refreshType&quot;: &quot;soft&quot;,
+  &quot;remSize&quot;: 16,
+  &quot;skipFileGeneration&quot;: {
+    &quot;forceUpdate&quot;: true,
+    &quot;skipCss&quot;: false,
+    &quot;skipDescription&quot;: false,
+    &quot;skipReact&quot;: false,
+    &quot;skipStorybook&quot;: false,
+    &quot;skipStyled&quot;: false
+  },
+  &quot;spacingUnit&quot;: &quot;rem&quot;,
+  &quot;syncElements&quot;: false,
+  &quot;syncGraphics&quot;: false,
+  &quot;syncTokens&quot;: true,
+  &quot;templates&quot;: {
+    &quot;templatePathGraphic&quot;: &quot;templates/graphic&quot;,
+    &quot;templatePathReact&quot;: &quot;templates/react&quot;,
+    &quot;templatePathStorybook&quot;: &quot;templates/story&quot;,
+    &quot;templatePathStyled&quot;: &quot;templates/styled&quot;
+  },
+  &quot;token&quot;: &quot;&quot;,
+  &quot;unitlessPrecision&quot;: 2,
+  &quot;url&quot;: &quot;&quot;,
+  &quot;usePostscriptFontNames&quot;: false,
+  &quot;versionName&quot;: null
+};
 </code></pre>
 				<a href="#cli-arguments" id="cli-arguments" style="color: inherit; text-decoration: none;">
 					<h3>CLI arguments</h3>
 				</a>
 				<p>Run these in your command line environment of choice.</p>
+				<hr>
 				<a href="#toggle-debug-mode" id="toggle-debug-mode" style="color: inherit; text-decoration: none;">
 					<h4>Toggle debug mode</h4>
 				</a>
 				<p><code>figmagic [--debug | -d]</code></p>
-				<p>Default is <code>false</code>.</p>
+				<p><strong>Default</strong>: <code>false</code>.</p>
+				<hr>
 				<a href="#switch-font-unit" id="switch-font-unit" style="color: inherit; text-decoration: none;">
 					<h4>Switch font unit</h4>
 				</a>
 				<p><code>figmagic [--fontUnit | -fu] [rem|em|px]</code></p>
-				<p>Default is <code>rem</code>.</p>
+				<p><strong>Default</strong>: <code>rem</code>.</p>
+				<hr>
 				<a href="#switch-letter-spacing-unit" id="switch-letter-spacing-unit" style="color: inherit; text-decoration: none;">
 					<h4>Switch letter-spacing unit</h4>
 				</a>
 				<p><code>figmagic [--letterSpacingUnit | -lsu] [em|px]</code></p>
-				<p>Default is <code>em</code>.</p>
+				<p><strong>Default</strong>: <code>em</code>.</p>
+				<hr>
 				<a href="#switch-line-height-unit" id="switch-line-height-unit" style="color: inherit; text-decoration: none;">
 					<h4>Switch line-height unit</h4>
 				</a>
 				<p><code>figmagic [--lineHeightUnit | -lhu] [unitless|em|px|rem]</code></p>
-				<p>Default is <code>unitless</code>.</p>
+				<p><strong>Default</strong>: <code>unitless</code>.</p>
+				<hr>
 				<a href="#switch-opacities-unit" id="switch-opacities-unit" style="color: inherit; text-decoration: none;">
 					<h4>Switch opacities unit</h4>
 				</a>
 				<p><code>figmagic [--opacitiesUnit | -ou] [float|percent]</code></p>
-				<p>Default is <code>float</code>.</p>
+				<p><strong>Default</strong>: <code>float</code>.</p>
+				<hr>
 				<a href="#set-output-file-name" id="set-output-file-name" style="color: inherit; text-decoration: none;">
 					<h4>Set output file name</h4>
 				</a>
 				<p><code>figmagic [--figmaData | -file] [filename]</code></p>
-				<p>Default is <code>figma.json</code>.</p>
+				<p><strong>Default</strong>: <code>figma.json</code>.</p>
+				<hr>
 				<a href="#set-figma-base-file-output-folder" id="set-figma-base-file-output-folder" style="color: inherit; text-decoration: none;">
 					<h4>Set Figma base file output folder</h4>
 				</a>
 				<p><code>figmagic [--figmagicFolder | -base] [folder]</code></p>
-				<p>Default is <code>.figmagic</code>.</p>
+				<p><strong>Default</strong>: <code>.figmagic</code>.</p>
+				<hr>
 				<a href="#set-elements-output-folder" id="set-elements-output-folder" style="color: inherit; text-decoration: none;">
 					<h4>Set elements output folder</h4>
 				</a>
 				<p><code>figmagic [--outputFolderElements | -elements] [folder]</code></p>
-				<p>Default is <code>elements</code>.</p>
+				<p><strong>Default</strong>: <code>elements</code>.</p>
+				<hr>
 				<a href="#set-graphics-output-folder" id="set-graphics-output-folder" style="color: inherit; text-decoration: none;">
 					<h4>Set graphics output folder</h4>
 				</a>
 				<p><code>figmagic [--outputFolderGraphics | -graphics] [folder]</code></p>
-				<p>Default is <code>graphics</code>.</p>
+				<p><strong>Default</strong>: <code>graphics</code>.</p>
+				<hr>
 				<a href="#set-token-output-folder" id="set-token-output-folder" style="color: inherit; text-decoration: none;">
 					<h4>Set token output folder</h4>
 				</a>
 				<p><code>figmagic [--outputFolderTokens | -tokens] [folder]</code></p>
-				<p>Default is <code>tokens</code>.</p>
+				<p><strong>Default</strong>: <code>tokens</code>.</p>
+				<hr>
 				<a href="#switch-css-file-format" id="switch-css-file-format" style="color: inherit; text-decoration: none;">
 					<h4>Switch CSS file format</h4>
 				</a>
 				<p><code>figmagic [--outputFormatCss | -fc] [ts|mjs|js]</code></p>
-				<p>Default is <code>ts</code>.</p>
+				<p><strong>Default</strong>: <code>ts</code>.</p>
+				<hr>
 				<a href="#switch-description-file-format" id="switch-description-file-format" style="color: inherit; text-decoration: none;">
 					<h4>Switch description file format</h4>
 				</a>
 				<p><code>figmagic [--outputFormatDesc | -fd] [md|txt]</code></p>
-				<p>Default is <code>md</code>.</p>
+				<p><strong>Default</strong>: <code>md</code>.</p>
+				<hr>
 				<a href="#switch-elements-file-format" id="switch-elements-file-format" style="color: inherit; text-decoration: none;">
 					<h4>Switch elements file format</h4>
 				</a>
 				<p><code>figmagic [--outputFormatElements | -fe] [tsx|jsx|mjs|js]</code></p>
-				<p>Default is <code>tsx</code>.</p>
+				<p><strong>Default</strong>: <code>tsx</code>.</p>
+				<hr>
 				<a href="#switch-graphics-file-format" id="switch-graphics-file-format" style="color: inherit; text-decoration: none;">
 					<h4>Switch graphics file format</h4>
 				</a>
 				<p><code>figmagic [--outputFormatGraphics | -fg] [svg|png]</code></p>
-				<p>Default is <code>svg</code>.</p>
+				<p><strong>Default</strong>: <code>svg</code>.</p>
+				<hr>
 				<a href="#switch-storybook-file-format" id="switch-storybook-file-format" style="color: inherit; text-decoration: none;">
 					<h4>Switch Storybook file format</h4>
 				</a>
 				<p><code>figmagic [--outputFormatStorybook | -fs] [ts|js|mdx]</code></p>
-				<p>Default is <code>js</code>.</p>
+				<p><strong>Default</strong>: <code>js</code>.</p>
+				<hr>
 				<a href="#switch-token-file-format" id="switch-token-file-format" style="color: inherit; text-decoration: none;">
 					<h4>Switch token file format</h4>
 				</a>
 				<p><code>figmagic [--outputFormatTokens | -ft] [ts|mjs|js|json]</code></p>
-				<p>Default is <code>ts</code>.</p>
+				<p><strong>Default</strong>: <code>ts</code>.</p>
+				<hr>
 				<a href="#output-graphics-as-wrapped-react-elements" id="output-graphics-as-wrapped-react-elements" style="color: inherit; text-decoration: none;">
 					<h4>Output graphics as wrapped React elements</h4>
 				</a>
 				<p><code>figmagic [--outputGraphicElements | -oge]</code></p>
-				<p>Default is <code>false</code>.</p>
+				<p><strong>Default</strong>: <code>false</code>.</p>
+				<hr>
 				<a href="#output-graphics-elements-map" id="output-graphics-elements-map" style="color: inherit; text-decoration: none;">
 					<h4>Output graphics elements map</h4>
 				</a>
 				<p><code>figmagic [--outputGraphicElementsMap | -ogm]</code></p>
-				<p>Default is <code>false</code>.</p>
+				<p><strong>Default</strong>: <code>false</code>.</p>
+				<hr>
 				<a href="#set-output-scale-of-graphics" id="set-output-scale-of-graphics" style="color: inherit; text-decoration: none;">
 					<h4>Set output scale of graphics</h4>
 				</a>
 				<p><code>figmagic [--outputScaleGraphics | -scale] [number]</code></p>
-				<p>Default is <code>1</code>. <strong>Note that from the CLI you must specify the scale size like <code>3x</code> (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through <code>figmagic.json</code> or <code>.figmagicrc</code></strong>.</p>
+				<p><strong>Default</strong>: <code>1</code>.</p>
+				<p><em>Note that from the CLI you must specify the scale size like <code>3x</code> (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through <code>figmagic.json</code> or <code>.figmagicrc</code></em>.</p>
+				<hr>
 				<a href="#set-output-token-data-type" id="set-output-token-data-type" style="color: inherit; text-decoration: none;">
 					<h4>Set output token data type</h4>
 				</a>
 				<p><code>figmagic [--outputDataTypeToken | -tokentype] [null | enum]</code></p>
-				<p>Default is <code>null</code>. Currently the only valid non-null value is <code>enum</code>.</p>
+				<p><strong>Default</strong>: <code>null</code>.</p>
+				<hr>
 				<a href="#overwrite-files" id="overwrite-files" style="color: inherit; text-decoration: none;">
 					<h4>Overwrite files</h4>
 				</a>
 				<p>This is not currently possible to adjust from the CLI.</p>
+				<hr>
 				<a href="#recompile-data-from-local-figma-json-file" id="recompile-data-from-local-figma-json-file" style="color: inherit; text-decoration: none;">
 					<h4>Recompile data from local Figma JSON file</h4>
 				</a>
 				<p><code>figmagic [--recompileLocal | -local]</code></p>
-				<p>Default is <code>null</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<p><strong>Default</strong>: <code>null</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<hr>
 				<a href="#refresh-type" id="refresh-type" style="color: inherit; text-decoration: none;">
 					<h4>Refresh type</h4>
 				</a>
 				<p><code>figmagic [--refreshType | -rf] [&#39;soft&#39; | &#39;hard&#39;]</code></p>
-				<p>Default is <code>soft</code>. This defines how overwritten files will be &quot;refreshed&quot; when starting Figmagic operations.</p>
-				<p>In <code>soft</code> mode, the previous folder is renamed and placed in a Figmagic-created trash folder (<code>./figmagic-trash/</code>) with an added ISO 8601 timestamp.</p>
-				<p>In <code>hard</code> mode, Node&#39;s <code>fs</code> module is used to erase the folder with no way of retrieving the old folder.</p>
+				<p><strong>Default</strong>: <code>soft</code>.</p>
+				<p>This defines how overwritten files will be &quot;refreshed&quot; when starting Figmagic operations.</p>
+				<ul>
+					<li>In <code>soft</code> mode, the previous folder is renamed and placed in a Figmagic-created trash folder (<code>./figmagic-trash/</code>) with an added ISO 8601 timestamp.</li>
+					<li>In <code>hard</code> mode, Node&#39;s <code>fs</code> module is used to erase the folder with no way of retrieving the old folder.</li>
+				</ul>
+				<hr>
 				<a href="#set-rem-size" id="set-rem-size" style="color: inherit; text-decoration: none;">
 					<h4>Set REM size</h4>
 				</a>
 				<p><code>figmagic [--remSize | -rem] [number]</code></p>
-				<p>Default is <code>16</code>. <strong>Note that from the CLI you must specify the REM size like <code>16p</code> (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through <code>figmagic.json</code> or <code>.figmagicrc</code></strong>.</p>
+				<p><strong>Default</strong>: <code>16</code>.</p>
+				<p><em>Note that from the CLI you must specify the REM size like <code>16p</code> (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through <code>figmagic.json</code> or <code>.figmagicrc</code></em>.</p>
+				<hr>
 				<a href="#force-update-all-elements" id="force-update-all-elements" style="color: inherit; text-decoration: none;">
 					<h4>Force update all elements</h4>
 				</a>
 				<p><code>figmagic [--forceUpdate | -force]</code></p>
-				<p>Default is <code>true</code>. Forces all elements and file types to be regenerated.</p>
+				<p><strong>Default</strong>: <code>true</code>.</p>
+				<p>Forces all elements and file types to be regenerated.</p>
+				<hr>
 				<a href="#skip-file-generation-css" id="skip-file-generation-css" style="color: inherit; text-decoration: none;">
 					<h4>Skip file generation: CSS</h4>
 				</a>
 				<p><code>figmagic [--skipCss | -nocss]</code></p>
-				<p>Default is <code>false</code>. Skip creating CSS file when syncing elements.</p>
+				<p><strong>Default</strong>: <code>false</code>.</p>
+				<p>Skip creating CSS file when syncing elements.</p>
+				<hr>
 				<a href="#skip-file-generation-markdown-description" id="skip-file-generation-markdown-description" style="color: inherit; text-decoration: none;">
 					<h4>Skip file generation: Markdown description</h4>
 				</a>
 				<p><code>figmagic [--skipDescription | -nodesc]</code></p>
-				<p>Default is <code>false</code>. Skip creating Markdown file when syncing elements.</p>
+				<p><strong>Default</strong>: <code>false</code>.</p>
+				<p>Skip creating Markdown file when syncing elements.</p>
+				<hr>
 				<a href="#skip-file-generation-react" id="skip-file-generation-react" style="color: inherit; text-decoration: none;">
 					<h4>Skip file generation: React</h4>
 				</a>
 				<p><code>figmagic [--skipReact | -noreact]</code></p>
-				<p>Default is <code>false</code>. Skip creating React file when syncing elements.</p>
+				<p><strong>Default</strong>: <code>false</code>.</p>
+				<p>Skip creating React file when syncing elements.</p>
+				<hr>
 				<a href="#skip-file-generation-storybook" id="skip-file-generation-storybook" style="color: inherit; text-decoration: none;">
 					<h4>Skip file generation: Storybook</h4>
 				</a>
 				<p><code>figmagic [--skipStorybook | -nostory]</code></p>
-				<p>Default is <code>false</code>. Skip creating Storybook file when syncing elements.</p>
+				<p><strong>Default</strong>: <code>false</code>.</p>
+				<p>Skip creating Storybook file when syncing elements.</p>
+				<hr>
 				<a href="#skip-file-generation-styled-components" id="skip-file-generation-styled-components" style="color: inherit; text-decoration: none;">
 					<h4>Skip file generation: Styled Components</h4>
 				</a>
 				<p><code>figmagic [--skipStyled | -nostyled]</code></p>
-				<p>Default is <code>false</code>. Skip creating Styled Components file when syncing elements.</p>
+				<p><strong>Default</strong>: <code>false</code>.</p>
+				<p>Skip creating Styled Components file when syncing elements.</p>
+				<hr>
 				<a href="#switch-spacing-unit" id="switch-spacing-unit" style="color: inherit; text-decoration: none;">
 					<h4>Switch spacing unit</h4>
 				</a>
 				<p><code>figmagic [--spacingUnit | -s] [rem|em|px]</code></p>
-				<p>Default is <code>rem</code>.</p>
+				<p><strong>Default</strong>: <code>rem</code>.</p>
+				<hr>
 				<a href="#sync-elements" id="sync-elements" style="color: inherit; text-decoration: none;">
 					<h4>Sync elements</h4>
 				</a>
 				<p><code>figmagic [--syncElements | -se]</code></p>
-				<p>Default is <code>false</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<p><strong>Default</strong>: <code>false</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
 				<p>Use this when you want to sync elements in your &quot;Elements&quot; page in Figma.</p>
+				<hr>
 				<a href="#sync-graphics" id="sync-graphics" style="color: inherit; text-decoration: none;">
 					<h4>Sync graphics</h4>
 				</a>
 				<p><code>figmagic [--syncGraphics | -sg]</code></p>
-				<p>Default is <code>false</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<p><strong>Default</strong>: <code>false</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
 				<p>Use this when you want to sync graphics in your &quot;Graphics&quot; page in Figma. Use the RC configuration file to pass in options. Default format will be SVG.</p>
+				<hr>
 				<a href="#sync-tokens" id="sync-tokens" style="color: inherit; text-decoration: none;">
 					<h4>Sync tokens</h4>
 				</a>
 				<p><code>figmagic [--syncTokens | -st]</code></p>
-				<p>Default is <code>true</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<p><strong>Default</strong>: <code>true</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
 				<p>Use this when you want to sync tokens in your &quot;Design tokens&quot; page in Figma. Use the RC configuration file to pass in options.</p>
+				<hr>
 				<a href="#set-path-to-graphics-template" id="set-path-to-graphics-template" style="color: inherit; text-decoration: none;">
 					<h4>Set path to graphics template</h4>
 				</a>
 				<p><code>figmagic [--templatePathGraphic | -tpgraphic] [path]</code></p>
-				<p>Default is <code>templates/graphic</code>.</p>
-				<p><strong>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathGraphic</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/graphic</code></strong>.</p>
+				<p><strong>Default</strong>: <code>templates/graphic</code>.</p>
+				<p><em>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathGraphic</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/graphic</code></em>.</p>
+				<hr>
 				<a href="#set-path-to-react-template" id="set-path-to-react-template" style="color: inherit; text-decoration: none;">
 					<h4>Set path to React template</h4>
 				</a>
 				<p><code>figmagic [--templatePathReact | -tpreact] [path]</code></p>
-				<p>Default is <code>templates/react</code>.</p>
-				<p><strong>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathReact</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/react</code></strong>.</p>
+				<p><strong>Default</strong>: <code>templates/react</code>.</p>
+				<p><em>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathReact</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/react</code></em>.</p>
+				<hr>
 				<a href="#set-path-to-storybook-template" id="set-path-to-storybook-template" style="color: inherit; text-decoration: none;">
 					<h4>Set path to Storybook template</h4>
 				</a>
 				<p><code>figmagic [--templatePathStorybook | -tpstory] [path]</code></p>
-				<p>Default is <code>templates/story</code>.</p>
-				<p><strong>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathStory</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/story</code></strong>.</p>
+				<p><strong>Default</strong>: <code>templates/story</code>.</p>
+				<p><em>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathStory</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/story</code></em>.</p>
+				<hr>
 				<a href="#set-path-to-styled-components-template" id="set-path-to-styled-components-template" style="color: inherit; text-decoration: none;">
 					<h4>Set path to Styled Components template</h4>
 				</a>
 				<p><code>figmagic [--templatePathStyled | -tpstyled] [path]</code></p>
-				<p>Default is <code>templates/styled</code>.</p>
-				<p><strong>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathStyled</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/styled</code></strong>.</p>
+				<p><strong>Default</strong>: <code>templates/styled</code>.</p>
+				<p><em>Your local <code>figmagic.json</code> or <code>.figmagicrc</code> file must have a block with <code>templates.templatePathStyled</code> that specifies a valid path, such as <code>./node_modules/figmagic/templates/styled</code></em>.</p>
+				<hr>
 				<a href="#pass-in-figma-api-token" id="pass-in-figma-api-token" style="color: inherit; text-decoration: none;">
 					<h4>Pass in Figma API token</h4>
 				</a>
 				<p><code>figmagic [--token | -t] [token]</code></p>
-				<p>Default is <code>null</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<p><strong>Default</strong>: <code>null</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<hr>
 				<a href="#set-relative-import-path-for-tokens-for-css" id="set-relative-import-path-for-tokens-for-css" style="color: inherit; text-decoration: none;">
 					<h4>Set relative import path for tokens (for CSS)</h4>
 				</a>
 				<p><code>figmagic [--tokensRelativeImportPrefix | -tip] [path]</code></p>
-				<p>Default is <code>&#39;&#39;</code> (effectively just blank or the same folder). Use this so CSS files can import tokens from the correct location, for example to resolve something like <code>../../tokens/colors.ts</code> you would pass in <code>../../</code> and <code>tokens</code> would be whatever your <code>outputFolderTokens</code> value is.</p>
+				<p><strong>Default</strong>: <code>&#39;&#39;</code> (effectively just blank or the same folder). Use this so CSS files can import tokens from the correct location, for example to resolve something like <code>../../tokens/colors.ts</code> you would pass in <code>../../</code> and <code>tokens</code> would be whatever your <code>outputFolderTokens</code> value is.</p>
+				<hr>
 				<a href="#pass-in-figma-url" id="pass-in-figma-url" style="color: inherit; text-decoration: none;">
 					<h4>Pass in Figma URL</h4>
 				</a>
 				<p><code>figmagic [--url | -u] [url_id]</code></p>
-				<p>Default is <code>null</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<p><strong>Default</strong>: <code>null</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
+				<hr>
 				<a href="#pass-in-unitless-precision" id="pass-in-unitless-precision" style="color: inherit; text-decoration: none;">
 					<h4>Pass in unitless precision</h4>
 				</a>
 				<p><code>figmagic [--unitlessPrecision | -up] [number]</code></p>
-				<p>Defines the precision (decimals) for unitless values (rounded using <code>.toFixed()</code> internally). Default is <code>2</code>.</p>
+				<p><strong>Default</strong>: <code>2</code>.</p>
+				<p>Defines the precision (decimals) for unitless values (rounded using <code>.toFixed()</code> internally).</p>
+				<hr>
 				<a href="#set-font-family-name-to-be-postscript-name-instead-of-quotcommon-namequot" id="set-font-family-name-to-be-postscript-name-instead-of-quotcommon-namequot" style="color: inherit; text-decoration: none;">
 					<h4>Set font family name to be Postscript name instead of &quot;common name&quot;</h4>
 				</a>
 				<p><code>figmagic [--usePostscriptFontNames | -ps]</code></p>
-				<p>Default is <code>false</code>, i.e. common name.</p>
+				<p><strong>Default</strong>: <code>false</code>, i.e. common name.</p>
+				<hr>
 				<a href="#use-a-versioned-figma-document" id="use-a-versioned-figma-document" style="color: inherit; text-decoration: none;">
 					<h4>Use a versioned Figma document</h4>
 				</a>
 				<p><code>figmagic [--versionName | -v]</code></p>
-				<p>Default is <code>null</code> which will resolve to the latest version. The value you specify here is the name of the version in the Figma file&#39;s <strong>Version history</strong>.</p>
+				<p><strong>Default</strong>: <code>null</code> which will resolve to the latest version. The value you specify here is the name of the version in the Figma file&#39;s <strong>Version history</strong>.</p>
+				<hr>
 				<a href="#templates-used-for-code-generation" id="templates-used-for-code-generation" style="color: inherit; text-decoration: none;">
 					<h2>Templates used for code generation</h2>
 				</a>
@@ -563,85 +670,147 @@
 					<h3>Font families</h3>
 				</a>
 				<p>The font family name, either as its common name (as picked up by Figma; spaces are removed) or its Postscript name (eg. FiraSans-Regular).</p>
-				<p>Default: Common name.</p>
+				<p><strong>Default:</strong> Common name.</p>
 				<p><strong>Note</strong>: In previous versions of Figmagic the Postscript font family name was used.</p>
+				<hr>
 				<a href="#font-weights" id="font-weights" style="color: inherit; text-decoration: none;">
 					<h3>Font weights</h3>
 				</a>
 				<p>Typical font weight values like <code>200</code>, <code>300</code> etc.</p>
+				<hr>
 				<a href="#font-sizes" id="font-sizes" style="color: inherit; text-decoration: none;">
 					<h3>Font sizes</h3>
 				</a>
 				<p>Units based on global font size (base 16px).</p>
-				<p>Default: <code>rem</code> units. Can be set to <code>rem</code> or <code>em</code>.</p>
+				<p><strong>Default:</strong> <code>rem</code> units. Can be set to <code>rem</code> or <code>em</code>.</p>
+				<hr>
 				<a href="#line-heights" id="line-heights" style="color: inherit; text-decoration: none;">
 					<h3>Line heights</h3>
 				</a>
 				<p>Unitless.</p>
 				<p>2 decimals numbered values by default. Precision can be configured with <code>unitlessPrecision</code> (see config)</p>
+				<hr>
 				<a href="#colors" id="colors" style="color: inherit; text-decoration: none;">
 					<h3>Colors</h3>
 				</a>
 				<p>RGBA colors.</p>
+				<hr>
 				<a href="#spacing" id="spacing" style="color: inherit; text-decoration: none;">
 					<h3>Spacing</h3>
 				</a>
-				<p>Default: <code>rem</code> units. Can be set to <code>rem</code> or <code>em</code>.</p>
+				<p><strong>Default:</strong> <code>rem</code> units. Can be set to <code>rem</code> or <code>em</code>.</p>
+				<hr>
 				<a href="#border-widths" id="border-widths" style="color: inherit; text-decoration: none;">
 					<h3>Border widths</h3>
 				</a>
-				<p>Default: <code>px</code> units.</p>
+				<p><strong>Default:</strong> <code>px</code> units.</p>
+				<hr>
 				<a href="#letter-spacings" id="letter-spacings" style="color: inherit; text-decoration: none;">
 					<h3>Letter spacings</h3>
 				</a>
-				<p>Default: <code>em</code> units.</p>
+				<p><strong>Default:</strong> <code>em</code> units.</p>
+				<hr>
 				<a href="#media-queries" id="media-queries" style="color: inherit; text-decoration: none;">
 					<h3>Media queries</h3>
 				</a>
-				<p>Default: <code>px</code> units.</p>
+				<p><strong>Default:</strong> <code>px</code> units.</p>
+				<hr>
 				<a href="#opacities" id="opacities" style="color: inherit; text-decoration: none;">
 					<h3>Opacities</h3>
 				</a>
 				<p>Typical 2 decimals numbered values between 0 and 1 like <code>0</code> or <code>0.65</code>.
 				Can be set to <code>percent</code> to have them converted to <code>%</code> strings instead like <code>0%</code> or <code>65%</code>.</p>
+				<hr>
 				<a href="#radii" id="radii" style="color: inherit; text-decoration: none;">
 					<h3>Radii</h3>
 				</a>
-				<p>Default: <code>px</code> units.</p>
+				<p><strong>Default:</strong> <code>px</code> units.</p>
+				<hr>
 				<a href="#shadows" id="shadows" style="color: inherit; text-decoration: none;">
 					<h3>Shadows</h3>
 				</a>
-				<p>Default: <code>px</code> units for three values (horizontal offset, vertical offset, blur) and RGBA for the color.</p>
+				<p><strong>Default:</strong> <code>px</code> units for three values (horizontal offset, vertical offset, blur) and RGBA for the color.</p>
+				<hr>
 				<a href="#z-indices" id="z-indices" style="color: inherit; text-decoration: none;">
 					<h3>Z indices</h3>
 				</a>
-				<p>Default: numbers (whole numbers, i.e. integers).</p>
+				<p><strong>Default:</strong> numbers (whole numbers, i.e. integers).</p>
+				<hr>
 				<a href="#code-structure" id="code-structure" style="color: inherit; text-decoration: none;">
 					<h2>Code structure</h2>
 				</a>
 				<a href="#figmagic-source-code-structure" id="figmagic-source-code-structure" style="color: inherit; text-decoration: none;">
 					<h3>Figmagic source code structure</h3>
 				</a>
-				<ul>
-					<li><code>__tests__/</code>: Tests, structured similarly to the <code>bin</code> folder source code</li>
-					<li><code>.github/</code>: GitHub files for CI and issue template</li>
-					<li><code>.vscode/</code>: Visual Studio Code configuration</li>
-					<li><code>bin/</code>: Source code</li>
-					<li><code>bin/contracts</code>: Types and interfaces</li>
-					<li><code>bin/controllers</code>: Controllers</li>
-					<li><code>bin/entities</code>: Entities (DDD-style), this is where most of the logic will be contained</li>
-					<li><code>bin/frameworks</code>: Non-domain functionality, like string manipulation and downloading files etc.</li>
-					<li><code>bin/usecases</code>: Where the application &quot;features&quot; are orchestrated, as per <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">Clean Architecture</a></li>
-					<li><code>build/</code>: ES6-compiled code (this is the code that consumers of the Figmagic binary actually use)</li>
-					<li><code>images/</code>: Documentation, mostly images and screen shots</li>
-					<li><code>templates/</code>: Files that are used as templates for code generation</li>
-					<li><code>testdata/</code>: Most of the tests point to stored test data which is stored in this folder</li>
-					<li><code>index.ts</code>: The file that initializes and sets up everything required to run Figmagic</li>
-				</ul>
-				<a href="#arkit-map" id="arkit-map" style="color: inherit; text-decoration: none;">
-					<h3>Arkit map</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>Folder</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>__tests__/</code></td>
+							<td>Tests, structured similarly to the <code>bin</code> folder source code</td>
+						</tr>
+						<tr>
+							<td><code>.github/</code></td>
+							<td>GitHub files for CI and issue template</td>
+						</tr>
+						<tr>
+							<td><code>.vscode/</code></td>
+							<td>Visual Studio Code configuration</td>
+						</tr>
+						<tr>
+							<td><code>bin/</code></td>
+							<td>Source code</td>
+						</tr>
+						<tr>
+							<td><code>bin/contracts</code></td>
+							<td>Types and interfaces</td>
+						</tr>
+						<tr>
+							<td><code>bin/controllers</code></td>
+							<td>Controllers</td>
+						</tr>
+						<tr>
+							<td><code>bin/entities</code></td>
+							<td>Entities (DDD-style), this is where most of the logic will be contained</td>
+						</tr>
+						<tr>
+							<td><code>bin/frameworks</code></td>
+							<td>Non-domain functionality, like string manipulation and downloading files etc.</td>
+						</tr>
+						<tr>
+							<td><code>bin/usecases</code></td>
+							<td>Where the application &quot;features&quot; are orchestrated, as per <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html">Clean Architecture</a></td>
+						</tr>
+						<tr>
+							<td><code>build/</code></td>
+							<td>ES6-compiled code (this is the code that consumers of the Figmagic binary actually use)</td>
+						</tr>
+						<tr>
+							<td><code>images/</code></td>
+							<td>Documentation, mostly images and screen shots</td>
+						</tr>
+						<tr>
+							<td><code>templates/</code></td>
+							<td>Files that are used as templates for code generation</td>
+						</tr>
+						<tr>
+							<td><code>testdata/</code></td>
+							<td>Most of the tests point to stored test data which is stored in this folder</td>
+						</tr>
+						<tr>
+							<td><code>index.ts</code></td>
+							<td>The file that initializes and sets up everything required to run Figmagic</td>
+						</tr>
+				</tbody></table>
+				<a href="#arkit-diagram" id="arkit-diagram" style="color: inherit; text-decoration: none;">
+					<h3>Arkit diagram</h3>
 				</a>
-				<p><img src="images/arkit.svg" alt="Arkit code structure map"></p>
+				<p>This is how <a href="https://arkit.pro">Arkit</a> models Figmagic and its source code structure and dependencies. Note that this diagram omits frameworks, external dependencies and contracts (i.e. types) to focus on the primary flows.</p>
+				<p><img src="images/arkit.svg" alt="Arkit code structure diagram"></p>
 				<a href="#contribution" id="contribution" style="color: inherit; text-decoration: none;">
 					<h2>Contribution</h2>
 				</a>

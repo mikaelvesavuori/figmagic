@@ -2,6 +2,12 @@
 
 _**Note**: You should pay attention to the expected Figma structure for Element Sync to work. Expect that several features—such as images—are still unsupported. You should definitely still continue to layout your elements/components as they should look in their final state, but understand that the output is likely not 100% complete right after generation, nor will it always work if you do anything unsupported._
 
+## Philosophy
+
+Following the primary principle of atomic design, Figmagic wants you to build from the bottom up, beginning with decomposing the tokens. Tokens shape elements, which form components, that are ordered in compositions, which get presented in views... You know the drill, though I am switching Brad Frost's nomenclature into something more front-end friendly.
+
+When it comes to code generation, Figmagic tries to do this in a better way. Instead of over-eagerly promoting hardcoded code generation from huge and complex components, Figmagic tries to competently, or at least "mostly-right", handle automation for things that should not be too context-dependent or manual input-heavy. Code should also be as close to "normal" as possible—meaning that generated code binds values to tokens and not some random px values as other platforms do. All of this can happen because Figmagic assumes a way of working that respects standard CSS and HTML: no magic trickery! Figmagic avoids some of the cognitive and technical overhead by introducing a concept called **Elements**, which are Figmagic-compliant components that can be output into code. By composing larger components out of simple Elements, code generation is made much more manageable while also promoting much more structured design.
+
 ## Rationale
 
 Elements are named so because they are primarily meant to help scaffold anything that maps to standard HTML elements like `input`, `button`, `h1`, and `form`. With scaffolding we mean that these elements can be generated as code in a shape that is fitting for _continued_ development—not necessarily final and done, when it arrives steaming hot from your CLI.

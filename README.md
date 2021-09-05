@@ -7,19 +7,73 @@
 [![codecov](https://codecov.io/gh/mikaelvesavuori/figmagic/branch/master/graph/badge.svg)](https://codecov.io/gh/mikaelvesavuori/figmagic)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1a609622737c6c48225c/maintainability)](https://codeclimate.com/github/mikaelvesavuori/figmagic/maintainability)
 
-#### _Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents. Originally inspired by [Salesforce Theo](https://github.com/salesforce-ux/theo)._
+> Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.
 
-Figmagic promotes a structured way of assembling design systems. Following the primary principle of atomic design, Figmagic wants you to build from the bottom up, beginning with decomposing the tokens. Tokens shape elements, which form components, that are ordered in compositions, which get presented in views... You know the drill, though I am switching Brad Frost's nomenclature into something more front-end friendly.
+Figmagic does not aim at completely removing designers or developers: It just aims to move them closer, while eliminating most of the tedious busywork that has grown around front-end development.
 
-When it comes to code generation, Figmagic tries to do this in a better way. Instead of over-eagerly promoting hardcoded code generation from huge and complex components, Figmagic tries to competently, or at least "mostly-right", handle automation for things that should not be too context-dependent or manual input-heavy. Code should also be as close to "normal" as possible—meaning that generated code binds values to tokens and not some random px values as other platforms do. All of this can happen because Figmagic assumes a way of working that respects standard CSS and HTML: no magic trickery! Figmagic avoids some of the cognitive and technical overhead by introducing a concept called **Elements**, which are Figmagic-compliant components that can be output into code. By composing larger components out of simple Elements, code generation is made much more manageable while also promoting much more structured design.
+---
 
-Figmagic does not aim at completely removing designers or developers: It just aims to move them closer, while eliminating any of the tedious busywork that has grown around front-end development.
+**Please note:** Figmagic requires that your document structure follows the conventions in this document; a full setup can be seen in the template at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens).
 
-**Please note:** Figmagic requires that your document structure is identical to what I show in the template at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens).
-
-Figmagic is compiled from Typescript to ES6, so you should have Node 10 or later for it to work on your machine.
+Figmagic is compiled from Typescript to ES6, so you should have Node 12 or later (Node 14 and newer recommended) for it to work on your machine.
 
 _Built initially as an internal handoff tool for [Humblebee](https://www.humblebee.se)._
+
+## Figmagic promotes a structured way of assembling design systems
+
+Figmagic is a very straightforward, super-flexible command-line tool that helps you do three things well:
+
+### 1. Output design tokens
+
+Outputting and using **design tokens** aids in designing with a structured approach. These tokens are completely platform agnostic when output into JSON, or for most web developers, more readily useable in various supported flavors of JavaScript (TS, JS, MJS). It's web-oriented but works well with React Native too.
+
+A basic set of tokens can look like this:
+
+```js
+const tokens = {
+  colors: {
+    blue: 'rgba(20, 20, 255, 1)',
+    warmWhite: 'rgba(240, 240, 240, 1)'
+  },
+  spacing: {
+    small: '1rem',
+    medium: '1.5rem'
+  }
+};
+```
+
+You use these tokens like so, `color: ${colors.blue};`, to shape and specify your coded components, web sites, apps, and what have you, instead of hard-coding every single value.
+
+**This way, you decouple implementation from data. You can now easily drive changes as _design choices_ through Figma instead of as _code changes_.**
+
+### 2. Output graphics
+
+Say goodbye to ever manually exporting graphics from Figma again. Grab your graphics as PNG, SVG, as React components with inlined SVG, or as objects that export all graphics from a single file.
+
+### 3. Generate React components
+
+Figmagic also allows you to generate React components from Figma components that follow a specific formal structure. It's best at fairly low-level components that you can piece together to make more complex organisms on your own. You can significantly cut down on boilerplate churn and scaffolding time with Figmagic.
+
+And, no, the code does not actually suck! This was my own biggest gripe with services promising this functionality, so I knew it had to be good, or at least tolerable. Therefore Figmagic supports things like actually using your own tokens (so we can cut down on hard-coded garbage, unless matches aren't found) and you can completely customize the number of related generated files.
+
+While not perfect, it's definitely better than many things I've seen, made by big companies. All of this is explained later here in the docs.
+
+### The arguments
+
+Here are a few reasons you'd want to use Figmagic rather than anything similar:
+
+- In Figmagic, design tokens are a first-class concept since day 1
+- Figmagic is designer-driven, since Figma is seen as the source of truth
+- Figmagic is automatable and very lightweight (~40kb compressed), with only a single external dependency (`dotenv`)
+- Figmagic is developer-friendly and makes very few assumptions on your use and/or setup and supports a range of output formats plus that it's extensible through custom templates if you need something completely different
+- Figmagic is open-sourced under the MIT license and has a long track record of very short implementation cycles for new features/fixes
+- Generated React components bind to any token values you've defined so these are equally useful as starter code or as code you continually output
+
+## Additional documentation sources
+
+The Figmagic developer docs are auto-generated on every push and can be found at the [dedicated documentation site](https://docs.figmagic.com).
+
+For deeper information pertaining to Figmagic Elements and syncing them, see [the dedicated README page](readme/elements.md).
 
 ## Example project
 
@@ -113,13 +167,17 @@ _How a Figmagic project could be structured in regards to tokens, if you want to
 
 ## What are Design Tokens?
 
-Design tokens are the abstract but shared elements from which your design system is built.
+Design tokens are the _**abstract and shared elements**_ from which your design system is built.
 
-Design tokens express any of the individual values that you build from, such as colors, spacing, and typographic features.
+Design tokens _**express any of the individual values that you build from**_, such as colors, spacing, and typographic features.
 
-Tokens offer a form of “contract” between a designer’s intent and its fulfillment by developers. This means that both sides agree to avoid by all means anything that’s not codified also as a token. For example, avoiding spacing values that are not also available as a token. It’s similar in many ways to old-school styleguides, but tokens should only ever communicate strict, hard values. Styleguides can tend to be context-sensitive and full of explanation—tokens must communicate without context or explanation.
+Tokens offer a form of “contract” between a designer’s intent and its fulfillment by developers. This means that both sides agree to treat the individual parts of a complete design through the tokens that represent those values. As a format, they are super easy to read and understand and are adaptable for consumption by many types of systems or applications. That’s very important as you start doing cross-platform apps and things like that.
 
-However: You may still want to add written guidance for usage. It’s just that the tokens should be able to be consumed without understanding anything specific about them.
+![Design tokens](images/design-tokens.png)
+
+Tokens ensure that values are not [magic numbers](<https://en.wikipedia.org/wiki/Magic_number_(programming)>) or ”just picked at random”. This makes communication precise and effortless. Creating actual code for components, even complex ones, also becomes a lot less of a bore, since what you are doing is just pointing stuff like padding, Z indices, and anything else to their token representations.
+
+_However: You may still want to add written guidance for usage. It’s just that the tokens should be able to be consumed without understanding anything specific about them._
 
 You should bind tokens to Figma styles whenever and wherever possible to simplify your own design work, but make sure that those are also represented in the **Tokens** page, as this page is where a developer will pick up tokens with Figmagic.
 
@@ -225,7 +283,7 @@ Since this is a configuration file, you'll need to be careful to write it correc
 
 Below is a complete set of what you can configure, together with the defaults.
 
-```
+```json5
 {
   "debugMode": false,
   "fontUnit": "rem",
@@ -288,285 +346,394 @@ Below is a complete set of what you can configure, together with the defaults.
 
 Run these in your command line environment of choice.
 
+---
+
 #### Toggle debug mode
 
 `figmagic [--debug | -d]`
 
-Default is `false`.
+**Default**: `false`.
+
+---
 
 #### Switch font unit
 
 `figmagic [--fontUnit | -fu] [rem|em|px]`
 
-Default is `rem`.
+**Default**: `rem`.
+
+---
 
 #### Switch letter-spacing unit
 
 `figmagic [--letterSpacingUnit | -lsu] [em|px]`
 
-Default is `em`.
+**Default**: `em`.
+
+---
 
 #### Switch line-height unit
 
 `figmagic [--lineHeightUnit | -lhu] [unitless|em|px|rem]`
 
-Default is `unitless`.
+**Default**: `unitless`.
+
+---
 
 #### Switch opacities unit
 
 `figmagic [--opacitiesUnit | -ou] [float|percent]`
 
-Default is `float`.
+**Default**: `float`.
+
+---
 
 #### Set output file name
 
 `figmagic [--figmaData | -file] [filename]`
 
-Default is `figma.json`.
+**Default**: `figma.json`.
+
+---
 
 #### Set Figma base file output folder
 
 `figmagic [--figmagicFolder | -base] [folder]`
 
-Default is `.figmagic`.
+**Default**: `.figmagic`.
+
+---
 
 #### Set elements output folder
 
 `figmagic [--outputFolderElements | -elements] [folder]`
 
-Default is `elements`.
+**Default**: `elements`.
+
+---
 
 #### Set graphics output folder
 
 `figmagic [--outputFolderGraphics | -graphics] [folder]`
 
-Default is `graphics`.
+**Default**: `graphics`.
+
+---
 
 #### Set token output folder
 
 `figmagic [--outputFolderTokens | -tokens] [folder]`
 
-Default is `tokens`.
+**Default**: `tokens`.
+
+---
 
 #### Switch CSS file format
 
 `figmagic [--outputFormatCss | -fc] [ts|mjs|js]`
 
-Default is `ts`.
+**Default**: `ts`.
+
+---
 
 #### Switch description file format
 
 `figmagic [--outputFormatDesc | -fd] [md|txt]`
 
-Default is `md`.
+**Default**: `md`.
+
+---
 
 #### Switch elements file format
 
 `figmagic [--outputFormatElements | -fe] [tsx|jsx|mjs|js]`
 
-Default is `tsx`.
+**Default**: `tsx`.
+
+---
 
 #### Switch graphics file format
 
 `figmagic [--outputFormatGraphics | -fg] [svg|png]`
 
-Default is `svg`.
+**Default**: `svg`.
+
+---
 
 #### Switch Storybook file format
 
 `figmagic [--outputFormatStorybook | -fs] [ts|js|mdx]`
 
-Default is `js`.
+**Default**: `js`.
+
+---
 
 #### Switch token file format
 
 `figmagic [--outputFormatTokens | -ft] [ts|mjs|js|json]`
 
-Default is `ts`.
+**Default**: `ts`.
+
+---
 
 #### Output graphics as wrapped React elements
 
 `figmagic [--outputGraphicElements | -oge]`
 
-Default is `false`.
+**Default**: `false`.
+
+---
 
 #### Output graphics elements map
 
 `figmagic [--outputGraphicElementsMap | -ogm]`
 
-Default is `false`.
+**Default**: `false`.
+
+---
 
 #### Set output scale of graphics
 
 `figmagic [--outputScaleGraphics | -scale] [number]`
 
-Default is `1`. **Note that from the CLI you must specify the scale size like `3x` (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `figmagic.json` or `.figmagicrc`**.
+**Default**: `1`.
+
+_Note that from the CLI you must specify the scale size like `3x` (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `figmagic.json` or `.figmagicrc`_.
+
+---
 
 #### Set output token data type
 
 `figmagic [--outputDataTypeToken | -tokentype] [null | enum]`
 
-Default is `null`. Currently the only valid non-null value is `enum`.
+**Default**: `null`.
+
+---
 
 #### Overwrite files
 
 This is not currently possible to adjust from the CLI.
 
+---
+
 #### Recompile data from local Figma JSON file
 
 `figmagic [--recompileLocal | -local]`
 
-Default is `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+**Default**: `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+
+---
 
 #### Refresh type
 
 `figmagic [--refreshType | -rf] ['soft' | 'hard']`
 
-Default is `soft`. This defines how overwritten files will be "refreshed" when starting Figmagic operations.
+**Default**: `soft`.
 
-In `soft` mode, the previous folder is renamed and placed in a Figmagic-created trash folder (`./figmagic-trash/`) with an added ISO 8601 timestamp.
+This defines how overwritten files will be "refreshed" when starting Figmagic operations.
 
-In `hard` mode, Node's `fs` module is used to erase the folder with no way of retrieving the old folder.
+- In `soft` mode, the previous folder is renamed and placed in a Figmagic-created trash folder (`./figmagic-trash/`) with an added ISO 8601 timestamp.
+- In `hard` mode, Node's `fs` module is used to erase the folder with no way of retrieving the old folder.
+
+---
 
 #### Set REM size
 
 `figmagic [--remSize | -rem] [number]`
 
-Default is `16`. **Note that from the CLI you must specify the REM size like `16p` (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `figmagic.json` or `.figmagicrc`**.
+**Default**: `16`.
+
+_Note that from the CLI you must specify the REM size like `16p` (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `figmagic.json` or `.figmagicrc`_.
+
+---
 
 #### Force update all elements
 
 `figmagic [--forceUpdate | -force]`
 
-Default is `true`. Forces all elements and file types to be regenerated.
+**Default**: `true`.
+
+Forces all elements and file types to be regenerated.
+
+---
 
 #### Skip file generation: CSS
 
 `figmagic [--skipCss | -nocss]`
 
-Default is `false`. Skip creating CSS file when syncing elements.
+**Default**: `false`.
+
+Skip creating CSS file when syncing elements.
+
+---
 
 #### Skip file generation: Markdown description
 
 `figmagic [--skipDescription | -nodesc]`
 
-Default is `false`. Skip creating Markdown file when syncing elements.
+**Default**: `false`.
+
+Skip creating Markdown file when syncing elements.
+
+---
 
 #### Skip file generation: React
 
 `figmagic [--skipReact | -noreact]`
 
-Default is `false`. Skip creating React file when syncing elements.
+**Default**: `false`.
+
+Skip creating React file when syncing elements.
+
+---
 
 #### Skip file generation: Storybook
 
 `figmagic [--skipStorybook | -nostory]`
 
-Default is `false`. Skip creating Storybook file when syncing elements.
+**Default**: `false`.
+
+Skip creating Storybook file when syncing elements.
+
+---
 
 #### Skip file generation: Styled Components
 
 `figmagic [--skipStyled | -nostyled]`
 
-Default is `false`. Skip creating Styled Components file when syncing elements.
+**Default**: `false`.
+
+Skip creating Styled Components file when syncing elements.
+
+---
 
 #### Switch spacing unit
 
 `figmagic [--spacingUnit | -s] [rem|em|px]`
 
-Default is `rem`.
+**Default**: `rem`.
+
+---
 
 #### Sync elements
 
 `figmagic [--syncElements | -se]`
 
-Default is `false`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+**Default**: `false`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
 
 Use this when you want to sync elements in your "Elements" page in Figma.
+
+---
 
 #### Sync graphics
 
 `figmagic [--syncGraphics | -sg]`
 
-Default is `false`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+**Default**: `false`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
 
 Use this when you want to sync graphics in your "Graphics" page in Figma. Use the RC configuration file to pass in options. Default format will be SVG.
+
+---
 
 #### Sync tokens
 
 `figmagic [--syncTokens | -st]`
 
-Default is `true`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+**Default**: `true`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
 
 Use this when you want to sync tokens in your "Design tokens" page in Figma. Use the RC configuration file to pass in options.
+
+---
 
 #### Set path to graphics template
 
 `figmagic [--templatePathGraphic | -tpgraphic] [path]`
 
-Default is `templates/graphic`.
+**Default**: `templates/graphic`.
 
-**Your local `figmagic.json` or `.figmagicrc` file must have a block with `templates.templatePathGraphic` that specifies a valid path, such as `./node_modules/figmagic/templates/graphic`**.
+_Your local `figmagic.json` or `.figmagicrc` file must have a block with `templates.templatePathGraphic` that specifies a valid path, such as `./node_modules/figmagic/templates/graphic`_.
+
+---
 
 #### Set path to React template
 
 `figmagic [--templatePathReact | -tpreact] [path]`
 
-Default is `templates/react`.
+**Default**: `templates/react`.
 
-**Your local `figmagic.json` or `.figmagicrc` file must have a block with `templates.templatePathReact` that specifies a valid path, such as `./node_modules/figmagic/templates/react`**.
+_Your local `figmagic.json` or `.figmagicrc` file must have a block with `templates.templatePathReact` that specifies a valid path, such as `./node_modules/figmagic/templates/react`_.
+
+---
 
 #### Set path to Storybook template
 
 `figmagic [--templatePathStorybook | -tpstory] [path]`
 
-Default is `templates/story`.
+**Default**: `templates/story`.
 
-**Your local `figmagic.json` or `.figmagicrc` file must have a block with `templates.templatePathStory` that specifies a valid path, such as `./node_modules/figmagic/templates/story`**.
+_Your local `figmagic.json` or `.figmagicrc` file must have a block with `templates.templatePathStory` that specifies a valid path, such as `./node_modules/figmagic/templates/story`_.
+
+---
 
 #### Set path to Styled Components template
 
 `figmagic [--templatePathStyled | -tpstyled] [path]`
 
-Default is `templates/styled`.
+**Default**: `templates/styled`.
 
-**Your local `figmagic.json` or `.figmagicrc` file must have a block with `templates.templatePathStyled` that specifies a valid path, such as `./node_modules/figmagic/templates/styled`**.
+_Your local `figmagic.json` or `.figmagicrc` file must have a block with `templates.templatePathStyled` that specifies a valid path, such as `./node_modules/figmagic/templates/styled`_.
+
+---
 
 #### Pass in Figma API token
 
 `figmagic [--token | -t] [token]`
 
-Default is `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+**Default**: `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+
+---
 
 #### Set relative import path for tokens (for CSS)
 
 `figmagic [--tokensRelativeImportPrefix | -tip] [path]`
 
-Default is `''` (effectively just blank or the same folder). Use this so CSS files can import tokens from the correct location, for example to resolve something like `../../tokens/colors.ts` you would pass in `../../` and `tokens` would be whatever your `outputFolderTokens` value is.
+**Default**: `''` (effectively just blank or the same folder). Use this so CSS files can import tokens from the correct location, for example to resolve something like `../../tokens/colors.ts` you would pass in `../../` and `tokens` would be whatever your `outputFolderTokens` value is.
+
+---
 
 #### Pass in Figma URL
 
 `figmagic [--url | -u] [url_id]`
 
-Default is `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+**Default**: `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
+
+---
 
 #### Pass in unitless precision
 
 `figmagic [--unitlessPrecision | -up] [number]`
 
-Defines the precision (decimals) for unitless values (rounded using `.toFixed()` internally). Default is `2`.
+**Default**: `2`.
+
+Defines the precision (decimals) for unitless values (rounded using `.toFixed()` internally).
+
+---
 
 #### Set font family name to be Postscript name instead of "common name"
 
 `figmagic [--usePostscriptFontNames | -ps]`
 
-Default is `false`, i.e. common name.
+**Default**: `false`, i.e. common name.
+
+---
 
 #### Use a versioned Figma document
 
 `figmagic [--versionName | -v]`
 
-Default is `null` which will resolve to the latest version. The value you specify here is the name of the version in the Figma file's **Version history**.
+**Default**: `null` which will resolve to the latest version. The value you specify here is the name of the version in the Figma file's **Version history**.
+
+---
 
 ## Templates used for code generation
 
@@ -589,19 +756,25 @@ The recommended way of adding and using your own templates would be to copy-past
 
 The font family name, either as its common name (as picked up by Figma; spaces are removed) or its Postscript name (eg. FiraSans-Regular).
 
-Default: Common name.
+**Default:** Common name.
 
 **Note**: In previous versions of Figmagic the Postscript font family name was used.
+
+---
 
 ### Font weights
 
 Typical font weight values like `200`, `300` etc.
 
+---
+
 ### Font sizes
 
 Units based on global font size (base 16px).
 
-Default: `rem` units. Can be set to `rem` or `em`.
+**Default:** `rem` units. Can be set to `rem` or `em`.
+
+---
 
 ### Line heights
 
@@ -609,65 +782,89 @@ Unitless.
 
 2 decimals numbered values by default. Precision can be configured with `unitlessPrecision` (see config)
 
+---
+
 ### Colors
 
 RGBA colors.
 
+---
+
 ### Spacing
 
-Default: `rem` units. Can be set to `rem` or `em`.
+**Default:** `rem` units. Can be set to `rem` or `em`.
+
+---
 
 ### Border widths
 
-Default: `px` units.
+**Default:** `px` units.
+
+---
 
 ### Letter spacings
 
-Default: `em` units.
+**Default:** `em` units.
+
+---
 
 ### Media queries
 
-Default: `px` units.
+**Default:** `px` units.
+
+---
 
 ### Opacities
 
 Typical 2 decimals numbered values between 0 and 1 like `0` or `0.65`.
 Can be set to `percent` to have them converted to `%` strings instead like `0%` or `65%`.
 
+---
+
 ### Radii
 
-Default: `px` units.
+**Default:** `px` units.
+
+---
 
 ### Shadows
 
-Default: `px` units for three values (horizontal offset, vertical offset, blur) and RGBA for the color.
+**Default:** `px` units for three values (horizontal offset, vertical offset, blur) and RGBA for the color.
+
+---
 
 ### Z indices
 
-Default: numbers (whole numbers, i.e. integers).
+**Default:** numbers (whole numbers, i.e. integers).
+
+---
 
 ## Code structure
 
 ### Figmagic source code structure
 
-- `__tests__/`: Tests, structured similarly to the `bin` folder source code
-- `.github/`: GitHub files for CI and issue template
-- `.vscode/`: Visual Studio Code configuration
-- `bin/`: Source code
-- `bin/contracts`: Types and interfaces
-- `bin/controllers`: Controllers
-- `bin/entities`: Entities (DDD-style), this is where most of the logic will be contained
-- `bin/frameworks`: Non-domain functionality, like string manipulation and downloading files etc.
-- `bin/usecases`: Where the application "features" are orchestrated, as per [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-- `build/`: ES6-compiled code (this is the code that consumers of the Figmagic binary actually use)
-- `images/`: Documentation, mostly images and screen shots
-- `templates/`: Files that are used as templates for code generation
-- `testdata/`: Most of the tests point to stored test data which is stored in this folder
-- `index.ts`: The file that initializes and sets up everything required to run Figmagic
+| Folder            | Description                                                                                                                                                  |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `__tests__/`      | Tests, structured similarly to the `bin` folder source code                                                                                                  |
+| `.github/`        | GitHub files for CI and issue template                                                                                                                       |
+| `.vscode/`        | Visual Studio Code configuration                                                                                                                             |
+| `bin/`            | Source code                                                                                                                                                  |
+| `bin/contracts`   | Types and interfaces                                                                                                                                         |
+| `bin/controllers` | Controllers                                                                                                                                                  |
+| `bin/entities`    | Entities (DDD-style), this is where most of the logic will be contained                                                                                      |
+| `bin/frameworks`  | Non-domain functionality, like string manipulation and downloading files etc.                                                                                |
+| `bin/usecases`    | Where the application "features" are orchestrated, as per [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) |
+| `build/`          | ES6-compiled code (this is the code that consumers of the Figmagic binary actually use)                                                                      |
+| `images/`         | Documentation, mostly images and screen shots                                                                                                                |
+| `templates/`      | Files that are used as templates for code generation                                                                                                         |
+| `testdata/`       | Most of the tests point to stored test data which is stored in this folder                                                                                   |
+| `index.ts`        | The file that initializes and sets up everything required to run Figmagic                                                                                    |
 
-### Arkit map
+### Arkit diagram
 
-![Arkit code structure map](images/arkit.svg)
+This is how [Arkit](https://arkit.pro) models Figmagic and its source code structure and dependencies. Note that this diagram omits frameworks, external dependencies and contracts (i.e. types) to focus on the primary flows.
+
+![Arkit code structure diagram](images/arkit.svg)
 
 ## Contribution
 
