@@ -18,16 +18,15 @@ export function refresh(
 ): void {
   try {
     if (!folderPath) throw Error(ErrorRefresh);
+    createFolder(folderPath);
 
     if (trashExistingFolder && fs.existsSync(folderPath)) {
       // Soft erase by moving into trash folder, giving the old copy a UTC (ISO 8601) timestamp
       if (refreshType === 'soft') {
-        createFolder('.figmagic-trash');
         const date = new Date();
-        fs.renameSync(
-          path.resolve(process.cwd(), folderPath),
-          `.figmagic-trash/${folderPath}_${date.getUTCFullYear()}-${date.getUTCDate()}-${date.getUTCMonth()} ${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`
-        );
+        const newFolder = `${folderPath}_${date.getUTCFullYear()}-${date.getUTCDate()}-${date.getUTCMonth()} ${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`;
+        createFolder(`.figmagic-trash/${newFolder}`);
+        fs.renameSync(path.resolve(process.cwd(), folderPath), `.figmagic-trash/${newFolder}`);
       } // Hard erase of existing folder
       else if (refreshType === 'hard') {
         const NODE_VERSION = process.versions.node;

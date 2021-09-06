@@ -1,6 +1,6 @@
 {
   "name": "figmagic",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "description": "Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.",
   "homepage": "https://www.figmagic.com",
   "repository": {
@@ -54,7 +54,8 @@
   ],
   "files": [
     "build/index.js",
-    "build/index.js.LICENSE.txt"
+    "build/index.js.LICENSE.txt",
+    "templates/"
   ],
   "scripts": {
     "figmagic": "node build/index.js",
