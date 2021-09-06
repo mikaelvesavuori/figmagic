@@ -77,6 +77,8 @@
 				</a>
 				<p>Previous versions in the 4.0 series have been using <a href="https://github.com/sindresorhus/trash"><code>trash</code></a> to handle files that need to be replaced. In <code>4.3.0</code> this is no longer the case, and there is now instead a configuration choice you can make to adapt to your needs.</p>
 				<p><strong>The default uses a local soft delete by moving folders into <code>./figmagic-trash</code> – that&#39;s why you might be surprised by seeing it added.</strong></p>
+				<p>If you sync more than one type of file (i.e. tokens <em>and</em> graphics), and also use them nested in a folder (such as <code>src/tokens</code> and <code>src/graphics</code>), then the soft delete may be buggy.</p>
+				<p>I advise you to use <code>refreshType: &quot;hard&quot;</code> in your configuration if you have a non-trivial setup.</p>
 				<p>Read more under the <a href="#refresh-type"><code>refreshType</code></a> listing.</p>
 				<hr>
 				<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
