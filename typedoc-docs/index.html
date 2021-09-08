@@ -75,7 +75,7 @@
 				<a href="#psa-version-430-introduces-new-handling-of-trashedreplaced-files" id="psa-version-430-introduces-new-handling-of-trashedreplaced-files" style="color: inherit; text-decoration: none;">
 					<h2>PSA: Version <code>4.3.0</code> introduces new handling of trashed/replaced files</h2>
 				</a>
-				<p>Previous versions in the 4.0 series have been using <a href="https://github.com/sindresorhus/trash"><code>trash</code></a> to handle files that need to be replaced. In <code>4.3.0</code> this is no longer the case, and there is now instead a configuration choice you can make to adapt to your needs.</p>
+				<p>Previous versions in the 4.0 series have been using <a href="https://github.com/sindresorhus/trash"><code>trash</code></a> to handle files that need to be replaced. In <code>4.3.0</code> this is no longer the case.</p>
 				<p>Any deleted files are now permanently destroyed by the Node native <code>fs</code> module.</p>
 				<p><strong>Versions <code>4.3.0</code> and <code>4.3.1</code> used a flaky dual-mode, configurable pattern where you could use either a &quot;hard&quot; or &quot;soft&quot; delete mode (soft deletes meaning placing files in a local trash folder). <em>This is NOT supported and intended from <code>4.3.2</code> and forward as that was too buggy.</em></strong></p>
 				<hr>

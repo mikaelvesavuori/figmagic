@@ -17,7 +17,7 @@ _Built initially as an internal handoff tool for [Humblebee](https://www.humbleb
 
 ## PSA: Version `4.3.0` introduces new handling of trashed/replaced files
 
-Previous versions in the 4.0 series have been using [`trash`](https://github.com/sindresorhus/trash) to handle files that need to be replaced. In `4.3.0` this is no longer the case, and there is now instead a configuration choice you can make to adapt to your needs.
+Previous versions in the 4.0 series have been using [`trash`](https://github.com/sindresorhus/trash) to handle files that need to be replaced. In `4.3.0` this is no longer the case.
 
 Any deleted files are now permanently destroyed by the Node native `fs` module.
 
