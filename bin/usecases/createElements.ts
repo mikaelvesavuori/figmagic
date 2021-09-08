@@ -68,9 +68,9 @@ async function handleElements(element: Element): Promise<FigmagicElement[]> {
   const ELEMENTS = processElements(PAGE, config, components, isGeneratingGraphics || false);
   writeElements(ELEMENTS, config, isGeneratingGraphics);
 
-  // Ugly hack to enforce this files settle as we get a race condition if setting "outputGraphicElements" to true
+  // Ugly hack to enforce that files settle as we get a race condition if setting "outputGraphicElements" to true
   // TODO: Make this correct and not like a hack
-  await wait(500);
+  //await wait(500);
 
   return ELEMENTS;
 }
@@ -85,4 +85,4 @@ function handleGraphicElementsMap(graphicElementsMap: GraphicElementsMap) {
   writeGraphicElementsMap(FOLDER, FILE_PATH, FILE_CONTENT);
 }
 
-const wait = (ms = 100) => new Promise((resolve) => setTimeout(resolve, ms));
+//const wait = (ms = 100) => new Promise((resolve) => setTimeout(resolve, ms));
