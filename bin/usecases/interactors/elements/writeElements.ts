@@ -129,9 +129,7 @@ const writeFileHelper = (
   if (!fileExists || shouldOverwrite || forceUpdate) {
     const FILE_DATA = (() => {
       if (type === 'graphic') {
-        const SVG_DATA = getSvgFileData(
-          `${config.outputFolderGraphics}/${config.name.toLowerCase()}.svg`
-        );
+        const SVG_DATA = getSvgFileData(`${config.outputFolderGraphics}/${config.name}.svg`);
         return cleanSvgData(SVG_DATA);
       }
       if (type === 'description') return config.description;
