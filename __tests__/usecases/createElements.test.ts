@@ -39,7 +39,7 @@ describe('Success cases', () => {
     await trash(CONFIG.outputFolderElements);
   });
 
-  test.only('It should write graphic elements and check that graphic elements map file exists', async () => {
+  test.skip('It should write graphic elements and check that graphic elements map file exists', async () => {
     const CONFIG = testConfig;
     CONFIG.token = process.env.FIGMA_TOKEN || '';
     CONFIG.url = process.env.FIGMA_URL || '';
