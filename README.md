@@ -19,13 +19,9 @@ _Built initially as an internal handoff tool for [Humblebee](https://www.humbleb
 
 Previous versions in the 4.0 series have been using [`trash`](https://github.com/sindresorhus/trash) to handle files that need to be replaced. In `4.3.0` this is no longer the case, and there is now instead a configuration choice you can make to adapt to your needs.
 
-**The default uses a local soft delete by moving folders into `./figmagic-trash` – that's why you might be surprised by seeing it added.**
+Any deleted files are now permanently destroyed by the Node native `fs` module.
 
-If you sync more than one type of file (i.e. tokens _and_ graphics), and also use them nested in a folder (such as `src/tokens` and `src/graphics`), then the soft delete may be buggy.
-
-I advise you to use `refreshType: "hard"` in your configuration if you have a non-trivial setup.
-
-Read more under the [`refreshType`](#refresh-type) listing.
+**Versions `4.3.0` and `4.3.1` used a flaky dual-mode, configurable pattern where you could use either a "hard" or "soft" delete mode (soft deletes meaning placing files in a local trash folder). _This is NOT supported and intended from `4.3.2` and forward as that was too buggy._**
 
 ---
 
@@ -146,10 +142,6 @@ Then:
 
 - Run `figmagic`
 - You should now have a folder with the raw JSON dump (default: `/.figmagic`) and a folder with tokens (default: `/tokens`) in the root
-
-#### Overwritten files are moved to trash
-
-When running `figmagic`, files will be moved with the Node module [trash](https://github.com/sindresorhus/trash) (multi-platform) into your OS's trash can. Thus, you can recover anything _unintentionally_ overwritten.
 
 #### Folders
 
@@ -549,19 +541,6 @@ This is not currently possible to adjust from the CLI.
 `figmagic [--recompileLocal | -local]`
 
 **Default**: `null`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
-
----
-
-#### Refresh type
-
-`figmagic [--refreshType | -rf] ['soft' | 'hard']`
-
-**Default**: `soft`.
-
-This defines how overwritten files will be "refreshed" when starting Figmagic operations.
-
-- In `soft` mode, the previous folder is renamed and placed in a Figmagic-created trash folder (`./figmagic-trash/`) with an added [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp (i.e. `2021-09-05`) and hour-minute-second indicator.
-- In `hard` mode, Node's `fs` module is used to erase the folder with no way of retrieving the old folder.
 
 ---
 

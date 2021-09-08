@@ -9,5 +9,4 @@ export declare const validOutputFormatElementsList: string[];
 export declare const validOutputFormatGraphicsList: string[];
 export declare const validOutputFormatStorybookList: string[];
 export declare const validOutputFormatTokensList: string[];
-export declare const validRefreshTypeList: string[];
 export declare const validSpacingUnitList: string[];

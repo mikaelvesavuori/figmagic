@@ -1,40 +1,30 @@
 import fs from 'fs';
 import path from 'path';
 
-import { RefreshType } from '../../contracts/Refresh';
-
 import { createFolder } from './createFolder';
 
 import { ErrorRefresh } from '../errors/errors';
 
 /**
- * @description Refresh a folder by first either deleting it or putting it in a local trash folder, then creating a new folder.
+ * @description Refreshing a folder can happen in two ways:
+ * 1. If it exists: Delete and then re-create it.
+ * 2. If it does not exist: Create it.
+ *
+ * This supports both the newer post-Node 14.14.0 method, `fs.rmSync()`, and the older method, `fs.rmdirSync()`.
  */
 //@ts-ignore
-export function refresh(
-  folderPath: string,
-  refreshType: RefreshType,
-  trashExistingFolder = true
-): void {
+export function refresh(folderPath: string, trashExistingFolder = true): string {
   try {
     if (!folderPath) throw Error(ErrorRefresh);
-    createFolder(folderPath);
+    const resolvedPath = path.resolve(process.cwd(), folderPath);
 
-    if (trashExistingFolder && fs.existsSync(folderPath)) {
-      // Soft erase by moving into trash folder, giving the old copy a UTC (ISO 8601) timestamp
-      if (refreshType === 'soft') {
-        const date = new Date();
-        const newFolder = `${folderPath}_${date.getUTCFullYear()}-${date.getUTCDate()}-${date.getUTCMonth()} ${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`;
-        createFolder(`.figmagic-trash/${newFolder}`);
-        fs.renameSync(path.resolve(process.cwd(), folderPath), `.figmagic-trash/${newFolder}`);
-      } // Hard erase of existing folder
-      else if (refreshType === 'hard') {
-        const NODE_VERSION = process.versions.node;
-        if (NODE_VERSION > '14.14.0')
-          fs.rmSync(path.resolve(process.cwd(), folderPath), { recursive: true });
-      }
+    if (trashExistingFolder && fs.existsSync(resolvedPath)) {
+      if (process.versions.node >= '14.14.0') fs.rmSync(resolvedPath, { recursive: true });
+      else fs.rmdirSync(resolvedPath, { recursive: true });
     }
-    createFolder(folderPath);
+
+    createFolder(resolvedPath);
+    return resolvedPath;
   } catch (error: any) {
     throw Error(error);
   }

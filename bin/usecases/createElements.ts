@@ -26,17 +26,12 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
   }
 
   try {
-    const {
-      outputFolderElements,
-      outputFormatGraphics,
-      outputGraphicElements,
-      syncGraphics,
-      refreshType
-    } = config;
+    const { outputFolderElements, outputFormatGraphics, outputGraphicElements, syncGraphics } =
+      config;
 
-    refresh(outputFolderElements, refreshType, false);
+    refresh(outputFolderElements, false);
     const { components }: any = data;
-    handleElements({
+    await handleElements({
       children: data.document.children,
       pageName: 'Elements',
       config,
@@ -47,7 +42,7 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
      * Handle a bit of a special corner case: SVG graphics packed into React components.
      */
     if (outputGraphicElements && outputFormatGraphics === 'svg' && syncGraphics) {
-      const GRAPHICS = handleElements({
+      const GRAPHICS = await handleElements({
         children: data.document.children,
         pageName: 'Graphics',
         config,
@@ -66,12 +61,16 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
   }
 }
 
-function handleElements(element: Element): FigmagicElement[] {
+async function handleElements(element: Element): Promise<FigmagicElement[]> {
   const { children, pageName, config, components, isGeneratingGraphics } = element;
 
   const PAGE = createPage(children, pageName);
   const ELEMENTS = processElements(PAGE, config, components, isGeneratingGraphics || false);
   writeElements(ELEMENTS, config, isGeneratingGraphics);
+
+  // Ugly hack to enforce this files settle as we get a race condition if setting "outputGraphicElements" to true
+  // TODO: Make this correct and not like a hack
+  await wait(500);
 
   return ELEMENTS;
 }
@@ -85,3 +84,5 @@ function handleGraphicElementsMap(graphicElementsMap: GraphicElementsMap) {
 
   writeGraphicElementsMap(FOLDER, FILE_PATH, FILE_CONTENT);
 }
+
+const wait = (ms = 100) => new Promise((resolve) => setTimeout(resolve, ms));

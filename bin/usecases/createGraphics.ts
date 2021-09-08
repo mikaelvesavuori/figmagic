@@ -18,8 +18,8 @@ export async function createGraphics(config: Config, data: FigmaData): Promise<v
     if (!config || !data) throw Error(ErrorCreateGraphics);
     console.log(MsgSyncGraphics);
 
-    const { outputFolderGraphics, refreshType } = config;
-    refresh(outputFolderGraphics, refreshType);
+    const { outputFolderGraphics } = config;
+    refresh(outputFolderGraphics);
     const graphicsPage = createPage(data.document.children, 'Graphics');
     const fileList = await processGraphics(graphicsPage, config);
 

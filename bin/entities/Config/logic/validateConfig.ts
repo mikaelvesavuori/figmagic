@@ -21,8 +21,7 @@ import {
   ErrorValidateConfigTemplatePathGraphic,
   ErrorValidateConfigTemplatePathReact,
   ErrorValidateConfigTemplatePathStorybook,
-  ErrorValidateConfigTemplatePathStyled,
-  ErrorValidateConfigRefreshType
+  ErrorValidateConfigTemplatePathStyled
 } from '../../../frameworks/errors/errors';
 
 export function validateConfig(config: Config): boolean {
@@ -45,7 +44,6 @@ export function validateConfig(config: Config): boolean {
     validateOutputFormatStorybook(config.outputFormatStorybook);
     validateOutputFormatTokens(config.outputFormatTokens);
     validateOutputScaleGraphics(config.outputScaleGraphics);
-    validateRefreshType(config.refreshType);
     validateSpacingUnit(config.spacingUnit);
     validateTemplatePathGraphic(config.templates.templatePathGraphic);
     validateTemplatePathReact(config.templates.templatePathReact);
@@ -70,7 +68,6 @@ import {
   validOutputFormatStorybookList,
   validOutputFormatTokensList,
   validOutputDataTypeTokenList,
-  validRefreshTypeList,
   validSpacingUnitList
 } from '../../../frameworks/system/validatorLists';
 
@@ -167,9 +164,4 @@ const validateTemplatePathStyled = (path: string): boolean => {
 const validateTemplatePathGraphic = (path: string): boolean => {
   if (path) return true;
   throw Error(ErrorValidateConfigTemplatePathGraphic);
-};
-
-const validateRefreshType = (format: string): boolean => {
-  if (validRefreshTypeList.includes(format)) return true;
-  throw Error(ErrorValidateConfigRefreshType);
 };

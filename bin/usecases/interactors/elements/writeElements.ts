@@ -130,7 +130,7 @@ const writeFileHelper = (
     const FILE_DATA = (() => {
       if (type === 'graphic') {
         const SVG_DATA = getSvgFileData(
-          `./${config.outputFolderGraphics}/${config.name.toLowerCase()}.svg`
+          `${config.outputFolderGraphics}/${config.name.toLowerCase()}.svg`
         );
         return cleanSvgData(SVG_DATA);
       }

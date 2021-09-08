@@ -18,7 +18,7 @@ export async function writeGraphics(fileList: any[], config: Config): Promise<vo
     await Promise.all(
       fileList.map(async (file) => {
         return new Promise(async (resolve) => {
-          await downloadFile(file.url, `${outputFolderGraphics}/${file.file}`);
+          await downloadFile(file.url, `${outputFolderGraphics}/${file.file.toLowerCase()}`);
           resolve('');
         });
       })

@@ -75,8 +75,6 @@ export function parseCliArgs(argsArray: string[]): Config {
     '-tokentype': (val: string) => setConfigValue('outputDataTypeToken', val.toLowerCase()),
     '--recompileLocal': () => setConfigValue('recompileLocal', true),
     '-local': () => setConfigValue('recompileLocal', true),
-    '--refreshType': (val: string) => setConfigValue('refreshType', val.toLowerCase()),
-    '-rf': (val: string) => setConfigValue('refreshType', val.toLowerCase()),
     '--remSize': (val: string) => setConfigValue('remSize', parseInt(val, 10)),
     '-rem': (val: string) => setConfigValue('remSize', parseInt(val, 10)),
     '--forceUpdate': () => setConfigChildValue('skipFileGeneration', 'forceUpdate', true),

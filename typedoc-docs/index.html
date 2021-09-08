@@ -76,10 +76,8 @@
 					<h2>PSA: Version <code>4.3.0</code> introduces new handling of trashed/replaced files</h2>
 				</a>
 				<p>Previous versions in the 4.0 series have been using <a href="https://github.com/sindresorhus/trash"><code>trash</code></a> to handle files that need to be replaced. In <code>4.3.0</code> this is no longer the case, and there is now instead a configuration choice you can make to adapt to your needs.</p>
-				<p><strong>The default uses a local soft delete by moving folders into <code>./figmagic-trash</code> – that&#39;s why you might be surprised by seeing it added.</strong></p>
-				<p>If you sync more than one type of file (i.e. tokens <em>and</em> graphics), and also use them nested in a folder (such as <code>src/tokens</code> and <code>src/graphics</code>), then the soft delete may be buggy.</p>
-				<p>I advise you to use <code>refreshType: &quot;hard&quot;</code> in your configuration if you have a non-trivial setup.</p>
-				<p>Read more under the <a href="#refresh-type"><code>refreshType</code></a> listing.</p>
+				<p>Any deleted files are now permanently destroyed by the Node native <code>fs</code> module.</p>
+				<p><strong>Versions <code>4.3.0</code> and <code>4.3.1</code> used a flaky dual-mode, configurable pattern where you could use either a &quot;hard&quot; or &quot;soft&quot; delete mode (soft deletes meaning placing files in a local trash folder). <em>This is NOT supported and intended from <code>4.3.2</code> and forward as that was too buggy.</em></strong></p>
 				<hr>
 				<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
 					<h2>Requirements</h2>
@@ -188,10 +186,6 @@
 					<li>Run <code>figmagic</code></li>
 					<li>You should now have a folder with the raw JSON dump (default: <code>/.figmagic</code>) and a folder with tokens (default: <code>/tokens</code>) in the root</li>
 				</ul>
-				<a href="#overwritten-files-are-moved-to-trash" id="overwritten-files-are-moved-to-trash" style="color: inherit; text-decoration: none;">
-					<h4>Overwritten files are moved to trash</h4>
-				</a>
-				<p>When running <code>figmagic</code>, files will be moved with the Node module <a href="https://github.com/sindresorhus/trash">trash</a> (multi-platform) into your OS&#39;s trash can. Thus, you can recover anything <em>unintentionally</em> overwritten.</p>
 				<a href="#folders" id="folders" style="color: inherit; text-decoration: none;">
 					<h4>Folders</h4>
 				</a>
@@ -523,17 +517,6 @@
 				</a>
 				<p><code>figmagic [--recompileLocal | -local]</code></p>
 				<p><strong>Default</strong>: <code>null</code>, and will then be taken from local <code>.env</code> file if not explicitly passed in through the CLI.</p>
-				<hr>
-				<a href="#refresh-type" id="refresh-type" style="color: inherit; text-decoration: none;">
-					<h4>Refresh type</h4>
-				</a>
-				<p><code>figmagic [--refreshType | -rf] [&#39;soft&#39; | &#39;hard&#39;]</code></p>
-				<p><strong>Default</strong>: <code>soft</code>.</p>
-				<p>This defines how overwritten files will be &quot;refreshed&quot; when starting Figmagic operations.</p>
-				<ul>
-					<li>In <code>soft</code> mode, the previous folder is renamed and placed in a Figmagic-created trash folder (<code>./figmagic-trash/</code>) with an added <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> timestamp (i.e. <code>2021-09-05</code>) and hour-minute-second indicator.</li>
-					<li>In <code>hard</code> mode, Node&#39;s <code>fs</code> module is used to erase the folder with no way of retrieving the old folder.</li>
-				</ul>
 				<hr>
 				<a href="#set-rem-size" id="set-rem-size" style="color: inherit; text-decoration: none;">
 					<h4>Set REM size</h4>
@@ -908,9 +891,6 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/contracts_ProcessedToken.html">contracts/<wbr>Processed<wbr>Token</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/contracts_Refresh.html">contracts/<wbr>Refresh</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/contracts_Templates.html">contracts/<wbr>Templates</a>
