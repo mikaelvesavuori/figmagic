@@ -42,6 +42,9 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
      * Handle a bit of a special corner case: SVG graphics packed into React components.
      */
     if (outputGraphicElements && outputFormatGraphics === 'svg' && syncGraphics) {
+      // Ugly hack to enforce this files settle as we get a race condition if setting "outputGraphicElements" to true
+      // TODO: Make this correct and not like a hack
+      await wait(process.env.IS_CI ? 5000 : 2500);
       const GRAPHICS = await handleElements({
         children: data.document.children,
         pageName: 'Graphics',
@@ -67,10 +70,6 @@ async function handleElements(element: Element): Promise<FigmagicElement[]> {
   const PAGE = createPage(children, pageName);
   const ELEMENTS = processElements(PAGE, config, components, isGeneratingGraphics || false);
   writeElements(ELEMENTS, config, isGeneratingGraphics);
-
-  // Ugly hack to enforce this files settle as we get a race condition if setting "outputGraphicElements" to true
-  // TODO: Make this correct and not like a hack
-  await wait(2500);
 
   return ELEMENTS;
 }

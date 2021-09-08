@@ -17,7 +17,7 @@ export function writeElements(elements: any[], config: Config, isGeneratingGraph
   try {
     if (!elements || !config) throw Error(ErrorWriteElements);
 
-    elements.forEach((element) => {
+    elements.map((element) => {
       const FIXED_CONFIG = makeFixedConfig(element, config);
       // TODO Refactor: writeFileHelper() should take fewer params since we are already passing in fixed config...?
 
