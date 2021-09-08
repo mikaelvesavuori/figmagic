@@ -98,8 +98,5 @@
     "webpack-cli": "4",
     "webpack-shebang-plugin": "1"
   },
-  "dependencies": {
-    "dotenv": "10"
-  },
   "snyk": true
 }

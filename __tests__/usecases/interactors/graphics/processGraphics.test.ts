@@ -1,12 +1,12 @@
-import dotenv from 'dotenv';
-
 import { Config } from '../../../../bin/contracts/Config';
 
 import { processGraphics } from '../../../../bin/usecases/interactors/graphics/processGraphics';
 
+import { loadEnv } from '../../../../bin/frameworks/system/loadEnv';
+
 import { graphicsPage } from '../../../../testdata/graphicsPage';
 
-dotenv.config();
+loadEnv();
 
 // Re-ordered success and failure cases because the "normal" order will leak variables or something, causing tests to fail
 

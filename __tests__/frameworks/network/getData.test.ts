@@ -1,8 +1,7 @@
-import dotenv from 'dotenv';
-
+import { loadEnv } from '../../../bin/frameworks/system/loadEnv';
 import { getData } from '../../../bin/frameworks/network/getData';
 
-dotenv.config();
+loadEnv();
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {

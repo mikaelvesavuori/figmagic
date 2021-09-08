@@ -1,14 +1,15 @@
 import * as fs from 'fs';
 import trash from 'trash';
-import dotenv from 'dotenv';
 
 import { createElements } from '../../bin/usecases/createElements';
+
+import { loadEnv } from '../../bin/frameworks/system/loadEnv';
 
 import { testConfig } from '../../testdata/testConfig';
 import { figmaTestResponse } from '../../testdata/figmaTestResponse';
 import { figmaCompleteCleaned } from '../../testdata/figma-complete-cleaned';
 
-dotenv.config();
+loadEnv();
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {

@@ -1,8 +1,7 @@
-import dotenv from 'dotenv';
-
+import { loadEnv } from '../../../bin/frameworks/system/loadEnv';
 import { getFromApi } from '../../../bin/frameworks/network/getFromApi';
 
-dotenv.config();
+loadEnv();
 
 describe('Failure cases', () => {
   test('It should throw an error when receiving invalid token and/or URL', async () => {

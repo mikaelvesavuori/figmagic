@@ -36,7 +36,7 @@ hint-report/
 # Dependency directories
 /**/node_modules
 
-# dotenv environment variables file(s)
+# Environment variables file(s)
 .env
 .env.*
 

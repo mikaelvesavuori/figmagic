@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import * as path from 'path';
-import * as dotenv from 'dotenv';
 
 import { makeConfiguration } from './bin/entities/Config/index';
 
@@ -10,6 +9,7 @@ import { Config } from './bin/contracts/Config';
 
 import { FigmagicController } from './bin/controllers/FigmagicController';
 
+import { loadEnv } from './bin/frameworks/system/loadEnv';
 import { write } from './bin/frameworks/filesystem/write';
 import { getData } from './bin/frameworks/network/getData';
 import { writeBaseJson } from './bin/frameworks/filesystem/writeBaseJson';
@@ -27,7 +27,7 @@ const RC_FILES = ['figmagic.json', '.figmagicrc'];
 async function main(): Promise<void> {
   try {
     // Setup environment and user configuration
-    dotenv.config();
+    loadEnv();
 
     // Use first valid match for configuration file
     const configFilePath: any = RC_FILES.filter((configFile: string) => {
