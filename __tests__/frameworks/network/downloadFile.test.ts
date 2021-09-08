@@ -1,5 +1,5 @@
 import trash from 'trash';
-import * as fs from 'fs';
+import fs from 'fs';
 
 import { downloadFile } from '../../../bin/frameworks/network/downloadFile';
 

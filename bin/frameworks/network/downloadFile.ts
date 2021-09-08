@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import fs from 'fs';
 import https from 'https';
 
 //import { request } from './request';

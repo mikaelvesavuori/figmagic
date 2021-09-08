@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import fs from 'fs';
 import trash from 'trash';
 
 import { createGraphics } from '../../bin/usecases/createGraphics';

@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import fs from 'fs';
 import trash from 'trash';
 
 import { writeGraphicElementsMap } from '../../../../bin/usecases/interactors/elements/writeGraphicElementsMap';

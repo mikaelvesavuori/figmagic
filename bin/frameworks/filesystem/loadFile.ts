@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import fs from 'fs';
 
 import { isJsonString } from '../filesystem/isJsonString';
 import { ErrorLoadFile } from '../errors/errors';

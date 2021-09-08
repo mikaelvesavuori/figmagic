@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import fs from 'fs';
 import trash from 'trash';
 
 import { createElements } from '../../bin/usecases/createElements';
@@ -52,6 +52,10 @@ describe('Success cases', () => {
     CONFIG.syncTokens = false;
     CONFIG.syncElements = true;
     CONFIG.syncGraphics = true;
+    CONFIG.templates.templatePathGraphic = './templates/graphic';
+    CONFIG.templates.templatePathReact = './templates/react';
+    CONFIG.templates.templatePathStorybook = './templates/story';
+    CONFIG.templates.templatePathStyled = './templates/styled';
     const DATA = figmaCompleteCleaned;
 
     // @ts-ignore
