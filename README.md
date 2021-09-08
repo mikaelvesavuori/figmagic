@@ -80,7 +80,7 @@ Here are a few reasons you'd want to use Figmagic rather than anything similar:
 
 - In Figmagic, design tokens are a first-class concept since day 1
 - Figmagic is designer-driven, since Figma is seen as the source of truth
-- Figmagic is automatable and very lightweight (~40kb compressed), with no external dependencies
+- Figmagic is automatable and very lightweight (~45kb compressed), with no external dependencies
 - Figmagic is developer-friendly and makes very few assumptions on your use and/or setup and supports a range of output formats plus that it's extensible through custom templates if you need something completely different
 - Figmagic is open-sourced under the MIT license and has a long track record of very short implementation cycles for new features/fixes
 - Generated React components bind to any token values you've defined so these are equally useful as starter code or as code you continually output
