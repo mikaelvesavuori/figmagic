@@ -70,7 +70,7 @@ Say goodbye to ever manually exporting graphics from Figma again. Grab your grap
 
 Figmagic also allows you to generate React components from Figma components that follow a specific formal structure. It's best at fairly low-level components that you can piece together to make more complex organisms on your own. You can significantly cut down on boilerplate churn and scaffolding time with Figmagic.
 
-And, no, the code does not actually suck! This was my own biggest gripe with services promising this functionality, so I knew it had to be good, or at least tolerable. Therefore Figmagic supports things like actually using your own tokens (so we can cut down on hard-coded garbage, unless matches aren't found) and you can completely customize the number of related generated files.
+And, no, the code actually doesn't suck! This was my own biggest gripe with services promising this functionality, so I knew it had to be good, or at least tolerable. Therefore Figmagic supports things like actually using your own tokens (so we can cut down on hard-coded garbage, unless matches aren't found) and you can completely customize the number of related generated files.
 
 While not perfect, it's definitely better than many things I've seen, made by big companies. All of this is explained later here in the docs.
 
@@ -518,7 +518,7 @@ Run these in your command line environment of choice.
 
 **Default**: `1`.
 
-_Note that from the CLI you must specify the scale size like `3x` (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `figmagic.json` or `.figmagicrc`_.
+_Note that from the CLI you must specify the scale size like `3x` (or anything at the end, as long as it includes a letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `figmagic.json` or `.figmagicrc`_.
 
 ---
 
@@ -550,7 +550,7 @@ This is not currently possible to adjust from the CLI.
 
 **Default**: `16`.
 
-_Note that from the CLI you must specify the REM size like `16p` (or anything at the end, as long as it includes letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `figmagic.json` or `.figmagicrc`_.
+_Note that from the CLI you must specify the REM size like `16p` (or anything at the end, as long as it includes a letter at the end). This only applies to CLI configuration, and does not apply to other types of config, such as through `figmagic.json` or `.figmagicrc`_.
 
 ---
 
@@ -881,3 +881,19 @@ This is how [Arkit](https://arkit.pro) models Figmagic and its source code struc
 ### Want to add or rethink something in Figmagic?
 
 You are welcome to contribute to the project! Pull requests, as well as issues or plain messages, work fine. For pull requests, please refer to the contribution guidelines in [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+## License
+
+Figmagic is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+It uses a number of developer dependencies under various open source licenses, but none of these are bundled into the actual binary that users consume as Figmagic itself has no end-user-facing dependencies.
+
+```
+Copyright 2018-2021 Mikael Vesavuori
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
