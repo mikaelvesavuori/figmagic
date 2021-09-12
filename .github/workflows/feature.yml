@@ -10,6 +10,19 @@ on:
       - 'main'
       - 'feature/*'
 
+permissions:
+  actions: read
+  checks: read
+  contents: write
+  deployments: write
+  issues: read
+  metadata: write
+  packages: read
+  pull-requests: read
+  repository-projects: read
+  security-events: read
+  statuses: read
+
 jobs:
   build-unix:
     runs-on: ${{ matrix.os }}
