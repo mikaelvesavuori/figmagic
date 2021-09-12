@@ -4,15 +4,16 @@ on:
   push:
     branches:
       - 'main'
-      - 'master'
       - 'feature/*'
-      - 'hotfix/*'
   pull_request:
     branches:
       - 'main'
-      - 'master'
       - 'feature/*'
-      - 'hotfix/*'
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: read
 
 jobs:
   build-unix:

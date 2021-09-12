@@ -5,6 +5,11 @@ on:
     tags:
       - "v*"
 
+permissions:
+  actions: read
+  contents: read
+  pull-requests: read
+
 jobs:
   build-unix:
     runs-on: ${{ matrix.os }}
