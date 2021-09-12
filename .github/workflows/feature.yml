@@ -10,11 +10,6 @@ on:
       - 'main'
       - 'feature/*'
 
-permissions:
-  actions: read
-  contents: write
-  pull-requests: read
-
 jobs:
   build-unix:
     runs-on: ${{ matrix.os }}
