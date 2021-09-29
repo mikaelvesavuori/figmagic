@@ -9,6 +9,7 @@ export declare type Config = {
     outputFolderElements: string;
     outputFolderGraphics: string;
     outputFolderTokens: string;
+    outputFormatColors: OutputFormatColors;
     outputFormatCss: OutputFormatCss;
     outputFormatDescription: OutputFormatDescription;
     outputFormatElements: OutputFormatElements;
@@ -58,6 +59,7 @@ export declare type ConfigDTO = {
     outputFolderElements?: string;
     outputFolderGraphics?: string;
     outputFolderTokens?: string;
+    outputFormatColors?: OutputFormatColors;
     outputFormatCss?: OutputFormatCss;
     outputFormatDescription?: OutputFormatDescription;
     outputFormatElements?: OutputFormatElements;
@@ -115,6 +117,7 @@ export declare type FontUnits = 'rem' | 'em' | 'px';
 export declare type LetterSpacingUnits = 'em' | 'px';
 export declare type LineHeightUnits = 'unitless' | 'px' | 'rem' | 'em';
 export declare type OpacitiesUnits = 'float' | 'percent';
+export declare type OutputFormatColors = 'hex' | 'rgba';
 export declare type OutputFormatCss = 'ts' | 'mjs' | 'js';
 export declare type OutputFormatDescription = 'md' | 'txt';
 export declare type OutputFormatElements = 'tsx' | 'jsx';

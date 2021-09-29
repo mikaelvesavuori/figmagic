@@ -9,6 +9,7 @@ export type Config = {
   outputFolderElements: string;
   outputFolderGraphics: string;
   outputFolderTokens: string;
+  outputFormatColors: OutputFormatColors;
   outputFormatCss: OutputFormatCss;
   outputFormatDescription: OutputFormatDescription;
   outputFormatElements: OutputFormatElements;
@@ -59,6 +60,7 @@ export type ConfigDTO = {
   outputFolderElements?: string;
   outputFolderGraphics?: string;
   outputFolderTokens?: string;
+  outputFormatColors?: OutputFormatColors;
   outputFormatCss?: OutputFormatCss;
   outputFormatDescription?: OutputFormatDescription;
   outputFormatElements?: OutputFormatElements;
@@ -118,6 +120,7 @@ export type FontUnits = 'rem' | 'em' | 'px';
 export type LetterSpacingUnits = 'em' | 'px';
 export type LineHeightUnits = 'unitless' | 'px' | 'rem' | 'em';
 export type OpacitiesUnits = 'float' | 'percent';
+export type OutputFormatColors = 'hex' | 'rgba';
 export type OutputFormatCss = 'ts' | 'mjs' | 'js';
 export type OutputFormatDescription = 'md' | 'txt';
 export type OutputFormatElements = 'tsx' | 'jsx';

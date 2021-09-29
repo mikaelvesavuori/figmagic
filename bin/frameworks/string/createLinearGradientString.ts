@@ -1,7 +1,7 @@
 import { Paint } from '../../contracts/Figma';
 
-import { roundColorValue } from '../../frameworks/string/roundColorValue';
 import { calculateDegree2Point } from '../../frameworks/string/calculateDegree2Point';
+import { roundColorValue } from '../../frameworks/string/roundColorValue';
 
 import { ErrorCreateLinearGradientString } from '../../frameworks/errors/errors';
 /**

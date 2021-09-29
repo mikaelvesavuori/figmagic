@@ -2,6 +2,7 @@ import * as path from 'path';
 
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { UpdatedCssAndImports } from '../../../contracts/Imports';
+import { OutputFormatColors } from '../../../contracts/Config';
 
 import { getFileContents } from './getFileContents';
 import { getPaddingY, PaddingVertical } from './parsers/getPaddingY';
@@ -101,6 +102,7 @@ type CalcData = {
   css: string;
   imports: string[];
   remSize: number;
+  outputFormatColors: OutputFormatColors;
 };
 
 const reduceDuplicates = (str: string) =>
@@ -159,14 +161,19 @@ function calcPadding(calcData: CalcData, spacing: Record<string, unknown>) {
 }
 
 function calcHeight(calcData: CalcData, spacing: Record<string, unknown>) {
-  const { layoutElement, remSize } = calcData;
+  const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
   const HEIGHT = layoutElement.absoluteBoundingBox
     ? layoutElement.absoluteBoundingBox.height
     : null;
   if (HEIGHT) {
-    const parsedValue = parseHeight(css, imports, { spacing, height: HEIGHT, remSize });
+    const parsedValue = parseHeight(css, imports, {
+      spacing,
+      height: HEIGHT,
+      remSize,
+      outputFormatColors
+    });
     css += parsedValue.css;
     if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
   }
@@ -175,15 +182,16 @@ function calcHeight(calcData: CalcData, spacing: Record<string, unknown>) {
 }
 
 function calcBackgroundColor(calcData: CalcData, colors: Record<string, unknown>) {
-  const { layoutElement, remSize } = calcData;
+  const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
-  const BACKGROUND_COLOR = getBackgroundColor(layoutElement);
+  const BACKGROUND_COLOR = getBackgroundColor(layoutElement, outputFormatColors);
   if (BACKGROUND_COLOR) {
     const parsedValue = parseBackgroundColor(css, imports, {
       colors,
       backgroundColor: BACKGROUND_COLOR,
-      remSize
+      remSize,
+      outputFormatColors
     });
     css += parsedValue.css;
     if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
@@ -193,7 +201,7 @@ function calcBackgroundColor(calcData: CalcData, colors: Record<string, unknown>
 }
 
 function calcBorderWidth(calcData: CalcData, borderWidths: Record<string, unknown>) {
-  const { layoutElement, remSize } = calcData;
+  const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
   const BORDER_WIDTH = layoutElement.strokeWeight ? `${layoutElement.strokeWeight}px` : null;
@@ -201,7 +209,8 @@ function calcBorderWidth(calcData: CalcData, borderWidths: Record<string, unknow
     const parsedValue = parseBorderWidth(css, imports, {
       borderWidths,
       borderWidth: BORDER_WIDTH,
-      remSize
+      remSize,
+      outputFormatColors
     });
     css += parsedValue.css;
     if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
@@ -211,7 +220,7 @@ function calcBorderWidth(calcData: CalcData, borderWidths: Record<string, unknow
 }
 
 function calcBorderColor(calcData: CalcData, colors: Record<string, unknown>) {
-  const { layoutElement, remSize } = calcData;
+  const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
   const BORDER_COLOR = getBorderColor(layoutElement);
@@ -219,7 +228,8 @@ function calcBorderColor(calcData: CalcData, colors: Record<string, unknown>) {
     const parsedValue = parseBorderColor(css, imports, {
       colors,
       borderColor: BORDER_COLOR,
-      remSize
+      remSize,
+      outputFormatColors
     });
     css += parsedValue.css;
     if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
@@ -229,7 +239,7 @@ function calcBorderColor(calcData: CalcData, colors: Record<string, unknown>) {
 }
 
 function calcBorderRadius(calcData: CalcData, radii: Record<string, unknown>) {
-  const { layoutElement, remSize } = calcData;
+  const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
   const BORDER_RADIUS = layoutElement.cornerRadius ? `${layoutElement.cornerRadius}px` : null;
@@ -237,7 +247,8 @@ function calcBorderRadius(calcData: CalcData, radii: Record<string, unknown>) {
     const parsedValue = parseBorderRadius(css, imports, {
       radii,
       borderRadius: BORDER_RADIUS,
-      remSize
+      remSize,
+      outputFormatColors
     });
     css += parsedValue.css;
     if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
@@ -247,12 +258,17 @@ function calcBorderRadius(calcData: CalcData, radii: Record<string, unknown>) {
 }
 
 function calcShadows(calcData: CalcData, shadows: Record<string, unknown>) {
-  const { layoutElement, remSize } = calcData;
+  const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
   const SHADOW = getShadow(layoutElement);
   if (SHADOW) {
-    const parsedValue = parseShadow(css, imports, { shadows, shadow: SHADOW, remSize });
+    const parsedValue = parseShadow(css, imports, {
+      shadows,
+      shadow: SHADOW,
+      remSize,
+      outputFormatColors
+    });
     css += parsedValue.css;
     if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
   }

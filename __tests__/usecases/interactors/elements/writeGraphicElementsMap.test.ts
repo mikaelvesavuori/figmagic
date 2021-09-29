@@ -13,7 +13,7 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should asdasdasdasd', async () => {
+  test('It should write graphics elements map', async () => {
     const FOLDER = '__test-write-graphic-elements-map__';
     const FILE_PATH = `${FOLDER}/index.tsx`;
     const FILE_CONTENTS = `import More from './elements/More';

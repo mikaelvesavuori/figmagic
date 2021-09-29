@@ -59,7 +59,7 @@ const ELEMENT = {
   rectangleCornerRadii: [8, 8, 8, 8]
 };
 
-const PADDING_PARAMS = {
+const PADDING_PARAMS: any = {
   padding: { top: 0, bottom: 0, left: 16, right: 16 },
   spacing: {
     huge: '6rem',
@@ -306,7 +306,7 @@ height: \${spacing.big};`;
 
 const IMPORTS = ['spacing'];
 
-const PARAMS = {
+const PARAMS: any = {
   colors: {
     green3: 'rgba(111, 207, 151, 1)',
     green2: 'rgba(39, 174, 96, 1)',
@@ -327,7 +327,8 @@ const PARAMS = {
     black: 'rgba(51, 51, 51, 1)'
   },
   backgroundColor: 'rgba(47, 128, 237, 1)',
-  remSize: 16
+  remSize: 16,
+  outputFormatColors: 'rgba'
 };
 
 describe('Parse background color', () => {

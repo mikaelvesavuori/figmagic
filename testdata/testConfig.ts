@@ -9,6 +9,7 @@ export const testConfig = {
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
   outputFolderTokens: 'tokens',
+  outputFormatColors: 'rgba',
   outputFormatCss: 'ts',
   outputFormatDescription: 'md',
   outputFormatElements: 'tsx',

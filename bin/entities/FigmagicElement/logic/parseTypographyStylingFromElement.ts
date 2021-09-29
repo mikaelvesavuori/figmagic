@@ -3,6 +3,7 @@ import * as path from 'path';
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { UpdatedCssAndImports } from '../../../contracts/Imports';
 import { TypographyElement } from '../../../contracts/TypographyElement';
+import { OutputFormatColors } from '../../../contracts/Config';
 
 import { getTokenMatch } from './getTokenMatch';
 import { getFileContents } from './getFileContents';
@@ -24,6 +25,7 @@ export function parseTypographyStylingFromElement(
     textElement,
     remSize,
     outputFormatTokens,
+    outputFormatColors,
     letterSpacingUnit,
     outputFolderTokens,
     usePostscriptFontNames
@@ -63,6 +65,7 @@ export function parseTypographyStylingFromElement(
         css,
         imports,
         remSize,
+        outputFormatColors,
         usePostscriptFontNames
       } as CalcDataTypography,
       fontFamilies
@@ -217,11 +220,12 @@ type CalcDataTypography = {
   imports: Record<string, unknown>[];
   remSize: number;
   textElement: Frame;
+  outputFormatColors: OutputFormatColors;
   usePostscriptFontNames: boolean;
 };
 
 function calcFontColor(calcData: CalcDataTypography, colors: any) {
-  const { textElement, remSize, imports } = calcData;
+  const { textElement, remSize, outputFormatColors, imports } = calcData;
   let { css } = calcData;
 
   const FONT_COLOR = getFontColor(textElement);
@@ -231,7 +235,8 @@ function calcFontColor(calcData: CalcDataTypography, colors: any) {
       'colors',
       'color',
       FONT_COLOR,
-      remSize
+      remSize,
+      outputFormatColors
     );
     css += updatedCss;
     updatedImports.forEach((i: any) => imports.push(i));
@@ -241,7 +246,7 @@ function calcFontColor(calcData: CalcDataTypography, colors: any) {
 }
 
 function calcFontSize(calcData: CalcDataTypography, fontSizes: any) {
-  const { textElement, remSize, imports } = calcData;
+  const { textElement, remSize, outputFormatColors, imports } = calcData;
   let { css } = calcData;
 
   const FONT_SIZE: number | null = getFontSize(textElement);
@@ -251,7 +256,8 @@ function calcFontSize(calcData: CalcDataTypography, fontSizes: any) {
       'fontSizes',
       'font-size',
       FONT_SIZE,
-      remSize
+      remSize,
+      outputFormatColors
     );
     css += updatedCss;
     updatedImports.forEach((i: any) => imports.push(i));
@@ -261,7 +267,7 @@ function calcFontSize(calcData: CalcDataTypography, fontSizes: any) {
 }
 
 function calcFontFamily(calcData: CalcDataTypography, fontFamilies: any) {
-  const { textElement, remSize, usePostscriptFontNames, imports } = calcData;
+  const { textElement, remSize, outputFormatColors, usePostscriptFontNames, imports } = calcData;
   let { css } = calcData;
 
   const FONT_FAMILY = getFontFamily(textElement, usePostscriptFontNames);
@@ -271,7 +277,8 @@ function calcFontFamily(calcData: CalcDataTypography, fontFamilies: any) {
       'fontFamilies',
       'font-family',
       FONT_FAMILY,
-      remSize
+      remSize,
+      outputFormatColors
     );
     css += updatedCss;
     updatedImports.forEach((i: any) => imports.push(i));
@@ -281,7 +288,7 @@ function calcFontFamily(calcData: CalcDataTypography, fontFamilies: any) {
 }
 
 function calcFontWeight(calcData: CalcDataTypography, fontWeights: any) {
-  const { textElement, remSize, imports } = calcData;
+  const { textElement, remSize, outputFormatColors, imports } = calcData;
   let { css } = calcData;
 
   const FONT_WEIGHT = getFontWeight(textElement);
@@ -291,7 +298,8 @@ function calcFontWeight(calcData: CalcDataTypography, fontWeights: any) {
       'fontWeights',
       'font-weight',
       FONT_WEIGHT,
-      remSize
+      remSize,
+      outputFormatColors
     );
     css += updatedCss;
     updatedImports.forEach((i: any) => imports.push(i));
@@ -301,7 +309,7 @@ function calcFontWeight(calcData: CalcDataTypography, fontWeights: any) {
 }
 
 function calcFontLineHeight(calcData: CalcDataTypography, lineHeights: any) {
-  const { textElement, remSize, imports } = calcData;
+  const { textElement, remSize, outputFormatColors, imports } = calcData;
   let { css } = calcData;
 
   const FONT_LINE_HEIGHT = getFontLineHeight(textElement);
@@ -311,7 +319,8 @@ function calcFontLineHeight(calcData: CalcDataTypography, lineHeights: any) {
       'lineHeights',
       'line-height',
       FONT_LINE_HEIGHT,
-      remSize
+      remSize,
+      outputFormatColors
     );
     css += updatedCss;
     updatedImports.forEach((i: any) => imports.push(i));
@@ -326,7 +335,7 @@ function calcLetterSpacing(
   letterSpacingUnit: string,
   fontSize: number | null
 ) {
-  const { textElement, remSize, imports } = calcData;
+  const { textElement, remSize, outputFormatColors, imports } = calcData;
   let { css } = calcData;
 
   const LETTER_SPACING: number | null = getFontLetterSpacing(textElement);
@@ -339,7 +348,8 @@ function calcLetterSpacing(
       'letterSpacings',
       'letter-spacing',
       SIZE_STRING,
-      remSize
+      remSize,
+      outputFormatColors
     );
     css += updatedCss;
     updatedImports.forEach((i: any) => imports.push(i));

@@ -1,4 +1,5 @@
 import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
+import { OutputFormatColors } from '../../../../contracts/Config';
 
 import { getTokenMatch } from '../getTokenMatch';
 import { updateParsing } from './updateParsing';
@@ -9,6 +10,7 @@ type BorderColorParams = {
   colors: Record<string, unknown>;
   borderColor: string;
   remSize: number;
+  outputFormatColors: OutputFormatColors;
 };
 
 export function parseBorderColor(
@@ -19,14 +21,15 @@ export function parseBorderColor(
   try {
     if (!css || !imports || !params) throw Error(ErrorParseBorderColor);
 
-    const { colors, borderColor, remSize } = params;
+    const { colors, borderColor, remSize, outputFormatColors } = params;
 
     const { updatedCss, updatedImports } = getTokenMatch(
       colors,
       'colors',
       'border-color',
       borderColor,
-      remSize
+      remSize,
+      outputFormatColors
     );
 
     return updateParsing(css, updatedCss, imports, updatedImports);

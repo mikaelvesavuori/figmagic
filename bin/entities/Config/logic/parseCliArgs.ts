@@ -47,6 +47,9 @@ export function parseCliArgs(argsArray: string[]): Config {
     '-graphics': (val: string) => setConfigValue('outputFolderGraphics', val),
     '--outputFolderTokens': (val: string) => setConfigValue('outputFolderTokens', val),
     '-tokens': (val: string) => setConfigValue('outputFolderTokens', val),
+    '--outputFormatColors': (val: string) =>
+      setConfigValue('outputFormatColors', val.toLowerCase()),
+    '-fcol': (val: string) => setConfigValue('outputFormatColors', val.toLowerCase()),
     '--outputFormatCss': (val: string) => setConfigValue('outputFormatCss', val.toLowerCase()),
     '-fc': (val: string) => setConfigValue('outputFormatCss', val.toLowerCase()),
     '--outputFormatDesc': (val: string) =>

@@ -11,6 +11,7 @@ export const baseConfig: Config = {
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
   outputFolderTokens: 'tokens',
+  outputFormatColors: 'rgba',
   outputFormatCss: 'ts',
   outputFormatDescription: 'md',
   outputFormatElements: 'tsx',

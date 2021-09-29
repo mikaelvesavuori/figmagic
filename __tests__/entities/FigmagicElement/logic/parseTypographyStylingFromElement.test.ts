@@ -16,6 +16,7 @@ const makeTypographyElement = (textElement: any): TypographyElement => {
     textElement,
     remSize: 16,
     outputFormatTokens: 'mjs',
+    outputFormatColors: 'rgba',
     letterSpacingUnit: 'em',
     outputFolderTokens: 'tokens',
     usePostscriptFontNames: false

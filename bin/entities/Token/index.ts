@@ -74,10 +74,11 @@ class Token {
   };
 
   private getTokens = (frame: Frame, name: string, config: Config): any => {
+    const { outputFormatColors } = config;
     const tokenOperations = {
       borderwidths: () => makeBorderWidthTokens(frame),
-      color: () => makeColorTokens(frame),
-      colors: () => makeColorTokens(frame),
+      color: () => makeColorTokens(frame, outputFormatColors),
+      colors: () => makeColorTokens(frame, outputFormatColors),
       delays: () => makeDelayTokens(frame),
       durations: () => makeDurationTokens(frame),
       easings: () => makeEasingTokens(frame),

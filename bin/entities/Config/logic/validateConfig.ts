@@ -10,6 +10,7 @@ import {
   ErrorValidateConfigLineHeightUnit,
   ErrorValidateConfigOpacitiesUnit,
   ErrorValidateConfigOutputDataTypeToken,
+  ErrorValidateConfigOutputFormatColors,
   ErrorValidateConfigOutputFormatCss,
   ErrorValidateConfigOutputFormatDesc,
   ErrorValidateConfigOutputFormatElements,
@@ -37,6 +38,7 @@ export function validateConfig(config: Config): boolean {
     validateLetterSpacingUnit(config.letterSpacingUnit);
     validateOpacitiesUnit(config.opacitiesUnit);
     validateOutputDataTypeToken(config.outputDataTypeToken);
+    validateOutputFormatColors(config.outputFormatColors);
     validateOutputFormatCss(config.outputFormatCss);
     validateOutputFormatDesc(config.outputFormatDescription);
     validateOutputFormatElements(config.outputFormatElements);
@@ -61,6 +63,7 @@ import {
   validLetterSpacingUnitList,
   validLineHeightUnitList,
   validOpacitiesUnitList,
+  validOutputFormatColors,
   validOutputFormatCssList,
   validOutputFormatDescList,
   validOutputFormatElementsList,
@@ -99,6 +102,11 @@ const validateFileName = (filename: string): boolean => {
 const validateFolderName = (filename: string): boolean => {
   if (filename) return true;
   throw Error(ErrorValidateConfigFolderName);
+};
+
+const validateOutputFormatColors = (format: string): boolean => {
+  if (validOutputFormatColors.includes(format)) return true;
+  throw Error(ErrorValidateConfigOutputFormatColors);
 };
 
 const validateOutputFormatCss = (format: string): boolean => {

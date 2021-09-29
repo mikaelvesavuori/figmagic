@@ -1,4 +1,5 @@
 import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
+import { OutputFormatColors } from '../../../../contracts/Config';
 
 import { getTokenMatch } from '../getTokenMatch';
 import { updateParsing } from './updateParsing';
@@ -9,6 +10,7 @@ type BackgroundColorParams = {
   colors: Record<string, unknown>;
   backgroundColor: string;
   remSize: number;
+  outputFormatColors: OutputFormatColors;
 };
 
 export function parseBackgroundColor(
@@ -19,7 +21,7 @@ export function parseBackgroundColor(
   try {
     if (!css || !imports || !params) throw Error(ErrorParseBackgroundColor);
 
-    const { colors, backgroundColor, remSize } = params;
+    const { colors, backgroundColor, remSize, outputFormatColors } = params;
 
     const PROPERTY = backgroundColor.includes('gradient') ? 'background' : 'background-color';
 
@@ -28,7 +30,8 @@ export function parseBackgroundColor(
       'colors',
       PROPERTY,
       backgroundColor,
-      remSize
+      remSize,
+      outputFormatColors
     );
 
     return updateParsing(css, updatedCss, imports, updatedImports);

@@ -3,6 +3,7 @@ export const validLetterSpacingUnitList = ['em', 'px'];
 export const validLineHeightUnitList = ['unitless', 'em', 'px', 'rem'];
 export const validOpacitiesUnitList = ['float', 'percent'];
 export const validOutputDataTypeTokenList = ['enum', 'null', null, undefined];
+export const validOutputFormatColors = ['hex', 'rgba'];
 export const validOutputFormatCssList = ['ts', 'mjs', 'js'];
 export const validOutputFormatDescList = ['md', 'txt'];
 export const validOutputFormatElementsList = ['tsx', 'jsx', 'mjs', 'js'];

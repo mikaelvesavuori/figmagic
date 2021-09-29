@@ -335,6 +335,7 @@
   &quot;outputFolderElements&quot;: &quot;elements&quot;,
   &quot;outputFolderGraphics&quot;: &quot;graphics&quot;,
   &quot;outputFolderTokens&quot;: &quot;tokens&quot;,
+  &quot;outputFormatColors&quot;: &quot;rgba&quot;,
   &quot;outputFormatCss&quot;: &quot;ts&quot;,
   &quot;outputFormatDescription&quot;: &quot;md&quot;,
   &quot;outputFormatElements&quot;: &quot;tsx&quot;,
@@ -445,6 +446,15 @@
 				</a>
 				<p><code>figmagic [--outputFolderTokens | -tokens] [folder]</code></p>
 				<p><strong>Default</strong>: <code>tokens</code>.</p>
+				<hr>
+				<a href="#switch-color-format" id="switch-color-format" style="color: inherit; text-decoration: none;">
+					<h4>Switch color format</h4>
+				</a>
+				<p><code>figmagic [--outputFormatColors | -fcol] [hex|rgba]</code></p>
+				<p><strong>Default</strong>: <code>rgba</code>.</p>
+				<p>This only applies to solid colors; gradients will still use RGBA colors.</p>
+				<p>Hex color support may potentially interfere with element generation and binding to tokens, since RGB(A) is the format that Figma itself uses, so there is a slight possibility of mismatches in the Figmagic binding process.</p>
+				<p><em>Note that hex colors will not use any alpha/transparency!</em></p>
 				<hr>
 				<a href="#switch-css-file-format" id="switch-css-file-format" style="color: inherit; text-decoration: none;">
 					<h4>Switch CSS file format</h4>

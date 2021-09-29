@@ -226,6 +226,7 @@ class FigmagicElement {
           remSize: this.config.remSize,
           usePostscriptFontNames: this.config.usePostscriptFontNames,
           outputFormatTokens: this.config.outputFormatTokens,
+          outputFormatColors: this.config.outputFormatColors,
           letterSpacingUnit: this.config.letterSpacingUnit,
           outputFolderTokens: this.config.outputFolderTokens
         } as TypographyElement);
@@ -298,6 +299,7 @@ class FigmagicElement {
         remSize: config.remSize,
         usePostscriptFontNames: config.usePostscriptFontNames,
         outputFormatTokens: config.outputFormatTokens,
+        outputFormatColors: config.outputFormatColors,
         letterSpacingUnit: config.letterSpacingUnit,
         outputFolderTokens: config.outputFolderTokens
       } as TypographyElement);

@@ -1,4 +1,5 @@
 import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
+import { OutputFormatColors } from '../../../../contracts/Config';
 
 import { getTokenMatch } from '../getTokenMatch';
 import { updateParsing } from './updateParsing';
@@ -9,6 +10,7 @@ type BorderRadiusParams = {
   radii: Record<string, unknown>;
   borderRadius: string;
   remSize: number;
+  outputFormatColors: OutputFormatColors;
 };
 
 export function parseBorderRadius(
@@ -19,14 +21,15 @@ export function parseBorderRadius(
   try {
     if (!css || !imports || !params) throw Error(ErrorParseBorderRadius);
 
-    const { radii, borderRadius, remSize } = params;
+    const { radii, borderRadius, remSize, outputFormatColors } = params;
 
     const { updatedCss, updatedImports } = getTokenMatch(
       radii,
       'radii',
       'border-radius',
       borderRadius,
-      remSize
+      remSize,
+      outputFormatColors
     );
 
     return updateParsing(css, updatedCss, imports, updatedImports);

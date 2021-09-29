@@ -1,4 +1,5 @@
 import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
+import { OutputFormatColors } from '../../../../contracts/Config';
 
 import { getTokenMatch } from '../getTokenMatch';
 import { updateParsing } from './updateParsing';
@@ -9,6 +10,7 @@ type ShadowParams = {
   shadows: Record<string, unknown>;
   shadow: string;
   remSize: number;
+  outputFormatColors: OutputFormatColors;
 };
 
 export function parseShadow(
@@ -19,14 +21,15 @@ export function parseShadow(
   try {
     if (!css || !imports || !params) throw Error(ErrorParseShadow);
 
-    const { shadows, shadow, remSize } = params;
+    const { shadows, shadow, remSize, outputFormatColors } = params;
 
     const { updatedCss, updatedImports } = getTokenMatch(
       shadows,
       'shadows',
       'box-shadow',
       shadow,
-      remSize
+      remSize,
+      outputFormatColors
     );
 
     return updateParsing(css, updatedCss, imports, updatedImports);

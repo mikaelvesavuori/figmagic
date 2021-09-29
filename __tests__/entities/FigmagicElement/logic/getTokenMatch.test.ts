@@ -17,7 +17,8 @@ describe('Success cases', () => {
         'borderWidths',
         'border-width',
         '1px',
-        16
+        16,
+        'rgba'
       )
     ).toEqual(
       expect.objectContaining({
@@ -41,7 +42,8 @@ describe('Success cases', () => {
         'spacing',
         'padding',
         { top: 16, bottom: 16, left: 16, right: 16 },
-        16
+        16,
+        'rgba'
       )
     ).toEqual(expect.objectContaining({}));
   });
@@ -71,7 +73,8 @@ describe('Success cases', () => {
         'colors',
         'background-color',
         `rgba(47, 128, 237, 1)`,
-        16
+        16,
+        'rgba'
       )
     ).toEqual(expect.objectContaining({}));
   });

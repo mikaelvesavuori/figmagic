@@ -19,8 +19,8 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should return a complete object when passing in valid input (using opacity)', () => {
-    expect(makeColorTokens(colorFrameOpacity)).toEqual(
+  test('It should return a complete object when passing in valid input (using opacity) and using RGBA colors', () => {
+    expect(makeColorTokens(colorFrameOpacity, 'rgba')).toEqual(
       expect.objectContaining({
         black: 'rgba(51, 51, 51, 1)',
         blue1: 'rgba(47, 128, 237, 1)',
@@ -43,8 +43,8 @@ describe('Success cases', () => {
     );
   });
 
-  test('It should return a complete object when passing in valid input (using alpha channel)', () => {
-    expect(makeColorTokens(colorFrame)).toEqual(
+  test('It should return a complete object when passing in valid input (using alpha channel) and using RGBA colors', () => {
+    expect(makeColorTokens(colorFrame, 'rgba')).toEqual(
       expect.objectContaining({
         black: 'rgba(51, 51, 51, 1)',
         blue1: 'rgba(47, 128, 237, 1)',
@@ -63,6 +63,54 @@ describe('Success cases', () => {
         red: 'rgba(235, 87, 87, 1)',
         white: 'rgba(255, 255, 255, 1)',
         yellow: 'rgba(242, 201, 76, 1)'
+      })
+    );
+  });
+
+  test('It should return a complete object when passing in valid input (using opacity) and using HEX colors', () => {
+    expect(makeColorTokens(colorFrameOpacity, 'hex')).toEqual(
+      expect.objectContaining({
+        black: '#333333',
+        blue1: '#2f80ed',
+        blue2: '#2d9cdb',
+        blue3: '#56ccf2',
+        gray1: '#4f4f4f',
+        gray2: '#828282',
+        gray3: '#bdbdbd',
+        gray4: '#e0e0e0',
+        gray5: '#f2f2f2',
+        green1: '#219653',
+        green2: '#27ae60',
+        green3: '#a1dfbb',
+        neon: '#e4ffc1',
+        orange: '#f2994a',
+        red: '#eb5757',
+        white: '#ffffff',
+        yellow: '#f2c94c'
+      })
+    );
+  });
+
+  test('It should return a complete object when passing in valid input (using alpha channel) and using HEX colors', () => {
+    expect(makeColorTokens(colorFrame, 'hex')).toEqual(
+      expect.objectContaining({
+        black: '#333333',
+        blue1: '#2f80ed',
+        blue2: '#2d9cdb',
+        blue3: '#56ccf2',
+        gray1: '#4f4f4f',
+        gray2: '#828282',
+        gray3: '#bdbdbd',
+        gray4: '#e0e0e0',
+        gray5: '#f2f2f2',
+        green1: '#219653',
+        green2: '#27ae60',
+        green3: '#a1dfbb',
+        neon: '#e4ffc1',
+        orange: '#f2994a',
+        red: '#eb5757',
+        white: '#ffffff',
+        yellow: '#f2c94c'
       })
     );
   });

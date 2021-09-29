@@ -10,7 +10,7 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should asdf', () => {
+  test('It should get alpha in percent', () => {
     expect(getAlphaInPercent('rgba(123,52,21,0.51)')).toBe('51%');
   });
 });

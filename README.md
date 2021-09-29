@@ -315,6 +315,7 @@ Below is a complete set of what you can configure, together with the defaults.
   "outputFolderElements": "elements",
   "outputFolderGraphics": "graphics",
   "outputFolderTokens": "tokens",
+  "outputFormatColors": "rgba",
   "outputFormatCss": "ts",
   "outputFormatDescription": "md",
   "outputFormatElements": "tsx",
@@ -445,6 +446,20 @@ Run these in your command line environment of choice.
 `figmagic [--outputFolderTokens | -tokens] [folder]`
 
 **Default**: `tokens`.
+
+---
+
+#### Switch color format
+
+`figmagic [--outputFormatColors | -fcol] [hex|rgba]`
+
+**Default**: `rgba`.
+
+This only applies to solid colors; gradients will still use RGBA colors.
+
+Hex color support may potentially interfere with element generation and binding to tokens, since RGB(A) is the format that Figma itself uses, so there is a slight possibility of mismatches in the Figmagic binding process.
+
+_Note that hex colors will not use any alpha/transparency!_
 
 ---
 

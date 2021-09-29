@@ -1,6 +1,7 @@
 import { Tokens } from '../../../contracts/Tokens';
 import { Imports } from '../../../contracts/Imports';
 import { TokenMatch } from '../../../contracts/TokenMatch';
+import { OutputFormatColors } from '../../../contracts/Config';
 
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 import { convertRgbaToHex } from '../../../frameworks/string/convertRgbaToHex';
@@ -8,13 +9,15 @@ import { getAlphaInPercent } from '../../../frameworks/string/getAlphaInPercent'
 
 import { MsgGetTokenMatchNoMatch } from '../../../frameworks/messages/messages';
 import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../../frameworks/errors/errors';
+import { convertHexToRgba } from '../../../frameworks/string/convertHexToRgba';
 
 export function getTokenMatch(
   tokens: Tokens | any,
   tokenFileName: string,
   property: string,
   expectedValue: string | number | Record<string, unknown>,
-  remSize: number
+  remSize: number,
+  outputFormatColors?: OutputFormatColors
 ): TokenMatch {
   try {
     if (!tokenFileName || !property || !expectedValue) throw Error(ErrorGetTokenMatch);
@@ -40,6 +43,7 @@ export function getTokenMatch(
       const OTHER_MATCH: any = matchOther(
         expectedValue,
         remSize,
+        outputFormatColors || 'rgba',
         tokens,
         tokenFileName,
         property,
@@ -107,6 +111,7 @@ function matchPadding(
 function matchOther(
   expectedValue: string | number | Record<string, unknown>,
   remSize: number,
+  outputFormatColors: OutputFormatColors,
   tokens: Tokens,
   tokenFileName: string,
   property: string,
@@ -117,7 +122,7 @@ function matchOther(
     let foundMatch = false;
 
     Object.entries(tokens).forEach((token) => {
-      const TOKEN_VALUE = (() => {
+      const TOKEN_VALUE: any = (() => {
         if (typeof token[1] === 'number') return token[1];
         return token[1];
       })();
@@ -126,16 +131,21 @@ function matchOther(
       const VALUE_THROUGH_REM = (() => {
         if (TOKEN_VALUE && typeof TOKEN_VALUE === 'string') {
           if (property === 'letter-spacing') return TOKEN_VALUE;
-          if (TOKEN_VALUE.match('rem') || TOKEN_VALUE.match('em')) {
+          if (TOKEN_VALUE.match('rem') || TOKEN_VALUE.match('em'))
             return parseFloat(TOKEN_VALUE) * remSize;
-          }
         }
         return null;
       })();
 
-      const IS_TOKEN_MATCH = VALUE_THROUGH_REM
-        ? VALUE_THROUGH_REM === expectedValue
-        : TOKEN_VALUE == expectedValue;
+      const IS_TOKEN_MATCH = (() => {
+        // We need to make a special check if color is using hex format
+        if (property.includes('color') && TOKEN_VALUE[0] === '#')
+          return convertHexToRgba(TOKEN_VALUE as string) === expectedValue;
+
+        return VALUE_THROUGH_REM
+          ? VALUE_THROUGH_REM === expectedValue
+          : TOKEN_VALUE == expectedValue;
+      })();
 
       if (IS_TOKEN_MATCH) {
         css += `${property}: \${${tokenFileName}.${token[0]}};\n`;
@@ -149,7 +159,7 @@ function matchOther(
       let notFoundMessage = `${MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`;
 
       // Handle colors since these need more verbose output
-      if (property === 'color' || property === 'background-color')
+      if (property.includes('color'))
         notFoundMessage += ` (HEX: ${convertRgbaToHex(
           expectedValue as string
         )}, ${getAlphaInPercent(expectedValue as string)})`;
@@ -160,8 +170,12 @@ function matchOther(
         expectedValue += `px`;
       }
 
+      const useHex = outputFormatColors && outputFormatColors === 'hex';
+
       console.log(notFoundMessage);
-      css += `${property}: ${expectedValue};\n`;
+      css += `${property}: ${
+        useHex ? convertRgbaToHex(expectedValue as string) : expectedValue
+      };\n`;
     }
 
     return { css, imports };

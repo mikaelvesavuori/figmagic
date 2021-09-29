@@ -3,6 +3,7 @@ export declare const validLetterSpacingUnitList: string[];
 export declare const validLineHeightUnitList: string[];
 export declare const validOpacitiesUnitList: string[];
 export declare const validOutputDataTypeTokenList: (string | null | undefined)[];
+export declare const validOutputFormatColors: string[];
 export declare const validOutputFormatCssList: string[];
 export declare const validOutputFormatDescList: string[];
 export declare const validOutputFormatElementsList: string[];

@@ -149,6 +149,7 @@ export declare const ErrorValidateConfigLetterSpacingUnit: string;
 export declare const ErrorValidateConfigLineHeightUnit: string;
 export declare const ErrorValidateConfigOpacitiesUnit: string;
 export declare const ErrorValidateConfigOutputDataTypeToken: string;
+export declare const ErrorValidateConfigOutputFormatColors: string;
 export declare const ErrorValidateConfigOutputFormatCss: string;
 export declare const ErrorValidateConfigOutputFormatDesc: string;
 export declare const ErrorValidateConfigOutputFormatElements: string;

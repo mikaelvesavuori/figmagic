@@ -10,6 +10,7 @@ import {
   ErrorValidateConfigLineHeightUnit,
   ErrorValidateConfigOpacitiesUnit,
   ErrorValidateConfigOutputDataTypeToken,
+  ErrorValidateConfigOutputFormatColors,
   ErrorValidateConfigOutputFormatCss,
   ErrorValidateConfigOutputFormatElements,
   ErrorValidateConfigOutputFormatGraphics,
@@ -84,6 +85,14 @@ describe('Failure cases', () => {
 
     // @ts-ignore
     expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigFolderName);
+  });
+
+  test('It should invalidate a configuration when given invalid output format for colors', () => {
+    const TEST_CONFIG = { ...testConfig };
+    TEST_CONFIG.outputFormatColors = 'xxxxx';
+
+    // @ts-ignore
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigOutputFormatColors);
   });
 
   test('It should invalidate a configuration when given invalid output format for CSS', () => {

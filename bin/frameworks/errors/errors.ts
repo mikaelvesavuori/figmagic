@@ -19,7 +19,7 @@ export const ErrorCleanArrays = ErrorMessage(
 );
 export const ErrorCleanSvgData = ErrorMessage('No data passed to cleanSvgData()!');
 export const ErrorConvertHexToRgba = ErrorMessage(
-  'Missing one or more of red, green, blue and alpha in convertHexToRgba()!'
+  'Missing six-digit hex color string (such as "#33ff00") in convertHexToRgba()!'
 );
 export const ErrorConvertRgbaToHex = ErrorMessage(
   'Missing color value (as string, like "rgba(123,123,123,0.05) when calling convertRgbaToHex()!'
@@ -337,6 +337,9 @@ export const ErrorValidateConfigOpacitiesUnit = ErrorMessage(
 );
 export const ErrorValidateConfigOutputDataTypeToken = ErrorMessage(
   'Received unrecognized "outputDataTypeToken" arguments, it must be null (default), or "enum".'
+);
+export const ErrorValidateConfigOutputFormatColors = ErrorMessage(
+  'Received unrecognized "outputFormatColors" arguments, it must be "rgba" (default) or "hex".'
 );
 export const ErrorValidateConfigOutputFormatCss = ErrorMessage(
   'Received unrecognized "outputFormatCss" arguments, it must be "ts" (default), "mjs" or "js".'

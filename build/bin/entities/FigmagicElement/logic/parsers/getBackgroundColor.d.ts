@@ -1,2 +1,3 @@
 import { FRAME as Frame } from '../../../../contracts/Figma';
-export declare function getBackgroundColor(element: Frame): string | null;
+import { OutputFormatColors } from '../../../../contracts/Config';
+export declare function getBackgroundColor(element: Frame, outputFormatColors: OutputFormatColors): string | null;
