@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Peeja",
+      "name": "Petra Jaros",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2407?v=4",
+      "profile": "http://peeja.com/",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "figmagic",
+  "projectOwner": "mikaelvesavuori",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
