@@ -1,9 +1,8 @@
 import fs from 'fs';
 import https from 'https';
 
-//import { request } from './request';
+import { createMissingFoldersFromPath } from '../filesystem/createMissingFoldersFromPath';
 
-//import { MsgDownloadFileWritingFile } from '../messages/messages';
 import { ErrorDownloadFile } from '../errors/errors';
 
 /**
@@ -17,6 +16,7 @@ export async function downloadFile(url: string, filePath: string): Promise<void>
       const req = https.get(url, (resp) => {
         // @ts-ignore
         if (resp.statusCode >= 200 && resp.statusCode < 300) {
+          createMissingFoldersFromPath(filePath);
           resp.pipe(fs.createWriteStream(filePath));
           resolve();
         } else reject(null);

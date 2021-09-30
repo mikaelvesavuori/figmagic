@@ -11,6 +11,7 @@ export declare const ErrorCreateCssString: string;
 export declare const ErrorCreateElements: string;
 export declare const ErrorCreateEnumStringOutOfObject: string;
 export declare const ErrorCreateFolder: string;
+export declare const ErrorCreateMissingFoldersFromPath: string;
 export declare const ErrorCreateGraphics: string;
 export declare const ErrorCreateImportStringFromList: string;
 export declare const ErrorCreateImportStringFromListZeroLength: string;

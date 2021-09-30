@@ -2,7 +2,6 @@ import { Config } from '../../../contracts/Config';
 import { FigmagicElement } from '../../../contracts/FigmagicElement';
 import { WriteOperation } from '../../../contracts/Write';
 
-import { toPascalCase } from '../../../frameworks/string/toPascalCase';
 import { writeFile } from '../../../frameworks/filesystem/writeFile';
 import { checkIfExists } from '../../../frameworks/filesystem/checkIfExists';
 import { getSvgFileData } from '../../../frameworks/filesystem/getSvgFileData';
@@ -66,17 +65,21 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
   const html = element.html || ' ';
   const css = element.css || ' ';
   const description = element.description || ' ';
-  const name = toPascalCase(element.name);
-  const folder = `${config.outputFolderElements}/${name}`;
-  const outputFormatCss = config.outputFormatCss;
-  const outputFormatDescription = config.outputFormatDescription;
-  const outputFormatElements = config.outputFormatElements;
-  const outputFormatStorybook = config.outputFormatStorybook;
-  const outputFolderElements = config.outputFolderElements;
-  const outputFolderGraphics = config.outputFolderGraphics;
-  const outputFolderTokens = config.outputFolderTokens;
-  const overwrite = config.overwrite;
-  const tokensRelativeImportPrefix = config.tokensRelativeImportPrefix;
+  const name = element.name.replace(/\s/g, '');
+  const folder = name.includes('/')
+    ? config.outputFolderElements
+    : `${config.outputFolderElements}/${name}`;
+  const {
+    outputFormatCss,
+    outputFormatDescription,
+    outputFormatElements,
+    outputFormatStorybook,
+    outputFolderElements,
+    outputFolderGraphics,
+    outputFolderTokens,
+    overwrite,
+    tokensRelativeImportPrefix
+  } = config;
 
   const metadata = {
     dataType: null,
@@ -89,7 +92,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
 
   const templates = config.templates;
   const forceUpdate = config.skipFileGeneration.forceUpdate;
-  const fixedName = name.replace(/\//gi, '');
+  const fixedName = name.trim().replace(/\s/g, '');
 
   return {
     html,
@@ -129,7 +132,7 @@ const writeFileHelper = (
   if (!fileExists || shouldOverwrite || forceUpdate) {
     const FILE_DATA = (() => {
       if (type === 'graphic') {
-        const SVG_DATA = getSvgFileData(`${config.outputFolderGraphics}/${config.name}.svg`);
+        const SVG_DATA = getSvgFileData(`${config.outputFolderGraphics}/${config.fixedName}.svg`);
         return cleanSvgData(SVG_DATA);
       }
       if (type === 'description') return config.description;
@@ -137,18 +140,29 @@ const writeFileHelper = (
       return config.html;
     })();
 
+    const {
+      folder,
+      fixedName,
+      outputFolderElements,
+      outputFolderGraphics,
+      outputFolderTokens,
+      tokensRelativeImportPrefix,
+      metadata,
+      templates
+    } = config;
+
     writeFile({
       type,
       file: FILE_DATA,
-      path: config.folder,
-      name: config.fixedName,
+      path: folder,
+      name: fixedName,
       format,
-      outputFolderElements: config.outputFolderElements,
-      outputFolderGraphics: config.outputFolderGraphics,
-      outputFolderTokens: config.outputFolderTokens,
-      tokensRelativeImportPrefix: config.tokensRelativeImportPrefix,
-      metadata: config.metadata,
-      templates: config.templates
+      outputFolderElements,
+      outputFolderGraphics,
+      outputFolderTokens,
+      tokensRelativeImportPrefix,
+      metadata,
+      templates
     } as WriteOperation);
   }
 };

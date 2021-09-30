@@ -11,13 +11,17 @@ export function processGraphicElementsMap(graphics: any[]): any {
 
     let imports = '';
     graphics.forEach((graphic: Graphic) => {
-      imports += `import ${graphic.name} from './${graphic.config.outputFolderElements}/${graphic.name}';\n`;
+      const graphicName = getFixedGraphicName(graphic.name);
+      imports += `import ${graphicName} from './${
+        graphic.config.outputFolderElements
+      }/${graphic.name.replace(/\s/g, '')}';\n`;
     });
     imports += '\n';
 
     let exports = '';
     graphics.forEach((graphic: Graphic) => {
-      exports += `  ${graphic.name},\n`;
+      const graphicName = getFixedGraphicName(graphic.name);
+      exports += `  ${graphicName},\n`;
     });
 
     return imports + `export const Graphics = {\n${exports}};\n`;
@@ -25,3 +29,7 @@ export function processGraphicElementsMap(graphics: any[]): any {
     throw Error(error);
   }
 }
+
+// Get and use last part of name
+const getFixedGraphicName = (name: any) =>
+  name.split('/')[name.split('/').length - 1].trim().replace(/\s/g, '');

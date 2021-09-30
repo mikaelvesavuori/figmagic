@@ -31,7 +31,7 @@ export function prepareWrite(writeOperation: WriteOperation): any {
       type,
       file,
       path,
-      name: name.replace('/ /g', ''),
+      name: name.replace(/\s/g, ''),
       format,
       text: getText(metadata),
       element: getElement(metadata),

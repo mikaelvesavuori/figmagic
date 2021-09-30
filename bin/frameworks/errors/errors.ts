@@ -35,6 +35,9 @@ export const ErrorCreateEnumStringOutOfObject = ErrorMessage(
   'No object provided to createEnumStringOutOfObject()!'
 );
 export const ErrorCreateFolder = ErrorMessage('No directory specified for createFolder()!');
+export const ErrorCreateMissingFoldersFromPath = ErrorMessage(
+  'No directory specified for createMissingFoldersFromPath()!'
+);
 export const ErrorCreateGraphics = ErrorMessage('Missing arguments provided to createGraphics()!');
 export const ErrorCreateImportStringFromList = ErrorMessage(
   'No "importArray" provided to createImportStringFromList()!'

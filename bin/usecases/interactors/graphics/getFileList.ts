@@ -1,7 +1,6 @@
 import { FileList } from '../../../contracts/FileList';
 import { ImageResponse } from '../../../contracts/ImageResponse';
 
-import { camelize } from '../../../frameworks/string/camelize';
 import { ErrorGetFileList } from '../../../frameworks/errors/errors';
 
 /**
@@ -16,9 +15,10 @@ export const getFileList = (
 
   return Object.entries(imageResponse.images).map((image) => {
     const MATCH = ids.filter((id) => id.id === image[0]);
+    const FILE_PATH = MATCH[0].name.trim().replace(/ /g, '') + `.${outputFormatGraphics}`;
     return {
       url: image[1],
-      file: `${camelize(MATCH[0].name)}.${outputFormatGraphics}`
+      file: FILE_PATH
     } as FileList;
   });
 };

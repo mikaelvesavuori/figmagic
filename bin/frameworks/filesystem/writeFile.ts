@@ -1,6 +1,7 @@
 import { WriteOperation } from '../../contracts/Write';
 
 import { createFolder } from './createFolder';
+import { createMissingFoldersFromPath } from './createMissingFoldersFromPath';
 import { prepareWrite } from './prepareWrite';
 import { write } from './write';
 
@@ -30,16 +31,21 @@ export function writeFile(writeOperation: WriteOperation): void {
     if (!file || !path || !name || !type) throw Error(ErrorWriteFile);
 
     const TYPE: any = typeof type === 'string' ? type.toLowerCase() : 'null';
-
     if (!acceptedFileTypes.includes(TYPE)) throw Error(ErrorWriteFileWrongType);
 
-    createFolder(path);
+    // Create required directory/folder structure
+    const fixedPath =
+      name.split('/').length > 1 || type === 'component' || type === 'graphic'
+        ? `${path.split('/')[0]}/${name}/`
+        : path;
+    if (type === 'component' || type === 'graphic') createMissingFoldersFromPath(fixedPath);
+    else createFolder(path);
 
     const prepareWriteOperation: WriteOperation = {
       type: TYPE,
       file,
-      path,
-      name,
+      path: fixedPath,
+      name: name.split('/')[name.split('/').length - 1],
       format,
       outputFolderTokens,
       overwrite,
