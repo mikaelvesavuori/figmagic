@@ -933,6 +933,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://muffinman.io/"><img src="https://avatars.githubusercontent.com/u/776788?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stanko Tadić</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Stanko" title="Code">💻</a></td>
+    <td align="center"><a href="https://floschild.me"><img src="https://avatars.githubusercontent.com/u/1577155?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Florent SCHILDKNECHT</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=flo-sch" title="Code">💻</a></td>
   </tr>
 </table>
 
