@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "opauloh",
+      "name": "Paulo Henrique",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19270322?v=4",
+      "profile": "https://www.linkedin.com/in/paulohenriquesilva/",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "figmagic",
+  "projectOwner": "mikaelvesavuori",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
