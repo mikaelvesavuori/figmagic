@@ -1,6 +1,9 @@
 ![Figmagic cover art](images/cover.png)
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # Figmagic
@@ -901,12 +904,6 @@ This is how [Arkit](https://arkit.pro) models Figmagic and its source code struc
 
 ![Arkit code structure diagram](images/arkit.svg)
 
-## Contribution
-
-### Want to add or rethink something in Figmagic?
-
-You are welcome to contribute to the project! Pull requests, as well as issues or plain messages, work fine. For pull requests, please refer to the contribution guidelines in [`CONTRIBUTING.md`](CONTRIBUTING.md).
-
 ## License
 
 Figmagic is licensed under the [MIT License](https://opensource.org/licenses/MIT).
@@ -923,6 +920,12 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
+## Contribution
+
+### Want to add or rethink something in Figmagic?
+
+You are welcome to contribute to the project! Pull requests, as well as issues or plain messages, work fine. For pull requests, please refer to the contribution guidelines in [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -933,6 +936,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://floschild.me"><img src="https://avatars.githubusercontent.com/u/1577155?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Florent SCHILDKNECHT</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=flo-sch" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/paulohenriquesilva/"><img src="https://avatars.githubusercontent.com/u/19270322?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Paulo Henrique</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=opauloh" title="Code">💻</a></td>
+    <td align="center"><a href="http://peeja.com/"><img src="https://avatars.githubusercontent.com/u/2407?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Petra Jaros</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Peeja" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/markomarkom"><img src="https://avatars.githubusercontent.com/u/13104250?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marko Marković</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=markomarkom" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mykhailoInnovecs"><img src="https://avatars.githubusercontent.com/u/58974597?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mykhailoInnovecs</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=mykhailoInnovecs" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.haikuforteams.com/"><img src="https://avatars.githubusercontent.com/u/2100885?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Zack Brown</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=zackbrown" title="Code">💻</a></td>
+    <td align="center"><a href="https://muffinman.io/"><img src="https://avatars.githubusercontent.com/u/776788?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stanko Tadić</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Stanko" title="Code">💻</a></td>
   </tr>
 </table>
 
