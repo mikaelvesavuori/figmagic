@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "markomarkom",
+      "name": "Marko Marković",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13104250?v=4",
+      "profile": "https://github.com/markomarkom",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "figmagic",
+  "projectOwner": "mikaelvesavuori",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
