@@ -13,6 +13,60 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "zackbrown",
+      "name": "Zack Brown",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2100885?v=4",
+      "profile": "https://www.haikuforteams.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mykhailoInnovecs",
+      "name": "mykhailoInnovecs",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58974597?v=4",
+      "profile": "https://github.com/mykhailoInnovecs",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "markomarkom",
+      "name": "Marko Marković",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13104250?v=4",
+      "profile": "https://github.com/markomarkom",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Peeja",
+      "name": "Petra Jaros",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2407?v=4",
+      "profile": "http://peeja.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "opauloh",
+      "name": "Paulo Henrique",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19270322?v=4",
+      "profile": "https://www.linkedin.com/in/paulohenriquesilva/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Stanko",
+      "name": "Stanko Tadić",
+      "avatar_url": "https://avatars.githubusercontent.com/u/776788?v=4",
+      "profile": "https://muffinman.io/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
