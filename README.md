@@ -110,7 +110,7 @@ In addition to Figmagic itself, there are several more repos/projects around Fig
 
 - [`figmagic-example`](https://github.com/mikaelvesavuori/figmagic-example): This repository is a demo of Figmagic. In this project you're going to see how a project running Webpack, React and Styled Components might use tokens. _See more below!_
 - [`figmagic-action`](https://github.com/mikaelvesavuori/figmagic-action): Figmagic GitHub action. Use Figmagic to retrieve tokens, graphics, and/or React components from a Figma document.
-- [`demo-figmagic-action`](https://github.com/mikaelvesavuori/demo-figmagic-action): Demo of the above GitHub Action.
+- [`demo-figmagic-action`](https://github.com/mikaelvesavuori/demo-figmagic-action): Demo of the above GitHub action.
 - [`figma-plugin-continuous-design`](https://github.com/mikaelvesavuori/figma-plugin-continuous-design): Continuous Design is a Figma plugin that lets you run GitHub Actions, Bitbucket Pipelines, and Azure DevOps Pipelines from Figma.
 - [`automator-figmagic`](https://github.com/mikaelvesavuori/automator-figmagic): Mac OS X Automator service for Figmagic.
 
