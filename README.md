@@ -952,6 +952,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/mykhailoInnovecs"><img src="https://avatars.githubusercontent.com/u/58974597?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mykhailoInnovecs</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=mykhailoInnovecs" title="Code">💻</a></td>
     <td align="center"><a href="https://www.haikuforteams.com/"><img src="https://avatars.githubusercontent.com/u/2100885?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Zack Brown</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=zackbrown" title="Code">💻</a></td>
     <td align="center"><a href="https://muffinman.io/"><img src="https://avatars.githubusercontent.com/u/776788?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stanko Tadić</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Stanko" title="Code">💻</a></td>
+    <tr>
+     <td align="center"><a href="https://github.com/Ishmam156"><img src="https://avatars.githubusercontent.com/u/64395142?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ishmam Chowdhury</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Ishmam156" title="Code">💻</a></td>
+   </tr>
   </tr>
 </table>
 
