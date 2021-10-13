@@ -32,7 +32,7 @@ _Built initially as an internal handoff tool for [Humblebee](https://www.humbleb
 
 You can also read this README in the following languages:
 
-- [Portuguese (Brazil)](translation/README.pt-br.md)
+- 🇧🇷 [Portuguese (Brazil)](translation/README.pt-br.md)
 
 ---
 
