@@ -15,9 +15,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/1a609622737c6c48225c/maintainability)](https://codeclimate.com/github/mikaelvesavuori/figmagic/maintainability)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 > Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.
@@ -957,15 +955,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://floschild.me"><img src="https://avatars.githubusercontent.com/u/1577155?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Florent SCHILDKNECHT</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=flo-sch" title="Code">💻</a></td>
-    <td align="center"><a href="https://www.linkedin.com/in/paulohenriquesilva/"><img src="https://avatars.githubusercontent.com/u/19270322?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Paulo Henrique</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=opauloh" title="Code">💻</a></td>
-    <td align="center"><a href="http://peeja.com/"><img src="https://avatars.githubusercontent.com/u/2407?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Petra Jaros</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Peeja" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/markomarkom"><img src="https://avatars.githubusercontent.com/u/13104250?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marko Marković</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=markomarkom" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/mykhailoInnovecs"><img src="https://avatars.githubusercontent.com/u/58974597?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mykhailoInnovecs</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=mykhailoInnovecs" title="Code">💻</a></td>
     <td align="center"><a href="https://www.haikuforteams.com/"><img src="https://avatars.githubusercontent.com/u/2100885?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Zack Brown</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=zackbrown" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mykhailoInnovecs"><img src="https://avatars.githubusercontent.com/u/58974597?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mykhailoInnovecs</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=mykhailoInnovecs" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/markomarkom"><img src="https://avatars.githubusercontent.com/u/13104250?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marko Marković</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=markomarkom" title="Code">💻</a></td>
+    <td align="center"><a href="http://peeja.com/"><img src="https://avatars.githubusercontent.com/u/2407?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Petra Jaros</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Peeja" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/paulohenriquesilva/"><img src="https://avatars.githubusercontent.com/u/19270322?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Paulo Henrique</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=opauloh" title="Code">💻</a></td>
     <td align="center"><a href="https://muffinman.io/"><img src="https://avatars.githubusercontent.com/u/776788?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stanko Tadić</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Stanko" title="Code">💻</a></td>
-    <tr>
-     <td align="center"><a href="https://github.com/Ishmam156"><img src="https://avatars.githubusercontent.com/u/64395142?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ishmam Chowdhury</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Ishmam156" title="Code">💻</a></td>
-   </tr>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/Ishmam156"><img src="https://avatars.githubusercontent.com/u/64395142?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ishmam Chowdhury</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Ishmam156" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/printf-ana"><img src="https://avatars.githubusercontent.com/u/45365825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ana Carolina </b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=printf-ana" title="Documentation">📖</a></td>
   </tr>
 </table>
 
