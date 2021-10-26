@@ -62,7 +62,6 @@
     "clean": "rm -rf .figmagic-trash/",
     "build": "rm -rf build && npx webpack",
     "test": "jest __tests__ --collectCoverage --runInBand",
-    "test:watch": "jest --clearCache && jest __tests__ --collectCoverage --runInBand --watch",
     "lint": "npx eslint './bin/**/*.ts' --quiet --fix",
     "docs": "npx typedoc && npx arkit",
     "licenses": "npx license-compliance --direct --allow 'MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;Unlicense;CC0-1.0'",
