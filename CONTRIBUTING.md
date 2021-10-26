@@ -39,6 +39,13 @@ import {
 - **Always check that all tests (including your new ones) are passing before making a pull request**.
 - _With the current GitHub Actions setup, your build there will fail since there is no access to my NPM credentials for non-master branches. Don't be alarmed!_ Again, ensure tests are passing and I can easily verify it in the build output.
 
+### Mocking Requests
+
+- **Always mock your requests**. This is a good way to test your code without having to actually make a request to the API and avoid dependance on a realtime response.
+- Place mock data in the `__tests__/mocks/` folder.
+- Mocked requests are defined in the `__tests__/mocks/handlers.ts` file, using the [msw](https://mswjs.io/) api.
+- For local development purposes, mocking can be enabled / disabled in the `jest.env.js` file changing the `IS_MOCK_ENABLED` environment variable, disabling it will make the tests run against the real API.
+
 ### Error handling
 
 - Make sure to handle errors and do any relevant validation logic. Also always output meaningful, actionable messages/warnings/errors to the user.
