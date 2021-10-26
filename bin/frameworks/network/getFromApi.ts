@@ -12,7 +12,7 @@ export async function getFromApi(
   figmaToken: string,
   figmaUrl: string,
   versionName?: string | null,
-  type = 'files'
+  type: 'files' | 'images' = 'files'
 ): Promise<ImageResponse> {
   if (!figmaToken || !figmaUrl) throw Error(ErrorGetFromApi);
   try {
