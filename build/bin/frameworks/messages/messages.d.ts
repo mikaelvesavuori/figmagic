@@ -11,6 +11,7 @@ export declare const MsgJobCompleteInitStopped: string;
 export declare const MsgProcessElementsCreatingElement: (elementName: string, fixedName: string) => string;
 export declare const MsgSetDataFromApi: string;
 export declare const MsgSetDataFromLocal: string;
+export declare const MsgSetMswInterceptedDataFromApi: (url: string) => string;
 export declare const MsgSyncElements: string;
 export declare const MsgSyncGraphics: string;
 export declare const MsgWriteBaseFile: string;
