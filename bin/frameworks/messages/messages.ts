@@ -50,7 +50,7 @@ export const MsgSetDataFromLocal = Message(
   true
 );
 export const MsgSetMswInterceptedDataFromApi = (url: string): string =>
-  Message(`\n[MSW] - Mocking fetch request data from Figma API: ${url}`, true);
+  Message(`\n[MSW] - Mocking intercepted fetch request data from API: ${url}`, true);
 export const MsgSyncElements = Message(`\nAttempting to parse elements...\n`, true);
 export const MsgSyncGraphics = Message(`\nGetting images from Figma API...`, true);
 export const MsgWriteBaseFile = Message(`\nWriting Figma base file...`, true);
