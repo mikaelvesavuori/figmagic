@@ -1,4 +1,4 @@
 {
-  "entryPoints": ["bin"],
+  "entryPoints": ["./bin"],
   "out": "typedoc-docs"
 }

@@ -3,7 +3,6 @@
 # Figmagic
 
 ![Build Status](https://github.com/mikaelvesavuori/figmagic/workflows/master/badge.svg)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic?ref=badge_shield)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_figmagic&metric=alert_status)](https://sonarcloud.io/dashboard?id=mikaelvesavuori_figmagic)
 
@@ -21,51 +20,43 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-> Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.
+> Figmagic é a peça perdida entre DevOps e design: Gerador de tokens de design, exporta gráficos, e extrai componentes React acionados por tokens para os seus documentos Figma.
 
-🏕️ Kumbaya, friends. Figmagic automates the world into a better place, but does not attempt to completely remove designers or developers: It just aims to move them closer, while eliminating most of the tedious busywork that has grown around front-end development.
+🏕️ Kumbaya, amigos. Figmagic automatiza o mundo para um lugar melhor, mas não pode remover completamente designers e desenvolvedores:  utomates the world into a better place, but does not attempt to completely remove designers or developers: O objetivo é apenas aproximar-se disso, enquanto eliminamos a maioria do trabalho tedioso que cresce em torno do desenvolvimento front-end.
 
-_Built initially as an internal handoff tool for [Humblebee](https://www.humblebee.se)._
-
----
-
-## Translations 🗺️
-
-You can also read this README in the following languages:
-
-- 🇧🇷 [Portuguese (Brazil)](translation/README.pt-br.md)
+_Construído inicialmente como uma ferramenta de transferência interna para [Humblebee](https://www.humblebee.se)._
 
 ---
 
-## PSA: Version `4.3.0` introduces new handling of trashed/replaced files
+## PS: A versão `4.3.0` introduz um novo tratamento de arquivos descartados/substituídos
 
-Previous versions in the 4.0 series have been using [`trash`](https://github.com/sindresorhus/trash) to handle files that need to be replaced. In `4.3.0` this is no longer the case.
+Versões anteriores à 4.0 estão sendo usadas [`trash`](https://github.com/sindresorhus/trash) para lidar com arquivos que precisam ser substituídos. Na versão `4.3.0` esse não é mais o caso.
 
-Any deleted files are now permanently destroyed by the Node native `fs` module.
+Quaisquer arquivos deletados, agora serão destruídos permanentemente pelo módulo ativo do Node `fs`.
 
-**Versions `4.3.0` and `4.3.1` used a flaky dual-mode, configurable pattern where you could use either a "hard" or "soft" delete mode (soft deletes meaning placing files in a local trash folder). _This is NOT supported and intended from `4.3.2` and forward as that was too buggy._**
-
----
-
-## Requirements
-
-**Please note:** Figmagic requires that your document structure follows the conventions in this document; a full setup can be seen in the template at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens).
-
-Figmagic is compiled from Typescript to ES6, so you should have Node 12 or later (Node 14 and newer recommended) for it to work on your machine.
+**As versões `4.3.0` e `4.3.1` usam um modo duplo fragmentado, padrão configurável onde você pode usar um padrão "hard" ou "soft" de exclusão (exclusões sof significam substituir arquivos em uma pasta de lixeira local). _This is NOT supported and intended from `4.3.2` and forward as that was too buggy._**
 
 ---
 
-## Introduction
+## Requerimentos
 
-### Figmagic promotes a structured way of assembling design systems
+**Por favor, perceba:** Figmagic requere que a sua estrutura de documento siga as convenções nesse documento; um setup inteiro pode ser visto nesse template em [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens).
 
-Figmagic is a very straightforward, super-flexible command-line tool that helps you do three things well:
+Figmagic é compilado do Typescript para ES6, então, você deve ter o Node 12 ou uma versão maior (Node 14 e mais novos são recomendados) para funcionar na sua máquina. 
+
+---
+
+## Introdução
+
+### Figmagic promove uma estrutura de montagem de design systems
+
+Figmagic é uma ferramenta de linha de comando super flexível e muito simples que ajuda você a fazer bem três coisas:
 
 #### 1. Output design tokens
 
-Outputting and using **design tokens** aids in designing with a structured approach. These tokens are completely platform agnostic when output into JSON, or for most web developers, more readily useable in various supported flavors of JavaScript (TS, JS, MJS). It's web-oriented but works well with React Native too.
+Produzir e usar **design tokens** auxiliar em projetar com uma abordagem estruturada. Esses tokens são completamente agnósticos de plataforms quando produzidos em JSON, ou para a maiores dos desenvolvedores web, mais acessíveis de uso em vários sabores de Javascript (TS, JS, MJS). É web-orientada mas funciona bem com React Native também.
 
-A basic set of tokens can look like this:
+Uma configuração básica de tokens pareceria com:
 
 ```js
 const tokens = {
@@ -80,70 +71,70 @@ const tokens = {
 };
 ```
 
-You use these tokens like so, `color: ${colors.blue};`, to shape and specify your coded components, web sites, apps, and what have you, instead of hard-coding every single value.
+Você usar esses tokens dessa forma, `color: ${colors.blue};`, para formar e especificar os seus componentes codados, web sites, apps e o que você tiver, ao invés de código díficil para cada valor.
 
-**This way, you decouple implementation from data. You can now easily drive changes as _design choices_ through Figma instead of as _code changes_.**
+**Desse jeito, você dissocia a implementação de dados. Você pode agora facilmente dirigir as mudanças como _design choices_ através do Figma ao invés de _code changes_.**
 
-#### 2. Output graphics
+#### 2. Output de gráficos
 
-Say goodbye to ever manually exporting graphics from Figma again. Grab your graphics as PNG, SVG, as React components with inlined SVG, or as objects that export all graphics from a single file.
+Diga adeus para sempre a exportar gráficos manualmente do Figma de novo. Pegue seus gráficos como PNG, SVG, como componentes React com SVG inline, ou como objetos que exportam todos os gŕaficos de um único arquivo.
 
-#### 3. Generate React components
+#### 3. Gerando componentes React
 
-Figmagic also allows you to generate React components from Figma components that follow a specific formal structure. It's best at fairly low-level components that you can piece together to make more complex organisms on your own. You can significantly cut down on boilerplate churn and scaffolding time with Figmagic.
+Figmagic também permite a geração de componentes React de componentes Figma que seguem uma estrutura formal específica. É razoavelmente o melhor para componentes de baixo nível que você pode montar para fazer organismos mais complexos. Você pode ter uma rotatividade padrão e tempo de programação com o Figmagic.
 
-And, no, the code actually doesn't suck! This was my own biggest gripe with services promising this functionality, so I knew it had to be good, or at least tolerable. Therefore Figmagic supports things like actually using your own tokens (so we can cut down on hard-coded garbage, unless matches aren't found) and you can completely customize the number of related generated files.
+E, não, o código não é uma droga! Essa era a minha maior queixa com serviços que prometem essa funcionalidade, então eu sabia que tinha que ser bom, ou pelo menos tolerável. Portanto, o Figmagic suporta coisas como usar seus próprios tokens (então nós podemos cortar o código pesado pro lixo, a menos que as correspondências não sejam encontradas) e você pode customizar completamente o número de arquivos relacionados gerados.
 
-While not perfect, it's definitely better than many things I've seen, made by big companies. All of this is explained later here in the docs.
+Enquanto não for perfeito, é definitivamente melhor que muitas coisas que eu já vi, feito por grandes companhias. Tudo isso é explicado mais tarde aqui na documentação.
 
-#### The arguments
+#### Os argumentos
 
-Here are a few reasons you'd want to use Figmagic rather than anything similar:
+Aqui há algumas razões para você preferir o uso do Figmagic do que outra coisa similar:
 
-- In Figmagic, design tokens are a first-class concept since day 1
-- Figmagic is designer-driven, since Figma is seen as the source of truth
-- Figmagic is automatable and very lightweight (~45kb compressed), with no external dependencies
-- Figmagic is developer-friendly and makes very few assumptions on your use and/or setup and supports a range of output formats plus that it's extensible through custom templates if you need something completely different
-- Figmagic is open-sourced under the MIT license and has a long track record of very short implementation cycles for new features/fixes
-- Generated React components bind to any token values you've defined so these are equally useful as starter code or as code you continually output
+- No Figmagic, design tokens são o conceito classe número um desde o primeiro dia
+- Figmagic é orientado para o design, desde que o Figma é visto como fonte da verdade
+- Figmagic é automatizável e bem leve (~45kb comprimidos), sem dependências externas
+- Figmagic é amigável para desenvolvedores e faz algumas premissas no seu uso e/ou setup e suporta uma variedade de formatos de output maior que é expansível através de templates customizados se você precisar de algo completamente diferente
+- Figmagic é open-source sobre a licença MIT e tem um longo histórico de pequenos ciclos de implementações para novas features/fixes
+- Componentes React gerados se ligam a qualquer valor de token que você definir, então eles são igualmente úteis como código inicial ou qualquer código que você produza continuamente
 
-## Additional documentation sources
+## Fontes adicionais de documentação
 
-The Figmagic developer docs are auto-generated on every push and can be found at the [dedicated documentation site](https://docs.figmagic.com).
+As documentações do Figmagic para desenvolvedores são auto geradas a cada push e podem ser encontrados na [documentação dedicada ao site](https://docs.figmagic.com).
 
-For deeper information pertaining to Figmagic Elements and syncing them, see [the dedicated README page](readme/elements.md).
+Para maiores informações sobre Elementos Figmagic e sincronização deles, veja [a página dedicada ao README](readme/elements.md).
 
-## The Figmagic ecosystem
+## O ecossistema Figmagic
 
-In addition to Figmagic itself, there are several more repos/projects around Figmagic:
+Em adição ao Figmagic, existem muitos outros repositórios/projetos que o cercam:
 
-- [`figmagic-example`](https://github.com/mikaelvesavuori/figmagic-example): This repository is a demo of Figmagic. In this project you're going to see how a project running Webpack, React and Styled Components might use tokens. _See more below!_
-- [`figmagic-action`](https://github.com/mikaelvesavuori/figmagic-action): Figmagic GitHub action. Use Figmagic to retrieve tokens, graphics, and/or React components from a Figma document.
-- [`demo-figmagic-action`](https://github.com/mikaelvesavuori/demo-figmagic-action): Demo of the above GitHub action.
-- [`figma-plugin-continuous-design`](https://github.com/mikaelvesavuori/figma-plugin-continuous-design): Continuous Design is a Figma plugin that lets you run GitHub Actions, Bitbucket Pipelines, and Azure DevOps Pipelines from Figma.
-- [`automator-figmagic`](https://github.com/mikaelvesavuori/automator-figmagic): Mac OS X Automator service for Figmagic.
+- [`figmagic-example`](https://github.com/mikaelvesavuori/figmagic-example): Esse repositório é uma demonstração do Figmagic. Nesse projeto você vai ver como um projeto rodando Webpack, React e Styled Components pode usar tokens. _Veja mais a seguir!_
+- [`figmagic-action`](https://github.com/mikaelvesavuori/figmagic-action): Figmagic GitHub action. Use Figmagic para recuperar tokens, gráficos e/ou componentes React de um documento Figma.
+- [`demo-figmagic-action`](https://github.com/mikaelvesavuori/demo-figmagic-action): Demonstração do GitHub action.
+- [`figma-plugin-continuous-design`](https://github.com/mikaelvesavuori/figma-plugin-continuous-design): Continuous Design é um plugin do Figma que deixa você rodar GitHub Actions, Bitbucket Pipelines, and Azure DevOps Pipelines no Figma.
+- [`automator-figmagic`](https://github.com/mikaelvesavuori/automator-figmagic): Mac OS X serviço automatizado para Figmagic.
 
-### Example project
+### Projeto de exemplo
 
-An example project—using React, Styled Components and Storybook—is available at [https://github.com/mikaelvesavuori/figmagic-example](https://github.com/mikaelvesavuori/figmagic-example).
+Um exemplo de projeto usando React, Styled Components e Storybook-está disponível em [https://github.com/mikaelvesavuori/figmagic-example](https://github.com/mikaelvesavuori/figmagic-example).
 
 Note that this demo is not meant to fully style and do all of the things in the Figma document. I wanted to straddle a middle-of-the-road solution where I did the least work possible to get it working with React and style only a few of the most obvious and helpful elements, like setting disabled state on the button and checkbox.
 
 ![Figmagic Example Demo](images/demo.png)
 
-_Figmagic Example Demo: On the left is a big Figma component assembled of a number of "Elements", Figmagic-compliant components that can be output into code. On the right is the React-composed version of those after just a few minutes of coding and closing elements correctly._
+_Figmagic Example Demo: Na esquerda é um grande componente Figma montado num número de "Elementos", o compilador de componentes do Figmagic pode ter um output no código. Na direita é uma versão de um componente React depois de alguns minutos de código e fechamento de elementos corretos._
 
-## Using Figmagic
+## Usando Figmagic
 
-### Installation
+### Instalação
 
-#### Global (recommended)
+#### Global (recomendado)
 
-Run `npm install -g figmagic` or `yarn global add figmagic`.
+Rode `npm install -g figmagic` ou `yarn global add figmagic`.
 
 #### Local
 
-Local usage is possible by installing Figmagic as a developer dependency (under `devDependencies`) with `npm install figmagic -D` or `yarn add figmagic -D`, then using a script pointing to the local version, like so:
+Uso local é possível instalando o Figmagic como uma dependência de desenvolvedor (debaixo de `devDependencies`) com `npm install figmagic -D` ou `yarn add figmagic -D`, então usando um  script apontando para a versão local, como:
 
 ```
 "scripts": {
@@ -151,18 +142,18 @@ Local usage is possible by installing Figmagic as a developer dependency (under 
 }
 ```
 
-### Create configuration file (`figmagic.json` or `.figmagicrc`)
+### Criando um arquivo de configuração (`figmagic.json` ou `.figmagicrc`)
 
-Figmagic can be run without any configuration. You will always need to specify your Figma API token and Figma document ID, though! However, it's highly recommended to add a configuration: it's easy and gives you a ton of possibilities to optimize for your own needs.
+Figmagic pode ser rodado sem nenhuma configuração. Você sempre vai precisar expecificar sua API de token do Figma e seu documento de ID do Figma, no entanto! Apesar disso, é altamente recomendado adicionar uma configuração: é fácil e te dá uma tonelada de de possibilidades para otimizar suas necessidades.
 
-Run `figmagic init` to initialize a basic configuration file, either named `figmagic.json` or `.figmagicrc` file. As long as you provide your Figma token and document ID/URL, the new generated file is ready to use for Element Sync which can only be done if your configuration points to valid code generation templates (which the generated one does). You'll see that the config will point `templates.templatePath{Graphic|React|Styled|Storybook}` to `./node_modules/figmagic/templates/{graphic|react|styled|story}`. Read more under the [Configuration file section](#configuration-file-figmagicrc).
+Rode `figmagic init` para iniciar um arquivo de configuração básica, nomeie-o `figmagic.json` ou `.figmagicrc`. Contanto que você forneça seu token ou documentação ID/URL do Figma, o novo arquivo gerado está proto para ser usado pelo Element Sync que só pode ser feito se os seus pontos de configuração tiverem um código válido de geração de templates (é o que o gerado faz). Você verá que a configuração aponta de `templates.templatePath{Graphic|React|Styled|Storybook}` para `./node_modules/figmagic/templates/{graphic|react|styled|story}`. Leia mais em [Seção de arquivo de configuração](#configuration-file-figmagicrc).
 
-### Running Figmagic
+### Rodando Figmagic
 
-First of all, get your Figma API token and Figma URL:
+Primeiro de tudo, pegue o seu token da API e sua URL do Figma:
 
-- Get your file ID by right-clicking your Figma tab inside of the app and click `Copy Link`—the first, long junk-looking bit is the ID.
-- For more on API keys, [go to Figma's developer docs](https://www.figma.com/developers/docs).
+- Pegue o seu arquivo ID clicando com o botão direito na sua aba do Figma dentro do app e clique em `Copiar Link`—o primeiro, long junk-looking bit is the ID.
+- Para mais sobre chaves de API, [vá para a documentação para desenvolvedores do Figma](https://www.figma.com/developers/docs).
 
 Pass in your Figma API token and Figma URL by either:
 
@@ -175,165 +166,165 @@ Then:
 - Run `figmagic`
 - You should now have a folder with the raw JSON dump (default: `/.figmagic`) and a folder with tokens (default: `/tokens`) in the root
 
-#### Folders
+#### Pastas
 
-Folder names below follow their default naming. The naming is possible to change via configuration.
+Nomes de pastas seguem por padrão seus nomes. A renomeação é possível através de configuração.
 
-- `.figmagic` will contain the extracted JSON retrieved from Figma's API
-- `tokens` will contain the token files
-- `elements` will contain the generated code
-- `graphics` will contain graphics
+- `.figmagic` vai conter o JSON extraído e recuperado da API do Figma
+- `tokens` vai conter os arquivos de tokens
+- `elements` vai conter os códigos gerados
+- `graphics`  vai conter gráficos
 
-For a more complete description of the code structure, see the [Code structure section](#code-structure).
+Para uma descrição mais completa da estrutura de código, veja a [seção de estrutura de código](#code-structure).
 
-## Preparing Figma for Figmagic usage
+## Preparando Figma para uso do Figmagic
 
-### Easy solution: Copy the public Figmagic design system template from Figma Community
+### Solução fácil: Copie o template de design system público do Figmagic para a Comunidade Figma
 
-Go to [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens) and make your own copy. Go at it by using the document ID as the **FIGMA_URL** or start copying in your own work.
+Vá para [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens) e faça sua própria cópia. Vá em frente usando seu documento ID como a **FIGMA_URL** ou comece copiando em seu próprio trabalho.
 
-### Less easy solution: Start from scratch
+### Solução menos fácil: Comece do scratch
 
-Your structure needs to correspond to the following:
+Sua estrutura precisa seguir o seguinte:
 
-- A Page needs to exist, called `Design tokens`. Without this page you can't really do much with Figmagic.
-- Further, inside the `Design tokens` page, **frames** need to exist. You can have any number of supported token frame. For starters, name them `Colors`, `Font sizes`, `Font families`, `Font weights`, `Line heights`, and `Spacing` – exact casing is not important, however the **spelling is important!** For a full list of token types, see [the types of design tokens Figmagic can extract](#the-types-of-design-tokens-figmagic-can-extract).
-- All items on a page need to be contained within one or more frames.
-- Want element syncing? Then create an "Elements" page and place any components there. For the generation to work correctly, you need to stay within the limits specified above.
+- Uma página precisa existir, chamada `Design tokens`. Sem essa página, você não pode fazer muito com o Figmagic.
+- Seguindo, dentro da página `Design tokens`, **frames** precisam existir. Você pode ter qualquer número de token frames suportado. Para iniciantes, nomeie eles como `Colors`, `Font sizes`, `Font families`, `Font weights`, `Line heights`, e `Spacing` – a cobertura exata não é importante, entretanto **spelling is important!** Para uma lista cheia de tipos de token, veja [os tipos de design tokens que o Figmagic pode extrair](#the-types-of-design-tokens-figmagic-can-extract).
+- Todos os items em uma página precisam ser guardados por um ou mais frames.
+- Quer sincronização de elementos? Então crie uma pagina "Elements" e coloque quaisquer componentes ali. Para a geração correta, você precisa ter os limites especificados.
 
-See a template design system at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-template-4.0](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-template-4.0). Feel free to simply copy-paste it or base your own work around it.
+Veja um template de design system em [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-template-4.0](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-template-4.0). Sinta-se livre para simplesmente copiar-colar ou basear seu trabalho através desse.
 
 **Note:** Refer to the document structure in the image below and in the template linked above.
 
-![Figma Document Structure: Tokens](images/project-structure-tokens.png)
+![Estrutura de documentos do Figma: Tokens](images/project-structure-tokens.png)
 
 _How a Figmagic project could be structured in regards to tokens, if you want to support all currently available token types._
 
-## What are Design Tokens?
+## O que são Design Tokens?
 
-Design tokens are the _**abstract and shared elements**_ from which your design system is built.
+Design tokens são _**elementos abstratos e compartilhados**_ para que seu design system seja construído.
 
-Design tokens _**express any of the individual values that you build from**_, such as colors, spacing, and typographic features.
+Design tokens _**expressam quaisquer um dos valores individuais que foram construídos para**_, como cores, espaçamentos, e features de tipografia.
 
-Tokens offer a form of “contract” between a designer’s intent and its fulfillment by developers. This means that both sides agree to treat the individual parts of a complete design through the tokens that represent those values. As a format, they are super easy to read and understand and are adaptable for consumption by many types of systems or applications. That’s very important as you start doing cross-platform apps and things like that.
+Tokens oferecem uma forma de "contrato" entre as intenções dos designers e o cumprimento pelos desenvolvedores. Isso significa que os dois lados concordam em tratar suas partes individuais de um design completo através dos tokens, que representam esses valores. Como formato, eles são super fáceis de ler e entender e são adaptáveis para consumo por muitos tipos de sistemas ou aplicações. Isso é muito importante quando se começa com apps cross-platforms e coisas como isso.
 
 ![Design tokens](images/design-tokens.png)
 
-Tokens ensure that values are not [magic numbers](<https://en.wikipedia.org/wiki/Magic_number_(programming)>) or ”just picked at random”. This makes communication precise and effortless. Creating actual code for components, even complex ones, also becomes a lot less of a bore, since what you are doing is just pointing stuff like padding, Z indices, and anything else to their token representations.
+Tokens garantem que os valores não são [números mágicos](<https://en.wikipedia.org/wiki/Magic_number_(programming)>) ou "apenas escolhidos aleatoriamente". Isso faz com que a comunicação seja precisa e sem esforço. Criar código para componente, mesmo complexos, pode ser muito menos chato, desde que o que você esteja fazendo esteja apontando para coisas como padding, z index, e qualquer outra coisa que os tokens possam representar.
 
-_However: You may still want to add written guidance for usage. It’s just that the tokens should be able to be consumed without understanding anything specific about them._
+_Portanto: Você pode continaur querendo adicionar um guia para uso. É apenas que os tokens deveriam ser capazes de serem consumidos sem entender nada específico sobre eles._
 
-You should bind tokens to Figma styles whenever and wherever possible to simplify your own design work, but make sure that those are also represented in the **Tokens** page, as this page is where a developer will pick up tokens with Figmagic.
+Você deve vincular os tokens aos estilos do Figma quando e onde for possível para simplificar o seu trabalho de design, mas tenha certeza que isso também está representado na página de **Tokens** , já que nessa página que um desenvolvedor irá pegar os tokens com o Figmagic.
 
-### The types of design tokens Figmagic can extract
+### Os tipos de design tokens que o Figmagic pode extrair
 
-You can currently extract design tokens for:
+Atualmente você pode extrair design tokens de:
 
-- Colors (including linear and radial gradients, though note: linear gradients which are not using straight angles will get an incorrect calculation)
-- Font Sizes
-- Spacing
-- Font Weights
-- Line Heights
-- Font Families
-- Letter Spacings
-- Z Indices
+- Cores (incluindo lineares e gradientes radiais, note que: gradientes lineares que não usam ângulos retos vão ter um cálculo incorreto)
+- Tamanhos de fontes
+- Espaçamento
+- Peso de Fontes
+- Altura das linhas
+- Famílias de fontes
+- Espaçamento entre letras
+- Z index
 - Radii
-- Border Widths
-- Shadows (currently supports single/multiple Drop Shadows; see caveat below)
-- Opacities
-- Durations (for animations)
-- Delays (for animations)
-- Easing functions (for animations)
+- Tamanhos de bordas 
+- Sombras (atualmente suporta únicos/mútiplos Drop Shadows, see caveat below)
+- Opacidades
+- Durações (para animações)
+- Delays (para animações)
+- Easing functions (para animações)
 - Media Queries
 
-A typical use-case for the generated documents is to feed the extracted values into CSS systems that support external values (such as Styled Components, Emotion, Styled System, any other CSS-in-JS libraries, or maybe even Sass).
+Um típico caso de uso para documentos gerados é alimentar os valores extraídos do sistema de CSS que suporta valores externos (como Styled Componentes, Emotion, Styled System, e quaisquer outras CSS-in-JS bibliotecas, ou até talvez Sass).
 
 #### Note on shadows
 
-From [alehar9320](https://github.com/alehar9320) commenting on [issue 111](https://github.com/mikaelvesavuori/figmagic/issues/111):
+De [alehar9320](https://github.com/alehar9320) comentado na [issue 111](https://github.com/mikaelvesavuori/figmagic/issues/111):
 
 > Figma calls everything Drop-shadow, while translating the design into box-shadow or drop-shadow CSS dependent upon whether it's a ~ shape or a vector graphic. See [blog post](https://www.figma.com/blog/behind-the-feature-shadow-spread/) from the Figma developer who built the feature.
 
 > This means that if Figmagic is used to define shadow tokens, it should be recommended to only have one drop-shadow definition per rectangle. To maintain compatibility with both drop-shadow and box-shadow CSS. The exception would be if there is a clear distinction between tokens to be used with box-shadow and drop-shadow. As [_drop-shadow_ can only accept a single shadow parameter](<https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/drop-shadow()>). Any token that has two values will simply be incompatible with drop-shadow.
 
-## Working with Figmagic as a designer
+## Trabalhando com o Figmagic como designer
 
-### Figma styles
+### Estilos do Figma
 
-Figma styles became publicly available in June 2018 and are incredibly valuable for designers to create single-sources-of-truth when it comes to design values (tokens). When using Figmagic though, the thinking and usage is a bit different from how Figma styles work.
+Estilos do Figma se tornaram disponíveis públicos em Junho de 2018 e estão disponíveis para designers criarem single-sources-of-truth quando começarem com valores de design (tokens). Quando se está usando o Figmagic no entenado, o pensamento e usabilidade é um pouco diferente de como os estilos do Figma funcionam.
 
-#### Unidimensional or multidimensional values
+#### Valores unidimensionais ou multidimensionais
 
-A Figma style is multidimensional: It contains any number of properties wrapped into one style, acting as kind of a package. This is handy in a design environment and is practical from a user standpoint. The user doesn't have to think too hard about storing "redundant" values that are the same in another component, such as N number of units for line height: They are all taken care of.
+Um estilo do figma é multidimensional: contém um número de propriedades envolto em um estilo, agindo como uma espécie de pacote. Isso é acessível num desenvolvimento de design e é prático para pontos de vista dos usuários. O usuário não precisa pensar muito sobre valores de armazenamento "redundante" que são o mesmo em outros componentes, como N números de unidades para altura de linhas: Eles são todos muito cuidadosos.
 
-Figmagic instead expresses tokens as instances of every individual value, thus being _unidimensional_ – meaning they store only one value per item. Examples could be sets of line heights, font weights, or font sizes, each one individually specified. What this entails for they developer and designer, is that values can be used and mixed as pleased in any number of contexts, not becoming bound to one specific context such as a certain kind of heading. For a developer this is good because we would rather just map out the definitive values for something, onto a component (a "context" so to speak).
+O Figmagic expressa os tokens como instâncias de cada valor individual portanto sendo _unidimensional_ - significa que eles armazenam apenas um valor por item. Exemplos podem ser setados em alturas de linhas, peso de fontes ou tamanhos de fontes, cada um é especificado individualmente. O que isso envolve para o desenvolvedor e o designer, é que valores podem ser usados e misturados em vários contextos, não ficando preso a um contexto específico como um cabeçalho. Para um desenvolvedor, isso é bom porque nós preferimos mapear os valores definitivos para algo, para um componente (um "contexto" por assim dizer).
 
-Because of this difference, the appropriate way to structure a Figmagic-compatible Figma design document is to display one or more items/tokens in the respective frames that correspond to the accepted token types (line height, font size...) where each item has only one key property that's changed in-between them (such as one text using size 48, the next using size 40...), since those items are what Figmagic loops through when creating your code tokens.
+Por causa dessa diferença, o jeito apropriado de estruturar o Figmagic-documento de design compatível com o Figma é mostrar um ou mais items/tokens nos respectivos frames que correspondem aos tipos de tokens aceitos (altura de linha, tamanho da fonte...) onde cada item tem um tipo de propriedade chave que é mudada entre elas (como um texto usando tamanho 58, outro usando tamanho 40), desde que esses items sejam loops do Figmagic quando criados novos códigos de tokens.
 
-One of the major deviations from this principle is "Fonts" where you can specify more properties than one. However, then those need to individually match other typographical tokens you might have, such as line heights.
+Um dos maiores desvios do principal são as "Fontes" onde você pode especificar mais propriedades que uma. Entretanto, elas precisam corresponder individualmente a outros tokens tipográficos que você possar ter, como altura de linhas.
 
 ![Nesting: Button, Normal](images/composing-font-from-multiple-tokens.png)
 
 _The "Heading L" font token is composed of values that are also represented in the "lesser" uni-dimensional tokens: displayed here are "Line Height S" (135% line height), "H1" (size 48), and "Font Bold" (Bold font style). Setting this font as a Figma Style will make your life as a designer much easier as your apply the text style to things. Auto-generating code with Figmagic will also work just fine, since the individual values are respected._
 
-#### OK, but should I use Figma styles (also) when using Figmagic?
+#### OK, mas eu deveria usar os estilos do Figma enquanto uso o Figmagic?
 
-Whatever suits you! As long as you remember that what Figmagic fetches are those single (unidimensional) values from each design item/token it should all work. I've seen that Figma styles make the "contract" between tokens and their day-to-day workflow with designers a lot easier. Again though, Figmagic does not use those values; think of them as a convenient glue.
+O que for melhor para você! Com tanto que você lembra que o Figmagic busca aqueles valores (unidimensionais) para cada design items/tokens tudo deverá funcionar. Eu já vi estilos do Figma que fazem um "contrato" entre tokens e seus espaços de trabalho do dia-a-dia com designers muito mais fácil. De novo portanto, Figmagic não usa esses valores; pense neles como uma cola conveniente.
 
-## Configuring Figmagic
+## Configurando Figmagic
 
-### Token Sync
+### Sincronizar Token
 
-**By default this is turned on. You will need to have a page named "Design tokens", where your tokens lay within named frames.**
+**Por padrão está ligado. Você vai precisar ter uma pagina de nome "Design tokens", onde com os seus tokens frames nomeados.**
 
-Tokens are the "bread and butter" of Figmagic. Without tokens, Figmagic cannot create elements. And even without elements, tokens provide the core experience to help you run a competent design system with code.
+Tokens são o "pão e a manteiga" of Figmagic. Sem tokens, Figmagic não pode criar elementos. E mesmo sem elementos, os tokens fornecem toda a experiência para ajudar você com um design system compentente e sem código.
 
-In case you want to skip generating tokens for a given frame, you can just add a leading underscore to the frame name. You can also skip individual items by naming them `ignore` or adding a leading underscore.
+No caso de você querer pular para um frame dado, você pode adicionar um sublinhado principal ao nome do frame. Você também pode pular items individuais nomeando-os com `ignore` ou adicionando um sublinhado principal.
 
-This is activated by default, but it's now possible to deactivate it if you have very specific reasons to do so.
+Isso é ativado por padrão, mas agora é possível desativar se você tem razões bem específicas para.
 
-### Graphics Sync
+### Sincronizar Gráficos
 
-**By default this is turned off. Pass in `--syncGraphics` as a flag to sync them or enable that in your configuration file. You will need to have a page named "Graphics", where your components lay directly on the artboard.**
+**Por padrão isso está desligado. Passe `--syncGraphics` como uma flag para sincroniza-los ou habilita-los no seu arquivo de configuração. Você vai precisar ter uma página com o nome "Graphics", onde seus componentes serão adicionados diretamente.**
 
-Graphics can be exported in multiple formats with Figmagic. Instead of doing manual hand-overs, just tell your developer(s) that there have been updates to the graphics and let them pull the latest versions from your Figma document.
+Gráficos podem ser exportados em múltiplos formatos com o Figmagic. Ao inveś de fazer a entrega manual, apenas diga aos desenvolvedores que tiveram atualizações aos gráficos e deixem eles darem um pull as últimas versões do documento do Figma.
 
-Again, please look at the template at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens) for reference.
+Novamenteo, dê uma olhada no template em [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens) para referência.
 
-### Element Sync
+### Sincronizar Elementos
 
-**This is also turned off by default. Pass in `--syncElements` or enable it in your configuration file to generate code from your Figma components.**
+**Isso também fica desligado por padrão. Passe `--syncElements` ou ative no seu arquivo de configuração para gerar código para os seus componentes Figma.**
 
 _Upcoming versions of Figmagic may attempt to support [Figma Variants](https://help.figma.com/hc/en-us/articles/360055471353-Prepare-for-Variants), but that will have to be publicly released first, and then vetted against what Figmagic can generate before I commit to supporting that model. Until then, the existing mental model of "Elements" will continue to be used._
 
-Elements are named so because they are primarily meant to help scaffold anything that maps to standard HTML elements like input, button, h1, and form. With scaffolding we mean that these elements can be generated as code in a shape that is fitting for continued development. Elements are a good entry-point both for design and for code generation, since they are relatively simple and as a concept map to HTML, which in turn is based on tags ("elements").
+Elementos são nomeados porque são destinados principalmente a ajduar na programação que mapeia por padrão elementos HTML como input, button, h1, e form. Com programação nós queremos dizer esses elementos que podem ser gerados como código num formato que preenche para continuaçao do desenvolvimento. Elementos podem ser um bom ponto de entrar para ambos, design e geração de código, desde que eles sejam relativamente simples como conceitos mapeados no HTML, o que retorna o embasamento em tags ("elementos").
 
-Elements are generated by parsing your structured Figma components into either "flat" or "nested" varieties. Any values, say a height of 48px and a specific blue color, will try to be derived from your relevant tokens. **Therefore, without tokens, elements cannot be generated!** In this example, maybe the height will map to a spacing token that uses 48px (mapping to `3rem` where 3 x 16 = 48, with 16 being the root REM value) and the color might be mapped to a color in your color tokens.
+Elementos são gerados passando sua estrutura de componentes do Figma em qualquer variedade "flat" ou "nested". Quaisquer valores, diremos uma altura de 48px e uma cor específica azul, vai tentar ser entregue como derivada de um token relevante. **Portanto, sem tokens, elementos não podem ser gerados!** Nesse exemplo, talvez a altura vá ser mapeada por um token que usa 48px (mapeada como `3rem` onde 3 x 16 = 48, com 16 sendo o valor padrão de REM) e a cor poderia ser mapeada como cor nos tokens de cores.
 
 _If you need more information and guidance on this, see the dedicated documentation section at [Figmagic Element Sync](images/elements.md)._
 
-### How user settings are propagated
+### Como configurações de usuário são propagadas
 
-There are several ways in which you can provide Figmagic with knowledge about how you want it to parse your tokens.
-You can combine them, but beware of the below prioritization chart (from lowest to highest):
+Há muitas formas com as quais você pode fornecer o Figmagic com conhecimento sobre como você passará seus tokens.
+Você pode combinar eles, mas cuidado com a priorização do gráfico (do menor para o maior):
 
-1. User-provided configuration from `figmagic.json`/`.figmagicrc` file
-2. Environment variables (also loaded from `.env` file)
-3. Command-line arguments and flags
+1. Configurações fornecidas pelo usuário pelo arquivo `figmagic.json`/`.figmagicrc`
+2. Variavéis de desenvolvimento (também carregadas no arquivo `.env`)
+3. Argumentos de linhas de comando e flags
 
-If possible, stick to one way of providing settings.
+Se possível, fixe um jeito de providenciar as confiurações.
 
-Non-provided values will fall back to defaults outlined in `bin/entities/Config/baseConfig.ts`.
+Valores não providenciados vão voltar para os padrões em `bin/entities/Config/baseConfig.ts`.
 
-### Configuration file (`figmagic.json` or `.figmagicrc`)
+### Arquivos de configuração (`figmagic.json` ou `.figmagicrc`)
 
-You can use a JSON-formated configuration file at the root of a project to use its settings. Figmagic will pick up the path by assessing the current working directory and looking for either a `figmagic.json` or `.figmagicrc` file there. If it finds it, it will use it.
+Você pode usar um JSON formatado como arquivo de configuração na raíz do projeto para usar as configurações. Figmagic vai pegar pelo caminho avaliando o trabalho atual no diretório e olhando também para os arquivos `figmagic.json` ou `.figmagicrc` . Se achá-los, vai usá-los.
 
-An example file is provided in Figmagic—you can find it in the root of the project. The file is named `figmagicrc`, just add the leading dot and place the file in your own project folder to use it. To use it as JSON, add `json` as the file ending.
+Um exemplo de arquivo é fornecido no Figmagic-você pode encontrar na raíz do projeto. O arquivo se chama `figmagicrc`, apenas adicione o ponto principal e coloque o arquivo na pasta do seu próprio projeto para usar. Para usar como JSON, adicione `json` no final do arquivo.
 
-Since this is a configuration file, you'll need to be careful to write it correctly or you may end up with failures and errors.
+Como é um arquivo de configuração, você precisa ser cuidadoso em escrever corretamente ou você pode terminar com falhas e erros.
 
-Below is a complete set of what you can configure, together with the defaults.
+Abaixo está um conjunto completo do que você pode configurar, junto com os padrões.
 
 ```json5
 {
@@ -395,9 +386,9 @@ Below is a complete set of what you can configure, together with the defaults.
 };
 ```
 
-### CLI arguments
+### Argumentos CLI 
 
-Run these in your command line environment of choice.
+Rode esses comandos no ambiente de linha de comando a sua escolha.
 
 ---
 
@@ -487,7 +478,7 @@ Run these in your command line environment of choice.
 
 **Default**: `rgba`.
 
-This only applies to solid colors; gradients will still use RGBA colors.
+Isso apenas de aplica a cores sólidas; gradientes vão continuar usando cores RGBA.
 
 Hex color support may potentially interfere with element generation and binding to tokens, since RGB(A) is the format that Figma itself uses, so there is a slight possibility of mismatches in the Figmagic binding process.
 
@@ -911,10 +902,9 @@ Can be set to `percent` to have them converted to `%` strings instead like `0%` 
 | `bin/usecases`    | Where the application "features" are orchestrated, as per [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)          |
 | `build/`          | ES6-compiled code (this is the code that consumers of the Figmagic binary actually use)                                                                               |
 | `images/`         | Documentation, mostly images and screen shots. You can manually generate the Arkit diagram with `npm run docs`.                                                       |
-| `readme/`         | Additional README files                                                                                                                                               |
+| `readme/`         | Additional readme files                                                                                                                                               |
 | `templates/`      | Files that are used as templates for code generation                                                                                                                  |
 | `testdata/`       | Most of the tests point to stored test data which is stored in this folder                                                                                            |
-| `translation/`    | Translations (localizations) of the README                                                                                                                            |
 | `typedoc-docs/`   | Documentation generated by TypeDoc, which gets hosted at [https://docs.figmagic.com](https://docs.figmagic.com). You can manually generate these with `npm run docs`. |
 | `index.ts`        | The file that initializes and sets up everything required to run Figmagic                                                                                             |
 
@@ -942,9 +932,6 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
 
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic?ref=badge_large)
-
 ## Contribution
 
 ### Want to add or rethink something in Figmagic?
@@ -967,10 +954,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/mykhailoInnovecs"><img src="https://avatars.githubusercontent.com/u/58974597?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mykhailoInnovecs</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=mykhailoInnovecs" title="Code">💻</a></td>
     <td align="center"><a href="https://www.haikuforteams.com/"><img src="https://avatars.githubusercontent.com/u/2100885?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Zack Brown</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=zackbrown" title="Code">💻</a></td>
     <td align="center"><a href="https://muffinman.io/"><img src="https://avatars.githubusercontent.com/u/776788?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stanko Tadić</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Stanko" title="Code">💻</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/Ishmam156"><img src="https://avatars.githubusercontent.com/u/64395142?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ishmam Chowdhury</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Ishmam156" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/printf-ana"><img src="https://avatars.githubusercontent.com/u/45365825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ana Carolina </b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=printf-ana" title="Documentation">📖</a></td>
+    <tr>
+     <td align="center"><a href="https://github.com/Ishmam156"><img src="https://avatars.githubusercontent.com/u/64395142?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ishmam Chowdhury</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Ishmam156" title="Code">💻</a></td>
+   </tr>
   </tr>
 </table>
 

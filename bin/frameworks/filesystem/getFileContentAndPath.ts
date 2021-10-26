@@ -67,7 +67,7 @@ export function getFileContentAndPath(
       },
       token: () => {
         if (metadata && metadata.dataType === 'enum')
-          return { fileContent: getTokenEnumString(file, name, format), filePath };
+          return { fileContent: getTokenString(file, name, format, metadata.dataType), filePath };
 
         filePath += `.${format}`;
         return { fileContent: getTokenString(file, name, format), filePath };
@@ -119,23 +119,26 @@ export function getFileContentAndPath(
 }
 
 /**
- * @description Get file data string for tokens using enum data type
+ * @description Get file data string for tokens using either null/no data type or enum data type
  */
-const getTokenEnumString = (file: string | ProcessedToken, name: string, format: string) => {
-  const EXPORT = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
-  return `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
-    file
-  )}\n}\n\n${EXPORT};`;
-};
-
-/**
- * @description Get file data string for tokens using null/no data type
- */
-const getTokenString = (file: string | ProcessedToken, name: string, format: string) => {
+const getTokenString = (
+  file: string | ProcessedToken,
+  name: string,
+  format: string,
+  dataType?: string
+) => {
   if (format === 'json') return `${JSON.stringify(file, null, ' ')}`;
 
   const EXPORT = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
+
+  if (dataType === 'enum') {
+    return `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
+      file
+    )}\n}\n\n${EXPORT};`;
+  }
+
   const CONST_ASSERTION = format === 'ts' ? ' as const;' : '';
+
   return `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
     file,
     null,
