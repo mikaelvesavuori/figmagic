@@ -10,7 +10,7 @@ describe('Failure cases', () => {
   });
 
   test('It should fail given invalid URL and token', async () => {
-    await expect(getDataRemote('token', 'url')).rejects.toThrow();
+    await expect(getDataRemote('token', 'invalid-url')).rejects.toThrow();
   });
 });
 

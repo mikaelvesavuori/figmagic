@@ -5,7 +5,7 @@ loadEnv();
 
 describe('Failure cases', () => {
   test('It should throw an error when receiving invalid token and/or URL', async () => {
-    await expect(getFromApi('asdf', 'asdf')).rejects.toThrowError();
+    await expect(getFromApi('asdf', 'invalid-url')).rejects.toThrowError();
   });
 
   test('It should throw an error if no argument is provided', async () => {
