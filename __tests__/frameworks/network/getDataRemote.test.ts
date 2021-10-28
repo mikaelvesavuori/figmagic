@@ -18,6 +18,15 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should get API data given valid URL and token', async () => {
+    console.log(
+      'CHECKING',
+      TOKEN,
+      TOKEN === undefined,
+      process.env.IS_MOCK_ENABLED,
+      process.env.IS_MOCK_ENABLED === undefined,
+      process.env.FIGMA_URL,
+      process.env.FIGMA_URL === undefined
+    );
     await expect(
       // @ts-ignore
       getDataRemote(TOKEN, process.env.FIGMA_URL)
