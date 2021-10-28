@@ -17,8 +17,8 @@ export async function downloadFile(url: string, filePath: string): Promise<void>
         // @ts-ignore
         if (resp.statusCode >= 200 && resp.statusCode < 300) {
           createMissingFoldersFromPath(filePath);
-          resp.pipe(fs.createWriteStream(filePath));
-          resolve();
+          const write = resp.pipe(fs.createWriteStream(filePath));
+          write.on('finish', resolve);
         } else reject(null);
       });
       req.on('end', () => resolve()).on('error', (error) => reject(error));
