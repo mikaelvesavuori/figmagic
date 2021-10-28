@@ -46,14 +46,16 @@ jobs:
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
           IS_CI: true
 
-      - name: Run, then check for files
-        run: |
-          npm run figmagic
-          \[ -d .figmagic \]
-          \[ -f .figmagic/figma.json \]
-        env:
-          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
-          FIGMA_URL: ${{ secrets.FIGMA_URL }}
+      - name: Run
+        run: npm run figmagic
+      #- name: Run, then check for files
+      #  run: |
+      #    npm run figmagic
+      #    \[ -d .figmagic \]
+      #    \[ -f .figmagic/figma.json \]
+      #  env:
+      #    FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+      #    FIGMA_URL: ${{ secrets.FIGMA_URL }}
 
       - name: Create Arkit diagram
         run: npx arkit
@@ -103,14 +105,16 @@ jobs:
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
           IS_CI: true
 
-      - name: Run, then check for files
-        run: |
-          npm run figmagic
-          Test-Path .figmagic
-          Test-Path .figmagic/figma.json -PathType leaf
-        env:
-          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
-          FIGMA_URL: ${{ secrets.FIGMA_URL }}
+      - name: Run
+        run: npm run figmagic
+      #- name: Run, then check for files
+      #  run: |
+      #    npm run figmagic
+      #    Test-Path .figmagic
+      #    Test-Path .figmagic/figma.json -PathType leaf
+      #  env:
+      #    FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+      #    FIGMA_URL: ${{ secrets.FIGMA_URL }}
 
   publish-npm:
     needs: ['build-unix', 'build-windows']
