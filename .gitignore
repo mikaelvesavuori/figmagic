@@ -1,6 +1,8 @@
 # Ensure built files are included
 !build/
 
+.dccache
+
 # Generated files
 .figmagicrc
 figmagic.json
