@@ -47,8 +47,6 @@ jobs:
       - name: Test
         run: npm test
         env:
-          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
-          FIGMA_URL: ${{ secrets.FIGMA_URL }}
           IS_CI: true
 
       - name: Run, then check for files
@@ -56,9 +54,6 @@ jobs:
           npm run figmagic
           \[ -d .figmagic \]
           \[ -f .figmagic/figma.json \]
-        env:
-          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
-          FIGMA_URL: ${{ secrets.FIGMA_URL }}
 
   build-windows:
     runs-on: ${{ matrix.os }}
@@ -90,16 +85,9 @@ jobs:
 
       - name: Test
         run: echo Skipping tests on Windows because of weird platform issues... #npm test
-        env:
-          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
-          FIGMA_URL: ${{ secrets.FIGMA_URL }}
-          IS_CI: true
 
       - name: Run, then check for files
         run: |
           npm run figmagic
           Test-Path .figmagic
           Test-Path .figmagic/figma.json -PathType leaf
-        env:
-          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
-          FIGMA_URL: ${{ secrets.FIGMA_URL }}
