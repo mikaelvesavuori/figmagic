@@ -8,6 +8,9 @@ import { graphicsPage } from '../../../../testdata/graphicsPage';
 
 loadEnv();
 
+const FIGMA_TOKEN = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_TOKEN;
+const FIGMA_URL = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_URL;
+
 // Re-ordered success and failure cases because the "normal" order will leak variables or something, causing tests to fail
 
 describe('Success cases', () => {
@@ -21,8 +24,8 @@ describe('Success cases', () => {
         outputFolderGraphics: 'graphics',
         outputFormatGraphics: 'svg',
         outputScaleGraphics: 1,
-        token: process.env.FIGMA_TOKEN,
-        url: process.env.FIGMA_URL
+        token: FIGMA_TOKEN,
+        url: FIGMA_URL
       } as Config)
     ).resolves.toEqual(expect.objectContaining({}));
   });
@@ -49,7 +52,7 @@ describe('Failure cases', () => {
         outputFormatGraphics: 'svg',
         outputScaleGraphics: 1,
         token: null,
-        url: process.env.FIGMA_URL
+        url: FIGMA_URL
       } as Config)
     ).rejects.toThrow();
   });
@@ -69,8 +72,8 @@ describe('Failure cases', () => {
         outputFolderGraphics: 'graphics',
         outputFormatGraphics: 'svg',
         outputScaleGraphics: 1,
-        token: process.env.FIGMA_TOKEN,
-        url: process.env.FIGMA_URL
+        token: FIGMA_TOKEN,
+        url: FIGMA_URL
       } as Config)
     ).rejects.toThrow();
   });

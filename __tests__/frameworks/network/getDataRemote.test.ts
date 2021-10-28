@@ -3,7 +3,8 @@ import { getDataRemote } from '../../../bin/frameworks/network/getDataRemote';
 
 loadEnv();
 
-const TOKEN = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_TOKEN;
+const FIGMA_TOKEN = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_TOKEN;
+const FIGMA_URL = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_URL;
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
@@ -18,25 +19,16 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should get API data given valid URL and token', async () => {
-    console.log(
-      'CHECKING',
-      TOKEN,
-      TOKEN === undefined,
-      process.env.IS_MOCK_ENABLED,
-      process.env.IS_MOCK_ENABLED === undefined,
-      process.env.FIGMA_URL,
-      process.env.FIGMA_URL === undefined
-    );
     await expect(
       // @ts-ignore
-      getDataRemote(TOKEN, process.env.FIGMA_URL)
+      getDataRemote(FIGMA_TOKEN, FIGMA_URL)
     ).resolves.toBeTruthy();
   });
 
   test('It should get API data given valid URL and token and a named version', async () => {
     await expect(
       // @ts-ignore
-      getDataRemote(TOKEN, process.env.FIGMA_URL, 'Version 4.1.0')
+      getDataRemote(FIGMA_TOKEN, FIGMA_URL, 'Version 4.1.0')
     ).resolves.toBeTruthy();
   });
 });

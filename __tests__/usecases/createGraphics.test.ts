@@ -10,6 +10,9 @@ import { figmaTestResponse } from '../../testdata/figmaTestResponse';
 
 loadEnv();
 
+const FIGMA_TOKEN = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_TOKEN;
+const FIGMA_URL = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_URL;
+
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
@@ -30,9 +33,9 @@ describe('Success cases', () => {
   test('It should write tokens given a valid configuration, valid data and an output folder', async () => {
     const CONFIG = testConfig;
     // @ts-ignore
-    CONFIG.token = process.env.FIGMA_TOKEN;
+    CONFIG.token = FIGMA_TOKEN;
     // @ts-ignore
-    CONFIG.url = process.env.FIGMA_URL;
+    CONFIG.url = FIGMA_URL;
     const DATA = figmaTestResponse;
     CONFIG.outputFolderGraphics = '__test-graphics-success__';
 

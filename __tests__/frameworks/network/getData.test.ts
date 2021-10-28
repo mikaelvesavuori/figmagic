@@ -3,6 +3,9 @@ import { getData } from '../../../bin/frameworks/network/getData';
 
 loadEnv();
 
+const FIGMA_TOKEN = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_TOKEN;
+const FIGMA_URL = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_URL;
+
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
     // @ts-ignore
@@ -39,15 +42,8 @@ describe('Success cases', () => {
 
   // TODO: Add mocking?
   test('It should get remote data (check for "components" property)', async () => {
-    const DATA = await getData(
-      false,
-      '.',
-      'exampleFigmaData.json',
-      // @ts-ignore
-      process.env.FIGMA_TOKEN,
-      // @ts-ignore
-      process.env.FIGMA_URL
-    );
+    // @ts-ignore
+    const DATA = await getData(false, '.', 'exampleFigmaData.json', FIGMA_TOKEN, FIGMA_URL);
 
     expect(DATA).toHaveProperty('components');
   });
