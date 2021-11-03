@@ -1,3 +1,4 @@
+export declare const validBorderWidthUnitList: string[];
 export declare const validFontUnitList: string[];
 export declare const validLetterSpacingUnitList: string[];
 export declare const validLineHeightUnitList: string[];
@@ -10,4 +11,6 @@ export declare const validOutputFormatElementsList: string[];
 export declare const validOutputFormatGraphicsList: string[];
 export declare const validOutputFormatStorybookList: string[];
 export declare const validOutputFormatTokensList: string[];
+export declare const validRadiusUnitList: string[];
+export declare const validShadowUnitList: string[];
 export declare const validSpacingUnitList: string[];

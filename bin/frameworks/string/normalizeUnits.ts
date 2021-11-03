@@ -15,31 +15,32 @@ export function normalizeUnits(
 ): string {
   if (!value || !currentUnit || !newUnit) throw Error(ErrorNormalizeUnits);
 
-  let rootSize = undefined;
-  let unitSize = undefined;
-
-  // Set root size
-  if (currentUnit === 'px') rootSize = 1;
-
-  // Set root size; Kind of a hack? Not sure if this is going to break anything. Used because of 'unitless'
-  if (currentUnit === 'percent') rootSize = 1;
-
-  // Set new unit
-  if (newUnit === 'rem' || newUnit === 'em') {
-    if (!remSize) throw Error(ErrorNormalizeUnitsNoRemSize);
-    unitSize = remSize;
-  }
-
-  if (newUnit === 'unitless') unitSize = value / 100;
-
-  // Add px to corner radius
-  if (currentUnit === 'cornerRadius' && newUnit === 'adjustedRadius') return `${value}px`;
+  const rootSize = setRootSize(currentUnit);
+  const unitSize = setUnitSize(value, newUnit, remSize);
 
   if (rootSize === undefined || unitSize === undefined) throw Error(ErrorNormalizeUnitsUndefined);
 
+  return getAdjustedValues(value, rootSize as number, unitSize as number, newUnit);
+}
+
+function setRootSize(currentUnit: string): number | undefined {
+  if (currentUnit === 'px' || currentUnit === 'percent') return 1;
+  return undefined;
+}
+
+function setUnitSize(value: number, newUnit: string, remSize?: number): number | undefined {
+  if (newUnit === 'unitless') return value / 100;
+  else if (newUnit === 'rem' || newUnit === 'em' || newUnit === 'px') {
+    if (!remSize) throw Error(ErrorNormalizeUnitsNoRemSize);
+    return remSize;
+  } else return undefined;
+}
+
+function getAdjustedValues(value: number, rootSize: number, unitSize: number, newUnit: string) {
   if (newUnit === 'unitless') return `${unitSize}`;
+  else if (newUnit === 'px') return `${value}${newUnit}`;
   else {
-    const ADJUSTED_VALUE = value * (rootSize / unitSize);
-    return `${ADJUSTED_VALUE}${newUnit}`;
+    const adjustedValue = rootSize && unitSize ? value * (rootSize / unitSize) : value;
+    return `${adjustedValue}${newUnit}`;
   }
 }

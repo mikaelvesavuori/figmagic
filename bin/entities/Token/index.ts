@@ -76,7 +76,7 @@ class Token {
   private getTokens = (frame: Frame, name: string, config: Config): any => {
     const { outputFormatColors } = config;
     const tokenOperations = {
-      borderwidths: () => makeBorderWidthTokens(frame),
+      borderwidths: () => makeBorderWidthTokens(frame, config.borderWidthUnit, config.remSize),
       color: () => makeColorTokens(frame, outputFormatColors),
       colors: () => makeColorTokens(frame, outputFormatColors),
       delays: () => makeDelayTokens(frame),
@@ -107,8 +107,8 @@ class Token {
         if (!config) throw Error(ErrorExtractTokensNoConfig);
         return makeOpacityTokens(frame, config.opacitiesUnit);
       },
-      radii: () => makeRadiusTokens(frame, config.remSize),
-      shadows: () => makeShadowTokens(frame),
+      radii: () => makeRadiusTokens(frame, config.radiusUnit, config.remSize),
+      shadows: () => makeShadowTokens(frame, config.shadowUnit, config.remSize),
       spacing: () => {
         if (!config) throw Error(ErrorExtractTokensNoConfig);
         return makeSpacingTokens(frame, config.spacingUnit, config.remSize);

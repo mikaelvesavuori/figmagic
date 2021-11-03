@@ -14,7 +14,7 @@ describe('Failure cases', () => {
     }).toThrow();
   });
 
-  test('It should throw an error if being passed an invalid asdf, since it cannot set rootSize', () => {
+  test('It should throw an error if being passed an invalid newUnit, since it cannot set rootSize', () => {
     expect(() => {
       normalizeUnits(400, 'px', 'asdf');
     }).toThrow();
@@ -27,7 +27,7 @@ describe('Success cases', () => {
   });
 
   test('It should normalize a letter-spacing unit to a converted pixel value, when given a width value, current unit string, and a conversion type as string', () => {
-    expect(normalizeUnits(100, 'cornerRadius', 'adjustedRadius')).toBe('100px');
+    expect(normalizeUnits(100, 'px', 'px', 16)).toBe('100px');
   });
 
   test('It should normalize a px value to base rem size, when given a width value, current unit string, and a conversion type as string', () => {

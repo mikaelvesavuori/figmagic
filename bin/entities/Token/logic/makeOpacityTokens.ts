@@ -1,5 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { OpacityTokens } from '../../../contracts/Tokens';
+import { OpacitiesUnit } from '../../../contracts/Config';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -15,7 +16,7 @@ import {
 // TODO: Refactor
 export function makeOpacityTokens(
   opacitiesFrame: Frame,
-  opacitiesUnit: 'float' | 'percent'
+  opacitiesUnit: OpacitiesUnit
 ): OpacityTokens {
   if (!opacitiesFrame) throw Error(ErrorMakeOpacityTokensNoFrame);
   if (!opacitiesFrame.children) throw Error(ErrorMakeOpacityTokensNoChildren);

@@ -338,10 +338,13 @@ Below is a complete set of what you can configure, together with the defaults.
 ```json5
 {
   "debugMode": false,
+  "borderWidthUnit": "px",
   "fontUnit": "rem",
   "letterSpacingUnit": "em",
   "lineHeightUnit": "unitless",
   "opacitiesUnit": "float",
+  "radiusUnit": "px",
+  "shadowUnit": "px",
   "figmaData": "figma.json",
   "figmagicFolder": ".figmagic",
   "outputFolderElements": "elements",
@@ -409,6 +412,30 @@ Run these in your command line environment of choice.
 
 ---
 
+#### Switch border width unit
+
+`figmagic [--borderWidthUnit | -bwu] [px|rem|em]`
+
+**Default**: `px`.
+
+---
+
+#### Switch radius unit
+
+`figmagic [--radiusUnit | -ru] [px|rem|em]`
+
+**Default**: `px`.
+
+---
+
+#### Switch shadow unit
+
+`figmagic [--shadowUnit | -su] [px|rem|em]`
+
+**Default**: `px`.
+
+---
+
 #### Switch font unit
 
 `figmagic [--fontUnit | -fu] [rem|em|px]`
@@ -441,57 +468,11 @@ Run these in your command line environment of choice.
 
 ---
 
-#### Set output file name
+#### Switch spacing unit
 
-`figmagic [--figmaData | -file] [filename]`
+`figmagic [--spacingUnit | -s] [rem|em|px]`
 
-**Default**: `figma.json`.
-
----
-
-#### Set Figma base file output folder
-
-`figmagic [--figmagicFolder | -base] [folder]`
-
-**Default**: `.figmagic`.
-
----
-
-#### Set elements output folder
-
-`figmagic [--outputFolderElements | -elements] [folder]`
-
-**Default**: `elements`.
-
----
-
-#### Set graphics output folder
-
-`figmagic [--outputFolderGraphics | -graphics] [folder]`
-
-**Default**: `graphics`.
-
----
-
-#### Set token output folder
-
-`figmagic [--outputFolderTokens | -tokens] [folder]`
-
-**Default**: `tokens`.
-
----
-
-#### Switch color format
-
-`figmagic [--outputFormatColors | -fcol] [hex|rgba]`
-
-**Default**: `rgba`.
-
-This only applies to solid colors; gradients will still use RGBA colors.
-
-Hex color support may potentially interfere with element generation and binding to tokens, since RGB(A) is the format that Figma itself uses, so there is a slight possibility of mismatches in the Figmagic binding process.
-
-_Note that hex colors will not use any alpha/transparency!_
+**Default**: `rem`.
 
 ---
 
@@ -540,6 +521,60 @@ _Note that hex colors will not use any alpha/transparency!_
 `figmagic [--outputFormatTokens | -ft] [ts|mjs|js|json]`
 
 **Default**: `ts`.
+
+---
+
+#### Switch color format
+
+`figmagic [--outputFormatColors | -fcol] [hex|rgba]`
+
+**Default**: `rgba`.
+
+This only applies to solid colors; gradients will still use RGBA colors.
+
+Hex color support may potentially interfere with element generation and binding to tokens, since RGB(A) is the format that Figma itself uses, so there is a slight possibility of mismatches in the Figmagic binding process.
+
+_Note that hex colors will not use any alpha/transparency!_
+
+---
+
+#### Set output file name
+
+`figmagic [--figmaData | -file] [filename]`
+
+**Default**: `figma.json`.
+
+---
+
+#### Set Figma base file output folder
+
+`figmagic [--figmagicFolder | -base] [folder]`
+
+**Default**: `.figmagic`.
+
+---
+
+#### Set elements output folder
+
+`figmagic [--outputFolderElements | -elements] [folder]`
+
+**Default**: `elements`.
+
+---
+
+#### Set graphics output folder
+
+`figmagic [--outputFolderGraphics | -graphics] [folder]`
+
+**Default**: `graphics`.
+
+---
+
+#### Set token output folder
+
+`figmagic [--outputFolderTokens | -tokens] [folder]`
+
+**Default**: `tokens`.
 
 ---
 
@@ -658,14 +693,6 @@ Skip creating Storybook file when syncing elements.
 **Default**: `false`.
 
 Skip creating Styled Components file when syncing elements.
-
----
-
-#### Switch spacing unit
-
-`figmagic [--spacingUnit | -s] [rem|em|px]`
-
-**Default**: `rem`.
 
 ---
 

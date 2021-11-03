@@ -1,5 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { FontSizeTokens } from '../../../contracts/Tokens';
+import { FontUnits } from '../../../contracts/Config';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -16,7 +17,7 @@ import {
  */
 export function makeFontSizeTokens(
   fontSizeFrame: Frame,
-  fontUnit: string,
+  fontUnit: FontUnits,
   remSize: number
 ): FontSizeTokens {
   if (!fontSizeFrame) throw Error(ErrorMakeFontSizeTokensNoFrame);

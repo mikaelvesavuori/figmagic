@@ -329,6 +329,15 @@ export const ErrorValidateConfigFileName = ErrorMessage(
 export const ErrorValidateConfigFolderName = ErrorMessage(
   'Provided Figma folder name in configuration is invalid!'
 );
+export const ErrorValidateBorderWidthUnit = ErrorMessage(
+  'Received unrecognized "borderWidthUnit" argument, it must be "px" (default), "em" or "rem".'
+);
+export const ErrorValidateRadiusUnit = ErrorMessage(
+  'Received unrecognized "radiusUnit" argument, it must be "px" (default), "em" or "rem".'
+);
+export const ErrorValidateShadowUnit = ErrorMessage(
+  'Received unrecognized "shadowUnit" argument, it must be "px" (default), "em" or "rem".'
+);
 export const ErrorValidateConfigFontUnit = ErrorMessage(
   'Received unrecognized "fontUnit" argument, it must be "rem" (default), "em" or "px".'
 );

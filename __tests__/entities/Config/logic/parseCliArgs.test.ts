@@ -35,6 +35,174 @@ describe('Success cases', () => {
     });
   });
 
+  describe('Border width unit', () => {
+    test('It should return "px" for borderWidthUnit if passing "px" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--borderWidthUnit', 'px'])).toEqual(
+        expect.objectContaining({
+          borderWidthUnit: 'px'
+        })
+      );
+    });
+
+    test('It should return "px" for borderWidthUnit if passing "px" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-bwu', 'px'])).toEqual(
+        expect.objectContaining({
+          borderWidthUnit: 'px'
+        })
+      );
+    });
+
+    test('It should return "rem" for borderWidthUnit if passing "rem" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--borderWidthUnit', 'rem'])).toEqual(
+        expect.objectContaining({
+          borderWidthUnit: 'rem'
+        })
+      );
+    });
+
+    test('It should return "rem" for borderWidthUnit if passing "rem" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-bwu', 'rem'])).toEqual(
+        expect.objectContaining({
+          borderWidthUnit: 'rem'
+        })
+      );
+    });
+
+    test('It should return "em" for borderWidthUnit if passing "em" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--borderWidthUnit', 'em'])).toEqual(
+        expect.objectContaining({
+          borderWidthUnit: 'em'
+        })
+      );
+    });
+
+    test('It should return "em" for borderWidthUnit if passing "em" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-bwu', 'em'])).toEqual(
+        expect.objectContaining({
+          borderWidthUnit: 'em'
+        })
+      );
+    });
+  });
+
+  describe('Radius unit', () => {
+    test('It should return "px" for radiusUnit if passing "px" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--radiusUnit', 'px'])).toEqual(
+        expect.objectContaining({
+          radiusUnit: 'px'
+        })
+      );
+    });
+
+    test('It should return "px" for radiusUnit if passing "px" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-ru', 'px'])).toEqual(
+        expect.objectContaining({
+          radiusUnit: 'px'
+        })
+      );
+    });
+
+    test('It should return "rem" for radiusUnit if passing "rem" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--radiusUnit', 'rem'])).toEqual(
+        expect.objectContaining({
+          radiusUnit: 'rem'
+        })
+      );
+    });
+
+    test('It should return "rem" for radiusUnit if passing "rem" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-ru', 'rem'])).toEqual(
+        expect.objectContaining({
+          radiusUnit: 'rem'
+        })
+      );
+    });
+
+    test('It should return "em" for radiusUnit if passing "em" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--radiusUnit', 'em'])).toEqual(
+        expect.objectContaining({
+          radiusUnit: 'em'
+        })
+      );
+    });
+
+    test('It should return "em" for radiusUnit if passing "em" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-ru', 'em'])).toEqual(
+        expect.objectContaining({
+          radiusUnit: 'em'
+        })
+      );
+    });
+  });
+
+  describe('Shadow unit', () => {
+    test('It should return "px" for shadowUnit if passing "px" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--shadowUnit', 'px'])).toEqual(
+        expect.objectContaining({
+          shadowUnit: 'px'
+        })
+      );
+    });
+
+    test('It should return "px" for shadowUnit if passing "px" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-su', 'px'])).toEqual(
+        expect.objectContaining({
+          shadowUnit: 'px'
+        })
+      );
+    });
+
+    test('It should return "rem" for shadowUnit if passing "rem" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--shadowUnit', 'rem'])).toEqual(
+        expect.objectContaining({
+          shadowUnit: 'rem'
+        })
+      );
+    });
+
+    test('It should return "rem" for shadowUnit if passing "rem" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-su', 'rem'])).toEqual(
+        expect.objectContaining({
+          shadowUnit: 'rem'
+        })
+      );
+    });
+
+    test('It should return "em" for shadowUnit if passing "em" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--shadowUnit', 'em'])).toEqual(
+        expect.objectContaining({
+          shadowUnit: 'em'
+        })
+      );
+    });
+
+    test('It should return "em" for shadowUnit if passing "em" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-su', 'em'])).toEqual(
+        expect.objectContaining({
+          shadowUnit: 'em'
+        })
+      );
+    });
+  });
+
   describe('Font unit', () => {
     test('It should return "em" for fontUnit if passing "em" (long-hand)', () => {
       // @ts-ignore
@@ -50,6 +218,80 @@ describe('Success cases', () => {
       expect(parseCliArgs(['-fu', 'em'])).toEqual(
         expect.objectContaining({
           fontUnit: 'em'
+        })
+      );
+    });
+  });
+
+  describe('Line height unit', () => {
+    test('It should return "unitless" for lineHeightUnit if passing "unitless" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--lineHeightUnit', 'unitless'])).toEqual(
+        expect.objectContaining({
+          lineHeightUnit: 'unitless'
+        })
+      );
+    });
+
+    test('It should return "unitless" for lineHeightUnit if passing "unitless" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-lhu', 'unitless'])).toEqual(
+        expect.objectContaining({
+          lineHeightUnit: 'unitless'
+        })
+      );
+    });
+
+    test('It should return "px" for lineHeightUnit if passing "px" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--lineHeightUnit', 'px'])).toEqual(
+        expect.objectContaining({
+          lineHeightUnit: 'px'
+        })
+      );
+    });
+
+    test('It should return "px" for lineHeightUnit if passing "px" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-lhu', 'px'])).toEqual(
+        expect.objectContaining({
+          lineHeightUnit: 'px'
+        })
+      );
+    });
+
+    test('It should return "em" for lineHeightUnit if passing "em" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--lineHeightUnit', 'em'])).toEqual(
+        expect.objectContaining({
+          lineHeightUnit: 'em'
+        })
+      );
+    });
+
+    test('It should return "em" for lineHeightUnit if passing "em" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-lhu', 'em'])).toEqual(
+        expect.objectContaining({
+          lineHeightUnit: 'em'
+        })
+      );
+    });
+
+    test('It should return "rem" for lineHeightUnit if passing "rem" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--lineHeightUnit', 'rem'])).toEqual(
+        expect.objectContaining({
+          lineHeightUnit: 'rem'
+        })
+      );
+    });
+
+    test('It should return "rem" for lineHeightUnit if passing "rem" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-lhu', 'rem'])).toEqual(
+        expect.objectContaining({
+          lineHeightUnit: 'rem'
         })
       );
     });

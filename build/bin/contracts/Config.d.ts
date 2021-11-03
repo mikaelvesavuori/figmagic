@@ -1,9 +1,13 @@
 export declare type Config = {
     debugMode: boolean;
+    borderWidthUnit: BorderWidthUnit;
     fontUnit: FontUnits;
-    letterSpacingUnit: LetterSpacingUnits;
-    lineHeightUnit: LineHeightUnits;
-    opacitiesUnit: OpacitiesUnits;
+    letterSpacingUnit: LetterSpacingUnit;
+    lineHeightUnit: LineHeightUnit;
+    opacitiesUnit: OpacitiesUnit;
+    radiusUnit: RadiusUnit;
+    shadowUnit: ShadowUnit;
+    spacingUnit: SpacingUnit;
     figmaData: string;
     figmagicFolder: string;
     outputFolderElements: string;
@@ -31,7 +35,6 @@ export declare type Config = {
         skipStorybook: boolean;
         skipStyled: boolean;
     };
-    spacingUnit: SpacingUnit;
     syncElements: boolean;
     syncGraphics: boolean;
     syncTokens: boolean;
@@ -50,10 +53,14 @@ export declare type Config = {
 };
 export declare type ConfigDTO = {
     debugMode?: boolean;
+    borderWidthUnit?: BorderWidthUnit;
     fontUnit?: FontUnits;
-    letterSpacingUnit?: LetterSpacingUnits;
-    lineHeightUnit: LineHeightUnits;
-    opacitiesUnit?: OpacitiesUnits;
+    letterSpacingUnit?: LetterSpacingUnit;
+    lineHeightUnit?: LineHeightUnit;
+    opacitiesUnit?: OpacitiesUnit;
+    radiusUnit?: RadiusUnit;
+    shadowUnit?: ShadowUnit;
+    spacingUnit?: SpacingUnit;
     figmaData?: string;
     figmagicFolder?: string;
     outputFolderElements?: string;
@@ -88,7 +95,6 @@ export declare type ConfigDTO = {
         skipStorybook?: boolean;
         skipStyled?: boolean;
     };
-    spacingUnit?: SpacingUnit;
     syncElements?: boolean;
     syncGraphics?: boolean;
     syncTokens?: boolean;
@@ -113,10 +119,14 @@ export declare type Overwrite = {
     storybook: boolean;
     styled: boolean;
 };
+export declare type BorderWidthUnit = 'rem' | 'em' | 'px';
+export declare type ShadowUnit = 'rem' | 'em' | 'px';
+export declare type RadiusUnit = 'rem' | 'em' | 'px';
 export declare type FontUnits = 'rem' | 'em' | 'px';
-export declare type LetterSpacingUnits = 'em' | 'px';
-export declare type LineHeightUnits = 'unitless' | 'px' | 'rem' | 'em';
-export declare type OpacitiesUnits = 'float' | 'percent';
+export declare type LetterSpacingUnit = 'em' | 'px';
+export declare type LineHeightUnit = 'unitless' | 'px' | 'rem' | 'em';
+export declare type OpacitiesUnit = 'float' | 'percent';
+export declare type SpacingUnit = 'rem' | 'em' | 'px';
 export declare type OutputFormatColors = 'hex' | 'rgba';
 export declare type OutputFormatCss = 'ts' | 'mjs' | 'js';
 export declare type OutputFormatDescription = 'md' | 'txt';
@@ -125,4 +135,3 @@ export declare type OutputFormatGraphics = 'svg' | 'png';
 export declare type OutputFormatStorybook = 'ts' | 'js' | 'mdx';
 export declare type OutputFormatTokens = 'ts' | 'mjs' | 'js' | 'json';
 export declare type OutputDataTypeToken = null | 'enum';
-export declare type SpacingUnit = 'rem' | 'em' | 'px';

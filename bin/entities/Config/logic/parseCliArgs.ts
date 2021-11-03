@@ -13,7 +13,6 @@ export function parseCliArgs(argsArray: string[]): Config {
   if (!argsArray) throw Error(ErrorParseCliArgs);
   if (argsArray.length === 0) return {} as Config;
 
-  // deep partial Config type
   const config: any = {};
 
   const setConfigValue = <ValueType = unknown>(key: keyof Config, value: ValueType): void => {
@@ -29,12 +28,18 @@ export function parseCliArgs(argsArray: string[]): Config {
   const cliArguments: CliArguments = {
     '--debug': () => setConfigValue('debugMode', true),
     '-d': () => setConfigValue('debugMode', true),
+    '--borderWidthUnit': (val: string) => setConfigValue('borderWidthUnit', val.toLowerCase()),
+    '-bwu': (val: string) => setConfigValue('borderWidthUnit', val.toLowerCase()),
+    '--radiusUnit': (val: string) => setConfigValue('radiusUnit', val.toLowerCase()),
+    '-ru': (val: string) => setConfigValue('radiusUnit', val.toLowerCase()),
+    '--shadowUnit': (val: string) => setConfigValue('shadowUnit', val.toLowerCase()),
+    '-su': (val: string) => setConfigValue('shadowUnit', val.toLowerCase()),
     '--fontUnit': (val: string) => setConfigValue('fontUnit', val.toLowerCase()),
     '-fu': (val: string) => setConfigValue('fontUnit', val.toLowerCase()),
     '--letterSpacingUnit': (val: string) => setConfigValue('letterSpacingUnit', val.toLowerCase()),
     '-lsu': (val: string) => setConfigValue('letterSpacingUnit', val.toLowerCase()),
     '--lineHeightUnit': (val: string) => setConfigValue('lineHeightUnit', val.toLowerCase()),
-    '--lhu': (val: string) => setConfigValue('lineHeightUnit', val.toLowerCase()),
+    '-lhu': (val: string) => setConfigValue('lineHeightUnit', val.toLowerCase()),
     '--opacitiesUnit': (val: string) => setConfigValue('opacitiesUnit', val.toLowerCase()),
     '-ou': (val: string) => setConfigValue('opacitiesUnit', val.toLowerCase()),
     '--figmaData': (val: string) => setConfigValue('figmaData', val),

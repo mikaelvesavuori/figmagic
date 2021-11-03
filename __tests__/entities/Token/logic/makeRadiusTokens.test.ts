@@ -26,9 +26,26 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should return a complete object when passing in valid input', () => {
-    expect(makeRadiusTokens(radiiFrame, 16)).toEqual(
+  test('It should return a complete object when passing in valid input, using "px" values', () => {
+    expect(makeRadiusTokens(radiiFrame, 'px', 16)).toEqual(
       expect.objectContaining({ circle: '100px', hard: '0px', rounded: '4px', soft: '8px' })
+    );
+  });
+
+  test('It should return a complete object when passing in valid input, using "rem" values', () => {
+    expect(makeRadiusTokens(radiiFrame, 'rem', 16)).toEqual(
+      expect.objectContaining({
+        circle: '6.25rem',
+        hard: '0rem',
+        rounded: '0.25rem',
+        soft: '0.5rem'
+      })
+    );
+  });
+
+  test('It should return a complete object when passing in valid input, using "em" values', () => {
+    expect(makeRadiusTokens(radiiFrame, 'em', 16)).toEqual(
+      expect.objectContaining({ circle: '6.25em', hard: '0em', rounded: '0.25em', soft: '0.5em' })
     );
   });
 });

@@ -3,6 +3,7 @@ import { validateConfig } from '../../../../bin/entities/Config/logic/validateCo
 import { testConfig } from '../../../../testdata/testConfig';
 
 import {
+  ErrorValidateBorderWidthUnit,
   ErrorValidateConfigFileName,
   ErrorValidateConfigFolderName,
   ErrorValidateConfigFontUnit,
@@ -21,7 +22,9 @@ import {
   ErrorValidateConfigTemplatePathGraphic,
   ErrorValidateConfigTemplatePathReact,
   ErrorValidateConfigTemplatePathStorybook,
-  ErrorValidateConfigTemplatePathStyled
+  ErrorValidateConfigTemplatePathStyled,
+  ErrorValidateRadiusUnit,
+  ErrorValidateShadowUnit
 } from '../../../../bin/frameworks/errors/errors';
 
 describe('Success cases', () => {
@@ -43,6 +46,30 @@ describe('Failure cases', () => {
 
     // @ts-ignore
     expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigFontUnit);
+  });
+
+  test('It should invalidate a configuration when given invalid border width unit', () => {
+    const TEST_CONFIG = { ...testConfig };
+    TEST_CONFIG.borderWidthUnit = 'xxxxx';
+
+    // @ts-ignore
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateBorderWidthUnit);
+  });
+
+  test('It should invalidate a configuration when given invalid radius unit', () => {
+    const TEST_CONFIG = { ...testConfig };
+    TEST_CONFIG.radiusUnit = 'xxxxx';
+
+    // @ts-ignore
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateRadiusUnit);
+  });
+
+  test('It should invalidate a configuration when given invalid shadow unit', () => {
+    const TEST_CONFIG = { ...testConfig };
+    TEST_CONFIG.shadowUnit = 'xxxxx';
+
+    // @ts-ignore
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateShadowUnit);
   });
 
   test('It should invalidate a configuration when given invalid letter spacing unit', () => {

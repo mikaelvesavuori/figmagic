@@ -1,5 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { LetterSpacingTokens } from '../../../contracts/Tokens';
+import { LetterSpacingUnit } from '../../../contracts/Config';
 
 import { camelize } from '../../../frameworks/string/camelize';
 
@@ -22,7 +23,7 @@ import {
 // TODO: Refactor
 export function makeLetterSpacingTokens(
   letterSpacingFrame: Frame,
-  letterSpacingUnit: string
+  letterSpacingUnit: LetterSpacingUnit
 ): LetterSpacingTokens {
   if (!letterSpacingFrame) throw Error(ErrorMakeLetterSpacingTokensNoFrame);
   if (!letterSpacingFrame.children) throw Error(ErrorMakeLetterSpacingTokensNoChildren);

@@ -1,5 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { SpacingTokens } from '../../../contracts/Tokens';
+import { SpacingUnit } from '../../../contracts/Config';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
@@ -15,7 +16,7 @@ import {
  */
 export function makeSpacingTokens(
   spacingFrame: Frame,
-  spacingUnit: string,
+  spacingUnit: SpacingUnit,
   remSize: number
 ): SpacingTokens {
   if (!spacingFrame) throw Error(ErrorMakeSpacingTokensNoFrame);
@@ -32,7 +33,7 @@ export function makeSpacingTokens(
 function makeSpacingToken(
   item: Frame,
   spacings: Record<string, unknown>,
-  spacingUnit: string,
+  spacingUnit: SpacingUnit,
   remSize: number
 ) {
   const NAME: string = camelize(item.name);
@@ -40,10 +41,10 @@ function makeSpacingToken(
     throw Error(ErrorMakeSpacingTokensNoFrame);
 
   const WIDTH: number = item.absoluteBoundingBox.width;
-  const UNIT = (() => {
+  const SPACING = (() => {
     if (spacingUnit === 'px') return WIDTH + spacingUnit;
     else return normalizeUnits(WIDTH, 'px', spacingUnit, remSize);
   })();
 
-  spacings[NAME] = UNIT;
+  spacings[NAME] = SPACING;
 }

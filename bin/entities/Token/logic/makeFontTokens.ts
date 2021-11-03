@@ -29,6 +29,7 @@ function makeFontToken(
   usePostscriptFontNames: boolean
 ) {
   if (!item.name || !item.style) throw Error(ErrorMakeFontTokensMissingProps);
+
   const NAME = camelize(item.name);
-  fonts[NAME] = usePostscriptFontNames ? item.style.fontPostScriptName : item.style.fontFamily; //.replace(' /g', '');
+  fonts[NAME] = usePostscriptFontNames ? item.style.fontPostScriptName : item.style.fontFamily;
 }

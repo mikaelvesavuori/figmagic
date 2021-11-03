@@ -1,9 +1,13 @@
 export type Config = {
   debugMode: boolean;
+  borderWidthUnit: BorderWidthUnit;
   fontUnit: FontUnits;
-  letterSpacingUnit: LetterSpacingUnits;
-  lineHeightUnit: LineHeightUnits;
-  opacitiesUnit: OpacitiesUnits;
+  letterSpacingUnit: LetterSpacingUnit;
+  lineHeightUnit: LineHeightUnit;
+  opacitiesUnit: OpacitiesUnit;
+  radiusUnit: RadiusUnit;
+  shadowUnit: ShadowUnit;
+  spacingUnit: SpacingUnit;
   figmaData: string;
   figmagicFolder: string;
   outputFolderElements: string;
@@ -31,7 +35,6 @@ export type Config = {
     skipStorybook: boolean;
     skipStyled: boolean;
   };
-  spacingUnit: SpacingUnit;
   syncElements: boolean;
   syncGraphics: boolean;
   syncTokens: boolean;
@@ -51,10 +54,14 @@ export type Config = {
 
 export type ConfigDTO = {
   debugMode?: boolean;
+  borderWidthUnit?: BorderWidthUnit;
   fontUnit?: FontUnits;
-  letterSpacingUnit?: LetterSpacingUnits;
-  lineHeightUnit: LineHeightUnits;
-  opacitiesUnit?: OpacitiesUnits;
+  letterSpacingUnit?: LetterSpacingUnit;
+  lineHeightUnit?: LineHeightUnit;
+  opacitiesUnit?: OpacitiesUnit;
+  radiusUnit?: RadiusUnit;
+  shadowUnit?: ShadowUnit;
+  spacingUnit?: SpacingUnit;
   figmaData?: string;
   figmagicFolder?: string;
   outputFolderElements?: string;
@@ -89,7 +96,6 @@ export type ConfigDTO = {
     skipStorybook?: boolean;
     skipStyled?: boolean;
   };
-  spacingUnit?: SpacingUnit;
   syncElements?: boolean;
   syncGraphics?: boolean;
   syncTokens?: boolean;
@@ -116,10 +122,15 @@ export type Overwrite = {
   styled: boolean;
 };
 
+export type BorderWidthUnit = 'rem' | 'em' | 'px';
+export type ShadowUnit = 'rem' | 'em' | 'px';
+export type RadiusUnit = 'rem' | 'em' | 'px';
 export type FontUnits = 'rem' | 'em' | 'px';
-export type LetterSpacingUnits = 'em' | 'px';
-export type LineHeightUnits = 'unitless' | 'px' | 'rem' | 'em';
-export type OpacitiesUnits = 'float' | 'percent';
+export type LetterSpacingUnit = 'em' | 'px';
+export type LineHeightUnit = 'unitless' | 'px' | 'rem' | 'em';
+export type OpacitiesUnit = 'float' | 'percent';
+export type SpacingUnit = 'rem' | 'em' | 'px';
+
 export type OutputFormatColors = 'hex' | 'rgba';
 export type OutputFormatCss = 'ts' | 'mjs' | 'js';
 export type OutputFormatDescription = 'md' | 'txt';
@@ -128,4 +139,3 @@ export type OutputFormatGraphics = 'svg' | 'png';
 export type OutputFormatStorybook = 'ts' | 'js' | 'mdx';
 export type OutputFormatTokens = 'ts' | 'mjs' | 'js' | 'json';
 export type OutputDataTypeToken = null | 'enum';
-export type SpacingUnit = 'rem' | 'em' | 'px';

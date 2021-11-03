@@ -1,6 +1,6 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { LineHeightTokens } from '../../../contracts/Tokens';
-import { LineHeightUnits } from '../../../contracts/Config';
+import { LineHeightUnit } from '../../../contracts/Config';
 
 import { camelize } from '../../../frameworks/string/camelize';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
@@ -18,7 +18,7 @@ export function makeLineHeightTokens(
   lineHeightFrame: Frame,
   remSize: number,
   unitlessPrecision?: number,
-  lineHeightUnit?: LineHeightUnits
+  lineHeightUnit?: LineHeightUnit
 ): LineHeightTokens {
   if (!lineHeightFrame) throw Error(ErrorMakeLineHeightTokensNoFrame);
   if (!lineHeightFrame.children) throw Error(ErrorMakeLineHeightTokensNoChildren);
@@ -53,7 +53,7 @@ function makeLineHeightToken(
   item: Frame,
   remSize: number,
   unitlessPrecision = 2,
-  lineHeightUnit?: LineHeightUnits
+  lineHeightUnit?: LineHeightUnit
 ): Token {
   const NAME = camelize(item.name);
 

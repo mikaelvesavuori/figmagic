@@ -1,3 +1,4 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { RadiusTokens } from '../../../contracts/Tokens';
-export declare function makeRadiusTokens(radiusFrame: Frame, remSize: number): RadiusTokens;
+import { RadiusUnit } from '../../../contracts/Config';
+export declare function makeRadiusTokens(radiusFrame: Frame, radiusUnit: RadiusUnit, remSize: number): RadiusTokens;

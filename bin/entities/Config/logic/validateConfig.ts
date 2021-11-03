@@ -3,6 +3,7 @@ import { Config } from '../../../contracts/Config';
 import { ErrorValidateConfig } from '../../../frameworks/errors/errors';
 
 import {
+  ErrorValidateBorderWidthUnit,
   ErrorValidateConfigFileName,
   ErrorValidateConfigFolderName,
   ErrorValidateConfigFontUnit,
@@ -22,13 +23,16 @@ import {
   ErrorValidateConfigTemplatePathGraphic,
   ErrorValidateConfigTemplatePathReact,
   ErrorValidateConfigTemplatePathStorybook,
-  ErrorValidateConfigTemplatePathStyled
+  ErrorValidateConfigTemplatePathStyled,
+  ErrorValidateRadiusUnit,
+  ErrorValidateShadowUnit
 } from '../../../frameworks/errors/errors';
 
 export function validateConfig(config: Config): boolean {
   if (!config) throw Error(ErrorValidateConfig);
 
   try {
+    validateBorderWidthUnit(config.borderWidthUnit);
     validateFileName(config.figmaData);
     validateFolderName(config.figmagicFolder);
     validateFolderName(config.outputFolderElements);
@@ -46,6 +50,8 @@ export function validateConfig(config: Config): boolean {
     validateOutputFormatStorybook(config.outputFormatStorybook);
     validateOutputFormatTokens(config.outputFormatTokens);
     validateOutputScaleGraphics(config.outputScaleGraphics);
+    validateRadiusUnit(config.radiusUnit);
+    validateShadowUnit(config.shadowUnit);
     validateSpacingUnit(config.spacingUnit);
     validateTemplatePathGraphic(config.templates.templatePathGraphic);
     validateTemplatePathReact(config.templates.templatePathReact);
@@ -59,10 +65,12 @@ export function validateConfig(config: Config): boolean {
   }
 }
 import {
+  validBorderWidthUnitList,
   validFontUnitList,
   validLetterSpacingUnitList,
   validLineHeightUnitList,
   validOpacitiesUnitList,
+  validOutputDataTypeTokenList,
   validOutputFormatColors,
   validOutputFormatCssList,
   validOutputFormatDescList,
@@ -70,13 +78,29 @@ import {
   validOutputFormatGraphicsList,
   validOutputFormatStorybookList,
   validOutputFormatTokensList,
-  validOutputDataTypeTokenList,
+  validRadiusUnitList,
+  validShadowUnitList,
   validSpacingUnitList
 } from '../../../frameworks/system/validatorLists';
 
 const validateFontUnit = (unit: string): boolean => {
   if (validFontUnitList.includes(unit)) return true;
   throw Error(ErrorValidateConfigFontUnit);
+};
+
+const validateBorderWidthUnit = (unit: string): boolean => {
+  if (validBorderWidthUnitList.includes(unit)) return true;
+  throw Error(ErrorValidateBorderWidthUnit);
+};
+
+const validateRadiusUnit = (unit: string): boolean => {
+  if (validRadiusUnitList.includes(unit)) return true;
+  throw Error(ErrorValidateRadiusUnit);
+};
+
+const validateShadowUnit = (unit: string): boolean => {
+  if (validShadowUnitList.includes(unit)) return true;
+  throw Error(ErrorValidateShadowUnit);
 };
 
 const validateLetterSpacingUnit = (unit: string): boolean => {

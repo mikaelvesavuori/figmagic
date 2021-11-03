@@ -1,6 +1,6 @@
 {
   "name": "figmagic",
-  "version": "4.3.5",
+  "version": "4.3.6",
   "description": "Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.",
   "homepage": "https://www.figmagic.com",
   "repository": {
@@ -65,8 +65,8 @@
     "figmagic": "node build/index.js",
     "clean": "rm -rf .figmagic-trash/",
     "build": "rm -rf build && npx webpack",
-    "test": "jest __tests__ --collectCoverage --runInBand",
-    "test:watch": "jest --clearCache && jest __tests__ --collectCoverage --runInBand --watch",
+    "test": "jest __tests__ --collectCoverage",
+    "test:watch": "jest --clearCache && jest __tests__ --collectCoverage --watch",
     "lint": "npx eslint './bin/**/*.ts' --quiet --fix",
     "docs": "npx typedoc && npx arkit",
     "licenses": "npx license-compliance --direct --allow 'MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;Unlicense;CC0-1.0'",
@@ -91,7 +91,7 @@
     "jest": "27",
     "license-compatibility-checker": "latest",
     "license-compliance": "latest",
-    "msw": "^0.35.0",
+    "msw": "latest",
     "prettier": "latest",
     "pretty-quick": "latest",
     "snyk": "latest",

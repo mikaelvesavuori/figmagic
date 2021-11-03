@@ -1,9 +1,9 @@
 import { FRAME as Frame } from './Figma';
 
-import { LetterSpacingUnits, OutputFormatTokens, OutputFormatColors } from './Config';
+import { LetterSpacingUnit, OutputFormatTokens, OutputFormatColors } from './Config';
 
 export type TypographyElement = {
-  letterSpacingUnit: LetterSpacingUnits;
+  letterSpacingUnit: LetterSpacingUnit;
   outputFolderTokens: string;
   outputFormatTokens: OutputFormatTokens;
   outputFormatColors: OutputFormatColors;

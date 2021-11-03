@@ -2,10 +2,14 @@ import { Config } from '../../contracts/Config';
 
 export const baseConfig: Config = {
   debugMode: false,
+  borderWidthUnit: 'px',
   fontUnit: 'rem',
   letterSpacingUnit: 'em',
   lineHeightUnit: 'unitless',
   opacitiesUnit: 'float',
+  radiusUnit: 'px',
+  shadowUnit: 'px',
+  spacingUnit: 'rem',
   figmaData: 'figma.json',
   figmagicFolder: '.figmagic',
   outputFolderElements: 'elements',
@@ -40,7 +44,6 @@ export const baseConfig: Config = {
     skipStorybook: false,
     skipStyled: false
   },
-  spacingUnit: 'rem',
   syncElements: false,
   syncGraphics: false,
   syncTokens: true,
