@@ -36,11 +36,11 @@ describe('Success cases', () => {
   });
 
   describe('Transform ("camelize") token names', () => {
-    test('It should return true for camelizeTokenNames if passing "--camelizeTokenNames" (long-hand)', () => {
+    test('It should return true for camelizeTokenNames if passing "--noCamelizeTokenNames" (long-hand)', () => {
       // @ts-ignore
-      expect(parseCliArgs(['--camelizeTokenNames'])).toEqual(
+      expect(parseCliArgs(['--noCamelizeTokenNames'])).toEqual(
         expect.objectContaining({
-          camelizeTokenNames: true
+          camelizeTokenNames: false
         })
       );
     });
@@ -49,7 +49,7 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-cml'])).toEqual(
         expect.objectContaining({
-          camelizeTokenNames: true
+          camelizeTokenNames: false
         })
       );
     });

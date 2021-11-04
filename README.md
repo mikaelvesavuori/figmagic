@@ -413,9 +413,9 @@ Run these in your command line environment of choice.
 
 ---
 
-#### Transform ("camelize") token names
+#### Do not transform ("camelize") token names
 
-`figmagic [--camelizeTokenNames | -cml]`
+`figmagic [--noCamelizeTokenNames | -cml]`
 
 **Default**: `true`.
 
