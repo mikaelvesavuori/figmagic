@@ -339,6 +339,7 @@ Below is a complete set of what you can configure, together with the defaults.
 ```json5
 {
   "debugMode": false,
+  "camelizeTokenNames": true,
   "borderWidthUnit": "px",
   "fontUnit": "rem",
   "letterSpacingUnit": "em",
