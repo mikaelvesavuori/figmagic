@@ -36,7 +36,7 @@ describe('Success cases', () => {
   });
 
   describe('Transform ("camelize") token names', () => {
-    test('It should return true for camelizeTokenNames if passing "--noCamelizeTokenNames" (long-hand)', () => {
+    test('It should return false for camelizeTokenNames if passing "--noCamelizeTokenNames" (long-hand)', () => {
       // @ts-ignore
       expect(parseCliArgs(['--noCamelizeTokenNames'])).toEqual(
         expect.objectContaining({
@@ -45,7 +45,7 @@ describe('Success cases', () => {
       );
     });
 
-    test('It should return true for debugMode if passing "-cml" (short-hand)', () => {
+    test('It should return false for camelizeTokenNames if passing "-cml" (short-hand)', () => {
       // @ts-ignore
       expect(parseCliArgs(['-cml'])).toEqual(
         expect.objectContaining({
