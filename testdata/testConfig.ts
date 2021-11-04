@@ -1,5 +1,6 @@
 export const testConfig = {
   debugMode: false,
+  camelizeTokenNames: true,
   borderWidthUnit: 'px',
   fontUnit: 'rem',
   letterSpacingUnit: 'em',

@@ -2,7 +2,7 @@ import { FRAME as Frame } from '../../../contracts/Figma';
 import { FontSizeTokens } from '../../../contracts/Tokens';
 import { FontUnits } from '../../../contracts/Config';
 
-import { camelize } from '../../../frameworks/string/camelize';
+import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 
 import {
   ErrorMakeFontSizeTokensNoFrame,
@@ -18,7 +18,8 @@ import {
 export function makeFontSizeTokens(
   fontSizeFrame: Frame,
   fontUnit: FontUnits,
-  remSize: number
+  remSize: number,
+  camelizeTokenNames?: boolean
 ): FontSizeTokens {
   if (!fontSizeFrame) throw Error(ErrorMakeFontSizeTokensNoFrame);
   if (!fontSizeFrame.children) throw Error(ErrorMakeFontSizeTokensNoChildren);
@@ -26,7 +27,9 @@ export function makeFontSizeTokens(
 
   const fontSizes: Record<string, unknown> = {};
   const TOKENS = fontSizeFrame.children.reverse();
-  TOKENS.forEach((item: Frame) => makeFontSizeToken(item, fontSizes, remSize, fontUnit));
+  TOKENS.forEach((item: Frame) =>
+    makeFontSizeToken(item, fontSizes, remSize, fontUnit, camelizeTokenNames)
+  );
 
   return fontSizes;
 }
@@ -35,12 +38,13 @@ function makeFontSizeToken(
   item: Frame,
   fontSizes: Record<string, unknown>,
   remSize: number,
-  fontUnit: string
+  fontUnit: string,
+  camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.style) throw Error(ErrorMakeFontSizeTokensMissingProps);
   if (!item.style.fontSize) throw Error(ErrorMakeFontSizeTokensMissingSize);
 
-  const NAME = camelize(item.name);
+  const NAME = sanitizeString(item.name, camelizeTokenNames);
   const FONT_SIZE = (() => {
     if (fontUnit === 'px') return item.style.fontSize + fontUnit;
     else return (item.style.fontSize as unknown as number) / remSize + fontUnit;

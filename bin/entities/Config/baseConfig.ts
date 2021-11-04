@@ -2,6 +2,7 @@ import { Config } from '../../contracts/Config';
 
 export const baseConfig: Config = {
   debugMode: false,
+  camelizeTokenNames: true,
   borderWidthUnit: 'px',
   fontUnit: 'rem',
   letterSpacingUnit: 'em',

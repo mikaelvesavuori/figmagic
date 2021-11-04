@@ -28,6 +28,8 @@ export function parseCliArgs(argsArray: string[]): Config {
   const cliArguments: CliArguments = {
     '--debug': () => setConfigValue('debugMode', true),
     '-d': () => setConfigValue('debugMode', true),
+    '--camelizeTokenNames': () => setConfigValue('camelizeTokenNames', true),
+    '-cml': () => setConfigValue('camelizeTokenNames', true),
     '--borderWidthUnit': (val: string) => setConfigValue('borderWidthUnit', val.toLowerCase()),
     '-bwu': (val: string) => setConfigValue('borderWidthUnit', val.toLowerCase()),
     '--radiusUnit': (val: string) => setConfigValue('radiusUnit', val.toLowerCase()),

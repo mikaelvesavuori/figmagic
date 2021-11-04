@@ -2,7 +2,7 @@ import { FRAME as Frame } from '../../../contracts/Figma';
 import { ShadowTokens } from '../../../contracts/Tokens';
 import { ShadowUnit } from '../../../contracts/Config';
 
-import { camelize } from '../../../frameworks/string/camelize';
+import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
 
 import {
@@ -17,14 +17,17 @@ import {
 export function makeShadowTokens(
   shadowFrame: Frame,
   shadowUnit: ShadowUnit,
-  remSize: number
+  remSize: number,
+  camelizeTokenNames?: boolean
 ): ShadowTokens {
   if (!shadowFrame) throw Error(ErrorMakeShadowTokensNoFrame);
   if (!shadowFrame.children) throw Error(ErrorMakeShadowTokensNoChildren);
 
   const shadows: Record<string, unknown> = {};
   const TOKENS = shadowFrame.children.reverse();
-  TOKENS.forEach((item: Frame) => makeShadowToken(item, shadows, shadowUnit, remSize));
+  TOKENS.forEach((item: Frame) =>
+    makeShadowToken(item, shadows, shadowUnit, remSize, camelizeTokenNames)
+  );
 
   return shadows;
 }
@@ -33,11 +36,12 @@ function makeShadowToken(
   item: Frame,
   shadows: Record<string, unknown>,
   shadowUnit: ShadowUnit,
-  remSize: number
+  remSize: number,
+  camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.effects) throw Error(ErrorMakeShadowTokensMissingProps);
 
-  const NAME = camelize(item.name);
+  const NAME = sanitizeString(item.name, camelizeTokenNames);
 
   let effects = item.effects.map((effect) => {
     if (effect.type === 'DROP_SHADOW') return effect;

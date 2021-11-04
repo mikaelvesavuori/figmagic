@@ -2,7 +2,7 @@ import { FRAME as Frame } from '../../../contracts/Figma';
 import { OpacityTokens } from '../../../contracts/Tokens';
 import { OpacitiesUnit } from '../../../contracts/Config';
 
-import { camelize } from '../../../frameworks/string/camelize';
+import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 
 import {
   ErrorMakeOpacityTokensNoFrame,
@@ -16,7 +16,8 @@ import {
 // TODO: Refactor
 export function makeOpacityTokens(
   opacitiesFrame: Frame,
-  opacitiesUnit: OpacitiesUnit
+  opacitiesUnit: OpacitiesUnit,
+  camelizeTokenNames?: boolean
 ): OpacityTokens {
   if (!opacitiesFrame) throw Error(ErrorMakeOpacityTokensNoFrame);
   if (!opacitiesFrame.children) throw Error(ErrorMakeOpacityTokensNoChildren);
@@ -27,7 +28,7 @@ export function makeOpacityTokens(
     if (!item.name) throw Error(ErrorMakeOpacityTokensMissingProps);
 
     // Note: Figma API does not provide an opacity value if it's 100%. We will assume it defaults to 1 if undefined.
-    const NAME = camelize(item.name);
+    const NAME = sanitizeString(item.name, camelizeTokenNames);
     const OPACITY = (() => {
       let opacity: string | number = 1;
 

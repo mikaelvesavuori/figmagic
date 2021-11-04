@@ -2,7 +2,7 @@ import { FRAME as Frame } from '../../../contracts/Figma';
 import { LineHeightTokens } from '../../../contracts/Tokens';
 import { LineHeightUnit } from '../../../contracts/Config';
 
-import { camelize } from '../../../frameworks/string/camelize';
+import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 
 import {
@@ -18,7 +18,8 @@ export function makeLineHeightTokens(
   lineHeightFrame: Frame,
   remSize: number,
   unitlessPrecision?: number,
-  lineHeightUnit?: LineHeightUnit
+  lineHeightUnit?: LineHeightUnit,
+  camelizeTokenNames?: boolean
 ): LineHeightTokens {
   if (!lineHeightFrame) throw Error(ErrorMakeLineHeightTokensNoFrame);
   if (!lineHeightFrame.children) throw Error(ErrorMakeLineHeightTokensNoChildren);
@@ -27,7 +28,13 @@ export function makeLineHeightTokens(
 
   return TOKENS.reduce<LineHeightTokens>((tokensDictionary, item: Frame) => {
     try {
-      const { name, value } = makeLineHeightToken(item, remSize, unitlessPrecision, lineHeightUnit);
+      const { name, value } = makeLineHeightToken(
+        item,
+        remSize,
+        unitlessPrecision,
+        lineHeightUnit,
+        camelizeTokenNames
+      );
       tokensDictionary[name] = value;
     } catch (error: any) {
       console.error(error);
@@ -53,9 +60,10 @@ function makeLineHeightToken(
   item: Frame,
   remSize: number,
   unitlessPrecision = 2,
-  lineHeightUnit?: LineHeightUnit
+  lineHeightUnit?: LineHeightUnit,
+  camelizeTokenNames?: boolean
 ): Token {
-  const NAME = camelize(item.name);
+  const NAME = sanitizeString(item.name, camelizeTokenNames);
 
   const FONT_SIZE = item.style.fontSize;
 

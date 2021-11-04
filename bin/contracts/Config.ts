@@ -1,5 +1,6 @@
 export type Config = {
   debugMode: boolean;
+  camelizeTokenNames: boolean;
   borderWidthUnit: BorderWidthUnit;
   fontUnit: FontUnits;
   letterSpacingUnit: LetterSpacingUnit;
@@ -54,6 +55,7 @@ export type Config = {
 
 export type ConfigDTO = {
   debugMode?: boolean;
+  camelizeTokenNames?: boolean;
   borderWidthUnit?: BorderWidthUnit;
   fontUnit?: FontUnits;
   letterSpacingUnit?: LetterSpacingUnit;

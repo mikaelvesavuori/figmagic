@@ -74,50 +74,60 @@ class Token {
   };
 
   private getTokens = (frame: Frame, name: string, config: Config): any => {
-    const { outputFormatColors } = config;
+    const {
+      borderWidthUnit,
+      camelizeTokenNames,
+      fontUnit,
+      letterSpacingUnit,
+      lineHeightUnit,
+      opacitiesUnit,
+      outputFormatColors,
+      radiusUnit,
+      remSize,
+      shadowUnit,
+      spacingUnit,
+      unitlessPrecision,
+      usePostscriptFontNames
+    } = config;
     const tokenOperations = {
-      borderwidths: () => makeBorderWidthTokens(frame, config.borderWidthUnit, config.remSize),
-      color: () => makeColorTokens(frame, outputFormatColors),
-      colors: () => makeColorTokens(frame, outputFormatColors),
-      delays: () => makeDelayTokens(frame),
-      durations: () => makeDurationTokens(frame),
-      easings: () => makeEasingTokens(frame),
+      borderwidths: () =>
+        makeBorderWidthTokens(frame, borderWidthUnit, remSize, camelizeTokenNames),
+      color: () => makeColorTokens(frame, outputFormatColors, camelizeTokenNames),
+      colors: () => makeColorTokens(frame, outputFormatColors, camelizeTokenNames),
+      delays: () => makeDelayTokens(frame, camelizeTokenNames),
+      durations: () => makeDurationTokens(frame, camelizeTokenNames),
+      easings: () => makeEasingTokens(frame, camelizeTokenNames),
       fontfamilies: () => {
         if (!config) throw Error(ErrorExtractTokensNoConfig);
-        return makeFontTokens(frame, config.usePostscriptFontNames);
+        return makeFontTokens(frame, usePostscriptFontNames, camelizeTokenNames);
       },
       fontsizes: () => {
         if (!config) throw Error(ErrorExtractTokensNoConfig);
-        return makeFontSizeTokens(frame, config.fontUnit, config.remSize);
+        return makeFontSizeTokens(frame, fontUnit, remSize, camelizeTokenNames);
       },
-      fontweights: () => makeFontWeightTokens(frame),
+      fontweights: () => makeFontWeightTokens(frame, camelizeTokenNames),
       letterspacings: () => {
         if (!config) throw Error(ErrorExtractTokensNoConfig);
-        return makeLetterSpacingTokens(frame, config.letterSpacingUnit);
+        return makeLetterSpacingTokens(frame, letterSpacingUnit, camelizeTokenNames);
       },
       lineheights: () =>
-        makeLineHeightTokens(
-          frame,
-          config.remSize,
-          config.unitlessPrecision,
-          config.lineHeightUnit
-        ),
-      mediaqueries: () => makeMediaQueryTokens(frame),
+        makeLineHeightTokens(frame, remSize, unitlessPrecision, lineHeightUnit, camelizeTokenNames),
+      mediaqueries: () => makeMediaQueryTokens(frame, camelizeTokenNames),
       opacities: () => {
         if (!config) throw Error(ErrorExtractTokensNoConfig);
-        return makeOpacityTokens(frame, config.opacitiesUnit);
+        return makeOpacityTokens(frame, opacitiesUnit, camelizeTokenNames);
       },
-      radii: () => makeRadiusTokens(frame, config.radiusUnit, config.remSize),
-      shadows: () => makeShadowTokens(frame, config.shadowUnit, config.remSize),
+      radii: () => makeRadiusTokens(frame, radiusUnit, remSize, camelizeTokenNames),
+      shadows: () => makeShadowTokens(frame, shadowUnit, remSize, camelizeTokenNames),
       spacing: () => {
         if (!config) throw Error(ErrorExtractTokensNoConfig);
-        return makeSpacingTokens(frame, config.spacingUnit, config.remSize);
+        return makeSpacingTokens(frame, spacingUnit, remSize, camelizeTokenNames);
       },
       spacings: () => {
         if (!config) throw Error(ErrorExtractTokensNoConfig);
-        return makeSpacingTokens(frame, config.spacingUnit, config.remSize);
+        return makeSpacingTokens(frame, spacingUnit, remSize, camelizeTokenNames);
       },
-      zindices: () => makeZindexTokens(frame)
+      zindices: () => makeZindexTokens(frame, camelizeTokenNames)
     };
 
     // @ts-ignore

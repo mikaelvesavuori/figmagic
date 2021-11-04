@@ -35,6 +35,26 @@ describe('Success cases', () => {
     });
   });
 
+  describe('Transform ("camelize") token names', () => {
+    test('It should return true for camelizeTokenNames if passing "--camelizeTokenNames" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--camelizeTokenNames'])).toEqual(
+        expect.objectContaining({
+          camelizeTokenNames: true
+        })
+      );
+    });
+
+    test('It should return true for debugMode if passing "-cml" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-cml'])).toEqual(
+        expect.objectContaining({
+          camelizeTokenNames: true
+        })
+      );
+    });
+  });
+
   describe('Border width unit', () => {
     test('It should return "px" for borderWidthUnit if passing "px" (long-hand)', () => {
       // @ts-ignore

@@ -2,7 +2,7 @@ import { FRAME as Frame } from '../../../contracts/Figma';
 import { ColorTokens } from '../../../contracts/Tokens';
 import { OutputFormatColors } from '../../../contracts/Config';
 
-import { camelize } from '../../../frameworks/string/camelize';
+import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 import { createSolidColorString } from '../../../frameworks/string/createSolidColorString';
 import { createLinearGradientString } from '../../../frameworks/string/createLinearGradientString';
 import { createRadialGradientString } from '../../../frameworks/string/createRadialGradientString';
@@ -17,14 +17,17 @@ import {
  */
 export function makeColorTokens(
   colorFrame: Frame,
-  outputFormatColors: OutputFormatColors
+  outputFormatColors: OutputFormatColors,
+  camelizeTokenNames?: boolean
 ): ColorTokens {
   if (!colorFrame) throw Error(ErrorMakeColorTokensNoFrame);
   if (!colorFrame.children) throw Error(ErrorMakeColorTokensNoChildren);
 
   const colors: Record<string, unknown> = {};
   const TOKENS = colorFrame.children.reverse();
-  TOKENS.forEach((item: Frame) => makeColorToken(item, colors, outputFormatColors));
+  TOKENS.forEach((item: Frame) =>
+    makeColorToken(item, colors, outputFormatColors, camelizeTokenNames)
+  );
 
   return colors;
 }
@@ -32,12 +35,13 @@ export function makeColorTokens(
 function makeColorToken(
   item: Frame,
   colors: Record<string, unknown>,
-  outputFormatColors: OutputFormatColors
+  outputFormatColors: OutputFormatColors,
+  camelizeTokenNames?: boolean
 ) {
   // @ts-ignore
   if (!item.fills || item.fills.length === 0) return null;
 
-  const NAME = camelize(item.name);
+  const NAME = sanitizeString(item.name, camelizeTokenNames);
   const FILLS = item.fills[0];
 
   if (FILLS.type === 'SOLID') colors[NAME] = createSolidColorString(FILLS, outputFormatColors);

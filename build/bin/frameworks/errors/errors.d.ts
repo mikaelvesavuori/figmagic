@@ -1,6 +1,5 @@
 export declare const ErrorAddDescriptionToElements: string;
 export declare const ErrorCalculateDegree2Point: string;
-export declare const ErrorCamelize: string;
 export declare const ErrorCheckIfStringOnlyContainsReturnsOrSpaces: string;
 export declare const ErrorCleanArrays: string;
 export declare const ErrorCleanSvgData: string;
@@ -137,6 +136,7 @@ export declare const ErrorRefresh: string;
 export declare const ErrorReplaceMediaQuery: string;
 export declare const ErrorRoundColor: string;
 export declare const ErrorRoundColorValue: string;
+export declare const ErrorSanitizeString: string;
 export declare const ErrorSetupMediaQueryTokensMissingProps: string;
 export declare const ErrorSetupMediaQueryTokensNoChildren: string;
 export declare const ErrorSetupMediaQueryTokensNoFrame: string;

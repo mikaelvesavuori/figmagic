@@ -3,6 +3,7 @@
 # Figmagic
 
 ![Build Status](https://github.com/mikaelvesavuori/figmagic/workflows/master/badge.svg)
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic?ref=badge_shield)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_figmagic&metric=alert_status)](https://sonarcloud.io/dashboard?id=mikaelvesavuori_figmagic)
@@ -409,6 +410,18 @@ Run these in your command line environment of choice.
 `figmagic [--debug | -d]`
 
 **Default**: `false`.
+
+---
+
+#### Transform ("camelize") token names
+
+`figmagic [--camelizeTokenNames | -cml]`
+
+**Default**: `true`.
+
+The Figmagic default has always been to camel-case ("camelize") token names, so that for example `kebab-case-word` becomes `kebabCaseWord`.
+
+From version `4.3.7`, you can now also opt-in to have no transforms applied to your token name. The name will still be sanitized, and only dashes and underscores will be valid special characters, but this will be something you'd want to use if casing is very important to you. An example could be `$my-design-system-error500` which would end up being `my-design-system-error500`.
 
 ---
 

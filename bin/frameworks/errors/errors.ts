@@ -10,7 +10,6 @@ export const ErrorAddDescriptionToElements = ErrorMessage(
 export const ErrorCalculateDegree2Point = ErrorMessage(
   'Missing point1 and/or point2 in calculateDegree2Point!'
 );
-export const ErrorCamelize = ErrorMessage('No string provided to camelize()!');
 export const ErrorCheckIfStringOnlyContainsReturnsOrSpaces = ErrorMessage(
   'No string provided to checkIfStringOnlyContainsReturnsOrSpaces()!'
 );
@@ -308,6 +307,7 @@ export const ErrorRoundColor = ErrorMessage(
 export const ErrorRoundColorValue = ErrorMessage(
   'Error while rounding color value: Scale value must be equal to or less than 255!'
 );
+export const ErrorSanitizeString = ErrorMessage('No string provided to sanitizeString()!');
 export const ErrorSetupMediaQueryTokensMissingProps = ErrorMessage(
   'Missing "absoluteBoundingBox" property in media query frame!'
 );

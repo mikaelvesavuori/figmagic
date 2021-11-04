@@ -18,7 +18,7 @@ describe('Success cases', () => {
   test('It should return a complete token and config when passing in valid token data (colors), token name, and configuration', async () => {
     const TOKEN_DATA = designTokensPage[1].children[0]; // "Colors"
     const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `testdata`, `testConfig`);
-    const TOKEN_NAME = `colors`; // Should be camelized
+    const TOKEN_NAME = `colors`; // Should be camel cased
     const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
 
     expect(makeToken(TOKEN_DATA as Frame, TOKEN_NAME, CONFIG)).toMatchObject({
