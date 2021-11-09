@@ -6,6 +6,7 @@ import { writeFile } from '../../../frameworks/filesystem/writeFile';
 import { checkIfExists } from '../../../frameworks/filesystem/checkIfExists';
 import { getSvgFileData } from '../../../frameworks/filesystem/getSvgFileData';
 import { cleanSvgData } from '../../../frameworks/string/cleanSvgData';
+import { sanitizeStringPascalCase } from '../../../frameworks/string/sanitizeString';
 
 import { ErrorWriteElements } from '../../../frameworks/errors/errors';
 
@@ -65,7 +66,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
   const html = element.html || ' ';
   const css = element.css || ' ';
   const description = element.description || ' ';
-  const name = element.name.replace(/\s/g, '');
+  const name = sanitizeStringPascalCase(element.name);
   const folder = name.includes('/')
     ? config.outputFolderElements
     : `${config.outputFolderElements}/${name}`;

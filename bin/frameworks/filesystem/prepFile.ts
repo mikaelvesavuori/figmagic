@@ -11,6 +11,7 @@ import {
 import { loadFile } from './loadFile';
 
 import { checkIfVoidElement } from '../system/checkIfVoidElement';
+import { sanitizeStringPascalCase } from '../string/sanitizeString';
 
 import { MsgGeneratedFileWarning } from '../messages/messages';
 import {
@@ -72,17 +73,19 @@ export const prepStyledComponents = (data: PrepStyledComponents): FileContentWit
 
     const { name, filePath, format, templates, element } = data;
 
-    const SUFFIX = 'Styled';
-    const PATH = `${templates.templatePathStyled}.${format}`;
+    const fixedName = sanitizeStringPascalCase(name);
 
-    let template = loadFile(PATH) as string;
+    const suffix = 'Styled';
+    const path = `${templates.templatePathStyled}.${format}`;
+
+    let template = loadFile(path) as string;
     template = template
-      .replace(/{{NAME}}/gi, name)
+      .replace(/{{NAME}}/gi, fixedName)
       .replace(/{{ELEMENT}}/gi, element)
-      .replace(/{{NAME_CSS}}/gi, `${name}Css`)
-      .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
+      .replace(/{{NAME_CSS}}/gi, `${fixedName}Css`)
+      .replace(/{{NAME_STYLED}}/gi, `${fixedName}${suffix}`);
 
-    return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
+    return { fileContent: `${template}`, filePath: `${filePath}${suffix}.${format}` };
   } catch (error: any) {
     throw Error(error);
   }

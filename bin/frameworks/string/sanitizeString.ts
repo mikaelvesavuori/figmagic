@@ -36,3 +36,19 @@ export function sanitizeString(str: string, camelize = true): string {
     return str.replace(regexDashesUnderscoresNonMatch, ' ').trim().replace(/ /g, '');
   }
 }
+
+/**
+ * @description Simple string sanitizer that only allows primitize characters and letters, and slash (for subfolders).
+ * The string is output in pascal case format.
+ */
+export function sanitizeStringPascalCase(str: string): string {
+  const regexNonMatch = /[^a-zA-Z0-9\/\\]+/g;
+  const regexMatch = /[a-zA-Z0-9\/\\]+/g;
+
+  return str
+    .replace(/[A-Z]+/g, (word) => ' ' + word)
+    .replace(regexNonMatch, ' ')
+    .trim()
+    .replace(regexMatch, (word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
+    .replace(/ /g, '');
+}

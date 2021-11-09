@@ -177,14 +177,14 @@ export default colors;`;
     test('It should return valid data for style', () => {
       const fileContent = `import styled from 'styled-components';
 
-import colorsCss from './colorsCss';
+import ColorsCss from './ColorsCss';
 
 // Extend the below as needed
-const colorsStyled = styled.div\`
-  \${colorsCss};
+const ColorsStyled = styled.div\`
+  \${ColorsCss};
 \`;
 
-export default colorsStyled;`;
+export default ColorsStyled;`;
 
       expect(
         // @ts-ignore

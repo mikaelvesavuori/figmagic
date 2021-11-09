@@ -38,7 +38,17 @@ You can also read this README in the following languages:
 
 ---
 
-## PSA: Version `4.3.0` introduces new handling of trashed/replaced files
+## Announcements
+
+### Version `4.4.0` outputs all files on disk (and imports) as PascalCase
+
+When files (and Elements) are written to disk these now use a PascalCase format. This is partly because recent versions have also started to accept dashes and underscores in names, for example for Elements and tokens named things like `my-design-system-button`, which would be transformed into `MyDesignSystemButton`.
+
+To ensure that files and imports have usable and working names, the decision was made to add a string transformer to the file output stage.
+
+This _may_ break stuff on your end if you were dependent on the previous, non-transformed format.
+
+### Version `4.3.0` introduces new handling of trashed/replaced files
 
 Previous versions in the 4.0 series have been using [`trash`](https://github.com/sindresorhus/trash) to handle files that need to be replaced. In `4.3.0` this is no longer the case.
 

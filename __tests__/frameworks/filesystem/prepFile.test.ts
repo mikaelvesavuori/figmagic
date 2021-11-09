@@ -128,14 +128,14 @@ export default aaa;`;
 
     const fileContent = `import styled from 'styled-components';
 
-import aaaCss from './aaaCss';
+import AaaCss from './AaaCss';
 
 // Extend the below as needed
-const aaaStyled = styled.div\`
-  \${aaaCss};
+const AaaStyled = styled.div\`
+  \${AaaCss};
 \`;
 
-export default aaaStyled;`;
+export default AaaStyled;`;
 
     const expectedData = { fileContent: fileContent, filePath: 'ComponentNameStyled.jsx' };
 
