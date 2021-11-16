@@ -87,7 +87,7 @@ function matchPadding(
         // Check if we can match value with a token and its value
         Object.entries(tokens).forEach((token) => {
           if (token[1] === value) {
-            css += `${property}-${key}: \${${tokenFileName}.${token[0]}};\n`;
+            css += `${property}-${key}: \${${tokenFileName}['${token[0]}']};\n`;
             foundMatch = true;
           }
         });
@@ -148,7 +148,7 @@ function matchOther(
       })();
 
       if (IS_TOKEN_MATCH) {
-        css += `${property}: \${${tokenFileName}.${token[0]}};\n`;
+        css += `${property}: \${${tokenFileName}['${token[0]}']};\n`;
         imports.push(tokenFileName as unknown as Imports);
         foundMatch = true;
       }

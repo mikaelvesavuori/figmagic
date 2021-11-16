@@ -17,11 +17,11 @@ describe('Success cases', () => {
     expect(processElements(elementsPage, baseConfig, components)).toMatchObject([
       {
         css: `
-color: \${colors.black};
-font-size: \${fontSizes.sub};
-font-family: \${fontFamilies.regular};
-font-weight: \${fontWeights.regular};
-line-height: \${lineHeights.xs};
+color: \${colors['black']};
+font-size: \${fontSizes['sub']};
+font-family: \${fontFamilies['regular']};
+font-weight: \${fontWeights['regular']};
+line-height: \${lineHeights['xs']};
 text-align: left;
 `,
         description: '\n\n# Sub\n\nTiny text snippets.',

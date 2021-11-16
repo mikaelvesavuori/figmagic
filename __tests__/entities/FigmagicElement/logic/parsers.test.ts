@@ -218,7 +218,7 @@ describe('Parse padding', () => {
       expect(
         parsePadding('border-width: 10px;\n', ['border-widths'], PADDING_PARAMS)
       ).toMatchObject({
-        css: 'border-width: 10px;\npadding-left: ${spacing.small};\npadding-right: ${spacing.small};\n',
+        css: "border-width: 10px;\npadding-left: ${spacing['small']};\npadding-right: ${spacing['small']};\n",
         imports: undefined
       });
     });
@@ -251,7 +251,7 @@ border-style: solid;`;
     test('It should parse height, matching to a corresponding spacing token value', () => {
       // @ts-ignore
       expect(parseHeight(CSS, [], HEIGHT_PARAMS)).toMatchObject({
-        css: 'width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\nwidth: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;height: ${spacing.big};\n',
+        css: "width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\nwidth: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;height: ${spacing['big']};\n",
         imports: undefined
       });
     });
@@ -302,7 +302,7 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};`;
+height: \${spacing['big']};`;
 
 const IMPORTS = ['spacing'];
 
@@ -359,7 +359,7 @@ describe('Parse background color', () => {
           'box-sizing: border-box;\n' +
           'border: 0;\n' +
           'border-style: solid;\n' +
-          'height: ${spacing.big};background-color: ${colors.blue1};\n',
+          "height: ${spacing['big']};background-color: ${colors['blue1']};\n",
         imports: undefined
       });
     });
@@ -402,7 +402,7 @@ describe('Parse border width', () => {
           'box-sizing: border-box;\n' +
           'border: 0;\n' +
           'border-style: solid;\n' +
-          'height: ${spacing.big};border-width: ${borderWidths.hairline};\n',
+          "height: ${spacing['big']};border-width: ${borderWidths['hairline']};\n",
         imports: undefined
       });
     });
@@ -518,7 +518,7 @@ describe('Parse border color', () => {
           'box-sizing: border-box;\n' +
           'border: 0;\n' +
           'border-style: solid;\n' +
-          'height: ${spacing.big};border-color: ${colors.blue2};\n',
+          "height: ${spacing['big']};border-color: ${colors['blue2']};\n",
         imports: undefined
       });
     });
@@ -561,7 +561,7 @@ describe('Parse border radius', () => {
           'box-sizing: border-box;\n' +
           'border: 0;\n' +
           'border-style: solid;\n' +
-          'height: ${spacing.big};border-radius: ${radii.soft};\n',
+          "height: ${spacing['big']};border-radius: ${radii['soft']};\n",
         imports: undefined
       });
     });
@@ -644,7 +644,7 @@ describe('Parse shadow', () => {
   box-sizing: border-box;
   border: 0;
   border-style: solid;
-  height: \${spacing.big};box-shadow: \${shadows.soft};`;
+  height: \${spacing['big']};box-shadow: \${shadows['soft']};`;
 
   const SHADOW_IMPORTS = ['spacing', 'spacing', 'colors', 'borderWidths', 'colors', 'radii'];
   const SHADOW_PARAMS = {
@@ -678,7 +678,7 @@ describe('Parse shadow', () => {
   box-sizing: border-box;
   border: 0;
   border-style: solid;
-  height: \${spacing.big};box-shadow: \${shadows.soft};box-shadow: \${shadows.soft};\n`,
+  height: \${spacing['big']};box-shadow: \${shadows['soft']};box-shadow: \${shadows['soft']};\n`,
         imports: undefined
       });
     });
@@ -709,7 +709,7 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
+height: \${spacing['big']};
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -726,8 +726,8 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
-background-color: \${colors.blue1};
+height: \${spacing['big']};
+background-color: \${colors['blue1']};
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -744,7 +744,7 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
+height: \${spacing['big']};
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -761,9 +761,9 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
-background-color: \${colors.blue1};
-border-width: \${borderWidths.hairline};
+height: \${spacing['big']};
+background-color: \${colors['blue1']};
+border-width: \${borderWidths['hairline'];
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -780,7 +780,7 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
+height: \${spacing['big']};
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -797,8 +797,8 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
-background-color: \${colors.blue1};
+height: \${spacing['big']};
+background-color: \${colors['blue1']};
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -815,7 +815,7 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
+height: \${spacing['big']};
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -832,13 +832,13 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
-background-color: \${colors.blue1};
-border-width: \${borderWidths.hairline};
-border-color: \${colors.blue2};
+height: \${spacing['big']};
+background-color: \${colors['blue1']};
+border-width: \${borderWidths['hairline'];
+border-color: \${colors['blue2']};
 `;
 
-  const PARSING_UPDATED_CSS = `border-radius: \${radii.soft};`;
+  const PARSING_UPDATED_CSS = `border-radius: \${radii['soft']};`;
 
   const PARSING_IMPORTS = ['spacing', 'colors', 'borderWidths', 'colors'];
 
@@ -866,7 +866,7 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
+height: \${spacing['big']};
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -883,8 +883,8 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
-background-color: \${colors.blue1};
+height: \${spacing['big']};
+background-color: \${colors['blue1']};
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -901,7 +901,7 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
+height: \${spacing['big']};
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -918,9 +918,9 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
-background-color: \${colors.blue1};
-border-width: \${borderWidths.hairline};
+height: \${spacing['big']};
+background-color: \${colors['blue1']};
+border-width: \${borderWidths['hairline'];
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -937,7 +937,7 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
+height: \${spacing['big']};
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -954,8 +954,8 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
-background-color: \${colors.blue1};
+height: \${spacing['big']};
+background-color: \${colors['blue1']};
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -972,7 +972,7 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
+height: \${spacing['big']};
 width: 100%;
 box-sizing: border-box;
 border: 0;
@@ -989,11 +989,11 @@ width: 100%;
 box-sizing: border-box;
 border: 0;
 border-style: solid;
-height: \${spacing.big};
-background-color: \${colors.blue1};
-border-width: \${borderWidths.hairline};
-border-color: \${colors.blue2};
-border-radius: \${radii.soft};`,
+height: \${spacing['big']};
+background-color: \${colors['blue1']};
+border-width: \${borderWidths['hairline'];
+border-color: \${colors['blue2']};
+border-radius: \${radii['soft']};`,
         imports: undefined
       });
     });

@@ -1736,29 +1736,29 @@ export const validButtonFigmagicElement = {
   box-sizing: border-box;
   border: 0;
   border-style: solid;
-  height: \${spacing.big};
-  border-width: \${borderWidths.hairline};
-  border-color: \${colors.blue2};
-  border-radius: \${radii.soft};
-  color: \${colors.white};
-  font-size: \${fontSizes.paragraph};
-  font-family: \${fontFamilies.regular};
-  font-weight: \${fontWeights.bold};
-  line-height: \${lineHeights.xs};
-  letter-spacing: \${letterSpacings.wide};
+  height: \${spacing['big']};
+  border-width: \${borderWidths['hairline']};
+  border-color: \${colors['blue2']};
+  border-radius: \${radii['soft']};
+  color: \${colors['white']};
+  font-size: \${fontSizes['paragraph']};
+  font-family: \${fontFamilies['regular']};
+  font-weight: \${fontWeights['bold']};
+  line-height: \${lineHeights['xs']};
+  letter-spacing: \${letterSpacings['wide']};
   text-align: center;
   text-transform: uppercase;
 
   &.Normal {
-    background-color: \${colors.blue1};
+    background-color: \${colors['blue1']};
   }
 
   &.Warning {
-    background-color: \${colors.orange};
+    background-color: \${colors['orange']};
   }
 
   &.Error {
-    background-color: \${colors.red};
+    background-color: \${colors['red']};
   }
 
 `,

@@ -68,7 +68,6 @@ export function getFileContentAndPath(
       token: () => {
         if (metadata && metadata.dataType === 'enum')
           return { fileContent: getTokenString(file, name, format, metadata.dataType), filePath };
-
         filePath += `.${format}`;
         return { fileContent: getTokenString(file, name, format), filePath };
       },

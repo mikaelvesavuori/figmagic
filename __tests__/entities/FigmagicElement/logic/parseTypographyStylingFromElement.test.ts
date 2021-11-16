@@ -30,11 +30,11 @@ describe('Success cases', () => {
       parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElement))
     ).toMatchObject({
       updatedCss: `color: rgba(0, 0, 0, 0);
-font-size: \${fontSizes.paragraph};
-font-family: \${fontFamilies.regular};
-font-weight: \${fontWeights.bold};
-line-height: \${lineHeights.xs};
-letter-spacing: \${letterSpacings.wide};
+font-size: \${fontSizes['paragraph']};
+font-family: \${fontFamilies['regular']};
+font-weight: \${fontWeights['bold']};
+line-height: \${lineHeights['xs']};
+letter-spacing: \${letterSpacings['wide']};
 text-align: center;
 text-transform: uppercase;
 `,
@@ -51,11 +51,11 @@ text-transform: uppercase;
       // @ts-ignore
       parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElementNoFill))
     ).toMatchObject({
-      updatedCss: `font-size: \${fontSizes.paragraph};
-font-family: \${fontFamilies.regular};
-font-weight: \${fontWeights.bold};
-line-height: \${lineHeights.xs};
-letter-spacing: \${letterSpacings.wide};
+      updatedCss: `font-size: \${fontSizes['paragraph']};
+font-family: \${fontFamilies['regular']};
+font-weight: \${fontWeights['bold']};
+line-height: \${lineHeights['xs']};
+letter-spacing: \${letterSpacings['wide']};
 text-align: center;
 text-transform: uppercase;
 `,
@@ -87,11 +87,11 @@ text-transform: uppercase;
       parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElementNoPsName))
     ).toMatchObject({
       updatedCss: `color: rgba(0, 0, 0, 0);
-font-size: \${fontSizes.paragraph};
-font-family: \${fontFamilies.regular};
-font-weight: \${fontWeights.bold};
-line-height: \${lineHeights.xs};
-letter-spacing: \${letterSpacings.wide};
+font-size: \${fontSizes['paragraph']};
+font-family: \${fontFamilies['regular']};
+font-weight: \${fontWeights['bold']};
+line-height: \${lineHeights['xs']};
+letter-spacing: \${letterSpacings['wide']};
 text-align: center;
 text-transform: uppercase;
 `,
@@ -111,11 +111,11 @@ text-transform: uppercase;
       )
     ).toMatchObject({
       updatedCss: `color: rgba(0, 0, 0, 0);
-font-size: \${fontSizes.paragraph};
-font-family: \${fontFamilies.regular};
-font-weight: \${fontWeights.bold};
-line-height: \${lineHeights.s};
-letter-spacing: \${letterSpacings.wide};
+font-size: \${fontSizes['paragraph']};
+font-family: \${fontFamilies['regular']};
+font-weight: \${fontWeights['bold']};
+line-height: \${lineHeights['s']};
+letter-spacing: \${letterSpacings['wide']};
 text-align: center;
 text-transform: uppercase;
 `,
@@ -132,11 +132,11 @@ text-transform: uppercase;
       parseTypographyStylingFromElement(makeTypographyElement(cssTypographyElementTitleCase))
     ).toMatchObject({
       updatedCss: `color: rgba(0, 0, 0, 0);
-font-size: \${fontSizes.paragraph};
-font-family: \${fontFamilies.regular};
-font-weight: \${fontWeights.bold};
-line-height: \${lineHeights.s};
-letter-spacing: \${letterSpacings.wide};
+font-size: \${fontSizes['paragraph']};
+font-family: \${fontFamilies['regular']};
+font-weight: \${fontWeights['bold']};
+line-height: \${lineHeights['s']};
+letter-spacing: \${letterSpacings['wide']};
 text-align: center;
 text-transform: capitalize;
 `,

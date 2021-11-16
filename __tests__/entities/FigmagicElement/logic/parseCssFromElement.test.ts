@@ -25,11 +25,11 @@ border-style: solid;
 width: 100%;
 padding-top: 33.8125rem;
 padding-bottom: -33.8125rem;
-height: \${spacing.big};
+height: \${spacing['big']};
 background-color: rgba(0, 0, 0, 0);
-border-width: \${borderWidths.hairline};
+border-width: \${borderWidths['hairline']};
 border-color: rgba(0, 0, 0, 0);
-border-radius: \${radii.soft};
+border-radius: \${radii['soft']};
 `,
       updatedImports: ['spacing', 'spacing', 'borderWidths', 'radii']
     });
@@ -52,9 +52,9 @@ padding-left: -0.0625rem;
 padding-right: 0.0625rem;
 height: 147px;
 background: linear-gradient(180deg, rgba(255, 255, 255, 1) 20%, rgba(43, 83, 144, 0.99) 45%, rgba(1, 10, 23, 0.76) 73%);
-border-width: \${borderWidths.hairline};
-border-color: \${colors.blue2};
-border-radius: \${radii.soft};
+border-width: \${borderWidths['hairline']};
+border-color: \${colors['blue2']};
+border-radius: \${radii['soft']};
 `,
       updatedImports: ['spacing', 'borderWidths', 'colors', 'radii']
     });
@@ -75,12 +75,12 @@ padding-top: 24.4375rem;
 padding-bottom: -24.4375rem;
 padding-left: 25rem;
 padding-right: -25rem;
-height: \${spacing.big};
-background-color: \${colors.gray5};
-border-width: \${borderWidths.regular};
-border-color: \${colors.black};
-border-radius: \${radii.rounded};
-box-shadow: \${shadows.deep};
+height: \${spacing['big']};
+background-color: \${colors['gray5']};
+border-width: \${borderWidths['regular']};
+border-color: \${colors['black']};
+border-radius: \${radii['rounded']};
+box-shadow: \${shadows['deep']};
 `,
       updatedImports: ['spacing', 'spacing', 'colors', 'borderWidths', 'colors', 'radii', 'shadows']
     });
