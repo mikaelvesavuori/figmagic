@@ -60,7 +60,7 @@ function makeShadowToken(
         })();
         const Y = (() => {
           if (shadowUnit === 'px') return effect.offset.x + shadowUnit;
-          else return (effect.offset.x as unknown as number) / remSize + shadowUnit;
+          else return (effect.offset.y as unknown as number) / remSize + shadowUnit;
         })();
         const RADIUS = (() => {
           if (shadowUnit === 'px') return effect.radius + shadowUnit;
