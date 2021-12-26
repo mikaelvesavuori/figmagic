@@ -3,6 +3,10 @@
 
 .dccache
 
+# Testing keys for SSH
+cert.pem
+key.pem
+
 # Generated files
 .figmagicrc
 figmagic.json
