@@ -13,8 +13,9 @@ export function createMissingFoldersFromPath(filePath: string): void {
 
   const directoryPath = (() => {
     let folder = '';
-    filePath.split('/').forEach((pathSection: string, index: number) => {
-      if (index < filePath.split('/').length - 1) folder += `${pathSection}/`;
+    filePath.split('/').forEach((pathSection: string) => {
+      // Unless this looks like a file path, add one more directory subpath
+      if (!pathSection.includes('.')) folder += `${pathSection}/`;
     });
     return folder;
   })();

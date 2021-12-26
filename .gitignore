@@ -15,6 +15,7 @@ figmagic.json
 /elements
 /components
 /stories
+/src
 
 # Files generated from tests
 /jest-coverage

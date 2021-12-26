@@ -67,9 +67,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
   const css = element.css || ' ';
   const description = element.description || ' ';
   const name = sanitizeStringPascalCase(element.name);
-  const folder = name.includes('/')
-    ? config.outputFolderElements
-    : `${config.outputFolderElements}/${name}`;
+  const folder = `${config.outputFolderElements}/${name}`;
   const {
     outputFormatCss,
     outputFormatDescription,

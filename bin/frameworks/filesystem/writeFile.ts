@@ -33,19 +33,16 @@ export function writeFile(writeOperation: WriteOperation): void {
     const TYPE: any = typeof type === 'string' ? type.toLowerCase() : 'null';
     if (!acceptedFileTypes.includes(TYPE)) throw Error(ErrorWriteFileWrongType);
 
-    // Create required directory/folder structure
-    const fixedPath =
-      name.split('/').length > 1 || type === 'component' || type === 'graphic'
-        ? `${path.split('/')[0]}/${name}/`
-        : path;
-    if (type === 'component' || type === 'graphic') createMissingFoldersFromPath(fixedPath);
+    if (type === 'component' || type === 'graphic') createMissingFoldersFromPath(path);
     else createFolder(path);
+
+    const fixedName = name.split('/')[name.split('/').length - 1];
 
     const prepareWriteOperation: WriteOperation = {
       type: TYPE,
       file,
-      path: fixedPath,
-      name: name.split('/')[name.split('/').length - 1],
+      path,
+      name: fixedName,
       format,
       outputFolderTokens,
       overwrite,

@@ -27,7 +27,8 @@ describe('Success cases', () => {
 
     createMissingFoldersFromPath(PATH);
     const FILE_EXISTS = fs.existsSync(PATH);
-    expect(FILE_EXISTS).toBe(false);
+    expect(FILE_EXISTS).toBe(true);
+    await trash('___createMissingFoldersFromPath2___');
   });
 
   test('It should not do anything if the path does not contain slashes', async () => {
@@ -36,5 +37,6 @@ describe('Success cases', () => {
     createMissingFoldersFromPath(PATH);
     const FILE_EXISTS = fs.existsSync(PATH);
     expect(FILE_EXISTS).toBe(false);
+    await trash('___createMissingFoldersFromPath3___');
   });
 });
