@@ -19,7 +19,10 @@ describe('Success cases', () => {
     expect(getIds(graphicsPage)).toMatchObject([
       { id: '2710:7', name: 'More' },
       { id: '2710:5', name: 'Close' },
-      { id: '3009:118', name: 'Check' }
+      { id: '3009:118', name: 'Check' },
+      { id: '4724:35631', name: 'Social Icons/socialIconFacebook' },
+      { id: '4724:35743', name: 'Social Icons/socialIconTwitter' },
+      { id: '4724:35749', name: 'Social Icons/socialIconYouTube' },
     ]);
   });
 });
