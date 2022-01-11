@@ -20,8 +20,6 @@ export const getIds = (graphicsPage: Frame[]): Record<string, unknown>[] => {
       continue;
     }
 
-    console.log(frame);
-
     const localIds = getComponents(frame.children, frame);
 
     ids = ids.concat(localIds);
