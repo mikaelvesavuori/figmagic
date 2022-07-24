@@ -67,6 +67,7 @@ jobs:
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          coverageCommand: npm run build
           coverageLocations: ${{github.workspace}}/jest-coverage/lcov.info:lcov
 
   build-windows:
