@@ -1,6 +1,6 @@
 {
   "name": "figmagic",
-  "version": "4.4.5",
+  "version": "4.4.6",
   "description": "Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.",
   "homepage": "https://www.figmagic.com",
   "repository": {
@@ -54,6 +54,10 @@
     {
       "name": "Ishmam156",
       "url": "https://github.com/Ishmam156"
+    },
+    {
+      "name": "smmccabe",
+      "url": "https://github.com/smmccabe"
     }
   ],
   "files": [
@@ -83,18 +87,18 @@
     "@typescript-eslint/parser": "latest",
     "arkit": "1",
     "babel-loader": "8",
-    "eslint": "7",
+    "eslint": "8",
     "eslint-config-prettier": "8",
     "eslint-plugin-prettier": "4",
-    "husky": "6",
-    "jest": "27",
+    "husky": "8",
+    "jest": "28",
     "license-compatibility-checker": "latest",
     "license-compliance": "latest",
     "msw": "latest",
     "prettier": "latest",
     "pretty-quick": "latest",
     "trash": "7",
-    "ts-jest": "27",
+    "ts-jest": "28",
     "ts-loader": "9",
     "typedoc": "latest",
     "typescript": "4",

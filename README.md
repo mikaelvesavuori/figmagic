@@ -309,6 +309,8 @@ This is activated by default, but it's now possible to deactivate it if you have
 
 Graphics can be exported in multiple formats with Figmagic. Instead of doing manual hand-overs, just tell your developer(s) that there have been updates to the graphics and let them pull the latest versions from your Figma document.
 
+After version `4.4.6`, you can either place graphics as Figma components right into the `Graphics` page, or nest them into frames.
+
 Again, please look at the template at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens) for reference.
 
 ### Element Sync
@@ -736,7 +738,7 @@ Use this when you want to sync elements in your "Elements" page in Figma.
 
 **Default**: `false`, and will then be taken from local `.env` file if not explicitly passed in through the CLI.
 
-Use this when you want to sync graphics in your "Graphics" page in Figma. Use the RC configuration file to pass in options. Default format will be SVG.
+Use this when you want to sync graphics in your "Graphics" page in Figma. Use the RC or configuration file to pass in options. Default format will be SVG.
 
 ---
 

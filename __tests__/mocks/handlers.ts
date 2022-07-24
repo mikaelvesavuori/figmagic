@@ -1,4 +1,4 @@
-import { DefaultRequestBody, PathParams, rest, RestRequest } from 'msw';
+import { PathParams, rest, RestRequest } from 'msw';
 import { resolve } from 'path';
 import { readFileSync } from 'fs';
 import { MsgSetMswInterceptedDataFromApi } from '../../bin/frameworks/messages/messages';
@@ -9,7 +9,7 @@ import mockFigmaImages from './responses/mockFigmaImages.json';
 const FIGMA_API = 'https://api.figma.com/v1';
 const FIGMA_BUCKET_URL = 'https://s3-us-west-2.amazonaws.com/figma-alpha-api/img';
 
-const logInterceptedRequest = (req: RestRequest<DefaultRequestBody, PathParams>) =>
+const logInterceptedRequest = (req: RestRequest<any, PathParams>) =>
   console.log(MsgSetMswInterceptedDataFromApi(req.url.href));
 
 export const handlers = [
