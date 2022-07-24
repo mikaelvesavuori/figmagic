@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm ci --ignore-scripts
-          npm audit fix
+          npm audit fix --force
           npm install -g
 
       - name: Test
@@ -93,7 +93,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm ci --ignore-scripts
-          npm audit fix
+          npm audit fix --force
           npm install -g
 
       - name: Test
