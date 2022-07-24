@@ -42,7 +42,6 @@ export declare const ErrorGetFiles: string;
 export declare const ErrorGetFontColor: string;
 export declare const ErrorGetFromApi: string;
 export declare const ErrorGetIds: string;
-export declare const ErrorGetIdsComponents: string;
 export declare const ErrorGetIdstring: string;
 export declare const ErrorGetIntersectingValues: string;
 export declare const ErrorGetPaddingX: string;

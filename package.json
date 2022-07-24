@@ -1,6 +1,6 @@
 {
   "name": "figmagic",
-  "version": "4.4.4",
+  "version": "4.4.5",
   "description": "Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.",
   "homepage": "https://www.figmagic.com",
   "repository": {
@@ -71,8 +71,7 @@
     "docs": "npx typedoc && npx arkit",
     "licenses": "npx license-compliance --direct --allow 'MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;Unlicense;CC0-1.0'",
     "licenses:checker": "npx license-compatibility-checker",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect && husky install"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/core": "7",
@@ -94,7 +93,6 @@
     "msw": "latest",
     "prettier": "latest",
     "pretty-quick": "latest",
-    "snyk": "latest",
     "trash": "7",
     "ts-jest": "27",
     "ts-loader": "9",
@@ -103,6 +101,5 @@
     "webpack": "5",
     "webpack-cli": "4",
     "webpack-shebang-plugin": "1"
-  },
-  "snyk": true
+  }
 }

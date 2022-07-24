@@ -1,44 +1,50 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
 
-import { ErrorGetIds, ErrorGetIdsComponents } from '../../../frameworks/errors/errors';
+import { ErrorGetIds } from '../../../frameworks/errors/errors';
 
 /**
  * @description Get IDs from graphics page
  */
 export const getIds = (graphicsPage: Frame[]): Record<string, unknown>[] => {
-  if (!graphicsPage) throw Error(ErrorGetIds);
-  if (!(graphicsPage.length > 0)) throw Error(ErrorGetIds);
+  if (!graphicsPage || graphicsPage.length === 0) throw Error(ErrorGetIds);
 
-  let ids: any = [];
+  /**
+   * First grab all components that are "flat" in the Figma page.
+   * This is the classic way of doing graphics in Figmagic.
+   */
 
+  const ids: any[] = [];
   const componentIds = getComponents(graphicsPage);
-  ids = ids.concat(componentIds);
+  ids.push(...ids.concat(componentIds));
 
-  const frames = graphicsPage.filter((item: any) => item.type === 'FRAME');
+  /**
+   * Next, check all frame inside the page for nested graphics.
+   */
+
+  const frames = graphicsPage.filter((item: Frame) => item.type === 'FRAME');
   for (const frame of frames) {
-    if (frame.children === undefined) {
-      continue;
-    }
-
-    const localIds = getComponents(frame.children, frame);
-
-    ids = ids.concat(localIds);
+    const frameLocalComponentIds = getComponents(frame.children || [], frame);
+    ids.push(...ids.concat(frameLocalComponentIds));
   }
 
-  if (!(ids.length > 0)) throw Error(ErrorGetIdsComponents);
-
-  return ids;
+  const deduplicatedIds: any[] = [];
+  ids.filter((item) =>
+    !deduplicatedIds.find((element) => element.id === item.id) ? deduplicatedIds.push(item) : null
+  );
+  return deduplicatedIds;
 };
 
+/**
+ * @description TODO
+ */
 const getComponents = (children: Frame[], parent?: Frame) => {
   const parentName = parent?.name ? `${parent.name}/` : '';
 
+  if (!children || children.length === 0) return [];
   return children
-    ?.filter((item: any) => item.type === 'COMPONENT')
-    .map((item: any) => {
-      return {
-        id: item.id,
-        name: `${parentName}${item.name}`
-      };
-    });
+    .filter((item: any) => item.type === 'COMPONENT')
+    .map((item: any) => ({
+      id: item.id,
+      name: `${parentName}${item.name}`
+    }));
 };

@@ -58,14 +58,17 @@ function makeShadowToken(
           if (shadowUnit === 'px') return effect.offset.x + shadowUnit;
           else return (effect.offset.x as unknown as number) / remSize + shadowUnit;
         })();
+
         const Y = (() => {
-          if (shadowUnit === 'px') return effect.offset.x + shadowUnit;
+          if (shadowUnit === 'px') return effect.offset.y + shadowUnit;
           else return (effect.offset.y as unknown as number) / remSize + shadowUnit;
         })();
+
         const RADIUS = (() => {
           if (shadowUnit === 'px') return effect.radius + shadowUnit;
           else return (effect.radius as unknown as number) / remSize + shadowUnit;
         })();
+
         const R = roundColorValue(effect.color.r);
         const G = roundColorValue(effect.color.g);
         const B = roundColorValue(effect.color.b);

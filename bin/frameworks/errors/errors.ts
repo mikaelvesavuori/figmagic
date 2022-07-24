@@ -104,9 +104,6 @@ export const ErrorGetFromApi = ErrorMessage(
   'Missing one or more of required arguments: "figmaToken", "figmaUrl" when attempting to get data from Figma API!'
 );
 export const ErrorGetIds = ErrorMessage('No (or zero-length) array passed to getIds()!');
-export const ErrorGetIdsComponents = ErrorMessage(
-  'No item type COMPONENT on graphicsPage passed to getIds()!'
-);
 export const ErrorGetIdstring = ErrorMessage(
   'Missing required argument "ids" when calling getIdString()!'
 );
