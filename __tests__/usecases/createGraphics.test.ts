@@ -6,7 +6,7 @@ import { createGraphics } from '../../bin/usecases/createGraphics';
 import { loadEnv } from '../../bin/frameworks/system/loadEnv';
 
 import { testConfig } from '../../testdata/testConfig';
-import { figmaTestResponse } from '../../testdata/figmaTestResponse';
+import figmaTestResponse from '../../testdata/figma.json';
 
 loadEnv();
 

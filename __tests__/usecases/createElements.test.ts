@@ -6,7 +6,7 @@ import { createElements } from '../../bin/usecases/createElements';
 import { loadEnv } from '../../bin/frameworks/system/loadEnv';
 
 import { testConfig } from '../../testdata/testConfig';
-import { figmaTestResponse } from '../../testdata/figmaTestResponse';
+import figmaTestResponse from '../../testdata/figma.json';
 import { figmaCompleteCleaned } from '../../testdata/figma-complete-cleaned';
 
 loadEnv();

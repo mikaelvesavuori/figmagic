@@ -16,7 +16,7 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should successfully load a local file if it exists', () => {
     const OUTPUT_FOLDER_BASE_FILE = 'testdata';
-    const OUTPUT_FILENAME = 'figma-mini.json';
+    const OUTPUT_FILENAME = 'figma-minimal.json';
     const DATA = {
       document: {
         id: '0:0',

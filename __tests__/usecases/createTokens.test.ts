@@ -4,7 +4,7 @@ import fs from 'fs';
 import { createTokens } from '../../bin/usecases/createTokens';
 
 import { testConfig } from '../../testdata/testConfig';
-import { figmaTestResponse } from '../../testdata/figmaTestResponse';
+import figmaTestResponse from '../../testdata/figma.json';
 
 // Re-ordered these (success & failure) because they somehow seem to keep variable names in memory, causing test failures
 

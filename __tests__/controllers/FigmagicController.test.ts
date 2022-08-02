@@ -3,7 +3,7 @@ import trash from 'trash';
 import { FigmagicController } from '../../bin/controllers/FigmagicController';
 
 import { testConfig } from '../../testdata/testConfig';
-import { figmaTestResponse } from '../../testdata/figmaTestResponse';
+import figmaTestResponse from '../../testdata/figma.json';
 
 describe('Failure cases', () => {
   test('It should throw an error if calling without any arguments', async () => {
