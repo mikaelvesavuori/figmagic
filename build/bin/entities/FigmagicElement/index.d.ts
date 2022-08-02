@@ -16,6 +16,7 @@ declare class FigmagicElement {
     extraProps: string;
     text: string | undefined;
     imports: string[];
+    acceptedTypes: string[];
     constructor(element: FigmaElement, config: Config, description: string | undefined, isGraphicElement: boolean);
     init(): void;
     private handleElements;

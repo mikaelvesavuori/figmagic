@@ -38,6 +38,8 @@ class FigmagicElement {
   text: string | undefined;
   imports: string[];
 
+  acceptedTypes = ['GROUP', 'FRAME'];
+
   constructor(element: FigmaElement, config: Config, description = '', isGraphicElement: boolean) {
     // Element
     this.id = element.id;
@@ -84,8 +86,8 @@ class FigmagicElement {
       // @ts-ignore
       const FILTERED_ELEMENTS = this.children.filter((child) => child.name[0] !== '_');
 
-      // If the remaining elements/layers contain any groups, use the nested elements handler
-      if (FILTERED_ELEMENTS?.some((element: Frame) => element.type === 'GROUP'))
+      // If the remaining elements/layers contain any groups or frames, use the nested elements handler
+      if (FILTERED_ELEMENTS?.some((element: Frame) => this.acceptedTypes.includes(element.type)))
         return this.handleNestedElements(FILTERED_ELEMENTS);
       else return this.handleFlatElements(FILTERED_ELEMENTS);
     } catch (error: any) {
@@ -106,7 +108,8 @@ class FigmagicElement {
   }
 
   /**
-   * @description Try setting Figmagic element text to the characters of an element-root-level layer going by the name ":text".
+   * @description Try setting Figmagic element text to the
+   * characters of an element-root-level layer going by the name ":text".
    */
   private setText(): void {
     const TEXT_CHILD = this.children?.filter((c) => c.name === ':text')[0];
@@ -129,7 +132,8 @@ class FigmagicElement {
   }
 
   /**
-   * @description Set description for the Figmagic element. This is later output to the description file.
+   * @description Set description for the Figmagic element.
+   * This is later output to the description file.
    */
   private setDescription(): void {
     let description = this.description;
@@ -160,7 +164,8 @@ class FigmagicElement {
   }
 
   /**
-   * @description Set element's placeholder text value, if we find an element-root-level layer going by the name ":placeholder".
+   * @description Set element's placeholder text value, if we
+   * find an element-root-level layer going by the name ":placeholder".
    */
   private setPlaceholderText(): void {
     const PLACEHOLDER_TEXT_CHILD = this.children?.filter(
@@ -172,7 +177,8 @@ class FigmagicElement {
   }
 
   /**
-   * @description Set element type (such as "type=checkbox"). This attribute is specified by the designer in Figma's description box.
+   * @description Set element type (such as "type=checkbox").
+   * This attribute is specified by the designer in Figma's description box.
    */
   private setElementType(): void {
     const TYPE = this.description.match(/type=(.*)/)?.[0];
@@ -180,7 +186,9 @@ class FigmagicElement {
   }
 
   /**
-   * @description Handle nested, multi-level elements. To correctly calculate elements we need both a "main" (layout) element and a "text" element.
+   * @description Handle nested, multi-level elements.
+   * To correctly calculate elements we need both a
+   * "main" (layout) element and a "text" element.
    */
   private handleNestedElements(elements: Frame[]): UpdatedCssAndImports {
     try {
@@ -188,7 +196,7 @@ class FigmagicElement {
       let imports: Record<string, unknown>[] = [];
 
       const CHILD_ELEMENTS = elements.filter(
-        (el: Frame) => el.type === 'GROUP' && el.name[0] !== '_'
+        (el: Frame) => this.acceptedTypes.includes(el.type) && el.name[0] !== '_'
       );
       CHILD_ELEMENTS?.forEach((variant: Frame) => {
         const PARSED_CSS = this.parseNestedCss(variant, this.config);
@@ -205,7 +213,9 @@ class FigmagicElement {
   }
 
   /**
-   * @description Handle flat, single-layer elements. To correctly calculate elements we need both a "main" (layout) element and a "text" element.
+   * @description Handle flat, single-layer elements.
+   * To correctly calculate elements we need both a
+   * "main" (layout) element and a "text" element.
    */
   private handleFlatElements(elements: Frame[]): UpdatedCssAndImports {
     try {
@@ -252,7 +262,8 @@ class FigmagicElement {
   }
 
   /**
-   * @description Process CSS for any nested elements (i.e. grouped in groups, in Figma)
+   * @description Process CSS for any nested elements
+   * (i.e. grouped in groups/frames, in Figma).
    */
   private parseNestedCss(el: Frame, config: Config, id?: number) {
     let css = `\n`;
@@ -271,7 +282,9 @@ class FigmagicElement {
 
     const FIXED_NAME = el.name.replace(/\s/gi, '');
 
-    const CHILD_ELEMENTS = el.children?.filter((child: Frame) => child.type === 'GROUP');
+    const CHILD_ELEMENTS = el.children?.filter((child: Frame) =>
+      this.acceptedTypes.includes(child.type)
+    );
     CHILD_ELEMENTS?.forEach((state: Frame) => {
       const PARSED_CSS = this.parseNestedCss(state, config, ID);
       css += PARSED_CSS.css;
