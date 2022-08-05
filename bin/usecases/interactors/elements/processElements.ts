@@ -21,7 +21,9 @@ export function processElements(
   try {
     if (!elementsPage || !components || !config) throw Error(ErrorProcessElements);
 
-    const FILTERED_ELEMENTS = elementsPage.filter((element) => element.type === 'COMPONENT');
+    const FILTERED_ELEMENTS = elementsPage.filter(
+      (element) => element.type === 'COMPONENT' && element.name[0] !== '_'
+    );
     const PARSED_ELEMENTS = FILTERED_ELEMENTS.map((element: FigmaElement) =>
       makeFigmagicElement(element, config, components[element.id].description, isGraphicElement)
     );

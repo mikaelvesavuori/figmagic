@@ -16,7 +16,7 @@ Elements are a good entry point both for design and for code generation, since t
 
 ## Flat or nested elements?
 
-You can generate simple **flat** elements or **nested** ones. Use flat elements for anything that is usually less complex (like `hr` and headings like `h1`), and go for nested elements when you want more advanced or “stateful” behavior like being invalid, disabled or if you need subclasses (maybe something like "Warning" and "Error" variants). Open and inspect some of the elements in the [Figmagic template]() to see both patterns! You can make nested elements as deep as you want, but Figmagic will currently only generate code based on the two first nested layers—this is so Figmagic can support the common pattern of Component > Variant > State. Nesting can use either a "subclass" (by having a group or frame), or a pseudo-selector (by using a group or frame prefixed with colon, like ":disabled"). Note that you may mix these as you wish, even something awful like Component > State > State if you need that! :)
+You can generate simple **flat** elements or **nested** ones. Use flat elements for anything that is usually less complex (like `hr` and headings like `h1`), and go for nested elements when you want more advanced or “stateful” behavior like being invalid, disabled or if you need subclasses (maybe something like "Warning" and "Error" states). Open and inspect some of the elements in the [Figmagic template]() to see both patterns! You can make nested elements as deep as you want, but Figmagic will currently only generate code based on the two first nested layers—this is so Figmagic can support the common pattern of Component > Option/Style > State. Nesting can use either a "subclass" (by having a group or frame), or a pseudo-selector (by using a group or frame prefixed with colon, like ":disabled"). Note that you may mix these as you wish, even something awful like Component > State > State if you need that! :)
 
 Figmagic lets you style elements through **typography** and/or **layout** layers. These are communicated through a text layer (Figma's TEXT layer for typography) and a non-text layer (such as Figma's RECT layer) for layout.
 
@@ -44,7 +44,7 @@ Further description and element choice is made in the right-hand side Descriptio
 
 You can write use the following descriptors in Figma's component description field to shape your code generation:
 
-- `description={DESCRIPTION}`: defines the text description that will be output to text/markdown. Example: `description=This is an input element with three variants`.
+- `description={DESCRIPTION}`: defines the text description that will be output to text/markdown. Example: `description=This is an input element with three styles`.
 - `element={ELEMENT}`: defines the actual generated element type. Example: `element=input`.
 - `type={TYPE}`: becomes an element property. Useful for complex elements like `input`. Example: `type=checkbox`.
 
@@ -102,7 +102,7 @@ _Flat elements should be enough for most basic use cases. Don't forget to name t
 
 #### Nested elements
 
-- CSS output can be wonky if you don’t use at least 2 different ”variants” or ”states” in your nested component — try using regular non-nested components/elements when you don’t actually have multiple variants.
+- CSS output can be wonky if you don’t use at least 2 different styles or ”states” in your nested component — try using regular non-nested components/elements when you don’t actually have multiple styles.
 - Layer order matters in nested elements! It will always pick the first layout or text element it finds.
 - Currently only a single layout element per group/frame/nested layer will be picked up.
 - Nested elements should ideally have a text element in order to avoid breaking or getting strange CSS/behavior. This layer does not have to be visible!
