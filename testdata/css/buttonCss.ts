@@ -98,7 +98,6 @@ export const expectedButtonCss = `
       border-width: \${borderWidths.hairline};
       border-color: \${colors.blue2};
       border-radius: \${radii.soft};
-      background-color: \${colors.orange};
     }
   }
 

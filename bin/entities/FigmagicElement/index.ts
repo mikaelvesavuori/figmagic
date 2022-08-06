@@ -249,10 +249,7 @@ class FigmagicElement {
       if (MAIN_ELEMENT) {
         const { updatedCss, updatedImports } = this.parseFlatCss(MAIN_ELEMENT, TEXT_ELEMENT);
 
-        const COMBINED_CSS = css + updatedCss;
-        const PROCESSED_CSS = this.processFlatCss(COMBINED_CSS);
-
-        css = PROCESSED_CSS;
+        css = this.processFlatCss(css + updatedCss);
         imports = imports.concat(updatedImports);
       }
 
