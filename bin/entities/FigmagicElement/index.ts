@@ -1,3 +1,5 @@
+import { randomUUID } from 'crypto';
+
 import { FigmaElement } from '../../contracts/FigmaElement';
 import { FRAME as Frame } from '../../contracts/Figma';
 import { Config } from '../../contracts/Config';
@@ -38,7 +40,7 @@ class FigmagicElement {
   text: string | undefined;
   imports: string[];
 
-  acceptedTypes = ['GROUP', 'FRAME'];
+  acceptedTypes = ['GROUP', 'FRAME', 'INSTANCE'];
 
   constructor(element: FigmaElement, config: Config, description = '', isGraphicElement: boolean) {
     // Element
@@ -82,9 +84,8 @@ class FigmagicElement {
    */
   private handleElements(): any {
     try {
-      // Filter out hidden elements (using "_")
       // @ts-ignore
-      const FILTERED_ELEMENTS = this.children.filter((child) => child.name[0] !== '_');
+      const FILTERED_ELEMENTS = this.children.filter((child) => child.name[0] !== '_'); // Filter out hidden elements (using "_")
 
       // If the remaining elements/layers contain any groups or frames, use the nested elements handler
       if (FILTERED_ELEMENTS?.some((element: Frame) => this.acceptedTypes.includes(element.type)))
@@ -198,8 +199,8 @@ class FigmagicElement {
       const CHILD_ELEMENTS = elements.filter(
         (el: Frame) => this.acceptedTypes.includes(el.type) && el.name[0] !== '_'
       );
-      CHILD_ELEMENTS?.forEach((variant: Frame) => {
-        const PARSED_CSS = this.parseNestedCss(variant, this.config);
+      CHILD_ELEMENTS?.forEach((childElement: Frame) => {
+        const PARSED_CSS = this.parseNestedCss(childElement, this.config);
         css += PARSED_CSS.css;
         imports = imports.concat(PARSED_CSS.imports);
       });
@@ -265,10 +266,10 @@ class FigmagicElement {
    * @description Process CSS for any nested elements
    * (i.e. grouped in groups/frames, in Figma).
    */
-  private parseNestedCss(el: Frame, config: Config, id?: number) {
+  private parseNestedCss(el: Frame, config: Config, id?: string) {
     let css = `\n`;
     let imports: Record<string, unknown>[] = [];
-    const ID = id || Math.round(Math.random() * 10000);
+    const ID = id || randomUUID().slice(0, 8);
 
     const MAIN_ELEMENT = el.children?.filter(
       (e: Frame) => e.type === 'RECTANGLE' && e.name[0] !== '_'
@@ -282,8 +283,8 @@ class FigmagicElement {
 
     const FIXED_NAME = el.name.replace(/\s/gi, '');
 
-    const CHILD_ELEMENTS = el.children?.filter((child: Frame) =>
-      this.acceptedTypes.includes(child.type)
+    const CHILD_ELEMENTS = el.children?.filter(
+      (child: Frame) => this.acceptedTypes.includes(child.type) && child.name[0] !== '_'
     );
     CHILD_ELEMENTS?.forEach((state: Frame) => {
       const PARSED_CSS = this.parseNestedCss(state, config, ID);

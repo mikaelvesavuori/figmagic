@@ -16,9 +16,13 @@ Elements are a good entry point both for design and for code generation, since t
 
 ## Flat or nested elements?
 
-You can generate simple **flat** elements or **nested** ones. Use flat elements for anything that is usually less complex (like `hr` and headings like `h1`), and go for nested elements when you want more advanced or “stateful” behavior like being invalid, disabled or if you need subclasses (maybe something like "Warning" and "Error" states). Open and inspect some of the elements in the [Figmagic template]() to see both patterns! You can make nested elements as deep as you want, but Figmagic will currently only generate code based on the two first nested layers—this is so Figmagic can support the common pattern of Component > Option/Style > State. Nesting can use either a "subclass" (by having a group or frame), or a pseudo-selector (by using a group or frame prefixed with colon, like ":disabled"). Note that you may mix these as you wish, even something awful like Component > State > State if you need that! :)
+You can generate simple **flat** elements or **nested** ones. Use flat elements for anything that is usually less complex (like `hr` and headings like `h1`), and go for nested elements when you want more advanced or “stateful” behavior like buttons being invalid, disabled or if you need subclasses (maybe something like "Warning" and "Error" states).
 
-Figmagic lets you style elements through **typography** and/or **layout** layers. These are communicated through a text layer (Figma's TEXT layer for typography) and a non-text layer (such as Figma's RECT layer) for layout.
+It's highly recommended that you open and inspect some of the elements in the [Figmagic template](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens) to see both patterns!
+
+You can technically make nested elements as deep as you want, but **Figmagic will currently only generate code based on the two first nested layers (depth-wise)**—this is so Figmagic can support the common pattern of `Component` > `Option/Style/Type` > `State`. Nesting can use either a "subclass" (by having a group or frame), or a pseudo-selector (by using a group or frame prefixed with colon, like ":disabled"). Note that you may mix these as you wish, even something awful like Component > State > State if you need that! :)
+
+Figmagic lets you style elements through **typography** and/or **layout** layers. These are communicated through a text layer (Figma's `TEXT` layer for typography) and a non-text layer (such as Figma's `RECTANGLE` layer) for layout.
 
 The name of the React component will be taken from the component name. Subclasses and pseudo-selectors will be named by their group/frame name.
 
@@ -58,7 +62,7 @@ You can prefix your layer/group/frame with `:` to set/communicate a pseudo-selec
 
 ### Ignore a layer
 
-A `_` (underscore) makes anything prefixed with it ignored during the generation step. Use this for meta-information, redlines or other things you might need to communicate your design, but which should not affect the code generation.
+A `_` (underscore) character makes anything prefixed with it ignored during the generation step. Use this for meta-information, redlines or other things you might need to communicate your design, but which should not affect the code generation.
 
 ![Nesting: Button, Normal](../images/add-underscore-to-block.png)
 
@@ -95,22 +99,24 @@ For example, in the case above the check is not in the actual component, as it w
 
 _Flat elements should be enough for most basic use cases. Don't forget to name the layout layer to the same name as your Figma component or it will break during generation!_
 
-- Don’t use more than one object with a fill in an element (you will get only one background/background-color!).
+- Don’t use more than one object with a fill in an element – you will get only one background/background-color!
 - Elements are not self-closing (i.e. they are always `<element></element>` rather than `<element />`).
 - Cannot combine groups/frames AND flat/non-nested styling inside an element.
 - Linear gradient is supported, but it does not use "gradientHandlePositions”.
 
-#### Nested elements
+### Nested elements
 
-- CSS output can be wonky if you don’t use at least 2 different styles or ”states” in your nested component — try using regular non-nested components/elements when you don’t actually have multiple styles.
 - Layer order matters in nested elements! It will always pick the first layout or text element it finds.
 - Currently only a single layout element per group/frame/nested layer will be picked up.
+
+Also note that:
+
 - Nested elements should ideally have a text element in order to avoid breaking or getting strange CSS/behavior. This layer does not have to be visible!
 
-#### Incomplete list of things that are not yet supported
+### Incomplete list of things that are not yet supported
 
-- Gradients (Linear and Radial Gradients are the only gradient types which are currently supported)
+- Linear and Radial Gradients are supported, but no other types
 - Layout constraints
 - Layout grid
-- Images
+- Images and vectors in elements
 - Blend modes

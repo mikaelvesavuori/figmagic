@@ -98,10 +98,11 @@ function getUniqueValues(arrays: any[], intersections: any[]): any[] {
   // Enrich unique values (arrays) with their respective class names, as a property
   const UNIQUE_VALUES: any[] = [];
   VALUES.forEach((item, index) => {
-    UNIQUE_VALUES.push({
-      css: item,
-      className: arrays[index].className
-    });
+    if (item && item.length > 0)
+      UNIQUE_VALUES.push({
+        css: item,
+        className: arrays[index].className
+      });
   });
 
   return UNIQUE_VALUES;
