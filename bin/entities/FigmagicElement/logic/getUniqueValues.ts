@@ -11,10 +11,11 @@ export function getUniqueValues(arrays: any[], intersections: any[]): any[] {
   const NON_INTERSECTING: any[] = CSS_ARRAYS.map((arr) =>
     arr.filter((val: any) => !intersections.includes(val))
   );
-  const VALUES = NON_INTERSECTING.map((arr) => [...new Set(arr)]);
 
   // Enrich unique values (arrays) with their respective class names as a property
   const UNIQUE_VALUES: any[] = [];
+
+  const VALUES = NON_INTERSECTING.map((arr) => [...new Set(arr)]);
   VALUES.forEach((item, index) => {
     const usedProperties: string[] = [];
     // @ts-ignore

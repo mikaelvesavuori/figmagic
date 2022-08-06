@@ -199,15 +199,24 @@ class FigmagicElement {
       const CHILD_ELEMENTS = elements.filter(
         (el: Frame) => this.acceptedTypes.includes(el.type) && el.name[0] !== '_'
       );
-      CHILD_ELEMENTS?.forEach((childElement: Frame) => {
-        const PARSED_CSS = this.parseNestedCss(childElement, this.config);
-        css += PARSED_CSS.css;
-        imports = imports.concat(PARSED_CSS.imports);
+
+      const textOnlySubchildren: string[] = [];
+
+      CHILD_ELEMENTS.forEach((childElement: Frame) => {
+        const PARSED = this.parseNestedCss(childElement, this.config);
+        css += PARSED.css;
+        imports = imports.concat(PARSED.imports);
+
+        const SUBCHILD_ELEMENTS = childElement.children?.filter((el: Frame) => el.name[0] !== '_');
+
+        if (SUBCHILD_ELEMENTS?.every((subChild) => subChild.type === 'TEXT'))
+          textOnlySubchildren.push(PARSED.fixedName);
       });
 
-      const PROCESSED_CSS = processNestedCss(css);
-
-      return { updatedCss: PROCESSED_CSS, updatedImports: imports };
+      return {
+        updatedCss: processNestedCss(css, textOnlySubchildren),
+        updatedImports: imports
+      };
     } catch (error: any) {
       throw Error(error);
     }
@@ -283,6 +292,7 @@ class FigmagicElement {
     const CHILD_ELEMENTS = el.children?.filter(
       (child: Frame) => this.acceptedTypes.includes(child.type) && child.name[0] !== '_'
     );
+
     CHILD_ELEMENTS?.forEach((state: Frame) => {
       const PARSED_CSS = this.parseNestedCss(state, config, ID);
       css += PARSED_CSS.css;
@@ -319,7 +329,7 @@ class FigmagicElement {
       imports = imports.concat(updatedImports);
     }
 
-    return { css, imports };
+    return { css, imports, fixedName: FIXED_NAME };
   }
 
   /**

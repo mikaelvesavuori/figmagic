@@ -1,7 +1,8 @@
 import { ErrorGetIntersectingValues } from '../../../frameworks/errors/errors';
 
 /**
- * @description Get all shared/common/intersecting values across all "classes". These will then need to float to the top of the CSS document.
+ * @description Get all shared/common/intersecting values across all "classes".
+ * These will then need to float to the top of the CSS document.
  */
 export function getIntersectingValues(arrays: any[]): any[] {
   if (!arrays) throw Error(ErrorGetIntersectingValues);

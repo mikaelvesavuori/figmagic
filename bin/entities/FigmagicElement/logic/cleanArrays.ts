@@ -1,39 +1,63 @@
 import { ErrorCleanArrays } from '../../../frameworks/errors/errors';
+import { classRepresentsTextOnlyElement } from './classRepresentsTextOnlyElement';
 
 /**
  * @description Collate/package array objects for easier handling in later steps
  */
-export function cleanArrays(classNames: RegExpMatchArray | null, classContent: string[]): any {
+export function cleanArrays(
+  classNames: RegExpMatchArray | null,
+  classContent: string[],
+  textOnlySubchildren: string[]
+): any {
   if (!classNames || !classContent) throw Error(ErrorCleanArrays);
 
-  const CLASSES: any[] = [];
+  const classes: any[] = [];
 
-  /**
-   * Layout + typography comes in couples following each other,
-   * therefore do two in a go (so skip odd array indices).
-   */
-  classContent.forEach((arrayItem, index) => {
-    if (index % 2 !== 0) return;
+  let skipNext = false;
 
-    const LAYOUT = arrayItem
-      .split(/\n/gi)
-      .filter((item: string) => item)
-      .filter((item: string) => item !== '}');
+  classContent.forEach((currentClassContent, index) => {
+    if (skipNext) {
+      skipNext = false;
+      return;
+    }
+    const className = classNames[index];
+    const isNextClassSameLogicalClass = className === classNames[index + 1];
+    const isTextOnly = classRepresentsTextOnlyElement(className, textOnlySubchildren);
 
-    const TYPOGRAPHY = classContent[index + 1]
-      ? classContent[index + 1]
-          .split(/\n/gi)
-          .filter((item: string) => item)
-          .filter((item: string) => item !== '}')
-      : [];
+    const layout = (() => {
+      if (isTextOnly) return [];
 
-    const css = [...LAYOUT, ...TYPOGRAPHY];
+      return currentClassContent
+        .split(/\n/gi)
+        .filter((item: string) => item)
+        .filter((item: string) => item !== '}');
+    })();
 
-    CLASSES.push({
-      className: classNames[index],
-      css
-    });
+    const typography = (() => {
+      const content = (() => {
+        /**
+         * The typography always comes second, so if we don't have the
+         * same logical class coming up next, then the current class must
+         * be inferred as being the typography class.
+         */
+        if (!isNextClassSameLogicalClass) return currentClassContent;
+
+        /**
+         * We will do the typography processing now which would otherwise
+         * have been in the next step, so skip the next run.
+         */
+        skipNext = true;
+        return classContent[index + 1];
+      })();
+
+      return content
+        .split(/\n/gi)
+        .filter((item: string) => item)
+        .filter((item: string) => item !== '}');
+    })();
+
+    classes.push({ className, css: [...layout, ...typography] });
   });
 
-  return CLASSES;
+  return classes;
 }

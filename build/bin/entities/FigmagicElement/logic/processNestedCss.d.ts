@@ -1,1 +1,1 @@
-export declare function processNestedCss(css: string): string;
+export declare function processNestedCss(css: string, textOnlySubchildren?: string[]): string;
