@@ -82,7 +82,7 @@ class FigmagicElement {
   /**
    * @description Controller to funnel elements to the correct handler.
    */
-  private handleElements(): any {
+  private handleElements(): UpdatedCssAndImports {
     // @ts-ignore
     const FILTERED_ELEMENTS = this.children.filter((child) => child.name[0] !== '_'); // Filter out hidden elements (using "_")
 

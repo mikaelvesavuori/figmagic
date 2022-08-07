@@ -33,13 +33,15 @@ export async function createConfiguration(
   const DEFAULT_CONFIG: Config = baseConfig;
 
   // RC file configuration
-  let RC_CONFIG: any = {};
+  let RC_CONFIG: Record<string, any> = {};
 
   if (userConfigPath && userConfigPath !== '') {
     try {
       const _RC_CONFIG = loadFile(userConfigPath);
       RC_CONFIG = _RC_CONFIG as Config;
-    } catch (e) {} // eslint-disable-line no-empty
+    } catch (e) {
+      //
+    }
   }
 
   // Env var configuration

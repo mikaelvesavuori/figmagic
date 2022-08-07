@@ -4,7 +4,7 @@ import { ErrorConvertHexToRgba } from '../errors/errors';
  * @description Convert hex color to RGBA (full alpha). Expects a string like "#33ff00".
  * @see https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
  */
-export function convertHexToRgba(color: string): any {
+export function convertHexToRgba(color: string): string {
   if (!color) throw Error(ErrorConvertHexToRgba);
 
   const R = parseInt(color.slice(1, 3), 16);

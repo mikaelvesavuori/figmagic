@@ -7,13 +7,13 @@ import { ErrorConvertRgbaToHex } from '../../frameworks/errors/errors';
 export function convertRgbaToHex(color: string): string {
   if (!color) throw Error(ErrorConvertRgbaToHex);
 
-  const VALUES: any = color
+  const VALUES: string[] = color
     .replace(/rgba?\(/, '')
     .replace(/\)/, '')
     .replace(/[\s+]/g, '')
     .split(',');
 
-  const A: number = parseFloat(VALUES[3] || 1);
+  const A: number = parseFloat(VALUES[3] || '1');
   const R: number = Math.floor(A * parseInt(VALUES[0]) + (1 - A) * 255);
   const G: number = Math.floor(A * parseInt(VALUES[1]) + (1 - A) * 255);
   const B: number = Math.floor(A * parseInt(VALUES[2]) + (1 - A) * 255);

@@ -1,4 +1,5 @@
 import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
+import { Imports } from '../../../../contracts/Imports';
 
 import { getTokenMatch } from '../getTokenMatch';
 import { updateParsing } from './updateParsing';
@@ -13,7 +14,7 @@ type PaddingParams = {
 
 export function parsePadding(
   css: string,
-  imports: any[],
+  imports: Imports[],
   params: PaddingParams
 ): ParsedElementMetadataInterface {
   if (!css || !imports || !params) throw Error(ErrorParsePadding);

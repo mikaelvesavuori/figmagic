@@ -1,3 +1,4 @@
+import { Imports } from '../../../../contracts/Imports';
 import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 
 import { ErrorUpdateParsing } from '../../../../frameworks/errors/errors';
@@ -5,8 +6,8 @@ import { ErrorUpdateParsing } from '../../../../frameworks/errors/errors';
 export function updateParsing(
   css: string,
   updatedCss: string | null,
-  imports: any[],
-  updatedImports: any[] | null
+  imports: Imports[],
+  updatedImports: Imports[] | null
 ): ParsedElementMetadataInterface {
   if (!css || !imports) throw Error(ErrorUpdateParsing);
 

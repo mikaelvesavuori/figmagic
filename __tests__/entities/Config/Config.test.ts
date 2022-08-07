@@ -6,7 +6,7 @@ import { testConfig } from '../../../testdata/testConfig';
 
 describe('Success cases', () => {
   test('It should use default/base configuration if called without a user config path', async () => {
-    const CLI_ARGS: any[] = [];
+    const CLI_ARGS: string[] = [];
     const USER_CONFIG_PATH = '';
     const CONFIG = testConfig;
     CONFIG.token = '***';
@@ -19,7 +19,7 @@ describe('Success cases', () => {
   });
 
   test('It should return a complete, default configuration when passing in valid user config path, but no CLI arguments input', async () => {
-    const CLI_ARGS: any[] = [];
+    const CLI_ARGS: string[] = [];
     const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `testdata`, `figmagicrc`);
     const CONFIG = testConfig;
     CONFIG.recompileLocal = false;
@@ -34,7 +34,7 @@ describe('Success cases', () => {
   });
 
   test('It should return a complete, custom configuration when passing in valid user config path, and some CLI arguments input', async () => {
-    const CLI_ARGS: any[] = [
+    const CLI_ARGS: string[] = [
       '--debug',
       '--skipStorybook',
       '-t',

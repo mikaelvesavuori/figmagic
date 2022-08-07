@@ -1,7 +1,7 @@
 import * as path from 'path';
 
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { UpdatedCssAndImports } from '../../../contracts/Imports';
+import { Imports, UpdatedCssAndImports } from '../../../contracts/Imports';
 import { OutputFormatColors } from '../../../contracts/Config';
 
 import { getFileContents } from './getFileContents';
@@ -43,7 +43,7 @@ export function parseCssFromElement(
   if (layoutElement.fills && layoutElement.fills.some((fill) => fill['type'] === 'IMAGE'))
     css += `object-fit: cover;\n`;
 
-  let imports: any = [];
+  let imports: Record<string, any>[] = [];
 
   const padding = calcPadding(
     { textElement, layoutElement, css, imports, remSize } as CalcData,
@@ -90,7 +90,7 @@ type CalcData = {
   textElement?: Frame;
   layoutElement: Frame;
   css: string;
-  imports: string[];
+  imports: Imports[];
   remSize: number;
   outputFormatColors: OutputFormatColors;
 };
@@ -100,7 +100,7 @@ const reduceDuplicates = (str: string) =>
     .toString()
     .replace(/,\n/gi, ';\n');
 
-const getFiles = (filePath: string, outputFormatToken: string): any => {
+const getFiles = (filePath: string, outputFormatToken: string): Record<string, any> => {
   const borderWidths = getFileContents(filePath, 'borderWidths', outputFormatToken);
   const colors = getFileContents(filePath, 'colors', outputFormatToken);
   const radii = getFileContents(filePath, 'radii', outputFormatToken);

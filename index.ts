@@ -30,7 +30,7 @@ async function main(): Promise<void> {
     loadEnv();
 
     // Use first valid match for configuration file
-    const configFilePath: any = RC_FILES.filter((configFile: string) => {
+    const configFilePath: string = RC_FILES.filter((configFile: string) => {
       if (checkIfExists(configFile)) return configFile;
     })[0];
 
@@ -67,7 +67,7 @@ async function main(): Promise<void> {
 /**
  * @description Handle basic configuration initialization
  */
-function initConfig(file: any, configFilePath: string) {
+function initConfig(file: Record<string, any>, configFilePath: string) {
   const FILE_EXISTS = checkIfExists(configFilePath);
   if (!FILE_EXISTS) {
     write(configFilePath, JSON.stringify(file, null, ' '));

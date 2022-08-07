@@ -31,6 +31,7 @@ export const getIds = (graphicsPage: Frame[]): Record<string, unknown>[] => {
   ids.filter((item) =>
     !deduplicatedIds.find((element) => element.id === item.id) ? deduplicatedIds.push(item) : null
   );
+
   return deduplicatedIds;
 };
 

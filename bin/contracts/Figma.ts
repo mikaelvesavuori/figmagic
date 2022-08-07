@@ -67,14 +67,14 @@ export interface FRAME {
   strokeWeight?: number;
   strokes?: Paint[];
   // [BUG/CHANGE FROM FIGMA? Not listed but my older test data includes this field...?]
-  style?: any; //TypeStyle;
-  styles?: any; // TypeStyle;
+  style?: any;
+  styles?: any;
   transitionDuration?: number;
   transitionEasing?: EasingType;
   transitionNodeID?: string;
   type: string;
   verticalPadding?: number;
-  // [FIX ERROR] These come on the Frame, despite not being documented
+  // [FIX ERROR] These come on the Frame, despite not being documented...?
   characterStyleOverrides?: number[];
   styleOverrideTable?: any; //Map<number, TypeStyle>;
   layoutVersion?: number;

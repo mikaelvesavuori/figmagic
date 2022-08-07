@@ -11,6 +11,7 @@ import { parseBorderRadius } from '../../../../bin/entities/FigmagicElement/logi
 import { getShadow } from '../../../../bin/entities/FigmagicElement/logic/parsers/getShadow';
 import { parseShadow } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseShadow';
 import { updateParsing } from '../../../../bin/entities/FigmagicElement/logic/parsers/updateParsing';
+import { Imports } from '../../../../bin/contracts/Imports';
 
 const TEXT_ELEMENT = {
   id: '3005:102',
@@ -216,7 +217,11 @@ describe('Parse padding', () => {
     test('It should parse padding, matching to a corresponding spacing token value', () => {
       // @ts-ignore
       expect(
-        parsePadding('border-width: 10px;\n', ['border-widths'], PADDING_PARAMS)
+        parsePadding(
+          'border-width: 10px;\n',
+          ['border-widths'] as unknown as Imports[],
+          PADDING_PARAMS
+        )
       ).toMatchObject({
         css: "border-width: 10px;\npadding-left: ${spacing['small']};\npadding-right: ${spacing['small']};\n",
         imports: undefined
@@ -304,7 +309,7 @@ border: 0;
 border-style: solid;
 height: \${spacing['big']};`;
 
-const IMPORTS = ['spacing'];
+const IMPORTS: Imports[] = ['spacing'] as unknown as Imports[];
 
 const PARAMS: any = {
   colors: {
@@ -840,9 +845,14 @@ border-color: \${colors['blue2']};
 
   const PARSING_UPDATED_CSS = `border-radius: \${radii['soft']};`;
 
-  const PARSING_IMPORTS = ['spacing', 'colors', 'borderWidths', 'colors'];
+  const PARSING_IMPORTS: Imports[] = [
+    'spacing',
+    'colors',
+    'borderWidths',
+    'colors'
+  ] as unknown as Imports[];
 
-  const PARSING_UPDATED_IMPORTS = ['radii'];
+  const PARSING_UPDATED_IMPORTS: Imports[] = ['radii'] as unknown as Imports[];
 
   describe('Success cases', () => {
     test('It should update parsing', () => {

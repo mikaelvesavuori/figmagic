@@ -1,1 +1,1 @@
-export declare function convertHexToRgba(color: string): any;
+export declare function convertHexToRgba(color: string): string;

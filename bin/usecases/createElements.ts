@@ -25,7 +25,7 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
     config;
 
   refresh(outputFolderElements, false);
-  const { components }: any = data;
+  const { components }: FigmaData = data;
   await handleElements({
     children: data.document.children,
     pageName: 'Elements',
@@ -37,9 +37,6 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
    * Handle a bit of a special corner case: SVG graphics packed into React components.
    */
   if (outputGraphicElements && outputFormatGraphics === 'svg' && syncGraphics) {
-    // Ugly hack to enforce this files settle as we get a race condition if setting "outputGraphicElements" to true
-    // TODO: Make this correct and not like a hack
-    await wait(process.env.IS_CI ? 7500 : 2500);
     const GRAPHICS = await handleElements({
       children: data.document.children,
       pageName: 'Graphics',
@@ -66,7 +63,7 @@ async function handleElements(element: Element): Promise<FigmagicElement[]> {
   return ELEMENTS;
 }
 
-function handleGraphicElementsMap(graphicElementsMap: GraphicElementsMap) {
+function handleGraphicElementsMap(graphicElementsMap: GraphicElementsMap): void {
   const { config, graphics } = graphicElementsMap;
 
   const FOLDER = `${config.outputFolderElements}/Graphics`;
@@ -75,5 +72,3 @@ function handleGraphicElementsMap(graphicElementsMap: GraphicElementsMap) {
 
   writeGraphicElementsMap(FOLDER, FILE_PATH, FILE_CONTENT);
 }
-
-const wait = (ms = 100) => new Promise((resolve) => setTimeout(resolve, ms));
