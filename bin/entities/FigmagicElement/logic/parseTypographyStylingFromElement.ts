@@ -30,119 +30,111 @@ export function parseTypographyStylingFromElement(
     outputFolderTokens,
     usePostscriptFontNames
   } = typographyElement;
-  try {
-    if (!textElement || !remSize) throw Error(ErrorParseTypographyStylingFromElement);
+  if (!textElement || !remSize) throw Error(ErrorParseTypographyStylingFromElement);
 
-    const PATH = process.env.IS_TEST ? path.join('testdata', 'tokens') : outputFolderTokens;
+  const PATH = process.env.IS_TEST ? path.join('testdata', 'tokens') : outputFolderTokens;
 
-    const { colors, fontFamilies, fontSizes, fontWeights, letterSpacings, lineHeights } = getFiles(
-      PATH,
-      outputFormatTokens
-    );
+  const { colors, fontFamilies, fontSizes, fontWeights, letterSpacings, lineHeights } = getFiles(
+    PATH,
+    outputFormatTokens
+  );
 
-    let css = ``;
-    let imports: Record<string, unknown>[] = [];
+  let css = ``;
+  let imports: Record<string, unknown>[] = [];
 
-    const FONT_COLOR = calcFontColor(
-      { textElement, css, imports, remSize } as CalcDataTypography,
-      colors
-    );
-    css = FONT_COLOR.css;
-    imports = FONT_COLOR.imports;
+  const FONT_COLOR = calcFontColor(
+    { textElement, css, imports, remSize } as CalcDataTypography,
+    colors
+  );
+  css = FONT_COLOR.css;
+  imports = FONT_COLOR.imports;
 
-    const FONT_SIZE = calcFontSize(
-      { textElement, css, imports, remSize } as CalcDataTypography,
-      fontSizes
-    );
-    css = FONT_SIZE.css;
-    imports = FONT_SIZE.imports;
+  const FONT_SIZE = calcFontSize(
+    { textElement, css, imports, remSize } as CalcDataTypography,
+    fontSizes
+  );
+  css = FONT_SIZE.css;
+  imports = FONT_SIZE.imports;
 
-    const fontSize = FONT_SIZE.fontSize;
+  const fontSize = FONT_SIZE.fontSize;
 
-    const FONT_FAMILY = calcFontFamily(
-      {
-        textElement,
-        css,
-        imports,
-        remSize,
-        outputFormatColors,
-        usePostscriptFontNames
-      } as CalcDataTypography,
-      fontFamilies
-    );
-    css = FONT_FAMILY.css;
-    imports = FONT_FAMILY.imports;
+  const FONT_FAMILY = calcFontFamily(
+    {
+      textElement,
+      css,
+      imports,
+      remSize,
+      outputFormatColors,
+      usePostscriptFontNames
+    } as CalcDataTypography,
+    fontFamilies
+  );
+  css = FONT_FAMILY.css;
+  imports = FONT_FAMILY.imports;
 
-    const FONT_WEIGHT = calcFontWeight(
-      {
-        textElement,
-        css,
-        imports,
-        remSize
-      } as CalcDataTypography,
-      fontWeights
-    );
-    css = FONT_WEIGHT.css;
-    imports = FONT_WEIGHT.imports;
-
-    const FONT_LINEHEIGHT = calcFontLineHeight(
-      {
-        textElement,
-        css,
-        imports,
-        remSize
-      } as CalcDataTypography,
-      lineHeights
-    );
-    css = FONT_LINEHEIGHT.css;
-    imports = FONT_LINEHEIGHT.imports;
-
-    const FONT_LETTERSPACING = calcLetterSpacing(
-      { textElement, css, imports, remSize } as CalcDataTypography,
-      letterSpacings,
-      letterSpacingUnit,
-      fontSize
-    );
-    css = FONT_LETTERSPACING.css;
-    imports = FONT_LETTERSPACING.imports;
-
-    css = calcFontAlignment({
+  const FONT_WEIGHT = calcFontWeight(
+    {
       textElement,
       css,
       imports,
       remSize
-    } as CalcDataTypography);
+    } as CalcDataTypography,
+    fontWeights
+  );
+  css = FONT_WEIGHT.css;
+  imports = FONT_WEIGHT.imports;
 
-    css = calcFontCase({ textElement, css, imports, remSize } as CalcDataTypography);
+  const FONT_LINEHEIGHT = calcFontLineHeight(
+    {
+      textElement,
+      css,
+      imports,
+      remSize
+    } as CalcDataTypography,
+    lineHeights
+  );
+  css = FONT_LINEHEIGHT.css;
+  imports = FONT_LINEHEIGHT.imports;
 
-    const NEW_CSS = reduceCssDuplicates(css);
+  const FONT_LETTERSPACING = calcLetterSpacing(
+    { textElement, css, imports, remSize } as CalcDataTypography,
+    letterSpacings,
+    letterSpacingUnit,
+    fontSize
+  );
+  css = FONT_LETTERSPACING.css;
+  imports = FONT_LETTERSPACING.imports;
 
-    return { updatedCss: NEW_CSS, updatedImports: imports };
-  } catch (error: any) {
-    throw Error(error);
-  }
+  css = calcFontAlignment({
+    textElement,
+    css,
+    imports,
+    remSize
+  } as CalcDataTypography);
+
+  css = calcFontCase({ textElement, css, imports, remSize } as CalcDataTypography);
+
+  const NEW_CSS = reduceCssDuplicates(css);
+
+  return { updatedCss: NEW_CSS, updatedImports: imports };
 }
 
 const getFiles = (filePath: string, outputFormatTokens: string): any => {
-  try {
-    const colors = getFileContents(filePath, 'colors', outputFormatTokens);
-    const fontFamilies = getFileContents(filePath, 'fontFamilies', outputFormatTokens);
-    const fontSizes = getFileContents(filePath, 'fontSizes', outputFormatTokens);
-    const fontWeights = getFileContents(filePath, 'fontWeights', outputFormatTokens);
-    const letterSpacings = getFileContents(filePath, 'letterSpacings', outputFormatTokens);
-    const lineHeights = getFileContents(filePath, 'lineHeights', outputFormatTokens);
+  const colors = getFileContents(filePath, 'colors', outputFormatTokens);
+  const fontFamilies = getFileContents(filePath, 'fontFamilies', outputFormatTokens);
+  const fontSizes = getFileContents(filePath, 'fontSizes', outputFormatTokens);
+  const fontWeights = getFileContents(filePath, 'fontWeights', outputFormatTokens);
+  const letterSpacings = getFileContents(filePath, 'letterSpacings', outputFormatTokens);
+  const lineHeights = getFileContents(filePath, 'lineHeights', outputFormatTokens);
 
-    return {
-      colors,
-      fontFamilies,
-      fontSizes,
-      fontWeights,
-      letterSpacings,
-      lineHeights
-    };
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return {
+    colors,
+    fontFamilies,
+    fontSizes,
+    fontWeights,
+    letterSpacings,
+    lineHeights
+  };
 };
 
 const reduceCssDuplicates = (css: string) =>

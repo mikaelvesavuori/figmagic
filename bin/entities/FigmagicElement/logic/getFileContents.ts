@@ -12,11 +12,7 @@ export function getFileContents(
   filename: string,
   format: string
 ): Record<string, unknown> | void {
-  try {
-    if (!filepath || !filename || !format) throw Error(ErrorGetFileContents);
-    const FILE = path.join(`${process.cwd()}`, filepath, `${filename}.${format}`);
-    return sliceOutObjectFromFile(FILE);
-  } catch (error: any) {
-    throw Error(error);
-  }
+  if (!filepath || !filename || !format) throw Error(ErrorGetFileContents);
+  const FILE = path.join(`${process.cwd()}`, filepath, `${filename}.${format}`);
+  return sliceOutObjectFromFile(FILE);
 }

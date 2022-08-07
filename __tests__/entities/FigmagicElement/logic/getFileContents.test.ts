@@ -8,11 +8,11 @@ describe('Failure cases', () => {
     }).toThrow();
   });
 
-  test('It should return "undefined" if attempting to get file contents for non-existing file', () => {
+  test('It should throw an error if attempting to get file contents for non-existing file', () => {
     const FILE_PATH = '__test-getFileContents__';
     const FILE_NAME = 'testfile001';
     const FORMAT = 'mjs';
-    expect(getFileContents(FILE_PATH, FILE_NAME, FORMAT)).toBe(undefined);
+    expect(() => getFileContents(FILE_PATH, FILE_NAME, FORMAT)).toThrow();
   });
 });
 

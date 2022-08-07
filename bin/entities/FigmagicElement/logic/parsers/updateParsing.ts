@@ -8,14 +8,10 @@ export function updateParsing(
   imports: any[],
   updatedImports: any[] | null
 ): ParsedElementMetadataInterface {
-  try {
-    if (!css || !imports) throw Error(ErrorUpdateParsing);
+  if (!css || !imports) throw Error(ErrorUpdateParsing);
 
-    const CSS = updatedCss ? (css += updatedCss) : css;
-    const IMPORTS = updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports;
+  const CSS = updatedCss ? (css += updatedCss) : css;
+  const IMPORTS = updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports;
 
-    return { css: CSS, imports: IMPORTS };
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return { css: CSS, imports: IMPORTS };
 }

@@ -13,27 +13,23 @@ import { ErrorWriteTokensNoSettings } from '../../../frameworks/errors/errors';
  * @description Process tokens (before writing them to file; handled in another function)
  */
 export function processTokens(tokens: Frame[], config: Config): any {
-  try {
-    if (!config) throw Error(ErrorWriteTokensNoSettings);
-    if (!tokens) return;
+  if (!config) throw Error(ErrorWriteTokensNoSettings);
+  if (!tokens) return;
 
-    const PROCESSED_TOKENS: WriteOperation[] = [];
+  const PROCESSED_TOKENS: WriteOperation[] = [];
 
-    tokens.forEach((tokenFrame) => {
-      const TOKEN_NAME = sanitizeString(tokenFrame.name);
+  tokens.forEach((tokenFrame) => {
+    const TOKEN_NAME = sanitizeString(tokenFrame.name);
 
-      // Skip any design token frames that begin with an underscore
-      if (tokenFrame.type.toUpperCase() === 'FRAME' && TOKEN_NAME[0] === '_') return;
+    // Skip any design token frames that begin with an underscore
+    if (tokenFrame.type.toUpperCase() === 'FRAME' && TOKEN_NAME[0] === '_') return;
 
-      if (acceptedTokenTypes.includes(TOKEN_NAME.toLowerCase()) && TOKEN_NAME[0] !== '_') {
-        const TOKEN = makeToken(tokenFrame, TOKEN_NAME, config);
-        const WRITE_OP = TOKEN.getWriteOperation();
-        if (WRITE_OP) PROCESSED_TOKENS.push(WRITE_OP);
-      }
-    });
+    if (acceptedTokenTypes.includes(TOKEN_NAME.toLowerCase()) && TOKEN_NAME[0] !== '_') {
+      const TOKEN = makeToken(tokenFrame, TOKEN_NAME, config);
+      const WRITE_OP = TOKEN.getWriteOperation();
+      if (WRITE_OP) PROCESSED_TOKENS.push(WRITE_OP);
+    }
+  });
 
-    return PROCESSED_TOKENS;
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return PROCESSED_TOKENS;
 }

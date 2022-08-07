@@ -86,6 +86,8 @@ export declare const ErrorMakeLineHeightTokensMissingProps: string;
 export declare const ErrorMakeLetterSpacingTokensNoChildren: string;
 export declare const ErrorMakeLetterSpacingTokensNoFrame: string;
 export declare const ErrorMakeLineHeightTokensNoChildren: string;
+export declare const ErrorMakeLineHeightTokensNoName: string;
+export declare const ErrorMakeLineHeightTokensNoStyle: string;
 export declare const ErrorMakeLineHeightTokensNoFrame: string;
 export declare const ErrorMakeOpacityTokensMissingProps: string;
 export declare const ErrorMakeOpacityTokensNoChildren: string;

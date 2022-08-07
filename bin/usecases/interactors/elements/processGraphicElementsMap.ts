@@ -5,29 +5,25 @@ import { ErrorProcessGraphicElementsMap } from '../../../frameworks/errors/error
  * @description Create raw file content for the graphic elements index/map file
  */
 export function processGraphicElementsMap(graphics: any[]): any {
-  try {
-    if (!graphics) throw Error(ErrorProcessGraphicElementsMap);
-    if (!(graphics.length > 0)) throw Error(ErrorProcessGraphicElementsMap);
+  if (!graphics) throw Error(ErrorProcessGraphicElementsMap);
+  if (!(graphics.length > 0)) throw Error(ErrorProcessGraphicElementsMap);
 
-    let imports = '';
-    graphics.forEach((graphic: Graphic) => {
-      const graphicName = getFixedGraphicName(graphic.name);
-      imports += `import ${graphicName} from './${
-        graphic.config.outputFolderElements
-      }/${graphic.name.replace(/\s/g, '')}';\n`;
-    });
-    imports += '\n';
+  let imports = '';
+  graphics.forEach((graphic: Graphic) => {
+    const graphicName = getFixedGraphicName(graphic.name);
+    imports += `import ${graphicName} from './${
+      graphic.config.outputFolderElements
+    }/${graphic.name.replace(/\s/g, '')}';\n`;
+  });
+  imports += '\n';
 
-    let exports = '';
-    graphics.forEach((graphic: Graphic) => {
-      const graphicName = getFixedGraphicName(graphic.name);
-      exports += `  ${graphicName},\n`;
-    });
+  let exports = '';
+  graphics.forEach((graphic: Graphic) => {
+    const graphicName = getFixedGraphicName(graphic.name);
+    exports += `  ${graphicName},\n`;
+  });
 
-    return imports + `export const Graphics = {\n${exports}};\n`;
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return imports + `export const Graphics = {\n${exports}};\n`;
 }
 
 // Get and use last part of name

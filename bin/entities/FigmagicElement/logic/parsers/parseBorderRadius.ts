@@ -18,22 +18,18 @@ export function parseBorderRadius(
   imports: any[],
   params: BorderRadiusParams
 ): ParsedElementMetadataInterface {
-  try {
-    if (!css || !imports || !params) throw Error(ErrorParseBorderRadius);
+  if (!css || !imports || !params) throw Error(ErrorParseBorderRadius);
 
-    const { radii, borderRadius, remSize, outputFormatColors } = params;
+  const { radii, borderRadius, remSize, outputFormatColors } = params;
 
-    const { updatedCss, updatedImports } = getTokenMatch(
-      radii,
-      'radii',
-      'border-radius',
-      borderRadius,
-      remSize,
-      outputFormatColors
-    );
+  const { updatedCss, updatedImports } = getTokenMatch(
+    radii,
+    'radii',
+    'border-radius',
+    borderRadius,
+    remSize,
+    outputFormatColors
+  );
 
-    return updateParsing(css, updatedCss, imports, updatedImports);
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return updateParsing(css, updatedCss, imports, updatedImports);
 }

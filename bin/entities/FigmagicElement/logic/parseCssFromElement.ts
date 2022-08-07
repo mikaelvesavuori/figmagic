@@ -30,70 +30,60 @@ export function parseCssFromElement(
   outputFormatToken: string,
   outputFolderTokens: string
 ): UpdatedCssAndImports {
-  try {
-    if (!layoutElement || !remSize || !outputFormatToken || !outputFolderTokens)
-      throw Error(ErrorParseCssFromElement);
+  if (!layoutElement || !remSize || !outputFormatToken || !outputFolderTokens)
+    throw Error(ErrorParseCssFromElement);
 
-    const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : outputFolderTokens;
-    const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputFormatToken);
+  const PATH = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : outputFolderTokens;
+  const { borderWidths, colors, radii, shadows, spacing } = getFiles(PATH, outputFormatToken);
 
-    // Add defaults
-    let css = `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
+  // Add defaults
+  let css = `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
 
-    // Assume all images are full bleed
-    if (layoutElement.fills && layoutElement.fills.some((fill) => fill['type'] === 'IMAGE'))
-      css += `object-fit: cover;\n`;
+  // Assume all images are full bleed
+  if (layoutElement.fills && layoutElement.fills.some((fill) => fill['type'] === 'IMAGE'))
+    css += `object-fit: cover;\n`;
 
-    let imports: any = [];
+  let imports: any = [];
 
-    const padding = calcPadding(
-      { textElement, layoutElement, css, imports, remSize } as CalcData,
-      spacing
-    );
-    css = padding.css;
-    imports = padding.imports;
+  const padding = calcPadding(
+    { textElement, layoutElement, css, imports, remSize } as CalcData,
+    spacing
+  );
+  css = padding.css;
+  imports = padding.imports;
 
-    const height = calcHeight({ layoutElement, css, imports, remSize } as CalcData, spacing);
-    css = height.css;
-    imports = height.imports;
+  const height = calcHeight({ layoutElement, css, imports, remSize } as CalcData, spacing);
+  css = height.css;
+  imports = height.imports;
 
-    const bgColor = calcBackgroundColor(
-      { layoutElement, css, imports, remSize } as CalcData,
-      colors
-    );
-    css = bgColor.css;
-    imports = bgColor.imports;
+  const bgColor = calcBackgroundColor({ layoutElement, css, imports, remSize } as CalcData, colors);
+  css = bgColor.css;
+  imports = bgColor.imports;
 
-    const borderWidth = calcBorderWidth(
-      { layoutElement, css, imports, remSize } as CalcData,
-      borderWidths
-    );
-    css = borderWidth.css;
-    imports = borderWidth.imports;
+  const borderWidth = calcBorderWidth(
+    { layoutElement, css, imports, remSize } as CalcData,
+    borderWidths
+  );
+  css = borderWidth.css;
+  imports = borderWidth.imports;
 
-    const borderColor = calcBorderColor(
-      { layoutElement, css, imports, remSize } as CalcData,
-      colors
-    );
-    css = borderColor.css;
-    imports = borderColor.imports;
+  const borderColor = calcBorderColor({ layoutElement, css, imports, remSize } as CalcData, colors);
+  css = borderColor.css;
+  imports = borderColor.imports;
 
-    const borderRadius = calcBorderRadius(
-      { layoutElement, css, imports, remSize } as CalcData,
-      radii
-    );
-    css = borderRadius.css;
-    imports = borderRadius.imports;
+  const borderRadius = calcBorderRadius(
+    { layoutElement, css, imports, remSize } as CalcData,
+    radii
+  );
+  css = borderRadius.css;
+  imports = borderRadius.imports;
 
-    const shadow = calcShadows({ layoutElement, css, imports, remSize } as CalcData, shadows);
-    css = shadow.css;
-    imports = shadow.imports;
+  const shadow = calcShadows({ layoutElement, css, imports, remSize } as CalcData, shadows);
+  css = shadow.css;
+  imports = shadow.imports;
 
-    const NEW_CSS = reduceDuplicates(css);
-    return { updatedCss: NEW_CSS, updatedImports: imports };
-  } catch (error: any) {
-    throw Error(error);
-  }
+  const NEW_CSS = reduceDuplicates(css);
+  return { updatedCss: NEW_CSS, updatedImports: imports };
 }
 
 type CalcData = {
@@ -111,23 +101,19 @@ const reduceDuplicates = (str: string) =>
     .replace(/,\n/gi, ';\n');
 
 const getFiles = (filePath: string, outputFormatToken: string): any => {
-  try {
-    const borderWidths = getFileContents(filePath, 'borderWidths', outputFormatToken);
-    const colors = getFileContents(filePath, 'colors', outputFormatToken);
-    const radii = getFileContents(filePath, 'radii', outputFormatToken);
-    const shadows = getFileContents(filePath, 'shadows', outputFormatToken);
-    const spacing = getFileContents(filePath, 'spacing', outputFormatToken);
+  const borderWidths = getFileContents(filePath, 'borderWidths', outputFormatToken);
+  const colors = getFileContents(filePath, 'colors', outputFormatToken);
+  const radii = getFileContents(filePath, 'radii', outputFormatToken);
+  const shadows = getFileContents(filePath, 'shadows', outputFormatToken);
+  const spacing = getFileContents(filePath, 'spacing', outputFormatToken);
 
-    return {
-      borderWidths,
-      colors,
-      radii,
-      shadows,
-      spacing
-    };
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return {
+    borderWidths,
+    colors,
+    radii,
+    shadows,
+    spacing
+  };
 };
 
 function calcPadding(calcData: CalcData, spacing: Record<string, unknown>) {

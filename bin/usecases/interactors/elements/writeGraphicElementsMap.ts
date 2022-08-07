@@ -11,11 +11,7 @@ export function writeGraphicElementsMap(
   filePath: string,
   fileContent: string
 ): void {
-  try {
-    if (!folder || !filePath || !fileContent) throw Error(ErrorWriteGraphicElementsMap);
-    createFolder(folder);
-    write(filePath, fileContent);
-  } catch (error: any) {
-    throw Error(error);
-  }
+  if (!folder || !filePath || !fileContent) throw Error(ErrorWriteGraphicElementsMap);
+  createFolder(folder);
+  write(filePath, fileContent);
 }

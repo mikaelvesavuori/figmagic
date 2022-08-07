@@ -14,17 +14,13 @@ import { ErrorCreateGraphics } from '../frameworks/errors/errors';
  * @description Use case for syncing (creating) graphics from Figma file
  */
 export async function createGraphics(config: Config, data: FigmaData): Promise<void> {
-  try {
-    if (!config || !data) throw Error(ErrorCreateGraphics);
-    console.log(MsgSyncGraphics);
+  if (!config || !data) throw Error(ErrorCreateGraphics);
+  console.log(MsgSyncGraphics);
 
-    const { outputFolderGraphics } = config;
-    refresh(outputFolderGraphics);
-    const graphicsPage = createPage(data.document.children, 'Graphics');
-    const fileList = await processGraphics(graphicsPage, config);
+  const { outputFolderGraphics } = config;
+  refresh(outputFolderGraphics);
+  const graphicsPage = createPage(data.document.children, 'Graphics');
+  const fileList = await processGraphics(graphicsPage, config);
 
-    await writeGraphics(fileList, config);
-  } catch (error: any) {
-    throw Error(error);
-  }
+  await writeGraphics(fileList, config);
 }

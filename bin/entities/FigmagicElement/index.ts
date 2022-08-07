@@ -83,17 +83,13 @@ class FigmagicElement {
    * @description Controller to funnel elements to the correct handler.
    */
   private handleElements(): any {
-    try {
-      // @ts-ignore
-      const FILTERED_ELEMENTS = this.children.filter((child) => child.name[0] !== '_'); // Filter out hidden elements (using "_")
+    // @ts-ignore
+    const FILTERED_ELEMENTS = this.children.filter((child) => child.name[0] !== '_'); // Filter out hidden elements (using "_")
 
-      // If the remaining elements/layers contain any groups or frames, use the nested elements handler
-      if (FILTERED_ELEMENTS?.some((element: Frame) => this.acceptedTypes.includes(element.type)))
-        return this.handleNestedElements(FILTERED_ELEMENTS);
-      else return this.handleFlatElements(FILTERED_ELEMENTS);
-    } catch (error: any) {
-      throw Error(error);
-    }
+    // If the remaining elements/layers contain any groups or frames, use the nested elements handler
+    if (FILTERED_ELEMENTS?.some((element: Frame) => this.acceptedTypes.includes(element.type)))
+      return this.handleNestedElements(FILTERED_ELEMENTS);
+    else return this.handleFlatElements(FILTERED_ELEMENTS);
   }
 
   private setCss(css: string): void {
@@ -192,34 +188,30 @@ class FigmagicElement {
    * "main" (layout) element and a "text" element.
    */
   private handleNestedElements(elements: Frame[]): UpdatedCssAndImports {
-    try {
-      let css = ``;
-      let imports: Record<string, unknown>[] = [];
+    let css = ``;
+    let imports: Record<string, unknown>[] = [];
 
-      const CHILD_ELEMENTS = elements.filter(
-        (el: Frame) => this.acceptedTypes.includes(el.type) && el.name[0] !== '_'
-      );
+    const CHILD_ELEMENTS = elements.filter(
+      (el: Frame) => this.acceptedTypes.includes(el.type) && el.name[0] !== '_'
+    );
 
-      const textOnlySubchildren: string[] = [];
+    const textOnlySubchildren: string[] = [];
 
-      CHILD_ELEMENTS.forEach((childElement: Frame) => {
-        const PARSED = this.parseNestedCss(childElement, this.config);
-        css += PARSED.css;
-        imports = imports.concat(PARSED.imports);
+    CHILD_ELEMENTS.forEach((childElement: Frame) => {
+      const PARSED = this.parseNestedCss(childElement, this.config);
+      css += PARSED.css;
+      imports = imports.concat(PARSED.imports);
 
-        const SUBCHILD_ELEMENTS = childElement.children?.filter((el: Frame) => el.name[0] !== '_');
+      const SUBCHILD_ELEMENTS = childElement.children?.filter((el: Frame) => el.name[0] !== '_');
 
-        if (SUBCHILD_ELEMENTS?.every((subChild) => subChild.type === 'TEXT'))
-          textOnlySubchildren.push(PARSED.fixedName);
-      });
+      if (SUBCHILD_ELEMENTS?.every((subChild) => subChild.type === 'TEXT'))
+        textOnlySubchildren.push(PARSED.fixedName);
+    });
 
-      return {
-        updatedCss: processNestedCss(css, textOnlySubchildren),
-        updatedImports: imports
-      };
-    } catch (error: any) {
-      throw Error(error);
-    }
+    return {
+      updatedCss: processNestedCss(css, textOnlySubchildren),
+      updatedImports: imports
+    };
   }
 
   /**
@@ -228,44 +220,40 @@ class FigmagicElement {
    * "main" (layout) element and a "text" element.
    */
   private handleFlatElements(elements: Frame[]): UpdatedCssAndImports {
-    try {
-      let css = `\n`;
-      let imports: Record<string, unknown>[] = [];
+    let css = `\n`;
+    let imports: Record<string, unknown>[] = [];
 
-      this.replaceHtml('{{TEXT}}', this.text || '');
+    this.replaceHtml('{{TEXT}}', this.text || '');
 
-      const MAIN_ELEMENT = elements?.filter(
-        (element: Frame) => element.name.toLowerCase() === this.name.toLowerCase()
-      )[0];
-      const TEXT_ELEMENT = elements?.filter((element: Frame) => element.type === 'TEXT')[0];
+    const MAIN_ELEMENT = elements?.filter(
+      (element: Frame) => element.name.toLowerCase() === this.name.toLowerCase()
+    )[0];
+    const TEXT_ELEMENT = elements?.filter((element: Frame) => element.type === 'TEXT')[0];
 
-      // Set text styling
-      if (TEXT_ELEMENT) {
-        const { updatedCss, updatedImports } = parseTypographyStylingFromElement({
-          textElement: TEXT_ELEMENT,
-          remSize: this.config.remSize,
-          usePostscriptFontNames: this.config.usePostscriptFontNames,
-          outputFormatTokens: this.config.outputFormatTokens,
-          outputFormatColors: this.config.outputFormatColors,
-          letterSpacingUnit: this.config.letterSpacingUnit,
-          outputFolderTokens: this.config.outputFolderTokens
-        } as TypographyElement);
-        css += updatedCss;
-        imports = imports.concat(updatedImports);
-        this.text = TEXT_ELEMENT.characters || '';
-      }
-
-      if (MAIN_ELEMENT) {
-        const { updatedCss, updatedImports } = this.parseFlatCss(MAIN_ELEMENT, TEXT_ELEMENT);
-
-        css = this.processFlatCss(css + updatedCss);
-        imports = imports.concat(updatedImports);
-      }
-
-      return { updatedCss: css, updatedImports: imports };
-    } catch (error: any) {
-      throw Error(error);
+    // Set text styling
+    if (TEXT_ELEMENT) {
+      const { updatedCss, updatedImports } = parseTypographyStylingFromElement({
+        textElement: TEXT_ELEMENT,
+        remSize: this.config.remSize,
+        usePostscriptFontNames: this.config.usePostscriptFontNames,
+        outputFormatTokens: this.config.outputFormatTokens,
+        outputFormatColors: this.config.outputFormatColors,
+        letterSpacingUnit: this.config.letterSpacingUnit,
+        outputFolderTokens: this.config.outputFolderTokens
+      } as TypographyElement);
+      css += updatedCss;
+      imports = imports.concat(updatedImports);
+      this.text = TEXT_ELEMENT.characters || '';
     }
+
+    if (MAIN_ELEMENT) {
+      const { updatedCss, updatedImports } = this.parseFlatCss(MAIN_ELEMENT, TEXT_ELEMENT);
+
+      css = this.processFlatCss(css + updatedCss);
+      imports = imports.concat(updatedImports);
+    }
+
+    return { updatedCss: css, updatedImports: imports };
   }
 
   /**
@@ -339,30 +327,26 @@ class FigmagicElement {
     layoutElement: Frame,
     textElement: Frame | null = null
   ): UpdatedCssAndImports {
-    try {
-      let css = ``;
-      let imports: Record<string, unknown>[] = [];
+    let css = ``;
+    let imports: Record<string, unknown>[] = [];
 
-      if (layoutElement) {
-        const FIXED_NAME = this.name.replace(/\s/gi, '');
-        console.log(MsgProcessElementsCreatingElement(this.name, FIXED_NAME));
+    if (layoutElement) {
+      const FIXED_NAME = this.name.replace(/\s/gi, '');
+      console.log(MsgProcessElementsCreatingElement(this.name, FIXED_NAME));
 
-        const { updatedCss, updatedImports } = parseCssFromElement(
-          layoutElement,
-          textElement,
-          this.config.remSize,
-          this.config.outputFormatTokens,
-          this.config.outputFolderTokens
-        );
+      const { updatedCss, updatedImports } = parseCssFromElement(
+        layoutElement,
+        textElement,
+        this.config.remSize,
+        this.config.outputFormatTokens,
+        this.config.outputFolderTokens
+      );
 
-        css += updatedCss;
-        imports = imports.concat(updatedImports);
-      }
-
-      return { updatedCss: css, updatedImports: imports };
-    } catch (error: any) {
-      throw Error(error);
+      css += updatedCss;
+      imports = imports.concat(updatedImports);
     }
+
+    return { updatedCss: css, updatedImports: imports };
   }
 
   /**

@@ -18,24 +18,20 @@ export function parseBackgroundColor(
   imports: any[],
   params: BackgroundColorParams
 ): ParsedElementMetadataInterface {
-  try {
-    if (!css || !imports || !params) throw Error(ErrorParseBackgroundColor);
+  if (!css || !imports || !params) throw Error(ErrorParseBackgroundColor);
 
-    const { colors, backgroundColor, remSize, outputFormatColors } = params;
+  const { colors, backgroundColor, remSize, outputFormatColors } = params;
 
-    const PROPERTY = backgroundColor.includes('gradient') ? 'background' : 'background-color';
+  const PROPERTY = backgroundColor.includes('gradient') ? 'background' : 'background-color';
 
-    const { updatedCss, updatedImports } = getTokenMatch(
-      colors,
-      'colors',
-      PROPERTY,
-      backgroundColor,
-      remSize,
-      outputFormatColors
-    );
+  const { updatedCss, updatedImports } = getTokenMatch(
+    colors,
+    'colors',
+    PROPERTY,
+    backgroundColor,
+    remSize,
+    outputFormatColors
+  );
 
-    return updateParsing(css, updatedCss, imports, updatedImports);
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return updateParsing(css, updatedCss, imports, updatedImports);
 }

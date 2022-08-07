@@ -18,49 +18,41 @@ import { FigmagicElement } from '../contracts/FigmagicElement';
  * @description Use case for syncing (creating) React elements from Figma files
  */
 export async function createElements(config: Config, data: FigmaData): Promise<void> {
-  try {
-    if (!config || !data) throw Error(ErrorCreateElements);
-    console.log(MsgSyncElements);
-  } catch (error: any) {
-    throw Error(error);
-  }
+  if (!config || !data) throw Error(ErrorCreateElements);
+  console.log(MsgSyncElements);
 
-  try {
-    const { outputFolderElements, outputFormatGraphics, outputGraphicElements, syncGraphics } =
-      config;
+  const { outputFolderElements, outputFormatGraphics, outputGraphicElements, syncGraphics } =
+    config;
 
-    refresh(outputFolderElements, false);
-    const { components }: any = data;
-    await handleElements({
+  refresh(outputFolderElements, false);
+  const { components }: any = data;
+  await handleElements({
+    children: data.document.children,
+    pageName: 'Elements',
+    config,
+    components
+  } as Element);
+
+  /**
+   * Handle a bit of a special corner case: SVG graphics packed into React components.
+   */
+  if (outputGraphicElements && outputFormatGraphics === 'svg' && syncGraphics) {
+    // Ugly hack to enforce this files settle as we get a race condition if setting "outputGraphicElements" to true
+    // TODO: Make this correct and not like a hack
+    await wait(process.env.IS_CI ? 7500 : 2500);
+    const GRAPHICS = await handleElements({
       children: data.document.children,
-      pageName: 'Elements',
+      pageName: 'Graphics',
       config,
-      components
-    } as Element);
+      components,
+      isGeneratingGraphics: true
+    });
 
     /**
-     * Handle a bit of a special corner case: SVG graphics packed into React components.
+     * The user can also further choose to create an object that exports all graphical React components.
      */
-    if (outputGraphicElements && outputFormatGraphics === 'svg' && syncGraphics) {
-      // Ugly hack to enforce this files settle as we get a race condition if setting "outputGraphicElements" to true
-      // TODO: Make this correct and not like a hack
-      await wait(process.env.IS_CI ? 7500 : 2500);
-      const GRAPHICS = await handleElements({
-        children: data.document.children,
-        pageName: 'Graphics',
-        config,
-        components,
-        isGeneratingGraphics: true
-      });
-
-      /**
-       * The user can also further choose to create an object that exports all graphical React components.
-       */
-      if (config.outputGraphicElementsMap)
-        handleGraphicElementsMap({ config, graphics: GRAPHICS } as GraphicElementsMap);
-    }
-  } catch (error: any) {
-    throw Error(error);
+    if (config.outputGraphicElementsMap)
+      handleGraphicElementsMap({ config, graphics: GRAPHICS } as GraphicElementsMap);
   }
 }
 

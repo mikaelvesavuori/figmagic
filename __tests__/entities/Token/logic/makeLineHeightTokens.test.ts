@@ -20,11 +20,11 @@ describe('Failure cases', () => {
     }).toThrow();
   });
 
-  test('It should throw an error if children are missing "name" and "style" properties', () => {
-    expect(
+  test('It should throw an error if children are missing "name" or "style" properties', () => {
+    expect(() =>
       // @ts-ignore
       makeLineHeightTokens(lineHeightFrameNoNameStyle)
-    ).toEqual({});
+    ).toThrow();
   });
 });
 

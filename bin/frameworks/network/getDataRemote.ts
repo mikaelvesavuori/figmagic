@@ -11,16 +11,12 @@ export async function getDataRemote(
   url: string,
   versionName?: string | null
 ): Promise<any> {
-  try {
-    if (!token || !url) throw Error(ErrorGetDataNoTokenOrUrl);
-    console.log(MsgSetDataFromApi);
+  if (!token || !url) throw Error(ErrorGetDataNoTokenOrUrl);
+  console.log(MsgSetDataFromApi);
 
-    let data = null;
-    data = await getFromApi(token, url, versionName);
+  let data = null;
+  data = await getFromApi(token, url, versionName);
 
-    if (!data || data.status === 403) throw Error(ErrorGetData);
-    return data;
-  } catch (error: any) {
-    throw Error(error);
-  }
+  if (!data || data.status === 403) throw Error(ErrorGetData);
+  return data;
 }

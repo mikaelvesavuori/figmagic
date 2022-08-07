@@ -18,22 +18,18 @@ export function parseShadow(
   imports: any[],
   params: ShadowParams
 ): ParsedElementMetadataInterface {
-  try {
-    if (!css || !imports || !params) throw Error(ErrorParseShadow);
+  if (!css || !imports || !params) throw Error(ErrorParseShadow);
 
-    const { shadows, shadow, remSize, outputFormatColors } = params;
+  const { shadows, shadow, remSize, outputFormatColors } = params;
 
-    const { updatedCss, updatedImports } = getTokenMatch(
-      shadows,
-      'shadows',
-      'box-shadow',
-      shadow,
-      remSize,
-      outputFormatColors
-    );
+  const { updatedCss, updatedImports } = getTokenMatch(
+    shadows,
+    'shadows',
+    'box-shadow',
+    shadow,
+    remSize,
+    outputFormatColors
+  );
 
-    return updateParsing(css, updatedCss, imports, updatedImports);
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return updateParsing(css, updatedCss, imports, updatedImports);
 }

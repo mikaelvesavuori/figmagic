@@ -14,11 +14,7 @@ export function getDataLocal(
   figmagicFolder: string,
   figmaData: string
 ): Record<string, unknown> | string | FigmaData {
-  try {
-    if (!figmagicFolder || !figmaData) throw Error(ErrorGetDataLocal);
-    console.log(MsgSetDataFromLocal);
-    return loadFile(path.join(`${figmagicFolder}`, `${figmaData}`));
-  } catch (error: any) {
-    throw Error(error);
-  }
+  if (!figmagicFolder || !figmaData) throw Error(ErrorGetDataLocal);
+  console.log(MsgSetDataFromLocal);
+  return loadFile(path.join(`${figmagicFolder}`, `${figmaData}`));
 }

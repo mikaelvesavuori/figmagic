@@ -18,21 +18,17 @@ export function parseHeight(
   imports: any[],
   params: HeightParams
 ): ParsedElementMetadataInterface {
-  try {
-    if (!css || !imports || !params) throw Error(ErrorParseHeight);
-    const { spacing, height, remSize, outputFormatColors } = params;
+  if (!css || !imports || !params) throw Error(ErrorParseHeight);
+  const { spacing, height, remSize, outputFormatColors } = params;
 
-    const { updatedCss, updatedImports } = getTokenMatch(
-      spacing,
-      'spacing',
-      'height',
-      height,
-      remSize,
-      outputFormatColors
-    );
+  const { updatedCss, updatedImports } = getTokenMatch(
+    spacing,
+    'spacing',
+    'height',
+    height,
+    remSize,
+    outputFormatColors
+  );
 
-    return updateParsing(css, updatedCss, imports, updatedImports);
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return updateParsing(css, updatedCss, imports, updatedImports);
 }

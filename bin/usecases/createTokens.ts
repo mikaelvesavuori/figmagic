@@ -15,18 +15,14 @@ import { ErrorCreateTokens } from '../frameworks/errors/errors';
  * @description Use case for creating token files from Figma
  */
 export async function createTokens(config: Config, data: FigmaData): Promise<void> {
-  try {
-    if (!config || !data) throw Error(ErrorCreateTokens);
-    console.log(MsgWriteTokens);
+  if (!config || !data) throw Error(ErrorCreateTokens);
+  console.log(MsgWriteTokens);
 
-    const { outputFolderTokens } = config;
-    refresh(outputFolderTokens);
-    const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
-    const processedTokens = processTokens(tokensPage, config);
+  const { outputFolderTokens } = config;
+  refresh(outputFolderTokens);
+  const tokensPage: Frame[] = createPage(data.document.children, 'Design Tokens');
+  const processedTokens = processTokens(tokensPage, config);
 
-    if (processedTokens && processedTokens.length > 0) writeTokens(processedTokens);
-    else console.warn(MsgNoTokensFound);
-  } catch (error: any) {
-    throw Error(error);
-  }
+  if (processedTokens && processedTokens.length > 0) writeTokens(processedTokens);
+  else console.warn(MsgNoTokensFound);
 }

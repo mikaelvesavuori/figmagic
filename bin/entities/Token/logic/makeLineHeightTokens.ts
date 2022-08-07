@@ -8,7 +8,9 @@ import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 import {
   ErrorMakeLineHeightTokensNoFrame,
   ErrorMakeLineHeightTokensNoChildren,
-  ErrorMakeLineHeightTokensMissingProps
+  ErrorMakeLineHeightTokensMissingProps,
+  ErrorMakeLineHeightTokensNoName,
+  ErrorMakeLineHeightTokensNoStyle
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -27,18 +29,16 @@ export function makeLineHeightTokens(
   const TOKENS = lineHeightFrame.children.reverse();
 
   return TOKENS.reduce<LineHeightTokens>((tokensDictionary, item: Frame) => {
-    try {
-      const { name, value } = makeLineHeightToken(
-        item,
-        remSize,
-        unitlessPrecision,
-        lineHeightUnit,
-        camelizeTokenNames
-      );
-      tokensDictionary[name] = value;
-    } catch (error: any) {
-      console.error(error);
-    }
+    if (!item.name) throw Error(ErrorMakeLineHeightTokensNoName);
+    if (!item.style) throw Error(ErrorMakeLineHeightTokensNoStyle);
+    const { name, value } = makeLineHeightToken(
+      item,
+      remSize,
+      unitlessPrecision,
+      lineHeightUnit,
+      camelizeTokenNames
+    );
+    tokensDictionary[name] = value;
 
     return tokensDictionary;
   }, {});

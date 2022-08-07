@@ -201,6 +201,10 @@ export const ErrorMakeLetterSpacingTokensNoFrame = ErrorMessage(
 export const ErrorMakeLineHeightTokensNoChildren = ErrorMessage(
   'Line heights frame has no children!'
 );
+export const ErrorMakeLineHeightTokensNoName = ErrorMessage('Line heights frame is missing name!');
+export const ErrorMakeLineHeightTokensNoStyle = ErrorMessage(
+  'Line heights frame is missing style!'
+);
 export const ErrorMakeLineHeightTokensNoFrame = ErrorMessage(
   'No frame for makeLineHeightTokens()!'
 );

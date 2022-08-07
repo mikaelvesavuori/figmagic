@@ -18,21 +18,17 @@ export function parseBorderWidth(
   imports: any[],
   params: BorderWidthParams
 ): ParsedElementMetadataInterface {
-  try {
-    if (!css || !imports || !params) throw Error(ErrorParseBorderWidth);
-    const { borderWidths, borderWidth, remSize, outputFormatColors } = params;
+  if (!css || !imports || !params) throw Error(ErrorParseBorderWidth);
+  const { borderWidths, borderWidth, remSize, outputFormatColors } = params;
 
-    const { updatedCss, updatedImports } = getTokenMatch(
-      borderWidths,
-      'borderWidths',
-      'border-width',
-      borderWidth,
-      remSize,
-      outputFormatColors
-    );
+  const { updatedCss, updatedImports } = getTokenMatch(
+    borderWidths,
+    'borderWidths',
+    'border-width',
+    borderWidth,
+    remSize,
+    outputFormatColors
+  );
 
-    return updateParsing(css, updatedCss, imports, updatedImports);
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return updateParsing(css, updatedCss, imports, updatedImports);
 }

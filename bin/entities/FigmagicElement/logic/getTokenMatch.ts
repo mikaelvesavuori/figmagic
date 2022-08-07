@@ -19,45 +19,41 @@ export function getTokenMatch(
   remSize: number,
   outputFormatColors?: OutputFormatColors
 ): TokenMatch {
-  try {
-    if (!tokenFileName || !property || !expectedValue) throw Error(ErrorGetTokenMatch);
+  if (!tokenFileName || !property || !expectedValue) throw Error(ErrorGetTokenMatch);
 
-    let css = ``;
-    let imports: Imports[] = [];
-    if (!tokens) return { updatedCss: css, updatedImports: imports };
+  let css = ``;
+  let imports: Imports[] = [];
+  if (!tokens) return { updatedCss: css, updatedImports: imports };
 
-    // Padding requires both X and Y dimensions/values so requires a bit more noodling
-    if (property === 'padding') {
-      const PADDING_MATCH: any = matchPadding(
-        expectedValue,
-        remSize,
-        tokens,
-        tokenFileName,
-        property,
-        css,
-        imports
-      );
-      css = PADDING_MATCH.css;
-      imports = PADDING_MATCH.imports;
-    } else {
-      const OTHER_MATCH: any = matchOther(
-        expectedValue,
-        remSize,
-        outputFormatColors || 'rgba',
-        tokens,
-        tokenFileName,
-        property,
-        css,
-        imports
-      );
-      css = OTHER_MATCH.css;
-      imports = OTHER_MATCH.imports;
-    }
-
-    return { updatedCss: css, updatedImports: imports };
-  } catch (error: any) {
-    throw Error(error);
+  // Padding requires both X and Y dimensions/values so requires a bit more noodling
+  if (property === 'padding') {
+    const PADDING_MATCH: any = matchPadding(
+      expectedValue,
+      remSize,
+      tokens,
+      tokenFileName,
+      property,
+      css,
+      imports
+    );
+    css = PADDING_MATCH.css;
+    imports = PADDING_MATCH.imports;
+  } else {
+    const OTHER_MATCH: any = matchOther(
+      expectedValue,
+      remSize,
+      outputFormatColors || 'rgba',
+      tokens,
+      tokenFileName,
+      property,
+      css,
+      imports
+    );
+    css = OTHER_MATCH.css;
+    imports = OTHER_MATCH.imports;
   }
+
+  return { updatedCss: css, updatedImports: imports };
 }
 
 function matchPadding(
@@ -69,43 +65,39 @@ function matchPadding(
   css: string,
   imports: Imports[]
 ): Record<string, string | Imports[]> | undefined {
-  try {
-    const KEYS: any = Object.keys(expectedValue);
-    if (typeof expectedValue !== 'object') return;
+  const KEYS: any = Object.keys(expectedValue);
+  if (typeof expectedValue !== 'object') return;
 
-    KEYS.forEach((key: any) => {
-      let foundMatch = false;
+  KEYS.forEach((key: any) => {
+    let foundMatch = false;
 
-      if (expectedValue[key]) {
-        if (!remSize) throw Error(ErrorGetTokenMatchNoRemSize);
-        const parsedValue =
-          typeof expectedValue[key] !== 'number'
-            ? parseFloat(expectedValue[key] as string)
-            : expectedValue[key];
-        const value = normalizeUnits(parsedValue as any, 'px', 'rem', remSize);
+    if (expectedValue[key]) {
+      if (!remSize) throw Error(ErrorGetTokenMatchNoRemSize);
+      const parsedValue =
+        typeof expectedValue[key] !== 'number'
+          ? parseFloat(expectedValue[key] as string)
+          : expectedValue[key];
+      const value = normalizeUnits(parsedValue as any, 'px', 'rem', remSize);
 
-        // Check if we can match value with a token and its value
-        Object.entries(tokens).forEach((token) => {
-          if (token[1] === value) {
-            css += `${property}-${key}: \${${tokenFileName}['${token[0]}']};\n`;
-            foundMatch = true;
-          }
-        });
-
-        // Write expected value as-is, since we couldn't match it to a token
-        if (!foundMatch) {
-          console.log(`${MsgGetTokenMatchNoMatch} ${property}: ${value}`);
-          css += `${property}-${key}: ${value};\n`;
+      // Check if we can match value with a token and its value
+      Object.entries(tokens).forEach((token) => {
+        if (token[1] === value) {
+          css += `${property}-${key}: \${${tokenFileName}['${token[0]}']};\n`;
+          foundMatch = true;
         }
+      });
+
+      // Write expected value as-is, since we couldn't match it to a token
+      if (!foundMatch) {
+        console.log(`${MsgGetTokenMatchNoMatch} ${property}: ${value}`);
+        css += `${property}-${key}: ${value};\n`;
       }
-    });
+    }
+  });
 
-    imports.push(tokenFileName as unknown as Imports);
+  imports.push(tokenFileName as unknown as Imports);
 
-    return { css, imports };
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return { css, imports };
 }
 
 function matchOther(
@@ -118,68 +110,60 @@ function matchOther(
   css: string,
   imports: Imports[]
 ) {
-  try {
-    let foundMatch = false;
+  let foundMatch = false;
 
-    Object.entries(tokens).forEach((token) => {
-      const TOKEN_VALUE: any = (() => {
-        if (typeof token[1] === 'number') return token[1];
-        return token[1];
-      })();
+  Object.entries(tokens).forEach((token) => {
+    const TOKEN_VALUE: any = (() => {
+      if (typeof token[1] === 'number') return token[1];
+      return token[1];
+    })();
 
-      // Multiply rem|em strings through REM size argument
-      const VALUE_THROUGH_REM = (() => {
-        if (TOKEN_VALUE && typeof TOKEN_VALUE === 'string') {
-          if (property === 'letter-spacing') return TOKEN_VALUE;
-          if (TOKEN_VALUE.match('rem') || TOKEN_VALUE.match('em'))
-            return parseFloat(TOKEN_VALUE) * remSize;
-        }
-        return null;
-      })();
-
-      const IS_TOKEN_MATCH = (() => {
-        // We need to make a special check if color is using hex format
-        if (property.includes('color') && TOKEN_VALUE[0] === '#')
-          return convertHexToRgba(TOKEN_VALUE as string) === expectedValue;
-
-        return VALUE_THROUGH_REM
-          ? VALUE_THROUGH_REM === expectedValue
-          : TOKEN_VALUE == expectedValue;
-      })();
-
-      if (IS_TOKEN_MATCH) {
-        css += `${property}: \${${tokenFileName}['${token[0]}']};\n`;
-        imports.push(tokenFileName as unknown as Imports);
-        foundMatch = true;
+    // Multiply rem|em strings through REM size argument
+    const VALUE_THROUGH_REM = (() => {
+      if (TOKEN_VALUE && typeof TOKEN_VALUE === 'string') {
+        if (property === 'letter-spacing') return TOKEN_VALUE;
+        if (TOKEN_VALUE.match('rem') || TOKEN_VALUE.match('em'))
+          return parseFloat(TOKEN_VALUE) * remSize;
       }
-    });
+      return null;
+    })();
 
-    // Write expected value as-is, since we couldn't match it to a token
-    if (!foundMatch) {
-      let notFoundMessage = `${MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`;
+    const IS_TOKEN_MATCH = (() => {
+      // We need to make a special check if color is using hex format
+      if (property.includes('color') && TOKEN_VALUE[0] === '#')
+        return convertHexToRgba(TOKEN_VALUE as string) === expectedValue;
 
-      // Handle colors since these need more verbose output
-      if (property.includes('color'))
-        notFoundMessage += ` (HEX: ${convertRgbaToHex(
-          expectedValue as string
-        )}, ${getAlphaInPercent(expectedValue as string)})`;
+      return VALUE_THROUGH_REM ? VALUE_THROUGH_REM === expectedValue : TOKEN_VALUE == expectedValue;
+    })();
 
-      // Height needs to add the px value or it becomes useless
-      if (property === 'height' || property === 'font-size') {
-        notFoundMessage += `px`;
-        expectedValue += `px`;
-      }
+    if (IS_TOKEN_MATCH) {
+      css += `${property}: \${${tokenFileName}['${token[0]}']};\n`;
+      imports.push(tokenFileName as unknown as Imports);
+      foundMatch = true;
+    }
+  });
 
-      const useHex = outputFormatColors && outputFormatColors === 'hex';
+  // Write expected value as-is, since we couldn't match it to a token
+  if (!foundMatch) {
+    let notFoundMessage = `${MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`;
 
-      console.log(notFoundMessage);
-      css += `${property}: ${
-        useHex ? convertRgbaToHex(expectedValue as string) : expectedValue
-      };\n`;
+    // Handle colors since these need more verbose output
+    if (property.includes('color'))
+      notFoundMessage += ` (HEX: ${convertRgbaToHex(expectedValue as string)}, ${getAlphaInPercent(
+        expectedValue as string
+      )})`;
+
+    // Height needs to add the px value or it becomes useless
+    if (property === 'height' || property === 'font-size') {
+      notFoundMessage += `px`;
+      expectedValue += `px`;
     }
 
-    return { css, imports };
-  } catch (error: any) {
-    throw Error(error);
+    const useHex = outputFormatColors && outputFormatColors === 'hex';
+
+    console.log(notFoundMessage);
+    css += `${property}: ${useHex ? convertRgbaToHex(expectedValue as string) : expectedValue};\n`;
   }
+
+  return { css, imports };
 }

@@ -14,49 +14,45 @@ import { ErrorWriteElements } from '../../../frameworks/errors/errors';
  * @description Funnel function to write all the wanted files per element
  */
 export function writeElements(elements: any[], config: Config, isGeneratingGraphics = false): void {
-  try {
-    if (!elements || !config) throw Error(ErrorWriteElements);
+  if (!elements || !config) throw Error(ErrorWriteElements);
 
-    elements.map((element) => {
-      const FIXED_CONFIG = makeFixedConfig(element, config);
-      // TODO Refactor: writeFileHelper() should take fewer params since we are already passing in fixed config...?
+  elements.map((element) => {
+    const FIXED_CONFIG = makeFixedConfig(element, config);
+    // TODO Refactor: writeFileHelper() should take fewer params since we are already passing in fixed config...?
 
-      if (!config.skipFileGeneration.skipReact) {
-        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.${FIXED_CONFIG.outputFormatElements}`;
-        const TYPE = isGeneratingGraphics ? 'graphic' : 'component';
-        writeFileHelper(FIXED_CONFIG, TYPE, config.outputFormatElements, checkIfExists(PATH));
+    if (!config.skipFileGeneration.skipReact) {
+      const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.${FIXED_CONFIG.outputFormatElements}`;
+      const TYPE = isGeneratingGraphics ? 'graphic' : 'component';
+      writeFileHelper(FIXED_CONFIG, TYPE, config.outputFormatElements, checkIfExists(PATH));
+    }
+
+    if (!isGeneratingGraphics) {
+      if (!config.skipFileGeneration.skipStorybook) {
+        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.stories.${FIXED_CONFIG.outputFormatStorybook}`;
+        writeFileHelper(FIXED_CONFIG, 'story', config.outputFormatStorybook, checkIfExists(PATH));
       }
 
-      if (!isGeneratingGraphics) {
-        if (!config.skipFileGeneration.skipStorybook) {
-          const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.stories.${FIXED_CONFIG.outputFormatStorybook}`;
-          writeFileHelper(FIXED_CONFIG, 'story', config.outputFormatStorybook, checkIfExists(PATH));
-        }
-
-        if (!config.skipFileGeneration.skipDescription) {
-          const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.description.${FIXED_CONFIG.outputFormatDescription}`;
-          writeFileHelper(
-            FIXED_CONFIG,
-            'description',
-            config.outputFormatDescription,
-            checkIfExists(PATH)
-          );
-        }
-
-        if (!config.skipFileGeneration.skipStyled) {
-          const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
-          writeFileHelper(FIXED_CONFIG, 'styled', config.outputFormatElements, checkIfExists(PATH));
-        }
-
-        if (!config.skipFileGeneration.skipCss) {
-          const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Css.${FIXED_CONFIG.outputFormatCss}`;
-          writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss, checkIfExists(PATH));
-        }
+      if (!config.skipFileGeneration.skipDescription) {
+        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.description.${FIXED_CONFIG.outputFormatDescription}`;
+        writeFileHelper(
+          FIXED_CONFIG,
+          'description',
+          config.outputFormatDescription,
+          checkIfExists(PATH)
+        );
       }
-    });
-  } catch (error: any) {
-    throw Error(error);
-  }
+
+      if (!config.skipFileGeneration.skipStyled) {
+        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
+        writeFileHelper(FIXED_CONFIG, 'styled', config.outputFormatElements, checkIfExists(PATH));
+      }
+
+      if (!config.skipFileGeneration.skipCss) {
+        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Css.${FIXED_CONFIG.outputFormatCss}`;
+        writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss, checkIfExists(PATH));
+      }
+    }
+  });
 }
 
 /**

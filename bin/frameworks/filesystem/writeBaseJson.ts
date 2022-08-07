@@ -17,10 +17,7 @@ export async function writeBaseJson(
   if (!figmagicFolder || !figmaData || !data) throw Error(ErrorWriteBaseJson);
 
   console.log(MsgWriteBaseFile);
-  try {
-    refresh(figmagicFolder);
-    write(`${figmagicFolder}/${figmaData}`, JSON.stringify(data));
-  } catch (error: any) {
-    throw Error(error);
-  }
+
+  refresh(figmagicFolder);
+  write(`${figmagicFolder}/${figmaData}`, JSON.stringify(data));
 }

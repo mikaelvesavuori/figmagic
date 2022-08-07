@@ -27,150 +27,126 @@ import {
  * Prepare component (element) to be written to file
  */
 export const prepComponent = (data: PrepComponent): FileContentWithPath => {
-  try {
-    if (!data) throw Error(ErrorPrepFileComponent);
-    if (!data.name || !data.filePath || !data.format || !data.templates || !data.element)
-      throw Error(ErrorPrepFileComponent);
-    const { name, filePath, format, templates, text, extraProps, element } = data;
-    const props = extraProps === '' || extraProps === ' ' ? `${extraProps}` : ` ${extraProps}`;
+  if (!data) throw Error(ErrorPrepFileComponent);
+  if (!data.name || !data.filePath || !data.format || !data.templates || !data.element)
+    throw Error(ErrorPrepFileComponent);
+  const { name, filePath, format, templates, text, extraProps, element } = data;
+  const props = extraProps === '' || extraProps === ' ' ? `${extraProps}` : ` ${extraProps}`;
 
-    const SUFFIX = 'Styled';
-    const PATH = `${templates.templatePathReact}.${format}`;
+  const SUFFIX = 'Styled';
+  const PATH = `${templates.templatePathReact}.${format}`;
 
-    let template = loadFile(PATH) as string;
-    if (checkIfVoidElement(element))
-      template = template
-        .replace(/{{NAME}}/gi, name)
-        .replace('>{children ? children : "{{TEXT}}"}</{{NAME_STYLED}}>', ' />')
-        .replace('>{props.children ? props.children : "{{TEXT}}"}</{{NAME_STYLED}}>', ' />')
-        .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
-    else
-      template = template
-        .replace(/{{NAME}}/gi, name)
-        .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`)
-        .replace(/\s>/gi, '>')
-        .replace(/{{TEXT}}/gi, text !== ' ' ? text : '');
-
+  let template = loadFile(PATH) as string;
+  if (checkIfVoidElement(element))
     template = template
-      .replace(/{{EXTRA_PROPS}}/gi, props)
-      .replace(' >', '>')
-      .replace('  ', ' ');
+      .replace(/{{NAME}}/gi, name)
+      .replace('>{children ? children : "{{TEXT}}"}</{{NAME_STYLED}}>', ' />')
+      .replace('>{props.children ? props.children : "{{TEXT}}"}</{{NAME_STYLED}}>', ' />')
+      .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
+  else
+    template = template
+      .replace(/{{NAME}}/gi, name)
+      .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`)
+      .replace(/\s>/gi, '>')
+      .replace(/{{TEXT}}/gi, text !== ' ' ? text : '');
 
-    return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
-  } catch (error: any) {
-    throw Error(error);
-  }
+  template = template
+    .replace(/{{EXTRA_PROPS}}/gi, props)
+    .replace(' >', '>')
+    .replace('  ', ' ');
+
+  return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
 };
 
 /**
  * Prepare Styled Components-formatted React element to be written to file
  */
 export const prepStyledComponents = (data: PrepStyledComponents): FileContentWithPath => {
-  try {
-    if (!data) throw Error(ErrorPrepFileStyledComponents);
-    if (!data.name || !data.filePath || !data.format || !data.templates || !data.element)
-      throw Error(ErrorPrepFileStyledComponents);
+  if (!data) throw Error(ErrorPrepFileStyledComponents);
+  if (!data.name || !data.filePath || !data.format || !data.templates || !data.element)
+    throw Error(ErrorPrepFileStyledComponents);
 
-    const { name, filePath, format, templates, element } = data;
+  const { name, filePath, format, templates, element } = data;
 
-    const fixedName = sanitizeStringPascalCase(name);
+  const fixedName = sanitizeStringPascalCase(name);
 
-    const suffix = 'Styled';
-    const path = `${templates.templatePathStyled}.${format}`;
+  const suffix = 'Styled';
+  const path = `${templates.templatePathStyled}.${format}`;
 
-    let template = loadFile(path) as string;
-    template = template
-      .replace(/{{NAME}}/gi, fixedName)
-      .replace(/{{ELEMENT}}/gi, element)
-      .replace(/{{NAME_CSS}}/gi, `${fixedName}Css`)
-      .replace(/{{NAME_STYLED}}/gi, `${fixedName}${suffix}`);
+  let template = loadFile(path) as string;
+  template = template
+    .replace(/{{NAME}}/gi, fixedName)
+    .replace(/{{ELEMENT}}/gi, element)
+    .replace(/{{NAME_CSS}}/gi, `${fixedName}Css`)
+    .replace(/{{NAME_STYLED}}/gi, `${fixedName}${suffix}`);
 
-    return { fileContent: `${template}`, filePath: `${filePath}${suffix}.${format}` };
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return { fileContent: `${template}`, filePath: `${filePath}${suffix}.${format}` };
 };
 
 /**
  * Prepare CSS to be written to file
  */
 export const prepCss = (data: PrepCss): FileContentWithPath => {
-  try {
-    if (!data) throw Error(ErrorPrepFileCss);
-    if (!data.name || !data.filePath || !data.format || !data.file) throw Error(ErrorPrepFileCss);
+  if (!data) throw Error(ErrorPrepFileCss);
+  if (!data.name || !data.filePath || !data.format || !data.file) throw Error(ErrorPrepFileCss);
 
-    const { name, filePath, format, imports, file } = data;
+  const { name, filePath, format, imports, file } = data;
 
-    const SUFFIX = 'Css';
-    const FILE_CONTENT = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
+  const SUFFIX = 'Css';
+  const FILE_CONTENT = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
 
-    return { fileContent: FILE_CONTENT, filePath: `${filePath}${SUFFIX}.${format}` };
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return { fileContent: FILE_CONTENT, filePath: `${filePath}${SUFFIX}.${format}` };
 };
 
 /**
  * Prepare Storybook data to be written to file
  */
 export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
-  try {
-    if (!data) throw Error(ErrorPrepFileStorybook);
-    if (!data.name || !data.filePath || !data.format || !data.templates || !data.text)
-      throw Error(ErrorPrepFileStorybook);
+  if (!data) throw Error(ErrorPrepFileStorybook);
+  if (!data.name || !data.filePath || !data.format || !data.templates || !data.text)
+    throw Error(ErrorPrepFileStorybook);
 
-    const { name, filePath, format, templates, text } = data;
+  const { name, filePath, format, templates, text } = data;
 
-    const SUFFIX = '.stories';
-    const PATH = `${templates.templatePathStorybook}.${format}`;
+  const SUFFIX = '.stories';
+  const PATH = `${templates.templatePathStorybook}.${format}`;
 
-    let template = loadFile(PATH) as string;
-    template = template.replace(/{{NAME}}/gi, name).replace(/{{TEXT}}/gi, text);
+  let template = loadFile(PATH) as string;
+  template = template.replace(/{{NAME}}/gi, name).replace(/{{TEXT}}/gi, text);
 
-    return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
 };
 
 /**
  * Prepare Markdown description to be written to file
  */
 export const prepDescription = (data: PrepDescription): FileContentWithPath => {
-  try {
-    if (!data) throw Error(ErrorPrepFileDescription);
-    if (!data.filePath || !data.file || !data.format) throw Error(ErrorPrepFileDescription);
+  if (!data) throw Error(ErrorPrepFileDescription);
+  if (!data.filePath || !data.file || !data.format) throw Error(ErrorPrepFileDescription);
 
-    const { filePath, file, format } = data;
+  const { filePath, file, format } = data;
 
-    const FILE_CONTENT = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
+  const FILE_CONTENT = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
 
-    return { fileContent: FILE_CONTENT, filePath: `${filePath}.description.${format}` };
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return { fileContent: FILE_CONTENT, filePath: `${filePath}.description.${format}` };
 };
 
 /**
  * Prepare graphic component (element) to be written to file
  */
 export const prepGraphicComponent = (data: PrepGraphicComponent): FileContentWithPath => {
-  try {
-    if (!data) throw Error(ErrorPrepFileGraphicComponent);
-    if (!data.name || !data.filePath || !data.format || !data.templates)
-      throw Error(ErrorPrepFileGraphicComponent);
-    const { name, filePath, format, templates, file } = data;
+  if (!data) throw Error(ErrorPrepFileGraphicComponent);
+  if (!data.name || !data.filePath || !data.format || !data.templates)
+    throw Error(ErrorPrepFileGraphicComponent);
+  const { name, filePath, format, templates, file } = data;
 
-    const PATH = `${templates.templatePathGraphic}.${format}`;
+  const PATH = `${templates.templatePathGraphic}.${format}`;
 
-    let template = loadFile(PATH) as string;
-    template = template
-      .replace(/{{NAME}}/gi, name)
-      .replace(/\s>/gi, '>')
-      .replace(/{{SVG}}/gi, file);
+  let template = loadFile(PATH) as string;
+  template = template
+    .replace(/{{NAME}}/gi, name)
+    .replace(/\s>/gi, '>')
+    .replace(/{{SVG}}/gi, file);
 
-    return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return { fileContent: `${template}`, filePath: `${filePath}.${format}` };
 };

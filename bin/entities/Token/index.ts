@@ -43,14 +43,10 @@ class Token {
   }
 
   private extractTokens(frame: Frame, tokenName: string, config: Config): ProcessedToken {
-    try {
-      if (!frame || !tokenName) throw Error(ErrorExtractTokens);
+    if (!frame || !tokenName) throw Error(ErrorExtractTokens);
 
-      frame.children = this.getChildren(frame);
-      return this.getTokens(frame, tokenName.toLowerCase(), config);
-    } catch (error: any) {
-      throw Error(error);
-    }
+    frame.children = this.getChildren(frame);
+    return this.getTokens(frame, tokenName.toLowerCase(), config);
   }
 
   private getChildren = (frame: Frame): any => {

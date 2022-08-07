@@ -21,23 +21,19 @@ export async function getData(
   url: string | null,
   versionName?: string | null
 ): Promise<FigmaData> {
-  try {
-    if (!recompileLocal && (!token || !url)) throw Error(ErrorGetData);
-    if (recompileLocal && (!figmagicFolder || !figmaData)) throw Error(ErrorGetDataNoTokenOrUrl);
+  if (!recompileLocal && (!token || !url)) throw Error(ErrorGetData);
+  if (recompileLocal && (!figmagicFolder || !figmaData)) throw Error(ErrorGetDataNoTokenOrUrl);
 
-    const _DATA = (async () => {
-      if (recompileLocal) return getDataLocal(figmagicFolder, figmaData);
-      else if (token && url) return await getDataRemote(token, url, versionName);
-      throw Error(ErrorGetDataFailedLocalAndRemote);
-    })();
+  const _DATA = (async () => {
+    if (recompileLocal) return getDataLocal(figmagicFolder, figmaData);
+    else if (token && url) return await getDataRemote(token, url, versionName);
+    throw Error(ErrorGetDataFailedLocalAndRemote);
+  })();
 
-    const DATA = await _DATA;
+  const DATA = await _DATA;
 
-    if (!recompileLocal && !DATA.document) throw Error(ErrorGetDataNoData);
-    if (recompileLocal && !DATA) throw Error(ErrorGetDataNoData);
+  if (!recompileLocal && !DATA.document) throw Error(ErrorGetDataNoData);
+  if (recompileLocal && !DATA) throw Error(ErrorGetDataNoData);
 
-    return DATA;
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return DATA;
 }

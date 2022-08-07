@@ -18,22 +18,18 @@ export function parseBorderColor(
   imports: any[],
   params: BorderColorParams
 ): ParsedElementMetadataInterface {
-  try {
-    if (!css || !imports || !params) throw Error(ErrorParseBorderColor);
+  if (!css || !imports || !params) throw Error(ErrorParseBorderColor);
 
-    const { colors, borderColor, remSize, outputFormatColors } = params;
+  const { colors, borderColor, remSize, outputFormatColors } = params;
 
-    const { updatedCss, updatedImports } = getTokenMatch(
-      colors,
-      'colors',
-      'border-color',
-      borderColor,
-      remSize,
-      outputFormatColors
-    );
+  const { updatedCss, updatedImports } = getTokenMatch(
+    colors,
+    'colors',
+    'border-color',
+    borderColor,
+    remSize,
+    outputFormatColors
+  );
 
-    return updateParsing(css, updatedCss, imports, updatedImports);
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return updateParsing(css, updatedCss, imports, updatedImports);
 }

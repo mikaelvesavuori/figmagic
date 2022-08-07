@@ -16,25 +16,21 @@ export function parsePadding(
   imports: any[],
   params: PaddingParams
 ): ParsedElementMetadataInterface {
-  try {
-    if (!css || !imports || !params) throw Error(ErrorParsePadding);
-    const { padding, spacing, remSize } = params;
+  if (!css || !imports || !params) throw Error(ErrorParsePadding);
+  const { padding, spacing, remSize } = params;
 
-    if (!(padding && Object.keys(padding).length > 0)) return { css, imports };
+  if (!(padding && Object.keys(padding).length > 0)) return { css, imports };
 
-    const PADDINGS = Object.values(padding).map((p) => p);
-    if (PADDINGS.every((item) => item === 0)) return updateParsing(css, null, imports, null);
+  const PADDINGS = Object.values(padding).map((p) => p);
+  if (PADDINGS.every((item) => item === 0)) return updateParsing(css, null, imports, null);
 
-    const { updatedCss, updatedImports } = getTokenMatch(
-      spacing,
-      'spacing',
-      'padding',
-      padding,
-      remSize
-    );
+  const { updatedCss, updatedImports } = getTokenMatch(
+    spacing,
+    'spacing',
+    'padding',
+    padding,
+    remSize
+  );
 
-    return updateParsing(css, updatedCss, imports, updatedImports);
-  } catch (error: any) {
-    throw Error(error);
-  }
+  return updateParsing(css, updatedCss, imports, updatedImports);
 }

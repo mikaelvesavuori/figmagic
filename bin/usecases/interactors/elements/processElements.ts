@@ -18,17 +18,13 @@ export function processElements(
   components: Record<string, any>,
   isGraphicElement = false
 ): FigmagicElement[] {
-  try {
-    if (!elementsPage || !components || !config) throw Error(ErrorProcessElements);
+  if (!elementsPage || !components || !config) throw Error(ErrorProcessElements);
 
-    const FILTERED_ELEMENTS = elementsPage.filter(
-      (element) => element.type === 'COMPONENT' && element.name[0] !== '_'
-    );
-    const PARSED_ELEMENTS = FILTERED_ELEMENTS.map((element: FigmaElement) =>
-      makeFigmagicElement(element, config, components[element.id].description, isGraphicElement)
-    );
-    return PARSED_ELEMENTS;
-  } catch (error: any) {
-    throw Error(error);
-  }
+  const FILTERED_ELEMENTS = elementsPage.filter(
+    (element) => element.type === 'COMPONENT' && element.name[0] !== '_'
+  );
+  const PARSED_ELEMENTS = FILTERED_ELEMENTS.map((element: FigmaElement) =>
+    makeFigmagicElement(element, config, components[element.id].description, isGraphicElement)
+  );
+  return PARSED_ELEMENTS;
 }
