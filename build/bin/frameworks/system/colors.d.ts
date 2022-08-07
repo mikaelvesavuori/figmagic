@@ -1,1 +1,1 @@
-export declare const colors: any;
+export declare const colors: Record<string, any>;

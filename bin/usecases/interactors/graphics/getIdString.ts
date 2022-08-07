@@ -3,7 +3,7 @@ import { ErrorGetIdstring } from '../../../frameworks/errors/errors';
 /**
  * @description Collate valid string of IDs
  */
-export const getIdString = (ids: any[]): string => {
+export const getIdString = (ids: Record<string, any>[]): string => {
   if (!ids) throw Error(ErrorGetIdstring);
 
   let idString = '';

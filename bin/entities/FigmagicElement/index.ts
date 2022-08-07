@@ -135,7 +135,7 @@ class FigmagicElement {
   private setDescription(): void {
     let description = this.description;
 
-    const handleMatch = (regexMatch: any, currentDescription: string) => {
+    const handleMatch = (regexMatch: RegExpMatchArray | null, currentDescription: string) => {
       const match = regexMatch ? regexMatch[0] : null;
       if (match) return currentDescription.replace(match, '');
       return currentDescription;

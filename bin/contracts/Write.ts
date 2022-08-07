@@ -59,7 +59,8 @@ export type FileContentWithPath = {
   filePath: string;
 };
 
-type FileType =
+export type FileType =
+  | 'null'
   | 'raw'
   | 'token'
   | 'component'

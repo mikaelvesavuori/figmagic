@@ -7,7 +7,7 @@ import {
  * @description Convert list of imports to string literal for CSS file production
  */
 export function createImportStringFromList(
-  importArray: any[],
+  importArray: string[],
   outputFolderTokens = 'tokens',
   tokensRelativeImportPrefix = ''
 ): string {

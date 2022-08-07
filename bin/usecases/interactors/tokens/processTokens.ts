@@ -12,9 +12,9 @@ import { ErrorWriteTokensNoSettings } from '../../../frameworks/errors/errors';
 /**
  * @description Process tokens (before writing them to file; handled in another function)
  */
-export function processTokens(tokens: Frame[], config: Config): any {
+export function processTokens(tokens: Frame[], config: Config): WriteOperation[] {
   if (!config) throw Error(ErrorWriteTokensNoSettings);
-  if (!tokens) return;
+  if (!tokens) return [];
 
   const PROCESSED_TOKENS: WriteOperation[] = [];
 

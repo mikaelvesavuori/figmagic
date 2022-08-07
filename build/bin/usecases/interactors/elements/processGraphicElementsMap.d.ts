@@ -1,1 +1,1 @@
-export declare function processGraphicElementsMap(graphics: any[]): any;
+export declare function processGraphicElementsMap(graphics: any[]): string;

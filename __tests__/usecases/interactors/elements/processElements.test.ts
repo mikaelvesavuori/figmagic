@@ -1,5 +1,7 @@
 import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 
+import { FRAME as Frame } from '../../../../bin/contracts/Figma';
+
 import { processElements } from '../../../../bin/usecases/interactors/elements/processElements';
 
 import { elementsPage } from '../../../../testdata/elementsPage';
@@ -14,7 +16,7 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should successfully return a valid element', () => {
-    expect(processElements(elementsPage, baseConfig, components)).toMatchObject([
+    expect(processElements(elementsPage as Frame[], baseConfig, components)).toMatchObject([
       {
         css: `
 color: \${colors['black']};

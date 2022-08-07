@@ -13,7 +13,7 @@ export const getIds = (graphicsPage: Frame[]): Record<string, unknown>[] => {
    * This is the classic way of doing graphics in Figmagic.
    */
 
-  const ids: any[] = [];
+  const ids: Record<string, any>[] = [];
   const componentIds = getComponents(graphicsPage);
   ids.push(...ids.concat(componentIds));
 
@@ -27,7 +27,7 @@ export const getIds = (graphicsPage: Frame[]): Record<string, unknown>[] => {
     ids.push(...ids.concat(frameLocalComponentIds));
   }
 
-  const deduplicatedIds: any[] = [];
+  const deduplicatedIds: Record<string, any>[] = [];
   ids.filter((item) =>
     !deduplicatedIds.find((element) => element.id === item.id) ? deduplicatedIds.push(item) : null
   );
@@ -43,8 +43,8 @@ const getComponents = (children: Frame[], parent?: Frame) => {
 
   if (!children || children.length === 0) return [];
   return children
-    .filter((item: any) => item.type === 'COMPONENT')
-    .map((item: any) => ({
+    .filter((item: Record<string, any>) => item.type === 'COMPONENT')
+    .map((item: Record<string, any>) => ({
       id: item.id,
       name: `${parentName}${item.name}`
     }));

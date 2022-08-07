@@ -1,1 +1,1 @@
-export declare function getIntersectingValues(arrays: any[]): any[];
+export declare function getIntersectingValues(arrays: any[]): string[];

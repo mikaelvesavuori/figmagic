@@ -8,7 +8,10 @@ import { ErrorWriteGraphics } from '../../../frameworks/errors/errors';
 /**
  * @description Write image assets from Figma page to disk
  */
-export async function writeGraphics(fileList: any[], config: Config): Promise<void> {
+export async function writeGraphics(
+  fileList: Record<string, any>[],
+  config: Config
+): Promise<void> {
   if (!fileList || !config) throw Error(ErrorWriteGraphics);
 
   const { outputFolderGraphics } = config;

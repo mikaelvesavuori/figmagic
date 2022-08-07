@@ -46,5 +46,4 @@ export declare type FileContentWithPath = {
     fileContent: string;
     filePath: string;
 };
-declare type FileType = 'raw' | 'token' | 'component' | 'styled' | 'css' | 'story' | 'description' | 'graphic';
-export {};
+export declare type FileType = 'null' | 'raw' | 'token' | 'component' | 'styled' | 'css' | 'story' | 'description' | 'graphic';

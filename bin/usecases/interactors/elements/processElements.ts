@@ -1,5 +1,6 @@
 import { makeFigmagicElement } from '../../../entities/FigmagicElement';
 
+import { FRAME as Frame } from '../../../contracts/Figma';
 import { FigmagicElement } from '../../../contracts/FigmagicElement';
 import { Config } from '../../../contracts/Config';
 import { FigmaElement } from '../../../contracts/FigmaElement';
@@ -13,7 +14,7 @@ import { ErrorProcessElements } from '../../../frameworks/errors/errors';
  * 3. Return list of cleaned items
  */
 export function processElements(
-  elementsPage: any[],
+  elementsPage: Frame[],
   config: Config,
   components: Record<string, any>,
   isGraphicElement = false

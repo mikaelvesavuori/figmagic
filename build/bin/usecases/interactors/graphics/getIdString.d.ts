@@ -1,1 +1,1 @@
-export declare const getIdString: (ids: any[]) => string;
+export declare const getIdString: (ids: Record<string, any>[]) => string;

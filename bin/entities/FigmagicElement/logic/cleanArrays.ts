@@ -8,10 +8,10 @@ export function cleanArrays(
   classNames: RegExpMatchArray | null,
   classContent: string[],
   textOnlySubchildren: string[]
-): any {
+): Record<string, any>[] {
   if (!classNames || !classContent) throw Error(ErrorCleanArrays);
 
-  const classes: any[] = [];
+  const classes: Record<string, any>[] = [];
 
   let skipNext = false;
 

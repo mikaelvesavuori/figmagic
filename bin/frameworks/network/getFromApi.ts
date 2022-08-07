@@ -29,7 +29,7 @@ export async function getFromApi(
 
     if (versions.versions) {
       const requestedVersion = versions.versions.filter(
-        (_version: any) => _version.label === versionName
+        (_version: Record<string, any>) => _version.label === versionName
       );
       const requestedVersionId = (() => {
         if (requestedVersion && requestedVersion.length > 0) {

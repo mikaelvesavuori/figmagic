@@ -13,7 +13,7 @@ export function parseCliArgs(argsArray: string[]): Config {
   if (!argsArray) throw Error(ErrorParseCliArgs);
   if (argsArray.length === 0) return {} as Config;
 
-  const config: any = {};
+  const config: Record<string, any> = {};
 
   const setConfigValue = <ValueType = unknown>(key: keyof Config, value: ValueType): void => {
     config[key] = value;

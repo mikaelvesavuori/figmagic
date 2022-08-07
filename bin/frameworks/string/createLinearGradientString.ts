@@ -1,4 +1,4 @@
-import { Paint } from '../../contracts/Figma';
+import { Paint, Vector } from '../../contracts/Figma';
 
 import { calculateDegree2Point } from '../../frameworks/string/calculateDegree2Point';
 import { roundColorValue } from '../../frameworks/string/roundColorValue';
@@ -16,7 +16,7 @@ export function createLinearGradientString(fills: Paint): string {
   const GRADIENT_STOPS = fills.gradientStops ? fills.gradientStops : null;
   if (!GRADIENT_STOPS) throw Error();
 
-  const DEGREE = calculateDegree(fills.gradientHandlePositions);
+  const DEGREE = calculateDegree(fills.gradientHandlePositions as unknown as Vector[]);
   if (DEGREE) str += `${DEGREE}deg, `;
 
   GRADIENT_STOPS.forEach((fill: Paint, index: number) => {
@@ -38,6 +38,6 @@ export function createLinearGradientString(fills: Paint): string {
 /**
  * @description Wrapper for any degree calculation logic
  */
-function calculateDegree(gradientHandlePositions: any) {
+function calculateDegree(gradientHandlePositions: Vector[]) {
   return calculateDegree2Point(gradientHandlePositions[0], gradientHandlePositions[1]);
 }

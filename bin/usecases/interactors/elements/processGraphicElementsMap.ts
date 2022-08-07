@@ -4,7 +4,7 @@ import { ErrorProcessGraphicElementsMap } from '../../../frameworks/errors/error
 /**
  * @description Create raw file content for the graphic elements index/map file
  */
-export function processGraphicElementsMap(graphics: any[]): any {
+export function processGraphicElementsMap(graphics: any[]): string {
   if (!graphics) throw Error(ErrorProcessGraphicElementsMap);
   if (!(graphics.length > 0)) throw Error(ErrorProcessGraphicElementsMap);
 

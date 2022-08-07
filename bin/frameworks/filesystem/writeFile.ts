@@ -1,4 +1,4 @@
-import { WriteOperation } from '../../contracts/Write';
+import { FileType, WriteOperation } from '../../contracts/Write';
 
 import { createFolder } from './createFolder';
 import { createMissingFoldersFromPath } from './createMissingFoldersFromPath';
@@ -29,7 +29,7 @@ export function writeFile(writeOperation: WriteOperation): void {
   } = writeOperation;
   if (!file || !path || !name || !type) throw Error(ErrorWriteFile);
 
-  const TYPE: any = typeof type === 'string' ? type.toLowerCase() : 'null';
+  const TYPE: FileType = typeof type === 'string' ? (type.toLowerCase() as FileType) : 'null';
   if (!acceptedFileTypes.includes(TYPE)) throw Error(ErrorWriteFileWrongType);
 
   if (type === 'component' || type === 'graphic') createMissingFoldersFromPath(path);

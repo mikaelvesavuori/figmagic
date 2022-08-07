@@ -8,7 +8,7 @@ import { ErrorGetFileList } from '../../../frameworks/errors/errors';
  */
 export const getFileList = (
   imageResponse: ImageResponse,
-  ids: any[],
+  ids: Record<string, any>[],
   outputFormatGraphics: string
 ): FileList[] => {
   if (!imageResponse || !ids || !outputFormatGraphics) throw Error(ErrorGetFileList);
