@@ -25,18 +25,18 @@ export function makeFontSizeTokens(
   if (!fontSizeFrame.children) throw Error(ErrorMakeFontSizeTokensNoChildren);
   if (!fontUnit || !remSize) throw Error(ErrorMakeFontSizeTokensNoSizing);
 
-  const fontSizes: Record<string, unknown> = {};
-  const TOKENS = fontSizeFrame.children.reverse();
-  TOKENS.forEach((item: Frame) =>
+  const fontSizes: Record<string, string> = {};
+  const tokens = fontSizeFrame.children.reverse();
+  tokens.forEach((item: Frame) =>
     makeFontSizeToken(item, fontSizes, remSize, fontUnit, camelizeTokenNames)
   );
 
-  return fontSizes;
+  return fontSizes as FontSizeTokens;
 }
 
 function makeFontSizeToken(
   item: Frame,
-  fontSizes: Record<string, unknown>,
+  fontSizes: Record<string, string>,
   remSize: number,
   fontUnit: string,
   camelizeTokenNames?: boolean
@@ -44,11 +44,11 @@ function makeFontSizeToken(
   if (!item.name || !item.style) throw Error(ErrorMakeFontSizeTokensMissingProps);
   if (!item.style.fontSize) throw Error(ErrorMakeFontSizeTokensMissingSize);
 
-  const NAME = sanitizeString(item.name, camelizeTokenNames);
-  const FONT_SIZE = (() => {
+  const name = sanitizeString(item.name, camelizeTokenNames);
+  const fontSize = (() => {
     if (fontUnit === 'px') return item.style.fontSize + fontUnit;
     else return (item.style.fontSize as unknown as number) / remSize + fontUnit;
   })();
 
-  fontSizes[NAME] = FONT_SIZE;
+  fontSizes[name] = fontSize;
 }

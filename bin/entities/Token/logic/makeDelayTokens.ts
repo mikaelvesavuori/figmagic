@@ -16,11 +16,11 @@ export function makeDelayTokens(delayFrame: Frame, camelizeTokenNames?: boolean)
   if (!delayFrame) throw Error(ErrorMakeDelayTokensNoFrame);
   if (!delayFrame.children) throw Error(ErrorMakeDelayTokensNoChildren);
 
-  const delays: Record<string, unknown> = {};
-  const TOKENS = delayFrame.children.reverse();
-  TOKENS.forEach((item: Frame) => makeDelayToken(item, delays, camelizeTokenNames));
+  const delays: Record<string, number> = {};
+  const tokens = delayFrame.children.reverse();
+  tokens.forEach((item: Frame) => makeDelayToken(item, delays, camelizeTokenNames));
 
-  return delays;
+  return delays as DelayTokens;
 }
 
 function makeDelayToken(
@@ -29,6 +29,6 @@ function makeDelayToken(
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.characters) throw Error(ErrorMakeDelayTokensMissingProps);
-  const NAME = sanitizeString(item.name, camelizeTokenNames);
-  delays[NAME] = parseFloat(item.characters);
+  const name = sanitizeString(item.name, camelizeTokenNames);
+  delays[name] = parseFloat(item.characters);
 }

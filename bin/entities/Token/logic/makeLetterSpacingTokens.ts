@@ -29,46 +29,49 @@ export function makeLetterSpacingTokens(
   if (!letterSpacingFrame) throw Error(ErrorMakeLetterSpacingTokensNoFrame);
   if (!letterSpacingFrame.children) throw Error(ErrorMakeLetterSpacingTokensNoChildren);
 
-  const TOKENS = letterSpacingFrame.children.reverse();
+  const tokens = letterSpacingFrame.children.reverse();
 
-  const letterSpacings = TOKENS.reduce((tokens: { [index: string]: any }, item: Frame) => {
-    if (!item.name || !item.style) throw Error(ErrorMakeLetterSpacingTokensMissingProps);
+  const letterSpacings = tokens.reduce(
+    (_tokens: { [index: string]: string | number }, item: Frame) => {
+      if (!item.name || !item.style) throw Error(ErrorMakeLetterSpacingTokensMissingProps);
 
-    const NAME = sanitizeString(item.name, camelizeTokenNames);
+      const name = sanitizeString(item.name, camelizeTokenNames);
 
-    /**
-     * Assuming Figma API always export the node font-size as an integer in our case
-     * @see https://www.figma.com/plugin-docs/api/TextNode/#fontsize
-     */
-    const FONT_SIZE = item.style.fontSize;
-    const LETTER_SPACING_VALUE_IN_PX =
-      typeof item.style.letterSpacing !== 'undefined'
-        ? Math.round(item.style.letterSpacing * 1000) / 1000
-        : 0;
-    let value = '0';
+      /**
+       * Assuming Figma API always export the node font-size as an integer in our case
+       * @see https://www.figma.com/plugin-docs/api/TextNode/#fontsize
+       */
+      const fontSize = item.style.fontSize;
+      const letterSpacingValueInPx =
+        typeof item.style.letterSpacing !== 'undefined'
+          ? Math.round(item.style.letterSpacing * 1000) / 1000
+          : 0;
+      let value = '0';
 
-    switch (letterSpacingUnit) {
-      case 'px':
-        value = `${LETTER_SPACING_VALUE_IN_PX}px`;
-        break;
-      case 'em':
-      default:
-        if (!FONT_SIZE) {
-          throw Error(ErrorMakeLetterSpacingTokensMissingProps);
-        }
-        /**
-         * Dividing the value by the current FONT_SIZE will give the %-based em value.
-         * Ex: if the letterSpacing value is 1.28 and FONT_SIZE is 32, em value should be 1.28 / 32 = 0.04em.
-         */
-        const valueCalc = Math.round((10000 * LETTER_SPACING_VALUE_IN_PX) / FONT_SIZE) / 10000;
-        value = `${valueCalc}em`;
-        break;
-    }
+      switch (letterSpacingUnit) {
+        case 'px':
+          value = `${letterSpacingValueInPx}px`;
+          break;
+        case 'em':
+        default:
+          if (!fontSize) {
+            throw Error(ErrorMakeLetterSpacingTokensMissingProps);
+          }
+          /**
+           * Dividing the value by the current fontSize will give the %-based em value.
+           * Ex: if the letterSpacing value is 1.28 and fontSize is 32, em value should be 1.28 / 32 = 0.04em.
+           */
+          const valueCalc = Math.round((10000 * letterSpacingValueInPx) / fontSize) / 10000;
+          value = `${valueCalc}em`;
+          break;
+      }
 
-    tokens[NAME] = value;
+      _tokens[name] = value;
 
-    return tokens;
-  }, {});
+      return _tokens;
+    },
+    {}
+  );
 
   return letterSpacings;
 }

@@ -16,19 +16,19 @@ export function makeZindexTokens(zIndexFrame: Frame, camelizeTokenNames?: boolea
   if (!zIndexFrame) throw Error(ErrorMakeZindexTokensNoFrame);
   if (!zIndexFrame.children) throw Error(ErrorMakeZindexTokensNoChildren);
 
-  const zIndex: Record<string, unknown> = {};
-  const TOKENS = zIndexFrame.children.reverse();
-  TOKENS.forEach((item: Frame) => makeZindexToken(item, zIndex, camelizeTokenNames));
+  const zIndex: Record<string, number> = {};
+  const tokens = zIndexFrame.children.reverse();
+  tokens.forEach((item: Frame) => makeZindexToken(item, zIndex, camelizeTokenNames));
 
-  return zIndex;
+  return zIndex as ZindexTokens;
 }
 
 function makeZindexToken(
   item: Frame,
-  zIndex: Record<string, unknown>,
+  zIndex: Record<string, number>,
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.characters) throw Error(ErrorMakeZindexTokensMissingProps);
-  const NAME = sanitizeString(item.name, camelizeTokenNames);
-  zIndex[NAME] = parseInt(item.characters);
+  const name = sanitizeString(item.name, camelizeTokenNames);
+  zIndex[name] = parseInt(item.characters);
 }

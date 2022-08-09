@@ -49,7 +49,7 @@ class Token {
     return this.getTokens(frame, tokenName.toLowerCase(), config);
   }
 
-  private getChildren = (frame: Frame): any => {
+  private getChildren = (frame: Frame): Frame[] => {
     if (frame.children && frame.children.length > 0) {
       return frame.children.filter((item: Frame) => {
         let shouldInclude = true;
@@ -67,9 +67,12 @@ class Token {
         return shouldInclude;
       });
     }
+
+    return [];
   };
 
-  private getTokens = (frame: Frame, name: string, config: Config): any => {
+  // TODO: Add proper type
+  private getTokens = (frame: Frame, name: string, config: Config): Record<string, any> => {
     const {
       borderWidthUnit,
       camelizeTokenNames,
@@ -85,6 +88,7 @@ class Token {
       unitlessPrecision,
       usePostscriptFontNames
     } = config;
+
     const tokenOperations = {
       borderwidths: () =>
         makeBorderWidthTokens(frame, borderWidthUnit, remSize, camelizeTokenNames),
@@ -128,6 +132,7 @@ class Token {
 
     // @ts-ignore
     if (tokenOperations.hasOwnProperty(name)) return tokenOperations[name]();
+    return {};
   };
 
   setWriteOperation = (processedToken: ProcessedToken, tokenName: string): void => {

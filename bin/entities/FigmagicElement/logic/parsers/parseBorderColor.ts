@@ -1,6 +1,7 @@
 import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 import { OutputFormatColors } from '../../../../contracts/Config';
 import { Imports } from '../../../../contracts/Imports';
+import { Color } from '../../../../contracts/Parsing';
 
 import { getTokenMatch } from '../getTokenMatch';
 import { updateParsing } from './updateParsing';
@@ -8,7 +9,7 @@ import { updateParsing } from './updateParsing';
 import { ErrorParseBorderColor } from '../../../../frameworks/errors/errors';
 
 type BorderColorParams = {
-  colors: Record<string, unknown>;
+  colors: Color;
   borderColor: string;
   remSize: number;
   outputFormatColors: OutputFormatColors;

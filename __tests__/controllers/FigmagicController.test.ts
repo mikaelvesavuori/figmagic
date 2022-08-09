@@ -18,7 +18,7 @@ describe('Success cases', () => {
     const PATH = `./${TEST_FOLDER}`;
 
     testConfig.outputFolderTokens = TEST_FOLDER;
-    const RESPONSE = await FigmagicController(testConfig as any, figmaTestResponse);
+    const RESPONSE = await FigmagicController(testConfig as any, figmaTestResponse as any);
     expect(RESPONSE).toContain('Figmagic completed operations successfully!');
 
     await trash(PATH);

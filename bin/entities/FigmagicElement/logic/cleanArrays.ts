@@ -1,5 +1,8 @@
-import { ErrorCleanArrays } from '../../../frameworks/errors/errors';
 import { classRepresentsTextOnlyElement } from './classRepresentsTextOnlyElement';
+
+import { UniqueCssValues } from '../../../contracts/Css';
+
+import { ErrorCleanArrays } from '../../../frameworks/errors/errors';
 
 /**
  * @description Collate/package array objects for easier handling in later steps
@@ -8,10 +11,10 @@ export function cleanArrays(
   classNames: RegExpMatchArray | null,
   classContent: string[],
   textOnlySubchildren: string[]
-): Record<string, any>[] {
+): UniqueCssValues[] {
   if (!classNames || !classContent) throw Error(ErrorCleanArrays);
 
-  const classes: Record<string, any>[] = [];
+  const classes: UniqueCssValues[] = [];
 
   let skipNext = false;
 

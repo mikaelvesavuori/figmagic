@@ -8,7 +8,7 @@ import { ErrorPrepareWrite, ErrorWriteFile } from '../errors/errors';
 /**
  * @description Controller that starts the prepping/formatting of the file(s)
  */
-export function prepareWrite(writeOperation: WriteOperation): any {
+export function prepareWrite(writeOperation: WriteOperation): Record<string, any> {
   if (!writeOperation) throw Error(ErrorWriteFile);
 
   const {

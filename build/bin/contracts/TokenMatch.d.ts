@@ -1,5 +1,9 @@
 import { Imports } from './Imports';
-export interface TokenMatch {
+export declare type TokenMatchRaw = {
+    css: string;
+    imports: Imports[];
+};
+export declare type TokenMatch = {
     updatedCss: string;
     updatedImports: Imports[];
-}
+};

@@ -1,4 +1,4 @@
-export declare type Tokens = Record<string, unknown>;
+export declare type Tokens = Record<string, string | number>;
 export declare type BorderWidthTokens = Tokens;
 export declare type ColorTokens = Tokens;
 export declare type DelayTokens = Tokens;

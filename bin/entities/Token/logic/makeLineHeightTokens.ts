@@ -26,9 +26,9 @@ export function makeLineHeightTokens(
   if (!lineHeightFrame) throw Error(ErrorMakeLineHeightTokensNoFrame);
   if (!lineHeightFrame.children) throw Error(ErrorMakeLineHeightTokensNoChildren);
 
-  const TOKENS = lineHeightFrame.children.reverse();
+  const tokens = lineHeightFrame.children.reverse();
 
-  return TOKENS.reduce<LineHeightTokens>((tokensDictionary, item: Frame) => {
+  return tokens.reduce<LineHeightTokens>((tokensDictionary, item: Frame) => {
     if (!item.name) throw Error(ErrorMakeLineHeightTokensNoName);
     if (!item.style) throw Error(ErrorMakeLineHeightTokensNoStyle);
     const { name, value } = makeLineHeightToken(
@@ -63,11 +63,11 @@ function makeLineHeightToken(
   lineHeightUnit?: LineHeightUnit,
   camelizeTokenNames?: boolean
 ): Token {
-  const NAME = sanitizeString(item.name, camelizeTokenNames);
+  const name = sanitizeString(item.name, camelizeTokenNames);
 
-  const FONT_SIZE = item.style.fontSize;
+  const fontSize = item.style.fontSize;
 
-  const LINE_HEIGHT_VALUE_IN_PX =
+  const lineHeightValueInPx =
     typeof item.style.lineHeightPx !== 'undefined'
       ? Math.round(item.style.lineHeightPx * 1000) / 1000
       : 0;
@@ -76,21 +76,21 @@ function makeLineHeightToken(
 
   switch (lineHeightUnit) {
     case 'px':
-      value = `${LINE_HEIGHT_VALUE_IN_PX}px`;
+      value = `${lineHeightValueInPx}px`;
       break;
     case 'em':
-      if (!FONT_SIZE) {
+      if (!fontSize) {
         throw Error(ErrorMakeLineHeightTokensMissingProps);
       }
       /**
-       * Dividing the value by the current FONT_SIZE will give the %-based em value.
-       * Ex: if the letterSpacing value is 1.28 and FONT_SIZE is 32, em value should be 1.28 / 32 = 0.04em.
+       * Dividing the value by the current fontSize will give the %-based em value.
+       * Ex: if the letterSpacing value is 1.28 and fontSize is 32, em value should be 1.28 / 32 = 0.04em.
        */
-      const valueCalcEm = Math.round((10000 * LINE_HEIGHT_VALUE_IN_PX) / FONT_SIZE) / 10000;
+      const valueCalcEm = Math.round((10000 * lineHeightValueInPx) / fontSize) / 10000;
       value = `${valueCalcEm}em`;
       break;
     case 'rem':
-      const valueCalcRem = Math.round((10000 * LINE_HEIGHT_VALUE_IN_PX) / remSize) / 10000;
+      const valueCalcRem = Math.round((10000 * lineHeightValueInPx) / remSize) / 10000;
       value = `${valueCalcRem}` + 'rem';
       break;
     default:
@@ -104,7 +104,7 @@ function makeLineHeightToken(
   }
 
   return {
-    name: NAME,
+    name,
     value
   };
 }

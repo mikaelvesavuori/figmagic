@@ -23,9 +23,9 @@ export function makeShadowTokens(
   if (!shadowFrame) throw Error(ErrorMakeShadowTokensNoFrame);
   if (!shadowFrame.children) throw Error(ErrorMakeShadowTokensNoChildren);
 
-  const shadows: Record<string, unknown> = {};
-  const TOKENS = shadowFrame.children.reverse();
-  TOKENS.forEach((item: Frame) =>
+  const shadows: Record<string, string> = {};
+  const tokens = shadowFrame.children.reverse();
+  tokens.forEach((item: Frame) =>
     makeShadowToken(item, shadows, shadowUnit, remSize, camelizeTokenNames)
   );
 
@@ -34,14 +34,14 @@ export function makeShadowTokens(
 
 function makeShadowToken(
   item: Frame,
-  shadows: Record<string, unknown>,
+  shadows: Record<string, string>,
   shadowUnit: ShadowUnit,
   remSize: number,
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.effects) throw Error(ErrorMakeShadowTokensMissingProps);
 
-  const NAME = sanitizeString(item.name, camelizeTokenNames);
+  const name = sanitizeString(item.name, camelizeTokenNames);
 
   let effects = item.effects.map((effect) => {
     if (effect.type === 'DROP_SHADOW') return effect;
@@ -49,7 +49,7 @@ function makeShadowToken(
   });
   effects = effects.reverse();
 
-  shadows[NAME] = ``;
+  shadows[name] = ``;
 
   if (effects.length > 0) {
     effects.forEach((effect, index) => {
@@ -64,7 +64,7 @@ function makeShadowToken(
           else return (effect.offset.y as unknown as number) / remSize + shadowUnit;
         })();
 
-        const RADIUS = (() => {
+        const radius = (() => {
           if (shadowUnit === 'px') return effect.radius + shadowUnit;
           else return (effect.radius as unknown as number) / remSize + shadowUnit;
         })();
@@ -74,8 +74,8 @@ function makeShadowToken(
         const B = roundColorValue(effect.color.b);
         const A = roundColorValue(effect.color.a, 1);
 
-        shadows[NAME] += `${X} ${Y} ${RADIUS} rgba(${R}, ${G}, ${B}, ${A})`;
-        if (index !== effects.length - 1) shadows[NAME] += `, `;
+        shadows[name] += `${X} ${Y} ${radius} rgba(${R}, ${G}, ${B}, ${A})`;
+        if (index !== effects.length - 1) shadows[name] += `, `;
       }
     });
   }

@@ -1,5 +1,6 @@
 import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 import { OutputFormatColors } from '../../../../contracts/Config';
+import { Color } from '../../../../contracts/Parsing';
 import { Imports } from '../../../../contracts/Imports';
 
 import { getTokenMatch } from '../getTokenMatch';
@@ -8,7 +9,7 @@ import { updateParsing } from './updateParsing';
 import { ErrorParseBackgroundColor } from '../../../../frameworks/errors/errors';
 
 type BackgroundColorParams = {
-  colors: Record<string, unknown>;
+  colors: Color;
   backgroundColor: string;
   remSize: number;
   outputFormatColors: OutputFormatColors;

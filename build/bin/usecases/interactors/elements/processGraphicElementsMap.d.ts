@@ -1,1 +1,2 @@
-export declare function processGraphicElementsMap(graphics: any[]): string;
+import { Graphic } from '../../../contracts/Graphic';
+export declare function processGraphicElementsMap(graphics: Graphic[]): string;

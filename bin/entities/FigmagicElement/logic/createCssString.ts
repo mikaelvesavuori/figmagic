@@ -1,3 +1,5 @@
+import { IntersectingCssValues, UniqueCssValues } from '../../../contracts/Css';
+
 import { getId } from '../../../frameworks/string/getId';
 import { removeAllIds } from '../../../frameworks/string/removeAllIds';
 
@@ -6,7 +8,10 @@ import { ErrorCreateCssString } from '../../../frameworks/errors/errors';
 /**
  * @description Create CSS string literal
  */
-export function createCssString(intersections: any[], uniqueValues: any[]): string {
+export function createCssString(
+  intersections: IntersectingCssValues,
+  uniqueValues: UniqueCssValues[]
+): string {
   if (!intersections || !uniqueValues) throw Error(ErrorCreateCssString);
 
   // Fix order, which has become reversed at this stage
@@ -21,8 +26,8 @@ export function createCssString(intersections: any[], uniqueValues: any[]): stri
   cssString += `\n`;
 
   // Put classes and similar after shared values
-  uniqueValues.forEach((array: any, index: number) => {
-    const { css, className } = array;
+  uniqueValues.forEach((cssItem: UniqueCssValues, index: number) => {
+    const { css, className } = cssItem;
     const FIXED_CLASS_NAME = getFixedClassName(className);
 
     const SPACE = getSpacing(nestingDepth);
@@ -32,7 +37,7 @@ export function createCssString(intersections: any[], uniqueValues: any[]): stri
     cssString += `${SPACE}${FIXED_CLASS_NAME}\n`;
 
     // Output all individual lines
-    css.forEach((item: any) => (cssString += `${INNER_SPACE}${item}\n`));
+    css.forEach((item: string) => (cssString += `${INNER_SPACE}${item}\n`));
 
     const IS_LAST_ELEMENT_WITH_CLASS = !uniqueValues[index + 1]
       ? true

@@ -1,8 +1,9 @@
 import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 import { OutputFormatColors } from '../../../../contracts/Config';
 import { Imports } from '../../../../contracts/Imports';
+import { Color } from '../../../../contracts/Parsing';
 declare type BorderColorParams = {
-    colors: Record<string, unknown>;
+    colors: Color;
     borderColor: string;
     remSize: number;
     outputFormatColors: OutputFormatColors;

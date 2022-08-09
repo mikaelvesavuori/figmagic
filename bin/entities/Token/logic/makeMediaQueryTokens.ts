@@ -19,20 +19,20 @@ export function makeMediaQueryTokens(
   if (!mediaQueryFrame) throw Error(ErrorSetupMediaQueryTokensNoFrame);
   if (!mediaQueryFrame.children) throw Error(ErrorSetupMediaQueryTokensNoChildren);
 
-  const mediaQueries: Record<string, unknown> = {};
-  const TOKENS = mediaQueryFrame.children.reverse();
-  TOKENS.forEach((item: Frame) => makeMediaQueryToken(item, mediaQueries, camelizeTokenNames));
+  const mediaQueries: Record<string, string> = {};
+  const tokens = mediaQueryFrame.children.reverse();
+  tokens.forEach((item: Frame) => makeMediaQueryToken(item, mediaQueries, camelizeTokenNames));
 
-  return mediaQueries;
+  return mediaQueries as MediaQueryTokens;
 }
 
 function makeMediaQueryToken(
   item: Frame,
-  mediaQueries: Record<string, unknown>,
+  mediaQueries: Record<string, string>,
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.absoluteBoundingBox) throw Error(ErrorSetupMediaQueryTokensMissingProps);
 
-  const NAME = sanitizeString(item.name, camelizeTokenNames);
-  mediaQueries[NAME] = `${item.absoluteBoundingBox.width}px`;
+  const name = sanitizeString(item.name, camelizeTokenNames);
+  mediaQueries[name] = `${item.absoluteBoundingBox.width}px`;
 }

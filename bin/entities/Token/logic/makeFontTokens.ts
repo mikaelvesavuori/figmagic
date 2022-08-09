@@ -20,23 +20,23 @@ export function makeFontTokens(
   if (!fontFrame) throw Error(ErrorMakeFontTokensNoFrame);
   if (!fontFrame.children) throw Error(ErrorMakeFontTokensNoChildren);
 
-  const fonts: Record<string, unknown> = {};
-  const TOKENS = fontFrame.children.reverse();
-  TOKENS.forEach((item: Frame) =>
+  const fonts: Record<string, string> = {};
+  const tokens = fontFrame.children.reverse();
+  tokens.forEach((item: Frame) =>
     makeFontToken(item, fonts, usePostscriptFontNames, camelizeTokenNames)
   );
 
-  return fonts;
+  return fonts as FontTokens;
 }
 
 function makeFontToken(
   item: Frame,
-  fonts: Record<string, unknown>,
+  fonts: Record<string, string>,
   usePostscriptFontNames: boolean,
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.style) throw Error(ErrorMakeFontTokensMissingProps);
 
-  const NAME = sanitizeString(item.name, camelizeTokenNames);
-  fonts[NAME] = usePostscriptFontNames ? item.style.fontPostScriptName : item.style.fontFamily;
+  const name = sanitizeString(item.name, camelizeTokenNames);
+  fonts[name] = usePostscriptFontNames ? item.style.fontPostScriptName : item.style.fontFamily;
 }

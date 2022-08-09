@@ -26,6 +26,7 @@ export const Graphics = {
   More,
 };
 `;
+    // @ts-ignore
     expect(processGraphicElementsMap(graphicElement)).toBe(EXPECTED);
   });
 });

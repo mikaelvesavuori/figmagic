@@ -16,19 +16,19 @@ export function makeEasingTokens(easingFrame: Frame, camelizeTokenNames?: boolea
   if (!easingFrame) throw Error(ErrorMakeEasingTokensNoFrame);
   if (!easingFrame.children) throw Error(ErrorMakeEasingTokensNoChildren);
 
-  const easings: Record<string, unknown> = {};
-  const TOKENS = easingFrame.children.reverse();
-  TOKENS.forEach((item: Frame) => makeEasingToken(item, easings, camelizeTokenNames));
+  const easings: Record<string, string> = {};
+  const tokens = easingFrame.children.reverse();
+  tokens.forEach((item: Frame) => makeEasingToken(item, easings, camelizeTokenNames));
 
-  return easings;
+  return easings as EasingTokens;
 }
 
 function makeEasingToken(
   item: Frame,
-  easings: Record<string, unknown>,
+  easings: Record<string, string>,
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.characters) throw Error(ErrorMakeEasingTokensMissingProps);
-  const NAME = sanitizeString(item.name, camelizeTokenNames);
-  easings[NAME] = item.characters.trim();
+  const name = sanitizeString(item.name, camelizeTokenNames);
+  easings[name] = item.characters.trim();
 }

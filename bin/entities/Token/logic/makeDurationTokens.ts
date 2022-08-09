@@ -19,19 +19,19 @@ export function makeDurationTokens(
   if (!durationFrame) throw Error(ErrorMakeDurationTokensNoFrame);
   if (!durationFrame.children) throw Error(ErrorMakeDurationTokensNoChildren);
 
-  const durations: Record<string, unknown> = {};
-  const TOKENS = durationFrame.children.reverse();
-  TOKENS.forEach((item: Frame) => makeDurationToken(item, durations, camelizeTokenNames));
+  const durations: Record<string, number> = {};
+  const tokens = durationFrame.children.reverse();
+  tokens.forEach((item: Frame) => makeDurationToken(item, durations, camelizeTokenNames));
 
-  return durations;
+  return durations as DurationTokens;
 }
 
 function makeDurationToken(
   item: Frame,
-  durations: Record<string, unknown>,
+  durations: Record<string, number>,
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.characters) throw Error(ErrorMakeDurationTokensMissingProps);
-  const NAME = sanitizeString(item.name, camelizeTokenNames);
-  durations[NAME] = parseFloat(item.characters);
+  const name = sanitizeString(item.name, camelizeTokenNames);
+  durations[name] = parseFloat(item.characters);
 }

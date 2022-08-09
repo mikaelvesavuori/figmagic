@@ -23,18 +23,18 @@ export function makeRadiusTokens(
   if (!radiusFrame) throw Error(ErrorMakeRadiusTokensNoFrame);
   if (!radiusFrame.children) throw Error(ErrorMakeRadiusTokensNoChildren);
 
-  const cornerRadii: Record<string, unknown> = {};
+  const cornerRadii: Record<string, string> = {};
   const tokens = radiusFrame.children.reverse();
   tokens.forEach((item: Frame) =>
     makeRadiusToken(item, cornerRadii, radiusUnit, remSize, camelizeTokenNames)
   );
 
-  return cornerRadii;
+  return cornerRadii as RadiusTokens;
 }
 
 function makeRadiusToken(
   item: Frame,
-  cornerRadii: Record<string, unknown>,
+  cornerRadii: Record<string, string>,
   radiusUnit: RadiusUnit,
   remSize: number,
   camelizeTokenNames?: boolean

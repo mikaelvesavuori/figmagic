@@ -1,6 +1,6 @@
 import { Tokens } from '../../../contracts/Tokens';
 import { Imports } from '../../../contracts/Imports';
-import { TokenMatch } from '../../../contracts/TokenMatch';
+import { TokenMatch, TokenMatchRaw } from '../../../contracts/TokenMatch';
 import { OutputFormatColors } from '../../../contracts/Config';
 
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
@@ -27,7 +27,7 @@ export function getTokenMatch(
 
   // Padding requires both X and Y dimensions/values so requires a bit more noodling
   if (property === 'padding') {
-    const PADDING_MATCH: any = matchPadding(
+    const PADDING_MATCH: TokenMatchRaw | undefined = matchPadding(
       expectedValue,
       remSize,
       tokens,
@@ -36,10 +36,13 @@ export function getTokenMatch(
       css,
       imports
     );
-    css = PADDING_MATCH.css;
-    imports = PADDING_MATCH.imports;
+
+    if (PADDING_MATCH) {
+      css = PADDING_MATCH.css;
+      imports = PADDING_MATCH.imports;
+    }
   } else {
-    const OTHER_MATCH: any = matchOther(
+    const OTHER_MATCH: TokenMatchRaw = matchOther(
       expectedValue,
       remSize,
       outputFormatColors || 'rgba',
@@ -64,11 +67,11 @@ function matchPadding(
   property: string,
   css: string,
   imports: Imports[]
-): Record<string, string | Imports[]> | undefined {
-  const KEYS: any = Object.keys(expectedValue);
+): TokenMatchRaw | undefined {
+  const KEYS: string[] = Object.keys(expectedValue);
   if (typeof expectedValue !== 'object') return;
 
-  KEYS.forEach((key: any) => {
+  KEYS.forEach((key: string) => {
     let foundMatch = false;
 
     if (expectedValue[key]) {
@@ -109,14 +112,11 @@ function matchOther(
   property: string,
   css: string,
   imports: Imports[]
-) {
+): TokenMatchRaw {
   let foundMatch = false;
 
-  Object.entries(tokens).forEach((token) => {
-    const TOKEN_VALUE: any = (() => {
-      if (typeof token[1] === 'number') return token[1];
-      return token[1];
-    })();
+  Object.entries(tokens).forEach((token: Token[]) => {
+    const TOKEN_VALUE: string | number = token[1];
 
     // Multiply rem|em strings through REM size argument
     const VALUE_THROUGH_REM = (() => {
@@ -130,6 +130,7 @@ function matchOther(
 
     const IS_TOKEN_MATCH = (() => {
       // We need to make a special check if color is using hex format
+      // @ts-ignore
       if (property.includes('color') && TOKEN_VALUE[0] === '#')
         return convertHexToRgba(TOKEN_VALUE as string) === expectedValue;
 
@@ -167,3 +168,5 @@ function matchOther(
 
   return { css, imports };
 }
+
+type Token = string | number;

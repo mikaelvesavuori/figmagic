@@ -22,26 +22,29 @@ export function makeOpacityTokens(
   if (!opacitiesFrame) throw Error(ErrorMakeOpacityTokensNoFrame);
   if (!opacitiesFrame.children) throw Error(ErrorMakeOpacityTokensNoChildren);
 
-  const TOKENS = opacitiesFrame.children.reverse();
+  const tokens = opacitiesFrame.children.reverse();
 
-  const opacityTokens = TOKENS.reduce((tokens: { [index: string]: any }, item: Frame) => {
-    if (!item.name) throw Error(ErrorMakeOpacityTokensMissingProps);
+  const opacityTokens = tokens.reduce(
+    (_tokens: { [index: string]: string | number }, item: Frame) => {
+      if (!item.name) throw Error(ErrorMakeOpacityTokensMissingProps);
 
-    // Note: Figma API does not provide an opacity value if it's 100%. We will assume it defaults to 1 if undefined.
-    const NAME = sanitizeString(item.name, camelizeTokenNames);
-    const OPACITY = (() => {
-      let opacity: string | number = 1;
+      // Note: Figma API does not provide an opacity value if it's 100%. We will assume it defaults to 1 if undefined.
+      const name = sanitizeString(item.name, camelizeTokenNames);
+      const opacity = (() => {
+        let opacity: string | number = 1;
 
-      if (typeof item.opacity !== 'undefined') opacity = Math.round(item.opacity * 100) / 100;
-      if (opacitiesUnit === 'percent') opacity = `${opacity * 100}%`;
+        if (typeof item.opacity !== 'undefined') opacity = Math.round(item.opacity * 100) / 100;
+        if (opacitiesUnit === 'percent') opacity = `${opacity * 100}%`;
 
-      return opacity;
-    })();
+        return opacity;
+      })();
 
-    tokens[NAME] = OPACITY;
+      _tokens[name] = opacity;
 
-    return tokens;
-  }, {});
+      return _tokens;
+    },
+    {}
+  );
 
   return opacityTokens;
 }

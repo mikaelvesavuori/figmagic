@@ -20,21 +20,21 @@ export function makeFontWeightTokens(
   if (!fontWeightFrame) throw Error(ErrorMakeFontWeightTokensNoFrame);
   if (!fontWeightFrame.children) throw Error(ErrorMakeFontWeightTokensNoChildren);
 
-  const fontWeights: Record<string, unknown> = {};
-  const TOKENS = fontWeightFrame.children.reverse();
-  TOKENS.forEach((item: Frame) => makeFontWeightToken(item, fontWeights, camelizeTokenNames));
+  const fontWeights: Record<string, string> = {};
+  const tokens = fontWeightFrame.children.reverse();
+  tokens.forEach((item: Frame) => makeFontWeightToken(item, fontWeights, camelizeTokenNames));
 
-  return fontWeights;
+  return fontWeights as FontWeightTokens;
 }
 
 function makeFontWeightToken(
   item: Frame,
-  fontWeights: Record<string, unknown>,
+  fontWeights: Record<string, string>,
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.style) throw Error(ErrorMakeFontWeightTokensMissingProps);
   if (!item.style.fontWeight) throw Error(ErrorMakeFontWeightTokensMissingWeight);
 
-  const NAME = sanitizeString(item.name, camelizeTokenNames);
-  fontWeights[NAME] = item.style.fontWeight;
+  const name = sanitizeString(item.name, camelizeTokenNames);
+  fontWeights[name] = item.style.fontWeight;
 }

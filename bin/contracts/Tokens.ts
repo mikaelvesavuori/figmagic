@@ -1,4 +1,4 @@
-export type Tokens = Record<string, unknown>;
+export type Tokens = Record<string, string | number>;
 
 export type BorderWidthTokens = Tokens;
 export type ColorTokens = Tokens;

@@ -1,6 +1,8 @@
+import { FRAME as Frame } from './Figma';
+
 export type Element = {
-  children: any[];
-  pageName: any;
+  children: Frame[];
+  pageName: string;
   config: any;
   components: any;
   isGeneratingGraphics?: boolean;

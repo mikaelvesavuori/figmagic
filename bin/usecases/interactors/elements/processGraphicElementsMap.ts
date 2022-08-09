@@ -4,7 +4,7 @@ import { ErrorProcessGraphicElementsMap } from '../../../frameworks/errors/error
 /**
  * @description Create raw file content for the graphic elements index/map file
  */
-export function processGraphicElementsMap(graphics: any[]): string {
+export function processGraphicElementsMap(graphics: Graphic[]): string {
   if (!graphics) throw Error(ErrorProcessGraphicElementsMap);
   if (!(graphics.length > 0)) throw Error(ErrorProcessGraphicElementsMap);
 
@@ -27,5 +27,5 @@ export function processGraphicElementsMap(graphics: any[]): string {
 }
 
 // Get and use last part of name
-const getFixedGraphicName = (name: any) =>
+const getFixedGraphicName = (name: string) =>
   name.split('/')[name.split('/').length - 1].trim().replace(/\s/g, '');

@@ -3,6 +3,7 @@ import * as path from 'path';
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { Imports, UpdatedCssAndImports } from '../../../contracts/Imports';
 import { OutputFormatColors } from '../../../contracts/Config';
+import { Color } from '../../../contracts/Parsing';
 
 import { getFileContents } from './getFileContents';
 import { getPaddingY, PaddingVertical } from './parsers/getPaddingY';
@@ -167,7 +168,7 @@ function calcHeight(calcData: CalcData, spacing: Record<string, unknown>) {
   return { css, imports };
 }
 
-function calcBackgroundColor(calcData: CalcData, colors: Record<string, unknown>) {
+function calcBackgroundColor(calcData: CalcData, colors: Color) {
   const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
@@ -205,7 +206,7 @@ function calcBorderWidth(calcData: CalcData, borderWidths: Record<string, unknow
   return { css, imports };
 }
 
-function calcBorderColor(calcData: CalcData, colors: Record<string, unknown>) {
+function calcBorderColor(calcData: CalcData, colors: Color) {
   const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
