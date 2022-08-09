@@ -1,9 +1,11 @@
 import * as path from 'path';
 
 import { FRAME as Frame } from '../../../contracts/Figma';
-import { UpdatedCssAndImports } from '../../../contracts/Imports';
+import { Imports, UpdatedCssAndImports } from '../../../contracts/Imports';
 import { TypographyElement } from '../../../contracts/TypographyElement';
 import { OutputFormatColors } from '../../../contracts/Config';
+import { Color, FileOutput } from '../../../contracts/Parsing';
+import { TokenMatchRaw } from '../../../contracts/TokenMatch';
 
 import { getTokenMatch } from './getTokenMatch';
 import { getFileContents } from './getFileContents';
@@ -40,7 +42,7 @@ export function parseTypographyStylingFromElement(
   );
 
   let css = ``;
-  let imports: Record<string, unknown>[] = [];
+  let imports: Imports[] = []; // TODO
 
   const FONT_COLOR = calcFontColor(
     { textElement, css, imports, remSize } as CalcDataTypography,
@@ -119,7 +121,7 @@ export function parseTypographyStylingFromElement(
   return { updatedCss: NEW_CSS, updatedImports: imports };
 }
 
-const getFiles = (filePath: string, outputFormatTokens: string): any => {
+const getFiles = (filePath: string, outputFormatTokens: string): FileOutput => {
   const colors = getFileContents(filePath, 'colors', outputFormatTokens);
   const fontFamilies = getFileContents(filePath, 'fontFamilies', outputFormatTokens);
   const fontSizes = getFileContents(filePath, 'fontSizes', outputFormatTokens);
@@ -209,14 +211,14 @@ const getFontCase = (textElement: Frame): string | null => {
 
 type CalcDataTypography = {
   css: string;
-  imports: Record<string, unknown>[];
+  imports: Imports[];
   remSize: number;
   textElement: Frame;
   outputFormatColors: OutputFormatColors;
   usePostscriptFontNames: boolean;
 };
 
-function calcFontColor(calcData: CalcDataTypography, colors: any) {
+function calcFontColor(calcData: CalcDataTypography, colors: Color) {
   const { textElement, remSize, outputFormatColors, imports } = calcData;
   let { css } = calcData;
 
@@ -231,13 +233,13 @@ function calcFontColor(calcData: CalcDataTypography, colors: any) {
       outputFormatColors
     );
     css += updatedCss;
-    updatedImports.forEach((i: any) => imports.push(i));
+    updatedImports.forEach((i: Imports) => imports.push(i));
   }
 
   return { css, imports };
 }
 
-function calcFontSize(calcData: CalcDataTypography, fontSizes: any) {
+function calcFontSize(calcData: CalcDataTypography, fontSizes: Record<string, string>) {
   const { textElement, remSize, outputFormatColors, imports } = calcData;
   let { css } = calcData;
 
@@ -252,13 +254,16 @@ function calcFontSize(calcData: CalcDataTypography, fontSizes: any) {
       outputFormatColors
     );
     css += updatedCss;
-    updatedImports.forEach((i: any) => imports.push(i));
+    updatedImports.forEach((i: Imports) => imports.push(i));
   }
 
   return { css, imports, fontSize: FONT_SIZE };
 }
 
-function calcFontFamily(calcData: CalcDataTypography, fontFamilies: any) {
+function calcFontFamily(
+  calcData: CalcDataTypography,
+  fontFamilies: Record<string, string>
+): TokenMatchRaw {
   const { textElement, remSize, outputFormatColors, usePostscriptFontNames, imports } = calcData;
   let { css } = calcData;
 
@@ -273,13 +278,13 @@ function calcFontFamily(calcData: CalcDataTypography, fontFamilies: any) {
       outputFormatColors
     );
     css += updatedCss;
-    updatedImports.forEach((i: any) => imports.push(i));
+    updatedImports.forEach((i: Imports) => imports.push(i));
   }
 
   return { css, imports };
 }
 
-function calcFontWeight(calcData: CalcDataTypography, fontWeights: any) {
+function calcFontWeight(calcData: CalcDataTypography, fontWeights: Record<string, string>) {
   const { textElement, remSize, outputFormatColors, imports } = calcData;
   let { css } = calcData;
 
@@ -294,13 +299,16 @@ function calcFontWeight(calcData: CalcDataTypography, fontWeights: any) {
       outputFormatColors
     );
     css += updatedCss;
-    updatedImports.forEach((i: any) => imports.push(i));
+    updatedImports.forEach((i: Imports) => imports.push(i));
   }
 
   return { css, imports };
 }
 
-function calcFontLineHeight(calcData: CalcDataTypography, lineHeights: any) {
+function calcFontLineHeight(
+  calcData: CalcDataTypography,
+  lineHeights: Record<string, string>
+): TokenMatchRaw {
   const { textElement, remSize, outputFormatColors, imports } = calcData;
   let { css } = calcData;
 
@@ -315,7 +323,7 @@ function calcFontLineHeight(calcData: CalcDataTypography, lineHeights: any) {
       outputFormatColors
     );
     css += updatedCss;
-    updatedImports.forEach((i: any) => imports.push(i));
+    updatedImports.forEach((i: Imports) => imports.push(i));
   }
 
   return { css, imports };
@@ -323,10 +331,10 @@ function calcFontLineHeight(calcData: CalcDataTypography, lineHeights: any) {
 
 function calcLetterSpacing(
   calcData: CalcDataTypography,
-  letterSpacings: any,
+  letterSpacings: Record<string, string>,
   letterSpacingUnit: string,
   fontSize: number | null
-) {
+): TokenMatchRaw {
   const { textElement, remSize, outputFormatColors, imports } = calcData;
   let { css } = calcData;
 
@@ -344,7 +352,7 @@ function calcLetterSpacing(
       outputFormatColors
     );
     css += updatedCss;
-    updatedImports.forEach((i: any) => imports.push(i));
+    updatedImports.forEach((i: Imports) => imports.push(i));
   }
 
   return { css, imports };

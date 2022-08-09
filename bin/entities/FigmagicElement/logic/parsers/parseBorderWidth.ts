@@ -8,7 +8,7 @@ import { updateParsing } from './updateParsing';
 import { ErrorParseBorderWidth } from '../../../../frameworks/errors/errors';
 
 type BorderWidthParams = {
-  borderWidths: Record<string, unknown>;
+  borderWidths: Record<string, string | number>;
   borderWidth: string;
   remSize: number;
   outputFormatColors: OutputFormatColors;

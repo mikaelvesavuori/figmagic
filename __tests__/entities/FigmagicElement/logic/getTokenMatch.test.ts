@@ -1,3 +1,4 @@
+import { Tokens } from '../../../../bin/contracts/Tokens';
 import { getTokenMatch } from '../../../../bin/entities/FigmagicElement/logic/getTokenMatch';
 
 describe('Failure cases', () => {
@@ -13,7 +14,7 @@ describe('Success cases', () => {
   test('It should match a non-token match', () => {
     expect(
       getTokenMatch(
-        "{ chunky: '8px', fat: '4px', regular: '2px', hairline: '1px' }",
+        "{ chunky: '8px', fat: '4px', regular: '2px', hairline: '1px' }" as unknown as Tokens,
         'borderWidths',
         'border-width',
         '1px',

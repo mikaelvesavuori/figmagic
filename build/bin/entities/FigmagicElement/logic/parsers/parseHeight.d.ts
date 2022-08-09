@@ -2,7 +2,7 @@ import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElem
 import { OutputFormatColors } from '../../../../contracts/Config';
 import { Imports } from '../../../../contracts/Imports';
 declare type HeightParams = {
-    spacing: Record<string, unknown>;
+    spacing: Record<string, string>;
     height: number;
     remSize: number;
     outputFormatColors: OutputFormatColors;

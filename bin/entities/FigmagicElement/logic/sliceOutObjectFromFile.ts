@@ -1,13 +1,15 @@
 import fs from 'fs';
 
+import { JsonFileData } from '../../../contracts/Files';
+
 import { ErrorSliceOutObjectFromFile } from '../../../frameworks/errors/errors';
 
-export const sliceOutObjectFromFile = (path: string): Record<string, unknown> | void => {
+export const sliceOutObjectFromFile = (path: string): JsonFileData => {
   if (!path) throw Error(ErrorSliceOutObjectFromFile);
 
-  const DATA = fs.readFileSync(path, 'utf8');
-  if (!DATA) throw Error(ErrorSliceOutObjectFromFile);
+  const data = fs.readFileSync(path, 'utf8');
+  if (!data) throw Error(ErrorSliceOutObjectFromFile);
 
-  const SLICED_DATA = DATA.slice(DATA.indexOf('{'), DATA.indexOf('}') + 1);
-  return JSON.parse(SLICED_DATA);
+  const slicedData = data.slice(data.indexOf('{'), data.indexOf('}') + 1);
+  return JSON.parse(slicedData);
 };

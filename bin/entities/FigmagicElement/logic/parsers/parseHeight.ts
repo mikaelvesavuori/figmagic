@@ -1,6 +1,7 @@
 import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 import { OutputFormatColors } from '../../../../contracts/Config';
 import { Imports } from '../../../../contracts/Imports';
+import { Tokens } from '../../../../contracts/Tokens';
 
 import { getTokenMatch } from '../getTokenMatch';
 import { updateParsing } from './updateParsing';
@@ -8,7 +9,7 @@ import { updateParsing } from './updateParsing';
 import { ErrorParseHeight } from '../../../../frameworks/errors/errors';
 
 type HeightParams = {
-  spacing: Record<string, unknown>;
+  spacing: Record<string, string>;
   height: number;
   remSize: number;
   outputFormatColors: OutputFormatColors;
@@ -23,7 +24,7 @@ export function parseHeight(
   const { spacing, height, remSize, outputFormatColors } = params;
 
   const { updatedCss, updatedImports } = getTokenMatch(
-    spacing,
+    spacing as unknown as Tokens,
     'spacing',
     'height',
     height,

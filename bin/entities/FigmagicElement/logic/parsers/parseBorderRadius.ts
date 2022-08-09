@@ -8,7 +8,7 @@ import { updateParsing } from './updateParsing';
 import { ErrorParseBorderRadius } from '../../../../frameworks/errors/errors';
 
 type BorderRadiusParams = {
-  radii: Record<string, unknown>;
+  radii: Record<string, string>;
   borderRadius: string;
   remSize: number;
   outputFormatColors: OutputFormatColors;

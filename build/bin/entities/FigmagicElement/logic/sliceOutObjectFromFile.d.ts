@@ -1,1 +1,2 @@
-export declare const sliceOutObjectFromFile: (path: string) => Record<string, unknown> | void;
+import { JsonFileData } from '../../../contracts/Files';
+export declare const sliceOutObjectFromFile: (path: string) => JsonFileData;

@@ -2,7 +2,7 @@ import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElem
 import { OutputFormatColors } from '../../../../contracts/Config';
 import { Imports } from '../../../../contracts/Imports';
 declare type BorderWidthParams = {
-    borderWidths: Record<string, unknown>;
+    borderWidths: Record<string, string | number>;
     borderWidth: string;
     remSize: number;
     outputFormatColors: OutputFormatColors;

@@ -8,7 +8,7 @@ import { updateParsing } from './updateParsing';
 import { ErrorParseShadow } from '../../../../frameworks/errors/errors';
 
 type ShadowParams = {
-  shadows: Record<string, unknown>;
+  shadows: Record<string, string>;
   shadow: string;
   remSize: number;
   outputFormatColors: OutputFormatColors;

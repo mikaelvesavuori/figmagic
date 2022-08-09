@@ -2,7 +2,7 @@ import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElem
 import { OutputFormatColors } from '../../../../contracts/Config';
 import { Imports } from '../../../../contracts/Imports';
 declare type ShadowParams = {
-    shadows: Record<string, unknown>;
+    shadows: Record<string, string>;
     shadow: string;
     remSize: number;
     outputFormatColors: OutputFormatColors;

@@ -44,7 +44,7 @@ export function parseCssFromElement(
   if (layoutElement.fills && layoutElement.fills.some((fill) => fill['type'] === 'IMAGE'))
     css += `object-fit: cover;\n`;
 
-  let imports: Record<string, any>[] = [];
+  let imports: Imports[] = [];
 
   const padding = calcPadding(
     { textElement, layoutElement, css, imports, remSize } as CalcData,
@@ -117,7 +117,7 @@ const getFiles = (filePath: string, outputFormatToken: string): Record<string, a
   };
 };
 
-function calcPadding(calcData: CalcData, spacing: Record<string, unknown>) {
+function calcPadding(calcData: CalcData, spacing: Record<string, string>) {
   const { textElement, layoutElement, remSize } = calcData;
   let { css, imports } = calcData;
 
@@ -147,7 +147,7 @@ function calcPadding(calcData: CalcData, spacing: Record<string, unknown>) {
   return { css, imports };
 }
 
-function calcHeight(calcData: CalcData, spacing: Record<string, unknown>) {
+function calcHeight(calcData: CalcData, spacing: Record<string, string>) {
   const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
@@ -187,7 +187,8 @@ function calcBackgroundColor(calcData: CalcData, colors: Color) {
   return { css, imports };
 }
 
-function calcBorderWidth(calcData: CalcData, borderWidths: Record<string, unknown>) {
+function calcBorderWidth(calcData: CalcData, borderWidths: Record<string, string>) {
+  console.log('borderWidths', borderWidths);
   const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
@@ -225,7 +226,7 @@ function calcBorderColor(calcData: CalcData, colors: Color) {
   return { css, imports };
 }
 
-function calcBorderRadius(calcData: CalcData, radii: Record<string, unknown>) {
+function calcBorderRadius(calcData: CalcData, radii: Record<string, string>) {
   const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
@@ -244,7 +245,7 @@ function calcBorderRadius(calcData: CalcData, radii: Record<string, unknown>) {
   return { css, imports };
 }
 
-function calcShadows(calcData: CalcData, shadows: Record<string, unknown>) {
+function calcShadows(calcData: CalcData, shadows: Record<string, string>) {
   const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 

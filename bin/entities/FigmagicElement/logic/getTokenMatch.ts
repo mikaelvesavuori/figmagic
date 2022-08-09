@@ -12,7 +12,7 @@ import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../../framew
 import { convertHexToRgba } from '../../../frameworks/string/convertHexToRgba';
 
 export function getTokenMatch(
-  tokens: Tokens | any,
+  tokens: Tokens,
   tokenFileName: string,
   property: string,
   expectedValue: string | number | Record<string, unknown>,

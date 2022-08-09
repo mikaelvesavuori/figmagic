@@ -2,7 +2,7 @@ import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElem
 import { OutputFormatColors } from '../../../../contracts/Config';
 import { Imports } from '../../../../contracts/Imports';
 declare type BorderRadiusParams = {
-    radii: Record<string, unknown>;
+    radii: Record<string, string>;
     borderRadius: string;
     remSize: number;
     outputFormatColors: OutputFormatColors;

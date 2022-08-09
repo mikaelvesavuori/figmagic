@@ -3,7 +3,7 @@ import { randomUUID } from 'crypto';
 import { FigmaElement } from '../../contracts/FigmaElement';
 import { FRAME as Frame } from '../../contracts/Figma';
 import { Config } from '../../contracts/Config';
-import { UpdatedCssAndImports } from '../../contracts/Imports';
+import { Imports, UpdatedCssAndImports } from '../../contracts/Imports';
 import { TypographyElement } from '../../contracts/TypographyElement';
 
 import { parseCssFromElement } from './logic/parseCssFromElement';
@@ -189,7 +189,7 @@ class FigmagicElement {
    */
   private handleNestedElements(elements: Frame[]): UpdatedCssAndImports {
     let css = ``;
-    let imports: Record<string, unknown>[] = [];
+    let imports: Imports[] = [];
 
     const CHILD_ELEMENTS = elements.filter(
       (el: Frame) => this.acceptedTypes.includes(el.type) && el.name[0] !== '_'
@@ -221,7 +221,7 @@ class FigmagicElement {
    */
   private handleFlatElements(elements: Frame[]): UpdatedCssAndImports {
     let css = `\n`;
-    let imports: Record<string, unknown>[] = [];
+    let imports: Imports[] = [];
 
     this.replaceHtml('{{TEXT}}', this.text || '');
 
@@ -262,7 +262,7 @@ class FigmagicElement {
    */
   private parseNestedCss(el: Frame, config: Config, id?: string) {
     let css = `\n`;
-    let imports: Record<string, unknown>[] = [];
+    let imports: Imports[] = [];
     const ID = id || randomUUID().slice(0, 8);
 
     const MAIN_ELEMENT = el.children?.filter(
@@ -328,7 +328,7 @@ class FigmagicElement {
     textElement: Frame | null = null
   ): UpdatedCssAndImports {
     let css = ``;
-    let imports: Record<string, unknown>[] = [];
+    let imports: Imports[] = [];
 
     if (layoutElement) {
       const FIXED_NAME = this.name.replace(/\s/gi, '');
