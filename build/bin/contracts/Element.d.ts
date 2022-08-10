@@ -1,12 +1,14 @@
-import { FRAME as Frame } from './Figma';
+import { Config } from './Config';
+import { Components, FRAME as Frame } from './Figma';
+import { Graphic } from './Graphic';
 export declare type Element = {
     children: Frame[];
     pageName: string;
-    config: any;
-    components: any;
+    config: Config;
+    components: Components;
     isGeneratingGraphics?: boolean;
 };
 export declare type GraphicElementsMap = {
-    config: any;
-    graphics: any;
+    config: Config;
+    graphics: Graphic[];
 };

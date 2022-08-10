@@ -1,6 +1,10 @@
 export interface ImageResponse {
   err: string | null;
-  images: Record<string, unknown>;
+  images: Image;
   status?: number;
   document?: any;
 }
+
+type Image = {
+  [key: string]: string;
+};

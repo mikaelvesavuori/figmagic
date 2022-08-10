@@ -3,41 +3,32 @@ import { createImportStringFromList } from '../string/createImportStringFromList
 /**
  * Helper block to decouple logic from prepareWrite function
  */
-export const getElement = (metadata: undefined | null | Record<string, any>): string => {
-  if (metadata) {
-    if (metadata.element) return metadata.element;
-    else return 'div';
-  } else return 'div';
+export const getElement = (metadata?: Record<string, any>): string => {
+  if (metadata && metadata.element) return metadata.element;
+  return 'div';
 };
 
-export const getText = (metadata: undefined | null | Record<string, any>): string => {
-  if (metadata) {
-    if (metadata.text) return metadata.text;
-    else return '';
-  } else return '';
+export const getText = (metadata?: Record<string, any>): string => {
+  if (metadata && metadata.text) return metadata.text;
+  return '';
 };
 
-export const getExtraProps = (metadata: undefined | null | Record<string, any>): string => {
-  if (metadata) {
-    if (metadata.extraProps) return metadata.extraProps;
-    else return '';
-  } else return '';
+export const getExtraProps = (metadata?: Record<string, any>): string => {
+  if (metadata && metadata.extraProps) return metadata.extraProps;
+  return '';
 };
 
 export const getImports = (
-  metadata: undefined | null | Record<string, any>,
-  outputFolderTokens?: string | undefined,
-  tokensRelativeImportPrefix?: string | undefined
+  metadata?: Record<string, any>,
+  outputFolderTokens?: string,
+  tokensRelativeImportPrefix?: string
 ): string => {
-  if (metadata) {
-    if (metadata.imports) {
-      if (metadata.imports.length > 0) {
-        return createImportStringFromList(
-          metadata.imports,
-          outputFolderTokens,
-          tokensRelativeImportPrefix
-        );
-      } else return '';
-    } else return '';
-  } else return '';
+  if (metadata && metadata.imports && metadata.imports.length > 0)
+    return createImportStringFromList(
+      metadata.imports,
+      outputFolderTokens,
+      tokensRelativeImportPrefix
+    );
+
+  return '';
 };

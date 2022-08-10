@@ -1,2 +1,3 @@
 import { Config } from '../../../contracts/Config';
-export declare function writeElements(elements: any[], config: Config, isGeneratingGraphics?: boolean): void;
+import { FigmagicElement } from '../../../contracts/FigmagicElement';
+export declare function writeElements(elements: FigmagicElement[], config: Config, isGeneratingGraphics?: boolean): void;

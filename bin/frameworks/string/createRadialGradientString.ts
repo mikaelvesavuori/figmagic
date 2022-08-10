@@ -1,4 +1,4 @@
-import { Paint } from '../../contracts/Figma';
+import { GradientStop, Paint } from '../../contracts/Figma';
 
 import { roundColorValue } from '../../frameworks/string/roundColorValue';
 
@@ -28,14 +28,16 @@ export function createRadialGradientString(fills: Paint): string {
 
   let str = `radial-gradient(${position}, `;
 
-  const GRADIENT_STOPS = fills.gradientStops ? fills.gradientStops : null;
+  const GRADIENT_STOPS = fills.gradientStops || null;
   if (!GRADIENT_STOPS) throw Error();
 
-  GRADIENT_STOPS.forEach((fill: Paint, index: number) => {
+  GRADIENT_STOPS.forEach((fill: GradientStop, index: number) => {
     const R = roundColorValue(fill.color?.r, 255);
     const G = roundColorValue(fill.color?.g, 255);
     const B = roundColorValue(fill.color?.b, 255);
+    // @ts-ignore TODO
     const A = roundColorValue(fill.opacity ? fill.opacity : fill.color?.a, 1);
+    // @ts-ignore TODO
     const POS = roundColorValue(parseFloat(fill.position ? fill.position : '0'), 100);
 
     if (index > 0) str += ` `;

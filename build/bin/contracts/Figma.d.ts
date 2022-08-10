@@ -176,7 +176,7 @@ export declare type Paint = {
     opacity?: number;
     position?: string;
     type?: 'SOLID' | 'GRADIENT_LINEAR' | 'GRADIENT_RADIAL' | 'GRADIENT_ANGULAR' | 'GRADIENT_DIAMOND' | 'IMAGE' | 'EMOJI';
-    gradientStops?: any[];
+    gradientStops?: GradientStop[];
     color?: Color;
     blendMode?: BlendMode;
     gradientHandlePositions?: Vector | Vector[];
@@ -238,6 +238,11 @@ export declare type Component = {
     key: string;
     name: string;
     description: string;
+    componentSetId: string;
+    documentationLinks: string[];
+};
+export declare type Components = {
+    [key: string]: Component;
 };
 export declare type Style = {
     key: string;
@@ -246,3 +251,13 @@ export declare type Style = {
     style_type: StyleType;
 };
 export declare type StyleType = 'FILL' | 'TEXT' | 'EFFECT' | 'GRID';
+export declare type GradientStop = {
+    color: RgbaColor;
+    position: number;
+};
+export declare type RgbaColor = {
+    r: number;
+    g: number;
+    b: number;
+    a: number;
+};

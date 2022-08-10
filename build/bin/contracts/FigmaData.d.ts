@@ -1,7 +1,7 @@
-import { FRAME as Frame } from './Figma';
+import { Components, FRAME as Frame } from './Figma';
 export interface FigmaData {
     document: Document;
-    components?: Record<string, unknown>;
+    components: Components;
 }
 declare type Document = {
     id: string;

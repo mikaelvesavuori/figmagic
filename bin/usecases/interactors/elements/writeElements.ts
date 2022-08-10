@@ -13,10 +13,14 @@ import { ErrorWriteElements } from '../../../frameworks/errors/errors';
 /**
  * @description Funnel function to write all the wanted files per element
  */
-export function writeElements(elements: any[], config: Config, isGeneratingGraphics = false): void {
+export function writeElements(
+  elements: FigmagicElement[],
+  config: Config,
+  isGeneratingGraphics = false
+): void {
   if (!elements || !config) throw Error(ErrorWriteElements);
 
-  elements.map((element) => {
+  elements.forEach((element: FigmagicElement) => {
     const FIXED_CONFIG = makeFixedConfig(element, config);
     // TODO Refactor: writeFileHelper() should take fewer params since we are already passing in fixed config...?
 

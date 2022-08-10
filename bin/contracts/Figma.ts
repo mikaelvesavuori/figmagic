@@ -264,7 +264,7 @@ export type Paint = {
     | 'EMOJI';
 
   // Added
-  gradientStops?: any[];
+  gradientStops?: GradientStop[];
 
   // For solid paints
   color?: Color;
@@ -342,6 +342,12 @@ export type Component = {
   key: string;
   name: string;
   description: string;
+  componentSetId: string;
+  documentationLinks: string[];
+};
+
+export type Components = {
+  [key: string]: Component;
 };
 
 export type Style = {
@@ -352,3 +358,15 @@ export type Style = {
 };
 
 export type StyleType = 'FILL' | 'TEXT' | 'EFFECT' | 'GRID';
+
+export type GradientStop = {
+  color: RgbaColor;
+  position: number;
+};
+
+export type RgbaColor = {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+};

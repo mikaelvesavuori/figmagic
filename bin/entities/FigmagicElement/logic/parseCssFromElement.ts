@@ -188,7 +188,6 @@ function calcBackgroundColor(calcData: CalcData, colors: Color) {
 }
 
 function calcBorderWidth(calcData: CalcData, borderWidths: Record<string, string>) {
-  console.log('borderWidths', borderWidths);
   const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 

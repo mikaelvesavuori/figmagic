@@ -1,4 +1,4 @@
-export declare const getElement: (metadata: undefined | null | Record<string, any>) => string;
-export declare const getText: (metadata: undefined | null | Record<string, any>) => string;
-export declare const getExtraProps: (metadata: undefined | null | Record<string, any>) => string;
-export declare const getImports: (metadata: undefined | null | Record<string, any>, outputFolderTokens?: string | undefined, tokensRelativeImportPrefix?: string | undefined) => string;
+export declare const getElement: (metadata?: Record<string, any>) => string;
+export declare const getText: (metadata?: Record<string, any>) => string;
+export declare const getExtraProps: (metadata?: Record<string, any>) => string;
+export declare const getImports: (metadata?: Record<string, any>, outputFolderTokens?: string, tokensRelativeImportPrefix?: string) => string;
