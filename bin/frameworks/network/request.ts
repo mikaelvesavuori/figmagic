@@ -1,4 +1,4 @@
-import https from 'https';
+import https, { RequestOptions } from 'https';
 import fs from 'fs';
 
 import { isJsonString } from '../filesystem/isJsonString';
@@ -8,7 +8,7 @@ import { checkIfExists } from '../filesystem/checkIfExists';
  * @description HTTPS request helper function.
  */
 export async function request(urlPath: string, figmaToken?: string): Promise<any> {
-  const options = {
+  const options: RequestOptions = {
     hostname: 'api.figma.com',
     path: urlPath,
     port: 443,
@@ -16,7 +16,7 @@ export async function request(urlPath: string, figmaToken?: string): Promise<any
     headers: {
       'Content-Type': 'application/json',
       'Accept-Charset': 'UTF-8'
-    } as Record<string, any>
+    }
   };
 
   if (urlPath.includes('https://') || urlPath.includes('http://')) {

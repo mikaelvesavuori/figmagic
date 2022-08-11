@@ -238,8 +238,8 @@ export declare type Component = {
     key: string;
     name: string;
     description: string;
-    componentSetId: string;
-    documentationLinks: string[];
+    componentSetId?: string;
+    documentationLinks?: string[];
 };
 export declare type Components = {
     [key: string]: Component;

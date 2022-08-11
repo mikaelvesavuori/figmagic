@@ -1,4 +1,4 @@
-import { ImageResponse } from '../../../../bin/contracts/ImageResponse';
+import { ApiResponse } from '../../../../bin/contracts/ApiResponse';
 
 import { getFileList } from '../../../../bin/usecases/interactors/graphics/getFileList';
 
@@ -13,7 +13,7 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should generate file list for SVG, when given valid input', () => {
-    expect(getFileList(processGraphicsTestData as ImageResponse, graphicsIds, 'svg')).toEqual([
+    expect(getFileList(processGraphicsTestData as ApiResponse, graphicsIds, 'svg')).toEqual([
       {
         file: 'More.svg',
         url: 'https://s3-us-west-2.amazonaws.com/figma-alpha-api/img/1c12/7bf2/5382af0fbf2908d72167b084836854f3'

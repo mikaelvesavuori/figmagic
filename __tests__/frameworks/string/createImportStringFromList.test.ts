@@ -1,3 +1,4 @@
+import { Imports } from '../../../bin/contracts/Imports';
 import { createImportStringFromList } from '../../../bin/frameworks/string/createImportStringFromList';
 
 describe('Failure cases', () => {
@@ -18,19 +19,18 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should correctly return a CSS standard RGBA string', () => {
-    expect(
-      createImportStringFromList([
-        'spacing',
-        'colors',
-        'borderWidths',
-        'radii',
-        'shadows',
-        'fontSizes',
-        'fontFamilies',
-        'fontWeights',
-        'lineHeights'
-      ])
-    ).toBe(`import spacing from 'tokens/spacing';
+    const imports: Imports = [
+      'spacing',
+      'colors',
+      'borderWidths',
+      'radii',
+      'shadows',
+      'fontSizes',
+      'fontFamilies',
+      'fontWeights',
+      'lineHeights'
+    ];
+    expect(createImportStringFromList(imports)).toBe(`import spacing from 'tokens/spacing';
 import colors from 'tokens/colors';
 import borderWidths from 'tokens/borderWidths';
 import radii from 'tokens/radii';

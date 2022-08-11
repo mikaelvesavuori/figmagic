@@ -1,4 +1,4 @@
-import { FigmaData } from '../../contracts/FigmaData';
+import { FigmaResponse } from '../../contracts/FigmaData';
 
 import { getDataLocal } from './getDataLocal';
 import { getDataRemote } from './getDataRemote';
@@ -20,20 +20,21 @@ export async function getData(
   token: string | null,
   url: string | null,
   versionName?: string | null
-): Promise<FigmaData> {
+): Promise<FigmaResponse> {
   if (!recompileLocal && (!token || !url)) throw Error(ErrorGetData);
   if (recompileLocal && (!figmagicFolder || !figmaData)) throw Error(ErrorGetDataNoTokenOrUrl);
 
-  const _DATA = (async () => {
+  const _data = (async () => {
     if (recompileLocal) return getDataLocal(figmagicFolder, figmaData);
     else if (token && url) return await getDataRemote(token, url, versionName);
     throw Error(ErrorGetDataFailedLocalAndRemote);
   })();
 
-  const DATA = await _DATA;
+  const data = await _data;
 
-  if (!recompileLocal && !DATA.document) throw Error(ErrorGetDataNoData);
-  if (recompileLocal && !DATA) throw Error(ErrorGetDataNoData);
+  // @ts-ignore
+  if (!recompileLocal && !data.document) throw Error(ErrorGetDataNoData);
+  if (recompileLocal && !data) throw Error(ErrorGetDataNoData);
 
-  return DATA;
+  return data;
 }

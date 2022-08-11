@@ -1,2 +1,3 @@
 import { Config } from '../../../contracts/Config';
-export declare function writeGraphics(fileList: Record<string, any>[], config: Config): Promise<void>;
+import { FileList } from '../../../contracts/Files';
+export declare function writeGraphics(fileList: FileList[], config: Config): Promise<void>;

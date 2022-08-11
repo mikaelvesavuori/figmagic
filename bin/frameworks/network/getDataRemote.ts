@@ -1,5 +1,7 @@
 import { getFromApi } from './getFromApi';
 
+import { FigmaResponse } from '../../contracts/FigmaData';
+
 import { ErrorGetData, ErrorGetDataNoTokenOrUrl } from '../errors/errors';
 import { MsgSetDataFromApi } from '../messages/messages';
 
@@ -10,7 +12,7 @@ export async function getDataRemote(
   token: string,
   url: string,
   versionName?: string | null
-): Promise<any> {
+): Promise<FigmaResponse> {
   if (!token || !url) throw Error(ErrorGetDataNoTokenOrUrl);
   console.log(MsgSetDataFromApi);
 
@@ -18,5 +20,5 @@ export async function getDataRemote(
   data = await getFromApi(token, url, versionName);
 
   if (!data || data.status === 403) throw Error(ErrorGetData);
-  return data;
+  return data as any;
 }

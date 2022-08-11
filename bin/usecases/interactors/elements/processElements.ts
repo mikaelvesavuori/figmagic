@@ -1,6 +1,6 @@
 import { makeFigmagicElement } from '../../../entities/FigmagicElement';
 
-import { FRAME as Frame } from '../../../contracts/Figma';
+import { Components, FRAME as Frame } from '../../../contracts/Figma';
 import { FigmagicElement } from '../../../contracts/FigmagicElement';
 import { Config } from '../../../contracts/Config';
 import { FigmaElement } from '../../../contracts/FigmaElement';
@@ -16,7 +16,7 @@ import { ErrorProcessElements } from '../../../frameworks/errors/errors';
 export function processElements(
   elementsPage: Frame[],
   config: Config,
-  components: Record<string, any>,
+  components: Components,
   isGraphicElement = false
 ): FigmagicElement[] {
   if (!elementsPage || !components || !config) throw Error(ErrorProcessElements);

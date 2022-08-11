@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import { FigmaData } from '../../contracts/FigmaData';
+import { FigmaResponse } from '../../contracts/FigmaData';
 
 import { loadFile } from '../filesystem/loadFile';
 
@@ -10,11 +10,8 @@ import { ErrorGetDataLocal } from '../errors/errors';
 /**
  * @description Helper to get Figma data from local source
  */
-export function getDataLocal(
-  figmagicFolder: string,
-  figmaData: string
-): Record<string, unknown> | string | FigmaData {
+export function getDataLocal(figmagicFolder: string, figmaData: string): FigmaResponse {
   if (!figmagicFolder || !figmaData) throw Error(ErrorGetDataLocal);
   console.log(MsgSetDataFromLocal);
-  return loadFile(path.join(`${figmagicFolder}`, `${figmaData}`));
+  return loadFile(path.join(`${figmagicFolder}`, `${figmaData}`)) as FigmaResponse;
 }

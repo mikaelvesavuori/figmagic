@@ -1,3 +1,3 @@
-import { FileList } from '../../../contracts/FileList';
-import { ImageResponse } from '../../../contracts/ImageResponse';
-export declare const getFileList: (imageResponse: ImageResponse, ids: Record<string, any>[], outputFormatGraphics: string) => FileList[];
+import { FileList, Id } from '../../../contracts/Files';
+import { ApiResponse } from '../../../contracts/ApiResponse';
+export declare const getFileList: (response: ApiResponse, ids: Id[], outputFormatGraphics: string) => FileList[];

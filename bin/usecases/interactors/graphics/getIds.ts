@@ -1,11 +1,12 @@
 import { FRAME as Frame } from '../../../contracts/Figma';
+import { Id } from '../../../contracts/Files';
 
 import { ErrorGetIds } from '../../../frameworks/errors/errors';
 
 /**
  * @description Get IDs from graphics page
  */
-export const getIds = (graphicsPage: Frame[]): Record<string, unknown>[] => {
+export const getIds = (graphicsPage: Frame[]): Id[] => {
   if (!graphicsPage || graphicsPage.length === 0) throw Error(ErrorGetIds);
 
   /**
@@ -13,7 +14,7 @@ export const getIds = (graphicsPage: Frame[]): Record<string, unknown>[] => {
    * This is the classic way of doing graphics in Figmagic.
    */
 
-  const ids: Record<string, any>[] = [];
+  const ids: Id[] = [];
   const componentIds = getComponents(graphicsPage);
   ids.push(...ids.concat(componentIds));
 
@@ -27,9 +28,11 @@ export const getIds = (graphicsPage: Frame[]): Record<string, unknown>[] => {
     ids.push(...ids.concat(frameLocalComponentIds));
   }
 
-  const deduplicatedIds: Record<string, any>[] = [];
-  ids.filter((item) =>
-    !deduplicatedIds.find((element) => element.id === item.id) ? deduplicatedIds.push(item) : null
+  const deduplicatedIds: Id[] = [];
+  ids.filter((item: Id) =>
+    !deduplicatedIds.find((element: Id) => element.id === item.id)
+      ? deduplicatedIds.push(item)
+      : null
   );
 
   return deduplicatedIds;
@@ -38,13 +41,13 @@ export const getIds = (graphicsPage: Frame[]): Record<string, unknown>[] => {
 /**
  * @description TODO
  */
-const getComponents = (children: Frame[], parent?: Frame) => {
+const getComponents = (children: Frame[], parent?: Frame): Id[] => {
   const parentName = parent?.name ? `${parent.name}/` : '';
 
   if (!children || children.length === 0) return [];
   return children
-    .filter((item: Record<string, any>) => item.type === 'COMPONENT')
-    .map((item: Record<string, any>) => ({
+    .filter((item: Frame) => item.type === 'COMPONENT')
+    .map((item: Frame) => ({
       id: item.id,
       name: `${parentName}${item.name}`
     }));

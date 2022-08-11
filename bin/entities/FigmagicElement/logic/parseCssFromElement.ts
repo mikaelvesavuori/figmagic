@@ -4,6 +4,7 @@ import { FRAME as Frame } from '../../../contracts/Figma';
 import { Imports, UpdatedCssAndImports } from '../../../contracts/Imports';
 import { OutputFormatColors } from '../../../contracts/Config';
 import { Color } from '../../../contracts/Parsing';
+import { FileContents } from '../../../contracts/Files';
 
 import { getFileContents } from './getFileContents';
 import { getPaddingY, PaddingVertical } from './parsers/getPaddingY';
@@ -101,7 +102,7 @@ const reduceDuplicates = (str: string) =>
     .toString()
     .replace(/,\n/gi, ';\n');
 
-const getFiles = (filePath: string, outputFormatToken: string): Record<string, any> => {
+const getFiles = (filePath: string, outputFormatToken: string): FileContents => {
   const borderWidths = getFileContents(filePath, 'borderWidths', outputFormatToken);
   const colors = getFileContents(filePath, 'colors', outputFormatToken);
   const radii = getFileContents(filePath, 'radii', outputFormatToken);

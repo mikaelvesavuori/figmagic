@@ -32,14 +32,7 @@ import {
  */
 export function getFileContentAndPath(
   getFileContentAndPathOperation: GetFileDataOperation
-):
-  | FileContentWithPath
-  | Record<string, string>
-  | PrepComponent
-  | PrepStyledComponents
-  | PrepCss
-  | PrepStorybook
-  | PrepDescription {
+): FileContentWithPath {
   if (!getFileContentAndPathOperation) throw Error(ErrorGetFileContentAndPath);
   if (!checkIfFieldsExist(getFileContentAndPathOperation))
     throw Error(ErrorGetFileContentAndPathMissingFields);

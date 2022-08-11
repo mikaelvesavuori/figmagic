@@ -20,7 +20,6 @@ export function createLinearGradientString(fills: Paint): string {
   if (DEGREE) str += `${DEGREE}deg, `;
 
   GRADIENT_STOPS.forEach((fill: GradientStop, index: number) => {
-    console.log('fill linear', fill);
     const R = roundColorValue(fill.color?.r, 255);
     const G = roundColorValue(fill.color?.g, 255);
     const B = roundColorValue(fill.color?.b, 255);

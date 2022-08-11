@@ -1,4 +1,4 @@
-export interface ImageResponse {
+export interface ApiResponse {
   err: string | null;
   images: Image;
   status?: number;

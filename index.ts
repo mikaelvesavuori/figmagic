@@ -4,8 +4,8 @@ import * as path from 'path';
 
 import { makeConfiguration } from './bin/entities/Config/index';
 
-import { FigmaData } from './bin/contracts/FigmaData';
-import { Config } from './bin/contracts/Config';
+import { FigmaResponse } from './bin/contracts/FigmaData';
+import { Config, TemplatesConfig } from './bin/contracts/Config';
 
 import { FigmagicController } from './bin/controllers/FigmagicController';
 
@@ -39,12 +39,12 @@ async function main(): Promise<void> {
     if (CLI_ARGS[0]?.toLowerCase() === 'init') initConfig(configToInit, RC_FILES[0]);
     // User wants to run Figmagic
     else {
-      const USER_CONFIG_PATH = configFilePath ? path.join(`${process.cwd()}`, configFilePath) : '';
-      const CONFIG: Config = await makeConfiguration(USER_CONFIG_PATH, ...CLI_ARGS);
+      const userConfigPath = configFilePath ? path.join(`${process.cwd()}`, configFilePath) : '';
+      const config: Config = await makeConfiguration(userConfigPath, ...CLI_ARGS);
 
       // Get data
-      const { recompileLocal, figmagicFolder, figmaData, token, url, versionName } = CONFIG;
-      const DATA: FigmaData = await getData(
+      const { recompileLocal, figmagicFolder, figmaData, token, url, versionName } = config;
+      const data: FigmaResponse = await getData(
         recompileLocal,
         figmagicFolder,
         figmaData,
@@ -54,10 +54,10 @@ async function main(): Promise<void> {
       );
 
       // Write new JSON base data, unless user explicitly opts out
-      if (!recompileLocal) await writeBaseJson(figmagicFolder, figmaData, DATA);
+      if (!recompileLocal) await writeBaseJson(figmagicFolder, figmaData, data);
 
       // Run the controller
-      await FigmagicController(CONFIG, DATA);
+      await FigmagicController(config, data);
     }
   } catch (error: any) {
     console.error(`${colors.FgRed}${error.message}`);
@@ -67,7 +67,7 @@ async function main(): Promise<void> {
 /**
  * @description Handle basic configuration initialization
  */
-function initConfig(file: Record<string, any>, configFilePath: string) {
+function initConfig(file: TemplatesConfig, configFilePath: string) {
   const FILE_EXISTS = checkIfExists(configFilePath);
   if (!FILE_EXISTS) {
     write(configFilePath, JSON.stringify(file, null, ' '));

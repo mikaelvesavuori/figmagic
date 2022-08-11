@@ -1,6 +1,6 @@
 import { request } from './request';
 
-import { ImageResponse } from '../../contracts/ImageResponse';
+import { ApiResponse } from '../../contracts/ApiResponse';
 
 import { ErrorGetFromApi } from '../errors/errors';
 import { isJsonString } from '../filesystem/isJsonString';
@@ -13,7 +13,7 @@ export async function getFromApi(
   figmaUrl: string,
   versionName?: string | null,
   type: 'files' | 'images' = 'files'
-): Promise<ImageResponse> {
+): Promise<ApiResponse> {
   if (!figmaToken || !figmaUrl) throw Error(ErrorGetFromApi);
   let endpoint = `/v1/${type}/${figmaUrl}`;
 

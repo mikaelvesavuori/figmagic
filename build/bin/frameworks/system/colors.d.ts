@@ -1,1 +1,25 @@
-export declare const colors: Record<string, any>;
+export declare const colors: {
+    BgBlack: string;
+    BgBlue: string;
+    BgCyan: string;
+    BgGreen: string;
+    BgMagenta: string;
+    BgRed: string;
+    BgWhite: string;
+    BgYellow: string;
+    FgBlack: string;
+    FgBlue: string;
+    FgCyan: string;
+    FgGreen: string;
+    FgMagenta: string;
+    FgRed: string;
+    FgWhite: string;
+    FgYellow: string;
+    Blink: string;
+    Bright: string;
+    Dim: string;
+    Hidden: string;
+    Reset: string;
+    Reverse: string;
+    Underscore: string;
+};

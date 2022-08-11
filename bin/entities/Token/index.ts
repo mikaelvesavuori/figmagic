@@ -2,6 +2,7 @@ import { FRAME as Frame } from '../../contracts/Figma';
 import { Config } from '../../contracts/Config';
 import { ProcessedToken } from '../../contracts/ProcessedToken';
 import { WriteOperation } from '../../contracts/Write';
+import { TokenOperations } from '../../contracts/Tokens';
 
 import { makeColorTokens } from './logic/makeColorTokens';
 import { makeSpacingTokens } from './logic/makeSpacingTokens';
@@ -72,7 +73,7 @@ class Token {
   };
 
   // TODO: Add proper type
-  private getTokens = (frame: Frame, name: string, config: Config): Record<string, any> => {
+  private getTokens = (frame: Frame, name: string, config: Config): TokenOperations => {
     const {
       borderWidthUnit,
       camelizeTokenNames,
@@ -132,6 +133,8 @@ class Token {
 
     // @ts-ignore
     if (tokenOperations.hasOwnProperty(name)) return tokenOperations[name]();
+
+    // @ts-ignore
     return {};
   };
 

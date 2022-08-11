@@ -1,4 +1,4 @@
-export const colors: Record<string, any> = {
+export const colors = {
   BgBlack: '\x1b[40m',
   BgBlue: '\x1b[44m',
   BgCyan: '\x1b[46m',

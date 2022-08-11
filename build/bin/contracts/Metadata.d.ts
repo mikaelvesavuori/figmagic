@@ -1,8 +1,9 @@
-import { FRAME as Frame } from './Figma';
+import { Imports } from './Imports';
 export interface Metadata {
-    text: string;
     dataType: null | 'enum';
-    element: Frame;
-    extraProps: string[];
-    imports: string[];
+    html: string;
+    element: string;
+    extraProps: string;
+    text: string;
+    imports: Imports;
 }

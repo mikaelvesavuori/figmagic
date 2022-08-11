@@ -1,3 +1,5 @@
+import { Imports } from '../../contracts/Imports';
+
 import {
   ErrorCreateImportStringFromList,
   ErrorCreateImportStringFromListZeroLength
@@ -7,7 +9,7 @@ import {
  * @description Convert list of imports to string literal for CSS file production
  */
 export function createImportStringFromList(
-  importArray: string[],
+  importArray: Imports,
   outputFolderTokens = 'tokens',
   tokensRelativeImportPrefix = ''
 ): string {

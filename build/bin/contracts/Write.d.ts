@@ -47,3 +47,7 @@ export declare type FileContentWithPath = {
     filePath: string;
 };
 export declare type FileType = 'null' | 'raw' | 'token' | 'component' | 'styled' | 'css' | 'story' | 'description' | 'graphic';
+export declare type FileContentAndPath = {
+    fileContent: string;
+    filePath: string;
+};

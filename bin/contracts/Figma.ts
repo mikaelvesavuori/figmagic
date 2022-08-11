@@ -342,8 +342,8 @@ export type Component = {
   key: string;
   name: string;
   description: string;
-  componentSetId: string;
-  documentationLinks: string[];
+  componentSetId?: string;
+  documentationLinks?: string[];
 };
 
 export type Components = {

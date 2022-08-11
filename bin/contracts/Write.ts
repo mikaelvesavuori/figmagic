@@ -69,3 +69,8 @@ export type FileType =
   | 'story'
   | 'description'
   | 'graphic';
+
+export type FileContentAndPath = {
+  fileContent: string;
+  filePath: string;
+};

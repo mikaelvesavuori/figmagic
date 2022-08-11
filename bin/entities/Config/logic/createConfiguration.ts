@@ -33,21 +33,22 @@ export async function createConfiguration(
   const DEFAULT_CONFIG: Config = baseConfig;
 
   // RC file configuration
-  let RC_CONFIG: Record<string, any> = {};
-
-  if (userConfigPath && userConfigPath !== '') {
-    try {
-      const _RC_CONFIG = loadFile(userConfigPath);
-      RC_CONFIG = _RC_CONFIG as Config;
-    } catch (e) {
-      //
+  // @ts-ignore
+  const RC_CONFIG: Config = (() => {
+    if (userConfigPath && userConfigPath !== '') {
+      try {
+        return loadFile(userConfigPath) as Config;
+      } catch (e) {
+        //
+      }
     }
-  }
+    return {};
+  })();
 
   // Env var configuration
   const ENV_CONFIG = {
     token: process.env.FIGMA_TOKEN || RC_CONFIG.token || '',
-    url: getEnvUrl(process.env.FIGMA_URL, RC_CONFIG.url)
+    url: getEnvUrl(process.env.FIGMA_URL, RC_CONFIG.url || '')
   };
 
   // CLI arguments configuration

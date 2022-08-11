@@ -12,3 +12,20 @@ export type FileOutput = {
   letterSpacings: JsonFileData;
   lineHeights: JsonFileData;
 };
+
+export type PaddingOptions = {
+  padding: Padding;
+  spacing: Spacing;
+  remSize: number;
+};
+
+type Padding = {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+type Spacing = {
+  [key: string]: string;
+};

@@ -137,3 +137,11 @@ export declare type OutputFormatGraphics = 'svg' | 'png';
 export declare type OutputFormatStorybook = 'ts' | 'js' | 'mdx';
 export declare type OutputFormatTokens = 'ts' | 'mjs' | 'js' | 'json';
 export declare type OutputDataTypeToken = null | 'enum';
+export declare type TemplatesConfig = {
+    templates: {
+        templatePathGraphic: string;
+        templatePathReact: string;
+        templatePathStorybook: string;
+        templatePathStyled: string;
+    };
+};
