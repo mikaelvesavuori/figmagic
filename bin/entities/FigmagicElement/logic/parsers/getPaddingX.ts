@@ -13,15 +13,15 @@ export function getPaddingX(textElement: Frame, element: Frame): PaddingHorizont
   if (!textElement.absoluteBoundingBox || !element.absoluteBoundingBox)
     throw Error(ErrorGetPaddingX);
 
-  const PARENT_WIDTH = element.absoluteBoundingBox.width;
-  const TEXT_WIDTH = textElement.absoluteBoundingBox.width;
+  const parentWidth = element.absoluteBoundingBox.width;
+  const textWidth = textElement.absoluteBoundingBox.width;
   // @ts-ignore
-  const PADDING_LEFT = textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x;
+  const paddingLeft = textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x;
   // @ts-ignore
-  const PADDING_RIGHT = PARENT_WIDTH - (PADDING_LEFT + TEXT_WIDTH);
+  const paddingRight = parentWidth - (paddingLeft + textWidth);
 
   return {
-    left: Math.round(PADDING_LEFT),
-    right: Math.round(PADDING_RIGHT)
+    left: Math.round(paddingLeft),
+    right: Math.round(paddingRight)
   };
 }

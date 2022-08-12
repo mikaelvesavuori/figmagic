@@ -15,13 +15,13 @@ export function processNestedCss(css: string, textOnlySubchildren: string[] = []
   if (!css) throw Error(ErrorProcessNestedCss);
 
   // Match or split by CSS class name, like ".ButtonWarning {"
-  const CLASS_NAMES: RegExpMatchArray | null = css.match(/\..* {/gi);
-  const CLASS_CONTENT = css.split(/\..* {/gi);
+  const classNames: RegExpMatchArray | null = css.match(/\..* {/gi);
+  const classContent = css.split(/\..* {/gi);
   // Remove any empty/garbage first elements
-  if (checkIfStringOnlyContainsReturnsOrSpaces(CLASS_CONTENT[0])) CLASS_CONTENT.shift();
+  if (checkIfStringOnlyContainsReturnsOrSpaces(classContent[0])) classContent.shift();
 
-  const ARRAYS = cleanArrays(CLASS_NAMES, CLASS_CONTENT, textOnlySubchildren);
-  const INTERSECTING_VALUES = getIntersectingValues(ARRAYS);
-  const UNIQUE_VALUES = getUniqueValues(ARRAYS, INTERSECTING_VALUES);
-  return createCssString(INTERSECTING_VALUES, UNIQUE_VALUES);
+  const arrays = cleanArrays(classNames, classContent, textOnlySubchildren);
+  const intersectingValues = getIntersectingValues(arrays);
+  const uniqueValues = getUniqueValues(arrays, intersectingValues);
+  return createCssString(intersectingValues, uniqueValues);
 }

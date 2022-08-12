@@ -84,12 +84,12 @@ class FigmagicElement {
    */
   private handleElements(): UpdatedCssAndImports {
     // @ts-ignore
-    const FILTERED_ELEMENTS = this.children.filter((child) => child.name[0] !== '_'); // Filter out hidden elements (using "_")
+    const filteredElements = this.children.filter((child) => child.name[0] !== '_'); // Filter out hidden elements (using "_")
 
     // If the remaining elements/layers contain any groups or frames, use the nested elements handler
-    if (FILTERED_ELEMENTS?.some((element: Frame) => this.acceptedTypes.includes(element.type)))
-      return this.handleNestedElements(FILTERED_ELEMENTS);
-    else return this.handleFlatElements(FILTERED_ELEMENTS);
+    if (filteredElements?.some((element: Frame) => this.acceptedTypes.includes(element.type)))
+      return this.handleNestedElements(filteredElements);
+    else return this.handleFlatElements(filteredElements);
   }
 
   private setCss(css: string): void {
@@ -109,23 +109,23 @@ class FigmagicElement {
    * characters of an element-root-level layer going by the name ":text".
    */
   private setText(): void {
-    const TEXT_CHILD = this.children?.filter((c) => c.name === ':text')[0];
-    if (TEXT_CHILD && TEXT_CHILD.characters) this.text = TEXT_CHILD.characters;
+    const textChild = this.children?.filter((c) => c.name === ':text')[0];
+    if (textChild && textChild.characters) this.text = textChild.characters;
   }
 
   /**
    * @description Set the element type (i.e "div", "input"...).
    */
   private setElement(): void {
-    const ELEMENT_TYPE = (() => {
-      const _ELEMENT = this.description.match(/element=(.*)/);
-      if (_ELEMENT && _ELEMENT[1]) return _ELEMENT[1];
+    const elementType = (() => {
+      const element = this.description.match(/element=(.*)/);
+      if (element && element[1]) return element[1];
       return 'div';
     })();
 
-    const HTML = `<${ELEMENT_TYPE}>{{TEXT}}</${ELEMENT_TYPE}>`;
-    this.html = HTML;
-    this.element = ELEMENT_TYPE;
+    const html = `<${elementType}>{{TEXT}}</${elementType}>`;
+    this.html = html;
+    this.element = elementType;
   }
 
   /**
@@ -165,12 +165,11 @@ class FigmagicElement {
    * find an element-root-level layer going by the name ":placeholder".
    */
   private setPlaceholderText(): void {
-    const PLACEHOLDER_TEXT_CHILD = this.children?.filter(
+    const placeholderText = this.children?.filter(
       (child: Frame) => child.name.toLowerCase() === ':placeholder'
     )[0];
 
-    if (PLACEHOLDER_TEXT_CHILD)
-      this.addExtraProps(`placeholder="${PLACEHOLDER_TEXT_CHILD.characters}"`);
+    if (placeholderText) this.addExtraProps(`placeholder="${placeholderText.characters}"`);
   }
 
   /**
@@ -178,8 +177,8 @@ class FigmagicElement {
    * This attribute is specified by the designer in Figma's description box.
    */
   private setElementType(): void {
-    const TYPE = this.description.match(/type=(.*)/)?.[0];
-    if (TYPE) this.addExtraProps(`type="${TYPE.split('type=')[1]}" `);
+    const type = this.description.match(/type=(.*)/)?.[0];
+    if (type) this.addExtraProps(`type="${type.split('type=')[1]}" `);
   }
 
   /**
@@ -191,21 +190,21 @@ class FigmagicElement {
     let css = ``;
     let imports: Imports[] = [];
 
-    const CHILD_ELEMENTS = elements.filter(
+    const childElements = elements.filter(
       (el: Frame) => this.acceptedTypes.includes(el.type) && el.name[0] !== '_'
     );
 
     const textOnlySubchildren: string[] = [];
 
-    CHILD_ELEMENTS.forEach((childElement: Frame) => {
-      const PARSED = this.parseNestedCss(childElement, this.config);
-      css += PARSED.css;
-      imports = imports.concat(PARSED.imports);
+    childElements.forEach((childElement: Frame) => {
+      const parsedCss = this.parseNestedCss(childElement, this.config);
+      css += parsedCss.css;
+      imports = imports.concat(parsedCss.imports);
 
-      const SUBCHILD_ELEMENTS = childElement.children?.filter((el: Frame) => el.name[0] !== '_');
+      const subChildElements = childElement.children?.filter((el: Frame) => el.name[0] !== '_');
 
-      if (SUBCHILD_ELEMENTS?.every((subChild) => subChild.type === 'TEXT'))
-        textOnlySubchildren.push(PARSED.fixedName);
+      if (subChildElements?.every((subChild) => subChild.type === 'TEXT'))
+        textOnlySubchildren.push(parsedCss.fixedName);
     });
 
     return {
@@ -225,15 +224,15 @@ class FigmagicElement {
 
     this.replaceHtml('{{TEXT}}', this.text || '');
 
-    const MAIN_ELEMENT = elements?.filter(
+    const mainElement = elements?.filter(
       (element: Frame) => element.name.toLowerCase() === this.name.toLowerCase()
     )[0];
-    const TEXT_ELEMENT = elements?.filter((element: Frame) => element.type === 'TEXT')[0];
+    const textElement = elements?.filter((element: Frame) => element.type === 'TEXT')[0];
 
     // Set text styling
-    if (TEXT_ELEMENT) {
+    if (textElement) {
       const { updatedCss, updatedImports } = parseTypographyStylingFromElement({
-        textElement: TEXT_ELEMENT,
+        textElement: textElement,
         remSize: this.config.remSize,
         usePostscriptFontNames: this.config.usePostscriptFontNames,
         outputFormatTokens: this.config.outputFormatTokens,
@@ -243,11 +242,11 @@ class FigmagicElement {
       } as TypographyElement);
       css += updatedCss;
       imports = imports.concat(updatedImports);
-      this.text = TEXT_ELEMENT.characters || '';
+      this.text = textElement.characters || '';
     }
 
-    if (MAIN_ELEMENT) {
-      const { updatedCss, updatedImports } = this.parseFlatCss(MAIN_ELEMENT, TEXT_ELEMENT);
+    if (mainElement) {
+      const { updatedCss, updatedImports } = this.parseFlatCss(mainElement, textElement);
 
       css = this.processFlatCss(css + updatedCss);
       imports = imports.concat(updatedImports);
@@ -265,46 +264,46 @@ class FigmagicElement {
     let imports: Imports[] = [];
     const ID = id || randomUUID().slice(0, 8);
 
-    const MAIN_ELEMENT = el.children?.filter(
+    const mainElement = el.children?.filter(
       (e: Frame) => e.type === 'RECTANGLE' && e.name[0] !== '_'
     )[0];
 
-    const TEXT_ELEMENT = el.children?.filter(
+    const textElement = el.children?.filter(
       (e: Frame) => e.type === 'TEXT' && e.name[0] !== '_'
     )[0];
 
-    if (!MAIN_ELEMENT && !TEXT_ELEMENT) throw Error('Missing both main and text element!');
+    if (!mainElement && !textElement) throw Error('Missing both main and text element!');
 
-    const FIXED_NAME = el.name.replace(/\s/gi, '');
+    const fixedName = el.name.replace(/\s/gi, '');
 
-    const CHILD_ELEMENTS = el.children?.filter(
+    const childElements = el.children?.filter(
       (child: Frame) => this.acceptedTypes.includes(child.type) && child.name[0] !== '_'
     );
 
-    CHILD_ELEMENTS?.forEach((state: Frame) => {
+    childElements?.forEach((state: Frame) => {
       const PARSED_CSS = this.parseNestedCss(state, config, ID);
       css += PARSED_CSS.css;
       imports = imports.concat(PARSED_CSS.imports);
     });
 
-    if (MAIN_ELEMENT) {
-      console.log(MsgProcessElementsCreatingElement(MAIN_ELEMENT.name, FIXED_NAME));
+    if (mainElement) {
+      console.log(MsgProcessElementsCreatingElement(mainElement.name, fixedName));
 
       const { updatedCss, updatedImports } = parseCssFromElement(
-        MAIN_ELEMENT,
-        TEXT_ELEMENT as any,
+        mainElement,
+        textElement as any,
         config.remSize,
         config.outputFormatTokens,
         config.outputFolderTokens
       );
 
-      css += `\n.${FIXED_NAME}__#${ID} {\n${updatedCss}}`;
+      css += `\n.${fixedName}__#${ID} {\n${updatedCss}}`;
       imports = imports.concat(updatedImports);
     }
 
-    if (TEXT_ELEMENT) {
+    if (textElement) {
       const { updatedCss, updatedImports } = parseTypographyStylingFromElement({
-        textElement: TEXT_ELEMENT,
+        textElement: textElement,
         remSize: config.remSize,
         usePostscriptFontNames: config.usePostscriptFontNames,
         outputFormatTokens: config.outputFormatTokens,
@@ -313,11 +312,11 @@ class FigmagicElement {
         outputFolderTokens: config.outputFolderTokens
       } as TypographyElement);
 
-      css += `\n.${FIXED_NAME}__#${ID} {\n${updatedCss}}`;
+      css += `\n.${fixedName}__#${ID} {\n${updatedCss}}`;
       imports = imports.concat(updatedImports);
     }
 
-    return { css, imports, fixedName: FIXED_NAME };
+    return { css, imports, fixedName: fixedName };
   }
 
   /**
@@ -331,8 +330,8 @@ class FigmagicElement {
     let imports: Imports[] = [];
 
     if (layoutElement) {
-      const FIXED_NAME = this.name.replace(/\s/gi, '');
-      console.log(MsgProcessElementsCreatingElement(this.name, FIXED_NAME));
+      const fixedName = this.name.replace(/\s/gi, '');
+      console.log(MsgProcessElementsCreatingElement(this.name, fixedName));
 
       const { updatedCss, updatedImports } = parseCssFromElement(
         layoutElement,

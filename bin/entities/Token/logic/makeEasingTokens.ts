@@ -29,6 +29,7 @@ function makeEasingToken(
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.characters) throw Error(ErrorMakeEasingTokensMissingProps);
+
   const name = sanitizeString(item.name, camelizeTokenNames);
   easings[name] = item.characters.trim();
 }

@@ -15,10 +15,10 @@ export function getBackgroundColor(
   if (!element.fills || !element.fills[0] || !element.fills[0].type || element.type === 'TEXT')
     return null;
 
-  const FILLS: Paint = element.fills[0];
+  const fills: Paint = element.fills[0];
 
-  if (FILLS.type === 'SOLID') return createSolidColorString(FILLS, outputFormatColors);
-  if (FILLS.type === 'GRADIENT_LINEAR') return createLinearGradientString(FILLS);
+  if (fills.type === 'SOLID') return createSolidColorString(fills, outputFormatColors);
+  if (fills.type === 'GRADIENT_LINEAR') return createLinearGradientString(fills);
 
   return null;
 }

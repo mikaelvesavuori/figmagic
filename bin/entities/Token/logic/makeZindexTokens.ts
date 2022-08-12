@@ -29,6 +29,7 @@ function makeZindexToken(
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.characters) throw Error(ErrorMakeZindexTokensMissingProps);
+
   const name = sanitizeString(item.name, camelizeTokenNames);
   zIndex[name] = parseInt(item.characters);
 }

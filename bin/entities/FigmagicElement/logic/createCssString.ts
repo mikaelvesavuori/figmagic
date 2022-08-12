@@ -28,28 +28,28 @@ export function createCssString(
   // Put classes and similar after shared values
   uniqueValues.forEach((cssItem: UniqueCssValues, index: number) => {
     const { css, className } = cssItem;
-    const FIXED_CLASS_NAME = getFixedClassName(className);
+    const fixedClassName = getFixedClassName(className);
 
-    const SPACE = getSpacing(nestingDepth);
-    const INNER_SPACE = getSpacing(nestingDepth + 1);
+    const space = getSpacing(nestingDepth);
+    const innerSpace = getSpacing(nestingDepth + 1);
 
     // Output class name
-    cssString += `${SPACE}${FIXED_CLASS_NAME}\n`;
+    cssString += `${space}${fixedClassName}\n`;
 
     // Output all individual lines
-    css.forEach((item: string) => (cssString += `${INNER_SPACE}${item}\n`));
+    css.forEach((item: string) => (cssString += `${innerSpace}${item}\n`));
 
-    const IS_LAST_ELEMENT_WITH_CLASS = !uniqueValues[index + 1]
+    const isLastElementWithClass = !uniqueValues[index + 1]
       ? true
       : checkIfLastElementWithClassname(className, uniqueValues[index + 1].className);
 
     // Close any level 2-deep elements (currently only supporting one depth layer)
-    if (nestingDepth !== 0 && !IS_LAST_ELEMENT_WITH_CLASS) cssString += `${SPACE}}\n`;
+    if (nestingDepth !== 0 && !isLastElementWithClass) cssString += `${space}}\n`;
 
-    if (IS_LAST_ELEMENT_WITH_CLASS) {
+    if (isLastElementWithClass) {
       for (let i = 0; i <= nestingDepth + 1; i++) {
-        const _SPACE = getSpacing(nestingDepth);
-        cssString += `${_SPACE}}\n`;
+        const _space = getSpacing(nestingDepth);
+        cssString += `${_space}}\n`;
         nestingDepth--;
       }
       cssString += `\n`;
@@ -63,8 +63,8 @@ export function createCssString(
 
   // Remove residue (straggler classes)
   if (hasOpenBracketAtEnd(cssString)) {
-    const SPLIT_STRING = cssString.split(';');
-    cssString = cssString.replace(SPLIT_STRING[SPLIT_STRING.length - 1], '\n');
+    const splitString = cssString.split(';');
+    cssString = cssString.replace(splitString[splitString.length - 1], '\n');
   }
 
   cssString = removeAllIds(cssString);

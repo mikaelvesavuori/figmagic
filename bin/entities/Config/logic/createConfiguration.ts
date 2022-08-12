@@ -30,11 +30,11 @@ export async function createConfiguration(
 ): Promise<Config> {
   if (!baseConfig) throw Error(ErrorCreateConfigurationNoDefault);
 
-  const DEFAULT_CONFIG: Config = baseConfig;
+  const defaultConfig: Config = baseConfig;
 
   // RC file configuration
   // @ts-ignore
-  const RC_CONFIG: Config = (() => {
+  const rcConfig: Config = (() => {
     if (userConfigPath && userConfigPath !== '') {
       try {
         return loadFile(userConfigPath) as Config;
@@ -46,13 +46,13 @@ export async function createConfiguration(
   })();
 
   // Env var configuration
-  const ENV_CONFIG = {
-    token: process.env.FIGMA_TOKEN || RC_CONFIG.token || '',
-    url: getEnvUrl(process.env.FIGMA_URL, RC_CONFIG.url || '')
+  const envConfig = {
+    token: process.env.FIGMA_TOKEN || rcConfig.token || '',
+    url: getEnvUrl(process.env.FIGMA_URL, rcConfig.url || '')
   };
 
   // CLI arguments configuration
-  const CLI_CONFIG = parseCliArgs(cliArgs) as Config;
+  const cliConfig = parseCliArgs(cliArgs) as Config;
 
   // Merge configurations in order of prioritization
   // 1. Default config
@@ -64,23 +64,23 @@ export async function createConfiguration(
   // 4. CLI arguments: highest priority
   // Allow to override on specific commands such as: "figmagic --debug --syncGraphics"
   const CONFIG = {
-    ...DEFAULT_CONFIG,
-    ...RC_CONFIG,
-    ...ENV_CONFIG,
-    ...CLI_CONFIG,
+    ...defaultConfig,
+    ...rcConfig,
+    ...envConfig,
+    ...cliConfig,
     templates: {
-      ...DEFAULT_CONFIG.templates,
-      ...RC_CONFIG.templates,
-      ...CLI_CONFIG.templates
+      ...defaultConfig.templates,
+      ...rcConfig.templates,
+      ...cliConfig.templates
     },
     skipFileGeneration: {
-      ...DEFAULT_CONFIG.skipFileGeneration,
-      ...RC_CONFIG.skipFileGeneration,
-      ...CLI_CONFIG.skipFileGeneration
+      ...defaultConfig.skipFileGeneration,
+      ...rcConfig.skipFileGeneration,
+      ...cliConfig.skipFileGeneration
     }
   };
 
-  if (CONFIG.debugMode === true) printConfigs(ENV_CONFIG, CLI_CONFIG, RC_CONFIG, CONFIG);
+  if (CONFIG.debugMode === true) printConfigs(envConfig, cliConfig, rcConfig, CONFIG);
 
   return CONFIG;
 }

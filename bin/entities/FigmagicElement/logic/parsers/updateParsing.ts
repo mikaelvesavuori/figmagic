@@ -11,8 +11,8 @@ export function updateParsing(
 ): ParsedElementMetadataInterface {
   if (!css || !imports) throw Error(ErrorUpdateParsing);
 
-  const CSS = updatedCss ? (css += updatedCss) : css;
-  const IMPORTS = updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports;
-
-  return { css: CSS, imports: IMPORTS };
+  return {
+    css: updatedCss ? (css += updatedCss) : css,
+    imports: updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports
+  };
 }

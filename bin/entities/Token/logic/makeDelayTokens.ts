@@ -29,6 +29,7 @@ function makeDelayToken(
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.characters) throw Error(ErrorMakeDelayTokensMissingProps);
+
   const name = sanitizeString(item.name, camelizeTokenNames);
   delays[name] = parseFloat(item.characters);
 }

@@ -68,10 +68,10 @@ function matchPadding(
   css: string,
   imports: Imports[]
 ): TokenMatchRaw | undefined {
-  const KEYS: string[] = Object.keys(expectedValue);
+  const keys: string[] = Object.keys(expectedValue);
   if (typeof expectedValue !== 'object') return;
 
-  KEYS.forEach((key: string) => {
+  keys.forEach((key: string) => {
     let foundMatch = false;
 
     if (expectedValue[key]) {
@@ -116,28 +116,28 @@ function matchOther(
   let foundMatch = false;
 
   Object.entries(tokens).forEach((token: Token[]) => {
-    const TOKEN_VALUE: string | number = token[1];
+    const tokenValue: string | number = token[1];
 
     // Multiply rem|em strings through REM size argument
-    const VALUE_THROUGH_REM = (() => {
-      if (TOKEN_VALUE && typeof TOKEN_VALUE === 'string') {
-        if (property === 'letter-spacing') return TOKEN_VALUE;
-        if (TOKEN_VALUE.match('rem') || TOKEN_VALUE.match('em'))
-          return parseFloat(TOKEN_VALUE) * remSize;
+    const valueThroughRem = (() => {
+      if (tokenValue && typeof tokenValue === 'string') {
+        if (property === 'letter-spacing') return tokenValue;
+        if (tokenValue.match('rem') || tokenValue.match('em'))
+          return parseFloat(tokenValue) * remSize;
       }
       return null;
     })();
 
-    const IS_TOKEN_MATCH = (() => {
+    const isTokenMatch = (() => {
       // We need to make a special check if color is using hex format
       // @ts-ignore
-      if (property.includes('color') && TOKEN_VALUE[0] === '#')
-        return convertHexToRgba(TOKEN_VALUE as string) === expectedValue;
+      if (property.includes('color') && tokenValue[0] === '#')
+        return convertHexToRgba(tokenValue as string) === expectedValue;
 
-      return VALUE_THROUGH_REM ? VALUE_THROUGH_REM === expectedValue : TOKEN_VALUE == expectedValue;
+      return valueThroughRem ? valueThroughRem === expectedValue : tokenValue == expectedValue;
     })();
 
-    if (IS_TOKEN_MATCH) {
+    if (isTokenMatch) {
       css += `${property}: \${${tokenFileName}['${token[0]}']};\n`;
       imports.push(tokenFileName as unknown as Imports);
       foundMatch = true;

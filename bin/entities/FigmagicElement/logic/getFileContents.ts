@@ -11,6 +11,7 @@ import { ErrorGetFileContents } from '../../../frameworks/errors/errors';
  */
 export function getFileContents(filepath: string, filename: string, format: string): JsonFileData {
   if (!filepath || !filename || !format) throw Error(ErrorGetFileContents);
-  const FILE = path.join(`${process.cwd()}`, filepath, `${filename}.${format}`);
-  return sliceOutObjectFromFile(FILE);
+
+  const file = path.join(`${process.cwd()}`, filepath, `${filename}.${format}`);
+  return sliceOutObjectFromFile(file);
 }

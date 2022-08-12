@@ -24,12 +24,12 @@ export function parseBackgroundColor(
 
   const { colors, backgroundColor, remSize, outputFormatColors } = params;
 
-  const PROPERTY = backgroundColor.includes('gradient') ? 'background' : 'background-color';
+  const property = backgroundColor.includes('gradient') ? 'background' : 'background-color';
 
   const { updatedCss, updatedImports } = getTokenMatch(
     colors,
     'colors',
-    PROPERTY,
+    property,
     backgroundColor,
     remSize,
     outputFormatColors

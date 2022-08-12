@@ -8,9 +8,9 @@ export const makeConfiguration = async (
   userConfigPath: string,
   ...cliArgs: string[]
 ): Promise<Config> => {
-  const CONFIGURATION = new Configuration(userConfigPath, cliArgs);
-  await CONFIGURATION.createConfig();
-  return CONFIGURATION.getConfig();
+  const config = new Configuration(userConfigPath, cliArgs);
+  await config.createConfig();
+  return config.getConfig();
 };
 
 class Configuration {

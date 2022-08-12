@@ -17,14 +17,14 @@ export function getPaddingY(textElement: Frame, element: Frame): PaddingVertical
   )
     throw Error(ErrorGetPaddingY);
 
-  const PARENT_HEIGHT = element.absoluteBoundingBox.height;
-  const TEXT_HEIGHT = textElement.absoluteBoundingBox.height;
+  const parentHeight = element.absoluteBoundingBox.height;
+  const textHeight = textElement.absoluteBoundingBox.height;
   // @ts-ignore
-  const PADDING_TOP = textElement.absoluteBoundingBox.y - element.absoluteBoundingBox.y;
-  const PADDING_BOTTOM = PARENT_HEIGHT - (PADDING_TOP + TEXT_HEIGHT);
+  const paddingTop = textElement.absoluteBoundingBox.y - element.absoluteBoundingBox.y;
+  const paddingBottom = parentHeight - (paddingTop + textHeight);
 
   return {
-    top: Math.round(PADDING_TOP),
-    bottom: Math.round(PADDING_BOTTOM)
+    top: Math.round(paddingTop),
+    bottom: Math.round(paddingBottom)
   };
 }

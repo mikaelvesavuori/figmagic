@@ -9,11 +9,11 @@ import { ErrorGetIntersectingValues } from '../../../frameworks/errors/errors';
 export function getIntersectingValues(arrays: UniqueCssValues[]): IntersectingCssValues {
   if (!arrays) throw Error(ErrorGetIntersectingValues);
 
-  const CSS_ARRAYS = arrays.map((a) => a.css);
-  const REDUCED_VALUES = CSS_ARRAYS.reduce((prev: string[], curr: string[]) =>
+  const cssArrays = arrays.map((a) => a.css);
+  const reducedValues = cssArrays.reduce((prev: string[], curr: string[]) =>
     prev.filter((val: string) => curr.includes(val))
   );
-  const INTERSECTING_VALUES = [...new Set(REDUCED_VALUES)] as string[];
+  const intersectingValues = [...new Set(reducedValues)] as string[];
 
-  return INTERSECTING_VALUES;
+  return intersectingValues;
 }

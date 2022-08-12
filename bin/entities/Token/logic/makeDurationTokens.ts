@@ -32,6 +32,7 @@ function makeDurationToken(
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.characters) throw Error(ErrorMakeDurationTokensMissingProps);
+
   const name = sanitizeString(item.name, camelizeTokenNames);
   durations[name] = parseFloat(item.characters);
 }
