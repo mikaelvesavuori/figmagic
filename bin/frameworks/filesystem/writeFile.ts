@@ -29,16 +29,16 @@ export function writeFile(writeOperation: WriteOperation): void {
   } = writeOperation;
   if (!file || !path || !name || !type) throw Error(ErrorWriteFile);
 
-  const TYPE: FileType = typeof type === 'string' ? (type.toLowerCase() as FileType) : 'null';
-  if (!acceptedFileTypes.includes(TYPE)) throw Error(ErrorWriteFileWrongType);
+  const fileType: FileType = typeof type === 'string' ? (type.toLowerCase() as FileType) : 'null';
+  if (!acceptedFileTypes.includes(fileType)) throw Error(ErrorWriteFileWrongType);
 
-  if (type === 'component' || type === 'graphic') createMissingFoldersFromPath(path);
+  if (fileType === 'component' || fileType === 'graphic') createMissingFoldersFromPath(path);
   else createFolder(path);
 
   const fixedName = name.split('/')[name.split('/').length - 1];
 
   const prepareWriteOperation: WriteOperation = {
-    type: TYPE,
+    type: fileType,
     file,
     path,
     name: fixedName,

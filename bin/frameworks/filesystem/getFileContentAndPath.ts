@@ -117,21 +117,21 @@ const getTokenString = (
 ): string => {
   if (format === 'json') return `${JSON.stringify(file, null, ' ')}`;
 
-  const EXPORT = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
+  const exportString = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
 
   if (dataType === 'enum') {
     return `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
       file
-    )}\n}\n\n${EXPORT};`;
+    )}\n}\n\n${exportString};`;
   }
 
-  const CONST_ASSERTION = format === 'ts' ? ' as const;' : '';
+  const constAssertion = format === 'ts' ? ' as const;' : '';
 
   return `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
     file,
     null,
     ' '
-  )}${CONST_ASSERTION}\n\n${EXPORT};`;
+  )}${constAssertion}\n\n${exportString};`;
 };
 
 /**

@@ -17,7 +17,7 @@ import { ErrorCalculateDegree2Point } from '../../frameworks/errors/errors';
 export function calculateDegree2Point(point1: Vector, point2: Vector): number {
   if (!point1 || !point2) throw Error(ErrorCalculateDegree2Point);
 
-  const ANGLE_DEG =
+  const angleDeg =
     ((Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) / Math.PI + 450) % 360;
-  return roundNumber(ANGLE_DEG, 2);
+  return roundNumber(angleDeg, 2);
 }

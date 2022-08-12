@@ -6,23 +6,23 @@ import { ErrorReplaceMediaQuery } from '../errors/errors';
 export function replaceMediaQuery(str: string, match: string): string {
   if (!str || !match) throw Error(ErrorReplaceMediaQuery);
 
-  const INDEX = str.indexOf(match);
-  if (INDEX === -1) return str;
+  const index = str.indexOf(match);
+  if (index === -1) return str;
 
   // Set media query, assume only "upto" or "min"
-  const QUERY_TYPE = match === '@upto' ? 'max' : 'min';
+  const queryType = match === '@upto' ? 'max' : 'min';
 
   // Get the right parts
-  const SLICE_START = match.length + 1;
-  const SLICE_LENGTH = SLICE_START + 6;
-  const QUERY = str.slice(INDEX, INDEX + SLICE_LENGTH);
-  let size = QUERY.slice(SLICE_START, SLICE_LENGTH);
-  const REMAINDER = QUERY.replace(match, '');
+  const sliceStart = match.length + 1;
+  const sliceLength = sliceStart + 6;
+  const query = str.slice(index, index + sliceLength);
+  let size = query.slice(sliceStart, sliceLength);
+  const remainder = query.replace(match, '');
 
   // If match was too greedy
   size = size.replace(/![0-9]/gi, '').trim();
 
   return str
-    .replace(match, `@media query and (${QUERY_TYPE}-width: ${size}px) {`)
-    .replace(REMAINDER, '');
+    .replace(match, `@media query and (${queryType}-width: ${size}px) {`)
+    .replace(remainder, '');
 }

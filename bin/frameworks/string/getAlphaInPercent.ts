@@ -5,7 +5,7 @@ import { ErrorGetAlphaInPercent } from '../../frameworks/errors/errors';
  */
 export const getAlphaInPercent = (color: string): string => {
   if (!color) throw Error(ErrorGetAlphaInPercent);
-  const SECTIONED = color.split(',');
+  const sectioned = color.split(',');
   // @ts-ignore
-  return SECTIONED[SECTIONED.length - 1].replace(/ /gi, '').replace(')', '') * 100 + '%';
+  return sectioned[sectioned.length - 1].replace(/ /gi, '').replace(')', '') * 100 + '%';
 };

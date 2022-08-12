@@ -20,10 +20,10 @@ export async function request(urlPath: string, figmaToken?: string): Promise<any
   };
 
   if (urlPath.includes('https://') || urlPath.includes('http://')) {
-    const URL_PATH = urlPath.replace('https://', '').replace('http://', '');
-    const indexFirstSlash = URL_PATH.indexOf('/');
-    const hostname = URL_PATH.substring(0, indexFirstSlash);
-    const path = URL_PATH.substring(indexFirstSlash, URL_PATH.length);
+    const urlPathWithoutProtocol = urlPath.replace('https://', '').replace('http://', '');
+    const indexFirstSlash = urlPathWithoutProtocol.indexOf('/');
+    const hostname = urlPathWithoutProtocol.substring(0, indexFirstSlash);
+    const path = urlPathWithoutProtocol.substring(indexFirstSlash, urlPathWithoutProtocol.length);
 
     options.hostname = hostname;
     options.path = path;

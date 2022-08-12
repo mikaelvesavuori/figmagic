@@ -10,6 +10,6 @@ export function loadFile(path: string): string | Record<string, unknown> {
   if (!path) throw Error(ErrorLoadFile(path));
   if (!fs.existsSync(path)) throw Error(ErrorLoadFile(path));
 
-  const DATA = fs.readFileSync(path, 'utf8');
-  return isJsonString(DATA) ? JSON.parse(DATA) : DATA;
+  const data = fs.readFileSync(path, 'utf8');
+  return isJsonString(data) ? JSON.parse(data) : data;
 }

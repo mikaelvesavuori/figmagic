@@ -33,20 +33,20 @@ export const prepComponent = (data: PrepComponent): FileContentWithPath => {
   const { name, filePath, format, templates, text, extraProps, element } = data;
   const props = extraProps === '' || extraProps === ' ' ? `${extraProps}` : ` ${extraProps}`;
 
-  const SUFFIX = 'Styled';
-  const PATH = `${templates.templatePathReact}.${format}`;
+  const suffix = 'Styled';
+  const path = `${templates.templatePathReact}.${format}`;
 
-  let template = loadFile(PATH) as string;
+  let template = loadFile(path) as string;
   if (checkIfVoidElement(element))
     template = template
       .replace(/{{NAME}}/gi, name)
       .replace('>{children ? children : "{{TEXT}}"}</{{NAME_STYLED}}>', ' />')
       .replace('>{props.children ? props.children : "{{TEXT}}"}</{{NAME_STYLED}}>', ' />')
-      .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`);
+      .replace(/{{NAME_STYLED}}/gi, `${name}${suffix}`);
   else
     template = template
       .replace(/{{NAME}}/gi, name)
-      .replace(/{{NAME_STYLED}}/gi, `${name}${SUFFIX}`)
+      .replace(/{{NAME_STYLED}}/gi, `${name}${suffix}`)
       .replace(/\s>/gi, '>')
       .replace(/{{TEXT}}/gi, text !== ' ' ? text : '');
 
@@ -92,10 +92,10 @@ export const prepCss = (data: PrepCss): FileContentWithPath => {
 
   const { name, filePath, format, imports, file } = data;
 
-  const SUFFIX = 'Css';
-  const FILE_CONTENT = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${SUFFIX} = \`${file}\`;\n\nexport default ${name}${SUFFIX};`;
+  const suffix = 'Css';
+  const fileContent = `// ${MsgGeneratedFileWarning}\n\n${imports}\nconst ${name}${suffix} = \`${file}\`;\n\nexport default ${name}${suffix};`;
 
-  return { fileContent: FILE_CONTENT, filePath: `${filePath}${SUFFIX}.${format}` };
+  return { fileContent: fileContent, filePath: `${filePath}${suffix}.${format}` };
 };
 
 /**
@@ -108,13 +108,13 @@ export const prepStorybook = (data: PrepStorybook): FileContentWithPath => {
 
   const { name, filePath, format, templates, text } = data;
 
-  const SUFFIX = '.stories';
-  const PATH = `${templates.templatePathStorybook}.${format}`;
+  const suffix = '.stories';
+  const path = `${templates.templatePathStorybook}.${format}`;
 
-  let template = loadFile(PATH) as string;
+  let template = loadFile(path) as string;
   template = template.replace(/{{NAME}}/gi, name).replace(/{{TEXT}}/gi, text);
 
-  return { fileContent: `${template}`, filePath: `${filePath}${SUFFIX}.${format}` };
+  return { fileContent: `${template}`, filePath: `${filePath}${suffix}.${format}` };
 };
 
 /**
@@ -126,9 +126,9 @@ export const prepDescription = (data: PrepDescription): FileContentWithPath => {
 
   const { filePath, file, format } = data;
 
-  const FILE_CONTENT = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
+  const fileContent = `<!--${MsgGeneratedFileWarning}-->\n${file}`;
 
-  return { fileContent: FILE_CONTENT, filePath: `${filePath}.description.${format}` };
+  return { fileContent: fileContent, filePath: `${filePath}.description.${format}` };
 };
 
 /**
@@ -140,9 +140,9 @@ export const prepGraphicComponent = (data: PrepGraphicComponent): FileContentWit
     throw Error(ErrorPrepFileGraphicComponent);
   const { name, filePath, format, templates, file } = data;
 
-  const PATH = `${templates.templatePathGraphic}.${format}`;
+  const path = `${templates.templatePathGraphic}.${format}`;
 
-  let template = loadFile(PATH) as string;
+  let template = loadFile(path) as string;
   template = template
     .replace(/{{NAME}}/gi, name)
     .replace(/\s>/gi, '>')

@@ -6,9 +6,9 @@ import { ErrorCheckIfStringOnlyContainsReturnsOrSpaces } from '../../../bin/fram
 export function checkIfStringOnlyContainsReturnsOrSpaces(str: string): boolean {
   if (!str) throw Error(ErrorCheckIfStringOnlyContainsReturnsOrSpaces);
 
-  const HAS_RETURNS = str.match(/\n/gi);
-  const HAS_SPACES = str.match(/ /gi);
-  if (HAS_RETURNS && HAS_SPACES) return false;
+  const hasReturns = str.match(/\n/gi);
+  const hasSpaces = str.match(/ /gi);
+  if (hasReturns && hasSpaces) return false;
 
   str = str.replace(/\n/gi, '').replace(/ /gi, '');
   if (str.length > 0) return false;
