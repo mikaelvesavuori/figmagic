@@ -8,11 +8,11 @@ import { ErrorCreatePage } from '../../../frameworks/errors/errors';
 export function createPage(figmaPages: Frame[], matchingPageName: string): Frame[] {
   if (!figmaPages || !(figmaPages.length > 0)) throw Error(ErrorCreatePage);
 
-  const PAGE = figmaPages.filter(
+  const page = figmaPages.filter(
     (page) =>
       page.name.toLowerCase().replace(/ /g, '') === matchingPageName.toLowerCase().replace(/ /g, '')
   );
 
-  if (PAGE.length > 0 && PAGE[0].children) return PAGE[0].children;
+  if (page.length > 0 && page[0].children) return page[0].children;
   return [];
 }

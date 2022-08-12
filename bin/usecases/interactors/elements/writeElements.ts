@@ -21,39 +21,39 @@ export function writeElements(
   if (!elements || !config) throw Error(ErrorWriteElements);
 
   elements.forEach((element: FigmagicElement) => {
-    const FIXED_CONFIG = makeFixedConfig(element, config);
+    const fixedConfig = makeFixedConfig(element, config);
     // TODO Refactor: writeFileHelper() should take fewer params since we are already passing in fixed config...?
 
     if (!config.skipFileGeneration.skipReact) {
-      const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.${FIXED_CONFIG.outputFormatElements}`;
-      const TYPE = isGeneratingGraphics ? 'graphic' : 'component';
-      writeFileHelper(FIXED_CONFIG, TYPE, config.outputFormatElements, checkIfExists(PATH));
+      const path = `${fixedConfig.folder}/${fixedConfig.fixedName}.${fixedConfig.outputFormatElements}`;
+      const type = isGeneratingGraphics ? 'graphic' : 'component';
+      writeFileHelper(fixedConfig, type, config.outputFormatElements, checkIfExists(path));
     }
 
     if (!isGeneratingGraphics) {
       if (!config.skipFileGeneration.skipStorybook) {
-        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.stories.${FIXED_CONFIG.outputFormatStorybook}`;
-        writeFileHelper(FIXED_CONFIG, 'story', config.outputFormatStorybook, checkIfExists(PATH));
+        const path = `${fixedConfig.folder}/${fixedConfig.fixedName}.stories.${fixedConfig.outputFormatStorybook}`;
+        writeFileHelper(fixedConfig, 'story', config.outputFormatStorybook, checkIfExists(path));
       }
 
       if (!config.skipFileGeneration.skipDescription) {
-        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}.description.${FIXED_CONFIG.outputFormatDescription}`;
+        const path = `${fixedConfig.folder}/${fixedConfig.fixedName}.description.${fixedConfig.outputFormatDescription}`;
         writeFileHelper(
-          FIXED_CONFIG,
+          fixedConfig,
           'description',
           config.outputFormatDescription,
-          checkIfExists(PATH)
+          checkIfExists(path)
         );
       }
 
       if (!config.skipFileGeneration.skipStyled) {
-        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Styled.${FIXED_CONFIG.outputFormatElements}`;
-        writeFileHelper(FIXED_CONFIG, 'styled', config.outputFormatElements, checkIfExists(PATH));
+        const path = `${fixedConfig.folder}/${fixedConfig.fixedName}Styled.${fixedConfig.outputFormatElements}`;
+        writeFileHelper(fixedConfig, 'styled', config.outputFormatElements, checkIfExists(path));
       }
 
       if (!config.skipFileGeneration.skipCss) {
-        const PATH = `${FIXED_CONFIG.folder}/${FIXED_CONFIG.fixedName}Css.${FIXED_CONFIG.outputFormatCss}`;
-        writeFileHelper(FIXED_CONFIG, 'css', config.outputFormatCss, checkIfExists(PATH));
+        const path = `${fixedConfig.folder}/${fixedConfig.fixedName}Css.${fixedConfig.outputFormatCss}`;
+        writeFileHelper(fixedConfig, 'css', config.outputFormatCss, checkIfExists(path));
       }
     }
   });
@@ -129,10 +129,10 @@ const writeFileHelper = (
   const forceUpdate = config.forceUpdate;
 
   if (!fileExists || shouldOverwrite || forceUpdate) {
-    const FILE_DATA = (() => {
+    const fileData = (() => {
       if (type === 'graphic') {
-        const SVG_DATA = getSvgFileData(`${config.outputFolderGraphics}/${config.fixedName}.svg`);
-        return cleanSvgData(SVG_DATA);
+        const svgData = getSvgFileData(`${config.outputFolderGraphics}/${config.fixedName}.svg`);
+        return cleanSvgData(svgData);
       }
       if (type === 'description') return config.description;
       if (type === 'css') return config.css;
@@ -152,7 +152,7 @@ const writeFileHelper = (
 
     writeFile({
       type,
-      file: FILE_DATA,
+      file: fileData,
       path: folder,
       name: fixedName,
       format,

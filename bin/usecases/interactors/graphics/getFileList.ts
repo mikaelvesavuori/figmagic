@@ -14,11 +14,11 @@ export const getFileList = (
   if (!response || !ids || !outputFormatGraphics) throw Error(ErrorGetFileList);
 
   return Object.entries(response.images).map((image) => {
-    const MATCH = ids.filter((id) => id.id === image[0]);
-    const FILE_PATH = MATCH[0].name.trim().replace(/ /g, '') + `.${outputFormatGraphics}`;
+    const match = ids.filter((id) => id.id === image[0]);
+    const filePath = match[0].name.trim().replace(/ /g, '') + `.${outputFormatGraphics}`;
     return {
       url: image[1],
-      file: FILE_PATH
+      file: filePath
     };
   });
 };

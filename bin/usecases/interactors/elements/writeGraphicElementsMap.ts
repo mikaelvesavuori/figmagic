@@ -12,6 +12,7 @@ export function writeGraphicElementsMap(
   fileContent: string
 ): void {
   if (!folder || !filePath || !fileContent) throw Error(ErrorWriteGraphicElementsMap);
+
   createFolder(folder);
   write(filePath, fileContent);
 }

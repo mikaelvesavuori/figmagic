@@ -16,20 +16,20 @@ export function processTokens(tokens: Frame[], config: Config): WriteOperation[]
   if (!config) throw Error(ErrorWriteTokensNoSettings);
   if (!tokens) return [];
 
-  const PROCESSED_TOKENS: WriteOperation[] = [];
+  const processedTokens: WriteOperation[] = [];
 
   tokens.forEach((tokenFrame) => {
-    const TOKEN_NAME = sanitizeString(tokenFrame.name);
+    const tokenName = sanitizeString(tokenFrame.name);
 
     // Skip any design token frames that begin with an underscore
-    if (tokenFrame.type.toUpperCase() === 'FRAME' && TOKEN_NAME[0] === '_') return;
+    if (tokenFrame.type.toUpperCase() === 'FRAME' && tokenName[0] === '_') return;
 
-    if (acceptedTokenTypes.includes(TOKEN_NAME.toLowerCase()) && TOKEN_NAME[0] !== '_') {
-      const TOKEN = makeToken(tokenFrame, TOKEN_NAME, config);
-      const WRITE_OP = TOKEN.getWriteOperation();
-      if (WRITE_OP) PROCESSED_TOKENS.push(WRITE_OP);
+    if (acceptedTokenTypes.includes(tokenName.toLowerCase()) && tokenName[0] !== '_') {
+      const token = makeToken(tokenFrame, tokenName, config);
+      const writeOperation = token.getWriteOperation();
+      if (writeOperation) processedTokens.push(writeOperation);
     }
   });
 
-  return PROCESSED_TOKENS;
+  return processedTokens;
 }

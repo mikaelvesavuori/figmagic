@@ -21,11 +21,13 @@ export function processElements(
 ): FigmagicElement[] {
   if (!elementsPage || !components || !config) throw Error(ErrorProcessElements);
 
-  const FILTERED_ELEMENTS = elementsPage.filter(
+  const filteredElements = elementsPage.filter(
     (element) => element.type === 'COMPONENT' && element.name[0] !== '_'
   );
-  const PARSED_ELEMENTS = FILTERED_ELEMENTS.map((element: FigmaElement) =>
+
+  const parsedElements = filteredElements.map((element: FigmaElement) =>
     makeFigmagicElement(element, config, components[element.id].description, isGraphicElement)
   );
-  return PARSED_ELEMENTS;
+
+  return parsedElements;
 }
