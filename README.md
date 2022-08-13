@@ -30,6 +30,12 @@ _Built initially as an internal handoff tool for [Humblebee](https://www.humbleb
 
 ---
 
+## Product vision 🔮
+
+Interested in understanding the vision for Figmagic? Then you should read the [product vision](readme/vision.md).
+
+---
+
 ## Translations 🗺️
 
 You can also read this README in the following languages:
