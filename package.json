@@ -73,7 +73,8 @@
     "test:watch": "npx jest --clearCache && jest __tests__ --collectCoverage --watch",
     "test:silent": "npx jest --reporters jest-silent-reporter --collectCoverage=false",
     "lint": "npx eslint './bin/**/*.ts' --quiet --fix",
-    "docs": "npx typedoc && npx arkit",
+    "docs": "npm run docs:typedoc && npx arkit",
+    "docs:typedoc": "npx typedoc --entryPoints bin --entryPointStrategy expand --exclude '**/*+(test).ts' --externalPattern 'node_modules/**/*' --excludeExternals --out docs",
     "licenses": "npx license-compliance --direct --allow 'MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;Unlicense;CC0-1.0'",
     "licenses:checker": "npx license-compatibility-checker",
     "prepare": "husky install"
