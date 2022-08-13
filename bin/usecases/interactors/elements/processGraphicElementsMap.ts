@@ -6,7 +6,7 @@ import { ErrorProcessGraphicElementsMap } from '../../../frameworks/errors/error
  */
 export function processGraphicElementsMap(graphics: Graphic[]): string {
   if (!graphics) throw Error(ErrorProcessGraphicElementsMap);
-  if (!(graphics.length > 0)) throw Error(ErrorProcessGraphicElementsMap);
+  if (graphics.length === 0) throw Error(ErrorProcessGraphicElementsMap);
 
   let imports = '';
   graphics.forEach((graphic: Graphic) => {

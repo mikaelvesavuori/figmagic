@@ -1,4 +1,3 @@
-//import { FRAME as Frame } from '../../contracts/Figma';
 import { Metadata } from '../../contracts/Metadata';
 import { createImportStringFromList } from '../string/createImportStringFromList';
 

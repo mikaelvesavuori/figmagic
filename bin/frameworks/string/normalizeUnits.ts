@@ -20,7 +20,7 @@ export function normalizeUnits(
 
   if (rootSize === undefined || unitSize === undefined) throw Error(ErrorNormalizeUnitsUndefined);
 
-  return getAdjustedValues(value, rootSize as number, unitSize as number, newUnit);
+  return getAdjustedValues(value, rootSize, unitSize, newUnit);
 }
 
 function setRootSize(currentUnit: string): number | undefined {

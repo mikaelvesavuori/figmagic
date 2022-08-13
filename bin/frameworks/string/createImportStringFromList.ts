@@ -14,7 +14,7 @@ export function createImportStringFromList(
   tokensRelativeImportPrefix = ''
 ): string {
   if (!importArray) throw Error(ErrorCreateImportStringFromList);
-  if (!(importArray.length > 0)) throw Error(ErrorCreateImportStringFromListZeroLength);
+  if (importArray.length === 0) throw Error(ErrorCreateImportStringFromListZeroLength);
 
   let importString = ``;
 

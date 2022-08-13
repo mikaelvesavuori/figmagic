@@ -41,5 +41,5 @@ export function getUniqueValues(
       });
   });
 
-  return fixedUniqueValues as UniqueCssValues[];
+  return fixedUniqueValues;
 }

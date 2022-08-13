@@ -73,14 +73,12 @@ function matchPadding(
 
   keys.forEach((key: string) => {
     let foundMatch = false;
+    const keyValue = expectedValue[key];
 
-    if (expectedValue[key]) {
+    if (keyValue) {
       if (!remSize) throw Error(ErrorGetTokenMatchNoRemSize);
-      const parsedValue =
-        typeof expectedValue[key] !== 'number'
-          ? parseFloat(expectedValue[key] as string)
-          : expectedValue[key];
-      const value = normalizeUnits(parsedValue as any, 'px', 'rem', remSize);
+      const parsedValue = getParsedValue(keyValue as any);
+      const value = normalizeUnits(parsedValue, 'px', 'rem', remSize);
 
       // Check if we can match value with a token and its value
       Object.entries(tokens).forEach((token) => {
@@ -117,25 +115,7 @@ function matchOther(
 
   Object.entries(tokens).forEach((token: Token[]) => {
     const tokenValue: string | number = token[1];
-
-    // Multiply rem|em strings through REM size argument
-    const valueThroughRem = (() => {
-      if (tokenValue && typeof tokenValue === 'string') {
-        if (property === 'letter-spacing') return tokenValue;
-        if (tokenValue.match('rem') || tokenValue.match('em'))
-          return parseFloat(tokenValue) * remSize;
-      }
-      return null;
-    })();
-
-    const isTokenMatch = (() => {
-      // We need to make a special check if color is using hex format
-      // @ts-ignore
-      if (property.includes('color') && tokenValue[0] === '#')
-        return convertHexToRgba(tokenValue as string) === expectedValue;
-
-      return valueThroughRem ? valueThroughRem === expectedValue : tokenValue == expectedValue;
-    })();
+    const isTokenMatch = checkIfTokenMatch(property, tokenValue, expectedValue, remSize);
 
     if (isTokenMatch) {
       css += `${property}: \${${tokenFileName}['${token[0]}']};\n`;
@@ -146,19 +126,9 @@ function matchOther(
 
   // Write expected value as-is, since we couldn't match it to a token
   if (!foundMatch) {
-    let notFoundMessage = `${MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`;
+    const notFoundMessage = createNotFoundMessage(property, expectedValue);
 
-    // Handle colors since these need more verbose output
-    if (property.includes('color'))
-      notFoundMessage += ` (HEX: ${convertRgbaToHex(expectedValue as string)}, ${getAlphaInPercent(
-        expectedValue as string
-      )})`;
-
-    // Height needs to add the px value or it becomes useless
-    if (property === 'height' || property === 'font-size') {
-      notFoundMessage += `px`;
-      expectedValue += `px`;
-    }
+    if (property === 'height' || property === 'font-size') expectedValue += `px`;
 
     const useHex = outputFormatColors && outputFormatColors === 'hex';
 
@@ -167,6 +137,55 @@ function matchOther(
   }
 
   return { css, imports };
+}
+
+function getParsedValue(key: string | number) {
+  if (typeof key !== 'number') return parseFloat(key);
+  return key;
+}
+
+/**
+ * @description We need to make a special check if color is using hex format.
+ */
+function checkIfTokenMatch(
+  property: string,
+  tokenValue: any,
+  expectedValue: ExpectedValue,
+  remSize: number
+) {
+  // @ts-ignore
+  if (property.includes('color') && tokenValue[0] === '#')
+    return convertHexToRgba(tokenValue as string) === expectedValue;
+
+  const val = valueThroughRem(tokenValue, property, remSize);
+  if (val) return val === expectedValue;
+  return tokenValue == expectedValue;
+}
+
+/**
+ * @description Multiply rem|em strings through REM size argument.
+ */
+function valueThroughRem(tokenValue: any, property: string, remSize: number) {
+  if (tokenValue && typeof tokenValue === 'string') {
+    if (property === 'letter-spacing') return tokenValue;
+    if (tokenValue.match('rem') || tokenValue.match('em')) return parseFloat(tokenValue) * remSize;
+  }
+
+  return null;
+}
+
+function createNotFoundMessage(property: string, expectedValue: ExpectedValue) {
+  let notFoundMessage = `${MsgGetTokenMatchNoMatch} ${property}: ${expectedValue}`;
+
+  // Handle colors since these need more verbose output
+  if (property.includes('color'))
+    notFoundMessage += ` (HEX: ${convertRgbaToHex(expectedValue as string)}, ${getAlphaInPercent(
+      expectedValue as string
+    )})`;
+
+  if (property === 'height' || property === 'font-size') notFoundMessage += `px`;
+
+  return notFoundMessage;
 }
 
 type Token = string | number;
