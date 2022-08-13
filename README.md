@@ -46,6 +46,10 @@ You can also read this README in the following languages:
 
 ## Announcements
 
+### Version `4.5.0` enables using frames as well as groups for generating components from Figma
+
+See more on the [version 4.5.0 release page](https://github.com/mikaelvesavuori/figmagic/releases/tag/v4.5.0).
+
 ### Version `4.4.0` outputs all files on disk (and imports) as PascalCase
 
 When files (and Elements) are written to disk these now use a PascalCase format. This is partly because recent versions have also started to accept dashes and underscores in names, for example for Elements and tokens named things like `my-design-system-button`, which would be transformed into `MyDesignSystemButton`.
