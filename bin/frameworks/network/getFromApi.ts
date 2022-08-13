@@ -43,7 +43,7 @@ export async function getFromApi(
     }
   }
 
-  return await request(endpoint, figmaToken)
+  return request(endpoint, figmaToken)
     .then((res) => res)
     .catch(() => {
       throw Error(ErrorGetFromApi);

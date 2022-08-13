@@ -1,9 +1,8 @@
 import { Metadata } from './Metadata';
 import { Templates } from './Templates';
 import { ProcessedToken } from './ProcessedToken';
-import { Overwrite } from './Config';
-
 import {
+  Overwrite,
   OutputFormatCss,
   OutputFormatDescription,
   OutputFormatElements,

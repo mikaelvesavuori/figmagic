@@ -1,8 +1,7 @@
 import { Metadata } from './Metadata';
 import { Templates } from './Templates';
 import { ProcessedToken } from './ProcessedToken';
-import { Overwrite } from './Config';
-import { OutputFormatCss, OutputFormatDescription, OutputFormatElements, OutputFormatGraphics, OutputFormatStorybook, OutputFormatTokens } from './Config';
+import { Overwrite, OutputFormatCss, OutputFormatDescription, OutputFormatElements, OutputFormatGraphics, OutputFormatStorybook, OutputFormatTokens } from './Config';
 export declare type WriteOperation = {
     type: FileType;
     file: string | ProcessedToken;

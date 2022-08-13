@@ -20,7 +20,7 @@ export function replaceMediaQuery(str: string, match: string): string {
   const remainder = query.replace(match, '');
 
   // If match was too greedy
-  size = size.replace(/![0-9]/gi, '').trim();
+  size = size.replace(/!\d/gi, '').trim();
 
   return str
     .replace(match, `@media query and (${queryType}-width: ${size}px) {`)

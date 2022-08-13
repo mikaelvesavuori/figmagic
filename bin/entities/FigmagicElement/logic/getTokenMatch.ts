@@ -15,7 +15,7 @@ export function getTokenMatch(
   tokens: Tokens,
   tokenFileName: string,
   property: string,
-  expectedValue: string | number | Record<string, unknown>,
+  expectedValue: ExpectedValue,
   remSize: number,
   outputFormatColors?: OutputFormatColors
 ): TokenMatch {
@@ -60,7 +60,7 @@ export function getTokenMatch(
 }
 
 function matchPadding(
-  expectedValue: string | number | Record<string, unknown>,
+  expectedValue: ExpectedValue,
   remSize: number,
   tokens: Tokens,
   tokenFileName: string,
@@ -104,7 +104,7 @@ function matchPadding(
 }
 
 function matchOther(
-  expectedValue: string | number | Record<string, unknown>,
+  expectedValue: ExpectedValue,
   remSize: number,
   outputFormatColors: OutputFormatColors,
   tokens: Tokens,
@@ -170,3 +170,5 @@ function matchOther(
 }
 
 type Token = string | number;
+
+type ExpectedValue = string | number | Record<string, unknown>;

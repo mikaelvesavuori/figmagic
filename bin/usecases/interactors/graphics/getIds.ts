@@ -29,7 +29,7 @@ export const getIds = (graphicsPage: Frame[]): Id[] => {
   }
 
   const deduplicatedIds: Id[] = [];
-  ids.filter((item: Id) =>
+  ids.forEach((item: Id) =>
     !deduplicatedIds.find((element: Id) => element.id === item.id)
       ? deduplicatedIds.push(item)
       : null

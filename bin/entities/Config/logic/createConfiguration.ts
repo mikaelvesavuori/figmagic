@@ -52,7 +52,7 @@ export async function createConfiguration(
   };
 
   // CLI arguments configuration
-  const cliConfig = parseCliArgs(cliArgs) as Config;
+  const cliConfig = parseCliArgs(cliArgs);
 
   // Merge configurations in order of prioritization
   // 1. Default config
@@ -105,9 +105,7 @@ function printConfigs(
 }
 
 const getEnvUrl = (processEnvUrl: string | undefined, rcConfigUrl: string | undefined) => {
-  return processEnvUrl
-    ? getFigmaDocumentId(processEnvUrl)
-    : rcConfigUrl
-    ? getFigmaDocumentId(rcConfigUrl)
-    : '';
+  if (processEnvUrl) return getFigmaDocumentId(processEnvUrl);
+  if (rcConfigUrl) getFigmaDocumentId(rcConfigUrl);
+  return '';
 };

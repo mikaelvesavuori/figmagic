@@ -54,20 +54,9 @@ function makeShadowToken(
   if (effects.length > 0) {
     effects.forEach((effect, index) => {
       if (effect) {
-        const X = (() => {
-          if (shadowUnit === 'px') return effect.offset.x + shadowUnit;
-          else return (effect.offset.x as unknown as number) / remSize + shadowUnit;
-        })();
-
-        const Y = (() => {
-          if (shadowUnit === 'px') return effect.offset.y + shadowUnit;
-          else return (effect.offset.y as unknown as number) / remSize + shadowUnit;
-        })();
-
-        const radius = (() => {
-          if (shadowUnit === 'px') return effect.radius + shadowUnit;
-          else return (effect.radius as unknown as number) / remSize + shadowUnit;
-        })();
+        const X = getShadowXY(shadowUnit, effect.offset.x, remSize);
+        const Y = getShadowXY(shadowUnit, effect.offset.y, remSize);
+        const radius = getShadowRadius(shadowUnit, effect.radius, remSize);
 
         const R = roundColorValue(effect.color.r);
         const G = roundColorValue(effect.color.g);
@@ -79,4 +68,14 @@ function makeShadowToken(
       }
     });
   }
+}
+
+function getShadowXY(shadowUnit: ShadowUnit, offset: number, remSize: number) {
+  if (shadowUnit === 'px') return offset + shadowUnit;
+  else return (offset as unknown as number) / remSize + shadowUnit;
+}
+
+function getShadowRadius(shadowUnit: ShadowUnit, radius: number, remSize: number) {
+  if (shadowUnit === 'px') return radius + shadowUnit;
+  else return (radius as unknown as number) / remSize + shadowUnit;
 }

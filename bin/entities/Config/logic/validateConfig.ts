@@ -1,8 +1,7 @@
 import { Config } from '../../../contracts/Config';
 
-import { ErrorValidateConfig } from '../../../frameworks/errors/errors';
-
 import {
+  ErrorValidateConfig,
   ErrorValidateBorderWidthUnit,
   ErrorValidateConfigFileName,
   ErrorValidateConfigFolderName,
