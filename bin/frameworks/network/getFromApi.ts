@@ -2,7 +2,7 @@ import { request } from './request';
 
 import { ApiResponse } from '../../contracts/ApiResponse';
 
-import { ErrorGetFromApi } from '../errors/errors';
+import { ErrorGetFromApiMissingValues, ErrorGetFromApi } from '../errors/errors';
 import { isJsonString } from '../filesystem/isJsonString';
 
 /**
@@ -14,17 +14,17 @@ export async function getFromApi(
   versionName?: string | null,
   type: 'files' | 'images' = 'files'
 ): Promise<ApiResponse> {
-  if (!figmaToken || !figmaUrl) throw Error(ErrorGetFromApi);
+  if (!figmaToken || !figmaUrl) throw Error(ErrorGetFromApiMissingValues);
   let endpoint = `/v1/${type}/${figmaUrl}`;
 
   if (versionName) {
     const versions = await request(`/v1/${type}/${figmaUrl}/versions`, figmaToken)
       .then((res) => {
         if (isJsonString(res)) return JSON.parse(res);
-        else return res;
+        return res;
       })
-      .catch(() => {
-        throw Error(ErrorGetFromApi);
+      .catch((error: any) => {
+        throw Error(ErrorGetFromApi(error));
       });
 
     if (versions.versions) {
@@ -45,7 +45,7 @@ export async function getFromApi(
 
   return request(endpoint, figmaToken)
     .then((res) => res)
-    .catch(() => {
-      throw Error(ErrorGetFromApi);
+    .catch((error: any) => {
+      throw Error(ErrorGetFromApi(error));
     });
 }

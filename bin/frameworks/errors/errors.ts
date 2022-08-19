@@ -100,7 +100,9 @@ export const ErrorGetFileList = ErrorMessage(
 );
 export const ErrorGetFiles = ErrorMessage('Error in getFiles()!');
 export const ErrorGetFontColor = ErrorMessage('Error in getFontColor()!');
-export const ErrorGetFromApi = ErrorMessage(
+export const ErrorGetFromApi = (errorMessage: string) =>
+  ErrorMessage(`Error occurred while using the Figma API: "${errorMessage}"`);
+export const ErrorGetFromApiMissingValues = ErrorMessage(
   'Missing one or more of required arguments: "figmaToken", "figmaUrl" when attempting to get data from Figma API!'
 );
 export const ErrorGetIds = ErrorMessage('No (or zero-length) array passed to getIds()!');
