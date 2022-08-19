@@ -1,6 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+npm run test:types
 npm test
 npm run clean
 npm run licenses
