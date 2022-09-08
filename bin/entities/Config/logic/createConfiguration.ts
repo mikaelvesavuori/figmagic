@@ -106,6 +106,6 @@ function printConfigs(
 
 const getEnvUrl = (processEnvUrl: string | undefined, rcConfigUrl: string | undefined) => {
   if (processEnvUrl) return getFigmaDocumentId(processEnvUrl);
-  if (rcConfigUrl) getFigmaDocumentId(rcConfigUrl);
+  if (rcConfigUrl) return getFigmaDocumentId(rcConfigUrl);
   return '';
 };
