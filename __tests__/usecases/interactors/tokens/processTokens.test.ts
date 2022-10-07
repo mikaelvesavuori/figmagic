@@ -396,7 +396,7 @@ describe('Success cases', () => {
     expect(processTokens([durationsFrame], baseConfig)).toEqual(
       expect.arrayContaining([
         {
-          file: { long: 0.6, medium: 0.25, short: 0.15, veryLong: 1 },
+          file: { long: '0.6s', medium: '0.25s', short: '0.15s', veryLong: '1s' },
           format: 'ts',
           name: 'durations',
           path: 'tokens',

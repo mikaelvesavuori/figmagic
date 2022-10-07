@@ -26,9 +26,15 @@ describe('Failure cases', () => {
 });
 
 describe('Success cases', () => {
-  test('It should return a complete object when passing in valid input', () => {
-    expect(makeDurationTokens(durationsFrame)).toEqual(
-      expect.objectContaining({ long: 0.6, medium: 0.25, short: 0.15, veryLong: 1 })
+  test('It should return a complete object when passing in valid input, using "s" conversion', () => {
+    expect(makeDurationTokens(durationsFrame, 's')).toEqual(
+      expect.objectContaining({ long: '0.6s', medium: '0.25s', short: '0.15s', veryLong: '1s' })
+    );
+  });
+
+  test('It should return a complete object when passing in valid input, using "ms" conversion', () => {
+    expect(makeDurationTokens(durationsFrame, 'ms')).toEqual(
+      expect.objectContaining({ long: '0.6ms', medium: '0.25ms', short: '0.15ms', veryLong: '1ms' })
     );
   });
 });

@@ -44,6 +44,8 @@ export function parseCliArgs(argsArray: string[]): Config {
     '-lhu': (val: string) => setConfigValue('lineHeightUnit', val.toLowerCase()),
     '--opacitiesUnit': (val: string) => setConfigValue('opacitiesUnit', val.toLowerCase()),
     '-ou': (val: string) => setConfigValue('opacitiesUnit', val.toLowerCase()),
+    '--durationUnit': (val: string) => setConfigValue('durationUnit', val.toLowerCase()),
+    '-du': (val: string) => setConfigValue('durationUnit', val.toLowerCase()),
     '--figmaData': (val: string) => setConfigValue('figmaData', val),
     '-data': (val: string) => setConfigValue('figmaData', val),
     '--figmagicFolder': (val: string) => setConfigValue('figmagicFolder', val),

@@ -151,6 +151,7 @@ export declare const ErrorValidateConfigFolderName: string;
 export declare const ErrorValidateBorderWidthUnit: string;
 export declare const ErrorValidateRadiusUnit: string;
 export declare const ErrorValidateShadowUnit: string;
+export declare const ErrorValidateDurationUnit: string;
 export declare const ErrorValidateConfigFontUnit: string;
 export declare const ErrorValidateConfigLetterSpacingUnit: string;
 export declare const ErrorValidateConfigLineHeightUnit: string;

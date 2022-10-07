@@ -367,6 +367,7 @@ Below is a complete set of what you can configure, together with the defaults.
   "letterSpacingUnit": "em",
   "lineHeightUnit": "unitless",
   "opacitiesUnit": "float",
+  "durationUnit": "s",
   "radiusUnit": "px",
   "shadowUnit": "px",
   "figmaData": "figma.json",
@@ -501,6 +502,14 @@ From version `4.3.7`, you can now also opt-in to have no transforms applied to y
 `figmagic [--opacitiesUnit | -ou] [float|percent]`
 
 **Default**: `float`.
+
+---
+
+#### Switch duration unit
+
+`figmagic [--durationUnit | -du] [s|ms]`
+
+**Default**: `s`.
 
 ---
 
@@ -935,6 +944,12 @@ RGBA colors.
 
 Typical 2 decimals numbered values between 0 and 1 like `0` or `0.65`.
 Can be set to `percent` to have them converted to `%` strings instead like `0%` or `65%`.
+
+---
+
+### Duration
+
+**Default:** `s` units. Can be set to `ms`.
 
 ---
 
