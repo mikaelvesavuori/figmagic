@@ -13,4 +13,5 @@ export const validOutputFormatStorybookList = ['ts', 'js', 'mdx'];
 export const validOutputFormatTokensList = ['ts', 'mjs', 'js', 'json'];
 export const validRadiusUnitList = ['rem', 'em', 'px'];
 export const validShadowUnitList = ['rem', 'em', 'px'];
+export const validDurationUnitList = ['s', 'ms'];
 export const validSpacingUnitList = ['rem', 'em', 'px'];

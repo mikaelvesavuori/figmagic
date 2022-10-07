@@ -13,4 +13,5 @@ export declare const validOutputFormatStorybookList: string[];
 export declare const validOutputFormatTokensList: string[];
 export declare const validRadiusUnitList: string[];
 export declare const validShadowUnitList: string[];
+export declare const validDurationUnitList: string[];
 export declare const validSpacingUnitList: string[];
