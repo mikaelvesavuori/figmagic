@@ -1048,6 +1048,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/Ishmam156"><img src="https://avatars.githubusercontent.com/u/64395142?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ishmam Chowdhury</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Ishmam156" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/printf-ana"><img src="https://avatars.githubusercontent.com/u/45365825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ana Carolina </b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=printf-ana" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/smmccabe"><img src="https://avatars.githubusercontent.com/u/4956338?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shawn McCabe</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=smmccabe" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mitchdotdeveloper"><img src="https://avatars.githubusercontent.com/u/23520530?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mitch O'Hair</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=mitchdotdeveloper" title="Code">💻</a></td>
   </tr>
 </table>
 
