@@ -87,7 +87,8 @@ class Token {
       shadowUnit,
       spacingUnit,
       unitlessPrecision,
-      usePostscriptFontNames
+      usePostscriptFontNames,
+      useLiteralFontFamilies
     } = config;
 
     const tokenOperations = {
@@ -100,7 +101,12 @@ class Token {
       easings: () => makeEasingTokens(frame, camelizeTokenNames),
       fontfamilies: () => {
         if (!config) throw Error(ErrorExtractTokensNoConfig);
-        return makeFontTokens(frame, usePostscriptFontNames, camelizeTokenNames);
+        return makeFontTokens(
+          frame,
+          usePostscriptFontNames,
+          useLiteralFontFamilies,
+          camelizeTokenNames
+        );
       },
       fontsizes: () => {
         if (!config) throw Error(ErrorExtractTokensNoConfig);
