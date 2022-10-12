@@ -42,7 +42,7 @@ function makeFontToken(
 
   if (!item.name || !item.style) throw Error(ErrorMakeFontTokensMissingProps);
   const name = sanitizeString(item.name, camelizeTokenNames);
-  console.log(useLiteralFontFamilies, 'useLiteralFontFamilies');
+
   if (useLiteralFontFamilies) {
     if (!item.characters) throw Error(ErrorMakeLiteralFontTokensMissingProps);
     fonts[name] = item.characters.trim();
