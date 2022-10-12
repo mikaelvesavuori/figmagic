@@ -29,7 +29,8 @@ describe('Success cases', () => {
         outputScaleGraphics: 1,
         outputFormatTokens: 'ts',
         spacingUnit: 'rem',
-        usePostscriptFontNames: false
+        usePostscriptFontNames: false,
+        useLiteralFontFamilies: false
       })
     );
   });

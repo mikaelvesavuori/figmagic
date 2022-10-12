@@ -1,6 +1,10 @@
 import { makeFontTokens } from '../../../../bin/entities/Token/logic/makeFontTokens';
 
-import { fontFrame, fontFrameInvalid } from '../../../../testdata/frames/fontFrame';
+import {
+  fontFrame,
+  fontFrameInvalid,
+  literalFontFamilyFrame
+} from '../../../../testdata/frames/fontFrame';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
@@ -30,6 +34,17 @@ describe('Failure cases', () => {
 
   test('It should choose Font Family name if passing in false for "usePostscriptFontNames"', () => {
     expect(makeFontTokens(fontFrame, false)).toEqual(expect.objectContaining({}));
+  });
+
+  test('It should choose Font Family characters if passing in true for "useLiteralFontFamilies"', () => {
+    const fontFamilies = makeFontTokens(literalFontFamilyFrame, undefined, true);
+    expect(fontFamilies).toEqual(
+      expect.objectContaining({
+        familySans: 'Roboto, BlinkMacSystemFont, Helvetica, Arial, sans-serif',
+        familySerif: 'Georgia, Times, Times New Roman, serif',
+        familyCode: "'Roboto Mono', Menlo, Courier, mc"
+      })
+    );
   });
 
   test('It should throw an error if frame has "style" and "name" properties but not "style.fontPostScriptName" or "style.fontFamily"', () => {

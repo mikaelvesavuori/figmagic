@@ -1129,6 +1129,26 @@ describe('Success cases', () => {
     });
   });
 
+  describe('Use Literal font names', () => {
+    test('It should return true for useLiteralFontFamilies if passing true (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--useLiteralFontFamilies', true])).toEqual(
+        expect.objectContaining({
+          useLiteralFontFamilies: true
+        })
+      );
+    });
+
+    test('It should return true for useLiteralFontFamilies if passing true (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-lff', true])).toEqual(
+        expect.objectContaining({
+          useLiteralFontFamilies: true
+        })
+      );
+    });
+  });
+
   describe('Use Postscript font names', () => {
     test('It should return "Version 4.1.0" for versionName if passing "Version 4.1.0" (long-hand)', () => {
       // @ts-ignore
