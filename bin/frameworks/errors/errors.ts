@@ -172,6 +172,9 @@ export const ErrorMakeFontSizeTokensNoSizing = ErrorMessage(
 export const ErrorMakeFontTokensMissingProps = ErrorMessage(
   'Missing "name" or "style" properties in font tokens frame!'
 );
+export const ErrorMakeLiteralFontTokensMissingProps = ErrorMessage(
+  'Missing "character" property in font tokens frame!'
+);
 export const ErrorMakeFontTokensNoChildren = ErrorMessage(
   'Font tokens frame is missing "children" array!'
 );

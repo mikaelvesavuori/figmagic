@@ -26,6 +26,7 @@ describe('Success cases', () => {
     testConfig.url = process.env.IS_CI ? '***' : 'j43fhj34';
     testConfig.recompileLocal = false;
     testConfig.usePostscriptFontNames = false;
+    testConfig.useLiteralFontFamilies = false;
 
     await expect(
       createConfiguration(baseConfig, USER_CONFIG_PATH, CLI_ARGS)

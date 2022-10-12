@@ -132,6 +132,8 @@ export function parseCliArgs(argsArray: string[]): Config {
     '-u': (val: string) => setConfigValue('url', val),
     '--usePostscriptFontNames': () => setConfigValue('usePostscriptFontNames', true),
     '-ps': () => setConfigValue('usePostscriptFontNames', true),
+    '--useLiteralFontFamilies': () => setConfigValue('useLiteralFontFamilies', true),
+    '-lff': () => setConfigValue('useLiteralFontFamilies', true),
     '--versionName': (val: string) => setConfigValue('versionName', val),
     '-v': (val: string) => setConfigValue('versionName', val)
   };

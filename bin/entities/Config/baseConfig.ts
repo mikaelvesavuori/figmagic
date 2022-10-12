@@ -60,5 +60,6 @@ export const baseConfig: Config = {
   unitlessPrecision: 2,
   url: '',
   usePostscriptFontNames: false,
+  useLiteralFontFamilies: false,
   versionName: null
 };

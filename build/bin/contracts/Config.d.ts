@@ -51,6 +51,7 @@ export declare type Config = {
     unitlessPrecision: number;
     url: string | null;
     usePostscriptFontNames: boolean;
+    useLiteralFontFamilies: boolean;
     versionName: string | null;
 };
 export declare type ConfigDTO = {
@@ -113,6 +114,7 @@ export declare type ConfigDTO = {
     unitlessPrecision?: number;
     url?: string | null;
     usePostscriptFontNames?: boolean;
+    useLiteralFontFamilies?: boolean;
     versionName?: string | null;
 };
 export declare type Overwrite = {

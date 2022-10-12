@@ -24,6 +24,7 @@ describe('Success cases', () => {
     const CONFIG = testConfig;
     CONFIG.recompileLocal = false;
     CONFIG.usePostscriptFontNames = false;
+    CONFIG.useLiteralFontFamilies = false;
     CONFIG.token = '***';
     CONFIG.url = '***';
 
@@ -45,6 +46,7 @@ describe('Success cases', () => {
     CONFIG.token = process.env.IS_CI ? '***' : 'asdf1234';
     CONFIG.url = process.env.IS_CI ? '***' : '4fi3f3';
     CONFIG.usePostscriptFontNames = false;
+    CONFIG.useLiteralFontFamilies = false;
     CONFIG.skipFileGeneration.skipStorybook = true;
     CONFIG.debugMode = true;
     CONFIG.syncTokens = true;

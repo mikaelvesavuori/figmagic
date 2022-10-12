@@ -76,6 +76,7 @@ export declare const ErrorMakeFontSizeTokensNoChildren: string;
 export declare const ErrorMakeFontSizeTokensNoFrame: string;
 export declare const ErrorMakeFontSizeTokensNoSizing: string;
 export declare const ErrorMakeFontTokensMissingProps: string;
+export declare const ErrorMakeLiteralFontTokensMissingProps: string;
 export declare const ErrorMakeFontTokensNoChildren: string;
 export declare const ErrorMakeFontTokensNoFrame: string;
 export declare const ErrorMakeFontWeightTokensMissingProps: string;

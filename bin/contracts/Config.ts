@@ -51,6 +51,7 @@ export type Config = {
   unitlessPrecision: number;
   url: string | null;
   usePostscriptFontNames: boolean;
+  useLiteralFontFamilies: boolean;
   versionName: string | null;
 };
 
@@ -114,6 +115,7 @@ export type ConfigDTO = {
   unitlessPrecision?: number;
   url?: string | null;
   usePostscriptFontNames?: boolean;
+  useLiteralFontFamilies?: boolean;
   versionName?: string | null;
 };
 

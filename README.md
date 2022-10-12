@@ -419,6 +419,7 @@ Below is a complete set of what you can configure, together with the defaults.
   "unitlessPrecision": 2,
   "url": "",
   "usePostscriptFontNames": false,
+  "useLiteralFontFamilies": false,
   "versionName": null
 };
 ```
@@ -850,6 +851,18 @@ Defines the precision (decimals) for unitless values (rounded using `.toFixed()`
 `figmagic [--usePostscriptFontNames | -ps]`
 
 **Default**: `false`, i.e. common name.
+
+---
+
+#### Set font families tokens based on the content rather on the font applied to the Figma's frame
+
+`figmagic [--useLiteralFontFamilies | -lff]`
+
+**Default**: `false`, i.e. uses common name or Postscript name applied to the Figma's frame.
+
+That's particularly useful for defining the whole font family stack with the fallbacks instead of a single font name, i.e.: `Roboto, BlinkMacSystemFont, Helvetica, Arial, sans-serif`
+
+![Figmagic Example Demo](images/literal-font-families-demo.png)
 
 ---
 

@@ -10,6 +10,7 @@
   "outputScaleGraphics": 1,
   "spacingUnit": "rem",
   "usePostscriptFontNames": false,
+  "useLiteralFontFamilies": false,
   "token": "***",
   "url": "***"
 }

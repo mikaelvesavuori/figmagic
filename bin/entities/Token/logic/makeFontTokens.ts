@@ -6,7 +6,8 @@ import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 import {
   ErrorMakeFontTokensNoFrame,
   ErrorMakeFontTokensNoChildren,
-  ErrorMakeFontTokensMissingProps
+  ErrorMakeFontTokensMissingProps,
+  ErrorMakeLiteralFontTokensMissingProps
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -15,6 +16,7 @@ import {
 export function makeFontTokens(
   fontFrame: Frame,
   usePostscriptFontNames = false,
+  useLiteralFontFamilies = false,
   camelizeTokenNames?: boolean
 ): FontTokens {
   if (!fontFrame) throw Error(ErrorMakeFontTokensNoFrame);
@@ -22,9 +24,11 @@ export function makeFontTokens(
 
   const fonts: Record<string, string> = {};
   const tokens = fontFrame.children.reverse();
-  tokens.forEach((item: Frame) =>
-    makeFontToken(item, fonts, usePostscriptFontNames, camelizeTokenNames)
-  );
+  tokens.forEach((item: Frame) => {
+    useLiteralFontFamilies
+      ? makeLiteralFontFamilyToken(item, fonts, camelizeTokenNames)
+      : makeFontToken(item, fonts, usePostscriptFontNames, camelizeTokenNames);
+  });
 
   return fonts as FontTokens;
 }
@@ -36,7 +40,18 @@ function makeFontToken(
   camelizeTokenNames?: boolean
 ) {
   if (!item.name || !item.style) throw Error(ErrorMakeFontTokensMissingProps);
-
   const name = sanitizeString(item.name, camelizeTokenNames);
+
   fonts[name] = usePostscriptFontNames ? item.style.fontPostScriptName : item.style.fontFamily;
+}
+
+function makeLiteralFontFamilyToken(
+  item: Frame,
+  fonts: Record<string, string>,
+  camelizeTokenNames?: boolean
+) {
+  if (!item.name || !item.style) throw Error(ErrorMakeFontTokensMissingProps);
+  if (!item.characters) throw Error(ErrorMakeLiteralFontTokensMissingProps);
+  const name = sanitizeString(item.name, camelizeTokenNames);
+  fonts[name] = item.characters.trim();
 }
