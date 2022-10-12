@@ -367,6 +367,7 @@ Below is a complete set of what you can configure, together with the defaults.
   "letterSpacingUnit": "em",
   "lineHeightUnit": "unitless",
   "opacitiesUnit": "float",
+  "durationUnit": "s",
   "radiusUnit": "px",
   "shadowUnit": "px",
   "figmaData": "figma.json",
@@ -502,6 +503,14 @@ From version `4.3.7`, you can now also opt-in to have no transforms applied to y
 `figmagic [--opacitiesUnit | -ou] [float|percent]`
 
 **Default**: `float`.
+
+---
+
+#### Switch duration unit
+
+`figmagic [--durationUnit | -du] [s|ms]`
+
+**Default**: `s`.
 
 ---
 
@@ -949,6 +958,12 @@ Can be set to `percent` to have them converted to `%` strings instead like `0%` 
 
 ---
 
+### Duration
+
+**Default:** `s` units. Can be set to `ms`.
+
+---
+
 ### Radii
 
 **Default:** `px` units.
@@ -1044,6 +1059,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/Ishmam156"><img src="https://avatars.githubusercontent.com/u/64395142?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ishmam Chowdhury</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=Ishmam156" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/printf-ana"><img src="https://avatars.githubusercontent.com/u/45365825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ana Carolina </b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=printf-ana" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/smmccabe"><img src="https://avatars.githubusercontent.com/u/4956338?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shawn McCabe</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=smmccabe" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mitchdotdeveloper"><img src="https://avatars.githubusercontent.com/u/23520530?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mitch O'Hair</b></sub></a><br /><a href="https://github.com/mikaelvesavuori/figmagic/commits?author=mitchdotdeveloper" title="Code">💻</a></td>
   </tr>
 </table>
 

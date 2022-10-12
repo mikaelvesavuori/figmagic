@@ -11,6 +11,7 @@ export const baseConfig: Config = {
   radiusUnit: 'px',
   shadowUnit: 'px',
   spacingUnit: 'rem',
+  durationUnit: 's',
   figmaData: 'figma.json',
   figmagicFolder: '.figmagic',
   outputFolderElements: 'elements',

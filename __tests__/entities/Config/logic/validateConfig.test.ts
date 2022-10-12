@@ -24,7 +24,8 @@ import {
   ErrorValidateConfigTemplatePathStorybook,
   ErrorValidateConfigTemplatePathStyled,
   ErrorValidateRadiusUnit,
-  ErrorValidateShadowUnit
+  ErrorValidateShadowUnit,
+  ErrorValidateDurationUnit
 } from '../../../../bin/frameworks/errors/errors';
 
 describe('Success cases', () => {
@@ -70,6 +71,14 @@ describe('Failure cases', () => {
 
     // @ts-ignore
     expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateShadowUnit);
+  });
+
+  test('It should invalidate a configuration when given invalid duration unit', () => {
+    const TEST_CONFIG = { ...testConfig };
+    TEST_CONFIG.durationUnit = 'xxxxx';
+
+    // @ts-ignore
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateDurationUnit);
   });
 
   test('It should invalidate a configuration when given invalid letter spacing unit', () => {

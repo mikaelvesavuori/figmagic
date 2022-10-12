@@ -223,6 +223,44 @@ describe('Success cases', () => {
     });
   });
 
+  describe('Duration unit', () => {
+    test('It should return "s" for durationUnit if passing "s" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--durationUnit', 's'])).toEqual(
+        expect.objectContaining({
+          durationUnit: 's'
+        })
+      );
+    });
+
+    test('It should return "s" for durationUnit if passing "s" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-du', 's'])).toEqual(
+        expect.objectContaining({
+          durationUnit: 's'
+        })
+      );
+    });
+
+    test('It should return "ms" for durationUnit if passing "ms" (long-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--durationUnit', 'ms'])).toEqual(
+        expect.objectContaining({
+          durationUnit: 'ms'
+        })
+      );
+    });
+
+    test('It should return "ms" for durationUnit if passing "ms" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-du', 'ms'])).toEqual(
+        expect.objectContaining({
+          durationUnit: 'ms'
+        })
+      );
+    });
+  });
+
   describe('Font unit', () => {
     test('It should return "em" for fontUnit if passing "em" (long-hand)', () => {
       // @ts-ignore

@@ -24,7 +24,8 @@ import {
   ErrorValidateConfigTemplatePathStorybook,
   ErrorValidateConfigTemplatePathStyled,
   ErrorValidateRadiusUnit,
-  ErrorValidateShadowUnit
+  ErrorValidateShadowUnit,
+  ErrorValidateDurationUnit
 } from '../../../frameworks/errors/errors';
 
 export function validateConfig(config: Config): boolean {
@@ -50,6 +51,7 @@ export function validateConfig(config: Config): boolean {
   validateOutputScaleGraphics(config.outputScaleGraphics);
   validateRadiusUnit(config.radiusUnit);
   validateShadowUnit(config.shadowUnit);
+  validateDurationUnit(config.durationUnit);
   validateSpacingUnit(config.spacingUnit);
   validateTemplatePathGraphic(config.templates.templatePathGraphic);
   validateTemplatePathReact(config.templates.templatePathReact);
@@ -75,6 +77,7 @@ import {
   validOutputFormatTokensList,
   validRadiusUnitList,
   validShadowUnitList,
+  validDurationUnitList,
   validSpacingUnitList
 } from '../../../frameworks/system/validatorLists';
 
@@ -96,6 +99,11 @@ const validateRadiusUnit = (unit: string): boolean => {
 const validateShadowUnit = (unit: string): boolean => {
   if (validShadowUnitList.includes(unit)) return true;
   throw Error(ErrorValidateShadowUnit);
+};
+
+const validateDurationUnit = (unit: string): boolean => {
+  if (validDurationUnitList.includes(unit)) return true;
+  throw Error(ErrorValidateDurationUnit);
 };
 
 const validateLetterSpacingUnit = (unit: string): boolean => {

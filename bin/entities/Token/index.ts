@@ -85,6 +85,7 @@ class Token {
       radiusUnit,
       remSize,
       shadowUnit,
+      durationUnit,
       spacingUnit,
       unitlessPrecision,
       usePostscriptFontNames,
@@ -97,7 +98,7 @@ class Token {
       color: () => makeColorTokens(frame, outputFormatColors, camelizeTokenNames),
       colors: () => makeColorTokens(frame, outputFormatColors, camelizeTokenNames),
       delays: () => makeDelayTokens(frame, camelizeTokenNames),
-      durations: () => makeDurationTokens(frame, camelizeTokenNames),
+      durations: () => makeDurationTokens(frame, durationUnit, camelizeTokenNames),
       easings: () => makeEasingTokens(frame, camelizeTokenNames),
       fontfamilies: () => {
         if (!config) throw Error(ErrorExtractTokensNoConfig);

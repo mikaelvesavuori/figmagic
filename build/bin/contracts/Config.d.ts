@@ -8,6 +8,7 @@ export declare type Config = {
     opacitiesUnit: OpacitiesUnit;
     radiusUnit: RadiusUnit;
     shadowUnit: ShadowUnit;
+    durationUnit: DurationUnit;
     spacingUnit: SpacingUnit;
     figmaData: string;
     figmagicFolder: string;
@@ -63,6 +64,7 @@ export declare type ConfigDTO = {
     opacitiesUnit?: OpacitiesUnit;
     radiusUnit?: RadiusUnit;
     shadowUnit?: ShadowUnit;
+    durationUnit?: DurationUnit;
     spacingUnit?: SpacingUnit;
     figmaData?: string;
     figmagicFolder?: string;
@@ -125,6 +127,7 @@ export declare type Overwrite = {
 };
 export declare type BorderWidthUnit = 'rem' | 'em' | 'px';
 export declare type ShadowUnit = 'rem' | 'em' | 'px';
+export declare type DurationUnit = 's' | 'ms';
 export declare type RadiusUnit = 'rem' | 'em' | 'px';
 export declare type FontUnits = 'rem' | 'em' | 'px';
 export declare type LetterSpacingUnit = 'em' | 'px';

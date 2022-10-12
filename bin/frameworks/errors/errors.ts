@@ -344,6 +344,9 @@ export const ErrorValidateRadiusUnit = ErrorMessage(
 export const ErrorValidateShadowUnit = ErrorMessage(
   'Received unrecognized "shadowUnit" argument, it must be "px" (default), "em" or "rem".'
 );
+export const ErrorValidateDurationUnit = ErrorMessage(
+  'Received unrecognized "durationUnit" argument, it must be "s" (default) or "ms".'
+);
 export const ErrorValidateConfigFontUnit = ErrorMessage(
   'Received unrecognized "fontUnit" argument, it must be "rem" (default), "em" or "px".'
 );

@@ -8,6 +8,7 @@ export const testConfig = {
   opacitiesUnit: 'float',
   radiusUnit: 'px',
   shadowUnit: 'px',
+  durationUnit: 's',
   spacingUnit: 'rem',
   figmaData: 'figma.json',
   figmagicFolder: '.figmagic',
