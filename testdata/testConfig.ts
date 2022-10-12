@@ -54,5 +54,6 @@ export const testConfig = {
   },
   token: '',
   url: '',
-  usePostscriptFontNames: false
+  usePostscriptFontNames: false,
+  useLiteralFontFamilies: false
 };
