@@ -874,6 +874,62 @@ That's particularly useful for defining the whole font family stack with the fal
 
 ---
 
+## Color themes support
+
+From version 4.5.7, you can also export color themes tokens.
+
+Consider the following example in Figma, as example of an app that allows the user to switch between Dark Theme and Light Themes for enhancing accessibility:
+
+![Figma Color Themes Demo](images/color-themes-demo.png)
+
+It will translate into the following generated tokens:
+
+```js
+const colors = {
+  black: 'rgba(51, 51, 51, 1)',
+  white: 'rgba(255, 255, 255, 1)',
+  red: 'rgba(235, 87, 87, 1)',
+  blue8: 'rgba(47, 128, 237, 1)',
+  green6: 'rgba(33, 150, 83, 1)',
+  darkTheme: {
+    emptyShade: 'rgba(51, 51, 51, 1)',
+    fullShade: 'rgba(255, 255, 255, 1)',
+    mediumShade: 'rgba(189, 189, 189, 1)',
+    darkShade: 'rgba(224, 224, 224, 1)',
+    danger: 'rgba(248, 102, 102, 1)',
+    warning: 'rgba(246, 212, 107, 1)',
+    primary: 'rgba(39, 131, 255, 1)',
+    success: 'rgba(68, 239, 141, 1)'
+  },
+  lightTheme: {
+    fullShade: 'rgba(51, 51, 51, 1)',
+    emptyShade: 'rgba(255, 255, 255, 1)',
+    darkShade: 'rgba(130, 130, 130, 1)',
+    mediumShade: 'rgba(189, 189, 189, 1)',
+    danger: 'rgba(235, 87, 87, 1)',
+    warning: 'rgba(242, 201, 76, 1)',
+    primary: 'rgba(47, 128, 237, 1)',
+    success: 'rgba(33, 150, 83, 1)'
+  }
+};
+```
+
+Which in a practical example you could use as follows:
+
+```js
+
+// initialize with default theme
+let theme = 'lightTheme';
+
+// Primary action button with white color token and with different primary background color according with theme
+let button = `<button style="background: ${colors[theme].primary}; color: ${colors.white}">Primary Action</button>`;
+
+// Background color that changes according with theme
+let panel = `<div style=`color: ${colors[theme].emptyShade}`>Panel background</div>`
+```
+
+---
+
 ## Templates used for code generation
 
 Starting with Figmagic version 4.0, four types of generated files have customizable templates:
@@ -925,7 +981,7 @@ Unitless.
 
 ### Colors
 
-RGBA colors.
+**Default:** `rgba`. Can be set to `rgba` or `hex`.
 
 ---
 
