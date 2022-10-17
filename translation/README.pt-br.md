@@ -839,10 +839,10 @@ Which in a practical example you could use as follows:
 // initialize with default theme
 let theme = 'lightTheme';
 
-// Primary action button with white color token and with different primary background color according with theme
+// Primary action button with white color token and with different primary background color according to the theme
 let button = `<button style="background: ${colors[theme].primary}; color: ${colors.white}">Primary Action</button>`;
 
-// Background color that changes according with theme
+// Background color that changes according to the theme
 let panel = `<div style=`color: ${colors[theme].emptyShade}`>Panel background</div>`
 ```
 
