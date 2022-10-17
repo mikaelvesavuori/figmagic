@@ -1,7 +1,7 @@
 export type Tokens = Record<string, string | number>;
 
 export type BorderWidthTokens = Tokens;
-export type ColorTokens = Tokens;
+export type ColorTokens = Record<string, string | Tokens>;
 export type DelayTokens = Tokens;
 export type DurationTokens = Tokens;
 export type EasingTokens = Tokens;
