@@ -30,6 +30,7 @@ export type CANVAS = {
 
 export interface FRAME {
   absoluteBoundingBox?: Rectangle;
+  absoluteRenderBounds?: Rectangle;
   blendMode?: BlendMode;
   //[DEPRECATED] Background of the node. This is deprecated, as backgrounds for frames are now in the fills field.
   background?: Paint[];
