@@ -17,6 +17,7 @@ export declare type CANVAS = {
 };
 export interface FRAME {
     absoluteBoundingBox?: Rectangle;
+    absoluteRenderBounds?: Rectangle;
     blendMode?: BlendMode;
     background?: Paint[];
     backgroundColor?: Color;

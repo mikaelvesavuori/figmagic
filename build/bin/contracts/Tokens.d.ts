@@ -1,6 +1,6 @@
 export declare type Tokens = Record<string, string | number>;
 export declare type BorderWidthTokens = Tokens;
-export declare type ColorTokens = Tokens;
+export declare type ColorTokens = Record<string, string | Tokens>;
 export declare type DelayTokens = Tokens;
 export declare type DurationTokens = Tokens;
 export declare type EasingTokens = Tokens;
