@@ -48,7 +48,7 @@ export async function optimizeSVGGraphics(fileList: FileList[], config: Config):
           throw Error(ErrorOptimizeSVGGraphics(result.error));
         }
         const optimizedSvgString = result.data;
-        await write(`${outputFolderGraphics}/${file.file}`, optimizedSvgString);
+        write(`${outputFolderGraphics}/${file.file}`, optimizedSvgString);
         resolve(true);
       });
     })
