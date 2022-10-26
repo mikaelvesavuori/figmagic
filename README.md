@@ -372,6 +372,7 @@ Below is a complete set of what you can configure, together with the defaults.
   "shadowUnit": "px",
   "figmaData": "figma.json",
   "figmagicFolder": ".figmagic",
+  "optimizeSVG": true,
   "outputFolderElements": "elements",
   "outputFolderGraphics": "graphics",
   "outputFolderTokens": "tokens",
@@ -447,6 +448,16 @@ Run these in your command line environment of choice.
 The Figmagic default has always been to camel-case ("camelize") token names, so that for example `kebab-case-word` becomes `kebabCaseWord`.
 
 From version `4.3.7`, you can now also opt-in to have no transforms applied to your token name. The name will still be sanitized, and only dashes and underscores will be valid special characters, but this will be something you'd want to use if casing is very important to you. An example could be `$my-design-system-error500` which would end up being `my-design-system-error500`.
+
+---
+
+#### Do not optimize SVG Graphics
+
+`figmagic [--noOptimizeSVG | -nsvgo]`
+
+**Default**: `true`
+
+From `4.5.7` figmagic uses [svgo](https://github.com/svg/svgo) by default to optimize SVG graphics imported from Figma. You can set it to `false` in case you want to have the raw graphics output from Figma.
 
 ---
 
