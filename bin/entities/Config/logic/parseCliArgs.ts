@@ -30,6 +30,8 @@ export function parseCliArgs(argsArray: string[]): Config {
     '-d': () => setConfigValue('debugMode', true),
     '--noCamelizeTokenNames': () => setConfigValue('camelizeTokenNames', false),
     '-cml': () => setConfigValue('camelizeTokenNames', false),
+    '--noOptimizeSVG': () => setConfigValue('optimizeSVG', false),
+    '-nsvgo': () => setConfigValue('optimizeSVG', false),
     '--borderWidthUnit': (val: string) => setConfigValue('borderWidthUnit', val.toLowerCase()),
     '-bwu': (val: string) => setConfigValue('borderWidthUnit', val.toLowerCase()),
     '--radiusUnit': (val: string) => setConfigValue('radiusUnit', val.toLowerCase()),
