@@ -941,6 +941,24 @@ describe('Success cases', () => {
         })
       );
     });
+
+    test('It should return false for optimizeSVG if passing "--noOptimizeSVG" (losng-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['--noOptimizeSVG'])).toEqual(
+        expect.objectContaining({
+          optimizeSVG: false
+        })
+      );
+    });
+
+    test('It should return false for optimizeSVG if passing "-nsvgo" (short-hand)', () => {
+      // @ts-ignore
+      expect(parseCliArgs(['-nsvgo'])).toEqual(
+        expect.objectContaining({
+          optimizeSVG: false
+        })
+      );
+    });
   });
 
   describe('Sync tokens', () => {
