@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const ShebangPlugin = require('webpack-shebang-plugin');
 
 module.exports = {
@@ -41,5 +42,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [new ShebangPlugin()]
+  plugins: [new ShebangPlugin(), new webpack.ContextReplacementPlugin(/svgo/)]
 };
