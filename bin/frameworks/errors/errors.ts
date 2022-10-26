@@ -248,6 +248,14 @@ export const ErrorNormalizeUnitsNoRemSize = ErrorMessage(
 export const ErrorNormalizeUnitsUndefined = ErrorMessage(
   'arguments "rootSize" or "unitSize" are undefined!'
 );
+export const ErrorOptimizeSVGGraphicsConfig = ErrorMessage(
+  'Missing "fileList" and/or "config" argument when calling optimizeSVG()!'
+);
+export const ErrorOptimizeSVGGraphicsFormat = ErrorMessage(
+  'Error while Optimizing SVG graphics: Output Format is not SVG!'
+);
+export const ErrorOptimizeSVGGraphics = (errorMessage: string) =>
+  ErrorMessage(`Error while Optimizing SVG graphics: ${errorMessage}`);
 export const ErrorParseBackgroundColor = ErrorMessage('Error in parseBackgroundColor()!');
 export const ErrorParseBorderColor = ErrorMessage('Error in parseBorderColor()!');
 export const ErrorParseBorderRadius = ErrorMessage('Error in parseBorderRadius()!');
