@@ -12,6 +12,7 @@ export const testConfig = {
   spacingUnit: 'rem',
   figmaData: 'figma.json',
   figmagicFolder: '.figmagic',
+  optimizeSVG: true,
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
   outputFolderTokens: 'tokens',
