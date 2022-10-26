@@ -14,6 +14,7 @@ export const baseConfig: Config = {
   durationUnit: 's',
   figmaData: 'figma.json',
   figmagicFolder: '.figmagic',
+  optimizeSVG: true,
   outputFolderElements: 'elements',
   outputFolderGraphics: 'graphics',
   outputFolderTokens: 'tokens',

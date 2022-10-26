@@ -12,6 +12,7 @@ export type Config = {
   spacingUnit: SpacingUnit;
   figmaData: string;
   figmagicFolder: string;
+  optimizeSVG: boolean;
   outputFolderElements: string;
   outputFolderGraphics: string;
   outputFolderTokens: string;
@@ -69,6 +70,7 @@ export type ConfigDTO = {
   spacingUnit?: SpacingUnit;
   figmaData?: string;
   figmagicFolder?: string;
+  optimizeSVG?: boolean;
   outputFolderElements?: string;
   outputFolderGraphics?: string;
   outputFolderTokens?: string;
