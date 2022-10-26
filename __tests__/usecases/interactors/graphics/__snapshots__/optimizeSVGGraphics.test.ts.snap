@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Success cases It should successfully optimize SVG graphics if provided valid file list and config 1`] = `
+"<svg width="55" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2.111 28.066 17.033 51.5l35.14-50.061" stroke="#219653" stroke-width="5"/>
+</svg>
+"
+`;
+
+exports[`Success cases It should successfully optimize SVG graphics if provided valid file list and config 2`] = `
+"<svg width="96" height="96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="m56.19 41.64-7.74-13.4-7.74 13.4-15.8-9.13 11.2-19.4A8.28 8.28 0 0 1 43.24 9h10.42a8.28 8.28 0 0 1 7.13 4.11L72 32.51l-15.81 9.13Zm-7.74-17.39 8.47 14.65 12.33-7.12-10.2-17.67A6.239 6.239 0 0 0 53.66 11H43.24a6.25 6.25 0 0 0-5.4 3.11L27.65 31.78 40 38.9l8.45-14.65Z" fill="#000"/>
+  <path d="M48.45 27.24h-.1a1 1 0 0 1-.9-1.1c0-.39 1.13-9.7 12.14-13.47a1.002 1.002 0 0 1 1.357 1.004 1 1 0 0 1-.707.886c-9.82 3.37-10.79 11.7-10.8 11.79a1 1 0 0 1-.99.89ZM69.65 45l-18.31-3.3 4.77-2.33 14-8.08 5-3.36L69.65 45Zm-12-4.16 10.63 1.89 3.18-9.9-.34.23-13.47 7.78Zm20.46 45.01-22.41-.06V67.54h15.47l-7.7-13.42 15.83-9.07 11.19 19.46a8.26 8.26 0 0 1 0 8.23l-5.23 9a8.25 8.25 0 0 1-7.15 4.11ZM57.7 83.79l20.4.06a6.25 6.25 0 0 0 5.39-3.1l5.23-9a6.23 6.23 0 0 0 0-6.22L78.6 47.82 66.24 54.9l8.42 14.69H57.73l-.03 14.2Z" fill="#000"/>
+  <path d="M78.09 85.85h-.19a1 1 0 0 1-.79-1.18c2-10.18-4.7-15.21-4.76-15.26a1 1 0 1 1 1.17-1.61c.32.23 7.82 5.84 5.55 17.26a1 1 0 0 1-.98.79ZM58.08 90.8l-12-13.28 12-14.2-.39 5.3v16.14l.39 6.04Zm-9.32-13.32 7 7.72V69.24l-7 8.24Zm-8.58 8.59L17.79 86a8.25 8.25 0 0 1-7.11-4.15l-5.17-9a8.24 8.24 0 0 1 0-8.22l11.31-19.42 15.77 9.18-7.79 13.37 15.47.07-.09 18.24ZM17.54 48 7.27 65.57a6.23 6.23 0 0 0 0 6.22l5.18 9A6.239 6.239 0 0 0 17.8 84l20.39.08.07-14.24-16.93-.08 8.52-14.63L17.54 48Z" fill="#000"/>
+  <path d="M17.86 70.68a18.05 18.05 0 0 1-12.11-4.87 1 1 0 0 1 1.32-1.5c7.75 6.82 15.28 3.66 15.59 3.52a1.005 1.005 0 0 1 .81 1.84 15.18 15.18 0 0 1-5.61 1.01Zm17.19-12.11-4.39-3-13.95-8.11-5.42-2.7 17.5-3.7 6.26 17.51Zm-17.73-13 .37.18 13.43 7.83-3.63-10.2-10.17 2.19Z" fill="#000"/>
+</svg>
+"
+`;
+
+exports[`Success cases It should successfully optimize SVG graphics if provided valid file list and config 3`] = `
+"<svg width="54" height="54" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="m1.783 1.783 50.434 50.434m-50.434 0L52.217 1.783" stroke="#000" stroke-width="5"/>
+</svg>
+"
+`;
+
+exports[`Success cases It should successfully optimize SVG graphics if provided valid file list and config 4`] = `
+"<svg width="50" height="50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="16" cy="25" r="3" fill="#000"/>
+  <circle cx="25" cy="25" r="3" fill="#000"/>
+  <circle cx="34" cy="25" r="3" fill="#000"/>
+  <circle cx="25" cy="25" r="23.5" stroke="#333" stroke-width="3"/>
+</svg>
+"
+`;
