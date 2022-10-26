@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ShebangPlugin = require('webpack-shebang-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -12,7 +13,11 @@ module.exports = {
     filename: 'index.js'
   },
   optimization: {
-    minimize: true
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false
+      })
+    ]
   },
   resolve: {
     extensions: ['.js', '.ts'],
