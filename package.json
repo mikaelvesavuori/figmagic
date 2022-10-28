@@ -77,6 +77,7 @@
     "figmagic": "node build/index.js",
     "clean": "rm -rf .figmagic-trash/",
     "build": "rm -rf build && npx webpack",
+    "analyzer": "npx webpack --profile --json > stats.json",
     "test": "npx jest __tests__ --collectCoverage",
     "test:watch": "npx jest --clearCache && jest __tests__ --collectCoverage --watch",
     "test:silent": "npx jest --reporters jest-silent-reporter --collectCoverage=false",
@@ -94,7 +95,7 @@
     "@babel/preset-typescript": "7",
     "@types/jest": "latest",
     "@types/node": "latest",
-    "@types/svgo": "^2.6.4",
+    "@types/svgo": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "arkit": "1",
@@ -110,7 +111,6 @@
     "msw": "latest",
     "prettier": "latest",
     "pretty-quick": "latest",
-    "svgo": "^2.8.0",
     "trash": "7",
     "ts-jest": "29",
     "ts-loader": "9",
@@ -120,5 +120,8 @@
     "webpack": "5",
     "webpack-cli": "4",
     "webpack-shebang-plugin": "1"
+  },
+  "dependencies": {
+    "svgo": "^3.0.0"
   }
 }

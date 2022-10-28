@@ -44,9 +44,7 @@ export async function optimizeSVGGraphics(fileList: FileList[], config: Config):
             pretty: true
           }
         });
-        if (result.error !== undefined) {
-          throw Error(ErrorOptimizeSVGGraphics(result.error));
-        }
+
         const optimizedSvgString = result.data;
         write(`${outputFolderGraphics}/${file.file}`, optimizedSvgString);
         resolve(true);
