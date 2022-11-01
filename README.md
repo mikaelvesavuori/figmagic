@@ -928,9 +928,8 @@ let button = `<button style="background: ${colors[theme].primary}; color: ${colo
 let panel = `<div style=`color: ${colors[theme].emptyShade}`>Panel background</div>`
 ```
 
-**Note on Components generation**
-
-Please note that component generation using the `--syncElements` options doesn't support color tokens yet. In case you have a component with a color that only exists on the `colors -> color theme frame` Figmagic will warn about: "No matching token! Hard-coding to expected value". Which means, that the component will still be created, just without a token assigned to it the color, since it currently only looks for the Colors frame and not for nested frames.
+> **Note on Components generation**
+> Please note that component generation using the `--syncElements` options doesn't support color tokens yet. In case you have a component with a color that only exists on the `colors -> color theme frame` Figmagic will warn about: "No matching token! Hard-coding to expected value". Which means, that the component will still be created, just without a token assigned to it the color, since it currently only looks for the Colors frame and not for nested frames.
 
 ---
 
