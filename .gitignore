@@ -1,5 +1,4 @@
-# Ensure built files are included
-!build/
+build/
 
 .dccache
 

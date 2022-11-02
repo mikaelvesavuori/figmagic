@@ -876,7 +876,7 @@ That's particularly useful for defining the whole font family stack with the fal
 
 ## Color themes support
 
-From version 4.5.7, you can also export color themes tokens.
+From version `4.5.8`, you can also export color themes tokens.
 
 Consider the following example in Figma, as example of an app that allows the user to switch between Dark Theme and Light Themes for enhancing accessibility:
 

@@ -22,7 +22,7 @@
 
 > Figmagic é a peça perdida entre DevOps e design: Gerador de tokens de design, exporta gráficos, e extrai componentes React acionados por tokens para os seus documentos Figma.
 
-🏕️ Kumbaya, amigos. Figmagic automatiza o mundo para um lugar melhor, mas não pode remover completamente designers e desenvolvedores:  utomates the world into a better place, but does not attempt to completely remove designers or developers: O objetivo é apenas aproximar-se disso, enquanto eliminamos a maioria do trabalho tedioso que cresce em torno do desenvolvimento front-end.
+🏕️ Kumbaya, amigos. Figmagic automatiza o mundo para um lugar melhor, mas não pode remover completamente designers e desenvolvedores: utomates the world into a better place, but does not attempt to completely remove designers or developers: O objetivo é apenas aproximar-se disso, enquanto eliminamos a maioria do trabalho tedioso que cresce em torno do desenvolvimento front-end.
 
 _Construído inicialmente como uma ferramenta de transferência interna para [Humblebee](https://www.humblebee.se)._
 
@@ -42,7 +42,7 @@ Quaisquer arquivos deletados, agora serão destruídos permanentemente pelo mód
 
 **Por favor, perceba:** Figmagic requere que a sua estrutura de documento siga as convenções nesse documento; um setup inteiro pode ser visto nesse template em [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens).
 
-Figmagic é compilado do Typescript para ES6, então, você deve ter o Node 12 ou uma versão maior (Node 14 e mais novos são recomendados) para funcionar na sua máquina. 
+Figmagic é compilado do Typescript para ES6, então, você deve ter o Node 12 ou uma versão maior (Node 14 e mais novos são recomendados) para funcionar na sua máquina.
 
 ---
 
@@ -134,7 +134,7 @@ Rode `npm install -g figmagic` ou `yarn global add figmagic`.
 
 #### Local
 
-Uso local é possível instalando o Figmagic como uma dependência de desenvolvedor (debaixo de `devDependencies`) com `npm install figmagic -D` ou `yarn add figmagic -D`, então usando um  script apontando para a versão local, como:
+Uso local é possível instalando o Figmagic como uma dependência de desenvolvedor (debaixo de `devDependencies`) com `npm install figmagic -D` ou `yarn add figmagic -D`, então usando um script apontando para a versão local, como:
 
 ```
 "scripts": {
@@ -173,7 +173,7 @@ Nomes de pastas seguem por padrão seus nomes. A renomeação é possível atrav
 - `.figmagic` vai conter o JSON extraído e recuperado da API do Figma
 - `tokens` vai conter os arquivos de tokens
 - `elements` vai conter os códigos gerados
-- `graphics`  vai conter gráficos
+- `graphics` vai conter gráficos
 
 Para uma descrição mais completa da estrutura de código, veja a [seção de estrutura de código](#code-structure).
 
@@ -229,7 +229,7 @@ Atualmente você pode extrair design tokens de:
 - Espaçamento entre letras
 - Z index
 - Radii
-- Tamanhos de bordas 
+- Tamanhos de bordas
 - Sombras (atualmente suporta únicos/mútiplos Drop Shadows, see caveat below)
 - Opacidades
 - Durações (para animações)
@@ -386,7 +386,7 @@ Abaixo está um conjunto completo do que você pode configurar, junto com os pad
 };
 ```
 
-### Argumentos CLI 
+### Argumentos CLI
 
 Rode esses comandos no ambiente de linha de comando a sua escolha.
 
@@ -794,7 +794,7 @@ That's particularly useful for defining the whole font family stack with the fal
 
 ## Color themes support
 
-From version 4.5.7, you can also export color themes tokens.
+From version `4.5.8`, you can also export color themes tokens.
 
 Consider the following example in Figma, as example of an app that allows the user to switch between Dark Theme and Light Themes for enhancing accessibility:
 
