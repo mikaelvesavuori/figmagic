@@ -49,6 +49,9 @@ jobs:
         env:
           IS_CI: true
 
+      - name: Build
+        run: npm run build
+
       - name: Run
         run: npm run figmagic
       #- name: Run #then check for files
@@ -87,6 +90,9 @@ jobs:
 
       - name: Test
         run: echo Skipping tests on Windows because of weird platform issues... #npm test
+
+      - name: Build
+        run: npm run build
 
       - name: Run
         run: npm run figmagic

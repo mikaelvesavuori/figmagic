@@ -46,6 +46,9 @@ jobs:
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
           IS_CI: true
 
+      - name: Build
+        run: npm run build
+
       - name: Run
         run: npm run figmagic
       #- name: Run, then check for files
@@ -104,6 +107,9 @@ jobs:
           FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
           FIGMA_URL: ${{ secrets.FIGMA_URL }}
           IS_CI: true
+
+      - name: Build
+        run: npm run build
 
       - name: Run
         run: npm run figmagic
