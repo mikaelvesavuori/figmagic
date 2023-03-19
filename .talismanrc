@@ -1,5 +1,0 @@
-fileignoreconfig:
-- filename: dump.json
-  checksum: 755f1f1d7860a5104b2a221d1a2525a39dbbd9360dd701c0f754aeaf38609631
-  ignore_detectors: []
-scopeconfig: []

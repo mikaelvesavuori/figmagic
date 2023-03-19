@@ -72,7 +72,6 @@ class Token {
     return [];
   };
 
-  // TODO: Add proper type
   private getTokens = (frame: Frame, name: string, config: Config): TokenOperations => {
     const {
       borderWidthUnit,

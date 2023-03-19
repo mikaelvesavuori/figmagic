@@ -39,7 +39,7 @@ export const getIds = (graphicsPage: Frame[]): Id[] => {
 };
 
 /**
- * @description TODO
+ * @description Get components and IDs.
  */
 const getComponents = (children: Frame[], parent?: Frame): Id[] => {
   const parentName = parent?.name ? `${parent.name}/` : '';

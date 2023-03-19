@@ -23,9 +23,9 @@ export function createLinearGradientString(fills: Paint): string {
     const R = roundColorValue(fill.color?.r, 255);
     const G = roundColorValue(fill.color?.g, 255);
     const B = roundColorValue(fill.color?.b, 255);
-    // @ts-ignore TODO
+    // @ts-ignore
     const A = roundColorValue(fill.opacity ? fill.opacity : fill.color?.a, 1);
-    // @ts-ignore TODO
+    // @ts-ignore
     const position = roundColorValue(parseFloat(fill.position ? fill.position : '0'), 100);
 
     if (index > 0) str += ` `;

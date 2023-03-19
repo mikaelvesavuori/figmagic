@@ -1,5 +1,5 @@
 /**
- * TODO
+ * @description Checks if a class represents a text-only element.
  */
 export const classRepresentsTextOnlyElement = (
   className: string,

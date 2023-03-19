@@ -18,9 +18,8 @@ import {
  * Ex: if the font-size is 32px and the letterSpacing 4%, the exported value from the API will be 32 * 4 / 100 = 1.28.
  * In CSS however, the letter-spacing length allows either "px" or "em" units (or even "rem" even though it hardly make any sense for letter-spacing in practice):
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing
- *
+ * @todo Refactor
  */
-// TODO: Refactor
 export function makeLetterSpacingTokens(
   letterSpacingFrame: Frame,
   letterSpacingUnit: LetterSpacingUnit,
