@@ -17,7 +17,11 @@ import { ErrorCalculateDegree2Point } from '../../frameworks/errors/errors';
 export function calculateDegree2Point(point1: Vector, point2: Vector): number {
   if (!point1 || !point2) throw Error(ErrorCalculateDegree2Point);
 
-  const angleDeg =
-    ((Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180) / Math.PI + 450) % 360;
-  return roundNumber(angleDeg, 2);
+  const deltaY = point2.x - point1.x;
+  const deltaX = point2.y - point1.y;
+  const angleInRadians = Math.atan2(deltaY, deltaX);
+  let angleInDegrees = 180 - (angleInRadians * 180) / Math.PI;
+  if (angleInDegrees < 0) angleInDegrees += 360; // Adjust negative angles
+
+  return roundNumber(angleInDegrees, 2);
 }

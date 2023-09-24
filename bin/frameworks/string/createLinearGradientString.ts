@@ -16,7 +16,8 @@ export function createLinearGradientString(fills: Paint): string {
   const gradientStops = fills.gradientStops ? fills.gradientStops : null;
   if (!gradientStops) throw Error();
 
-  const degree = calculateDegree(fills.gradientHandlePositions as unknown as Vector[]);
+  const gradientHandlePositions = fills.gradientHandlePositions as unknown as Vector[];
+  const degree = calculateDegree2Point(gradientHandlePositions[0], gradientHandlePositions[1]);
   if (degree) str += `${degree}deg, `;
 
   gradientStops.forEach((fill: GradientStop, index: number) => {
@@ -35,11 +36,4 @@ export function createLinearGradientString(fills: Paint): string {
   });
 
   return str;
-}
-
-/**
- * @description Wrapper for any degree calculation logic
- */
-function calculateDegree(gradientHandlePositions: Vector[]) {
-  return calculateDegree2Point(gradientHandlePositions[0], gradientHandlePositions[1]);
 }
