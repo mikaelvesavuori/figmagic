@@ -570,6 +570,8 @@ From version `4.3.7`, you can now also opt-in to have no transforms applied to y
 
 For typical programmatic cases you will probably most often want one of `ts`, `mjs`, or `js`. For basic JSON, use `json`, and for ready-to-use CSS variables, use `css`.
 
+_Please note that CSS variables will not work with elements!_
+
 ---
 
 #### Switch color format
