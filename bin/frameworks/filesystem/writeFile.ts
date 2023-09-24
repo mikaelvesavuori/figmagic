@@ -8,6 +8,7 @@ import { write } from './write';
 import { acceptedFileTypes } from '../system/acceptedFileTypes';
 
 import { ErrorWriteFile, ErrorWriteFileWrongType } from '../errors/errors';
+import { ProcessedToken } from '../../contracts/ProcessedToken';
 
 /**
  * @description Handles writing files to disk, complete with pre-processing.
@@ -27,7 +28,7 @@ export function writeFile(writeOperation: WriteOperation): void {
     metadata,
     templates
   } = writeOperation;
-  if (!file || !path || !name || !type) throw Error(ErrorWriteFile);
+  validate(file, path, name, type);
 
   const fileType: FileType = typeof type === 'string' ? (type.toLowerCase() as FileType) : 'null';
   if (!acceptedFileTypes.includes(fileType)) throw Error(ErrorWriteFileWrongType);
@@ -52,4 +53,8 @@ export function writeFile(writeOperation: WriteOperation): void {
 
   const { filePath, fileContent } = prepareWrite(prepareWriteOperation);
   write(filePath, fileContent);
+}
+
+function validate(file: string | ProcessedToken, path: string, name: string, type: FileType) {
+  if (!file || !path || !name || !type) throw Error(ErrorWriteFile);
 }

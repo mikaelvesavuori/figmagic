@@ -600,22 +600,98 @@ describe('Success cases', () => {
   });
 
   describe('Output format tokens', () => {
-    test('It should return "ts" for outputFormatTokens if passing "ts" (long-hand)', () => {
-      // @ts-ignore
-      expect(parseCliArgs(['--outputFormatTokens', 'ts'])).toEqual(
-        expect.objectContaining({
-          outputFormatTokens: 'ts'
-        })
-      );
+    describe('Long hand', () => {
+      test('It should return "ts" for outputFormatTokens if passing "ts"', () => {
+        // @ts-ignore
+        expect(parseCliArgs(['--outputFormatTokens', 'ts'])).toEqual(
+          expect.objectContaining({
+            outputFormatTokens: 'ts'
+          })
+        );
+      });
+
+      test('It should return "mjs" for outputFormatTokens if passing "mjs"', () => {
+        // @ts-ignore
+        expect(parseCliArgs(['--outputFormatTokens', 'mjs'])).toEqual(
+          expect.objectContaining({
+            outputFormatTokens: 'mjs'
+          })
+        );
+      });
+
+      test('It should return "js" for outputFormatTokens if passing "js"', () => {
+        // @ts-ignore
+        expect(parseCliArgs(['--outputFormatTokens', 'js'])).toEqual(
+          expect.objectContaining({
+            outputFormatTokens: 'js'
+          })
+        );
+      });
+
+      test('It should return "json" for outputFormatTokens if passing "json"', () => {
+        // @ts-ignore
+        expect(parseCliArgs(['--outputFormatTokens', 'json'])).toEqual(
+          expect.objectContaining({
+            outputFormatTokens: 'json'
+          })
+        );
+      });
+
+      test('It should return "css" for outputFormatTokens if passing "css"', () => {
+        // @ts-ignore
+        expect(parseCliArgs(['--outputFormatTokens', 'css'])).toEqual(
+          expect.objectContaining({
+            outputFormatTokens: 'css'
+          })
+        );
+      });
     });
 
-    test('It should return "ts" for outputFormatTokens if passing "ts" (short-hand)', () => {
-      // @ts-ignore
-      expect(parseCliArgs(['-ft', 'ts'])).toEqual(
-        expect.objectContaining({
-          outputFormatTokens: 'ts'
-        })
-      );
+    describe('Short hand', () => {
+      test('It should return "ts" for outputFormatTokens if passing "ts"', () => {
+        // @ts-ignore
+        expect(parseCliArgs(['-ft', 'ts'])).toEqual(
+          expect.objectContaining({
+            outputFormatTokens: 'ts'
+          })
+        );
+      });
+
+      test('It should return "mjs" for outputFormatTokens if passing "mjs"', () => {
+        // @ts-ignore
+        expect(parseCliArgs(['-ft', 'mjs'])).toEqual(
+          expect.objectContaining({
+            outputFormatTokens: 'mjs'
+          })
+        );
+      });
+
+      test('It should return "js" for outputFormatTokens if passing "js"', () => {
+        // @ts-ignore
+        expect(parseCliArgs(['-ft', 'js'])).toEqual(
+          expect.objectContaining({
+            outputFormatTokens: 'js'
+          })
+        );
+      });
+
+      test('It should return "json" for outputFormatTokens if passing "json"', () => {
+        // @ts-ignore
+        expect(parseCliArgs(['-ft', 'json'])).toEqual(
+          expect.objectContaining({
+            outputFormatTokens: 'json'
+          })
+        );
+      });
+
+      test('It should return "css" for outputFormatTokens if passing "css"', () => {
+        // @ts-ignore
+        expect(parseCliArgs(['-ft', 'css'])).toEqual(
+          expect.objectContaining({
+            outputFormatTokens: 'css'
+          })
+        );
+      });
     });
   });
 

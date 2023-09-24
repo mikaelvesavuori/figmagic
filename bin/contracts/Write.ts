@@ -16,7 +16,7 @@ export type WriteOperation = {
   file: string | ProcessedToken;
   path: string;
   name: string;
-  format: string;
+  format: OutputFormatTokens;
   metadata?: Metadata;
   templates?: Templates;
 
@@ -44,7 +44,7 @@ export type GetFileDataOperation = {
   file: string | ProcessedToken;
   path: string;
   name: string;
-  format: string;
+  format: OutputFormatTokens;
   text?: string;
   element: string;
   imports?: string;

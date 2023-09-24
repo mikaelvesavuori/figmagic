@@ -564,9 +564,11 @@ From version `4.3.7`, you can now also opt-in to have no transforms applied to y
 
 #### Switch token file format
 
-`figmagic [--outputFormatTokens | -ft] [ts|mjs|js|json]`
+`figmagic [--outputFormatTokens | -ft] [ts|mjs|js|json|css]`
 
 **Default**: `ts`.
+
+For typical programmatic cases you will probably most often want one of `ts`, `mjs`, or `js`. For basic JSON, use `json`, and for ready-to-use CSS variables, use `css`.
 
 ---
 

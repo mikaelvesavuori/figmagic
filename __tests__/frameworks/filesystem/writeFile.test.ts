@@ -40,6 +40,7 @@ describe('Failure cases', () => {
       file: JSON.stringify(payload),
       path: './',
       name: name,
+      // @ts-ignore
       format: 'invalid',
       overwrite: {
         css: false,

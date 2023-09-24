@@ -58,7 +58,7 @@ export function getFileContentAndPath(
       return { fileContent: `${JSON.stringify(file, null, ' ')}`, filePath };
     },
     token: () => {
-      if (metadata && metadata.dataType === 'enum')
+      if (metadata?.dataType === 'enum')
         return { fileContent: getTokenString(file, name, format, metadata.dataType), filePath };
       filePath += `.${format}`;
       return { fileContent: getTokenString(file, name, format), filePath };
@@ -107,7 +107,7 @@ export function getFileContentAndPath(
 }
 
 /**
- * @description Get file data string for tokens using either null/no data type or enum data type
+ * @description Get file data string for tokens
  */
 const getTokenString = (
   file: string | ProcessedToken,
@@ -115,24 +115,63 @@ const getTokenString = (
   format: string,
   dataType?: string
 ): string => {
-  if (format === 'json') return `${JSON.stringify(file, null, ' ')}`;
-
   const exportString = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
-
-  if (dataType === 'enum') {
-    return `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
-      file
-    )}\n}\n\n${exportString};`;
-  }
-
   const constAssertion = format === 'ts' ? ' as const;' : '';
 
+  if (format === 'json') return getTokenStringJSON(file);
+  if (format === 'css') return getTokenStringCSS(file);
+  if (dataType === 'enum') return getTokenStringEnum(file, name, exportString);
+  return getTokenStringJS(file, name, exportString, constAssertion);
+};
+
+/**
+ * @description Return JSON token string
+ */
+function getTokenStringJSON(file: string | ProcessedToken) {
+  return `${JSON.stringify(file, null, ' ')}`;
+}
+
+/**
+ * @description Return CSS variables token string
+ */
+function getTokenStringCSS(file: string | ProcessedToken) {
+  const contents: any = file;
+  let css = ':root {\n';
+
+  for (const key in contents) {
+    const value = contents[key];
+    css += `  --${key}: ${value};\n`;
+  }
+
+  css += '}\n';
+
+  return css;
+}
+
+/**
+ * @description Return enum token string
+ */
+function getTokenStringEnum(file: string | ProcessedToken, name: string, exportString: string) {
+  return `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
+    file
+  )}\n}\n\n${exportString};`;
+}
+
+/**
+ * @description Return TS/JS token string
+ */
+function getTokenStringJS(
+  file: string | ProcessedToken,
+  name: string,
+  exportString: string,
+  constAssertion: string
+) {
   return `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
     file,
     null,
     ' '
   )}${constAssertion}\n\n${exportString};`;
-};
+}
 
 /**
  * @description Validate whether required fields exist on GetFileDataOperation type

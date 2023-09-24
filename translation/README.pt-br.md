@@ -528,7 +528,7 @@ _Note that hex colors will not use any alpha/transparency!_
 
 #### Switch token file format
 
-`figmagic [--outputFormatTokens | -ft] [ts|mjs|js|json]`
+`figmagic [--outputFormatTokens | -ft] [ts|mjs|js|json|css]`
 
 **Default**: `ts`.
 
