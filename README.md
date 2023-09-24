@@ -2,7 +2,7 @@
 
 # Figmagic
 
-![Build Status](https://github.com/mikaelvesavuori/figmagic/workflows/master/badge.svg)
+![Build Status](https://github.com/mikaelvesavuori/figmagic/workflows/main/badge.svg)
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic?ref=badge_shield)
 
@@ -12,7 +12,7 @@
 
 [![CodeScene System Mastery](https://codescene.io/projects/8364/status-badges/system-mastery)](https://codescene.io/projects/8364)
 
-[![codecov](https://codecov.io/gh/mikaelvesavuori/figmagic/branch/master/graph/badge.svg)](https://codecov.io/gh/mikaelvesavuori/figmagic)
+[![codecov](https://codecov.io/gh/mikaelvesavuori/figmagic/branch/main/graph/badge.svg)](https://codecov.io/gh/mikaelvesavuori/figmagic)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/1a609622737c6c48225c/maintainability)](https://codeclimate.com/github/mikaelvesavuori/figmagic/maintainability)
 
