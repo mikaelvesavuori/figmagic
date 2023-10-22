@@ -19,6 +19,7 @@ figmagic.json
 /components
 /stories
 /src
+/typedoc-docs
 
 # Files generated from tests
 /jest-coverage
