@@ -1,4 +1,7 @@
 {
   "entryPoints": ["./bin"],
-  "out": "typedoc-docs"
+  "out": "typedoc-docs",
+  "sidebarLinks": {
+    "Figmagic on GitHub": "https://github.com/mikaelvesavuori/figmagic/"
+  }
 }

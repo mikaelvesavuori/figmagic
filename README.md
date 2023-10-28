@@ -2,25 +2,7 @@
 
 # Figmagic
 
-![Build Status](https://github.com/mikaelvesavuori/figmagic/workflows/main/badge.svg)
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic?ref=badge_shield)
-
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_figmagic&metric=alert_status)](https://sonarcloud.io/dashboard?id=mikaelvesavuori_figmagic)
-
-[![CodeScene Code Health](https://codescene.io/projects/8364/status-badges/code-health)](https://codescene.io/projects/8364)
-
-[![CodeScene System Mastery](https://codescene.io/projects/8364/status-badges/system-mastery)](https://codescene.io/projects/8364)
-
-[![codecov](https://codecov.io/gh/mikaelvesavuori/figmagic/branch/main/graph/badge.svg)](https://codecov.io/gh/mikaelvesavuori/figmagic)
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/1a609622737c6c48225c/maintainability)](https://codeclimate.com/github/mikaelvesavuori/figmagic/maintainability)
-
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
-
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+![Build Status](https://github.com/mikaelvesavuori/figmagic/workflows/main/badge.svg) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic?ref=badge_shield) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mikaelvesavuori_figmagic&metric=alert_status)](https://sonarcloud.io/dashboard?id=mikaelvesavuori_figmagic) [![CodeScene Code Health](https://codescene.io/projects/8364/status-badges/code-health)](https://codescene.io/projects/8364) [![CodeScene System Mastery](https://codescene.io/projects/8364/status-badges/system-mastery)](https://codescene.io/projects/8364) [![codecov](https://codecov.io/gh/mikaelvesavuori/figmagic/branch/main/graph/badge.svg)](https://codecov.io/gh/mikaelvesavuori/figmagic) [![Maintainability](https://api.codeclimate.com/v1/badges/1a609622737c6c48225c/maintainability)](https://codeclimate.com/github/mikaelvesavuori/figmagic/maintainability) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section --> [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-) <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 > Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.
 
@@ -28,53 +10,36 @@
 
 _Built initially as an internal handoff tool for [Humblebee](https://www.humblebee.se)._
 
----
+_To read about recent changes, see the [GitHub releases page](https://github.com/mikaelvesavuori/figmagic/releases) or the [announcements page](readme/ANNOUNCEMENTS.md)._
 
-## Product vision 🔮
+## Table of contents
 
-Interested in understanding the vision for Figmagic? Then you should read the [product vision](readme/vision.md).
+- [Translations](#translations)
+- [Product vision](#product-vision)
+- [Introduction](#introduction)
+- [Additional documentation sources](#additional-documentation-sources)
+- [The Figmagic ecosystem](#the-figmagic-ecosystem)
+- [Using Figmagic](#using-figmagic)
+- [Preparing Figma for Figmagic usage](#preparing-figma-for-figmagic-usage)
+- [What are design Tokens?](#what-are-design-tokens)
+- [Working with Figmagic as a designer](#working-with-figmagic-as-a-designer)
+- [Token formatting and conversions](#token-formatting-and-conversions)
+- [Configuring Figmagic](#configuring-figmagic)
+- [Templates used for code generation](#templates-used-for-code-generation)
+- [Code structure](#code-structure)
+- [License](#license)
+- [Contributing to Figmagic](#contributing-to-figmagic)
+- [Contributors](#contributors)
 
----
-
-## Translations 🗺️
+## Translations
 
 You can also read this README in the following languages:
 
 - 🇧🇷 [Portuguese (Brazil)](translation/README.pt-br.md)
 
----
+## Product vision
 
-## Announcements
-
-### Version `4.5.0` enables using frames as well as groups for generating components from Figma
-
-See more on the [version 4.5.0 release page](https://github.com/mikaelvesavuori/figmagic/releases/tag/v4.5.0).
-
-### Version `4.4.0` outputs all files on disk (and imports) as PascalCase
-
-When files (and Elements) are written to disk these now use a PascalCase format. This is partly because recent versions have also started to accept dashes and underscores in names, for example for Elements and tokens named things like `my-design-system-button`, which would be transformed into `MyDesignSystemButton`.
-
-To ensure that files and imports have usable and working names, the decision was made to add a string transformer to the file output stage.
-
-This _may_ break stuff on your end if you were dependent on the previous, non-transformed format.
-
-### Version `4.3.0` introduces new handling of trashed/replaced files
-
-Previous versions in the 4.0 series have been using [`trash`](https://github.com/sindresorhus/trash) to handle files that need to be replaced. In `4.3.0` this is no longer the case.
-
-Any deleted files are now permanently destroyed by the Node native `fs` module.
-
-**Versions `4.3.0` and `4.3.1` used a flaky dual-mode, configurable pattern where you could use either a "hard" or "soft" delete mode (soft deletes meaning placing files in a local trash folder). _This is NOT supported and intended from `4.3.2` and forward as that was too buggy._**
-
----
-
-## Requirements
-
-**Please note:** Figmagic requires that your document structure follows the conventions in this document; a full setup can be seen in the template at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens).
-
-Figmagic is compiled from Typescript to ES6, so you should have Node 12 or later (Node 14 and newer recommended) for it to work on your machine.
-
----
+Interested in understanding the vision for Figmagic? Then you should read the [product vision](readme/VISION.md).
 
 ## Introduction
 
@@ -132,7 +97,7 @@ Here are a few reasons you'd want to use Figmagic rather than anything similar:
 
 The Figmagic developer docs are auto-generated on every push and can be found at the [dedicated documentation site](https://docs.figmagic.com).
 
-For deeper information pertaining to Figmagic Elements and syncing them, see [the dedicated README page](readme/elements.md).
+For deeper information pertaining to Figmagic Elements and syncing them, see [the dedicated README page](readme/ELEMENTS.md).
 
 ## The Figmagic ecosystem
 
@@ -155,6 +120,12 @@ Note that this demo is not meant to fully style and do all of the things in the 
 _Figmagic Example Demo: On the left is a big Figma component assembled of a number of "Elements", Figmagic-compliant components that can be output into code. On the right is the React-composed version of those after just a few minutes of coding and closing elements correctly._
 
 ## Using Figmagic
+
+### Requirements
+
+**Please note:** Figmagic requires that your document structure follows the conventions in this document; a full setup can be seen in the template at [https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens](https://www.figma.com/community/file/821094451476848226/Figmagic-%E2%80%94-Design-System-for-Tokens).
+
+Figmagic is compiled from Typescript to ES6, so you should have Node 12 or later (Node 14 and newer recommended) for it to work on your machine.
 
 ### Installation
 
@@ -301,6 +272,131 @@ _The "Heading L" font token is composed of values that are also represented in t
 
 Whatever suits you! As long as you remember that what Figmagic fetches are those single (unidimensional) values from each design item/token it should all work. I've seen that Figma styles make the "contract" between tokens and their day-to-day workflow with designers a lot easier. Again though, Figmagic does not use those values; think of them as a convenient glue.
 
+## Token formatting and conversions
+
+### Font families
+
+The font family name, either as its common name (as picked up by Figma; spaces are removed) or its Postscript name (eg. FiraSans-Regular).
+
+**Default:** Common name.
+
+**Note**: In previous versions of Figmagic the Postscript font family name was used.
+
+### Font weights
+
+Typical font weight values like `200`, `300` etc.
+
+### Font sizes
+
+Units based on global font size (base 16px).
+
+**Default:** `rem` units. Can be set to `rem` or `em`.
+
+### Line heights
+
+Unitless.
+
+2 decimals numbered values by default. Precision can be configured with `unitlessPrecision` (see config)
+
+### Colors
+
+**Default:** `rgba`. Can be set to `rgba` or `hex`.
+
+### Spacing
+
+**Default:** `rem` units. Can be set to `rem` or `em`.
+
+### Border widths
+
+**Default:** `px` units.
+
+### Letter spacings
+
+**Default:** `em` units.
+
+### Media queries
+
+**Default:** `px` units.
+
+### Opacities
+
+Typical 2 decimals numbered values between 0 and 1 like `0` or `0.65`.
+Can be set to `percent` to have them converted to `%` strings instead like `0%` or `65%`.
+
+### Duration
+
+**Default:** `s` units. Can be set to `ms`.
+
+### Radii
+
+**Default:** `px` units.
+
+### Shadows
+
+**Default:** `px` units for three values (horizontal offset, vertical offset, blur) and RGBA for the color.
+
+### Z indices
+
+**Default:** numbers (whole numbers, i.e. integers).
+
+### Color themes support
+
+From version `4.5.8`, you can also export color themes tokens.
+
+Consider the following example in Figma, as example of an app that allows the user to switch between Dark Theme and Light Themes for enhancing accessibility:
+
+![Figma Color Themes Demo](images/color-themes-demo.png)
+
+It will translate into the following generated tokens:
+
+```js
+const colors = {
+  black: 'rgba(51, 51, 51, 1)',
+  white: 'rgba(255, 255, 255, 1)',
+  red: 'rgba(235, 87, 87, 1)',
+  blue8: 'rgba(47, 128, 237, 1)',
+  green6: 'rgba(33, 150, 83, 1)',
+  darkTheme: {
+    emptyShade: 'rgba(51, 51, 51, 1)',
+    fullShade: 'rgba(255, 255, 255, 1)',
+    mediumShade: 'rgba(189, 189, 189, 1)',
+    darkShade: 'rgba(224, 224, 224, 1)',
+    danger: 'rgba(248, 102, 102, 1)',
+    warning: 'rgba(246, 212, 107, 1)',
+    primary: 'rgba(39, 131, 255, 1)',
+    success: 'rgba(68, 239, 141, 1)'
+  },
+  lightTheme: {
+    fullShade: 'rgba(51, 51, 51, 1)',
+    emptyShade: 'rgba(255, 255, 255, 1)',
+    darkShade: 'rgba(130, 130, 130, 1)',
+    mediumShade: 'rgba(189, 189, 189, 1)',
+    danger: 'rgba(235, 87, 87, 1)',
+    warning: 'rgba(242, 201, 76, 1)',
+    primary: 'rgba(47, 128, 237, 1)',
+    success: 'rgba(33, 150, 83, 1)'
+  }
+};
+```
+
+Which in a practical example you could use as follows:
+
+```js
+
+// initialize with default theme
+let theme = 'lightTheme';
+
+// Primary action button with white color token and with different primary background color according to the theme
+let button = `<button style="background: ${colors[theme].primary}; color: ${colors.white}">Primary Action</button>`;
+
+// Background color that changes according to the theme
+let panel = `<div style=`color: ${colors[theme].emptyShade}`>Panel background</div>`
+```
+
+**Note on Components generation**
+
+Please note that component generation using the `--syncElements` options doesn't support color tokens yet. In case you have a component with a color that only exists on the `colors -> color theme frame` Figmagic will warn about: "No matching token! Hard-coding to expected value". Which means, that the component will still be created, just without a token assigned to it the color, since it currently only looks for the Colors frame and not for nested frames.
+
 ## Configuring Figmagic
 
 ### Token Sync
@@ -333,7 +429,7 @@ Elements are named so because they are primarily meant to help scaffold anything
 
 Elements are generated by parsing your structured Figma components into either "flat" or "nested" varieties. Any values, say a height of 48px and a specific blue color, will try to be derived from your relevant tokens. **Therefore, without tokens, elements cannot be generated!** In this example, maybe the height will map to a spacing token that uses 48px (mapping to `3rem` where 3 x 16 = 48, with 16 being the root REM value) and the color might be mapped to a color in your color tokens.
 
-_If you need more information and guidance on this, see the dedicated documentation section at [Figmagic Element Sync](images/elements.md)._
+_If you need more information and guidance on this, see the dedicated documentation section at [Figmagic Element Sync](images/ELEMENTS.md)._
 
 ### How user settings are propagated
 
@@ -427,8 +523,6 @@ Below is a complete set of what you can configure, together with the defaults.
 ### CLI arguments
 
 Run these in your command line environment of choice.
-
----
 
 #### Toggle debug mode
 
@@ -876,68 +970,6 @@ That's particularly useful for defining the whole font family stack with the fal
 
 **Default**: `null` which will resolve to the latest version. The value you specify here is the name of the version in the Figma file's **Version history**.
 
----
-
-## Color themes support
-
-From version `4.5.8`, you can also export color themes tokens.
-
-Consider the following example in Figma, as example of an app that allows the user to switch between Dark Theme and Light Themes for enhancing accessibility:
-
-![Figma Color Themes Demo](images/color-themes-demo.png)
-
-It will translate into the following generated tokens:
-
-```js
-const colors = {
-  black: 'rgba(51, 51, 51, 1)',
-  white: 'rgba(255, 255, 255, 1)',
-  red: 'rgba(235, 87, 87, 1)',
-  blue8: 'rgba(47, 128, 237, 1)',
-  green6: 'rgba(33, 150, 83, 1)',
-  darkTheme: {
-    emptyShade: 'rgba(51, 51, 51, 1)',
-    fullShade: 'rgba(255, 255, 255, 1)',
-    mediumShade: 'rgba(189, 189, 189, 1)',
-    darkShade: 'rgba(224, 224, 224, 1)',
-    danger: 'rgba(248, 102, 102, 1)',
-    warning: 'rgba(246, 212, 107, 1)',
-    primary: 'rgba(39, 131, 255, 1)',
-    success: 'rgba(68, 239, 141, 1)'
-  },
-  lightTheme: {
-    fullShade: 'rgba(51, 51, 51, 1)',
-    emptyShade: 'rgba(255, 255, 255, 1)',
-    darkShade: 'rgba(130, 130, 130, 1)',
-    mediumShade: 'rgba(189, 189, 189, 1)',
-    danger: 'rgba(235, 87, 87, 1)',
-    warning: 'rgba(242, 201, 76, 1)',
-    primary: 'rgba(47, 128, 237, 1)',
-    success: 'rgba(33, 150, 83, 1)'
-  }
-};
-```
-
-Which in a practical example you could use as follows:
-
-```js
-
-// initialize with default theme
-let theme = 'lightTheme';
-
-// Primary action button with white color token and with different primary background color according to the theme
-let button = `<button style="background: ${colors[theme].primary}; color: ${colors.white}">Primary Action</button>`;
-
-// Background color that changes according to the theme
-let panel = `<div style=`color: ${colors[theme].emptyShade}`>Panel background</div>`
-```
-
-**Note on Components generation**
-
-Please note that component generation using the `--syncElements` options doesn't support color tokens yet. In case you have a component with a color that only exists on the `colors -> color theme frame` Figmagic will warn about: "No matching token! Hard-coding to expected value". Which means, that the component will still be created, just without a token assigned to it the color, since it currently only looks for the Colors frame and not for nested frames.
-
----
-
 ## Templates used for code generation
 
 Starting with Figmagic version 4.0, four types of generated files have customizable templates:
@@ -952,101 +984,6 @@ These four types have support for a variety of formats that differ a bit between
 Figmagic comes with a set of templates for several file formats. In case you want to customize these, you should respect and keep any substitution tags that exist in the original files; removing them may cause your templates to function incorrectly. For example, the React template includes a substitution tag called `{{NAME_STYLED}}` which will be changed to your adjusted element name with a "Styled" suffix. Removing it would make your generated code useless as-is.
 
 The recommended way of adding and using your own templates would be to copy-paste any/all existing templates from Figmagic into your project, pointing the configuration file to your local copies, and then modifying them as needed.
-
-## Token formatting and conversions
-
-### Font families
-
-The font family name, either as its common name (as picked up by Figma; spaces are removed) or its Postscript name (eg. FiraSans-Regular).
-
-**Default:** Common name.
-
-**Note**: In previous versions of Figmagic the Postscript font family name was used.
-
----
-
-### Font weights
-
-Typical font weight values like `200`, `300` etc.
-
----
-
-### Font sizes
-
-Units based on global font size (base 16px).
-
-**Default:** `rem` units. Can be set to `rem` or `em`.
-
----
-
-### Line heights
-
-Unitless.
-
-2 decimals numbered values by default. Precision can be configured with `unitlessPrecision` (see config)
-
----
-
-### Colors
-
-**Default:** `rgba`. Can be set to `rgba` or `hex`.
-
----
-
-### Spacing
-
-**Default:** `rem` units. Can be set to `rem` or `em`.
-
----
-
-### Border widths
-
-**Default:** `px` units.
-
----
-
-### Letter spacings
-
-**Default:** `em` units.
-
----
-
-### Media queries
-
-**Default:** `px` units.
-
----
-
-### Opacities
-
-Typical 2 decimals numbered values between 0 and 1 like `0` or `0.65`.
-Can be set to `percent` to have them converted to `%` strings instead like `0%` or `65%`.
-
----
-
-### Duration
-
-**Default:** `s` units. Can be set to `ms`.
-
----
-
-### Radii
-
-**Default:** `px` units.
-
----
-
-### Shadows
-
-**Default:** `px` units for three values (horizontal offset, vertical offset, blur) and RGBA for the color.
-
----
-
-### Z indices
-
-**Default:** numbers (whole numbers, i.e. integers).
-
----
 
 ## Code structure
 
@@ -1087,7 +1024,7 @@ Figmagic is licensed under the [MIT License](https://opensource.org/licenses/MIT
 
 It uses a number of developer dependencies under various open source licenses, but none of these are bundled into the actual binary that users consume as Figmagic itself has no end-user-facing dependencies.
 
-```
+```text
 Copyright 2018-2023 Mikael Vesavuori
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -1099,13 +1036,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmikaelvesavuori%2Ffigmagic?ref=badge_large)
 
-## Contribution
+## Contributing to Figmagic
 
-### Want to add or rethink something in Figmagic?
+Want to add or rethink something in Figmagic?
 
 You are welcome to contribute to the project! Pull requests, as well as issues or plain messages, work fine. For pull requests, please refer to the contribution guidelines in [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-## Contributors ✨
+## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 

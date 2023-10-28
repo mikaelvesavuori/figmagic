@@ -83,7 +83,7 @@
     "test:types": "npx type-coverage --strict --at-least 97.5",
     "lint": "npx eslint './bin/**/*.ts' --quiet --fix",
     "docs": "npm run docs:typedoc && npx arkit && cp -r images typedoc-docs",
-    "docs:typedoc": "npx typedoc --entryPoints bin --entryPointStrategy expand --exclude '**/*+(test).ts' --externalPattern 'node_modules/**/*' --excludeExternals --out typedoc-docs",
+    "docs:typedoc": "npx typedoc --entryPoints bin --entryPointStrategy expand --exclude '**/*+(test).ts' --externalPattern 'node_modules/**/*' --excludeExternals --customCss ./typedoc.theme.css --out typedoc-docs",
     "licenses": "npx license-compliance --direct --allow 'MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;Unlicense;CC0-1.0'",
     "licenses:checker": "npx license-compatibility-checker",
     "prepare": "husky install"

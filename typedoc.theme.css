@@ -1,0 +1,42 @@
+* {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+}
+
+:root {
+  --code-background: #09213E;
+}
+
+code, code > * {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  font-weight: normal;
+}
+
+@media (min-width: 770px) {
+  .col-content {
+    padding: 0 4rem;
+  }
+}
+
+.site-menu, .page-menu {
+  font-size: 0.75rem;
+}
+
+.tsd-panel > h2 {
+  margin-top: 4rem;
+}
+
+pre > code > span.hl-0 {
+  color: #FCEE8F;
+}
+
+pre > code > span.hl-2 {
+  color: #FFFFFF;
+}
+
+pre > code > span.hl-3 {
+  color: #B4FDFE;
+}
+
+pre > code > span.hl-4 {
+  color: #EF87DC;
+}
