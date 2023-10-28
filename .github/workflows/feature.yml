@@ -11,9 +11,7 @@ on:
       - 'feature/*'
 
 permissions:
-  actions: read
-  contents: write
-  pull-requests: read
+  contents: read
 
 jobs:
   build-unix:
