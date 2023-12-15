@@ -46,7 +46,9 @@ const getComponents = (children: Frame[], parent?: Frame): Id[] => {
 
   if (!children || children.length === 0) return [];
   return children
-    .filter((item: Frame) => item.type === 'COMPONENT')
+    .filter((item: Frame) => {
+      return item.type === 'COMPONENT' || item.type === 'INSTANCE';
+    })
     .map((item: Frame) => ({
       id: item.id,
       name: `${parentName}${item.name}`
