@@ -680,7 +680,7 @@ This only applies to solid colors; gradients will still use RGBA colors.
 
 Hex color support may potentially interfere with element generation and binding to tokens, since RGB(A) is the format that Figma itself uses, so there is a slight possibility of mismatches in the Figmagic binding process.
 
-_Note that hex colors will not use any alpha/transparency!_
+Starting with version `4.5.13`, hex values use the [#rrggbbaa format](https://caniuse.com/css-rrggbbaa).
 
 ---
 

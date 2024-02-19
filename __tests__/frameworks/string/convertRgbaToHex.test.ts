@@ -11,10 +11,14 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should correctly return a hexadecimal color value from an RGBA color value', () => {
-    expect(convertRgbaToHex('rgba(7,75,114,1)')).toBe('#074b72');
+    expect(convertRgbaToHex('rgba(7,75,114,1)')).toBe('#074b72ff');
   });
 
   test('It should correctly return a hexadecimal color value from an RGB color value, defaulting to alpha 1', () => {
-    expect(convertRgbaToHex('rgba(7,75,114)')).toBe('#074b72');
+    expect(convertRgbaToHex('rgba(7,75,114)')).toBe('#074b72ff');
+  });
+
+  test('It should correctly return a hexadecimal color value from an RGB color value with transparency', () => {
+    expect(convertRgbaToHex('rgba(7,75,114,0.33)')).toBe('#074b7254');
   });
 });

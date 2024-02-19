@@ -73,50 +73,50 @@ describe('Success cases', () => {
     );
   });
 
-  test('It should return a complete object when passing in valid input (using opacity) and using HEX colors', () => {
+  test('It should return a complete object when passing in valid input (using opacity) and using hex colors', () => {
     expect(makeColorTokens(colorFrameOpacity, 'hex')).toEqual(
       expect.objectContaining({
-        black: '#333333',
-        blue1: '#2f80ed',
-        blue2: '#2d9cdb',
-        blue3: '#56ccf2',
-        gray1: '#4f4f4f',
-        gray2: '#828282',
-        gray3: '#bdbdbd',
-        gray4: '#e0e0e0',
-        gray5: '#f2f2f2',
-        green1: '#219653',
-        green2: '#27ae60',
-        green3: '#a1dfbb',
-        neon: '#e4ffc1',
-        orange: '#f2994a',
-        red: '#eb5757',
-        white: '#ffffff',
-        yellow: '#f2c94c'
+        black: '#333333ff',
+        blue1: '#2f80edff',
+        blue2: '#2d9cdbff',
+        blue3: '#56ccf2ff',
+        gray1: '#4f4f4fff',
+        gray2: '#828282ff',
+        gray3: '#bdbdbdff',
+        gray4: '#e0e0e0ff',
+        gray5: '#f2f2f2ff',
+        green1: '#219653ff',
+        green2: '#27ae60ff',
+        green3: '#6fcf97a6',
+        neon: '#e4ffc1ff',
+        orange: '#f2994aff',
+        red: '#eb5757ff',
+        white: '#ffffffff',
+        yellow: '#f2c94cff'
       })
     );
   });
 
-  test('It should return a complete object when passing in valid input (using alpha channel) and using HEX colors', () => {
+  test('It should return a complete object when passing in valid input (using alpha channel) and using hex colors', () => {
     expect(makeColorTokens(colorFrame, 'hex')).toEqual(
       expect.objectContaining({
-        black: '#333333',
-        blue1: '#2f80ed',
-        blue2: '#2d9cdb',
-        blue3: '#56ccf2',
-        gray1: '#4f4f4f',
-        gray2: '#828282',
-        gray3: '#bdbdbd',
-        gray4: '#e0e0e0',
-        gray5: '#f2f2f2',
-        green1: '#219653',
-        green2: '#27ae60',
-        green3: '#a1dfbb',
-        neon: '#e4ffc1',
-        orange: '#f2994a',
-        red: '#eb5757',
-        white: '#ffffff',
-        yellow: '#f2c94c'
+        black: '#333333ff',
+        blue1: '#2f80edff',
+        blue2: '#2d9cdbff',
+        blue3: '#56ccf2ff',
+        gray1: '#4f4f4fff',
+        gray2: '#828282ff',
+        gray3: '#bdbdbdff',
+        gray4: '#e0e0e0ff',
+        gray5: '#f2f2f2ff',
+        green1: '#219653ff',
+        green2: '#27ae60ff',
+        green3: '#6fcf97a6',
+        neon: '#e4ffc1ff',
+        orange: '#f2994aff',
+        red: '#eb5757ff',
+        white: '#ffffffff',
+        yellow: '#f2c94cff'
       })
     );
   });
