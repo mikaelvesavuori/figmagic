@@ -135,13 +135,13 @@ function getTokenStringJSON(file: string | ProcessedToken) {
 /**
  * @description Return CSS variables token string
  */
-function getTokenStringCSS(file: string | ProcessedToken) {
+function getTokenStringCSS(file: string | ProcessedToken, name: string) {
   const contents: any = file;
   let css = ':root {\n';
 
   for (const key in contents) {
     const value = contents[key];
-    css += `  --${key}: ${value};\n`;
+    css += `  --${name}-${key}: ${value};\n`;
   }
 
   css += '}\n';
