@@ -4,10 +4,10 @@ import { FontWeightTokens } from '../../../contracts/Tokens';
 import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 
 import {
-  ErrorMakeFontWeightTokensNoFrame,
-  ErrorMakeFontWeightTokensNoChildren,
   ErrorMakeFontWeightTokensMissingProps,
-  ErrorMakeFontWeightTokensMissingWeight
+  ErrorMakeFontWeightTokensMissingWeight,
+  ErrorMakeFontWeightTokensNoChildren,
+  ErrorMakeFontWeightTokensNoFrame,
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -15,14 +15,17 @@ import {
  */
 export function makeFontWeightTokens(
   fontWeightFrame: Frame,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ): FontWeightTokens {
   if (!fontWeightFrame) throw Error(ErrorMakeFontWeightTokensNoFrame);
-  if (!fontWeightFrame.children) throw Error(ErrorMakeFontWeightTokensNoChildren);
+  if (!fontWeightFrame.children)
+    throw Error(ErrorMakeFontWeightTokensNoChildren);
 
   const fontWeights: Record<string, string> = {};
   const tokens = fontWeightFrame.children.reverse();
-  tokens.forEach((item: Frame) => makeFontWeightToken(item, fontWeights, camelizeTokenNames));
+  tokens.forEach((item: Frame) =>
+    makeFontWeightToken(item, fontWeights, camelizeTokenNames),
+  );
 
   return fontWeights as FontWeightTokens;
 }
@@ -30,10 +33,12 @@ export function makeFontWeightTokens(
 function makeFontWeightToken(
   item: Frame,
   fontWeights: Record<string, string>,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ) {
-  if (!item.name || !item.style) throw Error(ErrorMakeFontWeightTokensMissingProps);
-  if (!item.style.fontWeight) throw Error(ErrorMakeFontWeightTokensMissingWeight);
+  if (!item.name || !item.style)
+    throw Error(ErrorMakeFontWeightTokensMissingProps);
+  if (!item.style.fontWeight)
+    throw Error(ErrorMakeFontWeightTokensMissingWeight);
 
   const name = sanitizeString(item.name, camelizeTokenNames);
   fontWeights[name] = item.style.fontWeight;

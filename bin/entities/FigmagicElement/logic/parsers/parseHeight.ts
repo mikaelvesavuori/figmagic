@@ -1,6 +1,6 @@
-import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 import { OutputFormatColors } from '../../../../contracts/Config';
 import { Imports } from '../../../../contracts/Imports';
+import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 import { Tokens } from '../../../../contracts/Tokens';
 
 import { getTokenMatch } from '../getTokenMatch';
@@ -18,7 +18,7 @@ type HeightParams = {
 export function parseHeight(
   css: string,
   imports: Imports[],
-  params: HeightParams
+  params: HeightParams,
 ): ParsedElementMetadataInterface {
   if (!css || !imports || !params) throw Error(ErrorParseHeight);
   const { spacing, height, remSize, outputFormatColors } = params;
@@ -29,7 +29,7 @@ export function parseHeight(
     'height',
     height,
     remSize,
-    outputFormatColors
+    outputFormatColors,
   );
 
   return updateParsing(css, updatedCss, imports, updatedImports);

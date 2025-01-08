@@ -11,7 +11,9 @@ export function loadEnv(): void {
     const variables = file
       .toString()
       .split('\n')
-      .filter((i: string) => i.startsWith('FIGMA_TOKEN') || i.startsWith('FIGMA_URL'));
+      .filter(
+        (i: string) => i.startsWith('FIGMA_TOKEN') || i.startsWith('FIGMA_URL'),
+      );
 
     variables.forEach((variable: string) => {
       const [key, value] = variable.split('=');

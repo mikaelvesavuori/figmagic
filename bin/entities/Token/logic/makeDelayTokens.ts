@@ -4,21 +4,26 @@ import { DelayTokens } from '../../../contracts/Tokens';
 import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 
 import {
-  ErrorMakeDelayTokensNoFrame,
+  ErrorMakeDelayTokensMissingProps,
   ErrorMakeDelayTokensNoChildren,
-  ErrorMakeDelayTokensMissingProps
+  ErrorMakeDelayTokensNoFrame,
 } from '../../../frameworks/errors/errors';
 
 /**
  * @description Places all Figma delays into a clean object
  */
-export function makeDelayTokens(delayFrame: Frame, camelizeTokenNames?: boolean): DelayTokens {
+export function makeDelayTokens(
+  delayFrame: Frame,
+  camelizeTokenNames?: boolean,
+): DelayTokens {
   if (!delayFrame) throw Error(ErrorMakeDelayTokensNoFrame);
   if (!delayFrame.children) throw Error(ErrorMakeDelayTokensNoChildren);
 
   const delays: Record<string, number> = {};
   const tokens = delayFrame.children.reverse();
-  tokens.forEach((item: Frame) => makeDelayToken(item, delays, camelizeTokenNames));
+  tokens.forEach((item: Frame) =>
+    makeDelayToken(item, delays, camelizeTokenNames),
+  );
 
   return delays as DelayTokens;
 }
@@ -26,9 +31,10 @@ export function makeDelayTokens(delayFrame: Frame, camelizeTokenNames?: boolean)
 function makeDelayToken(
   item: Frame,
   delays: Record<string, unknown>,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ) {
-  if (!item.name || !item.characters) throw Error(ErrorMakeDelayTokensMissingProps);
+  if (!item.name || !item.characters)
+    throw Error(ErrorMakeDelayTokensMissingProps);
 
   const name = sanitizeString(item.name, camelizeTokenNames);
   delays[name] = parseFloat(item.characters);

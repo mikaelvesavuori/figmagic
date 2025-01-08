@@ -1,15 +1,15 @@
-import { Metadata } from './Metadata';
-import { Templates } from './Templates';
-import { ProcessedToken } from './ProcessedToken';
 import {
-  Overwrite,
   OutputFormatCss,
   OutputFormatDescription,
   OutputFormatElements,
   OutputFormatGraphics,
   OutputFormatStorybook,
-  OutputFormatTokens
+  OutputFormatTokens,
+  Overwrite,
 } from './Config';
+import { Metadata } from './Metadata';
+import { ProcessedToken } from './ProcessedToken';
+import { Templates } from './Templates';
 
 export type WriteOperation = {
   type: FileType;

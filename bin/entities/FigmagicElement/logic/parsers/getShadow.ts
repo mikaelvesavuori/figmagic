@@ -6,7 +6,13 @@ import { ErrorGetShadow } from '../../../../frameworks/errors/errors';
 
 export function getShadow(element: Frame): string | null {
   if (!element) throw Error(ErrorGetShadow);
-  if (!(element.effects && element.effects[0] && element.effects[0].type === 'DROP_SHADOW'))
+  if (
+    !(
+      element.effects &&
+      element.effects[0] &&
+      element.effects[0].type === 'DROP_SHADOW'
+    )
+  )
     return null;
 
   const dropShadow = element.effects[0];

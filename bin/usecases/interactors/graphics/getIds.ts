@@ -32,7 +32,7 @@ export const getIds = (graphicsPage: Frame[]): Id[] => {
   ids.forEach((item: Id) =>
     !deduplicatedIds.find((element: Id) => element.id === item.id)
       ? deduplicatedIds.push(item)
-      : null
+      : null,
   );
 
   return deduplicatedIds;
@@ -51,6 +51,6 @@ const getComponents = (children: Frame[], parent?: Frame): Id[] => {
     })
     .map((item: Frame) => ({
       id: item.id,
-      name: `${parentName}${item.name}`
+      name: `${parentName}${item.name}`,
     }));
 };

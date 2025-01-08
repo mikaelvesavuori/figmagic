@@ -24,7 +24,9 @@ export function sanitizeString(str: string, camelize = true): string {
         .trim()
         // Find all words, and capitalize the first letter and lowercase the rest of the word. Except the first word which is fully lowercased.
         .replace(regexBasicMatch, (word, index) =>
-          index === 0 ? word.toLowerCase() : word[0].toUpperCase() + word.slice(1).toLowerCase()
+          index === 0
+            ? word.toLowerCase()
+            : word[0].toUpperCase() + word.slice(1).toLowerCase(),
         )
         // Finally remove all remaining spaces
         .replace(/ /g, '')
@@ -33,7 +35,10 @@ export function sanitizeString(str: string, camelize = true): string {
     /**
      * Return mildly sanitized string keeping basic formatting
      */
-    return str.replace(regexDashesUnderscoresNonMatch, ' ').trim().replace(/ /g, '');
+    return str
+      .replace(regexDashesUnderscoresNonMatch, ' ')
+      .trim()
+      .replace(/ /g, '');
   }
 }
 
@@ -49,6 +54,9 @@ export function sanitizeStringPascalCase(str: string): string {
     .replace(/[A-Z]+/g, (word) => ' ' + word)
     .replace(regexNonMatch, ' ')
     .trim()
-    .replace(regexMatch, (word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
+    .replace(
+      regexMatch,
+      (word) => word[0].toUpperCase() + word.slice(1).toLowerCase(),
+    )
     .replace(/ /g, '');
 }

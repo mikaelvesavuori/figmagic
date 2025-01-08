@@ -1,14 +1,14 @@
+import { ShadowUnit } from '../../../contracts/Config';
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { ShadowTokens } from '../../../contracts/Tokens';
-import { ShadowUnit } from '../../../contracts/Config';
 
-import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 import { roundColorValue } from '../../../frameworks/string/roundColorValue';
+import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 
 import {
-  ErrorMakeShadowTokensNoFrame,
+  ErrorMakeShadowTokensMissingProps,
   ErrorMakeShadowTokensNoChildren,
-  ErrorMakeShadowTokensMissingProps
+  ErrorMakeShadowTokensNoFrame,
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -18,7 +18,7 @@ export function makeShadowTokens(
   shadowFrame: Frame,
   shadowUnit: ShadowUnit,
   remSize: number,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ): ShadowTokens {
   if (!shadowFrame) throw Error(ErrorMakeShadowTokensNoFrame);
   if (!shadowFrame.children) throw Error(ErrorMakeShadowTokensNoChildren);
@@ -26,7 +26,7 @@ export function makeShadowTokens(
   const shadows: Record<string, string> = {};
   const tokens = shadowFrame.children.reverse();
   tokens.forEach((item: Frame) =>
-    makeShadowToken(item, shadows, shadowUnit, remSize, camelizeTokenNames)
+    makeShadowToken(item, shadows, shadowUnit, remSize, camelizeTokenNames),
   );
 
   return shadows;
@@ -37,9 +37,10 @@ function makeShadowToken(
   shadows: Record<string, string>,
   shadowUnit: ShadowUnit,
   remSize: number,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ) {
-  if (!item.name || !item.effects) throw Error(ErrorMakeShadowTokensMissingProps);
+  if (!item.name || !item.effects)
+    throw Error(ErrorMakeShadowTokensMissingProps);
 
   const name = sanitizeString(item.name, camelizeTokenNames);
 
@@ -75,7 +76,11 @@ function getShadowXY(shadowUnit: ShadowUnit, offset: number, remSize: number) {
   else return (offset as unknown as number) / remSize + shadowUnit;
 }
 
-function getShadowRadius(shadowUnit: ShadowUnit, radius: number, remSize: number) {
+function getShadowRadius(
+  shadowUnit: ShadowUnit,
+  radius: number,
+  remSize: number,
+) {
   if (shadowUnit === 'px') return radius + shadowUnit;
   else return (radius as unknown as number) / remSize + shadowUnit;
 }

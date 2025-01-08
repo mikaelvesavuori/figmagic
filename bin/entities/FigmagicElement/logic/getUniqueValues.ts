@@ -7,19 +7,21 @@ import { ErrorGetUniqueValues } from '../../../frameworks/errors/errors';
  */
 export function getUniqueValues(
   arrays: UniqueCssValues[],
-  intersections: string[]
+  intersections: string[],
 ): UniqueCssValues[] {
   if (!arrays || !intersections) throw Error(ErrorGetUniqueValues);
 
   // Get unique values
   const cssArrays: string[][] = arrays.map((arr) => arr.css);
   const nonIntersectingValues: string[][] = cssArrays.map((arr: string[]) =>
-    arr.filter((val: string) => !intersections.includes(val))
+    arr.filter((val: string) => !intersections.includes(val)),
   );
 
   const fixedUniqueValues: UniqueCssValues[] = [];
 
-  const values = nonIntersectingValues.map((arr: string[]) => [...new Set(arr)]);
+  const values = nonIntersectingValues.map((arr: string[]) => [
+    ...new Set(arr),
+  ]);
   values.forEach((item: string[], index: number) => {
     const usedProperties: string[] = [];
     // @ts-ignore
@@ -37,7 +39,7 @@ export function getUniqueValues(
     if (deduplicatedCssRows.length > 0)
       fixedUniqueValues.push({
         css: deduplicatedCssRows,
-        className: arrays[index].className
+        className: arrays[index].className,
       });
   });
 

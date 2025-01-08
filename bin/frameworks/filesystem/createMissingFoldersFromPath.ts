@@ -20,5 +20,6 @@ export function createMissingFoldersFromPath(filePath: string): void {
     return folder;
   })();
 
-  if (!fs.existsSync(directoryPath)) fs.mkdirSync(directoryPath, { recursive: true });
+  if (!fs.existsSync(directoryPath))
+    fs.mkdirSync(directoryPath, { recursive: true });
 }

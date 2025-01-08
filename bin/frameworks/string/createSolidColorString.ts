@@ -1,5 +1,5 @@
-import { Paint } from '../../contracts/Figma';
 import { OutputFormatColors } from '../../contracts/Config';
+import { Paint } from '../../contracts/Figma';
 
 import { roundColorValue } from '../../frameworks/string/roundColorValue';
 
@@ -11,7 +11,7 @@ import { convertRgbaToHex } from './convertRgbaToHex';
  */
 export function createSolidColorString(
   fills: Paint,
-  outputFormatColors: OutputFormatColors
+  outputFormatColors: OutputFormatColors,
 ): string {
   if (!fills) throw Error(ErrorCreateSolidColorString);
 

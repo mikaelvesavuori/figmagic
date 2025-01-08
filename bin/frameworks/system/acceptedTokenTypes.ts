@@ -16,5 +16,5 @@ export const acceptedTokenTypes: string[] = [
   'shadows',
   'spacing',
   'spacings',
-  'zindices'
+  'zindices',
 ];

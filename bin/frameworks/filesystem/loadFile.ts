@@ -1,7 +1,7 @@
 import fs from 'fs';
 
-import { isJsonString } from '../filesystem/isJsonString';
 import { ErrorLoadFile } from '../errors/errors';
+import { isJsonString } from '../filesystem/isJsonString';
 
 /**
  * @description Load file from local path

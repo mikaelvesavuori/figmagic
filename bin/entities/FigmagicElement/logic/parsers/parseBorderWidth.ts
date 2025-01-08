@@ -1,6 +1,6 @@
-import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 import { OutputFormatColors } from '../../../../contracts/Config';
 import { Imports } from '../../../../contracts/Imports';
+import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 
 import { getTokenMatch } from '../getTokenMatch';
 import { updateParsing } from './updateParsing';
@@ -17,7 +17,7 @@ type BorderWidthParams = {
 export function parseBorderWidth(
   css: string,
   imports: Imports[],
-  params: BorderWidthParams
+  params: BorderWidthParams,
 ): ParsedElementMetadataInterface {
   if (!css || !imports || !params) throw Error(ErrorParseBorderWidth);
   const { borderWidths, borderWidth, remSize, outputFormatColors } = params;
@@ -28,7 +28,7 @@ export function parseBorderWidth(
     'border-width',
     borderWidth,
     remSize,
-    outputFormatColors
+    outputFormatColors,
   );
 
   return updateParsing(css, updatedCss, imports, updatedImports);

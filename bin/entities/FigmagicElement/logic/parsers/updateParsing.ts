@@ -7,12 +7,14 @@ export function updateParsing(
   css: string,
   updatedCss: string | null,
   imports: Imports[],
-  updatedImports: Imports[] | null
+  updatedImports: Imports[] | null,
 ): ParsedElementMetadataInterface {
   if (!css || !imports) throw Error(ErrorUpdateParsing);
 
   return {
     css: updatedCss ? (css += updatedCss) : css,
-    imports: updatedImports ? updatedImports.forEach((i) => imports.push(i)) : imports
+    imports: updatedImports
+      ? updatedImports.forEach((i) => imports.push(i))
+      : imports,
   };
 }

@@ -5,9 +5,9 @@ import { getDataRemote } from './getDataRemote';
 
 import {
   ErrorGetData,
+  ErrorGetDataFailedLocalAndRemote,
   ErrorGetDataNoData,
   ErrorGetDataNoTokenOrUrl,
-  ErrorGetDataFailedLocalAndRemote
 } from '../errors/errors';
 
 /**
@@ -19,10 +19,11 @@ export async function getData(
   figmaData: string,
   token: string | null,
   url: string | null,
-  versionName?: string | null
+  versionName?: string | null,
 ): Promise<FigmaResponse> {
   if (!recompileLocal && (!token || !url)) throw Error(ErrorGetData);
-  if (recompileLocal && (!figmagicFolder || !figmaData)) throw Error(ErrorGetDataNoTokenOrUrl);
+  if (recompileLocal && (!figmagicFolder || !figmaData))
+    throw Error(ErrorGetDataNoTokenOrUrl);
 
   const _data = (async () => {
     if (recompileLocal) return getDataLocal(figmagicFolder, figmaData);

@@ -3,7 +3,7 @@
  */
 export const classRepresentsTextOnlyElement = (
   className: string,
-  textOnlySubchildren: string[] = []
+  textOnlySubchildren: string[] = [],
 ): boolean => {
   const cleanedName = className.replace(' {', '');
   const rootClassName = cleanedName.slice(1, cleanedName.length - 11);

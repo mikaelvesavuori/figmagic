@@ -10,7 +10,7 @@ import { ErrorCleanArrays } from '../../../frameworks/errors/errors';
 export function cleanArrays(
   classNames: RegExpMatchArray | null,
   classContent: string[],
-  textOnlySubchildren: string[]
+  textOnlySubchildren: string[],
 ): UniqueCssValues[] {
   if (!classNames || !classContent) throw Error(ErrorCleanArrays);
 
@@ -25,7 +25,10 @@ export function cleanArrays(
     }
     const className = classNames[index];
     const isNextClassSameLogicalClass = className === classNames[index + 1];
-    const isTextOnly = classRepresentsTextOnlyElement(className, textOnlySubchildren);
+    const isTextOnly = classRepresentsTextOnlyElement(
+      className,
+      textOnlySubchildren,
+    );
 
     const layout = (() => {
       if (isTextOnly) return [];

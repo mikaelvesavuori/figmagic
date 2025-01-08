@@ -1,6 +1,6 @@
-import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 import { OutputFormatColors } from '../../../../contracts/Config';
 import { Imports } from '../../../../contracts/Imports';
+import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 
 import { getTokenMatch } from '../getTokenMatch';
 import { updateParsing } from './updateParsing';
@@ -17,7 +17,7 @@ type ShadowParams = {
 export function parseShadow(
   css: string,
   imports: Imports[],
-  params: ShadowParams
+  params: ShadowParams,
 ): ParsedElementMetadataInterface {
   if (!css || !imports || !params) throw Error(ErrorParseShadow);
 
@@ -29,7 +29,7 @@ export function parseShadow(
     'box-shadow',
     shadow,
     remSize,
-    outputFormatColors
+    outputFormatColors,
   );
 
   return updateParsing(css, updatedCss, imports, updatedImports);

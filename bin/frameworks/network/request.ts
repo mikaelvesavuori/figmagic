@@ -1,13 +1,16 @@
-import https, { RequestOptions } from 'https';
 import fs from 'fs';
+import https, { RequestOptions } from 'https';
 
-import { isJsonString } from '../filesystem/isJsonString';
 import { checkIfExists } from '../filesystem/checkIfExists';
+import { isJsonString } from '../filesystem/isJsonString';
 
 /**
  * @description HTTPS request helper function.
  */
-export async function request(urlPath: string, figmaToken?: string): Promise<any> {
+export async function request(
+  urlPath: string,
+  figmaToken?: string,
+): Promise<any> {
   const options: RequestOptions = {
     hostname: 'api.figma.com',
     path: urlPath,
@@ -15,15 +18,20 @@ export async function request(urlPath: string, figmaToken?: string): Promise<any
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Accept-Charset': 'UTF-8'
-    }
+      'Accept-Charset': 'UTF-8',
+    },
   };
 
   if (urlPath.includes('https://') || urlPath.includes('http://')) {
-    const urlPathWithoutProtocol = urlPath.replace('https://', '').replace('http://', '');
+    const urlPathWithoutProtocol = urlPath
+      .replace('https://', '')
+      .replace('http://', '');
     const indexFirstSlash = urlPathWithoutProtocol.indexOf('/');
     const hostname = urlPathWithoutProtocol.substring(0, indexFirstSlash);
-    const path = urlPathWithoutProtocol.substring(indexFirstSlash, urlPathWithoutProtocol.length);
+    const path = urlPathWithoutProtocol.substring(
+      indexFirstSlash,
+      urlPathWithoutProtocol.length,
+    );
 
     options.hostname = hostname;
     options.path = path;
@@ -45,7 +53,7 @@ export async function request(urlPath: string, figmaToken?: string): Promise<any
   if (figmaToken)
     options.headers = {
       ...options.headers,
-      'X-Figma-Token': figmaToken
+      'X-Figma-Token': figmaToken,
     };
 
   let data = '';

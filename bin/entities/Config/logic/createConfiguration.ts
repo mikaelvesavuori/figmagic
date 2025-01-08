@@ -4,10 +4,10 @@ import { loadFile } from '../../../frameworks/filesystem/loadFile';
 import { getFigmaDocumentId } from '../../../frameworks/string/getFigmaDocumentId';
 
 import {
-  MsgConfigDebugEnv,
   MsgConfigDebugCli,
+  MsgConfigDebugEnv,
+  MsgConfigDebugFinal,
   MsgConfigDebugRc,
-  MsgConfigDebugFinal
 } from '../../../frameworks/messages/messages';
 
 import { ErrorCreateConfigurationNoDefault } from '../../../frameworks/errors/errors';
@@ -26,7 +26,7 @@ import { Config } from '../../../contracts/Config';
 export async function createConfiguration(
   baseConfig: Config,
   userConfigPath: string,
-  cliArgs: string[]
+  cliArgs: string[],
 ): Promise<Config> {
   if (!baseConfig) throw Error(ErrorCreateConfigurationNoDefault);
 
@@ -38,7 +38,7 @@ export async function createConfiguration(
     if (userConfigPath && userConfigPath !== '') {
       try {
         return loadFile(userConfigPath) as Config;
-      } catch (e) {
+      } catch (_e) {
         //
       }
     }
@@ -48,7 +48,7 @@ export async function createConfiguration(
   // Env var configuration
   const envConfig = {
     token: process.env.FIGMA_TOKEN || rcConfig.token || '',
-    url: getEnvUrl(process.env.FIGMA_URL, rcConfig.url || '')
+    url: getEnvUrl(process.env.FIGMA_URL, rcConfig.url || ''),
   };
 
   // CLI arguments configuration
@@ -71,16 +71,17 @@ export async function createConfiguration(
     templates: {
       ...defaultConfig.templates,
       ...rcConfig.templates,
-      ...cliConfig.templates
+      ...cliConfig.templates,
     },
     skipFileGeneration: {
       ...defaultConfig.skipFileGeneration,
       ...rcConfig.skipFileGeneration,
-      ...cliConfig.skipFileGeneration
-    }
+      ...cliConfig.skipFileGeneration,
+    },
   };
 
-  if (CONFIG.debugMode === true) printConfigs(envConfig, cliConfig, rcConfig, CONFIG);
+  if (CONFIG.debugMode === true)
+    printConfigs(envConfig, cliConfig, rcConfig, CONFIG);
 
   return CONFIG;
 }
@@ -89,7 +90,7 @@ function printConfigs(
   envConfig: Record<string, unknown>,
   cliConfig: Record<string, unknown>,
   rcConfig: Record<string, unknown>,
-  config: Record<string, unknown>
+  config: Record<string, unknown>,
 ): void {
   console.log(MsgConfigDebugEnv);
   console.log(envConfig);
@@ -104,7 +105,10 @@ function printConfigs(
   console.log(config);
 }
 
-const getEnvUrl = (processEnvUrl: string | undefined, rcConfigUrl: string | undefined) => {
+const getEnvUrl = (
+  processEnvUrl: string | undefined,
+  rcConfigUrl: string | undefined,
+) => {
   if (processEnvUrl) return getFigmaDocumentId(processEnvUrl);
   if (rcConfigUrl) return getFigmaDocumentId(rcConfigUrl);
   return '';

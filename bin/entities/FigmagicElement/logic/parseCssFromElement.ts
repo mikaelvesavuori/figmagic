@@ -1,23 +1,23 @@
 import * as path from 'path';
 
-import { FRAME as Frame } from '../../../contracts/Figma';
-import { Imports, UpdatedCssAndImports } from '../../../contracts/Imports';
 import { OutputFormatColors } from '../../../contracts/Config';
-import { Color } from '../../../contracts/Parsing';
+import { FRAME as Frame } from '../../../contracts/Figma';
 import { FileContents } from '../../../contracts/Files';
+import { Imports, UpdatedCssAndImports } from '../../../contracts/Imports';
+import { Color } from '../../../contracts/Parsing';
 
 import { getFileContents } from './getFileContents';
-import { getPaddingY, PaddingVertical } from './parsers/getPaddingY';
-import { getPaddingX, PaddingHorizontal } from './parsers/getPaddingX';
-import { parsePadding } from './parsers/parsePadding';
-import { parseHeight } from './parsers/parseHeight';
 import { getBackgroundColor } from './parsers/getBackgroundColor';
-import { parseBackgroundColor } from './parsers/parseBackgroundColor';
-import { parseBorderWidth } from './parsers/parseBorderWidth';
 import { getBorderColor } from './parsers/getBorderColor';
+import { PaddingHorizontal, getPaddingX } from './parsers/getPaddingX';
+import { PaddingVertical, getPaddingY } from './parsers/getPaddingY';
+import { getShadow } from './parsers/getShadow';
+import { parseBackgroundColor } from './parsers/parseBackgroundColor';
 import { parseBorderColor } from './parsers/parseBorderColor';
 import { parseBorderRadius } from './parsers/parseBorderRadius';
-import { getShadow } from './parsers/getShadow';
+import { parseBorderWidth } from './parsers/parseBorderWidth';
+import { parseHeight } from './parsers/parseHeight';
+import { parsePadding } from './parsers/parsePadding';
 import { parseShadow } from './parsers/parseShadow';
 
 import { ErrorParseCssFromElement } from '../../../frameworks/errors/errors';
@@ -30,57 +30,77 @@ export function parseCssFromElement(
   textElement: Frame | null,
   remSize: number,
   outputFormatToken: string,
-  outputFolderTokens: string
+  outputFolderTokens: string,
 ): UpdatedCssAndImports {
   if (!layoutElement || !remSize || !outputFormatToken || !outputFolderTokens)
     throw Error(ErrorParseCssFromElement);
 
-  const tokenPath = process.env.IS_TEST ? path.join(`testdata`, `tokens`) : outputFolderTokens;
-  const { borderWidths, colors, radii, shadows, spacing } = getFiles(tokenPath, outputFormatToken);
+  const tokenPath = process.env.IS_TEST
+    ? path.join(`testdata`, `tokens`)
+    : outputFolderTokens;
+  const { borderWidths, colors, radii, shadows, spacing } = getFiles(
+    tokenPath,
+    outputFormatToken,
+  );
 
   // Add defaults
   let css = `width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\n`;
 
   // Assume all images are full bleed
-  if (layoutElement.fills && layoutElement.fills.some((fill) => fill['type'] === 'IMAGE'))
+  if (
+    layoutElement.fills &&
+    layoutElement.fills.some((fill) => fill['type'] === 'IMAGE')
+  )
     css += `object-fit: cover;\n`;
 
   let imports: Imports[] = [];
 
   const padding = calcPadding(
     { textElement, layoutElement, css, imports, remSize } as CalcData,
-    spacing
+    spacing,
   );
   css = padding.css;
   imports = padding.imports;
 
-  const height = calcHeight({ layoutElement, css, imports, remSize } as CalcData, spacing);
+  const height = calcHeight(
+    { layoutElement, css, imports, remSize } as CalcData,
+    spacing,
+  );
   css = height.css;
   imports = height.imports;
 
-  const bgColor = calcBackgroundColor({ layoutElement, css, imports, remSize } as CalcData, colors);
+  const bgColor = calcBackgroundColor(
+    { layoutElement, css, imports, remSize } as CalcData,
+    colors,
+  );
   css = bgColor.css;
   imports = bgColor.imports;
 
   const borderWidth = calcBorderWidth(
     { layoutElement, css, imports, remSize } as CalcData,
-    borderWidths
+    borderWidths,
   );
   css = borderWidth.css;
   imports = borderWidth.imports;
 
-  const borderColor = calcBorderColor({ layoutElement, css, imports, remSize } as CalcData, colors);
+  const borderColor = calcBorderColor(
+    { layoutElement, css, imports, remSize } as CalcData,
+    colors,
+  );
   css = borderColor.css;
   imports = borderColor.imports;
 
   const borderRadius = calcBorderRadius(
     { layoutElement, css, imports, remSize } as CalcData,
-    radii
+    radii,
   );
   css = borderRadius.css;
   imports = borderRadius.imports;
 
-  const shadow = calcShadows({ layoutElement, css, imports, remSize } as CalcData, shadows);
+  const shadow = calcShadows(
+    { layoutElement, css, imports, remSize } as CalcData,
+    shadows,
+  );
   css = shadow.css;
   imports = shadow.imports;
 
@@ -102,8 +122,15 @@ const reduceDuplicates = (str: string) =>
     .toString()
     .replace(/,\n/gi, ';\n');
 
-const getFiles = (filePath: string, outputFormatToken: string): FileContents => {
-  const borderWidths = getFileContents(filePath, 'borderWidths', outputFormatToken);
+const getFiles = (
+  filePath: string,
+  outputFormatToken: string,
+): FileContents => {
+  const borderWidths = getFileContents(
+    filePath,
+    'borderWidths',
+    outputFormatToken,
+  );
   const colors = getFileContents(filePath, 'colors', outputFormatToken);
   const radii = getFileContents(filePath, 'radii', outputFormatToken);
   const shadows = getFileContents(filePath, 'shadows', outputFormatToken);
@@ -114,7 +141,7 @@ const getFiles = (filePath: string, outputFormatToken: string): FileContents => 
     colors,
     radii,
     shadows,
-    spacing
+    spacing,
   };
 };
 
@@ -132,13 +159,13 @@ function calcPadding(calcData: CalcData, spacing: Record<string, string>) {
   if (paddingY && paddingX) {
     const padding = {
       ...paddingY,
-      ...paddingX
+      ...paddingX,
     };
 
     const parsedPadding = parsePadding(css, imports, {
       padding,
       spacing,
-      remSize
+      remSize,
     });
 
     css += parsedPadding.css;
@@ -160,7 +187,7 @@ function calcHeight(calcData: CalcData, spacing: Record<string, string>) {
       spacing,
       height,
       remSize,
-      outputFormatColors
+      outputFormatColors,
     });
     css += parsedValue.css;
     if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
@@ -179,7 +206,7 @@ function calcBackgroundColor(calcData: CalcData, colors: Color) {
       colors,
       backgroundColor,
       remSize,
-      outputFormatColors
+      outputFormatColors,
     });
     css += parsedValue.css;
     if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
@@ -188,17 +215,22 @@ function calcBackgroundColor(calcData: CalcData, colors: Color) {
   return { css, imports };
 }
 
-function calcBorderWidth(calcData: CalcData, borderWidths: Record<string, string>) {
+function calcBorderWidth(
+  calcData: CalcData,
+  borderWidths: Record<string, string>,
+) {
   const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
-  const borderWidth = layoutElement.strokeWeight ? `${layoutElement.strokeWeight}px` : null;
+  const borderWidth = layoutElement.strokeWeight
+    ? `${layoutElement.strokeWeight}px`
+    : null;
   if (borderWidth) {
     const parsedValue = parseBorderWidth(css, imports, {
       borderWidths,
       borderWidth,
       remSize,
-      outputFormatColors
+      outputFormatColors,
     });
     css += parsedValue.css;
     if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
@@ -217,7 +249,7 @@ function calcBorderColor(calcData: CalcData, colors: Color) {
       colors,
       borderColor,
       remSize,
-      outputFormatColors
+      outputFormatColors,
     });
     css += parsedValue.css;
     if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
@@ -230,13 +262,15 @@ function calcBorderRadius(calcData: CalcData, radii: Record<string, string>) {
   const { layoutElement, remSize, outputFormatColors } = calcData;
   let { css, imports } = calcData;
 
-  const borderRadius = layoutElement.cornerRadius ? `${layoutElement.cornerRadius}px` : null;
+  const borderRadius = layoutElement.cornerRadius
+    ? `${layoutElement.cornerRadius}px`
+    : null;
   if (borderRadius) {
     const parsedValue = parseBorderRadius(css, imports, {
       radii,
       borderRadius,
       remSize,
-      outputFormatColors
+      outputFormatColors,
     });
     css += parsedValue.css;
     if (parsedValue.imports) imports = imports.concat(parsedValue.imports);
@@ -255,7 +289,7 @@ function calcShadows(calcData: CalcData, shadows: Record<string, string>) {
       shadows,
       shadow,
       remSize,
-      outputFormatColors
+      outputFormatColors,
     });
     css += parsedValue.css;
     if (parsedValue.imports) imports = imports.concat(parsedValue.imports);

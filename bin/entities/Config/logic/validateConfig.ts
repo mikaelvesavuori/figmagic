@@ -1,8 +1,8 @@
 import { Config } from '../../../contracts/Config';
 
 import {
-  ErrorValidateConfig,
   ErrorValidateBorderWidthUnit,
+  ErrorValidateConfig,
   ErrorValidateConfigFileName,
   ErrorValidateConfigFolderName,
   ErrorValidateConfigFontUnit,
@@ -23,9 +23,9 @@ import {
   ErrorValidateConfigTemplatePathReact,
   ErrorValidateConfigTemplatePathStorybook,
   ErrorValidateConfigTemplatePathStyled,
+  ErrorValidateDurationUnit,
   ErrorValidateRadiusUnit,
   ErrorValidateShadowUnit,
-  ErrorValidateDurationUnit
 } from '../../../frameworks/errors/errors';
 
 export function validateConfig(config: Config): boolean {
@@ -63,6 +63,7 @@ export function validateConfig(config: Config): boolean {
 }
 import {
   validBorderWidthUnitList,
+  validDurationUnitList,
   validFontUnitList,
   validLetterSpacingUnitList,
   validLineHeightUnitList,
@@ -77,8 +78,7 @@ import {
   validOutputFormatTokensList,
   validRadiusUnitList,
   validShadowUnitList,
-  validDurationUnitList,
-  validSpacingUnitList
+  validSpacingUnitList,
 } from '../../../frameworks/system/validatorLists';
 
 const validateFontUnit = (unit: string): boolean => {
@@ -171,7 +171,9 @@ const validateOutputScaleGraphics = (scale: number): boolean => {
   throw Error(ErrorValidateConfigOutputScaleGraphics);
 };
 
-const validateOutputDataTypeToken = (format: string | 'enum' | null): boolean => {
+const validateOutputDataTypeToken = (
+  format: string | 'enum' | null,
+): boolean => {
   if (!format || validOutputDataTypeTokenList.includes(format)) return true;
   throw Error(ErrorValidateConfigOutputDataTypeToken);
 };

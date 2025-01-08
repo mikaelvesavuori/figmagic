@@ -1,7 +1,7 @@
 import {
   ErrorNormalizeUnits,
   ErrorNormalizeUnitsNoRemSize,
-  ErrorNormalizeUnitsUndefined
+  ErrorNormalizeUnitsUndefined,
 } from '../errors/errors';
 
 /**
@@ -11,14 +11,15 @@ export function normalizeUnits(
   value: number,
   currentUnit: string,
   newUnit: string,
-  remSize?: number
+  remSize?: number,
 ): string {
   if (!value || !currentUnit || !newUnit) throw Error(ErrorNormalizeUnits);
 
   const rootSize = setRootSize(currentUnit);
   const unitSize = setUnitSize(value, newUnit, remSize);
 
-  if (rootSize === undefined || unitSize === undefined) throw Error(ErrorNormalizeUnitsUndefined);
+  if (rootSize === undefined || unitSize === undefined)
+    throw Error(ErrorNormalizeUnitsUndefined);
 
   return getAdjustedValues(value, rootSize, unitSize, newUnit);
 }
@@ -28,7 +29,11 @@ function setRootSize(currentUnit: string): number | undefined {
   return undefined;
 }
 
-function setUnitSize(value: number, newUnit: string, remSize?: number): number | undefined {
+function setUnitSize(
+  value: number,
+  newUnit: string,
+  remSize?: number,
+): number | undefined {
   if (newUnit === 'unitless') return value / 100;
   else if (newUnit === 'rem' || newUnit === 'em' || newUnit === 'px') {
     if (!remSize) throw Error(ErrorNormalizeUnitsNoRemSize);
@@ -36,11 +41,17 @@ function setUnitSize(value: number, newUnit: string, remSize?: number): number |
   } else return undefined;
 }
 
-function getAdjustedValues(value: number, rootSize: number, unitSize: number, newUnit: string) {
+function getAdjustedValues(
+  value: number,
+  rootSize: number,
+  unitSize: number,
+  newUnit: string,
+) {
   if (newUnit === 'unitless') return `${unitSize}`;
   else if (newUnit === 'px') return `${value}${newUnit}`;
   else {
-    const adjustedValue = rootSize && unitSize ? value * (rootSize / unitSize) : value;
+    const adjustedValue =
+      rootSize && unitSize ? value * (rootSize / unitSize) : value;
     return `${adjustedValue}${newUnit}`;
   }
 }

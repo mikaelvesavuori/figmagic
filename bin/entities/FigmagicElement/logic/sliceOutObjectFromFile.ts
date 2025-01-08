@@ -20,7 +20,7 @@ const isJson = (input: any) => {
   try {
     JSON.parse(input);
     return true;
-  } catch (error) {
+  } catch (_e) {
     return false;
   }
 };

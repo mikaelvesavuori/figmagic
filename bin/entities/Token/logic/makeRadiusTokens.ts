@@ -1,14 +1,14 @@
+import { RadiusUnit } from '../../../contracts/Config';
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { RadiusTokens } from '../../../contracts/Tokens';
-import { RadiusUnit } from '../../../contracts/Config';
 
-import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
+import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 
 import {
-  ErrorMakeRadiusTokensNoFrame,
+  ErrorMakeRadiusTokensMissingProps,
   ErrorMakeRadiusTokensNoChildren,
-  ErrorMakeRadiusTokensMissingProps
+  ErrorMakeRadiusTokensNoFrame,
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -18,7 +18,7 @@ export function makeRadiusTokens(
   radiusFrame: Frame,
   radiusUnit: RadiusUnit,
   remSize: number,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ): RadiusTokens {
   if (!radiusFrame) throw Error(ErrorMakeRadiusTokensNoFrame);
   if (!radiusFrame.children) throw Error(ErrorMakeRadiusTokensNoChildren);
@@ -26,7 +26,7 @@ export function makeRadiusTokens(
   const cornerRadii: Record<string, string> = {};
   const tokens = radiusFrame.children.reverse();
   tokens.forEach((item: Frame) =>
-    makeRadiusToken(item, cornerRadii, radiusUnit, remSize, camelizeTokenNames)
+    makeRadiusToken(item, cornerRadii, radiusUnit, remSize, camelizeTokenNames),
   );
 
   return cornerRadii as RadiusTokens;
@@ -37,7 +37,7 @@ function makeRadiusToken(
   cornerRadii: Record<string, string>,
   radiusUnit: RadiusUnit,
   remSize: number,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ) {
   if (!item.name) throw Error(ErrorMakeRadiusTokensMissingProps);
 

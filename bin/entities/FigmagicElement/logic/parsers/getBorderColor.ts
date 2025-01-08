@@ -6,7 +6,13 @@ import { ErrorGetBorderColor } from '../../../../frameworks/errors/errors';
 
 export function getBorderColor(element: Frame): string | null {
   if (!element) throw Error(ErrorGetBorderColor);
-  if (!(element.strokes && element.strokes.length > 0 && element.strokes[0].type === 'SOLID'))
+  if (
+    !(
+      element.strokes &&
+      element.strokes.length > 0 &&
+      element.strokes[0].type === 'SOLID'
+    )
+  )
     return null;
 
   if (!element.strokes[0].color) throw Error(ErrorGetBorderColor);

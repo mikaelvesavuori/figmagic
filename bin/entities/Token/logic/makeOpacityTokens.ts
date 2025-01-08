@@ -1,13 +1,13 @@
+import { OpacitiesUnit } from '../../../contracts/Config';
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { OpacityTokens } from '../../../contracts/Tokens';
-import { OpacitiesUnit } from '../../../contracts/Config';
 
 import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 
 import {
-  ErrorMakeOpacityTokensNoFrame,
+  ErrorMakeOpacityTokensMissingProps,
   ErrorMakeOpacityTokensNoChildren,
-  ErrorMakeOpacityTokensMissingProps
+  ErrorMakeOpacityTokensNoFrame,
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -17,7 +17,7 @@ import {
 export function makeOpacityTokens(
   opacitiesFrame: Frame,
   opacitiesUnit: OpacitiesUnit,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ): OpacityTokens {
   if (!opacitiesFrame) throw Error(ErrorMakeOpacityTokensNoFrame);
   if (!opacitiesFrame.children) throw Error(ErrorMakeOpacityTokensNoChildren);
@@ -33,7 +33,8 @@ export function makeOpacityTokens(
       const opacity = (() => {
         let opacity: string | number = 1;
 
-        if (typeof item.opacity !== 'undefined') opacity = Math.round(item.opacity * 100) / 100;
+        if (typeof item.opacity !== 'undefined')
+          opacity = Math.round(item.opacity * 100) / 100;
         if (opacitiesUnit === 'percent') opacity = `${opacity * 100}%`;
 
         return opacity;
@@ -43,7 +44,7 @@ export function makeOpacityTokens(
 
       return _tokens;
     },
-    {}
+    {},
   );
 
   return opacityTokens;

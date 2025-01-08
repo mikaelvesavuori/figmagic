@@ -1,14 +1,14 @@
+import { SpacingUnit } from '../../../contracts/Config';
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { SpacingTokens } from '../../../contracts/Tokens';
-import { SpacingUnit } from '../../../contracts/Config';
 
-import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
+import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 
 import {
-  ErrorMakeSpacingTokensNoFrame,
   ErrorMakeSpacingTokensNoChildren,
-  ErrorMakeSpacingTokensNoUnits
+  ErrorMakeSpacingTokensNoFrame,
+  ErrorMakeSpacingTokensNoUnits,
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -18,7 +18,7 @@ export function makeSpacingTokens(
   spacingFrame: Frame,
   spacingUnit: SpacingUnit,
   remSize: number,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ): SpacingTokens {
   if (!spacingFrame) throw Error(ErrorMakeSpacingTokensNoFrame);
   if (!spacingFrame.children) throw Error(ErrorMakeSpacingTokensNoChildren);
@@ -27,7 +27,7 @@ export function makeSpacingTokens(
   const spacings: Record<string, string> = {};
   const tokens = spacingFrame.children.reverse();
   tokens.forEach((item: Frame) =>
-    makeSpacingToken(item, spacings, spacingUnit, remSize, camelizeTokenNames)
+    makeSpacingToken(item, spacings, spacingUnit, remSize, camelizeTokenNames),
   );
 
   return spacings as SpacingTokens;
@@ -38,7 +38,7 @@ function makeSpacingToken(
   spacings: Record<string, string>,
   spacingUnit: SpacingUnit,
   remSize: number,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ) {
   const name: string = sanitizeString(item.name, camelizeTokenNames);
   if (!item.absoluteBoundingBox || !item.absoluteBoundingBox.width)

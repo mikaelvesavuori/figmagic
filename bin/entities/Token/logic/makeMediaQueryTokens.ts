@@ -4,9 +4,9 @@ import { MediaQueryTokens } from '../../../contracts/Tokens';
 import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 
 import {
-  ErrorSetupMediaQueryTokensNoFrame,
+  ErrorSetupMediaQueryTokensMissingProps,
   ErrorSetupMediaQueryTokensNoChildren,
-  ErrorSetupMediaQueryTokensMissingProps
+  ErrorSetupMediaQueryTokensNoFrame,
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -14,14 +14,17 @@ import {
  */
 export function makeMediaQueryTokens(
   mediaQueryFrame: Frame,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ): MediaQueryTokens {
   if (!mediaQueryFrame) throw Error(ErrorSetupMediaQueryTokensNoFrame);
-  if (!mediaQueryFrame.children) throw Error(ErrorSetupMediaQueryTokensNoChildren);
+  if (!mediaQueryFrame.children)
+    throw Error(ErrorSetupMediaQueryTokensNoChildren);
 
   const mediaQueries: Record<string, string> = {};
   const tokens = mediaQueryFrame.children.reverse();
-  tokens.forEach((item: Frame) => makeMediaQueryToken(item, mediaQueries, camelizeTokenNames));
+  tokens.forEach((item: Frame) =>
+    makeMediaQueryToken(item, mediaQueries, camelizeTokenNames),
+  );
 
   return mediaQueries as MediaQueryTokens;
 }
@@ -29,9 +32,10 @@ export function makeMediaQueryTokens(
 function makeMediaQueryToken(
   item: Frame,
   mediaQueries: Record<string, string>,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ) {
-  if (!item.name || !item.absoluteBoundingBox) throw Error(ErrorSetupMediaQueryTokensMissingProps);
+  if (!item.name || !item.absoluteBoundingBox)
+    throw Error(ErrorSetupMediaQueryTokensMissingProps);
 
   const name = sanitizeString(item.name, camelizeTokenNames);
   mediaQueries[name] = `${item.absoluteBoundingBox.width}px`;

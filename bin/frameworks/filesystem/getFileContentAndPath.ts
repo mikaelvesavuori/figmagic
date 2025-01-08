@@ -1,37 +1,40 @@
-import { GetFileDataOperation, FileContentWithPath } from '../../contracts/Write';
-import {
+import type {
   PrepComponent,
   PrepCss,
   PrepDescription,
+  PrepGraphicComponent,
   PrepStorybook,
   PrepStyledComponents,
-  PrepGraphicComponent
 } from '../../contracts/PrepFile';
-import { ProcessedToken } from '../../contracts/ProcessedToken';
+import type { ProcessedToken } from '../../contracts/ProcessedToken';
+import type {
+  FileContentWithPath,
+  GetFileDataOperation,
+} from '../../contracts/Write';
 
 import {
   prepComponent,
-  prepStyledComponents,
   prepCss,
-  prepStorybook,
   prepDescription,
-  prepGraphicComponent
+  prepGraphicComponent,
+  prepStorybook,
+  prepStyledComponents,
 } from './prepFile';
 
 import { createEnumStringOutOfObject } from '../../frameworks/string/createEnumStringOutOfObject';
 
-import { MsgGeneratedFileWarning } from '../messages/messages';
 import {
   ErrorGetFileContentAndPath,
   ErrorGetFileContentAndPathMissingFields,
-  ErrorGetFileContentAndPathNoReturn
+  ErrorGetFileContentAndPathNoReturn,
 } from '../errors/errors';
+import { MsgGeneratedFileWarning } from '../messages/messages';
 
 /**
  * Orchestrator to get file content and path, before writing files
  */
 export function getFileContentAndPath(
-  getFileContentAndPathOperation: GetFileDataOperation
+  getFileContentAndPathOperation: GetFileDataOperation,
 ): FileContentWithPath {
   if (!getFileContentAndPathOperation) throw Error(ErrorGetFileContentAndPath);
   if (!checkIfFieldsExist(getFileContentAndPathOperation))
@@ -48,7 +51,7 @@ export function getFileContentAndPath(
     imports,
     extraProps,
     metadata,
-    templates
+    templates,
   } = getFileContentAndPathOperation;
 
   let filePath = `${path}/${format === 'scss' ? '_' : ''}${name}`;
@@ -59,7 +62,10 @@ export function getFileContentAndPath(
     },
     token: () => {
       if (metadata?.dataType === 'enum')
-        return { fileContent: getTokenString(file, name, format, metadata.dataType), filePath };
+        return {
+          fileContent: getTokenString(file, name, format, metadata.dataType),
+          filePath,
+        };
       filePath += `.${format}`;
       return { fileContent: getTokenString(file, name, format), filePath };
     },
@@ -72,7 +78,7 @@ export function getFileContentAndPath(
           templates,
           text,
           extraProps,
-          element
+          element,
         } as PrepComponent);
     },
     styled: () => {
@@ -82,23 +88,30 @@ export function getFileContentAndPath(
           filePath,
           format,
           templates,
-          element
+          element,
         } as PrepStyledComponents);
     },
     story: () => {
       if (type === 'story' && templates)
-        return prepStorybook({ name, filePath, format, templates, text } as PrepStorybook);
+        return prepStorybook({
+          name,
+          filePath,
+          format,
+          templates,
+          text,
+        } as PrepStorybook);
     },
     css: () => prepCss({ name, filePath, format, imports, file } as PrepCss),
-    description: () => prepDescription({ filePath, file, format } as PrepDescription),
+    description: () =>
+      prepDescription({ filePath, file, format } as PrepDescription),
     graphic: () =>
       prepGraphicComponent({
         name,
         filePath,
         format,
         templates,
-        file
-      } as PrepGraphicComponent)
+        file,
+      } as PrepGraphicComponent),
   };
 
   // @ts-ignore
@@ -113,13 +126,14 @@ const getTokenString = (
   file: string | ProcessedToken,
   name: string,
   format: string,
-  dataType?: string
+  dataType?: string,
 ): string => {
-  const exportString = format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
+  const exportString =
+    format === 'js' ? `module.exports = ${name}` : `export default ${name}`;
   const constAssertion = format === 'ts' ? ' as const;' : '';
 
   if (format === 'json') return getTokenStringJSON(file);
-  if (format === 'css') return getTokenStringCSS(file);
+  if (format === 'css') return getTokenStringCSS(file, name);
   if (format === 'scss') return getTokenStringSCSS(file);
   if (dataType === 'enum') return getTokenStringEnum(file, name, exportString);
   return getTokenStringJS(file, name, exportString, constAssertion);
@@ -167,9 +181,13 @@ function getTokenStringSCSS(file: string | ProcessedToken) {
 /**
  * @description Return enum token string
  */
-function getTokenStringEnum(file: string | ProcessedToken, name: string, exportString: string) {
+function getTokenStringEnum(
+  file: string | ProcessedToken,
+  name: string,
+  exportString: string,
+) {
   return `// ${MsgGeneratedFileWarning}\n\nenum ${name} {${createEnumStringOutOfObject(
-    file
+    file,
   )}\n}\n\n${exportString};`;
 }
 
@@ -180,19 +198,21 @@ function getTokenStringJS(
   file: string | ProcessedToken,
   name: string,
   exportString: string,
-  constAssertion: string
+  constAssertion: string,
 ) {
   return `// ${MsgGeneratedFileWarning}\n\nconst ${name} = ${JSON.stringify(
     file,
     null,
-    ' '
+    ' ',
   )}${constAssertion}\n\n${exportString};`;
 }
 
 /**
  * @description Validate whether required fields exist on GetFileDataOperation type
  */
-const checkIfFieldsExist = (getFileContentAndPathOperation: GetFileDataOperation): boolean => {
+const checkIfFieldsExist = (
+  getFileContentAndPathOperation: GetFileDataOperation,
+): boolean => {
   if (
     !getFileContentAndPathOperation.type ||
     !getFileContentAndPathOperation.file ||

@@ -2,7 +2,7 @@ import { Imports } from '../../contracts/Imports';
 
 import {
   ErrorCreateImportStringFromList,
-  ErrorCreateImportStringFromListZeroLength
+  ErrorCreateImportStringFromListZeroLength,
 } from '../errors/errors';
 
 /**
@@ -11,10 +11,11 @@ import {
 export function createImportStringFromList(
   importArray: Imports,
   outputFolderTokens = 'tokens',
-  tokensRelativeImportPrefix = ''
+  tokensRelativeImportPrefix = '',
 ): string {
   if (!importArray) throw Error(ErrorCreateImportStringFromList);
-  if (importArray.length === 0) throw Error(ErrorCreateImportStringFromListZeroLength);
+  if (importArray.length === 0)
+    throw Error(ErrorCreateImportStringFromListZeroLength);
 
   let importString = ``;
 

@@ -27,7 +27,7 @@ export function checkIfVoidElement(elementName: string): boolean {
     'param',
     'source',
     'track',
-    'wbr'
+    'wbr',
   ];
 
   return elements.includes(elementName);

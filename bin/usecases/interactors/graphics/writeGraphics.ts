@@ -9,7 +9,10 @@ import { ErrorWriteGraphics } from '../../../frameworks/errors/errors';
 /**
  * @description Write image assets from Figma page to disk
  */
-export async function writeGraphics(fileList: FileList[], config: Config): Promise<void> {
+export async function writeGraphics(
+  fileList: FileList[],
+  config: Config,
+): Promise<void> {
   if (!fileList || !config) throw Error(ErrorWriteGraphics);
 
   const { outputFolderGraphics } = config;
@@ -21,6 +24,6 @@ export async function writeGraphics(fileList: FileList[], config: Config): Promi
         await downloadFile(file.url, `${outputFolderGraphics}/${file.file}`);
         resolve(true);
       });
-    })
+    }),
   );
 }

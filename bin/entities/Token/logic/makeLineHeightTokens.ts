@@ -1,16 +1,16 @@
+import { LineHeightUnit } from '../../../contracts/Config';
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { LineHeightTokens } from '../../../contracts/Tokens';
-import { LineHeightUnit } from '../../../contracts/Config';
 
-import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
+import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 
 import {
-  ErrorMakeLineHeightTokensNoFrame,
-  ErrorMakeLineHeightTokensNoChildren,
   ErrorMakeLineHeightTokensMissingProps,
+  ErrorMakeLineHeightTokensNoChildren,
+  ErrorMakeLineHeightTokensNoFrame,
   ErrorMakeLineHeightTokensNoName,
-  ErrorMakeLineHeightTokensNoStyle
+  ErrorMakeLineHeightTokensNoStyle,
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -21,10 +21,11 @@ export function makeLineHeightTokens(
   remSize: number,
   unitlessPrecision?: number,
   lineHeightUnit?: LineHeightUnit,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ): LineHeightTokens {
   if (!lineHeightFrame) throw Error(ErrorMakeLineHeightTokensNoFrame);
-  if (!lineHeightFrame.children) throw Error(ErrorMakeLineHeightTokensNoChildren);
+  if (!lineHeightFrame.children)
+    throw Error(ErrorMakeLineHeightTokensNoChildren);
 
   const tokens = lineHeightFrame.children.reverse();
 
@@ -36,7 +37,7 @@ export function makeLineHeightTokens(
       remSize,
       unitlessPrecision,
       lineHeightUnit,
-      camelizeTokenNames
+      camelizeTokenNames,
     );
     tokensDictionary[name] = value;
 
@@ -61,7 +62,7 @@ function makeLineHeightToken(
   remSize: number,
   unitlessPrecision = 2,
   lineHeightUnit?: LineHeightUnit,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ): Token {
   const name = sanitizeString(item.name, camelizeTokenNames);
 
@@ -86,18 +87,25 @@ function makeLineHeightToken(
        * Dividing the value by the current fontSize will give the %-based em value.
        * Ex: if the letterSpacing value is 1.28 and fontSize is 32, em value should be 1.28 / 32 = 0.04em.
        */
-      const valueCalcEm = Math.round((10000 * lineHeightValueInPx) / fontSize) / 10000;
+      const valueCalcEm =
+        Math.round((10000 * lineHeightValueInPx) / fontSize) / 10000;
       value = `${valueCalcEm}em`;
       break;
     case 'rem':
-      const valueCalcRem = Math.round((10000 * lineHeightValueInPx) / remSize) / 10000;
+      const valueCalcRem =
+        Math.round((10000 * lineHeightValueInPx) / remSize) / 10000;
       value = `${valueCalcRem}` + 'rem';
       break;
     default:
       value =
         typeof item.style.lineHeightPercentFontSize !== 'undefined'
           ? parseFloat(
-              normalizeUnits(item.style.lineHeightPercentFontSize, 'percent', 'unitless', remSize)
+              normalizeUnits(
+                item.style.lineHeightPercentFontSize,
+                'percent',
+                'unitless',
+                remSize,
+              ),
             ).toFixed(unitlessPrecision)
           : // Assuming this means Figma's "Auto" line-height was used, fallback to CSS "normal" keyword
             'normal';
@@ -105,6 +113,6 @@ function makeLineHeightToken(
 
   return {
     name,
-    value
+    value,
   };
 }

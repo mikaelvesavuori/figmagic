@@ -8,7 +8,10 @@ import { ErrorDownloadFile } from '../errors/errors';
 /**
  * @description Get data from API
  */
-export async function downloadFile(url: string, filePath: string): Promise<void> {
+export async function downloadFile(
+  url: string,
+  filePath: string,
+): Promise<void> {
   if (!url || !filePath) throw Error(ErrorDownloadFile);
 
   return new Promise((resolve, reject) => {

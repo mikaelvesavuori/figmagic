@@ -1,6 +1,6 @@
-import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 import { OutputFormatColors } from '../../../../contracts/Config';
 import { Imports } from '../../../../contracts/Imports';
+import { ParsedElementMetadataInterface } from '../../../../contracts/ParsedElementMetadataInterface';
 import { Color } from '../../../../contracts/Parsing';
 
 import { getTokenMatch } from '../getTokenMatch';
@@ -18,7 +18,7 @@ type BorderColorParams = {
 export function parseBorderColor(
   css: string,
   imports: Imports[],
-  params: BorderColorParams
+  params: BorderColorParams,
 ): ParsedElementMetadataInterface {
   if (!css || !imports || !params) throw Error(ErrorParseBorderColor);
 
@@ -30,7 +30,7 @@ export function parseBorderColor(
     'border-color',
     borderColor,
     remSize,
-    outputFormatColors
+    outputFormatColors,
   );
 
   return updateParsing(css, updatedCss, imports, updatedImports);

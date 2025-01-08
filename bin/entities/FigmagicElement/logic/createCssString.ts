@@ -10,7 +10,7 @@ import { ErrorCreateCssString } from '../../../frameworks/errors/errors';
  */
 export function createCssString(
   intersections: IntersectingCssValues,
-  uniqueValues: UniqueCssValues[]
+  uniqueValues: UniqueCssValues[],
 ): string {
   if (!intersections || !uniqueValues) throw Error(ErrorCreateCssString);
 
@@ -41,10 +41,14 @@ export function createCssString(
 
     const isLastElementWithClass = !uniqueValues[index + 1]
       ? true
-      : checkIfLastElementWithClassname(className, uniqueValues[index + 1].className);
+      : checkIfLastElementWithClassname(
+          className,
+          uniqueValues[index + 1].className,
+        );
 
     // Close any level 2-deep elements (currently only supporting one depth layer)
-    if (nestingDepth !== 0 && !isLastElementWithClass) cssString += `${space}}\n`;
+    if (nestingDepth !== 0 && !isLastElementWithClass)
+      cssString += `${space}}\n`;
 
     if (isLastElementWithClass) {
       for (let i = 0; i <= nestingDepth + 1; i++) {
@@ -84,7 +88,10 @@ function getFixedClassName(className: string): string {
   return '';
 }
 
-function checkIfLastElementWithClassname(className: string, nextClassName: string): boolean {
+function checkIfLastElementWithClassname(
+  className: string,
+  nextClassName: string,
+): boolean {
   if (getId(className) !== getId(nextClassName)) return true;
   return false;
 }

@@ -8,7 +8,8 @@ import { ErrorCreateRadialGradientString } from '../../frameworks/errors/errors'
  */
 export function createRadialGradientString(fills: Paint): string {
   if (!fills) throw Error(ErrorCreateRadialGradientString);
-  if (!fills.gradientHandlePositions) throw Error(ErrorCreateRadialGradientString);
+  if (!fills.gradientHandlePositions)
+    throw Error(ErrorCreateRadialGradientString);
 
   const position = (() => {
     // @ts-ignore
@@ -37,8 +38,11 @@ export function createRadialGradientString(fills: Paint): string {
     const B = roundColorValue(fill.color?.b, 255);
     // @ts-ignore
     const A = roundColorValue(fill.opacity ? fill.opacity : fill.color?.a, 1);
-    // @ts-ignore
-    const position = roundColorValue(parseFloat(fill.position ? fill.position : '0'), 100);
+    const position = roundColorValue(
+      // @ts-ignore
+      parseFloat(fill.position ? fill.position : '0'),
+      100,
+    );
 
     if (index > 0) str += ` `;
     str += `rgba(${R}, ${G}, ${B}, ${A}) ${position}%`;

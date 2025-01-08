@@ -1,17 +1,20 @@
-import { FigmaData } from '../contracts/FigmaData';
 import { Config } from '../contracts/Config';
+import { FigmaData } from '../contracts/FigmaData';
 
-import { createTokens } from '../usecases/createTokens';
 import { createElements } from '../usecases/createElements';
 import { createGraphics } from '../usecases/createGraphics';
+import { createTokens } from '../usecases/createTokens';
 
-import { MsgJobComplete } from '../frameworks/messages/messages';
 import { ErrorFigmagicController } from '../frameworks/errors/errors';
+import { MsgJobComplete } from '../frameworks/messages/messages';
 
 /**
  * @description The main orchestration/controller point for Figmagic
  */
-export async function FigmagicController(config: Config, data: FigmaData): Promise<string> {
+export async function FigmagicController(
+  config: Config,
+  data: FigmaData,
+): Promise<string> {
   if (!config || !data) throw Error(ErrorFigmagicController);
 
   if (config.syncGraphics) await createGraphics(config, data);

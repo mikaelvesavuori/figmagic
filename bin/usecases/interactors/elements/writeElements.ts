@@ -2,9 +2,9 @@ import { Config } from '../../../contracts/Config';
 import { FigmagicElement } from '../../../contracts/FigmagicElement';
 import { WriteOperation } from '../../../contracts/Write';
 
-import { writeFile } from '../../../frameworks/filesystem/writeFile';
 import { checkIfExists } from '../../../frameworks/filesystem/checkIfExists';
 import { getSvgFileData } from '../../../frameworks/filesystem/getSvgFileData';
+import { writeFile } from '../../../frameworks/filesystem/writeFile';
 import { cleanSvgData } from '../../../frameworks/string/cleanSvgData';
 import { sanitizeStringPascalCase } from '../../../frameworks/string/sanitizeString';
 
@@ -17,7 +17,7 @@ import { ErrorWriteElements } from '../../../frameworks/errors/errors';
 export function writeElements(
   elements: FigmagicElement[],
   config: Config,
-  isGeneratingGraphics = false
+  isGeneratingGraphics = false,
 ): void {
   if (!elements || !config) throw Error(ErrorWriteElements);
 
@@ -27,13 +27,23 @@ export function writeElements(
     if (!config.skipFileGeneration.skipReact) {
       const path = `${fixedConfig.folder}/${fixedConfig.fixedName}.${fixedConfig.outputFormatElements}`;
       const type = isGeneratingGraphics ? 'graphic' : 'component';
-      writeFileHelper(fixedConfig, type, config.outputFormatElements, checkIfExists(path));
+      writeFileHelper(
+        fixedConfig,
+        type,
+        config.outputFormatElements,
+        checkIfExists(path),
+      );
     }
 
     if (!isGeneratingGraphics) {
       if (!config.skipFileGeneration.skipStorybook) {
         const path = `${fixedConfig.folder}/${fixedConfig.fixedName}.stories.${fixedConfig.outputFormatStorybook}`;
-        writeFileHelper(fixedConfig, 'story', config.outputFormatStorybook, checkIfExists(path));
+        writeFileHelper(
+          fixedConfig,
+          'story',
+          config.outputFormatStorybook,
+          checkIfExists(path),
+        );
       }
 
       if (!config.skipFileGeneration.skipDescription) {
@@ -42,18 +52,28 @@ export function writeElements(
           fixedConfig,
           'description',
           config.outputFormatDescription,
-          checkIfExists(path)
+          checkIfExists(path),
         );
       }
 
       if (!config.skipFileGeneration.skipStyled) {
         const path = `${fixedConfig.folder}/${fixedConfig.fixedName}Styled.${fixedConfig.outputFormatElements}`;
-        writeFileHelper(fixedConfig, 'styled', config.outputFormatElements, checkIfExists(path));
+        writeFileHelper(
+          fixedConfig,
+          'styled',
+          config.outputFormatElements,
+          checkIfExists(path),
+        );
       }
 
       if (!config.skipFileGeneration.skipCss) {
         const path = `${fixedConfig.folder}/${fixedConfig.fixedName}Css.${fixedConfig.outputFormatCss}`;
-        writeFileHelper(fixedConfig, 'css', config.outputFormatCss, checkIfExists(path));
+        writeFileHelper(
+          fixedConfig,
+          'css',
+          config.outputFormatCss,
+          checkIfExists(path),
+        );
       }
     }
   });
@@ -62,7 +82,10 @@ export function writeElements(
 /**
  * @description Create an updated user configuration that is able to drive write operations
  */
-const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperation => {
+const makeFixedConfig = (
+  element: FigmagicElement,
+  config: Config,
+): WriteOperation => {
   const html = element.html || ' ';
   const css = element.css || ' ';
   const description = element.description || ' ';
@@ -77,7 +100,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
     outputFolderGraphics,
     outputFolderTokens,
     overwrite,
-    tokensRelativeImportPrefix
+    tokensRelativeImportPrefix,
   } = config;
 
   const metadata = {
@@ -86,7 +109,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
     element: element.element,
     extraProps: element.extraProps,
     text: element.text || ' ',
-    imports: element.imports
+    imports: element.imports,
   };
 
   const templates = config.templates;
@@ -111,7 +134,7 @@ const makeFixedConfig = (element: FigmagicElement, config: Config): WriteOperati
     metadata,
     templates,
     forceUpdate,
-    fixedName
+    fixedName,
   } as any;
 };
 
@@ -122,7 +145,7 @@ const writeFileHelper = (
   config: WriteOperation,
   type: string,
   format: string,
-  fileExists?: boolean | undefined
+  fileExists?: boolean | undefined,
 ): void => {
   // @ts-ignore
   const shouldOverwrite = config.overwrite[type] || false;
@@ -131,7 +154,9 @@ const writeFileHelper = (
   if (!fileExists || shouldOverwrite || forceUpdate) {
     const fileData = (() => {
       if (type === 'graphic') {
-        const svgData = getSvgFileData(`${config.outputFolderGraphics}/${config.fixedName}.svg`);
+        const svgData = getSvgFileData(
+          `${config.outputFolderGraphics}/${config.fixedName}.svg`,
+        );
         return cleanSvgData(svgData);
       }
       if (type === 'description') return config.description;
@@ -147,7 +172,7 @@ const writeFileHelper = (
       outputFolderTokens,
       tokensRelativeImportPrefix,
       metadata,
-      templates
+      templates,
     } = config;
 
     writeFile({
@@ -161,7 +186,7 @@ const writeFileHelper = (
       outputFolderTokens,
       tokensRelativeImportPrefix,
       metadata,
-      templates
+      templates,
     } as WriteOperation);
   }
 };

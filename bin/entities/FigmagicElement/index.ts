@@ -1,8 +1,8 @@
 import { randomUUID } from 'crypto';
 
-import { FigmaElement } from '../../contracts/FigmaElement';
-import { FRAME as Frame } from '../../contracts/Figma';
 import { Config } from '../../contracts/Config';
+import { FRAME as Frame } from '../../contracts/Figma';
+import { FigmaElement } from '../../contracts/FigmaElement';
 import { Imports, UpdatedCssAndImports } from '../../contracts/Imports';
 import { TypographyElement } from '../../contracts/TypographyElement';
 
@@ -19,7 +19,7 @@ export const makeFigmagicElement = (
   element: FigmaElement,
   config: Config,
   description = '',
-  isGraphicElement = false
+  isGraphicElement = false,
 ): FigmagicElement => {
   return new FigmagicElement(element, config, description, isGraphicElement);
 };
@@ -42,7 +42,12 @@ class FigmagicElement {
 
   acceptedTypes = ['GROUP', 'FRAME', 'INSTANCE'];
 
-  constructor(element: FigmaElement, config: Config, description = '', isGraphicElement: boolean) {
+  constructor(
+    element: FigmaElement,
+    config: Config,
+    description = '',
+    isGraphicElement: boolean,
+  ) {
     // Element
     this.id = element.id;
     this.name = element.name;
@@ -84,10 +89,16 @@ class FigmagicElement {
    */
   private handleElements(): UpdatedCssAndImports {
     // @ts-ignore
-    const filteredElements = this.children.filter((child) => child.name[0] !== '_'); // Filter out hidden elements (using "_")
+    const filteredElements = this.children.filter(
+      (child) => child.name[0] !== '_',
+    ); // Filter out hidden elements (using "_")
 
     // If the remaining elements/layers contain any groups or frames, use the nested elements handler
-    if (filteredElements?.some((element: Frame) => this.acceptedTypes.includes(element.type)))
+    if (
+      filteredElements?.some((element: Frame) =>
+        this.acceptedTypes.includes(element.type),
+      )
+    )
       return this.handleNestedElements(filteredElements);
     else return this.handleFlatElements(filteredElements);
   }
@@ -135,7 +146,10 @@ class FigmagicElement {
   private setDescription(): void {
     let description = this.description;
 
-    const handleMatch = (regexMatch: RegExpMatchArray | null, currentDescription: string) => {
+    const handleMatch = (
+      regexMatch: RegExpMatchArray | null,
+      currentDescription: string,
+    ) => {
       const match = regexMatch ? regexMatch[0] : null;
       if (match) return currentDescription.replace(match, '');
       return currentDescription;
@@ -166,10 +180,11 @@ class FigmagicElement {
    */
   private setPlaceholderText(): void {
     const placeholderText = this.children?.filter(
-      (child: Frame) => child.name.toLowerCase() === ':placeholder'
+      (child: Frame) => child.name.toLowerCase() === ':placeholder',
     )[0];
 
-    if (placeholderText) this.addExtraProps(`placeholder="${placeholderText.characters}"`);
+    if (placeholderText)
+      this.addExtraProps(`placeholder="${placeholderText.characters}"`);
   }
 
   /**
@@ -191,7 +206,7 @@ class FigmagicElement {
     let imports: Imports[] = [];
 
     const childElements = elements.filter(
-      (el: Frame) => this.acceptedTypes.includes(el.type) && el.name[0] !== '_'
+      (el: Frame) => this.acceptedTypes.includes(el.type) && el.name[0] !== '_',
     );
 
     const textOnlySubchildren: string[] = [];
@@ -201,7 +216,9 @@ class FigmagicElement {
       css += parsedCss.css;
       imports = imports.concat(parsedCss.imports);
 
-      const subChildElements = childElement.children?.filter((el: Frame) => el.name[0] !== '_');
+      const subChildElements = childElement.children?.filter(
+        (el: Frame) => el.name[0] !== '_',
+      );
 
       if (subChildElements?.every((subChild) => subChild.type === 'TEXT'))
         textOnlySubchildren.push(parsedCss.fixedName);
@@ -209,7 +226,7 @@ class FigmagicElement {
 
     return {
       updatedCss: processNestedCss(css, textOnlySubchildren),
-      updatedImports: imports
+      updatedImports: imports,
     };
   }
 
@@ -225,9 +242,12 @@ class FigmagicElement {
     this.replaceHtml('{{TEXT}}', this.text || '');
 
     const mainElement = elements?.filter(
-      (element: Frame) => element.name.toLowerCase() === this.name.toLowerCase()
+      (element: Frame) =>
+        element.name.toLowerCase() === this.name.toLowerCase(),
     )[0];
-    const textElement = elements?.filter((element: Frame) => element.type === 'TEXT')[0];
+    const textElement = elements?.filter(
+      (element: Frame) => element.type === 'TEXT',
+    )[0];
 
     // Set text styling
     if (textElement) {
@@ -238,7 +258,7 @@ class FigmagicElement {
         outputFormatTokens: this.config.outputFormatTokens,
         outputFormatColors: this.config.outputFormatColors,
         letterSpacingUnit: this.config.letterSpacingUnit,
-        outputFolderTokens: this.config.outputFolderTokens
+        outputFolderTokens: this.config.outputFolderTokens,
       } as TypographyElement);
       css += updatedCss;
       imports = imports.concat(updatedImports);
@@ -246,7 +266,10 @@ class FigmagicElement {
     }
 
     if (mainElement) {
-      const { updatedCss, updatedImports } = this.parseFlatCss(mainElement, textElement);
+      const { updatedCss, updatedImports } = this.parseFlatCss(
+        mainElement,
+        textElement,
+      );
 
       css = this.processFlatCss(css + updatedCss);
       imports = imports.concat(updatedImports);
@@ -265,19 +288,21 @@ class FigmagicElement {
     const ID = id || randomUUID().slice(0, 8);
 
     const mainElement = el.children?.filter(
-      (e: Frame) => e.type === 'RECTANGLE' && e.name[0] !== '_'
+      (e: Frame) => e.type === 'RECTANGLE' && e.name[0] !== '_',
     )[0];
 
     const textElement = el.children?.filter(
-      (e: Frame) => e.type === 'TEXT' && e.name[0] !== '_'
+      (e: Frame) => e.type === 'TEXT' && e.name[0] !== '_',
     )[0];
 
-    if (!mainElement && !textElement) throw Error('Missing both main and text element!');
+    if (!mainElement && !textElement)
+      throw Error('Missing both main and text element!');
 
     const fixedName = el.name.replace(/\s/gi, '');
 
     const childElements = el.children?.filter(
-      (child: Frame) => this.acceptedTypes.includes(child.type) && child.name[0] !== '_'
+      (child: Frame) =>
+        this.acceptedTypes.includes(child.type) && child.name[0] !== '_',
     );
 
     childElements?.forEach((state: Frame) => {
@@ -287,14 +312,16 @@ class FigmagicElement {
     });
 
     if (mainElement) {
-      console.log(MsgProcessElementsCreatingElement(mainElement.name, fixedName));
+      console.log(
+        MsgProcessElementsCreatingElement(mainElement.name, fixedName),
+      );
 
       const { updatedCss, updatedImports } = parseCssFromElement(
         mainElement,
         textElement as any,
         config.remSize,
         config.outputFormatTokens,
-        config.outputFolderTokens
+        config.outputFolderTokens,
       );
 
       css += `\n.${fixedName}__#${ID} {\n${updatedCss}}`;
@@ -309,7 +336,7 @@ class FigmagicElement {
         outputFormatTokens: config.outputFormatTokens,
         outputFormatColors: config.outputFormatColors,
         letterSpacingUnit: config.letterSpacingUnit,
-        outputFolderTokens: config.outputFolderTokens
+        outputFolderTokens: config.outputFolderTokens,
       } as TypographyElement);
 
       css += `\n.${fixedName}__#${ID} {\n${updatedCss}}`;
@@ -324,7 +351,7 @@ class FigmagicElement {
    */
   private parseFlatCss(
     layoutElement: Frame,
-    textElement: Frame | null = null
+    textElement: Frame | null = null,
   ): UpdatedCssAndImports {
     let css = ``;
     let imports: Imports[] = [];
@@ -338,7 +365,7 @@ class FigmagicElement {
         textElement,
         this.config.remSize,
         this.config.outputFormatTokens,
-        this.config.outputFolderTokens
+        this.config.outputFolderTokens,
       );
 
       css += updatedCss;
@@ -355,7 +382,8 @@ class FigmagicElement {
     if (!css) throw Error('Missing CSS string when calling processCss()!'); // TODO: Add real error
 
     let processedCss = Array.from(new Set(css.split(/\n/gi))).toString();
-    if (processedCss[0] === ',') processedCss = processedCss.slice(1, processedCss.length);
+    if (processedCss[0] === ',')
+      processedCss = processedCss.slice(1, processedCss.length);
     processedCss = `\n  ` + processedCss;
     processedCss = processedCss.replace(/;,/gi, ';\n  ');
     processedCss += `\n`;

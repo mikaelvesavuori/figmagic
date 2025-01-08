@@ -1,13 +1,13 @@
+import { LetterSpacingUnit } from '../../../contracts/Config';
 import { FRAME as Frame } from '../../../contracts/Figma';
 import { LetterSpacingTokens } from '../../../contracts/Tokens';
-import { LetterSpacingUnit } from '../../../contracts/Config';
 
 import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 
 import {
-  ErrorMakeLetterSpacingTokensNoFrame,
+  ErrorMakeLetterSpacingTokensMissingProps,
   ErrorMakeLetterSpacingTokensNoChildren,
-  ErrorMakeLetterSpacingTokensMissingProps
+  ErrorMakeLetterSpacingTokensNoFrame,
 } from '../../../frameworks/errors/errors';
 
 /**
@@ -23,16 +23,18 @@ import {
 export function makeLetterSpacingTokens(
   letterSpacingFrame: Frame,
   letterSpacingUnit: LetterSpacingUnit,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ): LetterSpacingTokens {
   if (!letterSpacingFrame) throw Error(ErrorMakeLetterSpacingTokensNoFrame);
-  if (!letterSpacingFrame.children) throw Error(ErrorMakeLetterSpacingTokensNoChildren);
+  if (!letterSpacingFrame.children)
+    throw Error(ErrorMakeLetterSpacingTokensNoChildren);
 
   const tokens = letterSpacingFrame.children.reverse();
 
   const letterSpacings = tokens.reduce(
     (_tokens: { [index: string]: string | number }, item: Frame) => {
-      if (!item.name || !item.style) throw Error(ErrorMakeLetterSpacingTokensMissingProps);
+      if (!item.name || !item.style)
+        throw Error(ErrorMakeLetterSpacingTokensMissingProps);
 
       const name = sanitizeString(item.name, camelizeTokenNames);
 
@@ -60,7 +62,8 @@ export function makeLetterSpacingTokens(
            * Dividing the value by the current fontSize will give the %-based em value.
            * Ex: if the letterSpacing value is 1.28 and fontSize is 32, em value should be 1.28 / 32 = 0.04em.
            */
-          const valueCalc = Math.round((10000 * letterSpacingValueInPx) / fontSize) / 10000;
+          const valueCalc =
+            Math.round((10000 * letterSpacingValueInPx) / fontSize) / 10000;
           value = `${valueCalc}em`;
           break;
       }
@@ -69,7 +72,7 @@ export function makeLetterSpacingTokens(
 
       return _tokens;
     },
-    {}
+    {},
   );
 
   return letterSpacings;

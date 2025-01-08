@@ -1,28 +1,35 @@
-import { FigmaData } from '../contracts/FigmaData';
 import { Config } from '../contracts/Config';
 import { Element, GraphicElementsMap } from '../contracts/Element';
+import { FigmaData } from '../contracts/FigmaData';
 
 import { createPage } from './interactors/common/createPage';
 import { processElements } from './interactors/elements/processElements';
-import { writeElements } from './interactors/elements/writeElements';
 import { processGraphicElementsMap } from './interactors/elements/processGraphicElementsMap';
+import { writeElements } from './interactors/elements/writeElements';
 import { writeGraphicElementsMap } from './interactors/elements/writeGraphicElementsMap';
 
 import { refresh } from '../frameworks/filesystem/refresh';
 
-import { MsgSyncElements } from '../frameworks/messages/messages';
-import { ErrorCreateElements } from '../frameworks/errors/errors';
 import { FigmagicElement } from '../contracts/FigmagicElement';
+import { ErrorCreateElements } from '../frameworks/errors/errors';
+import { MsgSyncElements } from '../frameworks/messages/messages';
 
 /**
  * @description Use case for syncing (creating) React elements from Figma files
  */
-export async function createElements(config: Config, data: FigmaData): Promise<void> {
+export async function createElements(
+  config: Config,
+  data: FigmaData,
+): Promise<void> {
   if (!config || !data) throw Error(ErrorCreateElements);
   console.log(MsgSyncElements);
 
-  const { outputFolderElements, outputFormatGraphics, outputGraphicElements, syncGraphics } =
-    config;
+  const {
+    outputFolderElements,
+    outputFormatGraphics,
+    outputGraphicElements,
+    syncGraphics,
+  } = config;
 
   refresh(outputFolderElements, false);
   const { components }: FigmaData = data;
@@ -30,7 +37,7 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
     children: data.document.children,
     pageName: 'Elements',
     config,
-    components
+    components,
   } as Element);
 
   /**
@@ -42,28 +49,39 @@ export async function createElements(config: Config, data: FigmaData): Promise<v
       pageName: 'Graphics',
       config,
       components,
-      isGeneratingGraphics: true
+      isGeneratingGraphics: true,
     });
 
     /**
      * The user can also further choose to create an object that exports all graphical React components.
      */
     if (config.outputGraphicElementsMap)
-      handleGraphicElementsMap({ config, graphics: GRAPHICS } as GraphicElementsMap);
+      handleGraphicElementsMap({
+        config,
+        graphics: GRAPHICS,
+      } as GraphicElementsMap);
   }
 }
 
 async function handleElements(element: Element): Promise<FigmagicElement[]> {
-  const { children, pageName, config, components, isGeneratingGraphics } = element;
+  const { children, pageName, config, components, isGeneratingGraphics } =
+    element;
 
   const PAGE = createPage(children, pageName);
-  const ELEMENTS = processElements(PAGE, config, components, isGeneratingGraphics || false);
+  const ELEMENTS = processElements(
+    PAGE,
+    config,
+    components,
+    isGeneratingGraphics || false,
+  );
   writeElements(ELEMENTS, config, isGeneratingGraphics);
 
   return ELEMENTS;
 }
 
-function handleGraphicElementsMap(graphicElementsMap: GraphicElementsMap): void {
+function handleGraphicElementsMap(
+  graphicElementsMap: GraphicElementsMap,
+): void {
   const { config, graphics } = graphicElementsMap;
 
   const FOLDER = `${config.outputFolderElements}/Graphics`;

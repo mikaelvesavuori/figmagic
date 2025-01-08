@@ -1,14 +1,25 @@
-import { WriteOperation, GetFileDataOperation, FileContentAndPath } from '../../contracts/Write';
+import {
+  FileContentAndPath,
+  GetFileDataOperation,
+  WriteOperation,
+} from '../../contracts/Write';
 
-import { getElement, getText, getExtraProps, getImports } from './getDataHelpers';
 import { getFileContentAndPath } from '../filesystem/getFileContentAndPath';
+import {
+  getElement,
+  getExtraProps,
+  getImports,
+  getText,
+} from './getDataHelpers';
 
 import { ErrorPrepareWrite, ErrorWriteFile } from '../errors/errors';
 
 /**
  * @description Controller that starts the prepping/formatting of the file(s)
  */
-export function prepareWrite(writeOperation: WriteOperation): FileContentAndPath {
+export function prepareWrite(
+  writeOperation: WriteOperation,
+): FileContentAndPath {
   if (!writeOperation) throw Error(ErrorWriteFile);
 
   const {
@@ -20,10 +31,13 @@ export function prepareWrite(writeOperation: WriteOperation): FileContentAndPath
     outputFolderTokens,
     tokensRelativeImportPrefix,
     metadata,
-    templates
+    templates,
   } = writeOperation;
 
-  if ((type === 'css' || type === 'story' || type === 'component') && !templates)
+  if (
+    (type === 'css' || type === 'story' || type === 'component') &&
+    !templates
+  )
     throw Error(ErrorPrepareWrite);
 
   const getFileDataOperation: GetFileDataOperation = {
@@ -34,10 +48,14 @@ export function prepareWrite(writeOperation: WriteOperation): FileContentAndPath
     format,
     text: getText(metadata),
     element: getElement(metadata),
-    imports: getImports(metadata, outputFolderTokens, tokensRelativeImportPrefix),
+    imports: getImports(
+      metadata,
+      outputFolderTokens,
+      tokensRelativeImportPrefix,
+    ),
     extraProps: getExtraProps(metadata),
     metadata,
-    templates
+    templates,
   };
 
   return getFileContentAndPath(getFileDataOperation);

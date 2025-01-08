@@ -1,5 +1,5 @@
-import { FileList, Id } from '../../../contracts/Files';
 import { ApiResponse } from '../../../contracts/ApiResponse';
+import { FileList, Id } from '../../../contracts/Files';
 
 import { ErrorGetFileList } from '../../../frameworks/errors/errors';
 
@@ -9,16 +9,17 @@ import { ErrorGetFileList } from '../../../frameworks/errors/errors';
 export const getFileList = (
   response: ApiResponse,
   ids: Id[],
-  outputFormatGraphics: string
+  outputFormatGraphics: string,
 ): FileList[] => {
   if (!response || !ids || !outputFormatGraphics) throw Error(ErrorGetFileList);
 
   return Object.entries(response.images).map((image) => {
     const match = ids.filter((id) => id.id === image[0]);
-    const filePath = match[0].name.trim().replace(/ /g, '') + `.${outputFormatGraphics}`;
+    const filePath =
+      match[0].name.trim().replace(/ /g, '') + `.${outputFormatGraphics}`;
     return {
       url: image[1],
-      file: filePath
+      file: filePath,
     };
   });
 };

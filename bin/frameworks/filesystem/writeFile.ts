@@ -7,8 +7,8 @@ import { write } from './write';
 
 import { acceptedFileTypes } from '../system/acceptedFileTypes';
 
-import { ErrorWriteFile, ErrorWriteFileWrongType } from '../errors/errors';
 import { ProcessedToken } from '../../contracts/ProcessedToken';
+import { ErrorWriteFile, ErrorWriteFileWrongType } from '../errors/errors';
 
 /**
  * @description Handles writing files to disk, complete with pre-processing.
@@ -26,14 +26,17 @@ export function writeFile(writeOperation: WriteOperation): void {
     overwrite,
     tokensRelativeImportPrefix,
     metadata,
-    templates
+    templates,
   } = writeOperation;
   validate(file, path, name, type);
 
-  const fileType: FileType = typeof type === 'string' ? (type.toLowerCase() as FileType) : 'null';
-  if (!acceptedFileTypes.includes(fileType)) throw Error(ErrorWriteFileWrongType);
+  const fileType: FileType =
+    typeof type === 'string' ? (type.toLowerCase() as FileType) : 'null';
+  if (!acceptedFileTypes.includes(fileType))
+    throw Error(ErrorWriteFileWrongType);
 
-  if (fileType === 'component' || fileType === 'graphic') createMissingFoldersFromPath(path);
+  if (fileType === 'component' || fileType === 'graphic')
+    createMissingFoldersFromPath(path);
   else createFolder(path);
 
   const fixedName = name.split('/')[name.split('/').length - 1];
@@ -48,13 +51,18 @@ export function writeFile(writeOperation: WriteOperation): void {
     overwrite,
     tokensRelativeImportPrefix,
     metadata,
-    templates
+    templates,
   };
 
   const { filePath, fileContent } = prepareWrite(prepareWriteOperation);
   write(filePath, fileContent);
 }
 
-function validate(file: string | ProcessedToken, path: string, name: string, type: FileType) {
+function validate(
+  file: string | ProcessedToken,
+  path: string,
+  name: string,
+  type: FileType,
+) {
   if (!file || !path || !name || !type) throw Error(ErrorWriteFile);
 }

@@ -7,7 +7,10 @@ export type PaddingVertical = {
   bottom: number;
 };
 
-export function getPaddingY(textElement: Frame, element: Frame): PaddingVertical | null {
+export function getPaddingY(
+  textElement: Frame,
+  element: Frame,
+): PaddingVertical | null {
   if (!textElement) return null;
   if (
     !element.absoluteBoundingBox ||
@@ -19,12 +22,13 @@ export function getPaddingY(textElement: Frame, element: Frame): PaddingVertical
 
   const parentHeight = element.absoluteBoundingBox.height;
   const textHeight = textElement.absoluteBoundingBox.height;
-  // @ts-ignore
-  const paddingTop = textElement.absoluteBoundingBox.y - element.absoluteBoundingBox.y;
+  const paddingTop =
+    // @ts-ignore
+    textElement.absoluteBoundingBox.y - element.absoluteBoundingBox.y;
   const paddingBottom = parentHeight - (paddingTop + textHeight);
 
   return {
     top: Math.round(paddingTop),
-    bottom: Math.round(paddingBottom)
+    bottom: Math.round(paddingBottom),
   };
 }

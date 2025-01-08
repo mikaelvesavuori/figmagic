@@ -4,21 +4,26 @@ import { EasingTokens } from '../../../contracts/Tokens';
 import { sanitizeString } from '../../../frameworks/string/sanitizeString';
 
 import {
-  ErrorMakeEasingTokensNoFrame,
+  ErrorMakeEasingTokensMissingProps,
   ErrorMakeEasingTokensNoChildren,
-  ErrorMakeEasingTokensMissingProps
+  ErrorMakeEasingTokensNoFrame,
 } from '../../../frameworks/errors/errors';
 
 /**
  * @description Places all Figma easings into a clean object
  */
-export function makeEasingTokens(easingFrame: Frame, camelizeTokenNames?: boolean): EasingTokens {
+export function makeEasingTokens(
+  easingFrame: Frame,
+  camelizeTokenNames?: boolean,
+): EasingTokens {
   if (!easingFrame) throw Error(ErrorMakeEasingTokensNoFrame);
   if (!easingFrame.children) throw Error(ErrorMakeEasingTokensNoChildren);
 
   const easings: Record<string, string> = {};
   const tokens = easingFrame.children.reverse();
-  tokens.forEach((item: Frame) => makeEasingToken(item, easings, camelizeTokenNames));
+  tokens.forEach((item: Frame) =>
+    makeEasingToken(item, easings, camelizeTokenNames),
+  );
 
   return easings as EasingTokens;
 }
@@ -26,9 +31,10 @@ export function makeEasingTokens(easingFrame: Frame, camelizeTokenNames?: boolea
 function makeEasingToken(
   item: Frame,
   easings: Record<string, string>,
-  camelizeTokenNames?: boolean
+  camelizeTokenNames?: boolean,
 ) {
-  if (!item.name || !item.characters) throw Error(ErrorMakeEasingTokensMissingProps);
+  if (!item.name || !item.characters)
+    throw Error(ErrorMakeEasingTokensMissingProps);
 
   const name = sanitizeString(item.name, camelizeTokenNames);
   easings[name] = item.characters.trim();

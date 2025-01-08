@@ -1,9 +1,9 @@
 import { makeFigmagicElement } from '../../../entities/FigmagicElement';
 
-import { Components, FRAME as Frame } from '../../../contracts/Figma';
-import { FigmagicElement } from '../../../contracts/FigmagicElement';
 import { Config } from '../../../contracts/Config';
+import { Components, FRAME as Frame } from '../../../contracts/Figma';
 import { FigmaElement } from '../../../contracts/FigmaElement';
+import { FigmagicElement } from '../../../contracts/FigmagicElement';
 
 import { ErrorProcessElements } from '../../../frameworks/errors/errors';
 
@@ -17,16 +17,22 @@ export function processElements(
   elementsPage: Frame[],
   config: Config,
   components: Components,
-  isGraphicElement = false
+  isGraphicElement = false,
 ): FigmagicElement[] {
-  if (!elementsPage || !components || !config) throw Error(ErrorProcessElements);
+  if (!elementsPage || !components || !config)
+    throw Error(ErrorProcessElements);
 
   const filteredElements = elementsPage.filter(
-    (element) => element.type === 'COMPONENT' && element.name[0] !== '_'
+    (element) => element.type === 'COMPONENT' && element.name[0] !== '_',
   );
 
   const parsedElements = filteredElements.map((element: FigmaElement) =>
-    makeFigmagicElement(element, config, components[element.id].description, isGraphicElement)
+    makeFigmagicElement(
+      element,
+      config,
+      components[element.id].description,
+      isGraphicElement,
+    ),
   );
 
   return parsedElements;

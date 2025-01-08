@@ -11,7 +11,7 @@ import { MsgSetDataFromApi } from '../messages/messages';
 export async function getDataRemote(
   token: string,
   url: string,
-  versionName?: string | null
+  versionName?: string | null,
 ): Promise<FigmaResponse> {
   if (!token || !url) throw Error(ErrorGetDataNoTokenOrUrl);
   console.log(MsgSetDataFromApi);

@@ -9,9 +9,10 @@ import { ErrorWriteGraphicElementsMap } from '../../../frameworks/errors/errors'
 export function writeGraphicElementsMap(
   folder: string,
   filePath: string,
-  fileContent: string
+  fileContent: string,
 ): void {
-  if (!folder || !filePath || !fileContent) throw Error(ErrorWriteGraphicElementsMap);
+  if (!folder || !filePath || !fileContent)
+    throw Error(ErrorWriteGraphicElementsMap);
 
   createFolder(folder);
   write(filePath, fileContent);

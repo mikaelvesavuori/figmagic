@@ -23,7 +23,7 @@ export const colors = {
   Hidden: '\x1b[8m',
   Reset: '\x1b[0m',
   Reverse: '\x1b[7m',
-  Underscore: '\x1b[4m'
+  Underscore: '\x1b[4m',
 };
 
 // Thanks to: https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color

@@ -10,7 +10,14 @@ export const validOutputFormatDescList = ['md', 'txt'];
 export const validOutputFormatElementsList = ['tsx', 'jsx', 'mjs', 'js'];
 export const validOutputFormatGraphicsList = ['svg', 'png'];
 export const validOutputFormatStorybookList = ['ts', 'js', 'mdx'];
-export const validOutputFormatTokensList = ['ts', 'mjs', 'js', 'json', 'css', 'scss'];
+export const validOutputFormatTokensList = [
+  'ts',
+  'mjs',
+  'js',
+  'json',
+  'css',
+  'scss',
+];
 export const validRadiusUnitList = ['rem', 'em', 'px'];
 export const validShadowUnitList = ['rem', 'em', 'px'];
 export const validDurationUnitList = ['s', 'ms'];

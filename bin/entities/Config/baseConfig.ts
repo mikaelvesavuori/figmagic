@@ -34,7 +34,7 @@ export const baseConfig: Config = {
     graphic: false,
     react: false,
     storybook: false,
-    styled: false
+    styled: false,
   },
   recompileLocal: false,
   remSize: 16,
@@ -44,7 +44,7 @@ export const baseConfig: Config = {
     skipDescription: false,
     skipReact: false,
     skipStorybook: false,
-    skipStyled: false
+    skipStyled: false,
   },
   syncElements: false,
   syncGraphics: false,
@@ -53,7 +53,7 @@ export const baseConfig: Config = {
     templatePathGraphic: './node_modules/figmagic/templates/graphic',
     templatePathReact: './node_modules/figmagic/templates/react',
     templatePathStorybook: './node_modules/figmagic/templates/story',
-    templatePathStyled: './node_modules/figmagic/templates/styled'
+    templatePathStyled: './node_modules/figmagic/templates/styled',
   },
   token: '',
   tokensRelativeImportPrefix: '',
@@ -61,5 +61,5 @@ export const baseConfig: Config = {
   url: '',
   usePostscriptFontNames: false,
   useLiteralFontFamilies: false,
-  versionName: null
+  versionName: null,
 };

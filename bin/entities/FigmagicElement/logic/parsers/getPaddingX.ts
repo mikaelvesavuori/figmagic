@@ -7,7 +7,10 @@ export type PaddingHorizontal = {
   right: number;
 };
 
-export function getPaddingX(textElement: Frame, element: Frame): PaddingHorizontal | null {
+export function getPaddingX(
+  textElement: Frame,
+  element: Frame,
+): PaddingHorizontal | null {
   if (!textElement || !element) return null;
 
   if (!textElement.absoluteBoundingBox || !element.absoluteBoundingBox)
@@ -15,13 +18,14 @@ export function getPaddingX(textElement: Frame, element: Frame): PaddingHorizont
 
   const parentWidth = element.absoluteBoundingBox.width;
   const textWidth = textElement.absoluteBoundingBox.width;
-  // @ts-ignore
-  const paddingLeft = textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x;
+  const paddingLeft =
+    // @ts-ignore
+    textElement.absoluteBoundingBox.x - element.absoluteBoundingBox.x;
   // @ts-ignore
   const paddingRight = parentWidth - (paddingLeft + textWidth);
 
   return {
     left: Math.round(paddingLeft),
-    right: Math.round(paddingRight)
+    right: Math.round(paddingRight),
   };
 }

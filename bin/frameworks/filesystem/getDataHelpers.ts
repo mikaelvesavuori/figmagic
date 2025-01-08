@@ -22,13 +22,13 @@ export const getExtraProps = (metadata?: Metadata): string => {
 export const getImports = (
   metadata?: Metadata,
   outputFolderTokens?: string,
-  tokensRelativeImportPrefix?: string
+  tokensRelativeImportPrefix?: string,
 ): string => {
   if (metadata && metadata.imports && metadata.imports.length > 0)
     return createImportStringFromList(
       metadata.imports,
       outputFolderTokens,
-      tokensRelativeImportPrefix
+      tokensRelativeImportPrefix,
     );
 
   return '';

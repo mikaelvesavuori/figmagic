@@ -28,7 +28,11 @@ class Configuration {
   async createConfig(): Promise<Config> {
     let config = null;
 
-    config = await createConfiguration(this.baseConfiguration, this.userConfigPath, this.cliArgs);
+    config = await createConfiguration(
+      this.baseConfiguration,
+      this.userConfigPath,
+      this.cliArgs,
+    );
     validateConfig(config);
 
     this.config = config;

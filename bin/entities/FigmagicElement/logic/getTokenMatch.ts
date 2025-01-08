@@ -1,14 +1,17 @@
-import { Tokens } from '../../../contracts/Tokens';
+import { OutputFormatColors } from '../../../contracts/Config';
 import { Imports } from '../../../contracts/Imports';
 import { TokenMatch, TokenMatchRaw } from '../../../contracts/TokenMatch';
-import { OutputFormatColors } from '../../../contracts/Config';
+import { Tokens } from '../../../contracts/Tokens';
 
-import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 import { convertRgbaToHex } from '../../../frameworks/string/convertRgbaToHex';
 import { getAlphaInPercent } from '../../../frameworks/string/getAlphaInPercent';
+import { normalizeUnits } from '../../../frameworks/string/normalizeUnits';
 
+import {
+  ErrorGetTokenMatch,
+  ErrorGetTokenMatchNoRemSize,
+} from '../../../frameworks/errors/errors';
 import { MsgGetTokenMatchNoMatch } from '../../../frameworks/messages/messages';
-import { ErrorGetTokenMatch, ErrorGetTokenMatchNoRemSize } from '../../../frameworks/errors/errors';
 import { convertHexToRgba } from '../../../frameworks/string/convertHexToRgba';
 
 export function getTokenMatch(
@@ -17,9 +20,10 @@ export function getTokenMatch(
   property: string,
   expectedValue: ExpectedValue,
   remSize: number,
-  outputFormatColors?: OutputFormatColors
+  outputFormatColors?: OutputFormatColors,
 ): TokenMatch {
-  if (!tokenFileName || !property || !expectedValue) throw Error(ErrorGetTokenMatch);
+  if (!tokenFileName || !property || !expectedValue)
+    throw Error(ErrorGetTokenMatch);
 
   let css = ``;
   let imports: Imports[] = [];
@@ -34,7 +38,7 @@ export function getTokenMatch(
       tokenFileName,
       property,
       css,
-      imports
+      imports,
     );
 
     if (PADDING_MATCH) {
@@ -50,7 +54,7 @@ export function getTokenMatch(
       tokenFileName,
       property,
       css,
-      imports
+      imports,
     );
     css = OTHER_MATCH.css;
     imports = OTHER_MATCH.imports;
@@ -66,7 +70,7 @@ function matchPadding(
   tokenFileName: string,
   property: string,
   css: string,
-  imports: Imports[]
+  imports: Imports[],
 ): TokenMatchRaw | undefined {
   const keys: string[] = Object.keys(expectedValue);
   if (typeof expectedValue !== 'object') return;
@@ -109,13 +113,18 @@ function matchOther(
   tokenFileName: string,
   property: string,
   css: string,
-  imports: Imports[]
+  imports: Imports[],
 ): TokenMatchRaw {
   let foundMatch = false;
 
   Object.entries(tokens).forEach((token: Token[]) => {
     const tokenValue: string | number = token[1];
-    const isTokenMatch = checkIfTokenMatch(property, tokenValue, expectedValue, remSize);
+    const isTokenMatch = checkIfTokenMatch(
+      property,
+      tokenValue,
+      expectedValue,
+      remSize,
+    );
 
     if (isTokenMatch) {
       css += `${property}: \${${tokenFileName}['${token[0]}']};\n`;
@@ -128,7 +137,8 @@ function matchOther(
   if (!foundMatch) {
     const notFoundMessage = createNotFoundMessage(property, expectedValue);
 
-    if (property === 'height' || property === 'font-size') expectedValue += `px`;
+    if (property === 'height' || property === 'font-size')
+      expectedValue += `px`;
 
     const useHex = outputFormatColors && outputFormatColors === 'hex';
 
@@ -151,7 +161,7 @@ function checkIfTokenMatch(
   property: string,
   tokenValue: any,
   expectedValue: ExpectedValue,
-  remSize: number
+  remSize: number,
 ) {
   // @ts-ignore
   if (property.includes('color') && tokenValue[0] === '#')
@@ -168,7 +178,8 @@ function checkIfTokenMatch(
 function valueThroughRem(tokenValue: any, property: string, remSize: number) {
   if (tokenValue && typeof tokenValue === 'string') {
     if (property === 'letter-spacing') return tokenValue;
-    if (tokenValue.match('rem') || tokenValue.match('em')) return parseFloat(tokenValue) * remSize;
+    if (tokenValue.match('rem') || tokenValue.match('em'))
+      return parseFloat(tokenValue) * remSize;
   }
 
   return null;
@@ -180,10 +191,11 @@ function createNotFoundMessage(property: string, expectedValue: ExpectedValue) {
   // Handle colors since these need more verbose output
   if (property.includes('color'))
     notFoundMessage += ` (HEX: ${convertRgbaToHex(expectedValue as string)}, ${getAlphaInPercent(
-      expectedValue as string
+      expectedValue as string,
     )})`;
 
-  if (property === 'height' || property === 'font-size') notFoundMessage += `px`;
+  if (property === 'height' || property === 'font-size')
+    notFoundMessage += `px`;
 
   return notFoundMessage;
 }
