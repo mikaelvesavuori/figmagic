@@ -645,6 +645,15 @@ describe('Success cases', () => {
           })
         );
       });
+
+      test('It should return "scss" for outputFormatTokens if passing "scss"', () => {
+        // @ts-ignore
+        expect(parseCliArgs(['--outputFormatTokens', 'scss'])).toEqual(
+          expect.objectContaining({
+            outputFormatTokens: 'scss'
+          })
+        );
+      });
     });
 
     describe('Short hand', () => {
@@ -689,6 +698,15 @@ describe('Success cases', () => {
         expect(parseCliArgs(['-ft', 'css'])).toEqual(
           expect.objectContaining({
             outputFormatTokens: 'css'
+          })
+        );
+      });
+
+      test('It should return "scss" for outputFormatTokens if passing "scss"', () => {
+        // @ts-ignore
+        expect(parseCliArgs(['-ft', 'scss'])).toEqual(
+          expect.objectContaining({
+            outputFormatTokens: 'scss'
           })
         );
       });

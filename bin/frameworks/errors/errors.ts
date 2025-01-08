@@ -381,7 +381,7 @@ export const ErrorValidateConfigOutputFormatStorybook = ErrorMessage(
   'Received unrecognized "outputFormatStorybook" arguments, it must be "js" (default), "ts" or "mdx".'
 );
 export const ErrorValidateConfigOutputFormatTokens = ErrorMessage(
-  'Received unrecognized "outputFormatTokens" arguments, it must be "ts" (default), "mjs", "js", "json", or "css".'
+  'Received unrecognized "outputFormatTokens" arguments, it must be "ts" (default), "mjs", "js", "json", "css", or "scss".'
 );
 export const ErrorValidateConfigOutputScaleGraphics = ErrorMessage(
   'Argument "outputScaleGraphics" is invalid!'

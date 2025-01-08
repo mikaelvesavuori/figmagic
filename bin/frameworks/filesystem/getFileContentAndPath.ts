@@ -51,7 +51,7 @@ export function getFileContentAndPath(
     templates
   } = getFileContentAndPathOperation;
 
-  let filePath = `${path}/${name}`;
+  let filePath = `${path}/${format === 'scss' ? '_' : ''}${name}`;
 
   const fileOperations = {
     raw: () => {
@@ -120,6 +120,7 @@ const getTokenString = (
 
   if (format === 'json') return getTokenStringJSON(file);
   if (format === 'css') return getTokenStringCSS(file);
+  if (format === 'scss') return getTokenStringSCSS(file);
   if (dataType === 'enum') return getTokenStringEnum(file, name, exportString);
   return getTokenStringJS(file, name, exportString, constAssertion);
 };
@@ -146,6 +147,21 @@ function getTokenStringCSS(file: string | ProcessedToken) {
   css += '}\n';
 
   return css;
+}
+
+/**
+ * @description Return SCSS variables token string
+ */
+function getTokenStringSCSS(file: string | ProcessedToken) {
+  const contents: any = file;
+  let scss = `// ${MsgGeneratedFileWarning}\n\n`;
+
+  for (const key in contents) {
+    const value = contents[key];
+    scss += `$${key}: ${value};\n`;
+  }
+
+  return scss;
 }
 
 /**

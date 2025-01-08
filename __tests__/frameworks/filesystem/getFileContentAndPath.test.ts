@@ -10,7 +10,8 @@ import {
   expectedEnum,
   expectedStandard,
   expectedTs,
-  expectedCss
+  expectedCss,
+  expectedScss
 } from '../../../testdata/getFileContentAndPathOperation';
 
 import {
@@ -93,6 +94,16 @@ describe('Success cases', () => {
       ).toMatchObject({
         fileContent: expectedCss,
         filePath: 'tokens/colors.css'
+      });
+    });
+
+    test('It should return valid data for SCSS variables', () => {
+      expect(
+        // @ts-ignore
+        getFileContentAndPath({ ...getFileContentAndPathOperationToken, format: 'scss' })
+      ).toMatchObject({
+        fileContent: expectedScss,
+        filePath: 'tokens/_colors.scss'
       });
     });
   });

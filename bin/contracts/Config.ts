@@ -144,7 +144,7 @@ export type OutputFormatDescription = 'md' | 'txt';
 export type OutputFormatElements = 'tsx' | 'jsx';
 export type OutputFormatGraphics = 'svg' | 'png';
 export type OutputFormatStorybook = 'ts' | 'js' | 'mdx';
-export type OutputFormatTokens = 'ts' | 'mjs' | 'js' | 'json' | 'css';
+export type OutputFormatTokens = 'ts' | 'mjs' | 'js' | 'json' | 'css' | 'scss';
 export type OutputDataTypeToken = null | 'enum';
 
 export type TemplatesConfig = {

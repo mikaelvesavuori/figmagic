@@ -660,13 +660,13 @@ From version `4.3.7`, you can now also opt-in to have no transforms applied to y
 
 #### Switch token file format
 
-`figmagic [--outputFormatTokens | -ft] [ts|mjs|js|json|css]`
+`figmagic [--outputFormatTokens | -ft] [ts|mjs|js|json|css|scss]`
 
 **Default**: `ts`.
 
-For typical programmatic cases you will probably most often want one of `ts`, `mjs`, or `js`. For basic JSON, use `json`, and for ready-to-use CSS variables, use `css`.
+For typical programmatic cases you will probably most often want one of `ts`, `mjs`, or `js`. For basic JSON, use `json`. For ready-to-use CSS or Sass variables, use `css` or `scss`.
 
-_Please note that CSS variables will not work with elements!_
+_Please note that CSS & Sass variables will not work with elements!_
 
 ---
 
