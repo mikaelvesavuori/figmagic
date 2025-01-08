@@ -106,7 +106,7 @@
     "jest-silent-reporter": "0",
     "license-compatibility-checker": "latest",
     "license-compliance": "latest",
-    "msw": "1",
+    "msw": "2",
     "trash": "7",
     "ts-jest": "29",
     "ts-loader": "9",
