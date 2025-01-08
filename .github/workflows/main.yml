@@ -63,15 +63,15 @@ jobs:
         run: npx arkit
 
       - name: Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Send coverage report with Code Climate
-        uses: paambaati/codeclimate-action@v5
+        uses: paambaati/codeclimate-action@v9.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: npm test
-          coverageLocations: ${{github.workspace}}/jest-coverage/lcov.info:lcov
+          coverageLocations: ${{ github.workspace }}/jest-coverage/lcov.info:lcov
 
   build-windows:
     runs-on: ${{ matrix.os }}
