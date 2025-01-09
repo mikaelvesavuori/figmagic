@@ -1,5 +1,11 @@
 # Announcements
 
+## Version `4.6.0` updates bundling from Webpack to tsup (esbuild)
+
+While this should not impact users, I'm still releasing this as a minor update to not cause undesired issues.
+
+See more on the [version 4.6.0 release page](https://github.com/mikaelvesavuori/figmagic/releases/tag/v4.6.0).
+
 ## Version `4.5.0` enables using frames as well as groups for generating components from Figma
 
 See more on the [version 4.5.0 release page](https://github.com/mikaelvesavuori/figmagic/releases/tag/v4.5.0).

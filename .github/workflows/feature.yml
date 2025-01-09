@@ -15,11 +15,7 @@ permissions:
 
 jobs:
   build-unix:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: ['ubuntu-latest', 'macos-latest']
-        node-version: [22.x]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -59,11 +55,7 @@ jobs:
       #    #\[ -f .figmagic/figma.json \]
 
   build-windows:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: ['windows-latest']
-        node-version: [22.x]
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4

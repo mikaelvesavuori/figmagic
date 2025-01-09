@@ -11,11 +11,7 @@ permissions:
 
 jobs:
   build-unix:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: ['ubuntu-latest', 'macos-latest']
-        node-version: [22.x]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -59,26 +55,22 @@ jobs:
       #    FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
       #    FIGMA_URL: ${{ secrets.FIGMA_URL }}
 
-      - name: Create Arkit diagram
-        run: npx arkit
+      - name: Create dependency diagram
+        run: npm run docs:diagrams
 
       - name: Codecov
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-      #- name: Send coverage report with Code Climate
-      #  uses: paambaati/codeclimate-action@v9.0.0
-      #  env:
-      #    CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      #    coverageLocations: ${{ github.workspace }}/jest-coverage/lcov.info:lcov
+      - name: Send coverage report with Code Climate
+        uses: paambaati/codeclimate-action@v9.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          coverageLocations: ${{ github.workspace }}/jest-coverage/lcov.info:lcov
 
   build-windows:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: ['windows-latest']
-        node-version: [22.x]
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
 

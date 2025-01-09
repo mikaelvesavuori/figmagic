@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "ES2022",
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "outDir": "build",
-    "target": "es6",
-    "lib": ["esnext"],
+    "target": "ES2022",
+    "lib": ["ES2022"],
     "declaration": true,
     "esModuleInterop": true,
+    "importHelpers": false,
     "forceConsistentCasingInFileNames": true,
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
@@ -14,9 +16,10 @@
     "noUnusedParameters": true,
     "removeComments": true,
     "resolveJsonModule": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "strict": true,
-    "strictFunctionTypes": true
+    "strictFunctionTypes": true,
+    "skipLibCheck": true
   },
   "include": ["./bin", "./index.ts"],
   "exclude": ["./templates/*", "./build"]

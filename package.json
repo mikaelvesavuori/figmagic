@@ -1,6 +1,6 @@
 {
   "name": "figmagic",
-  "version": "4.5.14",
+  "version": "4.6.0",
   "description": "Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.",
   "homepage": "https://www.figmagic.com",
   "repository": {
@@ -21,6 +21,15 @@
   "license": "MIT",
   "bin": {
     "figmagic": "build/index.js"
+  },
+  "type": "module",
+  "main": "build/index.cjs",
+  "module": "build/index.js",
+  "exports": {
+    ".": {
+      "require": "./build/index.cjs",
+      "import": "./build/index.js"
+    }
   },
   "contributors": [
     {
@@ -75,46 +84,43 @@
   "files": [
     "build/index.js",
     "build/index.js.LICENSE.txt",
-    "templates/"
+    "templates/",
+    "!/build/**/*.map",
+    "!/tests"
   ],
   "scripts": {
     "figmagic": "node build/index.js",
     "clean": "rm -rf .figmagic-trash/",
-    "build": "rm -rf build && npx webpack",
-    "test": "npx jest __tests__ --collectCoverage",
+    "build": "rm -rf build && tsup index.ts --format esm,cjs --dts && mv dist build",
+    "test": "npm run test:unit",
+    "test:unit": "npx jest __tests__ --collectCoverage",
     "test:watch": "npx jest --clearCache && jest __tests__ --collectCoverage --watch",
     "test:silent": "npx jest --reporters jest-silent-reporter --collectCoverage=false",
     "test:types": "npx type-coverage --strict --at-least 97.5",
+    "test:dependencies": "npx depcruise bin",
+    "test:licenses": "npx license-compliance --production --direct --allow \"MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;Unlicense;CC0-1.0\" --exclude \"/^@getstarlite/\"",
     "lint": "npx @biomejs/biome check --write ./bin",
-    "docs": "npm run docs:typedoc && npx arkit && cp -r images typedoc-docs",
+    "docs": "npm run docs:typedoc && npm run docs:diagrams && cp -r images typedoc-docs",
     "docs:typedoc": "npx typedoc --entryPoints bin --entryPointStrategy expand --exclude '**/*+(test).ts' --externalPattern 'node_modules/**/*' --excludeExternals --customCss ./typedoc.theme.css --out typedoc-docs",
-    "licenses": "npx license-compliance --direct --allow 'MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;Unlicense;CC0-1.0'",
-    "licenses:checker": "npx license-compatibility-checker",
-    "prepare": "husky install"
+    "docs:diagrams": "npx depcruise bin --include-only '^bin' --output-type dot | dot -T svg > images/dependency-graph.svg",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@biomejs/biome": "1",
-    "@babel/core": "7",
-    "@babel/preset-env": "7",
-    "@babel/preset-typescript": "7",
     "@types/jest": "latest",
     "@types/node": "latest",
-    "arkit": "1",
     "babel-loader": "9",
+    "dependency-cruiser": "16",
     "husky": "9",
-    "jest": "29",
     "jest-silent-reporter": "0",
-    "license-compatibility-checker": "latest",
+    "jest": "29",
     "license-compliance": "latest",
     "msw": "2",
     "trash": "7",
     "ts-jest": "29",
-    "ts-loader": "9",
+    "tsup": "8",
     "type-coverage": "2",
     "typedoc": "latest",
-    "typescript": "5",
-    "webpack": "5",
-    "webpack-cli": "5",
-    "webpack-shebang-plugin": "1"
+    "typescript": "5"
   }
 }
