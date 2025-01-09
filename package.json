@@ -109,7 +109,6 @@
     "@biomejs/biome": "1",
     "@types/jest": "latest",
     "@types/node": "latest",
-    "babel-loader": "9",
     "dependency-cruiser": "16",
     "husky": "9",
     "jest-silent-reporter": "0",
