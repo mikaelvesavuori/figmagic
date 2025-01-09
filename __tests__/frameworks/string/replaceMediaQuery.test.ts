@@ -13,6 +13,8 @@ describe('Success cases', () => {
   });
 
   test('It should return a valid media query', () => {
-    expect(replaceMediaQuery('@upto 768', '@upto')).toBe('@media query and (max-width:px) { 768');
+    expect(replaceMediaQuery('@upto 768', '@upto')).toBe(
+      '@media query and (max-width:px) { 768',
+    );
   });
 });

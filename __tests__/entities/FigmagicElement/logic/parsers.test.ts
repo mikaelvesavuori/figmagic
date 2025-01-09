@@ -1,17 +1,17 @@
-import { getPaddingY } from '../../../../bin/entities/FigmagicElement/logic/parsers/getPaddingY';
-import { getPaddingX } from '../../../../bin/entities/FigmagicElement/logic/parsers/getPaddingX';
-import { parsePadding } from '../../../../bin/entities/FigmagicElement/logic/parsers/parsePadding';
-import { parseHeight } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseHeight';
+import { Imports } from '../../../../bin/contracts/Imports';
 import { getBackgroundColor } from '../../../../bin/entities/FigmagicElement/logic/parsers/getBackgroundColor';
-import { parseBackgroundColor } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseBackgroundColor';
-import { parseBorderWidth } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseBorderWidth';
 import { getBorderColor } from '../../../../bin/entities/FigmagicElement/logic/parsers/getBorderColor';
+import { getPaddingX } from '../../../../bin/entities/FigmagicElement/logic/parsers/getPaddingX';
+import { getPaddingY } from '../../../../bin/entities/FigmagicElement/logic/parsers/getPaddingY';
+import { getShadow } from '../../../../bin/entities/FigmagicElement/logic/parsers/getShadow';
+import { parseBackgroundColor } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseBackgroundColor';
 import { parseBorderColor } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseBorderColor';
 import { parseBorderRadius } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseBorderRadius';
-import { getShadow } from '../../../../bin/entities/FigmagicElement/logic/parsers/getShadow';
+import { parseBorderWidth } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseBorderWidth';
+import { parseHeight } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseHeight';
+import { parsePadding } from '../../../../bin/entities/FigmagicElement/logic/parsers/parsePadding';
 import { parseShadow } from '../../../../bin/entities/FigmagicElement/logic/parsers/parseShadow';
 import { updateParsing } from '../../../../bin/entities/FigmagicElement/logic/parsers/updateParsing';
-import { Imports } from '../../../../bin/contracts/Imports';
 
 const TEXT_ELEMENT = {
   id: '3005:102',
@@ -38,10 +38,10 @@ const TEXT_ELEMENT = {
     letterSpacing: 0.8,
     lineHeightPx: 18.75,
     lineHeightPercent: 100,
-    lineHeightUnit: 'INTRINSIC_%'
+    lineHeightUnit: 'INTRINSIC_%',
   },
   characterStyleOverrides: [],
-  styleOverrideTable: {}
+  styleOverrideTable: {},
 };
 
 const ELEMENT = {
@@ -57,7 +57,7 @@ const ELEMENT = {
   strokeAlign: 'INSIDE',
   effects: [],
   cornerRadius: 8,
-  rectangleCornerRadii: [8, 8, 8, 8]
+  rectangleCornerRadii: [8, 8, 8, 8],
 };
 
 const PADDING_PARAMS: any = {
@@ -68,9 +68,9 @@ const PADDING_PARAMS: any = {
     big: '3rem',
     medium: '2rem',
     small: '1rem',
-    tiny: '0.5rem'
+    tiny: '0.5rem',
   },
-  remSize: 16
+  remSize: 16,
 };
 
 const HEIGHT_PARAMS = {
@@ -80,10 +80,10 @@ const HEIGHT_PARAMS = {
     big: '3rem',
     medium: '2rem',
     small: '1rem',
-    tiny: '0.5rem'
+    tiny: '0.5rem',
   },
   height: 48,
-  remSize: 16
+  remSize: 16,
 };
 
 const BG_ELEMENT = {
@@ -101,16 +101,16 @@ const BG_ELEMENT = {
         r: 0.7411764860153198,
         g: 0.7411764860153198,
         b: 0.7411764860153198,
-        a: 1
-      }
-    }
+        a: 1,
+      },
+    },
   ],
   strokes: [{ blendMode: 'NORMAL', type: 'SOLID', color: [{}] }],
   strokeWeight: 1,
   strokeAlign: 'INSIDE',
   effects: [],
   cornerRadius: 8,
-  rectangleCornerRadii: [8, 8, 8, 8]
+  rectangleCornerRadii: [8, 8, 8, 8],
 };
 
 const LINEAR_GRADIENT_ELEMENT = {
@@ -128,7 +128,7 @@ const LINEAR_GRADIENT_ELEMENT = {
       gradientHandlePositions: [
         { x: 1.6829973346702458e-9, y: 0.4499999024131663 },
         { x: 1.0000000016829973, y: 0.4499999024131663 },
-        { x: 2.014016540107928e-9, y: 0.12255282472897211 }
+        { x: 2.014016540107928e-9, y: 0.12255282472897211 },
       ],
       gradientStops: [
         {
@@ -136,26 +136,26 @@ const LINEAR_GRADIENT_ELEMENT = {
             r: 0.24597221612930298,
             g: 0.6398308873176575,
             b: 0.7666666507720947,
-            a: 0.949999988079071
+            a: 0.949999988079071,
           },
-          position: 0.09375
+          position: 0.09375,
         },
         {
           color: {
             r: 0.33725491166114807,
             g: 0.800000011920929,
             b: 0.9490196108818054,
-            a: 0.019999999552965164
+            a: 0.019999999552965164,
           },
-          position: 0.9375
-        }
-      ]
-    }
+          position: 0.9375,
+        },
+      ],
+    },
   ],
   strokes: [],
   strokeWeight: 1,
   strokeAlign: 'INSIDE',
-  effects: []
+  effects: [],
 };
 
 describe('Get padding Y', () => {
@@ -175,7 +175,10 @@ describe('Get padding Y', () => {
 
   describe('Success cases', () => {
     test('It should return an object with padding', () => {
-      expect(getPaddingY(TEXT_ELEMENT as any, ELEMENT as any)).toMatchObject({ bottom: 4, top: 4 });
+      expect(getPaddingY(TEXT_ELEMENT as any, ELEMENT as any)).toMatchObject({
+        bottom: 4,
+        top: 4,
+      });
     });
   });
 });
@@ -195,7 +198,10 @@ describe('Get padding X', () => {
     });
 
     test('It should return an object with padding', () => {
-      expect(getPaddingX(TEXT_ELEMENT as any, ELEMENT as any)).toMatchObject({ left: 8, right: 8 });
+      expect(getPaddingX(TEXT_ELEMENT as any, ELEMENT as any)).toMatchObject({
+        left: 8,
+        right: 8,
+      });
     });
   });
 });
@@ -220,11 +226,11 @@ describe('Parse padding', () => {
         parsePadding(
           'border-width: 10px;\n',
           ['border-widths'] as unknown as Imports[],
-          PADDING_PARAMS
-        )
+          PADDING_PARAMS,
+        ),
       ).toMatchObject({
         css: "border-width: 10px;\npadding-left: ${spacing['small']};\npadding-right: ${spacing['small']};\n",
-        imports: undefined
+        imports: undefined,
       });
     });
   });
@@ -257,7 +263,7 @@ border-style: solid;`;
       // @ts-ignore
       expect(parseHeight(CSS, [], HEIGHT_PARAMS)).toMatchObject({
         css: "width: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;\nwidth: 100%;\nbox-sizing: border-box;\nborder: 0;\nborder-style: solid;height: ${spacing['big']};\n",
-        imports: undefined
+        imports: undefined,
       });
     });
   });
@@ -285,7 +291,7 @@ describe('Get background color', () => {
     test('It should get background color (linear gradient)', () => {
       // @ts-ignore
       expect(getBackgroundColor(LINEAR_GRADIENT_ELEMENT)).toBe(
-        'linear-gradient(90deg, rgba(63, 163, 195, 0.95) 9%, rgba(86, 204, 242, 0.02) 94%)'
+        'linear-gradient(90deg, rgba(63, 163, 195, 0.95) 9%, rgba(86, 204, 242, 0.02) 94%)',
       );
     });
   });
@@ -329,11 +335,11 @@ const PARAMS: any = {
     gray2: 'rgba(130, 130, 130, 1)',
     gray1: 'rgba(79, 79, 79, 1)',
     white: 'rgba(255, 255, 255, 1)',
-    black: 'rgba(51, 51, 51, 1)'
+    black: 'rgba(51, 51, 51, 1)',
   },
   backgroundColor: 'rgba(47, 128, 237, 1)',
   remSize: 16,
-  outputFormatColors: 'rgba'
+  outputFormatColors: 'rgba',
 };
 
 describe('Parse background color', () => {
@@ -365,7 +371,7 @@ describe('Parse background color', () => {
           'border: 0;\n' +
           'border-style: solid;\n' +
           "height: ${spacing['big']};background-color: ${colors['blue1']};\n",
-        imports: undefined
+        imports: undefined,
       });
     });
   });
@@ -375,7 +381,7 @@ const BORDER_WIDTH_IMPORTS = ['spacing', 'colors'];
 const BORDER_WIDTH_PARAMS = {
   borderWidths: { chunky: '8px', fat: '4px', regular: '2px', hairline: '1px' },
   borderWidth: '1px',
-  remSize: 16
+  remSize: 16,
 };
 
 describe('Parse border width', () => {
@@ -388,8 +394,10 @@ describe('Parse border width', () => {
 
   describe('Success cases', () => {
     test('It should parse border widths', () => {
-      // @ts-ignore
-      expect(parseBorderWidth(CSS, BORDER_WIDTH_IMPORTS, BORDER_WIDTH_PARAMS)).toMatchObject({
+      expect(
+        // @ts-ignore
+        parseBorderWidth(CSS, BORDER_WIDTH_IMPORTS, BORDER_WIDTH_PARAMS),
+      ).toMatchObject({
         css:
           'width: 100%;\n' +
           'box-sizing: border-box;\n' +
@@ -408,7 +416,7 @@ describe('Parse border width', () => {
           'border: 0;\n' +
           'border-style: solid;\n' +
           "height: ${spacing['big']};border-width: ${borderWidths['hairline']};\n",
-        imports: undefined
+        imports: undefined,
       });
     });
   });
@@ -424,7 +432,7 @@ describe('Get border color', () => {
     test('It should throw an error if missing "color" property', () => {
       expect(() =>
         // @ts-ignore
-        getBorderColor({ strokes: [{ type: 'SOLID', somethingElse: 123 }] })
+        getBorderColor({ strokes: [{ type: 'SOLID', somethingElse: 123 }] }),
       ).toThrowError();
     });
   });
@@ -445,15 +453,15 @@ describe('Get border color', () => {
           r: 0.7411764860153198,
           g: 0.7411764860153198,
           b: 0.7411764860153198,
-          a: 1
-        }
-      }
+          a: 1,
+        },
+      },
     ],
     strokeWeight: 1,
     strokeAlign: 'INSIDE',
     effects: [],
     cornerRadius: 8,
-    rectangleCornerRadii: [8, 8, 8, 8]
+    rectangleCornerRadii: [8, 8, 8, 8],
   };
 
   describe('Success cases', () => {
@@ -464,7 +472,9 @@ describe('Get border color', () => {
 
     test('It should get border colors', () => {
       // @ts-ignore
-      expect(getBorderColor(BORDER_COLOR_ELEMENT)).toBe(`rgba(189, 189, 189, 1)`);
+      expect(getBorderColor(BORDER_COLOR_ELEMENT)).toBe(
+        `rgba(189, 189, 189, 1)`,
+      );
     });
   });
 });
@@ -488,10 +498,10 @@ const BORDER_COLOR_PARAMS = {
     gray2: 'rgba(130, 130, 130, 1)',
     gray1: 'rgba(79, 79, 79, 1)',
     white: 'rgba(255, 255, 255, 1)',
-    black: 'rgba(51, 51, 51, 1)'
+    black: 'rgba(51, 51, 51, 1)',
   },
   borderColor: 'rgba(45, 156, 219, 1)',
-  remSize: 16
+  remSize: 16,
 };
 
 describe('Parse border color', () => {
@@ -504,8 +514,10 @@ describe('Parse border color', () => {
 
   describe('Success cases', () => {
     test('It should parse border colors', () => {
-      // @ts-ignore
-      expect(parseBorderColor(CSS, BORDER_COLOR_IMPORTS, BORDER_COLOR_PARAMS)).toMatchObject({
+      expect(
+        // @ts-ignore
+        parseBorderColor(CSS, BORDER_COLOR_IMPORTS, BORDER_COLOR_PARAMS),
+      ).toMatchObject({
         css:
           'width: 100%;\n' +
           'box-sizing: border-box;\n' +
@@ -524,7 +536,7 @@ describe('Parse border color', () => {
           'border: 0;\n' +
           'border-style: solid;\n' +
           "height: ${spacing['big']};border-color: ${colors['blue2']};\n",
-        imports: undefined
+        imports: undefined,
       });
     });
   });
@@ -534,7 +546,7 @@ const BORDER_RADIUS_IMPORTS = ['spacing', 'colors', 'borderWidths', 'colors'];
 const BORDER_RADIUS_PARAMS = {
   radii: { circle: '100px', soft: '8px', rounded: '4px', hard: '0px' },
   borderRadius: '8px',
-  remSize: 16
+  remSize: 16,
 };
 
 describe('Parse border radius', () => {
@@ -547,8 +559,10 @@ describe('Parse border radius', () => {
 
   describe('Success cases', () => {
     test('It should parse border radii', () => {
-      // @ts-ignore
-      expect(parseBorderRadius(CSS, BORDER_RADIUS_IMPORTS, BORDER_RADIUS_PARAMS)).toMatchObject({
+      expect(
+        // @ts-ignore
+        parseBorderRadius(CSS, BORDER_RADIUS_IMPORTS, BORDER_RADIUS_PARAMS),
+      ).toMatchObject({
         css:
           'width: 100%;\n' +
           'box-sizing: border-box;\n' +
@@ -567,7 +581,7 @@ describe('Parse border radius', () => {
           'border: 0;\n' +
           'border-style: solid;\n' +
           "height: ${spacing['big']};border-radius: ${radii['soft']};\n",
-        imports: undefined
+        imports: undefined,
       });
     });
   });
@@ -600,16 +614,16 @@ describe('Get shadow', () => {
           r: 0.7686274647712708,
           g: 0.7686274647712708,
           b: 0.7686274647712708,
-          a: 1
+          a: 1,
         },
         blendMode: 'NORMAL',
         offset: { x: 0, y: 0 },
-        radius: 5
-      }
+        radius: 5,
+      },
     ],
     styles: { effect: '2657:133' },
     cornerRadius: 4,
-    rectangleCornerRadii: [4, 4, 4, 4]
+    rectangleCornerRadii: [4, 4, 4, 4],
   };
 
   describe('Success cases', () => {
@@ -620,7 +634,9 @@ describe('Get shadow', () => {
 
     test('It should get shadow', () => {
       // @ts-ignore
-      expect(getShadow(SHADOW_ELEMENT)).toBe(`0px 0px 5px rgba(196, 196, 196, 1)`);
+      expect(getShadow(SHADOW_ELEMENT)).toBe(
+        `0px 0px 5px rgba(196, 196, 196, 1)`,
+      );
     });
   });
 });
@@ -651,22 +667,32 @@ describe('Parse shadow', () => {
   border-style: solid;
   height: \${spacing['big']};box-shadow: \${shadows['soft']};`;
 
-  const SHADOW_IMPORTS = ['spacing', 'spacing', 'colors', 'borderWidths', 'colors', 'radii'];
+  const SHADOW_IMPORTS = [
+    'spacing',
+    'spacing',
+    'colors',
+    'borderWidths',
+    'colors',
+    'radii',
+  ];
   const SHADOW_PARAMS = {
     shadows: {
-      deepMulti: '0px 4px 20px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.17)',
+      deepMulti:
+        '0px 4px 20px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.17)',
       deep: '3px 3px 3px rgba(196, 196, 196, 0.75)',
       medium: '0px 0px 5px rgba(0, 0, 0, 0.5)',
-      soft: '0px 0px 5px rgba(196, 196, 196, 1)'
+      soft: '0px 0px 5px rgba(196, 196, 196, 1)',
     },
     shadow: '0px 0px 5px rgba(196, 196, 196, 1)',
-    remSize: 16
+    remSize: 16,
   };
 
   describe('Success cases', () => {
     test('It should parse shadow', () => {
-      // @ts-ignore
-      expect(parseShadow(SHADOW_CSS, SHADOW_IMPORTS, SHADOW_PARAMS)).toMatchObject({
+      expect(
+        // @ts-ignore
+        parseShadow(SHADOW_CSS, SHADOW_IMPORTS, SHADOW_PARAMS),
+      ).toMatchObject({
         css: `width: 100%;
   box-sizing: border-box;
   border: 0;
@@ -684,7 +710,7 @@ describe('Parse shadow', () => {
   border: 0;
   border-style: solid;
   height: \${spacing['big']};box-shadow: \${shadows['soft']};box-shadow: \${shadows['soft']};\n`,
-        imports: undefined
+        imports: undefined,
       });
     });
   });
@@ -849,7 +875,7 @@ border-color: \${colors['blue2']};
     'spacing',
     'colors',
     'borderWidths',
-    'colors'
+    'colors',
   ] as unknown as Imports[];
 
   const PARSING_UPDATED_IMPORTS: Imports[] = ['radii'] as unknown as Imports[];
@@ -858,7 +884,12 @@ border-color: \${colors['blue2']};
     test('It should update parsing', () => {
       // @ts-ignore
       expect(
-        updateParsing(PARSING_CSS, PARSING_UPDATED_CSS, PARSING_IMPORTS, PARSING_UPDATED_IMPORTS)
+        updateParsing(
+          PARSING_CSS,
+          PARSING_UPDATED_CSS,
+          PARSING_IMPORTS,
+          PARSING_UPDATED_IMPORTS,
+        ),
       ).toMatchObject({
         css: `width: 100%;
 box-sizing: border-box;
@@ -1004,7 +1035,7 @@ background-color: \${colors['blue1']};
 border-width: \${borderWidths['hairline'];
 border-color: \${colors['blue2']};
 border-radius: \${radii['soft']};`,
-        imports: undefined
+        imports: undefined,
       });
     });
   });

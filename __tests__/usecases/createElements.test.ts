@@ -5,14 +5,18 @@ import { createElements } from '../../bin/usecases/createElements';
 
 import { loadEnv } from '../../bin/frameworks/system/loadEnv';
 
-import { testConfig } from '../../testdata/testConfig';
-import figmaTestResponse from '../../testdata/figma.json';
 import { figmaCompleteCleaned } from '../../testdata/figma-complete-cleaned';
+import figmaTestResponse from '../../testdata/figma.json';
+import { testConfig } from '../../testdata/testConfig';
 
 loadEnv();
 
-const FIGMA_TOKEN = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_TOKEN;
-const FIGMA_URL = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_URL;
+const FIGMA_TOKEN = process.env.IS_MOCK_ENABLED
+  ? 'mocked'
+  : process.env.FIGMA_TOKEN;
+const FIGMA_URL = process.env.IS_MOCK_ENABLED
+  ? 'mocked'
+  : process.env.FIGMA_URL;
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', async () => {
@@ -31,7 +35,7 @@ describe('Success cases', () => {
       templatePathGraphic: 'templates/graphic',
       templatePathReact: 'templates/react',
       templatePathStorybook: 'templates/story',
-      templatePathStyled: 'templates/styled'
+      templatePathStyled: 'templates/styled',
     };
     const DATA = figmaTestResponse;
 
@@ -63,7 +67,9 @@ describe('Success cases', () => {
 
     // @ts-ignore
     await createElements(CONFIG, DATA);
-    const FILE_EXISTS = fs.existsSync(`${CONFIG.outputFolderElements}/Graphics/index.tsx`);
+    const FILE_EXISTS = fs.existsSync(
+      `${CONFIG.outputFolderElements}/Graphics/index.tsx`,
+    );
     expect(FILE_EXISTS).toBeTruthy();
     await trash(CONFIG.outputFolderElements);
   });

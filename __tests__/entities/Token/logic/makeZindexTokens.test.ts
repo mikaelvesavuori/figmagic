@@ -2,7 +2,7 @@ import { makeZindexTokens } from '../../../../bin/entities/Token/logic/makeZinde
 
 import {
   zIndicesFrame,
-  zIndicesFrameNoCharacters
+  zIndicesFrameNoCharacters,
 } from '../../../../testdata/frames/zIndicesFrame';
 
 describe('Failure cases', () => {
@@ -31,7 +31,13 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {
     expect(makeZindexTokens(zIndicesFrame)).toEqual(
-      expect.objectContaining({ focus: 10, high: 1, higher: 2, regular: 0, top: 100 })
+      expect.objectContaining({
+        focus: 10,
+        high: 1,
+        higher: 2,
+        regular: 0,
+        top: 100,
+      }),
     );
   });
 });

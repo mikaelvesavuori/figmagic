@@ -1,6 +1,9 @@
 import { makeOpacityTokens } from '../../../../bin/entities/Token/logic/makeOpacityTokens';
 
-import { opacitiesFrame, opacitiesFrameNoName } from '../../../../testdata/frames/opacitiesFrame';
+import {
+  opacitiesFrame,
+  opacitiesFrameNoName,
+} from '../../../../testdata/frames/opacitiesFrame';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
@@ -28,7 +31,12 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should return values using float numbers', () => {
     expect(makeOpacityTokens(opacitiesFrame, 'float')).toEqual(
-      expect.objectContaining({ opaque: 1, disabled: 0.65, semiOpaque: 0.5, transparent: 0 })
+      expect.objectContaining({
+        opaque: 1,
+        disabled: 0.65,
+        semiOpaque: 0.5,
+        transparent: 0,
+      }),
     );
   });
 
@@ -38,8 +46,8 @@ describe('Success cases', () => {
         opaque: '100%',
         disabled: '65%',
         semiOpaque: '50%',
-        transparent: '0%'
-      })
+        transparent: '0%',
+      }),
     );
   });
 });

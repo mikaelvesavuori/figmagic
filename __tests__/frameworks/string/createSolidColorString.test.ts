@@ -14,6 +14,8 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should create a RGBA format (solid color) string from element', () => {
     // @ts-ignore
-    expect(createSolidColorString(flatH1Element.children[0].fills[0])).toBe('rgba(51, 51, 51, 1)');
+    expect(createSolidColorString(flatH1Element.children[0].fills[0])).toBe(
+      'rgba(51, 51, 51, 1)',
+    );
   });
 });

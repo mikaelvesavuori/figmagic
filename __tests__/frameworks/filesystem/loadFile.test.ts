@@ -16,7 +16,9 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should return data from local file', () => {
-    const FILE = loadFile(path.join(`${process.cwd()}`, `testdata`, `figmagicrc`));
+    const FILE = loadFile(
+      path.join(`${process.cwd()}`, `testdata`, `figmagicrc`),
+    );
     expect(FILE).toEqual(
       expect.objectContaining({
         debugMode: false,
@@ -30,8 +32,8 @@ describe('Success cases', () => {
         outputFormatTokens: 'ts',
         spacingUnit: 'rem',
         usePostscriptFontNames: false,
-        useLiteralFontFamilies: false
-      })
+        useLiteralFontFamilies: false,
+      }),
     );
   });
 });

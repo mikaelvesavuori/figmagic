@@ -1,6 +1,6 @@
-import trash from 'trash';
 import fs from 'fs';
 import path from 'path';
+import trash from 'trash';
 
 import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 
@@ -26,7 +26,7 @@ describe('Success cases', () => {
       templatePathGraphic: 'templates/graphic',
       templatePathReact: 'templates/react',
       templatePathStorybook: 'templates/story',
-      templatePathStyled: 'templates/styled'
+      templatePathStyled: 'templates/styled',
     };
     writeElements(elements as any, config);
     const FILE_EXISTS = fs.existsSync(TEMP_FOLDER);
@@ -38,7 +38,9 @@ describe('Success cases', () => {
     const configNoReact = { ...baseConfig };
     configNoReact.skipFileGeneration.skipReact = true;
     writeElements(elements as any, configNoReact);
-    const FILE_EXISTS = fs.existsSync(path.join(TEMP_FOLDER, 'Microcopy', 'Microcopy.tsx'));
+    const FILE_EXISTS = fs.existsSync(
+      path.join(TEMP_FOLDER, 'Microcopy', 'Microcopy.tsx'),
+    );
     expect(FILE_EXISTS).toBeFalsy();
     await trash(TEMP_FOLDER);
   });
@@ -47,7 +49,9 @@ describe('Success cases', () => {
     const configNoStyled = { ...baseConfig };
     configNoStyled.skipFileGeneration.skipStyled = true;
     writeElements(elements as any, configNoStyled);
-    const FILE_EXISTS = fs.existsSync(path.join(TEMP_FOLDER, 'Microcopy', 'MicrocopyStyled.tsx'));
+    const FILE_EXISTS = fs.existsSync(
+      path.join(TEMP_FOLDER, 'Microcopy', 'MicrocopyStyled.tsx'),
+    );
     expect(FILE_EXISTS).toBeFalsy();
     await trash(TEMP_FOLDER);
   });
@@ -56,7 +60,9 @@ describe('Success cases', () => {
     const configNoCss = { ...baseConfig };
     configNoCss.skipFileGeneration.skipCss = true;
     writeElements(elements as any, configNoCss);
-    const FILE_EXISTS = fs.existsSync(path.join(TEMP_FOLDER, 'Microcopy', 'MicrocopyCss.ts'));
+    const FILE_EXISTS = fs.existsSync(
+      path.join(TEMP_FOLDER, 'Microcopy', 'MicrocopyCss.ts'),
+    );
     expect(FILE_EXISTS).toBeFalsy();
     await trash(TEMP_FOLDER);
   });
@@ -65,7 +71,9 @@ describe('Success cases', () => {
     const configNoStorybook = { ...baseConfig };
     configNoStorybook.skipFileGeneration.skipStorybook = true;
     writeElements(elements as any, configNoStorybook);
-    const FILE_EXISTS = fs.existsSync(path.join(TEMP_FOLDER, 'Microcopy', 'Microcopy.stories.js'));
+    const FILE_EXISTS = fs.existsSync(
+      path.join(TEMP_FOLDER, 'Microcopy', 'Microcopy.stories.js'),
+    );
     expect(FILE_EXISTS).toBeFalsy();
     await trash(TEMP_FOLDER);
   });
@@ -75,7 +83,7 @@ describe('Success cases', () => {
     configNoDesc.skipFileGeneration.skipDescription = true;
     writeElements(elements as any, configNoDesc);
     const FILE_EXISTS = fs.existsSync(
-      path.join(TEMP_FOLDER, 'Microcopy', 'Microcopy.description.md')
+      path.join(TEMP_FOLDER, 'Microcopy', 'Microcopy.description.md'),
     );
     expect(FILE_EXISTS).toBeFalsy();
     await trash(TEMP_FOLDER);

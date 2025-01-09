@@ -1,17 +1,17 @@
 import * as path from 'path';
 
-import { makeFigmagicElement } from '../../../bin/entities/FigmagicElement/index';
 import { makeConfiguration } from '../../../bin/entities/Config/index';
+import { makeFigmagicElement } from '../../../bin/entities/FigmagicElement/index';
 
 import { FRAME as Frame } from '../../../bin/contracts/Figma';
 
-import { nestedSelectElement } from '../../../testdata/elements/nestedSelectElement';
 import { flatH1Element } from '../../../testdata/elements/flatH1Element';
 import { flatSliderElement } from '../../../testdata/elements/flatSliderElement';
+import { nestedSelectElement } from '../../../testdata/elements/nestedSelectElement';
 
 import {
   buttonElement,
-  validButtonFigmagicElement
+  validButtonFigmagicElement,
 } from '../../../testdata/elements/buttonElement';
 
 describe('Failure cases', () => {
@@ -32,20 +32,26 @@ describe('Success cases', () => {
       templatePathGraphic: 'templates/graphic',
       templatePathReact: 'templates/react',
       templatePathStorybook: 'templates/story',
-      templatePathStyled: 'templates/styled'
+      templatePathStyled: 'templates/styled',
     };
 
-    expect(makeFigmagicElement(buttonElement as Frame, CONFIG, DESCRIPTION)).toMatchObject(
-      validButtonFigmagicElement
-    );
+    expect(
+      makeFigmagicElement(buttonElement as Frame, CONFIG, DESCRIPTION),
+    ).toMatchObject(validButtonFigmagicElement);
   });
 
   test('It should return a nested Figmagic element when passing in valid token data (colors), configuration, and description', async () => {
-    const USER_CONFIG_PATH = path.join(`\${process.cwd()}`, `testdata`, `testConfig`);
+    const USER_CONFIG_PATH = path.join(
+      `\${process.cwd()}`,
+      `testdata`,
+      `testConfig`,
+    );
     const DESCRIPTION = `type=text\n\nAn example of a Figmagic element description!`;
     const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
 
-    expect(makeFigmagicElement(nestedSelectElement as Frame, CONFIG, DESCRIPTION)).toMatchObject({
+    expect(
+      makeFigmagicElement(nestedSelectElement as Frame, CONFIG, DESCRIPTION),
+    ).toMatchObject({
       html: '<div>{{TEXT}}</div>',
       id: '3009:80',
       imports: [
@@ -57,38 +63,56 @@ describe('Success cases', () => {
         'fontSizes',
         'fontFamilies',
         'fontWeights',
-        'lineHeights'
+        'lineHeights',
       ],
       text: '',
-      type: 'COMPONENT'
+      type: 'COMPONENT',
     });
   });
 
   test('It should return a flat Figmagic element (only text element passed in) when passing in valid token data (colors), configuration, and description', async () => {
-    const USER_CONFIG_PATH = path.join(`\${process.cwd()}`, `testdata`, `testConfig`);
+    const USER_CONFIG_PATH = path.join(
+      `\${process.cwd()}`,
+      `testdata`,
+      `testConfig`,
+    );
     const DESCRIPTION = `\nAn example of a Figmagic element description!`;
     const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
 
-    expect(makeFigmagicElement(flatH1Element as Frame, CONFIG, DESCRIPTION)).toMatchObject({
+    expect(
+      makeFigmagicElement(flatH1Element as Frame, CONFIG, DESCRIPTION),
+    ).toMatchObject({
       html: '<div></div>',
       id: '2772:26',
-      imports: ['colors', 'fontSizes', 'fontFamilies', 'fontWeights', 'lineHeights'],
+      imports: [
+        'colors',
+        'fontSizes',
+        'fontFamilies',
+        'fontWeights',
+        'lineHeights',
+      ],
       text: 'H1 Heading Large',
-      type: 'COMPONENT'
+      type: 'COMPONENT',
     });
   });
 
   test('It should return a flat Figmagic element (both layout and text element passed in) when passing in valid token data (colors), configuration, and description', async () => {
-    const USER_CONFIG_PATH = path.join(`\${process.cwd()}`, `testdata`, `testConfig`);
+    const USER_CONFIG_PATH = path.join(
+      `\${process.cwd()}`,
+      `testdata`,
+      `testConfig`,
+    );
     const DESCRIPTION = `type=text\n\nAn example of a Figmagic element description!`;
     const CONFIG = await makeConfiguration(USER_CONFIG_PATH, ...[]);
 
-    expect(makeFigmagicElement(flatSliderElement as Frame, CONFIG, DESCRIPTION)).toMatchObject({
+    expect(
+      makeFigmagicElement(flatSliderElement as Frame, CONFIG, DESCRIPTION),
+    ).toMatchObject({
       html: '<div></div>',
       id: '3009:105',
       imports: ['colors', 'borderWidths'],
       text: '',
-      type: 'COMPONENT'
+      type: 'COMPONENT',
     });
   });
 });

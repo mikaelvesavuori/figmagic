@@ -2,8 +2,8 @@ import { makeFontSizeTokens } from '../../../../bin/entities/Token/logic/makeFon
 
 import {
   fontSizeFrame,
+  fontSizeFrameInvalidNoFontSize,
   fontSizeFrameInvalidNoStyle,
-  fontSizeFrameInvalidNoFontSize
 } from '../../../../testdata/frames/fontSizeFrame';
 
 describe('Failure cases', () => {
@@ -54,8 +54,8 @@ describe('Success cases', () => {
         h5: '1.25rem',
         h6: '1.125rem',
         paragraph: '1rem',
-        sub: '0.75rem'
-      })
+        sub: '0.75rem',
+      }),
     );
   });
 
@@ -69,8 +69,8 @@ describe('Success cases', () => {
         h5: '1.25em',
         h6: '1.125em',
         paragraph: '1em',
-        sub: '0.75em'
-      })
+        sub: '0.75em',
+      }),
     );
   });
 
@@ -84,8 +84,8 @@ describe('Success cases', () => {
         h5: '20px',
         h6: '18px',
         paragraph: '16px',
-        sub: '12px'
-      })
+        sub: '12px',
+      }),
     );
   });
 });

@@ -1,6 +1,9 @@
 import { createLinearGradientString } from '../../../bin/frameworks/string/createLinearGradientString';
 
-import { gradientStops, gradientHandlePositions } from '../../../testdata/gradient';
+import {
+  gradientHandlePositions,
+  gradientStops,
+} from '../../../testdata/gradient';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
@@ -16,10 +19,10 @@ describe('Success cases', () => {
     expect(
       createLinearGradientString({
         gradientStops,
-        gradientHandlePositions
-      })
+        gradientHandlePositions,
+      }),
     ).toBe(
-      'linear-gradient(180deg, rgba(255, 255, 255, 1) 20%, rgba(43, 83, 144, 0.99) 45%, rgba(1, 10, 23, 0.76) 73%)'
+      'linear-gradient(180deg, rgba(255, 255, 255, 1) 20%, rgba(43, 83, 144, 0.99) 45%, rgba(1, 10, 23, 0.76) 73%)',
     );
   });
 });

@@ -32,7 +32,7 @@ describe('Success cases', () => {
     const testFile = '__test-writeBaseJson.txt';
     const path = `${TEST_FOLDER}/${testFile}`;
     await writeBaseJson(TEST_FOLDER, testFile, {
-      data: 'something'
+      data: 'something',
     });
     const fileContent = fs.readFileSync(path, { encoding: 'utf-8' });
     expect(fileContent).toBe(`{"data":"something"}`);

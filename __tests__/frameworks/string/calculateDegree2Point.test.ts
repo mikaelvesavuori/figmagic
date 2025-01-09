@@ -1,6 +1,12 @@
 import { calculateDegree2Point } from '../../../bin/frameworks/string/calculateDegree2Point';
 
-import { points1, points2, points3, points4, points5 } from '../../../testdata/gradient';
+import {
+  points1,
+  points2,
+  points3,
+  points4,
+  points5,
+} from '../../../testdata/gradient';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {

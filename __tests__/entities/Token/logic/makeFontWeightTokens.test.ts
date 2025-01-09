@@ -2,8 +2,8 @@ import { makeFontWeightTokens } from '../../../../bin/entities/Token/logic/makeF
 
 import {
   fontWeightFrame,
+  fontWeightFrameFontWeightMismatch,
   fontWeightFrameInvalid,
-  fontWeightFrameFontWeightMismatch
 } from '../../../../testdata/frames/fontWeightFrame';
 
 describe('Failure cases', () => {
@@ -39,7 +39,7 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {
     expect(makeFontWeightTokens(fontWeightFrame)).toEqual(
-      expect.objectContaining({ light: 300, medium: 500, regular: 400 })
+      expect.objectContaining({ light: 300, medium: 500, regular: 400 }),
     );
   });
 });

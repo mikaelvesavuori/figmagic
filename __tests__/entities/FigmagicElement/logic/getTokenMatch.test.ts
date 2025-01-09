@@ -19,13 +19,13 @@ describe('Success cases', () => {
         'border-width',
         '1px',
         16,
-        'rgba'
-      )
+        'rgba',
+      ),
     ).toEqual(
       expect.objectContaining({
         updatedCss: 'border-width: 1px;\n',
-        updatedImports: []
-      })
+        updatedImports: [],
+      }),
     );
   });
 
@@ -38,14 +38,14 @@ describe('Success cases', () => {
           big: '3rem',
           medium: '2rem',
           small: '1rem',
-          tiny: '0.5rem'
+          tiny: '0.5rem',
         },
         'spacing',
         'padding',
         { top: 16, bottom: 16, left: 16, right: 16 },
         16,
-        'rgba'
-      )
+        'rgba',
+      ),
     ).toEqual(expect.objectContaining({}));
   });
 
@@ -69,14 +69,14 @@ describe('Success cases', () => {
           gray2: 'rgba(130, 130, 130, 1)',
           gray1: 'rgba(79, 79, 79, 1)',
           white: 'rgba(255, 255, 255, 1)',
-          black: 'rgba(51, 51, 51, 1)'
+          black: 'rgba(51, 51, 51, 1)',
         },
         'colors',
         'background-color',
         `rgba(47, 128, 237, 1)`,
         16,
-        'rgba'
-      )
+        'rgba',
+      ),
     ).toEqual(expect.objectContaining({}));
   });
 });

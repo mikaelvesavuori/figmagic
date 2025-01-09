@@ -23,7 +23,9 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should normalize a percent unit to unitless, when given a width value, current unit string, and a conversion type as float', () => {
-    expect(normalizeUnits(146.484375, 'percent', 'unitless')).toBe('1.46484375');
+    expect(normalizeUnits(146.484375, 'percent', 'unitless')).toBe(
+      '1.46484375',
+    );
   });
 
   test('It should normalize a letter-spacing unit to a converted pixel value, when given a width value, current unit string, and a conversion type as string', () => {

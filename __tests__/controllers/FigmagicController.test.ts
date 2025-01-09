@@ -2,8 +2,8 @@ import trash from 'trash';
 
 import { FigmagicController } from '../../bin/controllers/FigmagicController';
 
-import { testConfig } from '../../testdata/testConfig';
 import figmaTestResponse from '../../testdata/figma.json';
+import { testConfig } from '../../testdata/testConfig';
 
 describe('Failure cases', () => {
   test('It should throw an error if calling without any arguments', async () => {
@@ -18,9 +18,12 @@ describe('Success cases', () => {
     const PATH = `./${TEST_FOLDER}`;
 
     testConfig.outputFolderTokens = TEST_FOLDER;
-    const RESPONSE = await FigmagicController(testConfig as any, figmaTestResponse as any);
+    const RESPONSE = await FigmagicController(
+      testConfig as any,
+      figmaTestResponse as any,
+    );
     expect(RESPONSE).toContain('Figmagic completed operations successfully!');
 
-    await trash(PATH);
+    await trash([PATH]);
   });
 });

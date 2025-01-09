@@ -1,6 +1,9 @@
 import { makeDelayTokens } from '../../../../bin/entities/Token/logic/makeDelayTokens';
 
-import { delayFrame, delayFrameInvalid } from '../../../../testdata/frames/delaysFrame';
+import {
+  delayFrame,
+  delayFrameInvalid,
+} from '../../../../testdata/frames/delaysFrame';
 
 describe('Failure cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
@@ -32,8 +35,8 @@ describe('Success cases', () => {
         decimal: 0.5,
         fast: 200,
         medium: 400,
-        slow: 750
-      })
+        slow: 750,
+      }),
     );
   });
 });

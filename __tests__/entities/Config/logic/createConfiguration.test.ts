@@ -1,8 +1,8 @@
 import * as path from 'path';
 
-import { createConfiguration } from '../../../../bin/entities/Config/logic/createConfiguration';
-import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 import { Config } from '../../../../bin/contracts/Config';
+import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
+import { createConfiguration } from '../../../../bin/entities/Config/logic/createConfiguration';
 
 import { testConfig } from '../../../../testdata/testConfig';
 
@@ -20,7 +20,7 @@ describe('Success cases', () => {
       '-t',
       process.env.IS_CI ? '***' : 'asdf1234',
       '-u',
-      process.env.IS_CI ? '***' : 'j43fhj34'
+      process.env.IS_CI ? '***' : 'j43fhj34',
     ];
     testConfig.token = process.env.IS_CI ? '***' : 'asdf1234';
     testConfig.url = process.env.IS_CI ? '***' : 'j43fhj34';
@@ -29,7 +29,7 @@ describe('Success cases', () => {
     testConfig.useLiteralFontFamilies = false;
 
     await expect(
-      createConfiguration(baseConfig, USER_CONFIG_PATH, CLI_ARGS)
+      createConfiguration(baseConfig, USER_CONFIG_PATH, CLI_ARGS),
     ).resolves.toMatchObject(testConfig);
   });
 
@@ -38,7 +38,11 @@ describe('Success cases', () => {
     // mock console.log to reduce the noise in the terminal
     const mocks = [jest.spyOn(global.console, 'log').mockImplementation()];
 
-    const configuration = await createConfiguration({} as Config, USER_CONFIG_PATH, ['--debug']);
+    const configuration = await createConfiguration(
+      {} as Config,
+      USER_CONFIG_PATH,
+      ['--debug'],
+    );
 
     expect(global.console.log).toHaveBeenCalledWith(configuration);
 

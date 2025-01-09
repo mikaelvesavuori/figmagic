@@ -1,6 +1,9 @@
 import { makeEasingTokens } from '../../../../bin/entities/Token/logic/makeEasingTokens';
 
-import { easingFrame, easingFrameInvalid } from '../../../../testdata/frames/easingFrame';
+import {
+  easingFrame,
+  easingFrameInvalid,
+} from '../../../../testdata/frames/easingFrame';
 
 describe('Failure cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
@@ -31,8 +34,8 @@ describe('Success cases', () => {
       expect.objectContaining({
         easeIn: 'cubic-bezier(0.50, 0, 1, 1)',
         easeOut: 'cubic-bezier(0, 0, 0.40, 1)',
-        easeInout: 'cubic-bezier(0.45, 0, 0.40, 1)'
-      })
+        easeInout: 'cubic-bezier(0.45, 0, 0.40, 1)',
+      }),
     );
   });
 });

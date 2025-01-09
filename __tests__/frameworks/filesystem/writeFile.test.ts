@@ -25,7 +25,7 @@ describe('Failure cases', () => {
       type: 1,
       format: 1,
       metadata: 1,
-      templates: 1
+      templates: 1,
     } as WriteOperation;
     // @ts-ignore
     expect(() => writeFile(invalidOperation)).toThrowError();
@@ -48,8 +48,8 @@ describe('Failure cases', () => {
         graphic: false,
         react: false,
         storybook: false,
-        styled: false
-      }
+        styled: false,
+      },
     };
 
     expect(() => writeFile(writeOp)).toThrowError();
@@ -71,8 +71,8 @@ describe('Failure cases', () => {
         graphic: false,
         react: false,
         storybook: false,
-        styled: false
-      }
+        styled: false,
+      },
     };
 
     expect(() => writeFile(writeOp)).toThrowError();
@@ -96,7 +96,7 @@ describe('Success cases', () => {
           templatePathReact: 'templates/react',
           templatePathStorybook: 'templates/story',
           templatePathStyled: 'templates/styled',
-          templatePathGraphic: 'templates/graphic'
+          templatePathGraphic: 'templates/graphic',
         },
         overwrite: {
           css: false,
@@ -104,8 +104,8 @@ describe('Success cases', () => {
           graphic: false,
           react: false,
           storybook: false,
-          styled: false
-        }
+          styled: false,
+        },
       };
 
       const file = `${writeOp.name}`;
@@ -133,7 +133,7 @@ describe('Success cases', () => {
           templatePathReact: 'templates/react',
           templatePathStorybook: 'templates/story',
           templatePathStyled: 'templates/styled',
-          templatePathGraphic: 'templates/graphic'
+          templatePathGraphic: 'templates/graphic',
         },
         overwrite: {
           css: false,
@@ -141,8 +141,8 @@ describe('Success cases', () => {
           graphic: false,
           react: false,
           storybook: false,
-          styled: false
-        }
+          styled: false,
+        },
       };
 
       const file = `${writeOp.name}.${writeOp.format}`;
@@ -151,7 +151,7 @@ describe('Success cases', () => {
 
       const fileContent = fs.readFileSync(file, { encoding: 'utf-8' });
       const includesContent = fileContent.includes(
-        `const __test-writefile-token = "{\\"something\\":1234}"`
+        `const __test-writefile-token = "{\\"something\\":1234}"`,
       );
       expect(includesContent).toBe(true);
       await trash(file);

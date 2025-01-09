@@ -1,10 +1,10 @@
 import { prepareWrite } from '../../../bin/frameworks/filesystem/prepareWrite';
 
 import {
-  getFileDataOperationToken,
+  getFileDataOperationInvalidNoTemplatesForComponent,
   getFileDataOperationInvalidNoTemplatesForCss,
   getFileDataOperationInvalidNoTemplatesForStory,
-  getFileDataOperationInvalidNoTemplatesForComponent
+  getFileDataOperationToken,
 } from '../../../testdata/getFileDataOperation';
 
 describe('Failure cases', () => {
@@ -14,19 +14,23 @@ describe('Failure cases', () => {
   });
 
   test('It should throw an error if type is "css" but data is missing templates', () => {
-    // @ts-ignore
-    expect(() => prepareWrite(getFileDataOperationInvalidNoTemplatesForCss)).toThrowError();
+    expect(() =>
+      // @ts-ignore
+      prepareWrite(getFileDataOperationInvalidNoTemplatesForCss),
+    ).toThrowError();
   });
 
   test('It should throw an error if type is "story" but data is missing templates', () => {
-    // @ts-ignore
-    expect(() => prepareWrite(getFileDataOperationInvalidNoTemplatesForStory)).toThrowError();
+    expect(() =>
+      // @ts-ignore
+      prepareWrite(getFileDataOperationInvalidNoTemplatesForStory),
+    ).toThrowError();
   });
 
   test('It should throw an error if type is "component" but data is missing templates', () => {
     expect(
       // @ts-ignore
-      () => prepareWrite(getFileDataOperationInvalidNoTemplatesForComponent)
+      () => prepareWrite(getFileDataOperationInvalidNoTemplatesForComponent),
     ).toThrowError();
   });
 });
@@ -58,7 +62,7 @@ const colors = {
 }
 
 export default colors;`,
-      filePath: 'tokens/colors.mjs'
+      filePath: 'tokens/colors.mjs',
     });
   });
 });

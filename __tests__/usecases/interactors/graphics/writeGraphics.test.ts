@@ -1,5 +1,5 @@
-import trash from 'trash';
 import fs from 'fs';
+import trash from 'trash';
 
 import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 

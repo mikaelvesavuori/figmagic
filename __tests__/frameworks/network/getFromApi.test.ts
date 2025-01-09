@@ -1,10 +1,14 @@
-import { loadEnv } from '../../../bin/frameworks/system/loadEnv';
 import { getFromApi } from '../../../bin/frameworks/network/getFromApi';
+import { loadEnv } from '../../../bin/frameworks/system/loadEnv';
 
 loadEnv();
 
-const FIGMA_TOKEN = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_TOKEN;
-const FIGMA_URL = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_URL;
+const FIGMA_TOKEN = process.env.IS_MOCK_ENABLED
+  ? 'mocked'
+  : process.env.FIGMA_TOKEN;
+const FIGMA_URL = process.env.IS_MOCK_ENABLED
+  ? 'mocked'
+  : process.env.FIGMA_URL;
 
 describe('Failure cases', () => {
   test('It should throw an error when receiving invalid token and/or URL', async () => {
@@ -18,7 +22,10 @@ describe('Failure cases', () => {
 
   test('It should not find data, given a token but invalid URL', async () => {
     expect(
-      getFromApi('some-token-here', 'https://lkhjtkl34kljf-fg3kj3443.hjt3hjk.net/.kj34jkl34')
+      getFromApi(
+        'some-token-here',
+        'https://lkhjtkl34kljf-fg3kj3443.hjt3hjk.net/.kj34jkl34',
+      ),
     ).rejects.toThrowError();
   });
 

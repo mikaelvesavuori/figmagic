@@ -20,8 +20,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--debug'])).toEqual(
         expect.objectContaining({
-          debugMode: true
-        })
+          debugMode: true,
+        }),
       );
     });
 
@@ -29,8 +29,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-d'])).toEqual(
         expect.objectContaining({
-          debugMode: true
-        })
+          debugMode: true,
+        }),
       );
     });
   });
@@ -40,8 +40,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--noCamelizeTokenNames'])).toEqual(
         expect.objectContaining({
-          camelizeTokenNames: false
-        })
+          camelizeTokenNames: false,
+        }),
       );
     });
 
@@ -49,8 +49,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-cml'])).toEqual(
         expect.objectContaining({
-          camelizeTokenNames: false
-        })
+          camelizeTokenNames: false,
+        }),
       );
     });
   });
@@ -60,8 +60,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--borderWidthUnit', 'px'])).toEqual(
         expect.objectContaining({
-          borderWidthUnit: 'px'
-        })
+          borderWidthUnit: 'px',
+        }),
       );
     });
 
@@ -69,8 +69,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-bwu', 'px'])).toEqual(
         expect.objectContaining({
-          borderWidthUnit: 'px'
-        })
+          borderWidthUnit: 'px',
+        }),
       );
     });
 
@@ -78,8 +78,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--borderWidthUnit', 'rem'])).toEqual(
         expect.objectContaining({
-          borderWidthUnit: 'rem'
-        })
+          borderWidthUnit: 'rem',
+        }),
       );
     });
 
@@ -87,8 +87,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-bwu', 'rem'])).toEqual(
         expect.objectContaining({
-          borderWidthUnit: 'rem'
-        })
+          borderWidthUnit: 'rem',
+        }),
       );
     });
 
@@ -96,8 +96,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--borderWidthUnit', 'em'])).toEqual(
         expect.objectContaining({
-          borderWidthUnit: 'em'
-        })
+          borderWidthUnit: 'em',
+        }),
       );
     });
 
@@ -105,8 +105,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-bwu', 'em'])).toEqual(
         expect.objectContaining({
-          borderWidthUnit: 'em'
-        })
+          borderWidthUnit: 'em',
+        }),
       );
     });
   });
@@ -116,8 +116,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--radiusUnit', 'px'])).toEqual(
         expect.objectContaining({
-          radiusUnit: 'px'
-        })
+          radiusUnit: 'px',
+        }),
       );
     });
 
@@ -125,8 +125,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-ru', 'px'])).toEqual(
         expect.objectContaining({
-          radiusUnit: 'px'
-        })
+          radiusUnit: 'px',
+        }),
       );
     });
 
@@ -134,8 +134,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--radiusUnit', 'rem'])).toEqual(
         expect.objectContaining({
-          radiusUnit: 'rem'
-        })
+          radiusUnit: 'rem',
+        }),
       );
     });
 
@@ -143,8 +143,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-ru', 'rem'])).toEqual(
         expect.objectContaining({
-          radiusUnit: 'rem'
-        })
+          radiusUnit: 'rem',
+        }),
       );
     });
 
@@ -152,8 +152,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--radiusUnit', 'em'])).toEqual(
         expect.objectContaining({
-          radiusUnit: 'em'
-        })
+          radiusUnit: 'em',
+        }),
       );
     });
 
@@ -161,8 +161,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-ru', 'em'])).toEqual(
         expect.objectContaining({
-          radiusUnit: 'em'
-        })
+          radiusUnit: 'em',
+        }),
       );
     });
   });
@@ -172,8 +172,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--shadowUnit', 'px'])).toEqual(
         expect.objectContaining({
-          shadowUnit: 'px'
-        })
+          shadowUnit: 'px',
+        }),
       );
     });
 
@@ -181,8 +181,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-su', 'px'])).toEqual(
         expect.objectContaining({
-          shadowUnit: 'px'
-        })
+          shadowUnit: 'px',
+        }),
       );
     });
 
@@ -190,8 +190,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--shadowUnit', 'rem'])).toEqual(
         expect.objectContaining({
-          shadowUnit: 'rem'
-        })
+          shadowUnit: 'rem',
+        }),
       );
     });
 
@@ -199,8 +199,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-su', 'rem'])).toEqual(
         expect.objectContaining({
-          shadowUnit: 'rem'
-        })
+          shadowUnit: 'rem',
+        }),
       );
     });
 
@@ -208,8 +208,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--shadowUnit', 'em'])).toEqual(
         expect.objectContaining({
-          shadowUnit: 'em'
-        })
+          shadowUnit: 'em',
+        }),
       );
     });
 
@@ -217,8 +217,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-su', 'em'])).toEqual(
         expect.objectContaining({
-          shadowUnit: 'em'
-        })
+          shadowUnit: 'em',
+        }),
       );
     });
   });
@@ -228,8 +228,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--durationUnit', 's'])).toEqual(
         expect.objectContaining({
-          durationUnit: 's'
-        })
+          durationUnit: 's',
+        }),
       );
     });
 
@@ -237,8 +237,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-du', 's'])).toEqual(
         expect.objectContaining({
-          durationUnit: 's'
-        })
+          durationUnit: 's',
+        }),
       );
     });
 
@@ -246,8 +246,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--durationUnit', 'ms'])).toEqual(
         expect.objectContaining({
-          durationUnit: 'ms'
-        })
+          durationUnit: 'ms',
+        }),
       );
     });
 
@@ -255,8 +255,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-du', 'ms'])).toEqual(
         expect.objectContaining({
-          durationUnit: 'ms'
-        })
+          durationUnit: 'ms',
+        }),
       );
     });
   });
@@ -266,8 +266,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--fontUnit', 'em'])).toEqual(
         expect.objectContaining({
-          fontUnit: 'em'
-        })
+          fontUnit: 'em',
+        }),
       );
     });
 
@@ -275,8 +275,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-fu', 'em'])).toEqual(
         expect.objectContaining({
-          fontUnit: 'em'
-        })
+          fontUnit: 'em',
+        }),
       );
     });
   });
@@ -286,8 +286,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--lineHeightUnit', 'unitless'])).toEqual(
         expect.objectContaining({
-          lineHeightUnit: 'unitless'
-        })
+          lineHeightUnit: 'unitless',
+        }),
       );
     });
 
@@ -295,8 +295,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-lhu', 'unitless'])).toEqual(
         expect.objectContaining({
-          lineHeightUnit: 'unitless'
-        })
+          lineHeightUnit: 'unitless',
+        }),
       );
     });
 
@@ -304,8 +304,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--lineHeightUnit', 'px'])).toEqual(
         expect.objectContaining({
-          lineHeightUnit: 'px'
-        })
+          lineHeightUnit: 'px',
+        }),
       );
     });
 
@@ -313,8 +313,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-lhu', 'px'])).toEqual(
         expect.objectContaining({
-          lineHeightUnit: 'px'
-        })
+          lineHeightUnit: 'px',
+        }),
       );
     });
 
@@ -322,8 +322,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--lineHeightUnit', 'em'])).toEqual(
         expect.objectContaining({
-          lineHeightUnit: 'em'
-        })
+          lineHeightUnit: 'em',
+        }),
       );
     });
 
@@ -331,8 +331,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-lhu', 'em'])).toEqual(
         expect.objectContaining({
-          lineHeightUnit: 'em'
-        })
+          lineHeightUnit: 'em',
+        }),
       );
     });
 
@@ -340,8 +340,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--lineHeightUnit', 'rem'])).toEqual(
         expect.objectContaining({
-          lineHeightUnit: 'rem'
-        })
+          lineHeightUnit: 'rem',
+        }),
       );
     });
 
@@ -349,8 +349,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-lhu', 'rem'])).toEqual(
         expect.objectContaining({
-          lineHeightUnit: 'rem'
-        })
+          lineHeightUnit: 'rem',
+        }),
       );
     });
   });
@@ -361,8 +361,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--letterSpacingUnit', unit])).toEqual(
         expect.objectContaining({
-          letterSpacingUnit: unit
-        })
+          letterSpacingUnit: unit,
+        }),
       );
     });
 
@@ -371,8 +371,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-lsu', unit])).toEqual(
         expect.objectContaining({
-          letterSpacingUnit: unit
-        })
+          letterSpacingUnit: unit,
+        }),
       );
     });
   });
@@ -383,8 +383,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--opacitiesUnit', unit])).toEqual(
         expect.objectContaining({
-          opacitiesUnit: unit
-        })
+          opacitiesUnit: unit,
+        }),
       );
     });
 
@@ -393,8 +393,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-ou', unit])).toEqual(
         expect.objectContaining({
-          opacitiesUnit: unit
-        })
+          opacitiesUnit: unit,
+        }),
       );
     });
   });
@@ -404,8 +404,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--figmaData', 'figma.json'])).toEqual(
         expect.objectContaining({
-          figmaData: 'figma.json'
-        })
+          figmaData: 'figma.json',
+        }),
       );
     });
 
@@ -413,8 +413,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-data', 'figma.json'])).toEqual(
         expect.objectContaining({
-          figmaData: 'figma.json'
-        })
+          figmaData: 'figma.json',
+        }),
       );
     });
   });
@@ -424,8 +424,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--figmagicFolder', '.figmagic'])).toEqual(
         expect.objectContaining({
-          figmagicFolder: '.figmagic'
-        })
+          figmagicFolder: '.figmagic',
+        }),
       );
     });
 
@@ -433,8 +433,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-base', '.figmagic'])).toEqual(
         expect.objectContaining({
-          figmagicFolder: '.figmagic'
-        })
+          figmagicFolder: '.figmagic',
+        }),
       );
     });
   });
@@ -444,8 +444,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--outputFolderElements', 'elements'])).toEqual(
         expect.objectContaining({
-          outputFolderElements: 'elements'
-        })
+          outputFolderElements: 'elements',
+        }),
       );
     });
 
@@ -453,8 +453,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-elements', 'elements'])).toEqual(
         expect.objectContaining({
-          outputFolderElements: 'elements'
-        })
+          outputFolderElements: 'elements',
+        }),
       );
     });
   });
@@ -464,8 +464,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--outputFolderGraphics', 'graphics'])).toEqual(
         expect.objectContaining({
-          outputFolderGraphics: 'graphics'
-        })
+          outputFolderGraphics: 'graphics',
+        }),
       );
     });
 
@@ -473,8 +473,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-graphics', 'graphics'])).toEqual(
         expect.objectContaining({
-          outputFolderGraphics: 'graphics'
-        })
+          outputFolderGraphics: 'graphics',
+        }),
       );
     });
   });
@@ -484,8 +484,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--outputFolderTokens', 'tokens'])).toEqual(
         expect.objectContaining({
-          outputFolderTokens: 'tokens'
-        })
+          outputFolderTokens: 'tokens',
+        }),
       );
     });
 
@@ -493,8 +493,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-tokens', 'tokens'])).toEqual(
         expect.objectContaining({
-          outputFolderTokens: 'tokens'
-        })
+          outputFolderTokens: 'tokens',
+        }),
       );
     });
   });
@@ -504,8 +504,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--outputFormatCss', 'ts'])).toEqual(
         expect.objectContaining({
-          outputFormatCss: 'ts'
-        })
+          outputFormatCss: 'ts',
+        }),
       );
     });
 
@@ -513,8 +513,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-fc', 'ts'])).toEqual(
         expect.objectContaining({
-          outputFormatCss: 'ts'
-        })
+          outputFormatCss: 'ts',
+        }),
       );
     });
   });
@@ -524,8 +524,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--outputFormatDesc', 'md'])).toEqual(
         expect.objectContaining({
-          outputFormatDescription: 'md'
-        })
+          outputFormatDescription: 'md',
+        }),
       );
     });
 
@@ -533,8 +533,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-fd', 'md'])).toEqual(
         expect.objectContaining({
-          outputFormatDescription: 'md'
-        })
+          outputFormatDescription: 'md',
+        }),
       );
     });
   });
@@ -544,8 +544,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--outputFormatElements', 'tsx'])).toEqual(
         expect.objectContaining({
-          outputFormatElements: 'tsx'
-        })
+          outputFormatElements: 'tsx',
+        }),
       );
     });
 
@@ -553,8 +553,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-fe', 'tsx'])).toEqual(
         expect.objectContaining({
-          outputFormatElements: 'tsx'
-        })
+          outputFormatElements: 'tsx',
+        }),
       );
     });
   });
@@ -564,8 +564,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--outputFormatGraphics', 'svg'])).toEqual(
         expect.objectContaining({
-          outputFormatGraphics: 'svg'
-        })
+          outputFormatGraphics: 'svg',
+        }),
       );
     });
 
@@ -573,8 +573,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-fg', 'svg'])).toEqual(
         expect.objectContaining({
-          outputFormatGraphics: 'svg'
-        })
+          outputFormatGraphics: 'svg',
+        }),
       );
     });
   });
@@ -584,8 +584,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--outputFormatStorybook', 'ts'])).toEqual(
         expect.objectContaining({
-          outputFormatStorybook: 'ts'
-        })
+          outputFormatStorybook: 'ts',
+        }),
       );
     });
 
@@ -593,8 +593,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-fs', 'ts'])).toEqual(
         expect.objectContaining({
-          outputFormatStorybook: 'ts'
-        })
+          outputFormatStorybook: 'ts',
+        }),
       );
     });
   });
@@ -605,8 +605,8 @@ describe('Success cases', () => {
         // @ts-ignore
         expect(parseCliArgs(['--outputFormatTokens', 'ts'])).toEqual(
           expect.objectContaining({
-            outputFormatTokens: 'ts'
-          })
+            outputFormatTokens: 'ts',
+          }),
         );
       });
 
@@ -614,8 +614,8 @@ describe('Success cases', () => {
         // @ts-ignore
         expect(parseCliArgs(['--outputFormatTokens', 'mjs'])).toEqual(
           expect.objectContaining({
-            outputFormatTokens: 'mjs'
-          })
+            outputFormatTokens: 'mjs',
+          }),
         );
       });
 
@@ -623,8 +623,8 @@ describe('Success cases', () => {
         // @ts-ignore
         expect(parseCliArgs(['--outputFormatTokens', 'js'])).toEqual(
           expect.objectContaining({
-            outputFormatTokens: 'js'
-          })
+            outputFormatTokens: 'js',
+          }),
         );
       });
 
@@ -632,8 +632,8 @@ describe('Success cases', () => {
         // @ts-ignore
         expect(parseCliArgs(['--outputFormatTokens', 'json'])).toEqual(
           expect.objectContaining({
-            outputFormatTokens: 'json'
-          })
+            outputFormatTokens: 'json',
+          }),
         );
       });
 
@@ -641,8 +641,8 @@ describe('Success cases', () => {
         // @ts-ignore
         expect(parseCliArgs(['--outputFormatTokens', 'css'])).toEqual(
           expect.objectContaining({
-            outputFormatTokens: 'css'
-          })
+            outputFormatTokens: 'css',
+          }),
         );
       });
 
@@ -650,8 +650,8 @@ describe('Success cases', () => {
         // @ts-ignore
         expect(parseCliArgs(['--outputFormatTokens', 'scss'])).toEqual(
           expect.objectContaining({
-            outputFormatTokens: 'scss'
-          })
+            outputFormatTokens: 'scss',
+          }),
         );
       });
     });
@@ -661,8 +661,8 @@ describe('Success cases', () => {
         // @ts-ignore
         expect(parseCliArgs(['-ft', 'ts'])).toEqual(
           expect.objectContaining({
-            outputFormatTokens: 'ts'
-          })
+            outputFormatTokens: 'ts',
+          }),
         );
       });
 
@@ -670,8 +670,8 @@ describe('Success cases', () => {
         // @ts-ignore
         expect(parseCliArgs(['-ft', 'mjs'])).toEqual(
           expect.objectContaining({
-            outputFormatTokens: 'mjs'
-          })
+            outputFormatTokens: 'mjs',
+          }),
         );
       });
 
@@ -679,8 +679,8 @@ describe('Success cases', () => {
         // @ts-ignore
         expect(parseCliArgs(['-ft', 'js'])).toEqual(
           expect.objectContaining({
-            outputFormatTokens: 'js'
-          })
+            outputFormatTokens: 'js',
+          }),
         );
       });
 
@@ -688,8 +688,8 @@ describe('Success cases', () => {
         // @ts-ignore
         expect(parseCliArgs(['-ft', 'json'])).toEqual(
           expect.objectContaining({
-            outputFormatTokens: 'json'
-          })
+            outputFormatTokens: 'json',
+          }),
         );
       });
 
@@ -697,8 +697,8 @@ describe('Success cases', () => {
         // @ts-ignore
         expect(parseCliArgs(['-ft', 'css'])).toEqual(
           expect.objectContaining({
-            outputFormatTokens: 'css'
-          })
+            outputFormatTokens: 'css',
+          }),
         );
       });
 
@@ -706,8 +706,8 @@ describe('Success cases', () => {
         // @ts-ignore
         expect(parseCliArgs(['-ft', 'scss'])).toEqual(
           expect.objectContaining({
-            outputFormatTokens: 'scss'
-          })
+            outputFormatTokens: 'scss',
+          }),
         );
       });
     });
@@ -718,8 +718,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--outputGraphicElements'])).toEqual(
         expect.objectContaining({
-          outputGraphicElements: true
-        })
+          outputGraphicElements: true,
+        }),
       );
     });
 
@@ -727,8 +727,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-oge'])).toEqual(
         expect.objectContaining({
-          outputGraphicElements: true
-        })
+          outputGraphicElements: true,
+        }),
       );
     });
   });
@@ -738,8 +738,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--outputGraphicElementsMap', 'ts'])).toEqual(
         expect.objectContaining({
-          outputGraphicElementsMap: true
-        })
+          outputGraphicElementsMap: true,
+        }),
       );
     });
 
@@ -747,8 +747,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-ogm', 'ts'])).toEqual(
         expect.objectContaining({
-          outputGraphicElementsMap: true
-        })
+          outputGraphicElementsMap: true,
+        }),
       );
     });
   });
@@ -758,8 +758,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--outputScaleGraphics', '2x'])).toEqual(
         expect.objectContaining({
-          outputScaleGraphics: 2
-        })
+          outputScaleGraphics: 2,
+        }),
       );
     });
 
@@ -767,8 +767,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-scale', '2x'])).toEqual(
         expect.objectContaining({
-          outputScaleGraphics: 2
-        })
+          outputScaleGraphics: 2,
+        }),
       );
     });
   });
@@ -778,8 +778,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--outputDataTypeToken', 'enum'])).toEqual(
         expect.objectContaining({
-          outputDataTypeToken: 'enum'
-        })
+          outputDataTypeToken: 'enum',
+        }),
       );
     });
 
@@ -787,8 +787,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-tokentype', 'enum'])).toEqual(
         expect.objectContaining({
-          outputDataTypeToken: 'enum'
-        })
+          outputDataTypeToken: 'enum',
+        }),
       );
     });
   });
@@ -798,8 +798,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--recompileLocal'])).toEqual(
         expect.objectContaining({
-          recompileLocal: true
-        })
+          recompileLocal: true,
+        }),
       );
     });
 
@@ -807,8 +807,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-local'])).toEqual(
         expect.objectContaining({
-          recompileLocal: true
-        })
+          recompileLocal: true,
+        }),
       );
     });
   });
@@ -818,8 +818,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--remSize', '16p'])).toEqual(
         expect.objectContaining({
-          remSize: 16
-        })
+          remSize: 16,
+        }),
       );
     });
 
@@ -827,8 +827,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-rem', '16p'])).toEqual(
         expect.objectContaining({
-          remSize: 16
-        })
+          remSize: 16,
+        }),
       );
     });
   });
@@ -839,9 +839,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['--forceUpdate'])).toEqual(
         expect.objectContaining({
           skipFileGeneration: expect.objectContaining({
-            forceUpdate: true
-          })
-        })
+            forceUpdate: true,
+          }),
+        }),
       );
     });
 
@@ -850,9 +850,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['-force'])).toEqual(
         expect.objectContaining({
           skipFileGeneration: expect.objectContaining({
-            forceUpdate: true
-          })
-        })
+            forceUpdate: true,
+          }),
+        }),
       );
     });
   });
@@ -863,9 +863,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['--skipCss'])).toEqual(
         expect.objectContaining({
           skipFileGeneration: expect.objectContaining({
-            skipCss: true
-          })
-        })
+            skipCss: true,
+          }),
+        }),
       );
     });
 
@@ -874,9 +874,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['-nocss'])).toEqual(
         expect.objectContaining({
           skipFileGeneration: expect.objectContaining({
-            skipCss: true
-          })
-        })
+            skipCss: true,
+          }),
+        }),
       );
     });
   });
@@ -887,9 +887,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['--skipDescription'])).toEqual(
         expect.objectContaining({
           skipFileGeneration: expect.objectContaining({
-            skipDescription: true
-          })
-        })
+            skipDescription: true,
+          }),
+        }),
       );
     });
 
@@ -898,9 +898,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['-nodesc'])).toEqual(
         expect.objectContaining({
           skipFileGeneration: expect.objectContaining({
-            skipDescription: true
-          })
-        })
+            skipDescription: true,
+          }),
+        }),
       );
     });
   });
@@ -911,9 +911,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['--skipReact'])).toEqual(
         expect.objectContaining({
           skipFileGeneration: expect.objectContaining({
-            skipReact: true
-          })
-        })
+            skipReact: true,
+          }),
+        }),
       );
     });
 
@@ -922,9 +922,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['-noreact'])).toEqual(
         expect.objectContaining({
           skipFileGeneration: expect.objectContaining({
-            skipReact: true
-          })
-        })
+            skipReact: true,
+          }),
+        }),
       );
     });
   });
@@ -935,9 +935,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['--skipStorybook'])).toEqual(
         expect.objectContaining({
           skipFileGeneration: expect.objectContaining({
-            skipStorybook: true
-          })
-        })
+            skipStorybook: true,
+          }),
+        }),
       );
     });
 
@@ -946,9 +946,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['-nostory'])).toEqual(
         expect.objectContaining({
           skipFileGeneration: expect.objectContaining({
-            skipStorybook: true
-          })
-        })
+            skipStorybook: true,
+          }),
+        }),
       );
     });
   });
@@ -959,9 +959,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['--skipStyled'])).toEqual(
         expect.objectContaining({
           skipFileGeneration: expect.objectContaining({
-            skipStyled: true
-          })
-        })
+            skipStyled: true,
+          }),
+        }),
       );
     });
 
@@ -970,9 +970,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['-nostyled'])).toEqual(
         expect.objectContaining({
           skipFileGeneration: expect.objectContaining({
-            skipStyled: true
-          })
-        })
+            skipStyled: true,
+          }),
+        }),
       );
     });
   });
@@ -982,8 +982,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--spacingUnit', 'em'])).toEqual(
         expect.objectContaining({
-          spacingUnit: 'em'
-        })
+          spacingUnit: 'em',
+        }),
       );
     });
 
@@ -991,8 +991,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-s', 'em'])).toEqual(
         expect.objectContaining({
-          spacingUnit: 'em'
-        })
+          spacingUnit: 'em',
+        }),
       );
     });
   });
@@ -1002,8 +1002,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--syncElements'])).toEqual(
         expect.objectContaining({
-          syncElements: true
-        })
+          syncElements: true,
+        }),
       );
     });
 
@@ -1011,8 +1011,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-se'])).toEqual(
         expect.objectContaining({
-          syncElements: true
-        })
+          syncElements: true,
+        }),
       );
     });
   });
@@ -1022,8 +1022,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--syncGraphics'])).toEqual(
         expect.objectContaining({
-          syncGraphics: true
-        })
+          syncGraphics: true,
+        }),
       );
     });
 
@@ -1031,8 +1031,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-sg'])).toEqual(
         expect.objectContaining({
-          syncGraphics: true
-        })
+          syncGraphics: true,
+        }),
       );
     });
   });
@@ -1042,8 +1042,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--syncTokens'])).toEqual(
         expect.objectContaining({
-          syncTokens: true
-        })
+          syncTokens: true,
+        }),
       );
     });
 
@@ -1051,8 +1051,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-st'])).toEqual(
         expect.objectContaining({
-          syncTokens: true
-        })
+          syncTokens: true,
+        }),
       );
     });
   });
@@ -1064,9 +1064,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['--templatePathReact', templatePathReact])).toEqual(
         expect.objectContaining({
           templates: expect.objectContaining({
-            templatePathReact
-          })
-        })
+            templatePathReact,
+          }),
+        }),
       );
     });
 
@@ -1076,9 +1076,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['-tpreact', templatePathReact])).toEqual(
         expect.objectContaining({
           templates: expect.objectContaining({
-            templatePathReact
-          })
-        })
+            templatePathReact,
+          }),
+        }),
       );
     });
   });
@@ -1087,12 +1087,14 @@ describe('Success cases', () => {
     test('It should return template path for Storybook (long-hand)', () => {
       const templatePathStorybook = 'foo/story';
       // @ts-ignore
-      expect(parseCliArgs(['--templatePathStorybook', templatePathStorybook])).toEqual(
+      expect(
+        parseCliArgs(['--templatePathStorybook', templatePathStorybook]),
+      ).toEqual(
         expect.objectContaining({
           templates: expect.objectContaining({
-            templatePathStorybook
-          })
-        })
+            templatePathStorybook,
+          }),
+        }),
       );
     });
 
@@ -1102,9 +1104,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['-tpstory', templatePathStorybook])).toEqual(
         expect.objectContaining({
           templates: expect.objectContaining({
-            templatePathStorybook
-          })
-        })
+            templatePathStorybook,
+          }),
+        }),
       );
     });
   });
@@ -1113,12 +1115,14 @@ describe('Success cases', () => {
     test('It should return template path for Styled Components (long-hand)', () => {
       const templatePathStyled = 'foo/styled';
       // @ts-ignore
-      expect(parseCliArgs(['--templatePathStyled', templatePathStyled])).toEqual(
+      expect(
+        parseCliArgs(['--templatePathStyled', templatePathStyled]),
+      ).toEqual(
         expect.objectContaining({
           templates: expect.objectContaining({
-            templatePathStyled
-          })
-        })
+            templatePathStyled,
+          }),
+        }),
       );
     });
 
@@ -1128,9 +1132,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['-tpstyled', templatePathStyled])).toEqual(
         expect.objectContaining({
           templates: expect.objectContaining({
-            templatePathStyled
-          })
-        })
+            templatePathStyled,
+          }),
+        }),
       );
     });
   });
@@ -1139,12 +1143,14 @@ describe('Success cases', () => {
     test('It should return template path for graphics (long-hand)', () => {
       const templatePathGraphic = 'foo/graphic';
       // @ts-ignore
-      expect(parseCliArgs(['--templatePathGraphic', templatePathGraphic])).toEqual(
+      expect(
+        parseCliArgs(['--templatePathGraphic', templatePathGraphic]),
+      ).toEqual(
         expect.objectContaining({
           templates: expect.objectContaining({
-            templatePathGraphic
-          })
-        })
+            templatePathGraphic,
+          }),
+        }),
       );
     });
 
@@ -1154,9 +1160,9 @@ describe('Success cases', () => {
       expect(parseCliArgs(['-tpgraphic', templatePathGraphic])).toEqual(
         expect.objectContaining({
           templates: expect.objectContaining({
-            templatePathGraphic
-          })
-        })
+            templatePathGraphic,
+          }),
+        }),
       );
     });
   });
@@ -1166,8 +1172,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--token', 'asdf'])).toEqual(
         expect.objectContaining({
-          token: 'asdf'
-        })
+          token: 'asdf',
+        }),
       );
     });
 
@@ -1175,8 +1181,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-t', 'asdf'])).toEqual(
         expect.objectContaining({
-          token: 'asdf'
-        })
+          token: 'asdf',
+        }),
       );
     });
   });
@@ -1186,8 +1192,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--tokensRelativeImportPrefix', '../../'])).toEqual(
         expect.objectContaining({
-          tokensRelativeImportPrefix: '../../'
-        })
+          tokensRelativeImportPrefix: '../../',
+        }),
       );
     });
 
@@ -1195,8 +1201,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-tip', '../../'])).toEqual(
         expect.objectContaining({
-          tokensRelativeImportPrefix: '../../'
-        })
+          tokensRelativeImportPrefix: '../../',
+        }),
       );
     });
   });
@@ -1206,8 +1212,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--unitlessPrecision', '3'])).toEqual(
         expect.objectContaining({
-          unitlessPrecision: 3
-        })
+          unitlessPrecision: 3,
+        }),
       );
     });
 
@@ -1215,8 +1221,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-up', '4'])).toEqual(
         expect.objectContaining({
-          unitlessPrecision: 4
-        })
+          unitlessPrecision: 4,
+        }),
       );
     });
   });
@@ -1226,8 +1232,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--url', 'abc123'])).toEqual(
         expect.objectContaining({
-          url: 'abc123'
-        })
+          url: 'abc123',
+        }),
       );
     });
 
@@ -1235,8 +1241,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-u', 'abc123'])).toEqual(
         expect.objectContaining({
-          url: 'abc123'
-        })
+          url: 'abc123',
+        }),
       );
     });
   });
@@ -1246,8 +1252,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--usePostscriptFontNames', true])).toEqual(
         expect.objectContaining({
-          usePostscriptFontNames: true
-        })
+          usePostscriptFontNames: true,
+        }),
       );
     });
 
@@ -1255,8 +1261,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-ps', true])).toEqual(
         expect.objectContaining({
-          usePostscriptFontNames: true
-        })
+          usePostscriptFontNames: true,
+        }),
       );
     });
   });
@@ -1266,8 +1272,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--useLiteralFontFamilies', true])).toEqual(
         expect.objectContaining({
-          useLiteralFontFamilies: true
-        })
+          useLiteralFontFamilies: true,
+        }),
       );
     });
 
@@ -1275,8 +1281,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-lff', true])).toEqual(
         expect.objectContaining({
-          useLiteralFontFamilies: true
-        })
+          useLiteralFontFamilies: true,
+        }),
       );
     });
   });
@@ -1286,8 +1292,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['--versionName', 'Version 4.1.0'])).toEqual(
         expect.objectContaining({
-          versionName: 'Version 4.1.0'
-        })
+          versionName: 'Version 4.1.0',
+        }),
       );
     });
 
@@ -1295,8 +1301,8 @@ describe('Success cases', () => {
       // @ts-ignore
       expect(parseCliArgs(['-v', 'Version 4.1.0'])).toEqual(
         expect.objectContaining({
-          versionName: 'Version 4.1.0'
-        })
+          versionName: 'Version 4.1.0',
+        }),
       );
     });
   });
@@ -1319,7 +1325,7 @@ describe('Success cases', () => {
         '--skipStyled',
         '--skipCss',
         '--skipStorybook',
-        '--skipDescription'
+        '--skipDescription',
       ];
 
       // @ts-ignore
@@ -1330,9 +1336,9 @@ describe('Success cases', () => {
             skipDescription: true,
             skipReact: true,
             skipStorybook: true,
-            skipStyled: true
-          })
-        })
+            skipStyled: true,
+          }),
+        }),
       );
     });
   });
@@ -1349,7 +1355,7 @@ describe('Success cases', () => {
         '--templatePathStyled',
         templatePathStyled,
         '--templatePathStorybook',
-        templatePathStorybook
+        templatePathStorybook,
       ];
 
       // @ts-ignore
@@ -1358,9 +1364,9 @@ describe('Success cases', () => {
           templates: expect.objectContaining({
             templatePathReact,
             templatePathStyled,
-            templatePathStorybook
-          })
-        })
+            templatePathStorybook,
+          }),
+        }),
       );
     });
   });

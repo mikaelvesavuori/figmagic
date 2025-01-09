@@ -22,28 +22,32 @@ describe('Success cases', () => {
       { id: '3009:118', name: 'Check' },
       { id: '4724:35631', name: 'Social Icons/socialIconFacebook' },
       { id: '4724:35743', name: 'Social Icons/socialIconTwitter' },
-      { id: '4724:35749', name: 'Social Icons/socialIconYouTube' }
+      { id: '4724:35749', name: 'Social Icons/socialIconYouTube' },
     ]);
   });
 
   test('It should return an empty array if (nested) children are empty', () => {
-    const graphicsPageWithoutChildren = JSON.parse(JSON.stringify(graphicsPage));
-    graphicsPageWithoutChildren.forEach((page: any) => (page.children = undefined));
+    const graphicsPageWithoutChildren = JSON.parse(
+      JSON.stringify(graphicsPage),
+    );
+    graphicsPageWithoutChildren.forEach(
+      (page: any) => (page.children = undefined),
+    );
 
     // @ts-ignore
     expect(getIds(graphicsPageWithoutChildren)).toMatchObject([
       {
         id: '2710:7',
-        name: 'More'
+        name: 'More',
       },
       {
         id: '2710:5',
-        name: 'Close'
+        name: 'Close',
       },
       {
         id: '3009:118',
-        name: 'Check'
-      }
+        name: 'Check',
+      },
     ]);
   });
 });

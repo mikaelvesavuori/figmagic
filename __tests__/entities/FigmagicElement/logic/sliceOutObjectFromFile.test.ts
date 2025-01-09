@@ -18,7 +18,12 @@ describe('Success cases', () => {
   test('It should get file contents from MJS file, and return it as an object', () => {
     const FILE_PATH = 'testdata/tokens/borderWidths.mjs';
     expect(sliceOutObjectFromFile(FILE_PATH)).toEqual(
-      expect.objectContaining({ chunky: '8px', fat: '4px', hairline: '1px', regular: '2px' })
+      expect.objectContaining({
+        chunky: '8px',
+        fat: '4px',
+        hairline: '1px',
+        regular: '2px',
+      }),
     );
   });
 });

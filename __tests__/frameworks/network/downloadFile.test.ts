@@ -1,5 +1,5 @@
-import trash from 'trash';
 import fs from 'fs';
+import trash from 'trash';
 
 import { downloadFile } from '../../../bin/frameworks/network/downloadFile';
 
@@ -15,8 +15,8 @@ describe('Failure cases', () => {
     await expect(
       downloadFile(
         'https://s3-us-west-2.amazonaws.com/figma-alpha-api/img/0882/9cc7/c4731c8d0df07592cd6f7dc0519bb3bb-asdf',
-        '__downloadFile-fail-image__.svg'
-      )
+        '__downloadFile-fail-image__.svg',
+      ),
     ).rejects.toBeNull();
   });
 });
@@ -25,7 +25,7 @@ describe('Success cases', () => {
   test('It should download a file if given valid arguments', async () => {
     await downloadFile(
       'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
-      FILENAME
+      FILENAME,
     ).then(() => {
       const FILE_EXISTS = fs.existsSync(FILENAME);
       expect(FILE_EXISTS).toBeTruthy();

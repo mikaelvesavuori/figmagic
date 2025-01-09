@@ -9,6 +9,8 @@ describe('Failure cases', () => {
 
 describe('Success cases', () => {
   test('It should show new and old values with separating marks', () => {
-    expect(ErrorLoadFile('something')).toMatch('Could not find file: something!');
+    expect(ErrorLoadFile('something')).toMatch(
+      'Could not find file: something!',
+    );
   });
 });

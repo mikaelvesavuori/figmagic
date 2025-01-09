@@ -9,7 +9,9 @@ describe('Failure cases', () => {
   test('It should throw an error if file does not exist', () => {
     const OUTPUT_FOLDER_BASE_FILE = 'testdata';
     const OUTPUT_FILENAME = 'some-file-that-does-not-exist.mp4';
-    expect(() => getDataLocal(OUTPUT_FOLDER_BASE_FILE, OUTPUT_FILENAME)).toThrowError();
+    expect(() =>
+      getDataLocal(OUTPUT_FOLDER_BASE_FILE, OUTPUT_FILENAME),
+    ).toThrowError();
   });
 });
 
@@ -25,12 +27,14 @@ describe('Success cases', () => {
         children: [
           {
             id: '2605:12',
-            name: 'Design Tokens'
-          }
-        ]
-      }
+            name: 'Design Tokens',
+          },
+        ],
+      },
     };
     // @ts-ignore);
-    expect(getDataLocal(OUTPUT_FOLDER_BASE_FILE, OUTPUT_FILENAME)).toMatchObject(DATA);
+    expect(
+      getDataLocal(OUTPUT_FOLDER_BASE_FILE, OUTPUT_FILENAME),
+    ).toMatchObject(DATA);
   });
 });

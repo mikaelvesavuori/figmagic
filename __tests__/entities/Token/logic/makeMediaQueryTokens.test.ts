@@ -2,7 +2,7 @@ import { makeMediaQueryTokens } from '../../../../bin/entities/Token/logic/makeM
 
 import {
   mediaQueriesFrame,
-  mediaQueriesFrameNoAbsoluteBoundingBox
+  mediaQueriesFrameNoAbsoluteBoundingBox,
 } from '../../../../testdata/frames/mediaQueriesFrame';
 
 describe('Success cases', () => {
@@ -40,8 +40,8 @@ describe('Success cases', () => {
         mobileSm: '320px',
         tabletMax: '1024px',
         tabletMin: '768px',
-        wide: '1920px'
-      })
+        wide: '1920px',
+      }),
     );
   });
 });

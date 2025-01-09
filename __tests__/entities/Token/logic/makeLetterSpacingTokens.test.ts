@@ -1,11 +1,11 @@
 import { makeLetterSpacingTokens } from '../../../../bin/entities/Token/logic/makeLetterSpacingTokens';
 
 import {
+  letterSpacingUndefined,
   letterSpacingsFrame,
-  letterSpacingsFrameNoStyle,
   letterSpacingsFrameNoLetterSpacing,
+  letterSpacingsFrameNoStyle,
   mockedLetterSpacingFrame,
-  letterSpacingUndefined
 } from '../../../../testdata/frames/letterSpacingsFrame';
 
 describe('Failure cases', () => {
@@ -41,7 +41,11 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input', () => {
     expect(makeLetterSpacingTokens(letterSpacingsFrame, 'em')).toEqual(
-      expect.objectContaining({ regular: '0em', tight: '-0.045em', wide: '0.05em' })
+      expect.objectContaining({
+        regular: '0em',
+        tight: '-0.045em',
+        wide: '0.05em',
+      }),
     );
   });
 });
@@ -53,8 +57,8 @@ test('It should handle a conversion between px and em units', () => {
     expect.objectContaining({
       style1: '2px',
       style2: '8px',
-      style3: '0.008px'
-    })
+      style3: '0.008px',
+    }),
   );
   // Ask for "em" values: should be a converted value based on the relative font-size
   // @ts-ignore
@@ -62,8 +66,8 @@ test('It should handle a conversion between px and em units', () => {
     expect.objectContaining({
       style1: '0.125em', // 2px out of 16px = 0.125em
       style2: '0.3333em', // 8px out of 24px = 0.33em
-      style3: '0.0005em' // 0.008px out of 16px = 0.0005em
-    })
+      style3: '0.0005em', // 0.008px out of 16px = 0.0005em
+    }),
   );
 });
 
@@ -71,7 +75,7 @@ test('It should return 0 if letterSpacing is undefined', () => {
   // @ts-ignore
   expect(makeLetterSpacingTokens(letterSpacingUndefined, 'em')).toEqual(
     expect.objectContaining({
-      foo: '0em'
-    })
+      foo: '0em',
+    }),
   );
 });

@@ -1,6 +1,9 @@
 import { makeRadiusTokens } from '../../../../bin/entities/Token/logic/makeRadiusTokens';
 
-import { radiiFrame, radiiFrameNoCornerRadius } from '../../../../testdata/frames/radiiFrame';
+import {
+  radiiFrame,
+  radiiFrameNoCornerRadius,
+} from '../../../../testdata/frames/radiiFrame';
 
 describe('Failure cases', () => {
   test('It should throw an error if frame is missing "children" array', () => {
@@ -28,7 +31,12 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should return a complete object when passing in valid input, using "px" values', () => {
     expect(makeRadiusTokens(radiiFrame, 'px', 16)).toEqual(
-      expect.objectContaining({ circle: '100px', hard: '0px', rounded: '4px', soft: '8px' })
+      expect.objectContaining({
+        circle: '100px',
+        hard: '0px',
+        rounded: '4px',
+        soft: '8px',
+      }),
     );
   });
 
@@ -38,14 +46,19 @@ describe('Success cases', () => {
         circle: '6.25rem',
         hard: '0rem',
         rounded: '0.25rem',
-        soft: '0.5rem'
-      })
+        soft: '0.5rem',
+      }),
     );
   });
 
   test('It should return a complete object when passing in valid input, using "em" values', () => {
     expect(makeRadiusTokens(radiiFrame, 'em', 16)).toEqual(
-      expect.objectContaining({ circle: '6.25em', hard: '0em', rounded: '0.25em', soft: '0.5em' })
+      expect.objectContaining({
+        circle: '6.25em',
+        hard: '0em',
+        rounded: '0.25em',
+        soft: '0.5em',
+      }),
     );
   });
 });

@@ -20,7 +20,11 @@ describe('Success cases', () => {
 
   test('It should return a complete, default configuration when passing in valid user config path, but no CLI arguments input', async () => {
     const CLI_ARGS: string[] = [];
-    const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `testdata`, `figmagicrc`);
+    const USER_CONFIG_PATH = path.join(
+      `${process.cwd()}`,
+      `testdata`,
+      `figmagicrc`,
+    );
     const CONFIG = testConfig;
     CONFIG.recompileLocal = false;
     CONFIG.usePostscriptFontNames = false;
@@ -39,9 +43,13 @@ describe('Success cases', () => {
       '--debug',
       '--skipStorybook',
       '-t',
-      process.env.IS_CI ? '***' : 'asdf1234'
+      process.env.IS_CI ? '***' : 'asdf1234',
     ];
-    const USER_CONFIG_PATH = path.join(`${process.cwd()}`, `testdata`, `figmagicrc`);
+    const USER_CONFIG_PATH = path.join(
+      `${process.cwd()}`,
+      `testdata`,
+      `figmagicrc`,
+    );
     const CONFIG = testConfig;
     CONFIG.token = process.env.IS_CI ? '***' : 'asdf1234';
     CONFIG.url = process.env.IS_CI ? '***' : '4fi3f3';

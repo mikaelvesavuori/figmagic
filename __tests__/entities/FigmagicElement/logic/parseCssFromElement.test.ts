@@ -15,8 +15,14 @@ describe('Failure cases', () => {
 describe('Success cases', () => {
   test('It should successfully return an object (MJS), if given valid input', () => {
     expect(
-      // @ts-ignore
-      parseCssFromElement(cssLayoutElement, cssTypographyElement, 16, 'mjs', 'tokens')
+      parseCssFromElement(
+        // @ts-ignore
+        cssLayoutElement,
+        cssTypographyElement,
+        16,
+        'mjs',
+        'tokens',
+      ),
     ).toMatchObject({
       updatedCss: `width: 100%;
 box-sizing: border-box;
@@ -31,15 +37,21 @@ border-width: \${borderWidths['hairline']};
 border-color: rgba(0, 0, 0, 0);
 border-radius: \${radii['soft']};
 `,
-      updatedImports: ['spacing', 'spacing', 'borderWidths', 'radii']
+      updatedImports: ['spacing', 'spacing', 'borderWidths', 'radii'],
     });
   });
 
   // Linear gradient
   test('It should apply linear gradient', () => {
     expect(
-      // @ts-ignore
-      parseCssFromElement(cssLayoutElementGradient, cssTypographyElement, 16, 'mjs', 'tokens')
+      parseCssFromElement(
+        // @ts-ignore
+        cssLayoutElementGradient,
+        cssTypographyElement,
+        16,
+        'mjs',
+        'tokens',
+      ),
     ).toMatchObject({
       updatedCss: `width: 100%;
 box-sizing: border-box;
@@ -56,15 +68,21 @@ border-width: \${borderWidths['hairline']};
 border-color: \${colors['blue2']};
 border-radius: \${radii['soft']};
 `,
-      updatedImports: ['spacing', 'borderWidths', 'colors', 'radii']
+      updatedImports: ['spacing', 'borderWidths', 'colors', 'radii'],
     });
   });
 
   // Shadow
   test('It should apply shadow', () => {
     expect(
-      // @ts-ignore
-      parseCssFromElement(cssLayoutElementShadow, cssTypographyElement, 16, 'mjs', 'tokens')
+      parseCssFromElement(
+        // @ts-ignore
+        cssLayoutElementShadow,
+        cssTypographyElement,
+        16,
+        'mjs',
+        'tokens',
+      ),
     ).toMatchObject({
       updatedCss: `width: 100%;
 box-sizing: border-box;
@@ -82,7 +100,15 @@ border-color: \${colors['black']};
 border-radius: \${radii['rounded']};
 box-shadow: \${shadows['deep']};
 `,
-      updatedImports: ['spacing', 'spacing', 'colors', 'borderWidths', 'colors', 'radii', 'shadows']
+      updatedImports: [
+        'spacing',
+        'spacing',
+        'colors',
+        'borderWidths',
+        'colors',
+        'radii',
+        'shadows',
+      ],
     });
   });
 });

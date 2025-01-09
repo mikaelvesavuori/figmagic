@@ -1,34 +1,38 @@
 import { getFileContentAndPath } from '../../../bin/frameworks/filesystem/getFileContentAndPath';
 
 import {
-  getFileContentAndPathOperationToken,
-  getFileContentAndPathOperationComponent,
-  getFileContentAndPathOperationStyle,
-  getFileContentAndPathOperationCss,
-  getFileContentAndPathOperationStory,
-  getFileContentAndPathOperationDescription,
+  expectedCss,
   expectedEnum,
+  expectedScss,
   expectedStandard,
   expectedTs,
-  expectedCss,
-  expectedScss
+  getFileContentAndPathOperationComponent,
+  getFileContentAndPathOperationCss,
+  getFileContentAndPathOperationDescription,
+  getFileContentAndPathOperationStory,
+  getFileContentAndPathOperationStyle,
+  getFileContentAndPathOperationToken,
 } from '../../../testdata/getFileContentAndPathOperation';
 
 import {
   ErrorGetFileContentAndPath,
   ErrorGetFileContentAndPathMissingFields,
-  ErrorGetFileContentAndPathNoReturn
+  ErrorGetFileContentAndPathNoReturn,
 } from '../../../bin/frameworks/errors/errors';
 
 describe('Failure cases', () => {
   test('It should throw an error if running without arguments', () => {
     // @ts-ignore
-    expect(() => getFileContentAndPath()).toThrowError(ErrorGetFileContentAndPath);
+    expect(() => getFileContentAndPath()).toThrowError(
+      ErrorGetFileContentAndPath,
+    );
   });
 
   test('It should throw an error if missing any fields', () => {
     // @ts-ignore
-    expect(() => getFileContentAndPath({})).toThrowError(ErrorGetFileContentAndPathMissingFields);
+    expect(() => getFileContentAndPath({})).toThrowError(
+      ErrorGetFileContentAndPathMissingFields,
+    );
   });
 
   test('It should throw an error if it cannot resolve a valid type', () => {
@@ -38,12 +42,12 @@ describe('Failure cases', () => {
       path: 1,
       name: 1,
       format: 1,
-      element: 1
+      element: 1,
     };
 
     expect(() =>
       // @ts-ignore
-      getFileContentAndPath(invalidContentType)
+      getFileContentAndPath(invalidContentType),
     ).toThrowError(ErrorGetFileContentAndPathNoReturn);
   });
 });
@@ -53,20 +57,23 @@ describe('Success cases', () => {
     test('It should return valid data for MJS', () => {
       expect(
         // @ts-ignore
-        getFileContentAndPath(getFileContentAndPathOperationToken)
+        getFileContentAndPath(getFileContentAndPathOperationToken),
       ).toMatchObject({
         fileContent: expectedStandard,
-        filePath: 'tokens/colors.mjs'
+        filePath: 'tokens/colors.mjs',
       });
     });
 
     test('It should return valid data for TS', () => {
       expect(
         // @ts-ignore
-        getFileContentAndPath({ ...getFileContentAndPathOperationToken, format: 'ts' })
+        getFileContentAndPath({
+          ...getFileContentAndPathOperationToken,
+          format: 'ts',
+        }),
       ).toMatchObject({
         fileContent: expectedTs,
-        filePath: 'tokens/colors.ts'
+        filePath: 'tokens/colors.ts',
       });
     });
 
@@ -74,36 +81,42 @@ describe('Success cases', () => {
       const data = {
         ...getFileContentAndPathOperationToken,
         metadata: {
-          dataType: 'enum'
-        }
+          dataType: 'enum',
+        },
       };
 
       expect(
         // @ts-ignore
-        getFileContentAndPath(data)
+        getFileContentAndPath(data),
       ).toMatchObject({
         fileContent: expectedEnum,
-        filePath: 'tokens/colors'
+        filePath: 'tokens/colors',
       });
     });
 
     test('It should return valid data for CSS variables', () => {
       expect(
         // @ts-ignore
-        getFileContentAndPath({ ...getFileContentAndPathOperationToken, format: 'css' })
+        getFileContentAndPath({
+          ...getFileContentAndPathOperationToken,
+          format: 'css',
+        }),
       ).toMatchObject({
         fileContent: expectedCss,
-        filePath: 'tokens/colors.css'
+        filePath: 'tokens/colors.css',
       });
     });
 
     test('It should return valid data for SCSS variables', () => {
       expect(
         // @ts-ignore
-        getFileContentAndPath({ ...getFileContentAndPathOperationToken, format: 'scss' })
+        getFileContentAndPath({
+          ...getFileContentAndPathOperationToken,
+          format: 'scss',
+        }),
       ).toMatchObject({
         fileContent: expectedScss,
-        filePath: 'tokens/_colors.scss'
+        filePath: 'tokens/_colors.scss',
       });
     });
   });
@@ -124,10 +137,10 @@ export default colors;`;
 
       expect(
         // @ts-ignore
-        getFileContentAndPath(getFileContentAndPathOperationComponent)
+        getFileContentAndPath(getFileContentAndPathOperationComponent),
       ).toMatchObject({
         fileContent: fileContent,
-        filePath: 'tokens/colors.mjs'
+        filePath: 'tokens/colors.mjs',
       });
     });
   });
@@ -147,10 +160,10 @@ export default ColorsStyled;`;
 
       expect(
         // @ts-ignore
-        getFileContentAndPath(getFileContentAndPathOperationStyle)
+        getFileContentAndPath(getFileContentAndPathOperationStyle),
       ).toMatchObject({
         fileContent: fileContent,
-        filePath: 'tokens/colorsStyled.mjs'
+        filePath: 'tokens/colorsStyled.mjs',
       });
     });
   });
@@ -165,10 +178,10 @@ export default colorsCss;`;
 
       expect(
         // @ts-ignore
-        getFileContentAndPath(getFileContentAndPathOperationCss)
+        getFileContentAndPath(getFileContentAndPathOperationCss),
       ).toMatchObject({
         fileContent: fileContent,
-        filePath: 'tokens/colorsCss.mjs'
+        filePath: 'tokens/colorsCss.mjs',
       });
     });
   });
@@ -186,10 +199,10 @@ export const colorsRegular = () => <colors>text</colors>;`;
 
       expect(
         // @ts-ignore
-        getFileContentAndPath(getFileContentAndPathOperationStory)
+        getFileContentAndPath(getFileContentAndPathOperationStory),
       ).toMatchObject({
         fileContent: fileContent,
-        filePath: 'tokens/colors.stories.js'
+        filePath: 'tokens/colors.stories.js',
       });
     });
   });
@@ -201,10 +214,10 @@ export const colorsRegular = () => <colors>text</colors>;`;
 
       expect(
         // @ts-ignore
-        getFileContentAndPath(getFileContentAndPathOperationDescription)
+        getFileContentAndPath(getFileContentAndPathOperationDescription),
       ).toMatchObject({
         fileContent: fileContent,
-        filePath: 'tokens/colors.description.mjs'
+        filePath: 'tokens/colors.description.mjs',
       });
     });
   });

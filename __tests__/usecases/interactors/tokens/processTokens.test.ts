@@ -1,25 +1,25 @@
 import { processTokens } from '../../../../bin/usecases/interactors/tokens/processTokens';
 
 import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
+import { borderWidthsFrame } from '../../../../testdata/frames/borderWidthsFrame';
 import { colorFrame } from '../../../../testdata/frames/colorFrame';
-import { spacingFrame } from '../../../../testdata/frames/spacingFrame';
+import { delayFrame } from '../../../../testdata/frames/delaysFrame';
+import { durationsFrame } from '../../../../testdata/frames/durationsFrame';
+import { easingFrame } from '../../../../testdata/frames/easingFrame';
 import { fontFrame } from '../../../../testdata/frames/fontFrame';
 import { fontSizeFrame } from '../../../../testdata/frames/fontSizeFrame';
 import { fontWeightFrame } from '../../../../testdata/frames/fontWeightFrame';
-import { lineHeightFrame } from '../../../../testdata/frames/lineHeightFrame';
-import { borderWidthsFrame } from '../../../../testdata/frames/borderWidthsFrame';
 import { letterSpacingsFrame } from '../../../../testdata/frames/letterSpacingsFrame';
+import { lineHeightFrame } from '../../../../testdata/frames/lineHeightFrame';
 import { mediaQueriesFrame } from '../../../../testdata/frames/mediaQueriesFrame';
 import { opacitiesFrame } from '../../../../testdata/frames/opacitiesFrame';
 import { radiiFrame } from '../../../../testdata/frames/radiiFrame';
 import { shadowsFrame } from '../../../../testdata/frames/shadowsFrame';
+import { spacingFrame } from '../../../../testdata/frames/spacingFrame';
 import {
   zIndicesFrame,
-  zIndicesFrameWithIgnoreKeyword
+  zIndicesFrameWithIgnoreKeyword,
 } from '../../../../testdata/frames/zIndicesFrame';
-import { durationsFrame } from '../../../../testdata/frames/durationsFrame';
-import { delayFrame } from '../../../../testdata/frames/delaysFrame';
-import { easingFrame } from '../../../../testdata/frames/easingFrame';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
@@ -52,7 +52,7 @@ describe('Success cases', () => {
             orange: 'rgba(242, 153, 74, 1)',
             red: 'rgba(235, 87, 87, 1)',
             white: 'rgba(255, 255, 255, 1)',
-            yellow: 'rgba(242, 201, 76, 1)'
+            yellow: 'rgba(242, 201, 76, 1)',
           },
           format: 'ts',
           name: 'colors',
@@ -64,10 +64,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -81,7 +81,7 @@ describe('Success cases', () => {
             large: '4rem',
             medium: '2rem',
             small: '1rem',
-            tiny: '0.5rem'
+            tiny: '0.5rem',
           },
           format: 'ts',
           name: 'spacing',
@@ -93,10 +93,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -107,7 +107,7 @@ describe('Success cases', () => {
           file: {
             light: 'Helvetica Neue',
             medium: 'Helvetica Neue',
-            regular: 'Helvetica Neue'
+            regular: 'Helvetica Neue',
           },
           format: 'ts',
           name: 'fontFamilies',
@@ -119,10 +119,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -138,7 +138,7 @@ describe('Success cases', () => {
             h5: '1.25rem',
             h6: '1.125rem',
             paragraph: '1rem',
-            sub: '0.75rem'
+            sub: '0.75rem',
           },
           format: 'ts',
           name: 'fontSizes',
@@ -150,10 +150,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -172,10 +172,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -194,10 +194,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -216,10 +216,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -238,10 +238,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -260,10 +260,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -280,7 +280,7 @@ describe('Success cases', () => {
             mobileSm: '320px',
             tabletMax: '1024px',
             tabletMin: '768px',
-            wide: '1920px'
+            wide: '1920px',
           },
           format: 'ts',
           name: 'mediaQueries',
@@ -292,10 +292,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -314,10 +314,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -327,9 +327,10 @@ describe('Success cases', () => {
         {
           file: {
             deep: '3px 3px 3px rgba(196, 196, 196, 0.75)',
-            deepMulti: '0px 4px 4px rgba(0, 0, 0, 0.17), 0px 4px 20px rgba(0, 0, 0, 0.1)',
+            deepMulti:
+              '0px 4px 4px rgba(0, 0, 0, 0.17), 0px 4px 20px rgba(0, 0, 0, 0.1)',
             medium: '0px 0px 5px rgba(0, 0, 0, 0.5)',
-            soft: '0px 0px 5px rgba(196, 196, 196, 1)'
+            soft: '0px 0px 5px rgba(196, 196, 196, 1)',
           },
           format: 'ts',
           name: 'shadows',
@@ -339,12 +340,12 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
+            styled: false,
           },
           path: 'tokens',
-          type: 'token'
-        }
-      ])
+          type: 'token',
+        },
+      ]),
     );
   });
 
@@ -363,10 +364,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -385,10 +386,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -396,7 +397,12 @@ describe('Success cases', () => {
     expect(processTokens([durationsFrame], baseConfig)).toEqual(
       expect.arrayContaining([
         {
-          file: { long: '0.6s', medium: '0.25s', short: '0.15s', veryLong: '1s' },
+          file: {
+            long: '0.6s',
+            medium: '0.25s',
+            short: '0.15s',
+            veryLong: '1s',
+          },
           format: 'ts',
           name: 'durations',
           path: 'tokens',
@@ -407,10 +413,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -429,10 +435,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 
@@ -443,7 +449,7 @@ describe('Success cases', () => {
           file: {
             easeIn: 'cubic-bezier(0.50, 0, 1, 1)',
             easeInout: 'cubic-bezier(0.45, 0, 0.40, 1)',
-            easeOut: 'cubic-bezier(0, 0, 0.40, 1)'
+            easeOut: 'cubic-bezier(0, 0, 0.40, 1)',
           },
           format: 'ts',
           name: 'easings',
@@ -455,10 +461,10 @@ describe('Success cases', () => {
             graphic: false,
             react: false,
             storybook: false,
-            styled: false
-          }
-        }
-      ])
+            styled: false,
+          },
+        },
+      ]),
     );
   });
 });

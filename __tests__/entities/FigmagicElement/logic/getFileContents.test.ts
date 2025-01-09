@@ -22,7 +22,12 @@ describe('Success cases', () => {
     const FILE_NAME = 'borderWidths';
     const FORMAT = 'mjs';
     expect(getFileContents(FILE_PATH, FILE_NAME, FORMAT)).toEqual(
-      expect.objectContaining({ chunky: '8px', fat: '4px', hairline: '1px', regular: '2px' })
+      expect.objectContaining({
+        chunky: '8px',
+        fat: '4px',
+        hairline: '1px',
+        regular: '2px',
+      }),
     );
   });
 });

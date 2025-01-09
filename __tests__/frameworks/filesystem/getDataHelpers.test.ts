@@ -1,8 +1,8 @@
 import {
   getElement,
-  getText,
   getExtraProps,
-  getImports
+  getImports,
+  getText,
 } from '../../../bin/frameworks/filesystem/getDataHelpers';
 
 describe('Success cases', () => {

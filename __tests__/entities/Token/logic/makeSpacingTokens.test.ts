@@ -1,6 +1,9 @@
 import { makeSpacingTokens } from '../../../../bin/entities/Token/logic/makeSpacingTokens';
 
-import { spacingFrame, spacingFrameNoName } from '../../../../testdata/frames/spacingFrame';
+import {
+  spacingFrame,
+  spacingFrameNoName,
+} from '../../../../testdata/frames/spacingFrame';
 
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
@@ -34,8 +37,8 @@ describe('Success cases', () => {
         large: '4rem',
         medium: '2rem',
         small: '1rem',
-        tiny: '0.5rem'
-      })
+        tiny: '0.5rem',
+      }),
     );
   });
 
@@ -47,8 +50,8 @@ describe('Success cases', () => {
         large: '4em',
         medium: '2em',
         small: '1em',
-        tiny: '0.5em'
-      })
+        tiny: '0.5em',
+      }),
     );
   });
 
@@ -60,8 +63,8 @@ describe('Success cases', () => {
         large: '64px',
         medium: '32px',
         small: '16px',
-        tiny: '8px'
-      })
+        tiny: '8px',
+      }),
     );
   });
 });

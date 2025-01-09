@@ -13,14 +13,14 @@ describe('Success cases', () => {
   test('It should return the document ID substring if a full URL is provided', () => {
     expect(
       getFigmaDocumentId(
-        'https://www.figma.com/file/lkf32lkncowicdschjlkskhclsjskdh/SomeFileName-€#JH'
-      )
+        'https://www.figma.com/file/lkf32lkncowicdschjlkskhclsjskdh/SomeFileName-€#JH',
+      ),
     ).toBe('lkf32lkncowicdschjlkskhclsjskdh');
   });
 
   test('It should return the string as-is if it does not begin with "https://www.figma.com/file/"', () => {
     expect(getFigmaDocumentId('lkf32lkncowicdschjlkskhclsjskdh')).toBe(
-      'lkf32lkncowicdschjlkskhclsjskdh'
+      'lkf32lkncowicdschjlkskhclsjskdh',
     );
   });
 });

@@ -8,8 +8,12 @@ import { graphicsPage } from '../../../../testdata/graphicsPage';
 
 loadEnv();
 
-const FIGMA_TOKEN = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_TOKEN;
-const FIGMA_URL = process.env.IS_MOCK_ENABLED ? 'mocked' : process.env.FIGMA_URL;
+const FIGMA_TOKEN = process.env.IS_MOCK_ENABLED
+  ? 'mocked'
+  : process.env.FIGMA_TOKEN;
+const FIGMA_URL = process.env.IS_MOCK_ENABLED
+  ? 'mocked'
+  : process.env.FIGMA_URL;
 
 // Re-ordered success and failure cases because the "normal" order will leak variables or something, causing tests to fail
 
@@ -25,8 +29,8 @@ describe('Success cases', () => {
         outputFormatGraphics: 'svg',
         outputScaleGraphics: 1,
         token: FIGMA_TOKEN,
-        url: FIGMA_URL
-      } as Config)
+        url: FIGMA_URL,
+      } as Config),
     ).resolves.toEqual(expect.objectContaining({}));
   });
 });
@@ -52,8 +56,8 @@ describe('Failure cases', () => {
         outputFormatGraphics: 'svg',
         outputScaleGraphics: 1,
         token: null,
-        url: FIGMA_URL
-      } as Config)
+        url: FIGMA_URL,
+      } as Config),
     ).rejects.toThrow();
   });
 
@@ -73,8 +77,8 @@ describe('Failure cases', () => {
         outputFormatGraphics: 'svg',
         outputScaleGraphics: 1,
         token: FIGMA_TOKEN,
-        url: FIGMA_URL
-      } as Config)
+        url: FIGMA_URL,
+      } as Config),
     ).rejects.toThrow();
   });
 });

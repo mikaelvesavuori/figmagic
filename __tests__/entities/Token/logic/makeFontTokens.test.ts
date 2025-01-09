@@ -3,7 +3,7 @@ import { makeFontTokens } from '../../../../bin/entities/Token/logic/makeFontTok
 import {
   fontFrame,
   fontFrameInvalid,
-  literalFontFamilyFrame
+  literalFontFamilyFrame,
 } from '../../../../testdata/frames/fontFrame';
 
 describe('Failure cases', () => {
@@ -29,21 +29,29 @@ describe('Failure cases', () => {
   });
 
   test('It should choose Postscript name if passing in true for "usePostscriptFontNames"', () => {
-    expect(makeFontTokens(fontFrame, true)).toEqual(expect.objectContaining({}));
+    expect(makeFontTokens(fontFrame, true)).toEqual(
+      expect.objectContaining({}),
+    );
   });
 
   test('It should choose Font Family name if passing in false for "usePostscriptFontNames"', () => {
-    expect(makeFontTokens(fontFrame, false)).toEqual(expect.objectContaining({}));
+    expect(makeFontTokens(fontFrame, false)).toEqual(
+      expect.objectContaining({}),
+    );
   });
 
   test('It should choose Font Family characters if passing in true for "useLiteralFontFamilies"', () => {
-    const fontFamilies = makeFontTokens(literalFontFamilyFrame, undefined, true);
+    const fontFamilies = makeFontTokens(
+      literalFontFamilyFrame,
+      undefined,
+      true,
+    );
     expect(fontFamilies).toEqual(
       expect.objectContaining({
         familySans: 'Roboto, BlinkMacSystemFont, Helvetica, Arial, sans-serif',
         familySerif: 'Georgia, Times, Times New Roman, serif',
-        familyCode: "'Roboto Mono', Menlo, Courier, mc"
-      })
+        familyCode: "'Roboto Mono', Menlo, Courier, mc",
+      }),
     );
   });
 
@@ -61,8 +69,8 @@ describe('Success cases', () => {
       expect.objectContaining({
         light: 'Helvetica Neue',
         medium: 'Helvetica Neue',
-        regular: 'Helvetica Neue'
-      })
+        regular: 'Helvetica Neue',
+      }),
     );
   });
 });

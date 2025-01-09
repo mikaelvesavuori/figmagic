@@ -28,9 +28,11 @@ describe('Success cases', () => {
       'fontSizes',
       'fontFamilies',
       'fontWeights',
-      'lineHeights'
+      'lineHeights',
     ];
-    expect(createImportStringFromList(imports)).toBe(`import spacing from 'tokens/spacing';
+    expect(
+      createImportStringFromList(imports),
+    ).toBe(`import spacing from 'tokens/spacing';
 import colors from 'tokens/colors';
 import borderWidths from 'tokens/borderWidths';
 import radii from 'tokens/radii';
@@ -45,14 +47,16 @@ import lineHeights from 'tokens/lineHeights';
   test('It should correctly handle a custom value for "outputFolderTokens"', () => {
     expect(createImportStringFromList(['spacing'], 'src/tokens')).toBe(
       `import spacing from 'src/tokens/spacing';
-`
+`,
     );
   });
 
   test('It should correctly handle a custom value for "outputFolderTokens" and "tokensRelativeImportPrefix"', () => {
-    expect(createImportStringFromList(['spacing'], 'src/tokens', '../../')).toBe(
+    expect(
+      createImportStringFromList(['spacing'], 'src/tokens', '../../'),
+    ).toBe(
       `import spacing from '../../src/tokens/spacing';
-`
+`,
     );
   });
 });

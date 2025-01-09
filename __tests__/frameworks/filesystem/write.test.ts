@@ -1,5 +1,5 @@
-import trash from 'trash';
 import fs from 'fs';
+import trash from 'trash';
 
 import { write } from '../../../bin/frameworks/filesystem/write';
 

@@ -13,12 +13,14 @@ describe('Success cases', () => {
   describe('No camelization', () => {
     test('It should remove characters that are not letters, numbers, dashes, and underscores', () => {
       expect(sanitizeString('$my-design-system-error500-001', false)).toBe(
-        'my-design-system-error500-001'
+        'my-design-system-error500-001',
       );
     });
 
     test('It should remove special characters', () => {
-      expect(sanitizeString('@|[]§ª√¸˛ﬁª¸√üƒ¸@£[≈£|]§≈@§£\\//lakjhs', false)).toBe('lakjhs');
+      expect(
+        sanitizeString('@|[]§ª√¸˛ﬁª¸√üƒ¸@£[≈£|]§≈@§£\\//lakjhs', false),
+      ).toBe('lakjhs');
     });
 
     test('It should work with numbers', () => {

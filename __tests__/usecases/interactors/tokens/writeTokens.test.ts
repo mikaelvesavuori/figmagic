@@ -1,5 +1,5 @@
-import trash from 'trash';
 import fs from 'fs';
+import trash from 'trash';
 
 import { baseConfig } from '../../../../bin/entities/Config/baseConfig';
 
@@ -47,12 +47,12 @@ describe('Success cases', () => {
           gray2: 'rgba(130, 130, 130, 1)',
           gray1: 'rgba(79, 79, 79, 1)',
           white: 'rgba(255, 255, 255, 1)',
-          black: 'rgba(51, 51, 51, 1)'
+          black: 'rgba(51, 51, 51, 1)',
         },
         path: TEMP_FOLDER_MJS,
         name: TEMP_FILE,
-        format: 'mjs'
-      }
+        format: 'mjs',
+      },
     ];
 
     writeTokens(TOKENS);
@@ -85,12 +85,12 @@ describe('Success cases', () => {
           gray2: 'rgba(130, 130, 130, 1)',
           gray1: 'rgba(79, 79, 79, 1)',
           white: 'rgba(255, 255, 255, 1)',
-          black: 'rgba(51, 51, 51, 1)'
+          black: 'rgba(51, 51, 51, 1)',
         },
         path: TEMP_FOLDER_JS,
         name: TEMP_FILE,
-        format: 'js'
-      }
+        format: 'js',
+      },
     ];
 
     writeTokens(TOKENS);

@@ -8,7 +8,9 @@ import { ErrorCreateMissingFoldersFromPath } from '../../../bin/frameworks/error
 describe('Failure cases', () => {
   test('It should throw an error if no argument is provided', () => {
     // @ts-ignore
-    expect(() => createMissingFoldersFromPath()).toThrowError(ErrorCreateMissingFoldersFromPath);
+    expect(() => createMissingFoldersFromPath()).toThrowError(
+      ErrorCreateMissingFoldersFromPath,
+    );
   });
 });
 

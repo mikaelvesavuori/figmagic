@@ -1,10 +1,10 @@
-import trash from 'trash';
 import fs from 'fs';
+import trash from 'trash';
 
 import { createTokens } from '../../bin/usecases/createTokens';
 
-import { testConfig } from '../../testdata/testConfig';
 import figmaTestResponse from '../../testdata/figma.json';
+import { testConfig } from '../../testdata/testConfig';
 
 // Re-ordered these (success & failure) because they somehow seem to keep variable names in memory, causing test failures
 
@@ -34,7 +34,7 @@ describe('Failure cases', () => {
     CONFIG.outputFolderTokens = '__test-tokens-fail__';
     await expect(
       // @ts-ignore
-      createTokens(CONFIG, DATA)
+      createTokens(CONFIG, DATA),
     ).rejects.toThrowError();
     await trash(CONFIG.outputFolderTokens);
   });

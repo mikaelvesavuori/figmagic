@@ -2,10 +2,10 @@ import { makeColorTokens } from '../../../../bin/entities/Token/logic/makeColorT
 
 import {
   colorFrame,
+  colorFrameDeepNestedThemes,
   colorFrameOpacity,
   colorFrameThemes,
   colorFrameThemesAndColors,
-  colorFrameDeepNestedThemes
 } from '../../../../testdata/frames/colorFrame';
 
 describe('Failure cases', () => {
@@ -44,8 +44,8 @@ describe('Success cases', () => {
         orange: 'rgba(242, 153, 74, 1)',
         red: 'rgba(235, 87, 87, 1)',
         white: 'rgba(255, 255, 255, 1)',
-        yellow: 'rgba(242, 201, 76, 1)'
-      })
+        yellow: 'rgba(242, 201, 76, 1)',
+      }),
     );
   });
 
@@ -68,8 +68,8 @@ describe('Success cases', () => {
         orange: 'rgba(242, 153, 74, 1)',
         red: 'rgba(235, 87, 87, 1)',
         white: 'rgba(255, 255, 255, 1)',
-        yellow: 'rgba(242, 201, 76, 1)'
-      })
+        yellow: 'rgba(242, 201, 76, 1)',
+      }),
     );
   });
 
@@ -92,8 +92,8 @@ describe('Success cases', () => {
         orange: '#f2994aff',
         red: '#eb5757ff',
         white: '#ffffffff',
-        yellow: '#f2c94cff'
-      })
+        yellow: '#f2c94cff',
+      }),
     );
   });
 
@@ -116,8 +116,8 @@ describe('Success cases', () => {
         orange: '#f2994aff',
         red: '#eb5757ff',
         white: '#ffffffff',
-        yellow: '#f2c94cff'
-      })
+        yellow: '#f2c94cff',
+      }),
     );
   });
 
@@ -142,7 +142,7 @@ describe('Success cases', () => {
             primaryBackground:
               'linear-gradient(90deg, rgba(66, 208, 254, 0.95) 9%, rgba(86, 204, 242, 0.02) 94%)',
             success: 'rgba(68, 239, 141, 1)',
-            successText: 'rgba(110, 220, 156, 1)'
+            successText: 'rgba(110, 220, 156, 1)',
           },
           lightTheme: {
             fullShade: 'rgba(51, 51, 51, 1)',
@@ -161,9 +161,9 @@ describe('Success cases', () => {
             primaryBackground:
               'linear-gradient(90deg, rgba(63, 163, 195, 0.95) 9%, rgba(86, 204, 242, 0.02) 94%)',
             success: 'rgba(33, 150, 83, 1)',
-            successText: 'rgba(39, 174, 96, 1)'
-          }
-        })
+            successText: 'rgba(39, 174, 96, 1)',
+          },
+        }),
       );
     });
     test('It should return allow a mix of a collection of objects and colors when there are nested Frames mixed with Colors', () => {
@@ -203,7 +203,7 @@ describe('Success cases', () => {
             primaryBackground:
               'linear-gradient(90deg, rgba(66, 208, 254, 0.95) 9%, rgba(86, 204, 242, 0.02) 94%)',
             success: 'rgba(68, 239, 141, 1)',
-            successText: 'rgba(110, 220, 156, 1)'
+            successText: 'rgba(110, 220, 156, 1)',
           },
           lightTheme: {
             fullShade: 'rgba(51, 51, 51, 1)',
@@ -222,9 +222,9 @@ describe('Success cases', () => {
             primaryBackground:
               'linear-gradient(90deg, rgba(63, 163, 195, 0.95) 9%, rgba(86, 204, 242, 0.02) 94%)',
             success: 'rgba(33, 150, 83, 1)',
-            successText: 'rgba(39, 174, 96, 1)'
-          }
-        })
+            successText: 'rgba(39, 174, 96, 1)',
+          },
+        }),
       );
     });
     test('It ignore deep nested Frames', () => {
@@ -232,13 +232,13 @@ describe('Success cases', () => {
         expect.objectContaining({
           darkTheme: {
             success: 'rgba(68, 239, 141, 1)',
-            successText: 'rgba(110, 220, 156, 1)'
+            successText: 'rgba(110, 220, 156, 1)',
           },
           lightTheme: {
             success: 'rgba(33, 150, 83, 1)',
-            successText: 'rgba(39, 174, 96, 1)'
-          }
-        })
+            successText: 'rgba(39, 174, 96, 1)',
+          },
+        }),
       );
     });
   });

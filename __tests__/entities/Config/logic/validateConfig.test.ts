@@ -23,9 +23,9 @@ import {
   ErrorValidateConfigTemplatePathReact,
   ErrorValidateConfigTemplatePathStorybook,
   ErrorValidateConfigTemplatePathStyled,
+  ErrorValidateDurationUnit,
   ErrorValidateRadiusUnit,
   ErrorValidateShadowUnit,
-  ErrorValidateDurationUnit
 } from '../../../../bin/frameworks/errors/errors';
 
 describe('Success cases', () => {
@@ -46,7 +46,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.fontUnit = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigFontUnit);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigFontUnit,
+    );
   });
 
   test('It should invalidate a configuration when given invalid border width unit', () => {
@@ -54,7 +56,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.borderWidthUnit = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateBorderWidthUnit);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateBorderWidthUnit,
+    );
   });
 
   test('It should invalidate a configuration when given invalid radius unit', () => {
@@ -62,7 +66,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.radiusUnit = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateRadiusUnit);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateRadiusUnit,
+    );
   });
 
   test('It should invalidate a configuration when given invalid shadow unit', () => {
@@ -70,7 +76,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.shadowUnit = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateShadowUnit);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateShadowUnit,
+    );
   });
 
   test('It should invalidate a configuration when given invalid duration unit', () => {
@@ -78,7 +86,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.durationUnit = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateDurationUnit);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateDurationUnit,
+    );
   });
 
   test('It should invalidate a configuration when given invalid letter spacing unit', () => {
@@ -86,7 +96,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.letterSpacingUnit = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigLetterSpacingUnit);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigLetterSpacingUnit,
+    );
   });
 
   test('It should invalidate a configuration when given invalid line height unit', () => {
@@ -94,7 +106,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.lineHeightUnit = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigLineHeightUnit);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigLineHeightUnit,
+    );
   });
 
   test('It should invalidate a configuration when given invalid opacity unit', () => {
@@ -102,7 +116,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.opacitiesUnit = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigOpacitiesUnit);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigOpacitiesUnit,
+    );
   });
 
   test('It should invalidate a configuration when given no figma data name', () => {
@@ -111,7 +127,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.figmaData = null;
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigFileName);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigFileName,
+    );
   });
 
   test('It should invalidate a configuration when given no Figmagic folder name', () => {
@@ -120,7 +138,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.figmagicFolder = null;
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigFolderName);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigFolderName,
+    );
   });
 
   test('It should invalidate a configuration when given invalid output format for colors', () => {
@@ -128,7 +148,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.outputFormatColors = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigOutputFormatColors);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigOutputFormatColors,
+    );
   });
 
   test('It should invalidate a configuration when given invalid output format for CSS', () => {
@@ -136,7 +158,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.outputFormatCss = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigOutputFormatCss);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigOutputFormatCss,
+    );
   });
 
   test('It should invalidate a configuration when given invalid output format for elements', () => {
@@ -144,7 +168,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.outputFormatElements = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigOutputFormatElements);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigOutputFormatElements,
+    );
   });
 
   test('It should invalidate a configuration when given invalid output format for graphics', () => {
@@ -152,7 +178,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.outputFormatGraphics = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigOutputFormatGraphics);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigOutputFormatGraphics,
+    );
   });
 
   test('It should invalidate a configuration when given invalid output format for Storybook', () => {
@@ -161,7 +189,7 @@ describe('Failure cases', () => {
 
     // @ts-ignore
     expect(() => validateConfig(TEST_CONFIG)).toThrowError(
-      ErrorValidateConfigOutputFormatStorybook
+      ErrorValidateConfigOutputFormatStorybook,
     );
   });
 
@@ -170,7 +198,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.outputFormatTokens = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigOutputFormatTokens);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigOutputFormatTokens,
+    );
   });
 
   test('It should invalidate a configuration when given invalid output scale for graphics', () => {
@@ -178,7 +208,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.outputScaleGraphics = 0;
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigOutputScaleGraphics);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigOutputScaleGraphics,
+    );
   });
 
   test('It should invalidate a configuration when given invalid output data type for tokens', () => {
@@ -187,7 +219,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.outputDataTypeToken = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigOutputDataTypeToken);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigOutputDataTypeToken,
+    );
   });
 
   test('It should invalidate a configuration when given invalid spacing unit', () => {
@@ -195,7 +229,9 @@ describe('Failure cases', () => {
     TEST_CONFIG.spacingUnit = 'xxxxx';
 
     // @ts-ignore
-    expect(() => validateConfig(TEST_CONFIG)).toThrowError(ErrorValidateConfigSpacingUnit);
+    expect(() => validateConfig(TEST_CONFIG)).toThrowError(
+      ErrorValidateConfigSpacingUnit,
+    );
   });
 
   test('It should invalidate a configuration when given no template path for React', () => {
@@ -205,12 +241,12 @@ describe('Failure cases', () => {
       templatePathGraphic: 'something',
       templatePathReact: '',
       templatePathStorybook: 'something',
-      templatePathStyled: 'something'
+      templatePathStyled: 'something',
     };
 
     // @ts-ignore
     expect(() => validateConfig(testConfigReact)).toThrowError(
-      ErrorValidateConfigTemplatePathReact
+      ErrorValidateConfigTemplatePathReact,
     );
   });
 
@@ -221,12 +257,12 @@ describe('Failure cases', () => {
       templatePathGraphic: 'something',
       templatePathReact: 'something',
       templatePathStorybook: '',
-      templatePathStyled: 'something'
+      templatePathStyled: 'something',
     };
 
     // @ts-ignore
     expect(() => validateConfig(testConfigStorybook)).toThrowError(
-      ErrorValidateConfigTemplatePathStorybook
+      ErrorValidateConfigTemplatePathStorybook,
     );
   });
 
@@ -237,12 +273,12 @@ describe('Failure cases', () => {
       templatePathGraphic: 'something',
       templatePathReact: 'something',
       templatePathStorybook: 'something',
-      templatePathStyled: ''
+      templatePathStyled: '',
     };
 
     // @ts-ignore
     expect(() => validateConfig(testConfigStyled)).toThrowError(
-      ErrorValidateConfigTemplatePathStyled
+      ErrorValidateConfigTemplatePathStyled,
     );
   });
 
@@ -253,12 +289,12 @@ describe('Failure cases', () => {
       templatePathGraphic: '',
       templatePathReact: 'something',
       templatePathStorybook: 'something',
-      templatePathStyled: 'something'
+      templatePathStyled: 'something',
     };
 
     // @ts-ignore
     expect(() => validateConfig(testConfigGraphics)).toThrowError(
-      ErrorValidateConfigTemplatePathGraphic
+      ErrorValidateConfigTemplatePathGraphic,
     );
   });
 });
