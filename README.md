@@ -97,7 +97,7 @@ Here are a few reasons you'd want to use Figmagic rather than anything similar:
 
 The Figmagic developer docs are auto-generated on every push and can be found at the [dedicated documentation site](https://docs.figmagic.com).
 
-For deeper information pertaining to Figmagic Elements and syncing them, see [the dedicated README page](readme/ELEMENTS.md).
+For deeper information pertaining to Figmagic Elements and syncing them, see [the dedicated README page](readme/elements.md).
 
 ## The Figmagic ecosystem
 
