@@ -79,10 +79,47 @@
     },
     {
       "login": "printf-ana",
-      "name": "Ana Carolina ",
+      "name": "Ana Carolina",
       "avatar_url": "https://avatars.githubusercontent.com/u/45365825?v=4",
       "profile": "https://github.com/printf-ana",
       "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "mitchdotdeveloper",
+      "name": "Mitch O'Hair",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23520530?v=4",
+      "profile": "https://github.com/mitchdotdeveloper",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "vspedr",
+      "name": "Victor",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9813942?v=4",
+      "profile": "https://github.com/vspedr",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "smmccabe",
+      "name": "Shawn McCabe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4956338?v=4",
+      "profile": "https://github.com/smmccabe",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "timhettler",
+      "name": "Tim Hettler",
+      "avatar_url": "https://avatars.githubusercontent.com/u/630497?v=4",
+      "profile": "https://github.com/timhettler",
+      "contributions": [
+        "code",
         "doc"
       ]
     }

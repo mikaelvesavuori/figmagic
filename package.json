@@ -1,13 +1,14 @@
 {
   "name": "figmagic",
   "version": "4.6.0",
+  "license": "MIT",
+  "author": "Mikael Vesavuori",
   "description": "Figmagic is the missing piece between DevOps and design: Generate design tokens, export graphics, and extract design token-driven React components from your Figma documents.",
   "homepage": "https://www.figmagic.com",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mikaelvesavuori/figmagic.git"
   },
-  "author": "Mikael Vesavuori",
   "keywords": [
     "figma",
     "figma-api",
@@ -18,7 +19,6 @@
     "design-systems",
     "design-specs"
   ],
-  "license": "MIT",
   "bin": {
     "figmagic": "build/index.js"
   },
@@ -31,56 +31,6 @@
       "import": "./build/index.js"
     }
   },
-  "contributors": [
-    {
-      "name": "Victor",
-      "url": "https://github.com/vspedr"
-    },
-    {
-      "name": "Zack Brown",
-      "url": "https://github.com/zackbrown"
-    },
-    {
-      "name": "mike-lvov",
-      "url": "https://github.com/mike-lvov"
-    },
-    {
-      "name": "flo-sch",
-      "url": "https://github.com/flo-sch"
-    },
-    {
-      "name": "Stanko",
-      "url": "https://github.com/Stanko"
-    },
-    {
-      "name": "mykhailoInnovecs",
-      "url": "https://github.com/mykhailoInnovecs"
-    },
-    {
-      "name": "opauloh",
-      "url": "https://github.com/opauloh"
-    },
-    {
-      "name": "peeja",
-      "url": "https://github.com/Peeja"
-    },
-    {
-      "name": "Ishmam156",
-      "url": "https://github.com/Ishmam156"
-    },
-    {
-      "name": "smmccabe",
-      "url": "https://github.com/smmccabe"
-    },
-    {
-      "name": "mitchdotdeveloper",
-      "url": "https://github.com/mitchdotdeveloper"
-    },
-    {
-      "name": "timhettler",
-      "url": "https://github.com/timhettler"
-    }
-  ],
   "files": [
     "build/index.js",
     "build/index.js.LICENSE.txt",
@@ -119,5 +69,59 @@
     "type-coverage": "2",
     "typedoc": "latest",
     "typescript": "5"
-  }
+  },
+  "contributors": [
+    {
+      "name": "Victor",
+      "url": "https://github.com/vspedr"
+    },
+    {
+      "name": "Zack Brown",
+      "url": "https://github.com/zackbrown"
+    },
+    {
+      "name": "mike-lvov",
+      "url": "https://github.com/mike-lvov"
+    },
+    {
+      "name": "flo-sch",
+      "url": "https://github.com/flo-sch"
+    },
+    {
+      "name": "Stanko",
+      "url": "https://github.com/Stanko"
+    },
+    {
+      "name": "mykhailoInnovecs",
+      "url": "https://github.com/mykhailoInnovecs"
+    },
+    {
+      "name": "opauloh",
+      "url": "https://github.com/opauloh"
+    },
+    {
+      "name": "peeja",
+      "url": "https://github.com/Peeja"
+    },
+    {
+      "name": "printf-ana",
+      "url": "https://github.com/printf-ana"
+    },
+    {
+      "name": "Ishmam156",
+      "url": "https://github.com/Ishmam156"
+    },
+    {
+      "name": "smmccabe",
+      "url": "https://github.com/smmccabe"
+    },
+    {
+      "name": "mitchdotdeveloper",
+      "url": "https://github.com/mitchdotdeveloper"
+    },
+    {
+      "name": "timhettler",
+      "url": "https://github.com/timhettler"
+    }
+  ]
 }
